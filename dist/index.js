@@ -1,0 +1,15687 @@
+'use strict';
+
+var react = require('react');
+var jsxRuntime = require('react/jsx-runtime');
+
+function _arrayLikeToArray(r, a) {
+  (null == a || a > r.length) && (a = r.length);
+  for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e];
+  return n;
+}
+function _arrayWithHoles(r) {
+  if (Array.isArray(r)) return r;
+}
+function _arrayWithoutHoles(r) {
+  if (Array.isArray(r)) return _arrayLikeToArray(r);
+}
+function asyncGeneratorStep(n, t, e, r, o, a, c) {
+  try {
+    var i = n[a](c),
+      u = i.value;
+  } catch (n) {
+    return void e(n);
+  }
+  i.done ? t(u) : Promise.resolve(u).then(r, o);
+}
+function _asyncToGenerator(n) {
+  return function () {
+    var t = this,
+      e = arguments;
+    return new Promise(function (r, o) {
+      var a = n.apply(t, e);
+      function _next(n) {
+        asyncGeneratorStep(a, r, o, _next, _throw, "next", n);
+      }
+      function _throw(n) {
+        asyncGeneratorStep(a, r, o, _next, _throw, "throw", n);
+      }
+      _next(void 0);
+    });
+  };
+}
+function _defineProperty(e, r, t) {
+  return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, {
+    value: t,
+    enumerable: true,
+    configurable: true,
+    writable: true
+  }) : e[r] = t, e;
+}
+function _iterableToArray(r) {
+  if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r);
+}
+function _iterableToArrayLimit(r, l) {
+  var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"];
+  if (null != t) {
+    var e,
+      n,
+      i,
+      u,
+      a = [],
+      f = true,
+      o = false;
+    try {
+      if (i = (t = t.call(r)).next, 0 === l) ; else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0);
+    } catch (r) {
+      o = true, n = r;
+    } finally {
+      try {
+        if (!f && null != t.return && (u = t.return(), Object(u) !== u)) return;
+      } finally {
+        if (o) throw n;
+      }
+    }
+    return a;
+  }
+}
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+function ownKeys(e, r) {
+  var t = Object.keys(e);
+  if (Object.getOwnPropertySymbols) {
+    var o = Object.getOwnPropertySymbols(e);
+    r && (o = o.filter(function (r) {
+      return Object.getOwnPropertyDescriptor(e, r).enumerable;
+    })), t.push.apply(t, o);
+  }
+  return t;
+}
+function _objectSpread2(e) {
+  for (var r = 1; r < arguments.length; r++) {
+    var t = null != arguments[r] ? arguments[r] : {};
+    r % 2 ? ownKeys(Object(t), true).forEach(function (r) {
+      _defineProperty(e, r, t[r]);
+    }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) {
+      Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r));
+    });
+  }
+  return e;
+}
+function _regenerator() {
+  /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE */
+  var e,
+    t,
+    r = "function" == typeof Symbol ? Symbol : {},
+    n = r.iterator || "@@iterator",
+    o = r.toStringTag || "@@toStringTag";
+  function i(r, n, o, i) {
+    var c = n && n.prototype instanceof Generator ? n : Generator,
+      u = Object.create(c.prototype);
+    return _regeneratorDefine(u, "_invoke", function (r, n, o) {
+      var i,
+        c,
+        u,
+        f = 0,
+        p = o || [],
+        y = false,
+        G = {
+          p: 0,
+          n: 0,
+          v: e,
+          a: d,
+          f: d.bind(e, 4),
+          d: function (t, r) {
+            return i = t, c = 0, u = e, G.n = r, a;
+          }
+        };
+      function d(r, n) {
+        for (c = r, u = n, t = 0; !y && f && !o && t < p.length; t++) {
+          var o,
+            i = p[t],
+            d = G.p,
+            l = i[2];
+          r > 3 ? (o = l === n) && (u = i[(c = i[4]) ? 5 : (c = 3, 3)], i[4] = i[5] = e) : i[0] <= d && ((o = r < 2 && d < i[1]) ? (c = 0, G.v = n, G.n = i[1]) : d < l && (o = r < 3 || i[0] > n || n > l) && (i[4] = r, i[5] = n, G.n = l, c = 0));
+        }
+        if (o || r > 1) return a;
+        throw y = true, n;
+      }
+      return function (o, p, l) {
+        if (f > 1) throw TypeError("Generator is already running");
+        for (y && 1 === p && d(p, l), c = p, u = l; (t = c < 2 ? e : u) || !y;) {
+          i || (c ? c < 3 ? (c > 1 && (G.n = -1), d(c, u)) : G.n = u : G.v = u);
+          try {
+            if (f = 2, i) {
+              if (c || (o = "next"), t = i[o]) {
+                if (!(t = t.call(i, u))) throw TypeError("iterator result is not an object");
+                if (!t.done) return t;
+                u = t.value, c < 2 && (c = 0);
+              } else 1 === c && (t = i.return) && t.call(i), c < 2 && (u = TypeError("The iterator does not provide a '" + o + "' method"), c = 1);
+              i = e;
+            } else if ((t = (y = G.n < 0) ? u : r.call(n, G)) !== a) break;
+          } catch (t) {
+            i = e, c = 1, u = t;
+          } finally {
+            f = 1;
+          }
+        }
+        return {
+          value: t,
+          done: y
+        };
+      };
+    }(r, o, i), true), u;
+  }
+  var a = {};
+  function Generator() {}
+  function GeneratorFunction() {}
+  function GeneratorFunctionPrototype() {}
+  t = Object.getPrototypeOf;
+  var c = [][n] ? t(t([][n]())) : (_regeneratorDefine(t = {}, n, function () {
+      return this;
+    }), t),
+    u = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(c);
+  function f(e) {
+    return Object.setPrototypeOf ? Object.setPrototypeOf(e, GeneratorFunctionPrototype) : (e.__proto__ = GeneratorFunctionPrototype, _regeneratorDefine(e, o, "GeneratorFunction")), e.prototype = Object.create(u), e;
+  }
+  return GeneratorFunction.prototype = GeneratorFunctionPrototype, _regeneratorDefine(u, "constructor", GeneratorFunctionPrototype), _regeneratorDefine(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = "GeneratorFunction", _regeneratorDefine(GeneratorFunctionPrototype, o, "GeneratorFunction"), _regeneratorDefine(u), _regeneratorDefine(u, o, "Generator"), _regeneratorDefine(u, n, function () {
+    return this;
+  }), _regeneratorDefine(u, "toString", function () {
+    return "[object Generator]";
+  }), (_regenerator = function () {
+    return {
+      w: i,
+      m: f
+    };
+  })();
+}
+function _regeneratorDefine(e, r, n, t) {
+  var i = Object.defineProperty;
+  try {
+    i({}, "", {});
+  } catch (e) {
+    i = 0;
+  }
+  _regeneratorDefine = function (e, r, n, t) {
+    function o(r, n) {
+      _regeneratorDefine(e, r, function (e) {
+        return this._invoke(r, n, e);
+      });
+    }
+    r ? i ? i(e, r, {
+      value: n,
+      enumerable: !t,
+      configurable: !t,
+      writable: !t
+    }) : e[r] = n : (o("next", 0), o("throw", 1), o("return", 2));
+  }, _regeneratorDefine(e, r, n, t);
+}
+function _slicedToArray(r, e) {
+  return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest();
+}
+function _toConsumableArray(r) {
+  return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread();
+}
+function _toPrimitive(t, r) {
+  if ("object" != typeof t || !t) return t;
+  var e = t[Symbol.toPrimitive];
+  if (void 0 !== e) {
+    var i = e.call(t, r);
+    if ("object" != typeof i) return i;
+    throw new TypeError("@@toPrimitive must return a primitive value.");
+  }
+  return ("string" === r ? String : Number)(t);
+}
+function _toPropertyKey(t) {
+  var i = _toPrimitive(t, "string");
+  return "symbol" == typeof i ? i : i + "";
+}
+function _typeof(o) {
+  "@babel/helpers - typeof";
+
+  return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) {
+    return typeof o;
+  } : function (o) {
+    return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o;
+  }, _typeof(o);
+}
+function _unsupportedIterableToArray(r, a) {
+  if (r) {
+    if ("string" == typeof r) return _arrayLikeToArray(r, a);
+    var t = {}.toString.call(r).slice(8, -1);
+    return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0;
+  }
+}
+
+function r(e){var t,f,n="";if("string"==typeof e||"number"==typeof e)n+=e;else if("object"==typeof e)if(Array.isArray(e)){var o=e.length;for(t=0;t<o;t++)e[t]&&(f=r(e[t]))&&(n&&(n+=" "),n+=f);}else for(f in e)e[f]&&(n&&(n+=" "),n+=f);return n}function clsx(){for(var e,t,f=0,n="",o=arguments.length;f<o;f++)(e=arguments[f])&&(t=r(e))&&(n&&(n+=" "),n+=t);return n}
+
+var HeroPrime = function HeroPrime(_ref) {
+  var data = _ref.data,
+    className = _ref.className,
+    id = _ref.id,
+    _ref$loader = _ref.loader,
+    loader = _ref$loader === void 0 ? false : _ref$loader;
+  // Safety check for data
+  if (!data || _typeof(data) !== 'object') {
+    console.error('HeroPrime: data prop is required and must be an object');
+    return null;
+  }
+  var _useState = react.useState(loader),
+    _useState2 = _slicedToArray(_useState, 2),
+    showLoader = _useState2[0],
+    setShowLoader = _useState2[1];
+
+  // Auto-hide loader after 2 seconds when loader prop is true
+  react.useEffect(function () {
+    if (loader) {
+      var timer = setTimeout(function () {
+        setShowLoader(false);
+      }, 2000);
+      return function () {
+        return clearTimeout(timer);
+      };
+    } else {
+      setShowLoader(false);
+    }
+  }, [loader]);
+  var title = data.title,
+    subtitle = data.subtitle,
+    description = data.description,
+    backgroundImage = data.backgroundImage,
+    backgroundVideo = data.backgroundVideo,
+    _data$overlay = data.overlay,
+    overlay = _data$overlay === void 0 ? true : _data$overlay,
+    _data$overlayOpacity = data.overlayOpacity,
+    overlayOpacity = _data$overlayOpacity === void 0 ? 0.5 : _data$overlayOpacity,
+    _data$buttons = data.buttons,
+    buttons = _data$buttons === void 0 ? [] : _data$buttons,
+    _data$variant = data.variant,
+    variant = _data$variant === void 0 ? 'single' : _data$variant,
+    _data$alignment = data.alignment,
+    alignment = _data$alignment === void 0 ? 'center' : _data$alignment,
+    _data$height = data.height,
+    height = _data$height === void 0 ? 'large' : _data$height,
+    dataClassName = data.className;
+  var heightClasses = {
+    small: 'min-h-[400px]',
+    medium: 'min-h-[500px]',
+    large: 'min-h-[600px]',
+    full: 'min-h-screen'
+  };
+  var alignmentClasses = {
+    left: 'text-left items-start',
+    center: 'text-center items-center',
+    right: 'text-right items-end'
+  };
+  var buttonVariantClasses = {
+    primary: 'bg-primary-600 hover:bg-primary-700 text-white',
+    secondary: 'bg-gray-600 hover:bg-gray-700 text-white',
+    outline: 'border-2 border-white text-white hover:bg-white hover:text-gray-900'
+  };
+
+  // Show skeleton loader if loader prop is true (only for single variant)
+  if (showLoader) {
+    return /*#__PURE__*/jsxRuntime.jsx("section", {
+      id: id,
+      className: clsx('relative w-full flex flex-col justify-center px-4 sm:px-6 lg:px-8', heightClasses[height], 'bg-gray-500', className, dataClassName),
+      children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: clsx('max-w-7xl mx-auto w-full flex flex-col items-center text-center'),
+        children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "h-5 bg-gray-400 rounded-full w-40 mb-4 animate-pulse"
+        }), /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "h-16 bg-gray-400 rounded-lg w-full max-w-2xl mb-6 animate-pulse"
+        }), /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "space-y-2 mb-8 max-w-xl",
+          children: /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "h-5 bg-gray-400 rounded w-4/5 mb-4 animate-pulse"
+          })
+        }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "flex gap-4 justify-center",
+          children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "h-12 bg-gray-400 rounded-lg w-32 animate-pulse"
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "h-12 bg-gray-400 rounded-lg w-28 animate-pulse"
+          })]
+        })]
+      })
+    });
+  }
+
+  // Single variant - full width with background
+  if (variant === 'single') {
+    var backgroundStyle = backgroundImage ? {
+      backgroundImage: "url(".concat(backgroundImage, ")"),
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat'
+    } : {};
+    return /*#__PURE__*/jsxRuntime.jsxs("section", {
+      id: id,
+      className: clsx('relative w-full flex flex-col justify-center px-4 sm:px-6 lg:px-8', heightClasses[height], className, dataClassName),
+      style: backgroundStyle,
+      children: [backgroundVideo && /*#__PURE__*/jsxRuntime.jsx("video", {
+        className: "absolute inset-0 w-full h-full object-cover z-0",
+        autoPlay: true,
+        loop: true,
+        muted: true,
+        playsInline: true,
+        children: /*#__PURE__*/jsxRuntime.jsx("source", {
+          src: backgroundVideo,
+          type: "video/mp4"
+        })
+      }), overlay && /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "absolute inset-0 bg-black z-10",
+        style: {
+          opacity: overlayOpacity
+        }
+      }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: clsx('relative z-20 max-w-7xl mx-auto w-full flex flex-col', alignmentClasses[alignment]),
+        children: [subtitle && /*#__PURE__*/jsxRuntime.jsx("p", {
+          className: "text-sm sm:text-base font-semibold text-primary-400 uppercase tracking-wider mb-4",
+          children: subtitle
+        }), /*#__PURE__*/jsxRuntime.jsx("h1", {
+          className: "text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight",
+          children: title
+        }), description && /*#__PURE__*/jsxRuntime.jsx("p", {
+          className: clsx("text-lg sm:text-xl md:text-2xl text-gray-200 mb-8 max-w-3xl", alignment === 'center' && "mx-auto", alignment === 'right' && "ml-auto"),
+          children: description
+        }), buttons.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: clsx('flex flex-wrap gap-4', alignment === 'center' && 'justify-center', alignment === 'right' && 'justify-end', alignment === 'left' && 'justify-start'),
+          children: buttons.map(function (button, index) {
+            var ButtonComponent = button.href ? 'a' : 'button';
+            return /*#__PURE__*/jsxRuntime.jsx(ButtonComponent, {
+              href: button.href,
+              onClick: button.onClick,
+              className: clsx('px-6 py-3 sm:px-8 sm:py-4 rounded-lg font-semibold text-base sm:text-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent', buttonVariantClasses[button.variant || 'primary'], button.className),
+              children: button.text
+            }, index);
+          })
+        })]
+      })]
+    });
+  }
+
+  // Split variants - image and content side by side
+  if (variant === 'split' || variant === 'split-reverse' || variant === 'image-left' || variant === 'image-right') {
+    var isImageLeft = variant === 'split' || variant === 'image-left';
+    return /*#__PURE__*/jsxRuntime.jsxs("section", {
+      id: id,
+      className: clsx('relative w-full flex flex-col lg:flex-row', heightClasses[height], className, dataClassName),
+      children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: clsx('relative w-full lg:w-1/2', isImageLeft ? 'order-1' : 'order-2'),
+        children: [backgroundImage ? /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "absolute inset-0 bg-cover bg-center bg-no-repeat",
+          style: {
+            backgroundImage: "url(".concat(backgroundImage, ")")
+          }
+        }) : /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "absolute inset-0 bg-gradient-to-br from-primary-500 to-purple-600"
+        }), overlay && /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "absolute inset-0 bg-black z-10",
+          style: {
+            opacity: overlayOpacity
+          }
+        })]
+      }), /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: clsx('relative w-full lg:w-1/2 flex flex-col justify-center px-4 sm:px-6 lg:px-8 xl:px-12', 'bg-white', isImageLeft ? 'order-2' : 'order-1'),
+        children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: clsx('max-w-2xl mx-auto w-full flex flex-col', alignmentClasses[alignment]),
+          children: [subtitle && /*#__PURE__*/jsxRuntime.jsx("p", {
+            className: "text-sm sm:text-base font-semibold text-primary-600 uppercase tracking-wider mb-4",
+            children: subtitle
+          }), /*#__PURE__*/jsxRuntime.jsx("h1", {
+            className: "text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight",
+            children: title
+          }), description && /*#__PURE__*/jsxRuntime.jsx("p", {
+            className: clsx("text-lg sm:text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl", alignment === 'center' && "mx-auto", alignment === 'right' && "ml-auto"),
+            children: description
+          }), buttons.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: clsx('flex flex-wrap gap-4', alignment === 'center' && 'justify-center', alignment === 'right' && 'justify-end', alignment === 'left' && 'justify-start'),
+            children: buttons.map(function (button, index) {
+              var ButtonComponent = button.href ? 'a' : 'button';
+              return /*#__PURE__*/jsxRuntime.jsx(ButtonComponent, {
+                href: button.href,
+                onClick: button.onClick,
+                className: clsx('px-6 py-3 sm:px-8 sm:py-4 rounded-lg font-semibold text-base sm:text-lg transition-all duration-300 transform hover:scale-105', buttonVariantClasses[button.variant || 'primary'], button.className),
+                children: button.text
+              }, index);
+            })
+          })]
+        })
+      })]
+    });
+  }
+
+  // Centered variant - content centered with optional background
+  if (variant === 'centered') {
+    var _backgroundStyle = backgroundImage ? {
+      backgroundImage: "url(".concat(backgroundImage, ")"),
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat'
+    } : {};
+    return /*#__PURE__*/jsxRuntime.jsxs("section", {
+      id: id,
+      className: clsx('relative w-full flex flex-col justify-center px-4 sm:px-6 lg:px-8', heightClasses[height], className, dataClassName),
+      style: _backgroundStyle,
+      children: [backgroundVideo && /*#__PURE__*/jsxRuntime.jsx("video", {
+        className: "absolute inset-0 w-full h-full object-cover z-0",
+        autoPlay: true,
+        loop: true,
+        muted: true,
+        playsInline: true,
+        children: /*#__PURE__*/jsxRuntime.jsx("source", {
+          src: backgroundVideo,
+          type: "video/mp4"
+        })
+      }), overlay && /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "absolute inset-0 bg-black z-10",
+        style: {
+          opacity: overlayOpacity
+        }
+      }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: clsx('relative z-20 max-w-4xl mx-auto w-full flex flex-col', alignmentClasses[alignment]),
+        children: [subtitle && /*#__PURE__*/jsxRuntime.jsx("p", {
+          className: "text-sm sm:text-base font-semibold text-primary-400 uppercase tracking-wider mb-4",
+          children: subtitle
+        }), /*#__PURE__*/jsxRuntime.jsx("h1", {
+          className: "text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight",
+          children: title
+        }), description && /*#__PURE__*/jsxRuntime.jsx("p", {
+          className: clsx("text-lg sm:text-xl md:text-2xl text-gray-200 mb-8 max-w-2xl", alignment === 'center' && "mx-auto", alignment === 'right' && "ml-auto"),
+          children: description
+        }), buttons.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: clsx('flex flex-wrap gap-4', alignment === 'center' && 'justify-center', alignment === 'right' && 'justify-end', alignment === 'left' && 'justify-start'),
+          children: buttons.map(function (button, index) {
+            var ButtonComponent = button.href ? 'a' : 'button';
+            return /*#__PURE__*/jsxRuntime.jsx(ButtonComponent, {
+              href: button.href,
+              onClick: button.onClick,
+              className: clsx('px-6 py-3 sm:px-8 sm:py-4 rounded-lg font-semibold text-base sm:text-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent', buttonVariantClasses[button.variant || 'primary'], button.className),
+              children: button.text
+            }, index);
+          })
+        })]
+      })]
+    });
+  }
+
+  // Default fallback to single
+  return null;
+};
+
+var HeroGradient = function HeroGradient(_ref) {
+  var data = _ref.data,
+    className = _ref.className,
+    id = _ref.id,
+    _ref$loader = _ref.loader,
+    loader = _ref$loader === void 0 ? false : _ref$loader;
+  if (!data || _typeof(data) !== 'object') {
+    console.error('HeroGradient: data prop is required and must be an object');
+    return null;
+  }
+  var _useState = react.useState(loader),
+    _useState2 = _slicedToArray(_useState, 2),
+    showLoader = _useState2[0],
+    setShowLoader = _useState2[1];
+
+  // Auto-hide loader after 2 seconds when loader prop is true
+  react.useEffect(function () {
+    if (loader) {
+      var timer = setTimeout(function () {
+        setShowLoader(false);
+      }, 2000);
+      return function () {
+        return clearTimeout(timer);
+      };
+    } else {
+      setShowLoader(false);
+    }
+  }, [loader]);
+  var title = data.title,
+    subtitle = data.subtitle,
+    description = data.description,
+    _data$buttons = data.buttons,
+    buttons = _data$buttons === void 0 ? [] : _data$buttons,
+    _data$features = data.features,
+    features = _data$features === void 0 ? [] : _data$features,
+    _data$gradient = data.gradient,
+    gradient = _data$gradient === void 0 ? 'default' : _data$gradient,
+    _data$showFloatingCar = data.showFloatingCards,
+    showFloatingCards = _data$showFloatingCar === void 0 ? true : _data$showFloatingCar,
+    _data$featureAlignmen = data.featureAlignment,
+    featureAlignment = _data$featureAlignmen === void 0 ? 'center' : _data$featureAlignmen,
+    dataClassName = data.className;
+  var gradientClasses = {
+    "default": 'from-blue-600 via-purple-600 to-pink-600',
+    purple: 'from-purple-600 via-pink-600 to-red-600',
+    blue: 'from-blue-500 via-cyan-500 to-teal-500',
+    orange: 'from-orange-500 via-red-500 to-pink-500',
+    green: 'from-green-500 via-emerald-500 to-teal-500'
+  };
+  var buttonVariantClasses = {
+    primary: 'bg-white text-gray-900 hover:bg-gray-100 shadow-lg hover:shadow-xl',
+    secondary: 'bg-gray-900/20 backdrop-blur-sm text-white border-2 border-white/30 hover:bg-white/10',
+    outline: 'bg-transparent text-white border-2 border-white hover:bg-white hover:text-gray-900'
+  };
+  var featureAlignmentClasses = {
+    left: 'text-left items-start',
+    center: 'text-center items-center',
+    right: 'text-right items-end'
+  };
+
+  // Show skeleton loader if loader prop is true
+  if (showLoader) {
+    return /*#__PURE__*/jsxRuntime.jsxs("section", {
+      id: id,
+      className: clsx('relative w-full min-h-screen flex items-center justify-center overflow-visible px-4 sm:px-6 lg:px-8 py-20', 'bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400', className, dataClassName),
+      children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "absolute inset-0 bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"
+      }), showFloatingCards && /*#__PURE__*/jsxRuntime.jsx(jsxRuntime.Fragment, {
+        children: [0, 1, 2].map(function (index) {
+          return /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "absolute bg-white/20 backdrop-blur-md rounded-2xl p-4 border border-white/30 shadow-xl animate-pulse",
+            style: {
+              top: index === 2 ? '80%' : "".concat(20 + index * 25, "%"),
+              right: index % 2 === 0 ? '5%' : '2%',
+              zIndex: 50,
+              width: '180px',
+              height: '80px'
+            },
+            children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "flex items-center gap-3",
+              children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "w-8 h-8 bg-white/30 rounded animate-pulse"
+              }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: "flex-1 space-y-2",
+                children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "h-3 bg-white/30 rounded w-20 animate-pulse"
+                }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "h-2 bg-white/30 rounded w-16 animate-pulse"
+                })]
+              })]
+            })
+          }, index);
+        })
+      }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "relative z-10 max-w-5xl mx-auto w-full text-center",
+        children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "inline-block mb-6",
+          children: /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "h-8 bg-white/30 rounded-full w-40 mx-auto animate-pulse"
+          })
+        }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "space-y-4 mb-6",
+          children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "h-16 bg-white/30 rounded w-full max-w-3xl mx-auto animate-pulse"
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "h-16 bg-white/30 rounded w-full max-w-2xl mx-auto animate-pulse"
+          })]
+        }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "space-y-2 mb-10 max-w-3xl mx-auto",
+          children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "h-6 bg-white/30 rounded w-full animate-pulse"
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "h-6 bg-white/30 rounded w-5/6 mx-auto animate-pulse"
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "h-6 bg-white/30 rounded w-4/6 mx-auto animate-pulse"
+          })]
+        }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "flex flex-wrap gap-4 justify-center mb-12",
+          children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "h-14 bg-white/30 rounded-full w-36 animate-pulse"
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "h-14 bg-white/30 rounded-full w-32 animate-pulse"
+          })]
+        }), features.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-12",
+          children: [0, 1, 2].map(function (index) {
+            return /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20 animate-pulse",
+              children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "w-12 h-12 bg-white/30 rounded-lg mb-3 mx-auto animate-pulse"
+              }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "h-5 bg-white/30 rounded w-3/4 mx-auto mb-2 animate-pulse"
+              }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "h-4 bg-white/30 rounded w-full animate-pulse"
+              })]
+            }, index);
+          })
+        })]
+      }), /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "absolute bottom-8 left-1/2 transform -translate-x-1/2",
+        children: /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "w-6 h-10 border-2 border-white/30 rounded-full flex justify-center",
+          children: /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "w-1.5 h-3 bg-white/30 rounded-full mt-2 animate-pulse"
+          })
+        })
+      })]
+    });
+  }
+  return /*#__PURE__*/jsxRuntime.jsxs("section", {
+    id: id,
+    className: clsx('relative w-full min-h-screen flex items-center justify-center overflow-visible px-4 sm:px-6 lg:px-8 py-20', className, dataClassName),
+    children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+      className: clsx('absolute inset-0 bg-gradient-to-br overflow-hidden', gradientClasses[gradient], 'animate-gradient'),
+      children: /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMiIvPjwvZz48L2c+PC9zdmc+')] opacity-30"
+      })
+    }), /*#__PURE__*/jsxRuntime.jsx("div", {
+      className: "absolute top-0 left-0 w-96 h-96 bg-white/10 rounded-full blur-3xl animate-pulse"
+    }), /*#__PURE__*/jsxRuntime.jsx("div", {
+      className: "absolute bottom-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl animate-pulse delay-1000"
+    }), /*#__PURE__*/jsxRuntime.jsx("div", {
+      className: "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-white/5 rounded-full blur-3xl animate-pulse delay-500"
+    }), showFloatingCards && features.length > 0 && /*#__PURE__*/jsxRuntime.jsx(jsxRuntime.Fragment, {
+      children: features.slice(0, 3).map(function (feature, index) {
+        return /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: clsx('absolute block bg-white/10 backdrop-blur-md rounded-2xl p-3 sm:p-4 border border-white/20 shadow-xl', 'animate-float'),
+          style: {
+            top: index === 2 ? '80%' : "".concat(20 + index * 25, "%"),
+            right: index % 2 === 0 ? '5%' : '2%',
+            zIndex: 50,
+            animationDelay: "".concat(index * 0.5, "s"),
+            animationDuration: "".concat(3 + index, "s"),
+            maxWidth: '200px',
+            pointerEvents: 'auto',
+            willChange: 'transform'
+          },
+          children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex items-center gap-2 sm:gap-3",
+            children: [feature.icon && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "text-xl sm:text-2xl flex-shrink-0",
+              children: typeof feature.icon === 'string' ? /*#__PURE__*/jsxRuntime.jsx("span", {
+                children: feature.icon
+              }) : /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "w-5 h-5 sm:w-6 sm:h-6",
+                children: feature.icon
+              })
+            }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+              children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "text-white font-semibold text-xs sm:text-sm",
+                children: feature.title
+              }), feature.description && /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "text-white/80 text-[10px] sm:text-xs mt-1",
+                children: feature.description
+              })]
+            })]
+          })
+        }, index);
+      })
+    }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+      className: "relative z-10 max-w-5xl mx-auto w-full text-center",
+      children: [subtitle && /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "inline-block mb-6",
+        children: /*#__PURE__*/jsxRuntime.jsx("span", {
+          className: "px-4 py-2 bg-white/20 backdrop-blur-sm text-white text-sm font-semibold uppercase tracking-wider rounded-full border border-white/30",
+          children: subtitle
+        })
+      }), /*#__PURE__*/jsxRuntime.jsx("h1", {
+        className: "text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-tight",
+        children: /*#__PURE__*/jsxRuntime.jsx("span", {
+          className: "block",
+          children: title
+        })
+      }), description && /*#__PURE__*/jsxRuntime.jsx("p", {
+        className: "text-xl sm:text-2xl md:text-3xl text-white/90 mb-10 max-w-3xl mx-auto leading-relaxed",
+        children: description
+      }), buttons.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "flex flex-wrap gap-4 justify-center mb-12",
+        children: buttons.map(function (button, index) {
+          var ButtonComponent = button.href ? 'a' : 'button';
+          return /*#__PURE__*/jsxRuntime.jsx(ButtonComponent, {
+            href: button.href,
+            onClick: button.onClick,
+            className: clsx('px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300', 'transform hover:scale-105 active:scale-95', 'focus:outline-none focus:ring-4 focus:ring-white/50', buttonVariantClasses[button.variant || 'primary'], button.className),
+            children: button.text
+          }, index);
+        })
+      }), features.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-12",
+        children: features.map(function (feature, index) {
+          return /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: clsx("bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20 hover:bg-white/15 transition-all duration-300 flex flex-col", featureAlignmentClasses[featureAlignment]),
+            children: [feature.icon && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: clsx("mb-3", featureAlignment === 'center' && "mx-auto", featureAlignment === 'right' && "ml-auto"),
+              children: typeof feature.icon === 'string' ? /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "text-3xl",
+                children: feature.icon
+              }) : /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "w-10 h-10 text-white",
+                children: feature.icon
+              })
+            }), /*#__PURE__*/jsxRuntime.jsx("h3", {
+              className: "text-white font-semibold text-lg mb-2",
+              children: feature.title
+            }), feature.description && /*#__PURE__*/jsxRuntime.jsx("p", {
+              className: "text-white/80 text-sm",
+              children: feature.description
+            })]
+          }, index);
+        })
+      })]
+    }), /*#__PURE__*/jsxRuntime.jsx("div", {
+      className: "absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce",
+      children: /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "w-6 h-10 border-2 border-white/50 rounded-full flex justify-center",
+        children: /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "w-1.5 h-3 bg-white/50 rounded-full mt-2"
+        })
+      })
+    })]
+  });
+};
+
+var HeroGlass = function HeroGlass(_ref) {
+  var data = _ref.data,
+    className = _ref.className,
+    id = _ref.id,
+    _ref$loader = _ref.loader,
+    loader = _ref$loader === void 0 ? false : _ref$loader;
+  if (!data || _typeof(data) !== 'object') {
+    console.error('HeroGlass: data prop is required and must be an object');
+    return null;
+  }
+  var _useState = react.useState(loader),
+    _useState2 = _slicedToArray(_useState, 2),
+    showLoader = _useState2[0],
+    setShowLoader = _useState2[1];
+
+  // Auto-hide loader after 2 seconds when loader prop is true
+  react.useEffect(function () {
+    if (loader) {
+      var timer = setTimeout(function () {
+        setShowLoader(false);
+      }, 2000);
+      return function () {
+        return clearTimeout(timer);
+      };
+    } else {
+      setShowLoader(false);
+    }
+  }, [loader]);
+  var title = data.title,
+    subtitle = data.subtitle,
+    description = data.description,
+    _data$buttons = data.buttons,
+    buttons = _data$buttons === void 0 ? [] : _data$buttons,
+    backgroundImage = data.backgroundImage,
+    backgroundVideo = data.backgroundVideo,
+    _data$theme = data.theme,
+    theme = _data$theme === void 0 ? 'light' : _data$theme,
+    _data$showStats = data.showStats,
+    showStats = _data$showStats === void 0 ? false : _data$showStats,
+    _data$stats = data.stats,
+    stats = _data$stats === void 0 ? [] : _data$stats,
+    _data$featureAlignmen = data.featureAlignment,
+    featureAlignment = _data$featureAlignmen === void 0 ? 'left' : _data$featureAlignmen,
+    dataClassName = data.className;
+  var isDark = theme === 'dark';
+  var textColor = isDark ? 'text-white' : 'text-gray-900';
+  var textSecondary = isDark ? 'text-gray-300' : 'text-gray-600';
+  var glassBg = isDark ? 'bg-white/10 backdrop-blur-xl' : 'bg-white/80 backdrop-blur-xl';
+  var borderColor = isDark ? 'border-white/20' : 'border-gray-200';
+  var buttonVariantClasses = {
+    primary: isDark ? 'bg-white text-gray-900 hover:bg-gray-100' : 'bg-gray-900 text-white hover:bg-gray-800',
+    secondary: isDark ? 'bg-white/10 backdrop-blur-sm text-white border border-white/30 hover:bg-white/20' : 'bg-gray-100 text-gray-900 border border-gray-300 hover:bg-gray-200',
+    outline: isDark ? 'bg-transparent text-white border-2 border-white/50 hover:bg-white/10' : 'bg-transparent text-gray-900 border-2 border-gray-900 hover:bg-gray-900 hover:text-white'
+  };
+  var backgroundStyle = backgroundImage ? {
+    backgroundImage: "url(".concat(backgroundImage, ")"),
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat'
+  } : {};
+
+  // Show skeleton loader if loader prop is true
+  if (showLoader) {
+    return /*#__PURE__*/jsxRuntime.jsxs("section", {
+      id: id,
+      className: clsx('relative w-full min-h-screen flex items-center justify-center overflow-hidden', isDark ? 'bg-gray-900' : 'bg-gray-50', className, dataClassName),
+      children: [backgroundImage && /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "absolute inset-0 bg-gray-300 animate-pulse"
+      }), backgroundImage && /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: clsx('absolute inset-0 z-10', isDark ? 'bg-black/40' : 'bg-white/40')
+      }), /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "absolute inset-0 z-10 opacity-5",
+        children: /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"
+        })
+      }), /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "relative z-20 max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-20",
+        children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "grid lg:grid-cols-2 gap-12 items-center",
+          children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "space-y-8",
+            children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "inline-block",
+              children: /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: clsx('h-8 bg-gray-300 rounded-full w-32 animate-pulse', isDark && 'bg-gray-700')
+              })
+            }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "space-y-3",
+              children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                className: clsx('h-12 bg-gray-300 rounded w-full animate-pulse', isDark && 'bg-gray-700')
+              }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: clsx('h-12 bg-gray-300 rounded w-4/5 animate-pulse', isDark && 'bg-gray-700')
+              }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: clsx('h-12 bg-gray-300 rounded w-3/5 animate-pulse', isDark && 'bg-gray-700')
+              })]
+            }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "space-y-2 max-w-2xl",
+              children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                className: clsx('h-4 bg-gray-300 rounded w-full animate-pulse', isDark && 'bg-gray-700')
+              }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: clsx('h-4 bg-gray-300 rounded w-5/6 animate-pulse', isDark && 'bg-gray-700')
+              }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: clsx('h-4 bg-gray-300 rounded w-4/6 animate-pulse', isDark && 'bg-gray-700')
+              })]
+            }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "flex flex-wrap gap-4 pt-4",
+              children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                className: clsx('h-12 bg-gray-300 rounded-lg w-32 animate-pulse', isDark && 'bg-gray-700')
+              }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: clsx('h-12 bg-gray-300 rounded-lg w-28 animate-pulse', isDark && 'bg-gray-700')
+              })]
+            }), showStats && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "grid grid-cols-3 gap-6 pt-8 border-t border-gray-200/20",
+              children: [0, 1, 2].map(function (index) {
+                return /*#__PURE__*/jsxRuntime.jsxs("div", {
+                  className: "text-center",
+                  children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: clsx('h-10 bg-gray-300 rounded w-16 mx-auto mb-2 animate-pulse', isDark && 'bg-gray-700')
+                  }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: clsx('h-4 bg-gray-300 rounded w-20 mx-auto animate-pulse', isDark && 'bg-gray-700')
+                  })]
+                }, index);
+              })
+            })]
+          }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "relative",
+            children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+              className: clsx('rounded-3xl p-8 sm:p-12 shadow-2xl border', glassBg, borderColor),
+              children: /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "space-y-6",
+                children: data.features && data.features.length > 0 ? /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "space-y-4",
+                  children: [0, 1, 2].map(function (index) {
+                    return /*#__PURE__*/jsxRuntime.jsxs("div", {
+                      className: "flex items-start gap-4",
+                      children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                        className: clsx('w-6 h-6 bg-gray-300 rounded flex-shrink-0 animate-pulse', isDark && 'bg-gray-700')
+                      }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+                        className: "flex-1 space-y-2",
+                        children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                          className: clsx('h-5 bg-gray-300 rounded w-3/4 animate-pulse', isDark && 'bg-gray-700')
+                        }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                          className: clsx('h-4 bg-gray-300 rounded w-full animate-pulse', isDark && 'bg-gray-700')
+                        })]
+                      })]
+                    }, index);
+                  })
+                }) : /*#__PURE__*/jsxRuntime.jsxs("div", {
+                  className: "space-y-4",
+                  children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: clsx('h-4 bg-gray-300 rounded w-3/4 animate-pulse', isDark && 'bg-gray-700')
+                  }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: clsx('h-4 bg-gray-300 rounded w-full animate-pulse', isDark && 'bg-gray-700')
+                  }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: clsx('h-4 bg-gray-300 rounded w-5/6 animate-pulse', isDark && 'bg-gray-700')
+                  })]
+                })
+              })
+            }), /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: clsx('absolute -top-4 -right-4 w-24 h-24 rounded-full blur-2xl opacity-30', isDark ? 'bg-white' : 'bg-gray-900')
+            }), /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: clsx('absolute -bottom-4 -left-4 w-32 h-32 rounded-full blur-2xl opacity-20', isDark ? 'bg-white' : 'bg-gray-900')
+            })]
+          })]
+        })
+      }), /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "absolute bottom-0 left-0 right-0 z-10",
+        children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+          className: "w-full h-24",
+          viewBox: "0 0 1440 120",
+          fill: "none",
+          xmlns: "http://www.w3.org/2000/svg",
+          children: /*#__PURE__*/jsxRuntime.jsx("path", {
+            d: "M0 120L60 105C120 90 240 60 360 45C480 30 600 30 720 37.5C840 45 960 60 1080 67.5C1200 75 1320 75 1380 75L1440 75V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z",
+            fill: isDark ? '#111827' : '#F9FAFB'
+          })
+        })
+      })]
+    });
+  }
+  return /*#__PURE__*/jsxRuntime.jsxs("section", {
+    id: id,
+    className: clsx('relative w-full min-h-screen flex items-center justify-center overflow-hidden', isDark ? 'bg-gray-900' : 'bg-gray-50', className, dataClassName),
+    style: backgroundStyle,
+    children: [backgroundVideo && /*#__PURE__*/jsxRuntime.jsx("video", {
+      className: "absolute inset-0 w-full h-full object-cover z-0",
+      autoPlay: true,
+      loop: true,
+      muted: true,
+      playsInline: true,
+      children: /*#__PURE__*/jsxRuntime.jsx("source", {
+        src: backgroundVideo,
+        type: "video/mp4"
+      })
+    }), backgroundImage || backgroundVideo ? /*#__PURE__*/jsxRuntime.jsx("div", {
+      className: clsx('absolute inset-0 z-10', isDark ? 'bg-black/40' : 'bg-white/40')
+    }) : null, /*#__PURE__*/jsxRuntime.jsx("div", {
+      className: "absolute inset-0 z-10 opacity-5",
+      children: /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"
+      })
+    }), /*#__PURE__*/jsxRuntime.jsx("div", {
+      className: "relative z-20 max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-20",
+      children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "grid lg:grid-cols-2 gap-12 items-center",
+        children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: clsx('space-y-8', textColor),
+          children: [subtitle && /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "inline-block",
+            children: /*#__PURE__*/jsxRuntime.jsx("span", {
+              className: clsx('px-4 py-2 rounded-full text-sm font-medium uppercase tracking-wider', glassBg, borderColor, 'border', textSecondary),
+              children: subtitle
+            })
+          }), /*#__PURE__*/jsxRuntime.jsx("h1", {
+            className: clsx('text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight', textColor),
+            children: title
+          }), description && /*#__PURE__*/jsxRuntime.jsx("p", {
+            className: clsx('text-xl sm:text-2xl leading-relaxed max-w-2xl', textSecondary),
+            children: description
+          }), buttons.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "flex flex-wrap gap-4 pt-4",
+            children: buttons.map(function (button, index) {
+              var ButtonComponent = button.href ? 'a' : 'button';
+              return /*#__PURE__*/jsxRuntime.jsx(ButtonComponent, {
+                href: button.href,
+                onClick: button.onClick,
+                className: clsx('px-8 py-4 rounded-lg font-semibold text-base transition-all duration-300', 'transform hover:scale-105 active:scale-95', 'focus:outline-none focus:ring-4 focus:ring-offset-2', isDark ? 'focus:ring-white/50' : 'focus:ring-gray-900/50', buttonVariantClasses[button.variant || 'primary'], button.className),
+                children: button.text
+              }, index);
+            })
+          }), showStats && stats.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "grid grid-cols-3 gap-6 pt-8 border-t border-gray-200/20",
+            children: stats.map(function (stat, index) {
+              return /*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: "text-center",
+                children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: clsx('text-3xl sm:text-4xl font-bold mb-1', textColor),
+                  children: stat.value
+                }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: clsx('text-sm', textSecondary),
+                  children: stat.label
+                })]
+              }, index);
+            })
+          })]
+        }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "relative",
+          children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+            className: clsx('rounded-3xl p-8 sm:p-12 shadow-2xl border', glassBg, borderColor, 'transform hover:scale-[1.02] transition-all duration-500'),
+            children: /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "space-y-6",
+              children: data.features && data.features.length > 0 ? /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "space-y-4",
+                children: data.features.map(function (feature, index) {
+                  var alignmentClasses = {
+                    left: 'flex items-start gap-4 text-left',
+                    center: 'flex flex-col items-center gap-4 text-center',
+                    right: 'flex items-end gap-4 text-right flex-row-reverse'
+                  };
+                  return /*#__PURE__*/jsxRuntime.jsxs("div", {
+                    className: clsx(alignmentClasses[featureAlignment]),
+                    children: [feature.icon && /*#__PURE__*/jsxRuntime.jsx("div", {
+                      className: clsx('flex-shrink-0', textColor, featureAlignment === 'right' && 'ml-4'),
+                      children: typeof feature.icon === 'string' ? /*#__PURE__*/jsxRuntime.jsx("span", {
+                        className: "text-2xl",
+                        children: feature.icon
+                      }) : /*#__PURE__*/jsxRuntime.jsx("div", {
+                        className: "w-6 h-6",
+                        children: feature.icon
+                      })
+                    }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+                      className: clsx(featureAlignment === 'right' && 'text-right', featureAlignment === 'center' && 'text-center', featureAlignment === 'left' && 'text-left'),
+                      children: [/*#__PURE__*/jsxRuntime.jsx("h3", {
+                        className: clsx('font-semibold text-lg mb-1', textColor),
+                        children: feature.title
+                      }), feature.description && /*#__PURE__*/jsxRuntime.jsx("p", {
+                        className: clsx('text-sm', textSecondary),
+                        children: feature.description
+                      })]
+                    })]
+                  }, index);
+                })
+              }) : /*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: clsx('space-y-4', textSecondary),
+                children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "h-4 bg-current/20 rounded w-3/4"
+                }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "h-4 bg-current/20 rounded w-full"
+                }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "h-4 bg-current/20 rounded w-5/6"
+                })]
+              })
+            })
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: clsx('absolute -top-4 -right-4 w-24 h-24 rounded-full blur-2xl opacity-30', isDark ? 'bg-white' : 'bg-gray-900')
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: clsx('absolute -bottom-4 -left-4 w-32 h-32 rounded-full blur-2xl opacity-20', isDark ? 'bg-white' : 'bg-gray-900')
+          })]
+        })]
+      })
+    }), /*#__PURE__*/jsxRuntime.jsx("div", {
+      className: "absolute bottom-0 left-0 right-0 z-10",
+      children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+        className: "w-full h-24",
+        viewBox: "0 0 1440 120",
+        fill: "none",
+        xmlns: "http://www.w3.org/2000/svg",
+        children: /*#__PURE__*/jsxRuntime.jsx("path", {
+          d: "M0 120L60 105C120 90 240 60 360 45C480 30 600 30 720 37.5C840 45 960 60 1080 67.5C1200 75 1320 75 1380 75L1440 75V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z",
+          fill: isDark ? '#111827' : '#F9FAFB'
+        })
+      })
+    })]
+  });
+};
+
+var FaqHub = function FaqHub(_ref) {
+  var data = _ref.data,
+    className = _ref.className,
+    id = _ref.id,
+    _ref$loader = _ref.loader,
+    loader = _ref$loader === void 0 ? false : _ref$loader;
+  // Safety check for data
+  if (!data || _typeof(data) !== 'object') {
+    console.error('FaqHub: data prop is required and must be an object');
+    return null;
+  }
+  var _useState = react.useState(loader),
+    _useState2 = _slicedToArray(_useState, 2),
+    showLoader = _useState2[0],
+    setShowLoader = _useState2[1];
+
+  // Auto-hide loader after 2 seconds when loader prop is true
+  react.useEffect(function () {
+    if (loader) {
+      var timer = setTimeout(function () {
+        setShowLoader(false);
+      }, 2000);
+      return function () {
+        return clearTimeout(timer);
+      };
+    } else {
+      setShowLoader(false);
+    }
+  }, [loader]);
+
+  // Show skeleton loader if loader prop is true
+  if (showLoader) {
+    var _ref2 = data || {},
+      _ref2$alignment = _ref2.alignment,
+      _alignment = _ref2$alignment === void 0 ? 'center' : _ref2$alignment,
+      _ref2$variant = _ref2.variant,
+      _variant = _ref2$variant === void 0 ? 'default' : _ref2$variant,
+      _dataClassName = _ref2.className;
+    var _alignmentClasses = {
+      left: 'text-left items-start',
+      center: 'text-center items-center',
+      right: 'text-right items-end'
+    };
+    var _variantClasses = {
+      "default": 'bg-white',
+      bordered: 'bg-white border border-gray-200',
+      minimal: 'bg-transparent',
+      blue: 'bg-white',
+      shadow: 'bg-white',
+      colored: 'bg-white',
+      outlined: 'bg-white',
+      filled: 'bg-white',
+      gradient: 'bg-white'
+    };
+    return /*#__PURE__*/jsxRuntime.jsx("section", {
+      id: id,
+      className: clsx('w-full py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8', _variantClasses[_variant], className, _dataClassName),
+      children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "max-w-4xl mx-auto w-full",
+        children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: clsx('mb-10 sm:mb-12 flex flex-col', _alignmentClasses[_alignment]),
+          children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "h-4 bg-gray-300 rounded w-24 mb-3 mx-auto animate-pulse"
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "h-10 bg-gray-300 rounded w-full max-w-md mb-4 mx-auto animate-pulse"
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "h-5 bg-gray-300 rounded w-full max-w-xl mb-6 mx-auto animate-pulse"
+          })]
+        }), /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "space-y-3",
+          children: [0, 1, 2, 3, 4].map(function (index) {
+            return /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "border border-gray-200 rounded-lg p-4",
+              children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: "flex items-center justify-between",
+                children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "h-6 bg-gray-300 rounded w-3/4 animate-pulse"
+                }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "h-5 w-5 bg-gray-300 rounded animate-pulse"
+                })]
+              })
+            }, index);
+          })
+        })]
+      })
+    });
+  }
+  var title = data.title,
+    subtitle = data.subtitle,
+    description = data.description,
+    _data$items = data.items,
+    items = _data$items === void 0 ? [] : _data$items,
+    _data$alignment = data.alignment,
+    alignment = _data$alignment === void 0 ? 'center' : _data$alignment,
+    _data$variant = data.variant,
+    variant = _data$variant === void 0 ? 'default' : _data$variant,
+    _data$allowMultipleOp = data.allowMultipleOpen,
+    allowMultipleOpen = _data$allowMultipleOp === void 0 ? false : _data$allowMultipleOp,
+    dataClassName = data.className;
+
+  // Initialize with first item open by default
+  var _useState3 = react.useState(new Set(items.length > 0 ? [0] : [])),
+    _useState4 = _slicedToArray(_useState3, 2),
+    openItems = _useState4[0],
+    setOpenItems = _useState4[1];
+  var toggleItem = function toggleItem(index) {
+    setOpenItems(function (prev) {
+      var newSet = new Set(prev);
+      if (newSet.has(index)) {
+        newSet["delete"](index);
+      } else {
+        if (!allowMultipleOpen) {
+          newSet.clear();
+        }
+        newSet.add(index);
+      }
+      return newSet;
+    });
+  };
+  var alignmentClasses = {
+    left: 'text-left items-start',
+    center: 'text-center items-center',
+    right: 'text-right items-end'
+  };
+  var variantClasses = {
+    "default": 'bg-white',
+    bordered: 'bg-white border border-gray-200',
+    minimal: 'bg-transparent',
+    blue: 'bg-white',
+    shadow: 'bg-white',
+    colored: 'bg-white',
+    outlined: 'bg-white',
+    filled: 'bg-white',
+    gradient: 'bg-white'
+  };
+  if (items.length === 0) {
+    console.warn('FaqHub: items array is empty');
+    return null;
+  }
+  return /*#__PURE__*/jsxRuntime.jsx("section", {
+    id: id,
+    className: clsx('w-full py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8', variantClasses[variant], className, dataClassName),
+    children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+      className: "max-w-4xl mx-auto w-full",
+      children: [(title || subtitle || description) && /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: clsx('mb-10 sm:mb-12 flex flex-col', alignmentClasses[alignment]),
+        children: [subtitle && /*#__PURE__*/jsxRuntime.jsx("p", {
+          className: "text-sm sm:text-base font-semibold text-primary-600 uppercase tracking-wider mb-3",
+          children: subtitle
+        }), title && /*#__PURE__*/jsxRuntime.jsx("h2", {
+          className: "text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight",
+          children: title
+        }), description && /*#__PURE__*/jsxRuntime.jsx("p", {
+          className: clsx('text-base sm:text-lg text-gray-500 max-w-2xl', alignment === 'center' && 'mx-auto', alignment === 'right' && 'ml-auto', alignment === 'left' && 'mr-auto'),
+          children: description
+        })]
+      }), /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "space-y-4",
+        children: items.map(function (item, index) {
+          var isOpen = openItems.has(index);
+          var question = item.question,
+            answer = item.answer;
+          if (!question || !answer) {
+            console.warn("FaqHub: Item at index ".concat(index, " is missing question or answer"));
+            return null;
+          }
+
+          // Get item styling based on variant and state
+          var getItemClasses = function getItemClasses() {
+            // Blue variant - blue border for open items
+            if (variant === 'blue') {
+              return clsx('bg-white rounded-lg transition-all duration-300', isOpen ? 'border-2 border-primary-500 shadow-sm' : 'border border-gray-200 hover:border-primary-300');
+            }
+
+            // Shadow variant - enhanced shadows
+            if (variant === 'shadow') {
+              return clsx('bg-white rounded-lg transition-all duration-300', isOpen ? 'border border-gray-200 shadow-lg' : 'border border-gray-200 shadow-sm hover:shadow-md');
+            }
+
+            // Colored variant - colored backgrounds
+            if (variant === 'colored') {
+              return clsx('rounded-lg transition-all duration-300', isOpen ? 'bg-primary-50 border-2 border-primary-500' : 'bg-white border border-gray-200 hover:bg-gray-50');
+            }
+
+            // Outlined variant - thicker borders
+            if (variant === 'outlined') {
+              return clsx('bg-white rounded-lg transition-all duration-300', isOpen ? 'border-2 border-primary-600' : 'border-2 border-gray-300 hover:border-gray-400');
+            }
+
+            // Filled variant - filled backgrounds
+            if (variant === 'filled') {
+              return clsx('rounded-lg transition-all duration-300', isOpen ? 'bg-primary-500 border-2 border-primary-600' : 'bg-gray-100 border border-gray-300 hover:bg-gray-200');
+            }
+
+            // Gradient variant - gradient accent
+            if (variant === 'gradient') {
+              return clsx('bg-white rounded-lg transition-all duration-300 relative', isOpen ? 'border border-gray-200 shadow-md' : 'border border-gray-200 hover:shadow-sm');
+            }
+
+            // Minimal variant
+            if (variant === 'minimal') {
+              return clsx('bg-white rounded-lg transition-all duration-300', isOpen ? 'border border-gray-200' : 'border border-gray-200');
+            }
+
+            // Bordered variant
+            if (variant === 'bordered') {
+              return clsx('bg-white rounded-lg transition-all duration-300', isOpen ? 'border-2 border-gray-300' : 'border-2 border-gray-200 hover:border-gray-300');
+            }
+
+            // Default variant - clean and simple
+            return clsx('bg-white rounded-lg transition-all duration-300', isOpen ? 'border border-gray-200' : 'border border-gray-200');
+          };
+          return /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: getItemClasses(),
+            children: [variant === 'gradient' && isOpen && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary-500 via-primary-500 to-pink-500 rounded-t-lg"
+            }), /*#__PURE__*/jsxRuntime.jsxs("button", {
+              onClick: function onClick() {
+                return toggleItem(index);
+              },
+              className: clsx('w-full px-6 py-4 sm:px-8 sm:py-5 flex items-center justify-between text-left rounded-lg transition-colors', isOpen ? 'rounded-b-none' : 'rounded-lg', variant === 'filled' && isOpen && 'text-white', variant === 'filled' && !isOpen && 'text-gray-900'),
+              "aria-expanded": isOpen,
+              "aria-controls": "faq-answer-".concat(index),
+              children: [/*#__PURE__*/jsxRuntime.jsx("span", {
+                className: clsx('text-base sm:text-lg font-semibold pr-4', variant === 'filled' && isOpen ? 'text-white' : 'text-gray-900'),
+                children: question
+              }), /*#__PURE__*/jsxRuntime.jsx("svg", {
+                className: clsx('w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0 transition-transform duration-300', variant === 'filled' && isOpen ? 'text-white' : 'text-gray-500', isOpen && 'transform rotate-180'),
+                fill: "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                "aria-hidden": "true",
+                children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2,
+                  d: "M19 9l-7 7-7-7"
+                })
+              })]
+            }), /*#__PURE__*/jsxRuntime.jsx("div", {
+              id: "faq-answer-".concat(index),
+              className: clsx('overflow-hidden transition-all duration-300 ease-in-out', isOpen ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0'),
+              children: /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: clsx('px-6 pb-5 sm:px-8 sm:pb-6 pt-4', variant !== 'filled' && 'border-t border-gray-200', variant === 'filled' && isOpen && 'border-t border-primary-400', variant === 'colored' && isOpen && 'border-t border-primary-200'),
+                children: /*#__PURE__*/jsxRuntime.jsx("p", {
+                  className: clsx('text-sm sm:text-base leading-relaxed', variant === 'filled' && isOpen ? 'text-white' : 'text-gray-600'),
+                  children: answer
+                })
+              })
+            })]
+          }, index);
+        })
+      })]
+    })
+  });
+};
+
+var FaqModern = function FaqModern(_ref) {
+  var data = _ref.data,
+    className = _ref.className,
+    id = _ref.id,
+    _ref$loader = _ref.loader,
+    loader = _ref$loader === void 0 ? false : _ref$loader;
+  // Safety check for data
+  if (!data || _typeof(data) !== 'object') {
+    console.error('FaqModern: data prop is required and must be an object');
+    return null;
+  }
+  var _useState = react.useState(loader),
+    _useState2 = _slicedToArray(_useState, 2),
+    showLoader = _useState2[0],
+    setShowLoader = _useState2[1];
+
+  // Auto-hide loader after 2 seconds when loader prop is true
+  react.useEffect(function () {
+    if (loader) {
+      var timer = setTimeout(function () {
+        setShowLoader(false);
+      }, 2000);
+      return function () {
+        return clearTimeout(timer);
+      };
+    } else {
+      setShowLoader(false);
+    }
+  }, [loader]);
+
+  // Show skeleton loader if loader prop is true
+  if (showLoader) {
+    var _ref2 = data || {},
+      _ref2$alignment = _ref2.alignment,
+      _alignment = _ref2$alignment === void 0 ? 'center' : _ref2$alignment,
+      _ref2$variant = _ref2.variant,
+      _variant = _ref2$variant === void 0 ? 'default' : _ref2$variant,
+      _dataClassName = _ref2.className;
+    var _alignmentClasses = {
+      left: 'text-left items-start',
+      center: 'text-center items-center',
+      right: 'text-right items-end'
+    };
+    var _variantClasses = {
+      "default": 'bg-white',
+      minimal: 'bg-transparent relative',
+      accent: 'bg-gradient-to-br from-primary-50 via-white to-primary-50',
+      glass: 'bg-white/80 backdrop-blur-lg',
+      backgroundImage: 'relative'
+    };
+    return /*#__PURE__*/jsxRuntime.jsx("section", {
+      id: id,
+      className: clsx('w-full py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8', _variantClasses[_variant], className, _dataClassName),
+      children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "max-w-4xl mx-auto w-full",
+        children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: clsx('mb-10 sm:mb-12 flex flex-col', _alignmentClasses[_alignment]),
+          children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "h-4 bg-gray-300 rounded w-24 mb-3 mx-auto animate-pulse"
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "h-10 bg-gray-300 rounded w-full max-w-md mb-4 mx-auto animate-pulse"
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "h-5 bg-gray-300 rounded w-full max-w-xl mb-6 mx-auto animate-pulse"
+          })]
+        }), /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "space-y-4",
+          children: [0, 1, 2, 3, 4].map(function (index) {
+            return /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "border border-gray-200 rounded-lg p-4",
+              children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: "flex items-center justify-between mb-2",
+                children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "h-6 bg-gray-300 rounded w-3/4 animate-pulse"
+                }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "h-6 w-6 bg-gray-300 rounded animate-pulse"
+                })]
+              }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "h-4 bg-gray-200 rounded w-full mt-2 animate-pulse"
+              })]
+            }, index);
+          })
+        })]
+      })
+    });
+  }
+  var title = data.title,
+    subtitle = data.subtitle,
+    description = data.description,
+    _data$items = data.items,
+    items = _data$items === void 0 ? [] : _data$items,
+    _data$alignment = data.alignment,
+    alignment = _data$alignment === void 0 ? 'center' : _data$alignment,
+    _data$variant = data.variant,
+    variant = _data$variant === void 0 ? 'default' : _data$variant,
+    backgroundImage = data.backgroundImage,
+    _data$backgroundOverl = data.backgroundOverlay,
+    backgroundOverlay = _data$backgroundOverl === void 0 ? 0.5 : _data$backgroundOverl,
+    _data$backgroundPosit = data.backgroundPosition,
+    backgroundPosition = _data$backgroundPosit === void 0 ? 'center' : _data$backgroundPosit,
+    primaryColor = data.primaryColor,
+    accentColor = data.accentColor,
+    textColor = data.textColor,
+    hoverColor = data.hoverColor,
+    _data$allowMultipleOp = data.allowMultipleOpen,
+    allowMultipleOpen = _data$allowMultipleOp === void 0 ? false : _data$allowMultipleOp,
+    dataClassName = data.className;
+
+  // Initialize with first item open by default
+  var _useState3 = react.useState(new Set(items.length > 0 ? [0] : [])),
+    _useState4 = _slicedToArray(_useState3, 2),
+    openItems = _useState4[0],
+    setOpenItems = _useState4[1];
+  var toggleItem = function toggleItem(index) {
+    setOpenItems(function (prev) {
+      var newSet = new Set(prev);
+      if (newSet.has(index)) {
+        newSet["delete"](index);
+      } else {
+        if (!allowMultipleOpen) {
+          newSet.clear();
+        }
+        newSet.add(index);
+      }
+      return newSet;
+    });
+  };
+  var alignmentClasses = {
+    left: 'text-left items-start',
+    center: 'text-center items-center',
+    right: 'text-right items-end'
+  };
+  var variantClasses = {
+    "default": 'bg-white',
+    minimal: 'bg-transparent relative',
+    accent: 'bg-gradient-to-br from-primary-50 via-white to-primary-50',
+    glass: 'bg-white/80 backdrop-blur-lg',
+    backgroundImage: 'relative'
+  };
+  if (items.length === 0) {
+    console.warn('FaqModern: items array is empty');
+    return null;
+  }
+  var hasBackgroundImage = variant === 'backgroundImage' && backgroundImage;
+
+  // Helper function to convert hex to rgba
+  var hexToRgba = function hexToRgba(hex) {
+    var alpha = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
+    if (!hex) return undefined;
+    var r = parseInt(hex.slice(1, 3), 16);
+    var g = parseInt(hex.slice(3, 5), 16);
+    var b = parseInt(hex.slice(5, 7), 16);
+    return "rgba(".concat(r, ", ").concat(g, ", ").concat(b, ", ").concat(alpha, ")");
+  };
+
+  // Build custom styles object for color overrides
+  var sectionStyles = hasBackgroundImage ? {
+    backgroundImage: "url(".concat(backgroundImage, ")"),
+    backgroundSize: 'cover',
+    backgroundPosition: backgroundPosition,
+    backgroundRepeat: 'no-repeat',
+    backgroundAttachment: 'fixed'
+  } : {};
+
+  // Add CSS custom properties for hover colors
+  if (primaryColor || hoverColor) {
+    sectionStyles['--primary-color'] = primaryColor;
+    sectionStyles['--hover-color'] = hoverColor || primaryColor;
+    if (primaryColor) {
+      sectionStyles['--primary-100'] = hexToRgba(primaryColor, 0.1);
+      sectionStyles['--primary-500'] = hexToRgba(primaryColor, 0.3);
+    }
+    if (hoverColor || primaryColor) {
+      var hover = hoverColor || primaryColor;
+      sectionStyles['--hover-bg'] = hexToRgba(hover, 0.1);
+      sectionStyles['--hover-bg-medium'] = hexToRgba(hover, 0.3);
+    }
+  }
+  return /*#__PURE__*/jsxRuntime.jsxs("section", {
+    id: id,
+    className: clsx('w-full py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 relative', variantClasses[variant], className, dataClassName),
+    style: Object.keys(sectionStyles).length > 0 ? sectionStyles : undefined,
+    children: [hasBackgroundImage && /*#__PURE__*/jsxRuntime.jsx("div", {
+      className: "absolute inset-0 z-0",
+      style: {
+        backgroundColor: "rgba(0, 0, 0, ".concat(backgroundOverlay, ")")
+      }
+    }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+      className: "max-w-5xl mx-auto w-full relative z-10",
+      children: [(title || subtitle || description) && /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: clsx('mb-12 sm:mb-16 flex flex-col', alignmentClasses[alignment]),
+        children: [subtitle && /*#__PURE__*/jsxRuntime.jsx("p", {
+          className: clsx("text-sm sm:text-base font-semibold uppercase tracking-wider mb-3", hasBackgroundImage ? 'text-white' : variant === 'minimal' ? 'text-primary-400' : 'text-primary-600'),
+          style: textColor && !hasBackgroundImage && variant !== 'minimal' ? {
+            color: textColor
+          } : primaryColor && variant !== 'minimal' && !hasBackgroundImage ? {
+            color: primaryColor
+          } : undefined,
+          children: subtitle
+        }), title && /*#__PURE__*/jsxRuntime.jsx("h2", {
+          className: clsx("text-3xl sm:text-4xl md:text-5xl font-bold mb-4 leading-tight", hasBackgroundImage ? 'text-white' : variant === 'minimal' ? 'text-white' : 'text-gray-900'),
+          children: title
+        }), description && /*#__PURE__*/jsxRuntime.jsx("p", {
+          className: clsx('text-base sm:text-lg max-w-2xl', hasBackgroundImage ? 'text-gray-100' : variant === 'minimal' ? 'text-gray-200' : 'text-gray-500', alignment === 'center' && 'mx-auto', alignment === 'right' && 'ml-auto', alignment === 'left' && 'mr-auto'),
+          children: description
+        })]
+      }), /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "space-y-3",
+        children: items.map(function (item, index) {
+          var isOpen = openItems.has(index);
+          var question = item.question,
+            answer = item.answer;
+          if (!question || !answer) {
+            console.warn("FaqModern: Item at index ".concat(index, " is missing question or answer"));
+            return null;
+          }
+
+          // Refs for hover effect coordination
+          var badgeRef = react.useRef(null);
+          var textRef = react.useRef(null);
+          var iconRef = react.useRef(null);
+          var handleMouseEnter = function handleMouseEnter() {
+            if (isOpen || hasBackgroundImage || variant === 'minimal') return;
+            var hover = hoverColor || primaryColor;
+            if (!hover) return;
+            if (badgeRef.current) {
+              badgeRef.current.style.backgroundColor = hexToRgba(hover, 0.15);
+              badgeRef.current.style.color = hover;
+            }
+            if (textRef.current) {
+              textRef.current.style.color = hover;
+            }
+            if (iconRef.current) {
+              iconRef.current.style.backgroundColor = hexToRgba(hover, 0.15);
+              iconRef.current.style.color = hover;
+            }
+          };
+          var handleMouseLeave = function handleMouseLeave() {
+            if (isOpen || hasBackgroundImage || variant === 'minimal') return;
+            if (badgeRef.current) {
+              badgeRef.current.style.backgroundColor = '';
+              badgeRef.current.style.color = '';
+            }
+            if (textRef.current) {
+              textRef.current.style.color = '';
+            }
+            if (iconRef.current) {
+              iconRef.current.style.backgroundColor = '';
+              iconRef.current.style.color = '';
+            }
+          };
+          return /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: clsx('group relative overflow-hidden rounded-2xl transition-all duration-300', isOpen ? hasBackgroundImage ? 'bg-white/95 backdrop-blur-xl shadow-2xl border-2 border-white/50' : variant === 'minimal' ? 'bg-white/95 backdrop-blur-xl shadow-2xl border border-white/30' : 'bg-white shadow-xl border-2 border-primary-500' : hasBackgroundImage ? 'bg-white/90 backdrop-blur-lg border border-white/40 hover:bg-white/95 hover:border-white/60 hover:shadow-xl' : variant === 'minimal' ? 'bg-white/70 backdrop-blur-lg border border-white/20 hover:bg-white/85 hover:border-white/40 hover:shadow-xl' : 'bg-white/60 hover:bg-white border border-gray-200 hover:border-primary-300 hover:shadow-lg'),
+            style: isOpen && primaryColor && !hasBackgroundImage && variant !== 'minimal' ? {
+              borderColor: primaryColor
+            } : !isOpen && !hasBackgroundImage && variant !== 'minimal' && (hoverColor || primaryColor) ? {
+              transition: 'border-color 0.3s ease'
+            } : undefined,
+            onMouseEnter: function onMouseEnter(e) {
+              if (!isOpen && !hasBackgroundImage && variant !== 'minimal' && (hoverColor || primaryColor)) {
+                e.currentTarget.style.borderColor = hoverColor || primaryColor;
+              }
+              handleMouseEnter();
+            },
+            onMouseLeave: function onMouseLeave(e) {
+              if (!isOpen && !hasBackgroundImage && variant !== 'minimal') {
+                e.currentTarget.style.borderColor = '';
+              }
+              handleMouseLeave();
+            },
+            children: [isOpen && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: ""
+            }), /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "flex flex-col sm:flex-row",
+              children: /*#__PURE__*/jsxRuntime.jsxs("button", {
+                onClick: function onClick() {
+                  return toggleItem(index);
+                },
+                className: clsx('flex-1 px-6 py-5 sm:py-6 flex items-center justify-between text-left', 'transition-all duration-300', isOpen && variant === 'minimal' ? 'bg-white/40' : isOpen && 'bg-gradient-to-r from-primary-50/50 to-transparent'),
+                style: isOpen && primaryColor && variant !== 'minimal' ? {
+                  backgroundImage: "linear-gradient(to right, ".concat(primaryColor, "0d, transparent)")
+                } : undefined,
+                "aria-expanded": isOpen,
+                "aria-controls": "faq-modern-answer-".concat(index),
+                children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+                  className: "flex items-start gap-4 flex-1",
+                  children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                    ref: badgeRef,
+                    className: clsx('flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm transition-all duration-300', isOpen ? variant === 'minimal' ? 'bg-gradient-to-br from-primary-500 to-primary-600 text-white shadow-lg scale-110' : 'bg-primary-500 text-white shadow-lg scale-110' : variant === 'minimal' ? 'bg-white/30 text-gray-700 group-hover:bg-primary-500/30 group-hover:text-primary-600' : 'bg-gray-100 text-gray-600 group-hover:bg-primary-100 group-hover:text-primary-600'),
+                    style: isOpen && primaryColor ? {
+                      backgroundColor: primaryColor,
+                      backgroundImage: variant === 'minimal' && accentColor ? "linear-gradient(to bottom right, ".concat(primaryColor, ", ").concat(accentColor, ")") : undefined
+                    } : !isOpen && (hoverColor || primaryColor) ? {
+                      transition: 'background-color 0.3s ease, color 0.3s ease'
+                    } : undefined,
+                    children: index + 1
+                  }), /*#__PURE__*/jsxRuntime.jsx("span", {
+                    ref: textRef,
+                    className: clsx('text-base sm:text-lg font-semibold flex-1 transition-colors', isOpen ? variant === 'minimal' ? 'text-gray-900' : 'text-primary-700' : variant === 'minimal' ? 'text-gray-800 group-hover:text-gray-900' : 'text-gray-900 group-hover:text-primary-600'),
+                    style: isOpen && primaryColor && variant !== 'minimal' ? {
+                      color: primaryColor
+                    } : !isOpen && variant !== 'minimal' && (hoverColor || primaryColor) ? {
+                      transition: 'color 0.3s ease'
+                    } : undefined,
+                    children: question
+                  })]
+                }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "flex-shrink-0 ml-4",
+                  children: /*#__PURE__*/jsxRuntime.jsx("div", {
+                    ref: iconRef,
+                    className: clsx('w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-300', isOpen ? variant === 'minimal' ? 'bg-gradient-to-br from-primary-500 to-primary-600 text-white rotate-180 shadow-lg' : 'bg-primary-500 text-white rotate-180 shadow-md' : variant === 'minimal' ? 'bg-white/30 text-gray-600 group-hover:bg-primary-500/30 group-hover:text-primary-600' : 'bg-gray-100 text-gray-600 group-hover:bg-primary-100 group-hover:text-primary-600'),
+                    style: isOpen && primaryColor ? {
+                      backgroundColor: primaryColor,
+                      backgroundImage: variant === 'minimal' && accentColor ? "linear-gradient(to bottom right, ".concat(primaryColor, ", ").concat(accentColor, ")") : undefined
+                    } : !isOpen && (hoverColor || primaryColor) ? {
+                      transition: 'background-color 0.3s ease, color 0.3s ease'
+                    } : undefined,
+                    children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+                      className: "w-5 h-5",
+                      fill: "none",
+                      stroke: "currentColor",
+                      viewBox: "0 0 24 24",
+                      "aria-hidden": "true",
+                      children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                        strokeLinecap: "round",
+                        strokeLinejoin: "round",
+                        strokeWidth: 2.5,
+                        d: "M19 9l-7 7-7-7"
+                      })
+                    })
+                  })
+                })]
+              })
+            }), /*#__PURE__*/jsxRuntime.jsx("div", {
+              id: "faq-modern-answer-".concat(index),
+              className: clsx('overflow-hidden transition-all duration-300 ease-in-out', isOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'),
+              children: /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: clsx("px-6 pb-6 pt-2", variant === 'minimal' && isOpen ? 'border-t border-white/20' : 'border-t border-gray-100'),
+                children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+                  className: "flex gap-4",
+                  children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: "flex-shrink-0 w-10"
+                  }), " ", /*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: "flex-1",
+                    children: /*#__PURE__*/jsxRuntime.jsx("p", {
+                      className: clsx("text-sm sm:text-base leading-relaxed pl-0", variant === 'minimal' ? 'text-gray-700' : 'text-gray-600'),
+                      children: answer
+                    })
+                  })]
+                })
+              })
+            })]
+          }, index);
+        })
+      })]
+    })]
+  });
+};
+
+var FaqVisual = function FaqVisual(_ref) {
+  var data = _ref.data,
+    className = _ref.className,
+    id = _ref.id,
+    _ref$loader = _ref.loader,
+    loader = _ref$loader === void 0 ? false : _ref$loader;
+  // Safety check for data
+  if (!data || _typeof(data) !== 'object') {
+    console.error('FaqVisual: data prop is required and must be an object');
+    return null;
+  }
+  var _useState = react.useState(loader),
+    _useState2 = _slicedToArray(_useState, 2),
+    showLoader = _useState2[0],
+    setShowLoader = _useState2[1];
+
+  // Auto-hide loader after 2 seconds when loader prop is true
+  react.useEffect(function () {
+    if (loader) {
+      var timer = setTimeout(function () {
+        setShowLoader(false);
+      }, 2000);
+      return function () {
+        return clearTimeout(timer);
+      };
+    } else {
+      setShowLoader(false);
+    }
+  }, [loader]);
+
+  // Show skeleton loader if loader prop is true
+  if (showLoader) {
+    var _ref2 = data || {},
+      _ref2$alignment = _ref2.alignment,
+      _alignment = _ref2$alignment === void 0 ? 'left' : _ref2$alignment;
+      _ref2.variant;
+      var _ref2$imagePosition = _ref2.imagePosition,
+      _imagePosition = _ref2$imagePosition === void 0 ? 'left' : _ref2$imagePosition,
+      _dataClassName = _ref2.className;
+    var _alignmentClasses = {
+      left: 'text-left items-start',
+      center: 'text-center items-center',
+      right: 'text-right items-end'
+    };
+    return /*#__PURE__*/jsxRuntime.jsx("section", {
+      id: id,
+      className: clsx('w-full py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 relative', 'bg-white', className, _dataClassName),
+      children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "max-w-7xl mx-auto w-full",
+        children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: clsx('mb-10 sm:mb-12 lg:mb-16 flex flex-col', _alignmentClasses[_alignment]),
+          children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "h-4 bg-gray-400 rounded w-16 mb-3 animate-pulse"
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "h-12 bg-gray-400 rounded w-full max-w-2xl mb-4 animate-pulse"
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "h-5 bg-gray-400 rounded w-full max-w-xl mb-6 animate-pulse"
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "h-12 bg-gray-400 rounded-lg w-40 animate-pulse"
+          })]
+        }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "grid lg:grid-cols-2 gap-8 lg:gap-12 items-start",
+          children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+            className: clsx(_imagePosition === 'right' ? 'order-2' : 'order-1'),
+            children: /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "h-96 bg-gray-400 rounded-lg animate-pulse"
+            })
+          }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: clsx('space-y-4', _imagePosition === 'right' ? 'order-1' : 'order-2'),
+            children: [[0, 1, 2, 3].map(function (index) {
+              return /*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: clsx('border rounded-lg p-5 transition-all', index === 0 ? 'border-gray-200 bg-white' : 'border-gray-200 bg-white'),
+                children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+                  className: "flex items-center justify-between mb-3",
+                  children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: "h-6 bg-gray-400 rounded w-3/4 animate-pulse"
+                  }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: clsx('h-5 w-5 rounded flex items-center justify-center', index === 0 ? 'bg-gray-400' : 'bg-gray-200'),
+                    children: /*#__PURE__*/jsxRuntime.jsx("div", {
+                      className: "h-3 w-3 bg-gray-400 rounded animate-pulse"
+                    })
+                  })]
+                }), index === 0 && /*#__PURE__*/jsxRuntime.jsxs("div", {
+                  className: "space-y-2 mt-3 pt-3 border-t border-gray-200",
+                  children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: "h-4 bg-gray-400 rounded w-full animate-pulse"
+                  }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: "h-4 bg-gray-400 rounded w-5/6 animate-pulse"
+                  }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: "h-4 bg-gray-400 rounded w-4/6 animate-pulse"
+                  })]
+                })]
+              }, index);
+            }), /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "mt-6",
+              children: /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "h-12 bg-gray-400 rounded-lg w-40 animate-pulse"
+              })
+            })]
+          })]
+        })]
+      })
+    });
+  }
+  var title = data.title,
+    subtitle = data.subtitle,
+    description = data.description,
+    _data$items = data.items,
+    items = _data$items === void 0 ? [] : _data$items,
+    image = data.image,
+    _data$imageAlt = data.imageAlt,
+    imageAlt = _data$imageAlt === void 0 ? 'FAQ illustration' : _data$imageAlt,
+    _data$imagePosition = data.imagePosition,
+    imagePosition = _data$imagePosition === void 0 ? 'right' : _data$imagePosition,
+    backgroundImage = data.backgroundImage,
+    _data$backgroundOverl = data.backgroundOverlay,
+    backgroundOverlay = _data$backgroundOverl === void 0 ? 0.5 : _data$backgroundOverl,
+    _data$backgroundPosit = data.backgroundPosition,
+    backgroundPosition = _data$backgroundPosit === void 0 ? 'center' : _data$backgroundPosit,
+    button = data.button,
+    buttons = data.buttons,
+    _data$alignment = data.alignment,
+    alignment = _data$alignment === void 0 ? 'left' : _data$alignment,
+    _data$textPosition = data.textPosition,
+    textPosition = _data$textPosition === void 0 ? 'left' : _data$textPosition,
+    _data$variant = data.variant,
+    variant = _data$variant === void 0 ? 'default' : _data$variant,
+    _data$allowMultipleOp = data.allowMultipleOpen,
+    allowMultipleOpen = _data$allowMultipleOp === void 0 ? false : _data$allowMultipleOp,
+    dataClassName = data.className;
+
+  // Initialize with first item open by default
+  var _useState3 = react.useState(new Set(items.length > 0 ? [0] : [])),
+    _useState4 = _slicedToArray(_useState3, 2),
+    openItems = _useState4[0],
+    setOpenItems = _useState4[1];
+  var toggleItem = function toggleItem(index) {
+    setOpenItems(function (prev) {
+      var newSet = new Set(prev);
+      if (newSet.has(index)) {
+        newSet["delete"](index);
+      } else {
+        if (!allowMultipleOpen) {
+          newSet.clear();
+        }
+        newSet.add(index);
+      }
+      return newSet;
+    });
+  };
+  var alignmentClasses = {
+    left: 'text-left items-start',
+    center: 'text-center items-center',
+    right: 'text-right items-end'
+  };
+  var variantClasses = {
+    "default": 'bg-white',
+    gradient: 'bg-gradient-to-br from-primary-50 via-white to-primary-100/30 relative overflow-hidden',
+    pattern: 'bg-white relative overflow-hidden',
+    glass: 'bg-white/90 backdrop-blur-xl border border-white/20',
+    dark: 'bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 relative overflow-hidden'
+  };
+  var buttonVariants = {
+    primary: 'bg-primary-600 hover:bg-primary-700 text-white shadow-lg hover:shadow-xl',
+    secondary: 'bg-gray-900 hover:bg-gray-800 text-white shadow-lg hover:shadow-xl',
+    outline: 'bg-transparent border-2 border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white'
+  };
+
+  // Normalize buttons: support both single button object and array of buttons
+  var normalizedButtons = buttons || (button ? [button] : []);
+
+  // Helper function to render a single button
+  var renderButton = function renderButton(btn, index) {
+    if (!btn || !btn.text) return null;
+    var buttonClasses = clsx('inline-flex items-center px-6 py-3 sm:px-8 sm:py-4 rounded-lg font-semibold text-base transition-all duration-300', buttonVariants[btn.variant || 'primary']);
+    var buttonContent = /*#__PURE__*/jsxRuntime.jsxs(jsxRuntime.Fragment, {
+      children: [btn.text, /*#__PURE__*/jsxRuntime.jsx("svg", {
+        className: "ml-2 w-5 h-5",
+        fill: "none",
+        stroke: "currentColor",
+        viewBox: "0 0 24 24",
+        children: /*#__PURE__*/jsxRuntime.jsx("path", {
+          strokeLinecap: "round",
+          strokeLinejoin: "round",
+          strokeWidth: 2,
+          d: "M13 7l5 5m0 0l-5 5m5-5H6"
+        })
+      })]
+    });
+    if (btn.href) {
+      return /*#__PURE__*/jsxRuntime.jsx("a", {
+        href: btn.href,
+        className: buttonClasses,
+        children: buttonContent
+      }, index);
+    }
+    return /*#__PURE__*/jsxRuntime.jsx("button", {
+      className: buttonClasses,
+      children: buttonContent
+    }, index);
+  };
+
+  // Helper function to render button group
+  var renderButtons = function renderButtons() {
+    if (!normalizedButtons || normalizedButtons.length === 0) return null;
+    return /*#__PURE__*/jsxRuntime.jsx("div", {
+      className: clsx('mt-6 sm:mt-8 flex flex-wrap gap-3 sm:gap-4', alignment === 'center' && 'justify-center', alignment === 'right' && 'justify-end', alignment === 'left' && 'justify-start'),
+      children: normalizedButtons.map(function (btn, index) {
+        return renderButton(btn, index);
+      })
+    });
+  };
+  if (items.length === 0) {
+    console.warn('FaqVisual: items array is empty');
+    return null;
+  }
+  var isImageLeft = imagePosition === 'left';
+  return /*#__PURE__*/jsxRuntime.jsxs("section", {
+    id: id,
+    className: clsx('w-full py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 relative', variantClasses[variant], className, dataClassName),
+    style: backgroundImage ? {
+      backgroundImage: "url(".concat(backgroundImage, ")"),
+      backgroundSize: 'cover',
+      backgroundPosition: backgroundPosition,
+      backgroundRepeat: 'no-repeat',
+      backgroundAttachment: 'fixed'
+    } : {},
+    children: [backgroundImage && /*#__PURE__*/jsxRuntime.jsx("div", {
+      className: "absolute inset-0 z-0",
+      style: {
+        backgroundColor: "rgba(0, 0, 0, ".concat(backgroundOverlay, ")")
+      }
+    }), variant === 'gradient' && !backgroundImage && /*#__PURE__*/jsxRuntime.jsxs(jsxRuntime.Fragment, {
+      children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "absolute top-0 right-0 w-96 h-96 bg-primary-200/30 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 z-0"
+      }), /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "absolute bottom-0 left-0 w-96 h-96 bg-primary-300/20 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 z-0"
+      }), /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "absolute top-1/2 left-1/2 w-64 h-64 bg-primary-200/20 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 z-0"
+      })]
+    }), variant === 'pattern' && /*#__PURE__*/jsxRuntime.jsx("div", {
+      className: "absolute inset-0 opacity-5",
+      children: /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "absolute inset-0",
+        style: {
+          backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")"
+        }
+      })
+    }), /*#__PURE__*/jsxRuntime.jsx("div", {
+      className: "max-w-7xl mx-auto w-full relative z-10",
+      children: !image && (title || subtitle || description) ? /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "flex flex-col lg:flex-row gap-8 lg:gap-12 xl:gap-16 items-start",
+        children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: clsx("w-full lg:w-1/2 flex flex-col", textPosition === 'right' ? 'order-1 lg:order-2' : 'order-1', alignment === 'right' && 'lg:items-end lg:text-right', alignment === 'center' && 'lg:items-center lg:text-center', alignment === 'left' && 'lg:items-start lg:text-left'),
+          children: [subtitle && /*#__PURE__*/jsxRuntime.jsx("p", {
+            className: clsx("text-sm sm:text-base font-semibold uppercase tracking-wider mb-3", backgroundImage ? 'text-white' : variant === 'dark' ? 'text-primary-400' : 'text-primary-600'),
+            children: subtitle
+          }), title && /*#__PURE__*/jsxRuntime.jsx("h2", {
+            className: clsx("text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 leading-tight", backgroundImage ? 'text-white' : variant === 'dark' ? 'text-white' : 'text-gray-900'),
+            children: title
+          }), description && /*#__PURE__*/jsxRuntime.jsx("p", {
+            className: clsx('text-base sm:text-lg', backgroundImage ? 'text-gray-100' : variant === 'dark' ? 'text-gray-300' : 'text-gray-600'),
+            children: description
+          }), renderButtons()]
+        }), /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: clsx("w-full lg:w-1/2 flex flex-col", textPosition === 'right' ? 'order-2 lg:order-1' : 'order-2'),
+          children: /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "space-y-3 w-full",
+            children: items.map(function (item, index) {
+              var isOpen = openItems.has(index);
+              var question = item.question,
+                answer = item.answer;
+              if (!question || !answer) {
+                console.warn("FaqVisual: Item at index ".concat(index, " is missing question or answer"));
+                return null;
+              }
+              return /*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: clsx('group relative overflow-hidden rounded-lg transition-all duration-200', isOpen ? variant === 'gradient' ? 'bg-gradient-to-br from-white via-primary-50/40 to-primary-100/30 shadow-md border-2 border-primary-200/50' : variant === 'dark' ? 'bg-gray-800/90 backdrop-blur-sm shadow-lg border-2 border-primary-500/30' : backgroundImage ? 'bg-white/95 backdrop-blur-sm shadow-lg border-2 border-white/50' : 'bg-white shadow-sm border border-gray-200' : variant === 'gradient' ? 'bg-gradient-to-br from-white/90 via-primary-50/20 to-primary-100/10 backdrop-blur-sm border border-primary-200/30 hover:from-white hover:via-primary-50/40 hover:to-primary-100/30 hover:shadow-md hover:border-primary-300/50' : variant === 'dark' ? 'bg-gray-800/60 backdrop-blur-sm border border-gray-700/50 hover:bg-gray-800/80 hover:border-primary-500/30 hover:shadow-lg' : backgroundImage ? 'bg-white/90 backdrop-blur-sm border border-white/40 hover:bg-white/95 hover:border-white/60 hover:shadow-lg' : 'bg-white border border-gray-200 hover:border-gray-300'),
+                children: [variant === 'gradient' && /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: clsx('absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-primary-500 via-primary-400 to-primary-600 transition-opacity duration-200', isOpen ? 'opacity-100' : 'opacity-0 group-hover:opacity-50')
+                }), variant === 'dark' && /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: clsx('absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-primary-500 via-primary-400 to-primary-600 transition-opacity duration-200', isOpen ? 'opacity-100' : 'opacity-0 group-hover:opacity-70')
+                }), /*#__PURE__*/jsxRuntime.jsxs("button", {
+                  onClick: function onClick() {
+                    return toggleItem(index);
+                  },
+                  className: clsx("w-full px-5 py-4 flex items-center justify-between text-left transition-all duration-200", variant === 'gradient' && isOpen && 'bg-gradient-to-r from-primary-50/60 via-primary-50/30 to-transparent', variant === 'dark' && isOpen && 'bg-gradient-to-r from-primary-500/20 via-primary-500/10 to-transparent'),
+                  "aria-expanded": isOpen,
+                  "aria-controls": "faq-visual-answer-".concat(index),
+                  children: [/*#__PURE__*/jsxRuntime.jsx("span", {
+                    className: clsx('text-base font-medium flex-1 pr-4 transition-colors', isOpen ? variant === 'gradient' ? 'text-primary-700' : variant === 'dark' ? 'text-white' : 'text-gray-900' : variant === 'gradient' ? 'text-gray-800 group-hover:text-primary-700' : variant === 'dark' ? 'text-gray-200 group-hover:text-white' : 'text-gray-800'),
+                    children: question
+                  }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: clsx('flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center transition-all duration-200', isOpen ? variant === 'gradient' ? 'bg-gradient-to-br from-primary-500 to-primary-600 text-white shadow-md' : variant === 'dark' ? 'bg-gradient-to-br from-primary-500 to-primary-600 text-white shadow-md' : 'bg-gray-100 text-gray-700' : variant === 'gradient' ? 'bg-gradient-to-br from-primary-100 to-primary-200 text-primary-600 group-hover:from-primary-200 group-hover:to-primary-300 group-hover:text-primary-700' : variant === 'dark' ? 'bg-gray-700/50 text-gray-300 group-hover:bg-primary-500/30 group-hover:text-primary-300' : 'bg-gray-50 text-gray-600 group-hover:bg-gray-100'),
+                    children: isOpen ? /*#__PURE__*/jsxRuntime.jsx("svg", {
+                      className: "w-4 h-4",
+                      fill: "none",
+                      stroke: "currentColor",
+                      viewBox: "0 0 24 24",
+                      "aria-hidden": "true",
+                      children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                        strokeLinecap: "round",
+                        strokeLinejoin: "round",
+                        strokeWidth: 2.5,
+                        d: "M6 18L18 6M6 6l12 12"
+                      })
+                    }) : /*#__PURE__*/jsxRuntime.jsx("svg", {
+                      className: "w-4 h-4",
+                      fill: "none",
+                      stroke: "currentColor",
+                      viewBox: "0 0 24 24",
+                      "aria-hidden": "true",
+                      children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                        strokeLinecap: "round",
+                        strokeLinejoin: "round",
+                        strokeWidth: 2.5,
+                        d: "M12 4v16m8-8H4"
+                      })
+                    })
+                  })]
+                }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                  id: "faq-visual-answer-".concat(index),
+                  className: clsx('overflow-hidden transition-all duration-300 ease-in-out', isOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'),
+                  children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+                    className: clsx("px-5 pb-4 pt-0 relative", variant === 'gradient' && isOpen ? 'border-t border-primary-200/30' : variant === 'dark' && isOpen ? 'border-t border-gray-700/50' : 'border-t border-gray-100'),
+                    children: [variant === 'gradient' && isOpen && /*#__PURE__*/jsxRuntime.jsx("div", {
+                      className: "absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary-400/50 to-transparent"
+                    }), variant === 'dark' && isOpen && /*#__PURE__*/jsxRuntime.jsx("div", {
+                      className: "absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary-500/50 to-transparent"
+                    }), /*#__PURE__*/jsxRuntime.jsx("p", {
+                      className: clsx("text-sm leading-relaxed", variant === 'gradient' && isOpen ? 'text-gray-700' : variant === 'dark' ? 'text-gray-300' : 'text-gray-600'),
+                      children: answer
+                    })]
+                  })
+                })]
+              }, index);
+            })
+          })
+        })]
+      }) : /*#__PURE__*/jsxRuntime.jsxs(jsxRuntime.Fragment, {
+        children: [(title || subtitle || description) && /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: clsx('mb-10 sm:mb-12 lg:mb-16 flex flex-col', alignmentClasses[alignment]),
+          children: [subtitle && /*#__PURE__*/jsxRuntime.jsx("p", {
+            className: clsx("text-sm sm:text-base font-semibold uppercase tracking-wider mb-3", backgroundImage ? 'text-white' : variant === 'dark' ? 'text-primary-400' : 'text-primary-600'),
+            children: subtitle
+          }), title && /*#__PURE__*/jsxRuntime.jsx("h2", {
+            className: clsx("text-3xl sm:text-4xl md:text-5xl font-bold mb-4 leading-tight", backgroundImage ? 'text-white' : variant === 'dark' ? 'text-white' : 'text-gray-900'),
+            children: title
+          }), description && /*#__PURE__*/jsxRuntime.jsx("p", {
+            className: clsx('text-base sm:text-lg max-w-2xl', backgroundImage ? 'text-gray-100' : variant === 'dark' ? 'text-gray-300' : 'text-gray-500', alignment === 'center' && 'mx-auto', alignment === 'right' && 'ml-auto', alignment === 'left' && 'mr-auto'),
+            children: description
+          }), normalizedButtons && normalizedButtons.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: clsx('mt-6 sm:mt-8 flex flex-wrap gap-3 sm:gap-4', alignment === 'center' && 'justify-center', alignment === 'right' && 'justify-end', alignment === 'left' && 'justify-start'),
+            children: normalizedButtons.map(function (btn, index) {
+              return renderButton(btn, index);
+            })
+          })]
+        }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "flex flex-col lg:flex-row gap-8 lg:gap-10 xl:gap-12 items-start",
+          children: [image && /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: clsx('w-full lg:w-1/2', isImageLeft ? 'order-1' : 'order-2'),
+            children: /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "relative rounded-xl overflow-hidden bg-gray-900 shadow-lg",
+              children: /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "relative w-full overflow-hidden",
+                children: /*#__PURE__*/jsxRuntime.jsx("img", {
+                  src: image,
+                  alt: imageAlt,
+                  className: "w-full h-full object-cover"
+                })
+              })
+            })
+          }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: clsx('w-full lg:w-1/2 flex flex-col justify-start', isImageLeft ? 'order-2' : 'order-1', alignmentClasses[alignment]),
+            children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "space-y-3 w-full",
+              children: items.map(function (item, index) {
+                var isOpen = openItems.has(index);
+                var question = item.question,
+                  answer = item.answer;
+                if (!question || !answer) {
+                  console.warn("FaqVisual: Item at index ".concat(index, " is missing question or answer"));
+                  return null;
+                }
+                return /*#__PURE__*/jsxRuntime.jsxs("div", {
+                  className: clsx('group relative overflow-hidden rounded-lg transition-all duration-200', isOpen ? variant === 'gradient' ? 'bg-gradient-to-br from-white via-primary-50/40 to-primary-100/30 shadow-md border-2 border-primary-200/50' : variant === 'dark' ? 'bg-gray-800/90 backdrop-blur-sm shadow-lg border-2 border-primary-500/30' : backgroundImage ? 'bg-white/95 backdrop-blur-sm shadow-lg border-2 border-white/50' : 'bg-white shadow-sm border border-gray-200' : variant === 'gradient' ? 'bg-gradient-to-br from-white/90 via-primary-50/20 to-primary-100/10 backdrop-blur-sm border border-primary-200/30 hover:from-white hover:via-primary-50/40 hover:to-primary-100/30 hover:shadow-md hover:border-primary-300/50' : variant === 'dark' ? 'bg-gray-800/60 backdrop-blur-sm border border-gray-700/50 hover:bg-gray-800/80 hover:border-primary-500/30 hover:shadow-lg' : backgroundImage ? 'bg-white/90 backdrop-blur-sm border border-white/40 hover:bg-white/95 hover:border-white/60 hover:shadow-lg' : 'bg-white border border-gray-200 hover:border-gray-300'),
+                  children: [variant === 'gradient' && /*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: clsx('absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-primary-500 via-primary-400 to-primary-600 transition-opacity duration-200', isOpen ? 'opacity-100' : 'opacity-0 group-hover:opacity-50')
+                  }), variant === 'dark' && /*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: clsx('absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-primary-500 via-primary-400 to-primary-600 transition-opacity duration-200', isOpen ? 'opacity-100' : 'opacity-0 group-hover:opacity-70')
+                  }), /*#__PURE__*/jsxRuntime.jsxs("button", {
+                    onClick: function onClick() {
+                      return toggleItem(index);
+                    },
+                    className: clsx("w-full px-5 py-4 flex items-center justify-between text-left transition-all duration-200", variant === 'gradient' && isOpen && 'bg-gradient-to-r from-primary-50/60 via-primary-50/30 to-transparent', variant === 'dark' && isOpen && 'bg-gradient-to-r from-primary-500/20 via-primary-500/10 to-transparent'),
+                    "aria-expanded": isOpen,
+                    "aria-controls": "faq-visual-answer-".concat(index),
+                    children: [/*#__PURE__*/jsxRuntime.jsx("span", {
+                      className: clsx('text-base font-medium flex-1 pr-4 transition-colors', isOpen ? variant === 'gradient' ? 'text-primary-700' : variant === 'dark' ? 'text-white' : 'text-gray-900' : variant === 'gradient' ? 'text-gray-800 group-hover:text-primary-700' : variant === 'dark' ? 'text-gray-200 group-hover:text-white' : 'text-gray-800'),
+                      children: question
+                    }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                      className: clsx('flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center transition-all duration-200', isOpen ? variant === 'gradient' ? 'bg-gradient-to-br from-primary-500 to-primary-600 text-white shadow-md' : variant === 'dark' ? 'bg-gradient-to-br from-primary-500 to-primary-600 text-white shadow-md' : 'bg-gray-100 text-gray-700' : variant === 'gradient' ? 'bg-gradient-to-br from-primary-100 to-primary-200 text-primary-600 group-hover:from-primary-200 group-hover:to-primary-300 group-hover:text-primary-700' : variant === 'dark' ? 'bg-gray-700/50 text-gray-300 group-hover:bg-primary-500/30 group-hover:text-primary-300' : 'bg-gray-50 text-gray-600 group-hover:bg-gray-100'),
+                      children: isOpen ? /*#__PURE__*/jsxRuntime.jsx("svg", {
+                        className: "w-4 h-4",
+                        fill: "none",
+                        stroke: "currentColor",
+                        viewBox: "0 0 24 24",
+                        "aria-hidden": "true",
+                        children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                          strokeLinecap: "round",
+                          strokeLinejoin: "round",
+                          strokeWidth: 2.5,
+                          d: "M6 18L18 6M6 6l12 12"
+                        })
+                      }) : /*#__PURE__*/jsxRuntime.jsx("svg", {
+                        className: "w-4 h-4",
+                        fill: "none",
+                        stroke: "currentColor",
+                        viewBox: "0 0 24 24",
+                        "aria-hidden": "true",
+                        children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                          strokeLinecap: "round",
+                          strokeLinejoin: "round",
+                          strokeWidth: 2.5,
+                          d: "M12 4v16m8-8H4"
+                        })
+                      })
+                    })]
+                  }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                    id: "faq-visual-answer-".concat(index),
+                    className: clsx('overflow-hidden transition-all duration-300 ease-in-out', isOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'),
+                    children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+                      className: clsx("px-5 pb-4 pt-0 relative", variant === 'gradient' && isOpen ? 'border-t border-primary-200/30' : variant === 'dark' && isOpen ? 'border-t border-gray-700/50' : 'border-t border-gray-100'),
+                      children: [variant === 'gradient' && isOpen && /*#__PURE__*/jsxRuntime.jsx("div", {
+                        className: "absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary-400/50 to-transparent"
+                      }), variant === 'dark' && isOpen && /*#__PURE__*/jsxRuntime.jsx("div", {
+                        className: "absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary-500/50 to-transparent"
+                      }), /*#__PURE__*/jsxRuntime.jsx("p", {
+                        className: clsx("text-sm leading-relaxed", variant === 'gradient' && isOpen ? 'text-gray-700' : variant === 'dark' ? 'text-gray-300' : 'text-gray-600'),
+                        children: answer
+                      })]
+                    })
+                  })]
+                }, index);
+              })
+            }), normalizedButtons && normalizedButtons.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: clsx('mt-8 sm:mt-10 flex flex-wrap gap-3 sm:gap-4', alignment === 'center' && 'justify-center', alignment === 'right' && 'justify-end', alignment === 'left' && 'justify-start'),
+              children: normalizedButtons.map(function (btn, index) {
+                return renderButton(btn, index);
+              })
+            })]
+          })]
+        })]
+      })
+    })]
+  });
+};
+
+var FeatureDeck = function FeatureDeck(_ref) {
+  var data = _ref.data,
+    className = _ref.className,
+    id = _ref.id,
+    _ref$loader = _ref.loader,
+    loader = _ref$loader === void 0 ? false : _ref$loader;
+  // Safety check for data
+  if (!data || _typeof(data) !== 'object') {
+    console.error('FeatureDeck: data prop is required and must be an object');
+    return null;
+  }
+  var _useState = react.useState(loader),
+    _useState2 = _slicedToArray(_useState, 2),
+    showLoader = _useState2[0],
+    setShowLoader = _useState2[1];
+
+  // Auto-hide loader after 2 seconds when loader prop is true
+  react.useEffect(function () {
+    if (loader) {
+      var timer = setTimeout(function () {
+        setShowLoader(false);
+      }, 2000);
+      return function () {
+        return clearTimeout(timer);
+      };
+    } else {
+      setShowLoader(false);
+    }
+  }, [loader]);
+  var title = data.title,
+    subtitle = data.subtitle,
+    description = data.description,
+    _data$items = data.items,
+    items = _data$items === void 0 ? [] : _data$items,
+    _data$layout = data.layout,
+    layout = _data$layout === void 0 ? 'grid' : _data$layout,
+    _data$variant = data.variant,
+    variant = _data$variant === void 0 ? 'default' : _data$variant,
+    _data$alignment = data.alignment,
+    alignment = _data$alignment === void 0 ? 'center' : _data$alignment,
+    _data$columns = data.columns,
+    columns = _data$columns === void 0 ? 3 : _data$columns,
+    _data$showIcons = data.showIcons,
+    showIcons = _data$showIcons === void 0 ? true : _data$showIcons,
+    _data$hoverEffect = data.hoverEffect,
+    hoverEffect = _data$hoverEffect === void 0 ? true : _data$hoverEffect,
+    _data$iconStyle = data.iconStyle,
+    iconStyle = _data$iconStyle === void 0 ? 'colored' : _data$iconStyle,
+    iconAlignment = data.iconAlignment,
+    _data$buttons = data.buttons,
+    buttons = _data$buttons === void 0 ? [] : _data$buttons,
+    dataClassName = data.className;
+
+  // Auto-center icons for mantine variants if not explicitly set
+  var getIconAlignment = function getIconAlignment() {
+    if (iconAlignment) return iconAlignment;
+    // Auto-center for mantine variants
+    if (['mantine-icons', 'mantine-monotone', 'mantine-image-icons'].includes(variant)) {
+      return 'center';
+    }
+    return 'left';
+  };
+  var currentIconAlignment = getIconAlignment();
+  var _useState3 = react.useState(null),
+    _useState4 = _slicedToArray(_useState3, 2),
+    hoveredIndex = _useState4[0],
+    setHoveredIndex = _useState4[1];
+  var alignmentClasses = {
+    left: 'text-left items-start',
+    center: 'text-center items-center',
+    right: 'text-right items-end'
+  };
+  var variantClasses = {
+    "default": 'bg-white',
+    'mantine-icons': 'bg-white',
+    'mantine-cards': 'bg-white',
+    'mantine-monotone': 'bg-white',
+    'mantine-image-icons': 'bg-white',
+    'mantine-title': 'bg-white',
+    'mantine-badge-cards': 'bg-white',
+    bordered: 'bg-white',
+    minimal: 'bg-transparent',
+    gradient: 'bg-gradient-to-br from-primary-50 to-primary-50',
+    shadow: 'bg-white',
+    colored: 'bg-gray-50',
+    outlined: 'bg-white',
+    filled: 'bg-white'
+  };
+  var getItemClasses = function getItemClasses(index) {
+    var baseClasses = 'transition-all duration-300';
+
+    // Mantine Icons variant - Clean and minimal with centered icons
+    if (variant === 'mantine-icons') {
+      return clsx(baseClasses, 'bg-transparent p-0 text-center', hoverEffect && hoveredIndex === index && 'opacity-80');
+    }
+
+    // Mantine Cards variant - Card-based with shadow
+    if (variant === 'mantine-cards') {
+      return clsx(baseClasses, 'bg-white rounded-lg p-6 sm:p-8 border border-gray-200', hoverEffect && hoveredIndex === index && 'shadow-lg border-gray-300');
+    }
+
+    // Mantine Monotone variant - Clean with monotone icons, centered
+    if (variant === 'mantine-monotone') {
+      return clsx(baseClasses, 'bg-transparent p-0 text-center', hoverEffect && hoveredIndex === index && 'opacity-80');
+    }
+
+    // Mantine Image Icons variant - With image icons, centered
+    if (variant === 'mantine-image-icons') {
+      return clsx(baseClasses, 'bg-transparent p-0 text-center', hoverEffect && hoveredIndex === index && 'opacity-80');
+    }
+
+    // Mantine Title variant - Simple cards
+    if (variant === 'mantine-title') {
+      return clsx(baseClasses, 'bg-white rounded-lg p-6 border border-gray-200', hoverEffect && hoveredIndex === index && 'shadow-md border-gray-300');
+    }
+
+    // Mantine Badge Cards variant - Cards with badge header and underlined titles
+    if (variant === 'mantine-badge-cards') {
+      return clsx(baseClasses, 'bg-white rounded-lg p-6 sm:p-8 border border-gray-200 shadow-sm text-left', hoverEffect && hoveredIndex === index && 'shadow-md border-gray-300');
+    }
+
+    // Default variant
+    if (variant === 'default') {
+      return clsx(baseClasses, hoverEffect && 'hover:transform hover:scale-105', 'bg-white rounded-lg p-6 border border-gray-200', hoveredIndex === index && 'border-primary-300 shadow-md');
+    }
+
+    // Bordered variant
+    if (variant === 'bordered') {
+      return clsx(baseClasses, hoverEffect && 'hover:transform hover:scale-105', 'bg-white rounded-lg p-6 border-2 border-gray-200', hoveredIndex === index && 'border-primary-500 shadow-lg');
+    }
+
+    // Minimal variant
+    if (variant === 'minimal') {
+      return clsx(baseClasses, hoverEffect && 'hover:transform hover:scale-105', 'bg-transparent rounded-lg p-6', hoveredIndex === index && 'bg-gray-50');
+    }
+
+    // Gradient variant
+    if (variant === 'gradient') {
+      return clsx(baseClasses, hoverEffect && 'hover:transform hover:scale-105', 'bg-white rounded-lg p-6 border border-gray-200 shadow-sm', hoveredIndex === index && 'shadow-xl border-transparent bg-gradient-to-br from-primary-50 to-primary-50');
+    }
+
+    // Shadow variant
+    if (variant === 'shadow') {
+      return clsx(baseClasses, hoverEffect && 'hover:transform hover:scale-105', 'bg-white rounded-lg p-6 border border-gray-200 shadow-sm', hoveredIndex === index && 'shadow-xl border-gray-300');
+    }
+
+    // Colored variant
+    if (variant === 'colored') {
+      return clsx(baseClasses, hoverEffect && 'hover:transform hover:scale-105', 'bg-white rounded-lg p-6 border border-gray-200', hoveredIndex === index && 'bg-primary-50 border-primary-300 shadow-md');
+    }
+
+    // Outlined variant
+    if (variant === 'outlined') {
+      return clsx(baseClasses, hoverEffect && 'hover:transform hover:scale-105', 'bg-white rounded-lg p-6 border-2 border-gray-300', hoveredIndex === index && 'border-primary-600 shadow-md');
+    }
+
+    // Filled variant
+    if (variant === 'filled') {
+      return clsx(baseClasses, hoverEffect && 'hover:transform hover:scale-105', 'bg-gray-100 rounded-lg p-6 border border-gray-300 transition-all duration-300', hoveredIndex === index && 'bg-primary-500 border-primary-600 text-white shadow-lg');
+    }
+    return clsx(baseClasses, 'bg-white rounded-lg p-6');
+  };
+  var getIconClasses = function getIconClasses(index) {
+    var baseIconClasses = 'flex-shrink-0 mb-4 transition-all duration-300';
+
+    // Icon alignment classes
+    var iconAlignmentClasses = {
+      left: 'self-start',
+      center: 'self-center mx-auto',
+      right: 'self-end ml-auto'
+    };
+    var alignmentClass = iconAlignmentClasses[currentIconAlignment] || '';
+
+    // Filled variant - gray when not hovered, white when hovered
+    if (variant === 'filled') {
+      return clsx(baseIconClasses, hoveredIndex === index ? 'text-black' : 'text-gray-700', alignmentClass);
+    }
+
+    // Mantine monotone variant - gray icons
+    if (variant === 'mantine-monotone' || variant === 'mantine-icons' && iconStyle === 'monotone') {
+      return clsx(baseIconClasses, 'text-gray-600', alignmentClass);
+    }
+
+    // Mantine image icons - no special classes
+    if (variant === 'mantine-image-icons') {
+      return clsx(baseIconClasses, alignmentClass);
+    }
+
+    // Gradient variant hover state
+    if (variant === 'gradient' && hoveredIndex === index) {
+      return clsx(baseIconClasses, 'text-primary-700', alignmentClass);
+    }
+
+    // Default - colored icons
+    return clsx(baseIconClasses, 'text-primary-700', alignmentClass);
+  };
+  var getTitleClasses = function getTitleClasses(index) {
+    var baseTitleClasses = 'text-xl font-bold mb-2 transition-colors duration-300';
+
+    // Filled variant - gray when not hovered, white when hovered
+    if (variant === 'filled') {
+      return clsx(baseTitleClasses, hoveredIndex === index ? 'text-black' : 'text-gray-900');
+    }
+
+    // Mantine Badge Cards variant - with underline
+    if (variant === 'mantine-badge-cards') {
+      return clsx(baseTitleClasses, 'text-gray-900 text-lg sm:text-xl font-semibold mb-2');
+    }
+
+    // Mantine Icons, Monotone, Image Icons variants - centered, larger
+    if (variant === 'mantine-icons' || variant === 'mantine-monotone' || variant === 'mantine-image-icons') {
+      return clsx(baseTitleClasses, 'text-gray-900 text-lg sm:text-xl font-semibold');
+    }
+
+    // Other Mantine variants - slightly larger
+    if (variant.startsWith('mantine-')) {
+      return clsx(baseTitleClasses, 'text-gray-900 text-lg sm:text-xl');
+    }
+    return clsx(baseTitleClasses, 'text-gray-900');
+  };
+  var getDescriptionClasses = function getDescriptionClasses(index) {
+    var baseDescClasses = 'text-base leading-relaxed transition-colors duration-300';
+
+    // Filled variant - gray when not hovered, white when hovered
+    if (variant === 'filled') {
+      return clsx(baseDescClasses, hoveredIndex === index ? 'text-black' : 'text-gray-600');
+    }
+
+    // Mantine Icons, Monotone, Image Icons variants - centered, smaller text
+    if (variant === 'mantine-icons' || variant === 'mantine-monotone' || variant === 'mantine-image-icons') {
+      return clsx(baseDescClasses, 'text-gray-600 text-sm sm:text-base');
+    }
+
+    // Other Mantine variants - slightly smaller
+    if (variant.startsWith('mantine-')) {
+      return clsx(baseDescClasses, 'text-gray-600 text-sm sm:text-base');
+    }
+    return clsx(baseDescClasses, 'text-gray-600');
+  };
+  var renderIcon = function renderIcon(item, index) {
+    if (!showIcons || !item.icon) return null;
+    var currentIconStyle = item.iconStyle || iconStyle;
+    var itemIconAlignment = item.iconAlignment || currentIconAlignment;
+
+    // Icon alignment wrapper classes
+    var iconWrapperClasses = {
+      left: 'flex items-start',
+      center: 'flex items-center justify-center',
+      right: 'flex items-end justify-end'
+    };
+    var wrapperClass = iconWrapperClasses[itemIconAlignment] || 'flex items-start';
+
+    // If icon is a string (emoji or image URL)
+    if (typeof item.icon === 'string') {
+      // Check if it's an image URL
+      if (item.icon.startsWith('http') || item.icon.startsWith('/') || item.icon.includes('.')) {
+        return /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: clsx(wrapperClass, 'mb-4'),
+          children: /*#__PURE__*/jsxRuntime.jsx("img", {
+            src: item.icon,
+            alt: item.title || 'Feature icon',
+            className: clsx('w-12 h-12 sm:w-16 sm:h-16 object-contain transition-all duration-300', hoverEffect && hoveredIndex === index && 'transform scale-110')
+          })
+        });
+      }
+
+      // Mantine Icons variant - Simple icon container, always centered
+      if (variant === 'mantine-icons') {
+        return /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "flex justify-center mb-6",
+          children: /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: clsx('w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center text-2xl sm:text-3xl transition-all duration-300', currentIconStyle === 'monotone' ? 'text-gray-600' : 'text-primary-700', hoverEffect && hoveredIndex === index && 'transform scale-110'),
+            children: item.icon
+          })
+        });
+      }
+
+      // Mantine Monotone variant - Gray icons, always centered
+      if (variant === 'mantine-monotone') {
+        return /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "flex justify-center mb-6",
+          children: /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: clsx('w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center text-2xl sm:text-3xl text-gray-600 transition-all duration-300', hoverEffect && hoveredIndex === index && 'transform scale-110'),
+            children: item.icon
+          })
+        });
+      }
+
+      // Mantine Image Icons variant - Image icons, always centered
+      if (variant === 'mantine-image-icons') {
+        return /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "flex justify-center mb-6",
+          children: /*#__PURE__*/jsxRuntime.jsx("img", {
+            src: item.icon,
+            alt: item.title || 'Feature icon',
+            className: clsx('w-16 h-16 sm:w-20 sm:h-20 object-contain transition-all duration-300', hoverEffect && hoveredIndex === index && 'transform scale-110')
+          })
+        });
+      }
+
+      // Mantine Badge Cards variant - Blue circular icons
+      if (variant === 'mantine-badge-cards') {
+        return /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "mb-6",
+          children: /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: clsx('w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-primary-700 flex items-center justify-center text-white text-xl sm:text-2xl transition-all duration-300', hoverEffect && hoveredIndex === index && 'transform scale-105 bg-primary-700'),
+            children: item.icon
+          })
+        });
+      }
+
+      // Otherwise treat as emoji or text
+      // Special handling for filled variant
+      if (variant === 'filled') {
+        return /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: clsx(wrapperClass, 'mb-4'),
+          children: /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: clsx(getIconClasses(index), 'w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center text-3xl sm:text-4xl rounded-lg transition-all duration-300', hoveredIndex === index ? 'bg-primary-400' : 'bg-gray-200', hoverEffect && hoveredIndex === index && 'transform scale-110'),
+            children: item.icon
+          })
+        });
+      }
+      return /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: clsx(wrapperClass, 'mb-4'),
+        children: /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: clsx(getIconClasses(index), 'w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center text-3xl sm:text-4xl rounded-lg', variant === 'mantine-title' ? 'bg-primary-50 text-primary-700' : 'bg-primary-50', hoverEffect && hoveredIndex === index && 'transform scale-110 bg-primary-100'),
+          children: item.icon
+        })
+      });
+    }
+
+    // If icon is a React component
+    if (_typeof(item.icon) === 'object' && item.icon.type) {
+      return /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: clsx(wrapperClass, 'mb-4'),
+        children: /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: getIconClasses(index),
+          children: item.icon
+        })
+      });
+    }
+    return null;
+  };
+  var gridColumnsClasses = {
+    1: 'grid-cols-1',
+    2: 'grid-cols-1 sm:grid-cols-2',
+    3: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3',
+    4: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4'
+  };
+  if (items.length === 0) {
+    console.warn('FeatureDeck: items array is empty');
+    return null;
+  }
+
+  // Show skeleton loader if loader prop is true
+  if (showLoader) {
+    var _gridColumnsClasses = {
+      1: 'grid-cols-1',
+      2: 'grid-cols-1 md:grid-cols-2',
+      3: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3',
+      4: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-4'
+    };
+    return /*#__PURE__*/jsxRuntime.jsx("section", {
+      id: id,
+      className: clsx('w-full py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8', variantClasses[variant] || 'bg-white', className, dataClassName),
+      children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "max-w-7xl mx-auto w-full",
+        children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: clsx('mb-10 sm:mb-12 flex flex-col', alignmentClasses[alignment]),
+          children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "h-4 bg-gray-400 rounded w-24 mb-3 mx-auto animate-pulse"
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "h-10 bg-gray-400 rounded w-full max-w-2xl mb-4 mx-auto animate-pulse"
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "h-5 bg-gray-300 rounded w-full max-w-xl mb-6 mx-auto animate-pulse"
+          })]
+        }), /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: clsx('grid gap-6', _gridColumnsClasses[columns]),
+          children: [0, 1, 2, 3, 4, 5].slice(0, columns * 2).map(function (index) {
+            return /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "bg-white border border-gray-200 rounded-lg p-6",
+              children: [showIcons && /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "w-12 h-12 bg-gray-300 rounded-lg mb-4 mx-auto animate-pulse"
+              }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "h-6 bg-gray-400 rounded w-3/4 mb-3 mx-auto animate-pulse"
+              }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: "space-y-2",
+                children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "h-4 bg-gray-300 rounded w-full animate-pulse"
+                }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "h-4 bg-gray-300 rounded w-5/6 mx-auto animate-pulse"
+                })]
+              })]
+            }, index);
+          })
+        })]
+      })
+    });
+  }
+  var handleItemClick = function handleItemClick(item, index) {
+    if (item.onClick) {
+      item.onClick(item, index);
+    }
+    if (item.href) {
+      window.location.href = item.href;
+    }
+  };
+  var buttonVariantClasses = {
+    primary: 'bg-primary-600 hover:bg-primary-700 text-white',
+    secondary: 'bg-gray-600 hover:bg-gray-700 text-white',
+    outline: 'border-2 border-gray-300 text-gray-700 hover:bg-gray-50'
+  };
+
+  // Mantine Title variant - Special layout with large header
+  if (variant === 'mantine-title') {
+    return /*#__PURE__*/jsxRuntime.jsx("section", {
+      id: id,
+      className: clsx('w-full py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8', variantClasses[variant], className, dataClassName),
+      children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "max-w-7xl mx-auto w-full",
+        children: [(title || description || buttons.length > 0) && /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: clsx('mb-12 sm:mb-16 flex flex-col', alignmentClasses[alignment]),
+          children: [title && /*#__PURE__*/jsxRuntime.jsx("h2", {
+            className: "text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight max-w-4xl",
+            children: title
+          }), description && /*#__PURE__*/jsxRuntime.jsx("p", {
+            className: clsx('text-lg sm:text-xl text-gray-600 mb-8 max-w-3xl', alignment === 'center' && 'mx-auto', alignment === 'right' && 'ml-auto', alignment === 'left' && 'mr-auto'),
+            children: description
+          }), buttons.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: clsx('flex flex-wrap gap-4', alignment === 'center' && 'justify-center', alignment === 'right' && 'justify-end', alignment === 'left' && 'justify-start'),
+            children: buttons.map(function (button, index) {
+              var ButtonComponent = button.href ? 'a' : 'button';
+              return /*#__PURE__*/jsxRuntime.jsx(ButtonComponent, {
+                href: button.href,
+                onClick: button.onClick,
+                className: clsx('px-6 py-3 sm:px-8 sm:py-4 rounded-lg font-semibold text-base sm:text-lg transition-all duration-300', buttonVariantClasses[button.variant || 'primary'], button.className),
+                children: button.text
+              }, index);
+            })
+          })]
+        }), /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: clsx('grid gap-6 sm:gap-8', gridColumnsClasses[columns] || gridColumnsClasses[3]),
+          children: items.map(function (item, index) {
+            var isClickable = item.onClick || item.href;
+            var Component = isClickable ? 'button' : 'div';
+            return /*#__PURE__*/jsxRuntime.jsxs(Component, {
+              onClick: function onClick() {
+                return isClickable && handleItemClick(item, index);
+              },
+              onMouseEnter: function onMouseEnter() {
+                return setHoveredIndex(index);
+              },
+              onMouseLeave: function onMouseLeave() {
+                return setHoveredIndex(null);
+              },
+              className: clsx(getItemClasses(index), 'flex flex-col h-full text-left'),
+              children: [renderIcon(item, index), item.title && /*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: "mb-4",
+                children: [/*#__PURE__*/jsxRuntime.jsx("h3", {
+                  className: getTitleClasses(index),
+                  children: item.title
+                }), variant === 'mantine-badge-cards' && /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "w-12 h-0.5 bg-primary-600 mt-2"
+                })]
+              }), item.description && /*#__PURE__*/jsxRuntime.jsx("p", {
+                className: getDescriptionClasses(index),
+                children: item.description
+              }), item.link && !item.onClick && /*#__PURE__*/jsxRuntime.jsx("a", {
+                href: item.link,
+                className: clsx('inline-block mt-4 text-sm font-semibold transition-colors duration-300', 'text-primary-600 hover:text-primary-700'),
+                children: item.linkText || 'Learn more →'
+              })]
+            }, index);
+          })
+        })]
+      })
+    });
+  }
+  return /*#__PURE__*/jsxRuntime.jsx("section", {
+    id: id,
+    className: clsx('w-full py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8', variantClasses[variant], className, dataClassName),
+    children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+      className: "max-w-7xl mx-auto w-full",
+      children: [(title || subtitle || description) && /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: clsx('mb-10 sm:mb-12 flex flex-col', variant === 'mantine-badge-cards' ? 'text-left items-start' : alignmentClasses[alignment]),
+        children: [subtitle && /*#__PURE__*/jsxRuntime.jsx("p", {
+          className: clsx(variant === 'mantine-badge-cards' ? 'inline-block px-3 py-1 bg-primary-600 text-white text-xs font-semibold uppercase tracking-wider rounded-full mb-6' : 'text-sm sm:text-base font-semibold text-primary-600 uppercase tracking-wider mb-3'),
+          children: subtitle
+        }), title && /*#__PURE__*/jsxRuntime.jsx("h2", {
+          className: clsx('font-bold text-gray-900 leading-tight', variant === 'mantine-badge-cards' ? 'text-3xl sm:text-4xl md:text-5xl mb-6' : 'text-3xl sm:text-4xl md:text-5xl mb-4'),
+          children: title
+        }), description && /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: clsx('relative', variant === 'mantine-badge-cards' ? 'w-full flex flex-col items-center' : '', alignment === 'center' && variant !== 'mantine-badge-cards' && 'mx-auto', alignment === 'right' && variant !== 'mantine-badge-cards' && 'ml-auto', alignment === 'left' && variant !== 'mantine-badge-cards' && 'mr-auto'),
+          children: [/*#__PURE__*/jsxRuntime.jsx("p", {
+            className: clsx('text-base sm:text-lg text-gray-600', variant === 'mantine-badge-cards' ? 'max-w-3xl text-center mb-4' : 'max-w-2xl text-gray-500'),
+            children: description
+          }), variant === 'mantine-badge-cards' && /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "w-16 h-0.5 bg-primary-600"
+          })]
+        })]
+      }), layout === 'grid' && /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: clsx('grid gap-6 sm:gap-8', gridColumnsClasses[columns] || gridColumnsClasses[3]),
+        children: items.map(function (item, index) {
+          var isClickable = item.onClick || item.href;
+          var Component = isClickable ? 'button' : 'div';
+          var itemIconAlignment = item.iconAlignment || currentIconAlignment;
+
+          // Text alignment based on icon alignment
+          var textAlignmentClasses = {
+            left: 'text-left items-start',
+            center: 'text-center items-center',
+            right: 'text-right items-end'
+          };
+          var textAlignment = textAlignmentClasses[itemIconAlignment] || 'text-left items-start';
+          return /*#__PURE__*/jsxRuntime.jsxs(Component, {
+            onClick: function onClick() {
+              return isClickable && handleItemClick(item, index);
+            },
+            onMouseEnter: function onMouseEnter() {
+              return setHoveredIndex(index);
+            },
+            onMouseLeave: function onMouseLeave() {
+              return setHoveredIndex(null);
+            },
+            className: clsx(getItemClasses(index), 'flex flex-col', variant === 'mantine-icons' || variant === 'mantine-monotone' || variant === 'mantine-image-icons' ? 'text-center items-center' : variant.startsWith('mantine-') && itemIconAlignment === 'center' ? textAlignment : 'text-left items-start'),
+            children: [renderIcon(item, index), item.title && /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "mb-4",
+              children: [/*#__PURE__*/jsxRuntime.jsx("h3", {
+                className: getTitleClasses(index),
+                children: item.title
+              }), variant === 'mantine-badge-cards' && /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "w-12 h-0.5 bg-primary-600 mt-2"
+              })]
+            }), item.description && /*#__PURE__*/jsxRuntime.jsx("p", {
+              className: getDescriptionClasses(index),
+              children: item.description
+            }), item.link && !item.onClick && /*#__PURE__*/jsxRuntime.jsx("a", {
+              href: item.link,
+              className: clsx('inline-block mt-4 text-sm font-semibold transition-colors duration-300', itemIconAlignment === 'center' && 'mx-auto', itemIconAlignment === 'right' && 'ml-auto', variant === 'filled' && hoveredIndex === index ? 'text-white' : 'text-primary-600 hover:text-primary-700'),
+              children: item.linkText || 'Learn more →'
+            })]
+          }, index);
+        })
+      }), layout === 'list' && /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "space-y-6",
+        children: items.map(function (item, index) {
+          var isClickable = item.onClick || item.href;
+          var Component = isClickable ? 'button' : 'div';
+          return /*#__PURE__*/jsxRuntime.jsxs(Component, {
+            onClick: function onClick() {
+              return isClickable && handleItemClick(item, index);
+            },
+            onMouseEnter: function onMouseEnter() {
+              return setHoveredIndex(index);
+            },
+            onMouseLeave: function onMouseLeave() {
+              return setHoveredIndex(null);
+            },
+            className: clsx(getItemClasses(index), 'flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-6'),
+            children: [showIcons && item.icon && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "flex-shrink-0",
+              children: renderIcon(item, index)
+            }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "flex-1",
+              children: [item.title && /*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: "mb-4",
+                children: [/*#__PURE__*/jsxRuntime.jsx("h3", {
+                  className: getTitleClasses(index),
+                  children: item.title
+                }), variant === 'mantine-badge-cards' && /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "w-12 h-0.5 bg-primary-600 mt-2"
+                })]
+              }), item.description && /*#__PURE__*/jsxRuntime.jsx("p", {
+                className: getDescriptionClasses(index),
+                children: item.description
+              }), item.link && !item.onClick && /*#__PURE__*/jsxRuntime.jsx("a", {
+                href: item.link,
+                className: clsx('inline-block mt-4 text-sm font-semibold transition-colors duration-300', variant === 'filled' && hoveredIndex === index ? 'text-white' : 'text-primary-600 hover:text-primary-700'),
+                children: item.linkText || 'Learn more →'
+              })]
+            })]
+          }, index);
+        })
+      }), layout === 'card' && /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: clsx('grid gap-6 sm:gap-8', gridColumnsClasses[columns] || gridColumnsClasses[3]),
+        children: items.map(function (item, index) {
+          var isClickable = item.onClick || item.href;
+          var Component = isClickable ? 'button' : 'div';
+          var itemIconAlignment = item.iconAlignment || currentIconAlignment;
+
+          // Text alignment based on icon alignment
+          var textAlignmentClasses = {
+            left: 'text-left items-start',
+            center: 'text-center items-center',
+            right: 'text-right items-end'
+          };
+          var textAlignment = textAlignmentClasses[itemIconAlignment] || 'text-left items-start';
+          return /*#__PURE__*/jsxRuntime.jsxs(Component, {
+            onClick: function onClick() {
+              return isClickable && handleItemClick(item, index);
+            },
+            onMouseEnter: function onMouseEnter() {
+              return setHoveredIndex(index);
+            },
+            onMouseLeave: function onMouseLeave() {
+              return setHoveredIndex(null);
+            },
+            className: clsx(getItemClasses(index), 'flex flex-col h-full', itemIconAlignment === 'center' ? textAlignment : 'text-left items-start'),
+            children: [renderIcon(item, index), item.title && /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "flex-1 mb-4",
+              children: [/*#__PURE__*/jsxRuntime.jsx("h3", {
+                className: getTitleClasses(index),
+                children: item.title
+              }), variant === 'mantine-badge-cards' && /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "w-12 h-0.5 bg-primary-600 mt-2"
+              })]
+            }), item.description && /*#__PURE__*/jsxRuntime.jsx("p", {
+              className: clsx(getDescriptionClasses(index), 'flex-1'),
+              children: item.description
+            }), item.link && !item.onClick && /*#__PURE__*/jsxRuntime.jsx("a", {
+              href: item.link,
+              className: clsx('inline-block mt-4 text-sm font-semibold transition-colors duration-300', itemIconAlignment === 'center' && 'mx-auto', itemIconAlignment === 'right' && 'ml-auto', variant === 'filled' && hoveredIndex === index ? 'text-white' : 'text-primary-600 hover:text-primary-700'),
+              children: item.linkText || 'Learn more →'
+            })]
+          }, index);
+        })
+      })]
+    })
+  });
+};
+
+var FeatureModern = function FeatureModern(_ref) {
+  var data = _ref.data,
+    className = _ref.className,
+    id = _ref.id,
+    _ref$loader = _ref.loader,
+    loader = _ref$loader === void 0 ? false : _ref$loader;
+  // Safety check for data
+  if (!data || _typeof(data) !== 'object') {
+    console.error('FeatureModern: data prop is required and must be an object');
+    return null;
+  }
+  var _useState = react.useState(loader),
+    _useState2 = _slicedToArray(_useState, 2),
+    showLoader = _useState2[0],
+    setShowLoader = _useState2[1];
+
+  // Auto-hide loader after 2 seconds when loader prop is true
+  react.useEffect(function () {
+    if (loader) {
+      var timer = setTimeout(function () {
+        setShowLoader(false);
+      }, 2000);
+      return function () {
+        return clearTimeout(timer);
+      };
+    } else {
+      setShowLoader(false);
+    }
+  }, [loader]);
+  var title = data.title,
+    subtitle = data.subtitle,
+    description = data.description,
+    _data$items = data.items,
+    items = _data$items === void 0 ? [] : _data$items,
+    _data$layout = data.layout,
+    layout = _data$layout === void 0 ? 'minimal' : _data$layout,
+    _data$alignment = data.alignment,
+    alignment = _data$alignment === void 0 ? 'center' : _data$alignment,
+    _data$columns = data.columns,
+    columns = _data$columns === void 0 ? 3 : _data$columns,
+    _data$theme = data.theme,
+    theme = _data$theme === void 0 ? 'light' : _data$theme,
+    _data$showIcons = data.showIcons,
+    showIcons = _data$showIcons === void 0 ? true : _data$showIcons,
+    dataClassName = data.className;
+  var isDark = theme === 'dark';
+  var _useState3 = react.useState(null),
+    _useState4 = _slicedToArray(_useState3, 2),
+    hoveredIndex = _useState4[0],
+    setHoveredIndex = _useState4[1];
+  var alignmentClasses = {
+    left: 'text-left items-start',
+    center: 'text-center items-center',
+    right: 'text-right items-end'
+  };
+  var gridColumnsClasses = {
+    1: 'grid-cols-1',
+    2: 'grid-cols-1 md:grid-cols-2',
+    3: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3',
+    4: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-4'
+  };
+  if (items.length === 0) {
+    console.warn('FeatureModern: items array is empty');
+    return null;
+  }
+
+  // Show skeleton loader if loader prop is true
+  if (showLoader) {
+    return /*#__PURE__*/jsxRuntime.jsx("section", {
+      id: id,
+      className: clsx('w-full py-24 sm:py-32 px-4 sm:px-6 lg:px-8', isDark ? 'bg-gray-900' : 'bg-white', className, dataClassName),
+      children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "max-w-7xl mx-auto w-full",
+        children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: clsx('mb-12 sm:mb-16 flex flex-col', alignmentClasses[alignment]),
+          children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+            className: clsx('h-5 rounded w-32 mb-4 mx-auto animate-pulse', isDark ? 'bg-gray-700' : 'bg-gray-400')
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: clsx('h-12 rounded w-full max-w-2xl mb-6 mx-auto animate-pulse', isDark ? 'bg-gray-700' : 'bg-gray-400')
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: clsx('h-6 rounded w-full max-w-xl mb-8 mx-auto animate-pulse', isDark ? 'bg-gray-800' : 'bg-gray-300')
+          })]
+        }), /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: clsx('grid gap-6 sm:gap-8', gridColumnsClasses[columns]),
+          children: [0, 1, 2, 3, 4, 5].slice(0, columns * 2).map(function (index) {
+            return /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: clsx('rounded-lg p-6 border', isDark ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'),
+              children: [showIcons && /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: clsx('w-14 h-14 rounded-xl mb-5', isDark ? 'bg-gray-700' : 'bg-gray-200')
+              }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: clsx('h-6 rounded w-3/4 mb-3 animate-pulse', isDark ? 'bg-gray-700' : 'bg-gray-400')
+              }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: "space-y-2",
+                children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: clsx('h-4 rounded w-full animate-pulse', isDark ? 'bg-gray-800' : 'bg-gray-300')
+                }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: clsx('h-4 rounded w-5/6 animate-pulse', isDark ? 'bg-gray-800' : 'bg-gray-300')
+                })]
+              })]
+            }, index);
+          })
+        })]
+      })
+    });
+  }
+
+  // Modern color palette
+  var getColorScheme = function getColorScheme(index) {
+    var schemes = [{
+      primary: 'text-violet-600',
+      bg: 'bg-violet-50',
+      border: 'border-violet-200',
+      accent: 'bg-violet-500',
+      gradient: 'from-violet-500 to-purple-600'
+    }, {
+      primary: 'text-blue-600',
+      bg: 'bg-blue-50',
+      border: 'border-blue-200',
+      accent: 'bg-blue-500',
+      gradient: 'from-blue-500 to-cyan-600'
+    }, {
+      primary: 'text-emerald-600',
+      bg: 'bg-emerald-50',
+      border: 'border-emerald-200',
+      accent: 'bg-emerald-500',
+      gradient: 'from-emerald-500 to-teal-600'
+    }, {
+      primary: 'text-rose-600',
+      bg: 'bg-rose-50',
+      border: 'border-rose-200',
+      accent: 'bg-rose-500',
+      gradient: 'from-rose-500 to-pink-600'
+    }, {
+      primary: 'text-amber-600',
+      bg: 'bg-amber-50',
+      border: 'border-amber-200',
+      accent: 'bg-amber-500',
+      gradient: 'from-amber-500 to-orange-600'
+    }, {
+      primary: 'text-indigo-600',
+      bg: 'bg-indigo-50',
+      border: 'border-indigo-200',
+      accent: 'bg-indigo-500',
+      gradient: 'from-indigo-500 to-blue-600'
+    }];
+    return schemes[index % schemes.length];
+  };
+  var renderIcon = function renderIcon(item, index, colors) {
+    var variant = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 'default';
+    if (!showIcons || !item.icon) return null;
+
+    // If icon is a React component
+    if (_typeof(item.icon) === 'object' && item.icon.type) {
+      if (variant === 'minimal') {
+        return /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: clsx('flex items-center justify-center w-14 h-14 rounded-xl mb-5', 'transition-all duration-300', isDark ? 'bg-gray-800 border border-gray-700' : clsx(colors.bg, colors.border, 'border'), hoveredIndex === index && 'scale-110 -rotate-3'),
+          children: /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: clsx('w-7 h-7', isDark ? 'text-gray-300' : colors.primary),
+            children: item.icon
+          })
+        });
+      } else {
+        // Staggered variant
+        return /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: clsx('relative flex items-center justify-center mb-6', 'transition-all duration-500', hoveredIndex === index && 'scale-110'),
+          children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+            className: clsx('absolute inset-0 rounded-2xl blur-xl opacity-30', "bg-gradient-to-br ".concat(colors.gradient), 'transition-all duration-500', hoveredIndex === index && 'opacity-50 scale-150')
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: clsx('relative flex items-center justify-center w-20 h-20 rounded-2xl', isDark ? 'bg-gray-800 border border-gray-700' : clsx(colors.bg, colors.border, 'border-2'), 'transition-all duration-500', hoveredIndex === index && 'shadow-2xl'),
+            children: /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: clsx('w-10 h-10', isDark ? 'text-gray-300' : colors.primary),
+              children: item.icon
+            })
+          })]
+        });
+      }
+    }
+
+    // If icon is a string (emoji or image URL)
+    if (typeof item.icon === 'string') {
+      // Check if it's an image URL
+      if (item.icon.startsWith('http') || item.icon.startsWith('/') || item.icon.includes('.')) {
+        return /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: clsx('flex items-center justify-center w-14 h-14 rounded-xl mb-5 overflow-hidden', 'transition-all duration-300', isDark ? 'bg-gray-800 border border-gray-700' : clsx(colors.bg, colors.border, 'border'), hoveredIndex === index && 'scale-110'),
+          children: /*#__PURE__*/jsxRuntime.jsx("img", {
+            src: item.icon,
+            alt: item.title || 'Feature icon',
+            className: "w-full h-full object-cover"
+          })
+        });
+      }
+
+      // Emoji
+      if (variant === 'minimal') {
+        return /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: clsx('flex items-center justify-center w-14 h-14 rounded-xl mb-5 text-2xl', 'transition-all duration-300', isDark ? 'bg-gray-800 border border-gray-700' : clsx(colors.bg, colors.border, 'border'), hoveredIndex === index && 'scale-110 -rotate-3'),
+          children: item.icon
+        });
+      } else {
+        return /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: clsx('relative flex items-center justify-center mb-6', 'transition-all duration-500', hoveredIndex === index && 'scale-110'),
+          children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+            className: clsx('absolute inset-0 rounded-2xl blur-xl opacity-30', "bg-gradient-to-br ".concat(colors.gradient), 'transition-all duration-500', hoveredIndex === index && 'opacity-50 scale-150')
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: clsx('relative flex items-center justify-center w-20 h-20 rounded-2xl text-3xl', isDark ? 'bg-gray-800 border border-gray-700' : clsx(colors.bg, colors.border, 'border-2')),
+            children: item.icon
+          })]
+        });
+      }
+    }
+    return null;
+  };
+
+  // Minimal Layout - Clean, spacious cards with elegant design
+  var renderMinimalLayout = function renderMinimalLayout() {
+    return /*#__PURE__*/jsxRuntime.jsxs("section", {
+      id: id,
+      className: clsx('w-full py-24 sm:py-32 px-4 sm:px-6 lg:px-8', 'relative', isDark ? 'bg-gray-900' : 'bg-white', className, dataClassName),
+      children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+        className: clsx('absolute inset-0', isDark ? 'bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.05)_1px,transparent_0)] bg-[size:40px_40px]' : 'bg-[radial-gradient(circle_at_1px_1px,rgba(0,0,0,0.03)_1px,transparent_0)] bg-[size:40px_40px]')
+      }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "max-w-7xl mx-auto w-full relative z-10",
+        children: [(title || subtitle || description) && /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: clsx('mb-16 sm:mb-20 flex flex-col', alignmentClasses[alignment]),
+          children: [subtitle && /*#__PURE__*/jsxRuntime.jsx("span", {
+            className: clsx('inline-block text-sm font-semibold uppercase tracking-wider mb-4 px-3 py-1.5 rounded-full', isDark ? 'bg-gray-800 text-gray-300 border border-gray-700' : 'bg-gray-100 text-gray-600'),
+            children: subtitle
+          }), title && /*#__PURE__*/jsxRuntime.jsx("h2", {
+            className: clsx('text-4xl sm:text-5xl md:text-6xl font-bold mb-6 leading-tight', isDark ? 'text-white' : 'text-gray-900'),
+            children: title
+          }), description && /*#__PURE__*/jsxRuntime.jsx("p", {
+            className: clsx('text-lg sm:text-xl max-w-3xl leading-relaxed', isDark ? 'text-gray-400' : 'text-gray-600', alignment === 'center' && 'mx-auto', alignment === 'right' && 'ml-auto', alignment === 'left' && 'mr-auto'),
+            children: description
+          })]
+        }), /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: clsx('grid gap-6 sm:gap-8', gridColumnsClasses[columns] || gridColumnsClasses[3]),
+          children: items.map(function (item, index) {
+            var _item$button, _item$button2, _item$button3;
+            var colors = getColorScheme(index);
+            return /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "group relative",
+              onMouseEnter: function onMouseEnter() {
+                return setHoveredIndex(index);
+              },
+              onMouseLeave: function onMouseLeave() {
+                return setHoveredIndex(null);
+              },
+              children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: clsx('relative h-full p-8 rounded-2xl', 'transition-all duration-300', 'border', isDark ? 'bg-gray-800/50 border-gray-700 hover:border-gray-600 hover:bg-gray-800' : 'bg-white border-gray-200 hover:border-gray-300 hover:shadow-xl', 'hover:-translate-y-1'),
+                children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: clsx('absolute top-0 left-8 right-8 h-0.5 rounded-full', 'transition-all duration-300', isDark ? 'bg-gray-700' : 'bg-gray-100', hoveredIndex === index && clsx("bg-gradient-to-r ".concat(colors.gradient), 'h-1'))
+                }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+                  className: "relative",
+                  children: [renderIcon(item, index, colors, 'minimal'), item.title && /*#__PURE__*/jsxRuntime.jsx("h3", {
+                    className: clsx('text-xl sm:text-2xl font-bold mb-3', 'transition-colors duration-300', isDark ? 'text-white' : 'text-gray-900', hoveredIndex === index && colors.primary),
+                    children: item.title
+                  }), item.description && /*#__PURE__*/jsxRuntime.jsx("p", {
+                    className: clsx('text-base leading-relaxed mb-6', isDark ? 'text-gray-400' : 'text-gray-600'),
+                    children: item.description
+                  }), (item.link || item.button) && /*#__PURE__*/jsxRuntime.jsxs("a", {
+                    href: item.link || ((_item$button = item.button) === null || _item$button === void 0 ? void 0 : _item$button.href) || '#',
+                    onClick: (_item$button2 = item.button) === null || _item$button2 === void 0 ? void 0 : _item$button2.onClick,
+                    className: clsx('inline-flex items-center gap-2 text-sm font-semibold', 'transition-all duration-300 group/link', isDark ? 'text-gray-400 hover:text-white' : clsx(colors.primary, 'hover:gap-3')),
+                    children: [item.linkText || ((_item$button3 = item.button) === null || _item$button3 === void 0 ? void 0 : _item$button3.text) || 'Learn more', /*#__PURE__*/jsxRuntime.jsx("svg", {
+                      className: clsx('w-4 h-4 transition-transform duration-300 group-hover/link:translate-x-1', isDark ? 'text-gray-400' : colors.primary),
+                      fill: "none",
+                      stroke: "currentColor",
+                      viewBox: "0 0 24 24",
+                      children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                        strokeLinecap: "round",
+                        strokeLinejoin: "round",
+                        strokeWidth: 2,
+                        d: "M17 8l4 4m0 0l-4 4m4-4H3"
+                      })
+                    })]
+                  })]
+                })]
+              })
+            }, index);
+          })
+        })]
+      })]
+    });
+  };
+
+  // Staggered Layout - Dynamic cards with varied sizes and positions
+  var renderStaggeredLayout = function renderStaggeredLayout() {
+    var getStaggerStyle = function getStaggerStyle(index) {
+      var patterns = [{
+        marginTop: '0',
+        height: 'auto'
+      }, {
+        marginTop: '2rem',
+        height: 'auto'
+      }, {
+        marginTop: '0',
+        height: 'auto'
+      }, {
+        marginTop: '4rem',
+        height: 'auto'
+      }, {
+        marginTop: '0',
+        height: 'auto'
+      }, {
+        marginTop: '2rem',
+        height: 'auto'
+      }];
+      return patterns[index % patterns.length];
+    };
+    return /*#__PURE__*/jsxRuntime.jsxs("section", {
+      id: id,
+      className: clsx('w-full py-24 sm:py-32 px-4 sm:px-6 lg:px-8', 'relative overflow-hidden', isDark ? 'bg-gray-950' : 'bg-gradient-to-b from-gray-50 to-white', className, dataClassName),
+      children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "absolute inset-0 overflow-hidden pointer-events-none",
+        children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+          className: clsx('absolute -top-40 -right-40 w-80 h-80 rounded-full blur-3xl opacity-20', 'bg-gradient-to-br from-violet-500 to-purple-600', 'animate-pulse')
+        }), /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: clsx('absolute -bottom-40 -left-40 w-80 h-80 rounded-full blur-3xl opacity-20', 'bg-gradient-to-br from-blue-500 to-cyan-600', 'animate-pulse animation-delay-2000')
+        })]
+      }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "max-w-7xl mx-auto w-full relative z-10",
+        children: [(title || subtitle || description) && /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: clsx('mb-20 sm:mb-24 flex flex-col', alignmentClasses[alignment]),
+          children: [subtitle && /*#__PURE__*/jsxRuntime.jsx("p", {
+            className: clsx('text-sm font-semibold uppercase tracking-widest mb-4', isDark ? 'text-gray-400' : 'text-gray-500'),
+            children: subtitle
+          }), title && /*#__PURE__*/jsxRuntime.jsx("h2", {
+            className: clsx('text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight', 'bg-clip-text text-transparent bg-gradient-to-r', isDark ? 'from-white to-gray-400' : 'from-gray-900 to-gray-600'),
+            children: title
+          }), description && /*#__PURE__*/jsxRuntime.jsx("p", {
+            className: clsx('text-lg sm:text-xl max-w-3xl leading-relaxed', isDark ? 'text-gray-400' : 'text-gray-600', alignment === 'center' && 'mx-auto', alignment === 'right' && 'ml-auto', alignment === 'left' && 'mr-auto'),
+            children: description
+          })]
+        }), /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: clsx('grid gap-6 sm:gap-8', gridColumnsClasses[columns] || gridColumnsClasses[3]),
+          children: items.map(function (item, index) {
+            var _item$button4, _item$button5, _item$button6;
+            var colors = getColorScheme(index);
+            var stagger = getStaggerStyle(index);
+            return /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "group relative",
+              style: {
+                marginTop: stagger.marginTop
+              },
+              onMouseEnter: function onMouseEnter() {
+                return setHoveredIndex(index);
+              },
+              onMouseLeave: function onMouseLeave() {
+                return setHoveredIndex(null);
+              },
+              children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: clsx('relative h-full p-8 sm:p-10 rounded-3xl', 'transition-all duration-500', 'border-2', isDark ? 'bg-gray-900/80 border-gray-800 backdrop-blur-sm hover:border-gray-700 hover:bg-gray-900' : 'bg-white/80 border-gray-200 backdrop-blur-sm hover:border-gray-300 hover:shadow-2xl', 'hover:-translate-y-2 hover:scale-[1.02]'),
+                children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: clsx('absolute inset-0 rounded-3xl opacity-0 transition-opacity duration-500 pointer-events-none', "bg-gradient-to-br ".concat(colors.gradient), 'p-[2px] -z-10', hoveredIndex === index && 'opacity-100'),
+                  children: /*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: clsx('w-full h-full rounded-3xl', isDark ? 'bg-gray-900' : 'bg-white')
+                  })
+                }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+                  className: "relative",
+                  children: [renderIcon(item, index, colors, 'staggered'), item.badge && /*#__PURE__*/jsxRuntime.jsx("span", {
+                    className: clsx('inline-block text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full mb-4', "bg-gradient-to-r ".concat(colors.gradient, " text-white")),
+                    children: item.badge
+                  }), item.title && /*#__PURE__*/jsxRuntime.jsx("h3", {
+                    className: clsx('text-2xl sm:text-3xl font-bold mb-4', 'transition-colors duration-300', isDark ? 'text-white' : 'text-gray-900'),
+                    children: item.title
+                  }), item.description && /*#__PURE__*/jsxRuntime.jsx("p", {
+                    className: clsx('text-base sm:text-lg leading-relaxed mb-6', isDark ? 'text-gray-400' : 'text-gray-600'),
+                    children: item.description
+                  }), item.features && item.features.length > 0 && /*#__PURE__*/jsxRuntime.jsx("ul", {
+                    className: "space-y-3 mb-6",
+                    children: item.features.map(function (feature, fIndex) {
+                      return /*#__PURE__*/jsxRuntime.jsxs("li", {
+                        className: "flex items-center gap-3",
+                        children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                          className: clsx('flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center', "bg-gradient-to-br ".concat(colors.gradient)),
+                          children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+                            className: "w-3 h-3 text-white",
+                            fill: "none",
+                            stroke: "currentColor",
+                            viewBox: "0 0 24 24",
+                            children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                              strokeLinecap: "round",
+                              strokeLinejoin: "round",
+                              strokeWidth: 3,
+                              d: "M5 13l4 4L19 7"
+                            })
+                          })
+                        }), /*#__PURE__*/jsxRuntime.jsx("span", {
+                          className: clsx('text-sm', isDark ? 'text-gray-400' : 'text-gray-600'),
+                          children: feature
+                        })]
+                      }, fIndex);
+                    })
+                  }), (item.link || item.button) && /*#__PURE__*/jsxRuntime.jsxs("a", {
+                    href: item.link || ((_item$button4 = item.button) === null || _item$button4 === void 0 ? void 0 : _item$button4.href) || '#',
+                    onClick: (_item$button5 = item.button) === null || _item$button5 === void 0 ? void 0 : _item$button5.onClick,
+                    className: clsx('inline-flex items-center gap-2 px-6 py-3 rounded-xl', 'text-sm font-semibold transition-all duration-300', "bg-gradient-to-r ".concat(colors.gradient, " text-white"), 'hover:shadow-lg hover:scale-105', 'group/btn'),
+                    children: [item.linkText || ((_item$button6 = item.button) === null || _item$button6 === void 0 ? void 0 : _item$button6.text) || 'Learn more', /*#__PURE__*/jsxRuntime.jsx("svg", {
+                      className: "w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1",
+                      fill: "none",
+                      stroke: "currentColor",
+                      viewBox: "0 0 24 24",
+                      children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                        strokeLinecap: "round",
+                        strokeLinejoin: "round",
+                        strokeWidth: 2,
+                        d: "M17 8l4 4m0 0l-4 4m4-4H3"
+                      })
+                    })]
+                  })]
+                })]
+              })
+            }, index);
+          })
+        })]
+      })]
+    });
+  };
+
+  // Render based on layout
+  if (layout === 'staggered') {
+    return renderStaggeredLayout();
+  }
+  return renderMinimalLayout();
+};
+
+var FeaturePrime = function FeaturePrime(_ref) {
+  var data = _ref.data,
+    className = _ref.className,
+    id = _ref.id,
+    _ref$loader = _ref.loader,
+    loader = _ref$loader === void 0 ? false : _ref$loader;
+  // Safety check for data
+  if (!data || _typeof(data) !== 'object') {
+    console.error('FeaturePrime: data prop is required and must be an object');
+    return null;
+  }
+  var _useState = react.useState(loader),
+    _useState2 = _slicedToArray(_useState, 2),
+    showLoader = _useState2[0],
+    setShowLoader = _useState2[1];
+
+  // Auto-hide loader after 2 seconds when loader prop is true
+  react.useEffect(function () {
+    if (loader) {
+      var timer = setTimeout(function () {
+        setShowLoader(false);
+      }, 2000);
+      return function () {
+        return clearTimeout(timer);
+      };
+    } else {
+      setShowLoader(false);
+    }
+  }, [loader]);
+  var title = data.title,
+    subtitle = data.subtitle,
+    description = data.description,
+    _data$items = data.items,
+    items = _data$items === void 0 ? [] : _data$items,
+    _data$layout = data.layout,
+    layout = _data$layout === void 0 ? 'split-stacked' : _data$layout,
+    _data$theme = data.theme,
+    theme = _data$theme === void 0 ? 'light' : _data$theme,
+    buttonText = data.buttonText,
+    buttonHref = data.buttonHref,
+    buttonOnClick = data.buttonOnClick,
+    illustration = data.illustration,
+    dataClassName = data.className;
+  var isDark = theme === 'dark';
+  var _useState3 = react.useState(null),
+    _useState4 = _slicedToArray(_useState3, 2),
+    hoveredIndex = _useState4[0],
+    setHoveredIndex = _useState4[1];
+
+  // Show skeleton loader if loader prop is true (check this FIRST before items check)
+  if (showLoader) {
+    // Get layout from data, default to split-stacked
+    var skeletonLayout = layout || 'split-stacked';
+    return /*#__PURE__*/jsxRuntime.jsx("section", {
+      id: id,
+      className: clsx('w-full py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8', isDark ? 'bg-gray-900' : 'bg-white', className, dataClassName),
+      children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "max-w-7xl mx-auto w-full",
+        children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "text-center mb-12 sm:mb-16",
+          children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+            className: clsx('h-5 rounded w-32 mx-auto mb-4 animate-pulse', isDark ? 'bg-gray-700' : 'bg-gray-400')
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: clsx('h-12 rounded w-full max-w-2xl mx-auto mb-6 animate-pulse', isDark ? 'bg-gray-700' : 'bg-gray-400')
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: clsx('h-6 rounded w-full max-w-xl mx-auto mb-8 animate-pulse', isDark ? 'bg-gray-800' : 'bg-gray-300')
+          })]
+        }), skeletonLayout === 'split-stacked' && /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "grid lg:grid-cols-2 gap-12 items-center",
+          children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "space-y-8",
+            children: [[0, 1, 2, 3].map(function (index) {
+              return /*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: "flex gap-4",
+                children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "flex-shrink-0",
+                  children: /*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: clsx('w-14 h-14 rounded-lg animate-pulse', isDark ? 'bg-gray-700' : 'bg-gray-200')
+                  })
+                }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+                  className: "flex-1 space-y-3",
+                  children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: clsx('h-6 rounded w-3/4 animate-pulse', isDark ? 'bg-gray-700' : 'bg-gray-300')
+                  }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: clsx('h-4 rounded w-full animate-pulse', isDark ? 'bg-gray-800' : 'bg-gray-200')
+                  }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: clsx('h-4 rounded w-5/6 animate-pulse', isDark ? 'bg-gray-800' : 'bg-gray-200')
+                  })]
+                })]
+              }, index);
+            }), /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: clsx('h-12 rounded-lg w-40 mt-6 animate-pulse', isDark ? 'bg-gray-700' : 'bg-gray-300')
+            })]
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "hidden lg:block",
+            children: /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: clsx('h-96 rounded-2xl animate-pulse', isDark ? 'bg-gray-800' : 'bg-gray-200')
+            })
+          })]
+        }), skeletonLayout === 'split-grid' && /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "grid lg:grid-cols-2 gap-12 items-start",
+          children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "space-y-6",
+            children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+              className: clsx('h-5 rounded w-32 animate-pulse', isDark ? 'bg-gray-700' : 'bg-gray-400')
+            }), /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: clsx('h-12 rounded w-full mb-4 animate-pulse', isDark ? 'bg-gray-700' : 'bg-gray-400')
+            }), /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: clsx('h-6 rounded w-full mb-6 animate-pulse', isDark ? 'bg-gray-800' : 'bg-gray-300')
+            }), /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: clsx('h-12 rounded-lg w-40 animate-pulse', isDark ? 'bg-gray-700' : 'bg-gray-300')
+            })]
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "grid grid-cols-2 gap-4",
+            children: [0, 1, 2, 3].map(function (index) {
+              return /*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: clsx('rounded-2xl p-6 border animate-pulse', isDark ? 'bg-gray-800 border-gray-700' : 'bg-gray-50 border-gray-200'),
+                children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: clsx('w-12 h-12 rounded-lg mb-4 mx-auto animate-pulse', isDark ? 'bg-gray-700' : 'bg-gray-200')
+                }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: clsx('h-5 rounded w-3/4 mx-auto mb-3 animate-pulse', isDark ? 'bg-gray-700' : 'bg-gray-300')
+                }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: clsx('h-4 rounded w-full mb-2 animate-pulse', isDark ? 'bg-gray-800' : 'bg-gray-200')
+                }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: clsx('h-4 rounded w-5/6 mx-auto animate-pulse', isDark ? 'bg-gray-800' : 'bg-gray-200')
+                })]
+              }, index);
+            })
+          })]
+        })]
+      })
+    });
+  }
+
+  // Check if items array is empty (only after loader check)
+  if (items.length === 0) {
+    console.warn('FeaturePrime: items array is empty');
+    return null;
+  }
+
+  // Color schemes for icons based on image designs
+  var getIconColors = function getIconColors(index) {
+    var schemes = [{
+      bg: 'bg-green-100',
+      border: 'border-green-500',
+      icon: 'text-green-600'
+    }, {
+      bg: 'bg-orange-100',
+      border: 'border-orange-500',
+      icon: 'text-orange-600'
+    }, {
+      bg: 'bg-blue-100',
+      border: 'border-blue-500',
+      icon: 'text-blue-600'
+    }, {
+      bg: 'bg-red-100',
+      border: 'border-red-500',
+      icon: 'text-red-600'
+    }, {
+      bg: 'bg-purple-100',
+      border: 'border-purple-500',
+      icon: 'text-purple-600'
+    }, {
+      bg: 'bg-cyan-100',
+      border: 'border-cyan-500',
+      icon: 'text-cyan-600'
+    }];
+    return schemes[index % schemes.length];
+  };
+  var renderIcon = function renderIcon(item, index) {
+    var variant = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'stacked';
+    if (!item.icon) return null;
+
+    // Stacked layout icons - colored squares with outlined icons
+    if (variant === 'stacked') {
+      var colors = getIconColors(index);
+
+      // If icon is a React component
+      if (_typeof(item.icon) === 'object' && item.icon.type) {
+        return /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: clsx('w-14 h-14 rounded-lg border-2 flex items-center justify-center mb-4', isDark ? 'bg-gray-800 border-gray-700' : clsx(colors.bg, colors.border)),
+          children: /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: clsx('w-7 h-7', isDark ? 'text-gray-300' : colors.icon),
+            children: item.icon
+          })
+        });
+      }
+
+      // If icon is a string (emoji or image)
+      if (typeof item.icon === 'string') {
+        if (item.icon.startsWith('http') || item.icon.startsWith('/') || item.icon.includes('.')) {
+          return /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: clsx('w-14 h-14 rounded-lg border-2 flex items-center justify-center mb-4 overflow-hidden', isDark ? 'bg-gray-800 border-gray-700' : clsx(colors.bg, colors.border)),
+            children: /*#__PURE__*/jsxRuntime.jsx("img", {
+              src: item.icon,
+              alt: item.title || 'Feature icon',
+              className: "w-full h-full object-cover"
+            })
+          });
+        }
+        return /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: clsx('w-14 h-14 rounded-lg border-2 flex items-center justify-center mb-4 text-2xl', isDark ? 'bg-gray-800 border-gray-700' : clsx(colors.bg, colors.border)),
+          children: item.icon
+        });
+      }
+    }
+
+    // Grid layout icons - outlined icons for dark theme
+    if (variant === 'grid') {
+      // If icon is a React component
+      if (_typeof(item.icon) === 'object' && item.icon.type) {
+        return /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "w-12 h-12 flex items-center justify-center mb-4 mx-auto",
+          children: /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: clsx('w-12 h-12', isDark ? 'text-blue-400' : 'text-blue-600'),
+            children: item.icon
+          })
+        });
+      }
+
+      // If icon is a string
+      if (typeof item.icon === 'string') {
+        if (item.icon.startsWith('http') || item.icon.startsWith('/') || item.icon.includes('.')) {
+          return /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "w-12 h-12 flex items-center justify-center mb-4 mx-auto",
+            children: /*#__PURE__*/jsxRuntime.jsx("img", {
+              src: item.icon,
+              alt: item.title || 'Feature icon',
+              className: "w-12 h-12 object-contain"
+            })
+          });
+        }
+        return /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: clsx('w-12 h-12 flex items-center justify-center mb-4 mx-auto text-3xl', isDark ? 'text-blue-400' : 'text-blue-600'),
+          children: item.icon
+        });
+      }
+    }
+    return null;
+  };
+
+  // Default illustration component for split-stacked layout
+  var DefaultIllustration = function DefaultIllustration() {
+    return /*#__PURE__*/jsxRuntime.jsxs("div", {
+      className: "relative w-full h-full flex items-center justify-center",
+      children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "relative z-10 transform rotate-[15deg]",
+        children: /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: clsx('w-64 h-96 rounded-3xl p-6 shadow-2xl', isDark ? 'bg-gray-800 border-2 border-gray-700' : 'bg-white border-2 border-gray-200'),
+          children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "w-full h-full rounded-2xl bg-gray-100 p-4 space-y-3",
+            children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "flex items-center justify-center h-24 bg-gradient-to-br from-blue-400 to-green-400 rounded-lg"
+            }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "flex gap-2 h-16",
+              children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "flex-1 bg-purple-400 rounded"
+              }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "flex-1 bg-green-400 rounded"
+              }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "flex-1 bg-orange-400 rounded"
+              }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "flex-1 bg-blue-400 rounded"
+              })]
+            }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "flex gap-2 h-16",
+              children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "flex-1 bg-orange-400 rounded-t"
+              }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "flex-1 bg-blue-400 rounded-t"
+              })]
+            })]
+          })
+        })
+      }), /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "absolute left-0 top-1/4 w-24 h-24 bg-orange-400/20 backdrop-blur-sm rounded-lg transform rotate-12"
+      }), /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "absolute right-0 top-1/3 w-20 h-20 bg-green-400/20 backdrop-blur-sm rounded-lg transform -rotate-12"
+      }), /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "absolute left-1/4 bottom-1/4 w-16 h-16 bg-blue-400/20 backdrop-blur-sm rounded-lg transform rotate-45"
+      }), /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "absolute top-0 right-1/4 w-12 h-12 bg-orange-500/30 rounded-lg flex items-center justify-center text-white text-xl backdrop-blur-sm",
+        children: "\u2699\uFE0F"
+      }), /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "absolute bottom-1/4 right-0 w-12 h-12 bg-blue-500/30 rounded-lg flex items-center justify-center text-white text-lg backdrop-blur-sm font-mono",
+        children: "</>"
+      })]
+    });
+  };
+
+  // Split Stacked Layout - Text/Illustration left, stacked cards right
+  var renderSplitStackedLayout = function renderSplitStackedLayout() {
+    return /*#__PURE__*/jsxRuntime.jsx("section", {
+      id: id,
+      className: clsx('w-full py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8', isDark ? 'bg-gray-900' : 'bg-white', className, dataClassName),
+      children: /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "max-w-7xl mx-auto",
+        children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "grid grid-cols-2 lg:grid-cols-2 gap-12 lg:gap-16 items-center",
+          children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "space-y-8",
+            children: [title && /*#__PURE__*/jsxRuntime.jsx("h2", {
+              className: clsx('text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight', isDark ? 'text-white' : 'text-gray-900'),
+              children: title
+            }), description && /*#__PURE__*/jsxRuntime.jsx("p", {
+              className: clsx('text-lg sm:text-xl leading-relaxed', isDark ? 'text-gray-400' : 'text-gray-600'),
+              children: description
+            }), /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "w-full h-96 lg:h-[500px] mt-8",
+              children: illustration || /*#__PURE__*/jsxRuntime.jsx(DefaultIllustration, {})
+            })]
+          }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "space-y-6",
+            children: [items.map(function (item, index) {
+              return /*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: clsx('p-6 rounded-2xl transition-all duration-300', 'border', isDark ? 'bg-gray-800/50 border-gray-700 hover:bg-gray-800 hover:border-gray-600' : 'bg-gray-50 border-gray-200 hover:bg-white hover:shadow-lg hover:border-gray-300', hoveredIndex === index && 'scale-[1.02]'),
+                onMouseEnter: function onMouseEnter() {
+                  return setHoveredIndex(index);
+                },
+                onMouseLeave: function onMouseLeave() {
+                  return setHoveredIndex(null);
+                },
+                children: [renderIcon(item, index, 'stacked'), item.title && /*#__PURE__*/jsxRuntime.jsx("h3", {
+                  className: clsx('text-xl sm:text-2xl font-bold mb-3', isDark ? 'text-white' : 'text-gray-900'),
+                  children: item.title
+                }), item.description && /*#__PURE__*/jsxRuntime.jsx("p", {
+                  className: clsx('text-base leading-relaxed', isDark ? 'text-gray-400' : 'text-gray-600'),
+                  children: item.description
+                })]
+              }, index);
+            }), (buttonText || buttonHref) && /*#__PURE__*/jsxRuntime.jsx("button", {
+              onClick: buttonOnClick,
+              className: clsx('w-full py-4 px-6 rounded-xl font-semibold text-base', 'transition-all duration-300', isDark ? 'bg-blue-600 hover:bg-blue-700 text-white' : 'bg-blue-600 hover:bg-blue-700 text-white', 'hover:shadow-lg hover:scale-[1.02]'),
+              children: buttonText || 'Explore More'
+            })]
+          })]
+        })
+      })
+    });
+  };
+
+  // Split Grid Layout - Text/CTA left, 2x2 grid cards right with glassmorphism
+  var renderSplitGridLayout = function renderSplitGridLayout() {
+    return /*#__PURE__*/jsxRuntime.jsx("section", {
+      id: id,
+      className: clsx('w-full py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8', isDark ? 'bg-gray-900' : 'bg-white', className, dataClassName),
+      children: /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "max-w-7xl mx-auto",
+        children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "grid grid-cols-2 lg:grid-cols-2 gap-12 lg:gap-16 items-center",
+          children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "space-y-6",
+            children: [isDark && subtitle && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "mb-8",
+              children: /*#__PURE__*/jsxRuntime.jsx("p", {
+                className: "text-sm font-semibold uppercase tracking-widest text-blue-400",
+                children: subtitle
+              })
+            }), !isDark && subtitle && /*#__PURE__*/jsxRuntime.jsx("p", {
+              className: clsx('text-sm font-semibold uppercase tracking-widest', 'text-blue-600'),
+              children: subtitle
+            }), title && /*#__PURE__*/jsxRuntime.jsx("h2", {
+              className: clsx('text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight', isDark ? 'text-white' : 'text-gray-900'),
+              children: title
+            }), description && /*#__PURE__*/jsxRuntime.jsx("p", {
+              className: clsx('text-lg leading-relaxed', isDark ? 'text-gray-400' : 'text-gray-600'),
+              children: description
+            }), (buttonText || buttonHref) && /*#__PURE__*/jsxRuntime.jsx("button", {
+              onClick: buttonOnClick,
+              className: clsx('px-8 py-4 rounded-xl font-semibold text-base', 'transition-all duration-300', isDark ? 'bg-blue-600 hover:bg-blue-700 text-white' : 'bg-blue-600 hover:bg-blue-700 text-white', 'hover:shadow-xl hover:scale-105'),
+              children: buttonText || 'Start for free'
+            })]
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "grid grid-cols-2 gap-6",
+            children: items.map(function (item, index) {
+              var isHighlighted = index === 1; // Second card (top-right) is highlighted
+
+              return /*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: clsx('relative p-6 rounded-2xl transition-all duration-500', 'backdrop-blur-sm border', isDark ? 'bg-gray-800/30 border-gray-700/50 backdrop-blur-md' : 'bg-gray-50/80 border-gray-200/50 backdrop-blur-sm',
+                // Default rotation for highlighted card
+                isHighlighted && 'transform rotate-2',
+                // Hover states
+                isHighlighted && hoveredIndex === index && ['rotate-2 scale-105', isDark ? 'shadow-2xl bg-gray-800/50 border-gray-600' : 'shadow-2xl bg-white border-gray-300'], !isHighlighted && hoveredIndex === index && ['transform scale-105', isDark ? 'shadow-xl bg-gray-800/40 border-gray-600' : 'shadow-xl bg-white border-gray-300']),
+                onMouseEnter: function onMouseEnter() {
+                  return setHoveredIndex(index);
+                },
+                onMouseLeave: function onMouseLeave() {
+                  return setHoveredIndex(null);
+                },
+                children: [renderIcon(item, index, 'grid'), item.title && /*#__PURE__*/jsxRuntime.jsx("h3", {
+                  className: clsx('text-lg sm:text-xl font-bold mb-3 text-center', isDark ? 'text-white' : 'text-gray-900'),
+                  children: item.title
+                }), item.description && /*#__PURE__*/jsxRuntime.jsx("p", {
+                  className: clsx('text-sm leading-relaxed text-center', isDark ? 'text-gray-400' : 'text-gray-600'),
+                  children: item.description
+                })]
+              }, index);
+            })
+          })]
+        })
+      })
+    });
+  };
+
+  // Render based on layout
+  if (layout === 'split-grid') {
+    return renderSplitGridLayout();
+  }
+  return renderSplitStackedLayout();
+};
+
+var PriceBoard = function PriceBoard(_ref) {
+  var data = _ref.data,
+    className = _ref.className,
+    id = _ref.id,
+    _ref$loader = _ref.loader,
+    loader = _ref$loader === void 0 ? false : _ref$loader;
+  // Safety check for data
+  if (!data || _typeof(data) !== 'object') {
+    console.error('PriceBoard: data prop is required and must be an object');
+    return null;
+  }
+  var _useState = react.useState(loader),
+    _useState2 = _slicedToArray(_useState, 2),
+    showLoader = _useState2[0],
+    setShowLoader = _useState2[1];
+
+  // Auto-hide loader after 2 seconds when loader prop is true
+  react.useEffect(function () {
+    if (loader) {
+      var timer = setTimeout(function () {
+        setShowLoader(false);
+      }, 2000);
+      return function () {
+        return clearTimeout(timer);
+      };
+    } else {
+      setShowLoader(false);
+    }
+  }, [loader]);
+  var title = data.title,
+    subtitle = data.subtitle,
+    description = data.description,
+    _data$plans = data.plans,
+    plans = _data$plans === void 0 ? [] : _data$plans,
+    _data$variant = data.variant,
+    variant = _data$variant === void 0 ? 'default' : _data$variant,
+    _data$alignment = data.alignment,
+    alignment = _data$alignment === void 0 ? 'center' : _data$alignment,
+    cardAlignment = data.cardAlignment,
+    _data$columns = data.columns,
+    columns = _data$columns === void 0 ? 3 : _data$columns,
+    _data$currency = data.currency,
+    currency = _data$currency === void 0 ? '$' : _data$currency,
+    _data$billingPeriod = data.billingPeriod,
+    billingPeriod = _data$billingPeriod === void 0 ? 'month' : _data$billingPeriod,
+    _data$showPopular = data.showPopular,
+    showPopular = _data$showPopular === void 0 ? false : _data$showPopular,
+    featuredPlanIndex = data.featuredPlanIndex,
+    dataClassName = data.className;
+
+  // Show skeleton loader if loader prop is true
+  if (showLoader) {
+    var _alignmentClasses = {
+      left: 'text-left items-start',
+      center: 'text-center items-center',
+      right: 'text-right items-end'
+    };
+    return /*#__PURE__*/jsxRuntime.jsx("section", {
+      id: id,
+      className: clsx('w-full py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8', 'bg-white', className, dataClassName),
+      children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "max-w-7xl mx-auto w-full",
+        children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: clsx('mb-10 sm:mb-12 flex flex-col', _alignmentClasses[alignment]),
+          children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "h-4 bg-gray-400 rounded w-24 mb-3 mx-auto animate-pulse"
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "h-10 bg-gray-400 rounded w-full max-w-2xl mb-4 mx-auto animate-pulse"
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "h-5 bg-gray-300 rounded w-full max-w-xl mb-6 mx-auto animate-pulse"
+          })]
+        }), /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "grid md:grid-cols-2 lg:grid-cols-3 gap-6",
+          children: [0, 1, 2].map(function (index) {
+            return /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "border border-gray-200 rounded-lg p-6 bg-white",
+              children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "h-6 bg-gray-400 rounded w-32 mb-4 animate-pulse"
+              }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: "mb-4",
+                children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "h-12 bg-gray-400 rounded w-24 mb-2 animate-pulse"
+                }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "h-4 bg-gray-300 rounded w-20 animate-pulse"
+                })]
+              }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "space-y-3 mb-6",
+                children: [0, 1, 2, 3].map(function (featureIndex) {
+                  return /*#__PURE__*/jsxRuntime.jsxs("div", {
+                    className: "flex items-center gap-2",
+                    children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                      className: "h-4 w-4 bg-gray-300 rounded animate-pulse"
+                    }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                      className: "h-4 bg-gray-300 rounded flex-1 animate-pulse"
+                    })]
+                  }, featureIndex);
+                })
+              }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "h-12 bg-gray-400 rounded-lg w-full animate-pulse"
+              })]
+            }, index);
+          })
+        })]
+      })
+    });
+  }
+  var _useState3 = react.useState(featuredPlanIndex || null),
+    _useState4 = _slicedToArray(_useState3, 2);
+    _useState4[0];
+    _useState4[1];
+
+  // Use cardAlignment if provided, otherwise fall back to alignment
+  var effectiveCardAlignment = cardAlignment || alignment;
+  var alignmentClasses = {
+    left: 'text-left items-start',
+    center: 'text-center items-center',
+    right: 'text-right items-end'
+  };
+  var cardAlignmentClasses = {
+    left: 'text-left',
+    center: 'text-center',
+    right: 'text-right'
+  };
+  var variantClasses = {
+    "default": 'bg-white',
+    bordered: 'bg-white',
+    minimal: 'bg-transparent',
+    gradient: 'bg-white',
+    shadow: 'bg-white',
+    colored: 'bg-gray-50',
+    outlined: 'bg-white',
+    filled: 'bg-white',
+    card: 'bg-white',
+    table: 'bg-white',
+    featured: 'bg-white',
+    modern: 'bg-white',
+    classic: 'bg-white',
+    'minimal-card': 'bg-transparent',
+    'gradient-card': 'bg-gradient-to-br from-primary-50 via-primary-100 to-primary-200'
+  };
+  var gridColumnsClasses = {
+    1: 'grid-cols-1',
+    2: 'grid-cols-1 sm:grid-cols-2',
+    3: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3',
+    4: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4'
+  };
+  var getPlanClasses = function getPlanClasses(plan, index) {
+    var isFeatured = featuredPlanIndex === index || plan.featured || plan.popular;
+    var baseClasses = 'transition-all duration-300 flex flex-col h-full';
+
+    // Default variant - clean white cards
+    if (variant === 'default') {
+      return clsx(baseClasses, 'bg-white rounded-lg p-6 sm:p-8 border border-gray-200', isFeatured && 'border-primary-500 shadow-md', 'hover:shadow-lg hover:border-gray-300');
+    }
+
+    // Bordered variant - thick borders always visible
+    if (variant === 'bordered') {
+      return clsx(baseClasses, 'bg-white rounded-lg p-6 sm:p-8 border-2', isFeatured ? 'border-primary-500 shadow-md' : 'border-gray-300', 'hover:border-gray-400');
+    }
+
+    // Minimal variant - transparent with subtle borders
+    if (variant === 'minimal') {
+      return clsx(baseClasses, 'bg-transparent rounded-lg p-6 sm:p-8 border border-gray-100', isFeatured && 'bg-gray-50 border-gray-200', 'hover:bg-gray-50');
+    }
+
+    // Gradient variant - light primary gradient backgrounds on all cards
+    if (variant === 'gradient') {
+      return clsx(baseClasses, 'rounded-lg p-6 sm:p-8 border shadow-sm', isFeatured ? 'bg-gradient-to-br from-primary-400 via-primary-500 to-primary-600 text-white border-transparent shadow-lg' : 'bg-gradient-to-br from-primary-50 via-primary-100 to-primary-200 border-gray-200', 'hover:shadow-lg');
+    }
+
+    // Shadow variant - prominent shadows always visible
+    if (variant === 'shadow') {
+      return clsx(baseClasses, 'bg-white rounded-lg p-6 sm:p-8 border border-gray-200', isFeatured ? 'shadow-xl border-gray-300' : 'shadow-md', 'hover:shadow-lg');
+    }
+
+    // Colored variant - colored backgrounds on all cards
+    if (variant === 'colored') {
+      return clsx(baseClasses, 'rounded-lg p-6 sm:p-8 border border-gray-200', isFeatured ? 'bg-primary-500 border-primary-600 text-white shadow-md' : 'bg-primary-50 border-primary-100', 'hover:bg-primary-100');
+    }
+
+    // Outlined variant - thick outlined borders always visible
+    if (variant === 'outlined') {
+      return clsx(baseClasses, 'bg-white rounded-lg p-6 sm:p-8 border-2', isFeatured ? 'border-primary-600 shadow-md' : 'border-gray-400', 'hover:border-gray-500');
+    }
+
+    // Filled variant - filled backgrounds on all cards
+    if (variant === 'filled') {
+      return clsx(baseClasses, 'rounded-lg p-6 sm:p-8 border', isFeatured ? 'bg-primary-500 border-primary-600 text-white shadow-lg' : 'bg-gray-200 border-gray-300', 'hover:shadow-md');
+    }
+
+    // Card variant - modern card with shadow always visible
+    if (variant === 'card') {
+      return clsx(baseClasses, 'bg-white rounded-xl p-6 sm:p-8 border border-gray-200', isFeatured ? 'ring-2 ring-primary-500 shadow-xl' : 'shadow-lg', 'hover:shadow-xl hover:scale-105');
+    }
+
+    // Featured variant - scale effect on featured plan
+    if (variant === 'featured') {
+      return clsx(baseClasses, 'bg-white rounded-lg p-6 sm:p-8 border-2', isFeatured ? 'border-primary-500 shadow-xl scale-105 z-10' : 'border-gray-200 shadow-sm', 'hover:shadow-lg');
+    }
+
+    // Modern variant - rounded corners with shadows
+    if (variant === 'modern') {
+      return clsx(baseClasses, 'bg-white rounded-2xl p-6 sm:p-8 border border-gray-100', isFeatured ? 'border-primary-400 shadow-2xl bg-gradient-to-br from-primary-50 to-white' : 'shadow-lg', 'hover:shadow-xl');
+    }
+
+    // Classic variant - traditional style with thick borders
+    if (variant === 'classic') {
+      return clsx(baseClasses, 'bg-white rounded p-6 sm:p-8 border-2', isFeatured ? 'border-primary-600 bg-primary-50' : 'border-gray-400', 'hover:border-gray-500');
+    }
+
+    // Minimal-card variant - minimal with subtle cards
+    if (variant === 'minimal-card') {
+      return clsx(baseClasses, 'bg-white rounded-lg p-6 sm:p-8 border border-gray-200 shadow-sm', isFeatured && 'shadow-md border-gray-300', 'hover:shadow-md');
+    }
+
+    // Gradient-card variant - light primary gradient on featured, subtle on others
+    if (variant === 'gradient-card') {
+      return clsx(baseClasses, 'rounded-lg p-6 sm:p-8 border', isFeatured ? 'bg-gradient-to-br from-primary-100 via-primary-200 to-primary-300 text-gray-900 border-primary-200 shadow-xl' : 'bg-white border-gray-200 shadow-sm', 'hover:shadow-lg');
+    }
+
+    // Table variant - handled separately
+    if (variant === 'table') {
+      return clsx('transition-all duration-300', isFeatured && 'bg-primary-50');
+    }
+    return clsx(baseClasses, 'bg-white rounded-lg p-6 sm:p-8');
+  };
+  var getPriceClasses = function getPriceClasses(plan, index) {
+    var isFeatured = featuredPlanIndex === index || plan.featured || plan.popular;
+
+    // Gradient variant - white text on featured, dark on regular
+    if (variant === 'gradient') {
+      return isFeatured ? 'text-white' : 'text-gray-900';
+    }
+
+    // Filled variant - white text on featured, dark on others
+    if (variant === 'filled') {
+      return isFeatured ? 'text-white' : 'text-gray-900';
+    }
+
+    // Colored variant - white text on featured, dark on others
+    if (variant === 'colored') {
+      return isFeatured ? 'text-white' : 'text-gray-900';
+    }
+
+    // Gradient-card variant - dark text on featured (light background)
+    if (variant === 'gradient-card' && isFeatured) {
+      return 'text-gray-900';
+    }
+    return 'text-gray-900';
+  };
+  var getTitleClasses = function getTitleClasses(plan, index) {
+    var isFeatured = featuredPlanIndex === index || plan.featured || plan.popular;
+
+    // Gradient variant - white text on featured, dark on regular
+    if (variant === 'gradient') {
+      return isFeatured ? 'text-white' : 'text-gray-900';
+    }
+
+    // Filled variant - white text on featured, dark on others
+    if (variant === 'filled') {
+      return isFeatured ? 'text-white' : 'text-gray-900';
+    }
+
+    // Colored variant - white text on featured, dark on others
+    if (variant === 'colored') {
+      return isFeatured ? 'text-white' : 'text-gray-900';
+    }
+
+    // Gradient-card variant - dark text on featured (light background)
+    if (variant === 'gradient-card' && isFeatured) {
+      return 'text-gray-900';
+    }
+    return 'text-gray-900';
+  };
+  var getDescriptionClasses = function getDescriptionClasses(plan, index) {
+    var isFeatured = featuredPlanIndex === index || plan.featured || plan.popular;
+
+    // Gradient variant - light primary text on featured, gray on regular
+    if (variant === 'gradient') {
+      return isFeatured ? 'text-primary-50' : 'text-gray-600';
+    }
+
+    // Filled variant - light text on featured, gray on others
+    if (variant === 'filled') {
+      return isFeatured ? 'text-primary-100' : 'text-gray-600';
+    }
+
+    // Colored variant - light text on featured, gray on others
+    if (variant === 'colored') {
+      return isFeatured ? 'text-primary-100' : 'text-gray-600';
+    }
+
+    // Gradient-card variant - gray text on featured (light background)
+    if (variant === 'gradient-card' && isFeatured) {
+      return 'text-gray-600';
+    }
+    return 'text-gray-600';
+  };
+  var getFeatureClasses = function getFeatureClasses(plan, index) {
+    var isFeatured = featuredPlanIndex === index || plan.featured || plan.popular;
+
+    // Gradient variant - white text on featured, dark on regular
+    if (variant === 'gradient') {
+      return isFeatured ? 'text-white' : 'text-gray-700';
+    }
+
+    // Filled variant - white text on featured, dark on others
+    if (variant === 'filled') {
+      return isFeatured ? 'text-white' : 'text-gray-700';
+    }
+
+    // Colored variant - white text on featured, dark on others
+    if (variant === 'colored') {
+      return isFeatured ? 'text-white' : 'text-gray-700';
+    }
+
+    // Gradient-card variant - dark text on featured (light background)
+    if (variant === 'gradient-card' && isFeatured) {
+      return 'text-gray-900';
+    }
+    return 'text-gray-700';
+  };
+  var getButtonClasses = function getButtonClasses(plan, index) {
+    var isFeatured = featuredPlanIndex === index || plan.featured || plan.popular;
+
+    // Gradient variant - white button on featured, dark on regular
+    if (variant === 'gradient') {
+      return isFeatured ? 'bg-white text-primary-600 hover:bg-gray-100' : 'bg-primary-600 text-white hover:bg-primary-700';
+    }
+
+    // Filled variant - white button on featured, dark on others
+    if (variant === 'filled') {
+      return isFeatured ? 'bg-white text-primary-600 hover:bg-gray-100' : 'bg-gray-900 text-white hover:bg-gray-800';
+    }
+
+    // Colored variant - white button on featured, dark on others
+    if (variant === 'colored') {
+      return isFeatured ? 'bg-white text-primary-600 hover:bg-gray-100' : 'bg-primary-600 text-white hover:bg-primary-700';
+    }
+
+    // Gradient-card variant - primary button on featured (light background)
+    if (variant === 'gradient-card' && isFeatured) {
+      return 'bg-primary-600 text-white hover:bg-primary-700';
+    }
+
+    // Default button styles
+    if (isFeatured) {
+      return 'bg-primary-600 text-white hover:bg-primary-700';
+    }
+    return 'bg-gray-900 text-white hover:bg-gray-800';
+  };
+
+  // Button variant classes - same as SlideFlow
+  var buttonVariantClasses = {
+    primary: 'bg-primary-600 hover:bg-primary-700 text-white',
+    secondary: 'bg-gray-600 hover:bg-gray-700 text-white',
+    outline: 'border-2 border-white text-white hover:bg-white hover:text-gray-900'
+  };
+
+  // Get button variant classes with context awareness for outline variant
+  var getButtonVariantClasses = function getButtonVariantClasses(buttonVariant, plan, index) {
+    if (!buttonVariant || !buttonVariantClasses[buttonVariant]) {
+      return null;
+    }
+    var isFeatured = featuredPlanIndex === index || plan.featured || plan.popular;
+    var isDarkBackground = variant === 'gradient' || variant === 'filled' || variant === 'colored';
+
+    // For outline variant, adapt based on background
+    if (buttonVariant === 'outline') {
+      // Dark backgrounds (gradient, filled, colored, gradient-card) with featured plan - use white border
+      if (isDarkBackground && isFeatured) {
+        return 'border-2 border-white text-white hover:bg-white hover:text-gray-900';
+      }
+      // Light backgrounds (default, minimal-card, bordered, etc.) - use gray border for visibility
+      return 'border-2 border-gray-300 text-gray-700 hover:bg-gray-50';
+    }
+
+    // For primary and secondary variants, always use standard classes (same as SlideFlow)
+    // These work on both light and dark backgrounds
+    if (buttonVariant === 'primary') {
+      return 'bg-primary-600 hover:bg-primary-700 text-white';
+    }
+    if (buttonVariant === 'secondary') {
+      return 'bg-gray-600 hover:bg-gray-700 text-white';
+    }
+    return buttonVariantClasses[buttonVariant];
+  };
+  if (plans.length === 0) {
+    console.warn('PriceBoard: plans array is empty');
+    return null;
+  }
+
+  // Table variant - special layout
+  if (variant === 'table') {
+    return /*#__PURE__*/jsxRuntime.jsx("section", {
+      id: id,
+      className: clsx('w-full py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8', variantClasses[variant], className, dataClassName),
+      children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "max-w-7xl mx-auto w-full",
+        children: [(title || subtitle || description) && /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: clsx('mb-10 sm:mb-12 flex flex-col', alignmentClasses[alignment]),
+          children: [subtitle && /*#__PURE__*/jsxRuntime.jsx("p", {
+            className: "text-sm sm:text-base font-semibold text-primary-600 uppercase tracking-wider mb-3",
+            children: subtitle
+          }), title && /*#__PURE__*/jsxRuntime.jsx("h2", {
+            className: "text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight",
+            children: title
+          }), description && /*#__PURE__*/jsxRuntime.jsx("p", {
+            className: clsx('text-base sm:text-lg text-gray-500 max-w-2xl', alignment === 'center' && 'mx-auto', alignment === 'right' && 'ml-auto', alignment === 'left' && 'mr-auto'),
+            children: description
+          })]
+        }), /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "overflow-x-auto",
+          children: /*#__PURE__*/jsxRuntime.jsxs("table", {
+            className: "w-full border-collapse",
+            children: [/*#__PURE__*/jsxRuntime.jsx("thead", {
+              children: /*#__PURE__*/jsxRuntime.jsxs("tr", {
+                className: "border-b-2 border-gray-200",
+                children: [/*#__PURE__*/jsxRuntime.jsx("th", {
+                  className: "text-left py-4 px-4 font-semibold text-gray-900",
+                  children: "Plan"
+                }), /*#__PURE__*/jsxRuntime.jsx("th", {
+                  className: "text-center py-4 px-4 font-semibold text-gray-900",
+                  children: "Price"
+                }), /*#__PURE__*/jsxRuntime.jsx("th", {
+                  className: "text-center py-4 px-4 font-semibold text-gray-900",
+                  children: "Features"
+                }), /*#__PURE__*/jsxRuntime.jsx("th", {
+                  className: "text-center py-4 px-4 font-semibold text-gray-900",
+                  children: "Action"
+                })]
+              })
+            }), /*#__PURE__*/jsxRuntime.jsx("tbody", {
+              children: plans.map(function (plan, index) {
+                var _plan$features, _plan$features2;
+                var isFeatured = featuredPlanIndex === index || plan.featured || plan.popular;
+                return /*#__PURE__*/jsxRuntime.jsxs("tr", {
+                  className: clsx(getPlanClasses(plan, index), 'border-b border-gray-200'),
+                  children: [/*#__PURE__*/jsxRuntime.jsxs("td", {
+                    className: "py-4 px-4",
+                    children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+                      className: "flex items-center gap-2",
+                      children: [/*#__PURE__*/jsxRuntime.jsx("h3", {
+                        className: clsx('text-lg font-bold', getTitleClasses(plan, index)),
+                        children: plan.name
+                      }), isFeatured && showPopular && /*#__PURE__*/jsxRuntime.jsx("span", {
+                        className: "px-2 py-1 text-xs font-semibold bg-primary-600 text-white rounded-full",
+                        children: plan.badgeText || 'Popular'
+                      })]
+                    }), plan.description && /*#__PURE__*/jsxRuntime.jsx("p", {
+                      className: clsx('text-sm mt-1', getDescriptionClasses(plan, index)),
+                      children: plan.description
+                    })]
+                  }), /*#__PURE__*/jsxRuntime.jsx("td", {
+                    className: "py-4 px-4 text-center",
+                    children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+                      className: getPriceClasses(plan, index),
+                      children: [/*#__PURE__*/jsxRuntime.jsxs("span", {
+                        className: "text-2xl font-bold",
+                        children: [currency, plan.price]
+                      }), /*#__PURE__*/jsxRuntime.jsxs("span", {
+                        className: "text-sm text-gray-500 ml-1",
+                        children: ["/", billingPeriod]
+                      })]
+                    })
+                  }), /*#__PURE__*/jsxRuntime.jsx("td", {
+                    className: "py-4 px-4",
+                    children: /*#__PURE__*/jsxRuntime.jsxs("ul", {
+                      className: "space-y-2",
+                      children: [(_plan$features = plan.features) === null || _plan$features === void 0 ? void 0 : _plan$features.slice(0, 3).map(function (feature, fIndex) {
+                        return /*#__PURE__*/jsxRuntime.jsx("li", {
+                          className: clsx('text-sm', getFeatureClasses(plan, index)),
+                          children: typeof feature === 'string' ? feature : feature.text
+                        }, fIndex);
+                      }), ((_plan$features2 = plan.features) === null || _plan$features2 === void 0 ? void 0 : _plan$features2.length) > 3 && /*#__PURE__*/jsxRuntime.jsxs("li", {
+                        className: clsx('text-sm font-semibold', getFeatureClasses(plan, index)),
+                        children: ["+", plan.features.length - 3, " more"]
+                      })]
+                    })
+                  }), /*#__PURE__*/jsxRuntime.jsx("td", {
+                    className: "py-4 px-4 text-center",
+                    children: plan.button && /*#__PURE__*/jsxRuntime.jsx("a", {
+                      href: plan.button.href || '#',
+                      onClick: plan.button.onClick,
+                      className: clsx('inline-block px-6 py-2 rounded-lg font-semibold text-sm transition-all duration-300', plan.button.variant && getButtonVariantClasses(plan.button.variant, plan, index) ? getButtonVariantClasses(plan.button.variant, plan, index) : getButtonClasses(plan, index), plan.button.className),
+                      children: plan.button.text || 'Get Started'
+                    })
+                  })]
+                }, index);
+              })
+            })]
+          })
+        })]
+      })
+    });
+  }
+
+  // Grid/Card variants
+  return /*#__PURE__*/jsxRuntime.jsx("section", {
+    id: id,
+    className: clsx('w-full py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8', variantClasses[variant], className, dataClassName),
+    children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+      className: "max-w-7xl mx-auto w-full",
+      children: [(title || subtitle || description) && /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: clsx('mb-10 sm:mb-12 flex flex-col', alignmentClasses[alignment]),
+        children: [subtitle && /*#__PURE__*/jsxRuntime.jsx("p", {
+          className: "text-sm sm:text-base font-semibold text-primary-600 uppercase tracking-wider mb-3",
+          children: subtitle
+        }), title && /*#__PURE__*/jsxRuntime.jsx("h2", {
+          className: "text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight",
+          children: title
+        }), description && /*#__PURE__*/jsxRuntime.jsx("p", {
+          className: clsx('text-base sm:text-lg text-gray-500 max-w-2xl', alignment === 'center' && 'mx-auto', alignment === 'right' && 'ml-auto', alignment === 'left' && 'mr-auto'),
+          children: description
+        })]
+      }), /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: clsx('grid gap-6 sm:gap-8', gridColumnsClasses[columns] || gridColumnsClasses[3]),
+        children: plans.map(function (plan, index) {
+          var isFeatured = featuredPlanIndex === index || plan.featured || plan.popular;
+          return /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: clsx(getPlanClasses(plan, index), cardAlignmentClasses[effectiveCardAlignment]),
+            children: [isFeatured && showPopular && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: clsx('mb-4', effectiveCardAlignment === 'center' && 'flex justify-center', effectiveCardAlignment === 'right' && 'flex justify-end'),
+              children: /*#__PURE__*/jsxRuntime.jsx("span", {
+                className: clsx('inline-block px-3 py-1 text-xs font-semibold rounded-full', variant === 'gradient' ? 'bg-white text-primary-600' : variant === 'filled' && isFeatured ? 'bg-white text-primary-600' : variant === 'colored' && isFeatured ? 'bg-white text-primary-600' : variant === 'gradient-card' && isFeatured ? 'bg-primary-600 text-white' : 'bg-primary-600 text-white'),
+                children: plan.badgeText || 'Popular'
+              })
+            }), plan.name && /*#__PURE__*/jsxRuntime.jsx("h3", {
+              className: clsx('text-2xl sm:text-3xl font-bold mb-2', getTitleClasses(plan, index)),
+              children: plan.name
+            }), plan.description && /*#__PURE__*/jsxRuntime.jsx("p", {
+              className: clsx('text-sm sm:text-base mb-6', getDescriptionClasses(plan, index)),
+              children: plan.description
+            }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "mb-6",
+              children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: clsx('flex items-baseline', effectiveCardAlignment === 'center' && 'justify-center', effectiveCardAlignment === 'right' && 'justify-end', getPriceClasses(plan, index)),
+                children: [/*#__PURE__*/jsxRuntime.jsxs("span", {
+                  className: "text-4xl sm:text-5xl font-bold",
+                  children: [currency, plan.price]
+                }), /*#__PURE__*/jsxRuntime.jsxs("span", {
+                  className: clsx('text-base sm:text-lg ml-2', variant === 'gradient' && isFeatured ? 'text-primary-50' : variant === 'filled' && isFeatured ? 'text-primary-100' : variant === 'colored' && isFeatured ? 'text-primary-100' : variant === 'gradient-card' && isFeatured ? 'text-gray-500' : 'text-gray-500'),
+                  children: ["/", billingPeriod]
+                })]
+              }), plan.priceNote && /*#__PURE__*/jsxRuntime.jsx("p", {
+                className: clsx('text-sm mt-2', getDescriptionClasses(plan, index)),
+                children: plan.priceNote
+              })]
+            }), plan.features && plan.features.length > 0 && /*#__PURE__*/jsxRuntime.jsx("ul", {
+              className: clsx('space-y-3 mb-8 flex-1', effectiveCardAlignment === 'center' && 'items-center', effectiveCardAlignment === 'right' && 'items-end'),
+              children: plan.features.map(function (feature, fIndex) {
+                var featureText = typeof feature === 'string' ? feature : feature.text;
+                var featureIncluded = typeof feature === 'string' ? true : feature.included !== false;
+                return /*#__PURE__*/jsxRuntime.jsxs("li", {
+                  className: clsx('flex items-start', effectiveCardAlignment === 'center' && 'justify-center', effectiveCardAlignment === 'right' && 'justify-end'),
+                  children: [featureIncluded ? /*#__PURE__*/jsxRuntime.jsx("svg", {
+                    className: clsx('w-5 h-5 flex-shrink-0 mt-0.5', effectiveCardAlignment === 'left' ? 'mr-3' : effectiveCardAlignment === 'center' ? 'mr-2' : 'mr-3', variant === 'gradient' && isFeatured ? 'text-white' : variant === 'filled' && isFeatured ? 'text-white' : variant === 'colored' && isFeatured ? 'text-white' : variant === 'gradient-card' && isFeatured ? 'text-green-500' : 'text-green-500'),
+                    fill: "none",
+                    stroke: "currentColor",
+                    viewBox: "0 0 24 24",
+                    children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                      strokeLinecap: "round",
+                      strokeLinejoin: "round",
+                      strokeWidth: 2,
+                      d: "M5 13l4 4L19 7"
+                    })
+                  }) : /*#__PURE__*/jsxRuntime.jsx("svg", {
+                    className: clsx('w-5 h-5 flex-shrink-0 mt-0.5', effectiveCardAlignment === 'left' ? 'mr-3' : effectiveCardAlignment === 'center' ? 'mr-2' : 'mr-3', 'text-gray-400'),
+                    fill: "none",
+                    stroke: "currentColor",
+                    viewBox: "0 0 24 24",
+                    children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                      strokeLinecap: "round",
+                      strokeLinejoin: "round",
+                      strokeWidth: 2,
+                      d: "M6 18L18 6M6 6l12 12"
+                    })
+                  }), /*#__PURE__*/jsxRuntime.jsx("span", {
+                    className: clsx('text-sm sm:text-base', getFeatureClasses(plan, index)),
+                    children: featureText
+                  })]
+                }, fIndex);
+              })
+            }), plan.button && /*#__PURE__*/jsxRuntime.jsx("a", {
+              href: plan.button.href || '#',
+              onClick: plan.button.onClick,
+              className: clsx('block w-full px-6 py-3 rounded-lg font-semibold text-base transition-all duration-300', effectiveCardAlignment === 'center' && 'text-center', effectiveCardAlignment === 'right' && 'text-right', plan.button.variant && getButtonVariantClasses(plan.button.variant, plan, index) ? getButtonVariantClasses(plan.button.variant, plan, index) : getButtonClasses(plan, index), plan.button.className),
+              children: plan.button.text || 'Get Started'
+            })]
+          }, index);
+        })
+      })]
+    })
+  });
+};
+
+var PriceModern = function PriceModern(_ref) {
+  var data = _ref.data,
+    className = _ref.className,
+    id = _ref.id,
+    _ref$loader = _ref.loader,
+    loader = _ref$loader === void 0 ? false : _ref$loader;
+  // Safety check for data
+  if (!data || _typeof(data) !== 'object') {
+    console.error('PriceModern: data prop is required and must be an object');
+    return null;
+  }
+  var _useState = react.useState(loader),
+    _useState2 = _slicedToArray(_useState, 2),
+    showLoader = _useState2[0],
+    setShowLoader = _useState2[1];
+
+  // Auto-hide loader after 2 seconds when loader prop is true
+  react.useEffect(function () {
+    if (loader) {
+      var timer = setTimeout(function () {
+        setShowLoader(false);
+      }, 2000);
+      return function () {
+        return clearTimeout(timer);
+      };
+    } else {
+      setShowLoader(false);
+    }
+  }, [loader]);
+  var title = data.title,
+    subtitle = data.subtitle,
+    description = data.description,
+    _data$plans = data.plans,
+    plans = _data$plans === void 0 ? [] : _data$plans,
+    _data$alignment = data.alignment,
+    alignment = _data$alignment === void 0 ? 'center' : _data$alignment,
+    _data$columns = data.columns,
+    columns = _data$columns === void 0 ? 3 : _data$columns,
+    _data$currency = data.currency,
+    currency = _data$currency === void 0 ? '$' : _data$currency,
+    _data$billingPeriod = data.billingPeriod,
+    billingPeriod = _data$billingPeriod === void 0 ? 'month' : _data$billingPeriod,
+    _data$showPopular = data.showPopular,
+    showPopular = _data$showPopular === void 0 ? true : _data$showPopular,
+    featuredPlanIndex = data.featuredPlanIndex,
+    _data$theme = data.theme,
+    theme = _data$theme === void 0 ? 'light' : _data$theme,
+    dataClassName = data.className;
+  var isDark = theme === 'dark';
+
+  // Show skeleton loader if loader prop is true
+  if (showLoader) {
+    var _alignmentClasses = {
+      left: 'text-left items-start',
+      center: 'text-center items-center',
+      right: 'text-right items-end'
+    };
+    var _gridColumnsClasses = {
+      1: 'grid-cols-1',
+      2: 'grid-cols-1 md:grid-cols-2',
+      3: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3',
+      4: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-4'
+    };
+    var effectiveAlignment = alignment || 'center';
+    return /*#__PURE__*/jsxRuntime.jsx("section", {
+      id: id,
+      className: clsx('w-full py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8', isDark ? 'bg-gray-900' : 'bg-white', className, dataClassName),
+      children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "max-w-7xl mx-auto w-full",
+        children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: clsx('mb-10 sm:mb-12 flex flex-col', _alignmentClasses[effectiveAlignment]),
+          children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+            className: clsx('h-4 rounded w-24 mb-3 mx-auto animate-pulse', isDark ? 'bg-gray-700' : 'bg-gray-400')
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: clsx('h-10 rounded w-full max-w-2xl mb-4 mx-auto animate-pulse', isDark ? 'bg-gray-700' : 'bg-gray-400')
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: clsx('h-5 rounded w-full max-w-xl mb-6 mx-auto animate-pulse', isDark ? 'bg-gray-800' : 'bg-gray-300')
+          })]
+        }), /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: clsx('grid gap-6', _gridColumnsClasses[columns]),
+          children: [0, 1, 2].map(function (index) {
+            return /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: clsx('border rounded-lg p-6', isDark ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'),
+              children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                className: clsx('h-6 rounded w-32 mb-4 animate-pulse', isDark ? 'bg-gray-700' : 'bg-gray-400')
+              }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: "mb-4",
+                children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: clsx('h-12 rounded w-24 mb-2 animate-pulse', isDark ? 'bg-gray-700' : 'bg-gray-400')
+                }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: clsx('h-4 rounded w-20 animate-pulse', isDark ? 'bg-gray-800' : 'bg-gray-300')
+                })]
+              }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "space-y-3 mb-6",
+                children: [0, 1, 2, 3].map(function (featureIndex) {
+                  return /*#__PURE__*/jsxRuntime.jsxs("div", {
+                    className: "flex items-center gap-2",
+                    children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                      className: clsx('h-4 w-4 rounded animate-pulse', isDark ? 'bg-gray-700' : 'bg-gray-300')
+                    }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                      className: clsx('h-4 rounded flex-1 animate-pulse', isDark ? 'bg-gray-800' : 'bg-gray-300')
+                    })]
+                  }, featureIndex);
+                })
+              }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: clsx('h-12 rounded-lg w-full animate-pulse', isDark ? 'bg-gray-700' : 'bg-gray-400')
+              })]
+            }, index);
+          })
+        })]
+      })
+    });
+  }
+  var alignmentClasses = {
+    left: 'text-left items-start',
+    center: 'text-center items-center',
+    right: 'text-right items-end'
+  };
+  var gridColumnsClasses = {
+    1: 'grid-cols-1',
+    2: 'grid-cols-1 sm:grid-cols-2',
+    3: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3',
+    4: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4'
+  };
+  if (plans.length === 0) {
+    console.warn('PriceModern: plans array is empty');
+    return null;
+  }
+
+  // Color schemes for each card with proper Tailwind classes
+  var getColorScheme = function getColorScheme(index) {
+    var schemes = [{
+      textDark: 'text-emerald-600',
+      bgLight: 'bg-emerald-50',
+      bgDark: 'bg-emerald-600',
+      borderClass: 'border-emerald-300',
+      borderHover: 'hover:border-emerald-400',
+      bgGradient: 'bg-gradient-to-br from-emerald-500 to-emerald-600',
+      borderLight: 'from-emerald-200',
+      borderMid: 'via-emerald-400'
+    }, {
+      textDark: 'text-blue-600',
+      bgLight: 'bg-blue-50',
+      bgDark: 'bg-blue-600',
+      borderClass: 'border-blue-300',
+      borderHover: 'hover:border-blue-400',
+      bgGradient: 'bg-gradient-to-br from-blue-500 to-blue-600',
+      borderLight: 'from-blue-200',
+      borderMid: 'via-blue-400'
+    }, {
+      textDark: 'text-purple-600',
+      bgLight: 'bg-purple-50',
+      bgDark: 'bg-purple-600',
+      borderClass: 'border-purple-300',
+      borderHover: 'hover:border-purple-400',
+      bgGradient: 'bg-gradient-to-br from-purple-500 to-purple-600',
+      borderLight: 'from-purple-200',
+      borderMid: 'via-purple-400'
+    }, {
+      textDark: 'text-orange-600',
+      bgLight: 'bg-orange-50',
+      bgDark: 'bg-orange-600',
+      borderClass: 'border-orange-300',
+      borderHover: 'hover:border-orange-400',
+      bgGradient: 'bg-gradient-to-br from-orange-500 to-orange-600',
+      borderLight: 'from-orange-200',
+      borderMid: 'via-orange-400'
+    }];
+    return schemes[index % schemes.length];
+  };
+  return /*#__PURE__*/jsxRuntime.jsxs("section", {
+    id: id,
+    className: clsx('w-full py-20 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-8', 'relative', isDark ? 'bg-gray-950' : 'bg-white', className, dataClassName),
+    children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+      className: clsx('absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]', isDark ? 'opacity-20' : 'opacity-40')
+    }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+      className: "max-w-7xl mx-auto w-full relative z-10",
+      children: [(title || subtitle || description) && /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: clsx('mb-20 sm:mb-24 flex flex-col', alignmentClasses[alignment]),
+        children: [subtitle && /*#__PURE__*/jsxRuntime.jsx("p", {
+          className: clsx('text-xs sm:text-sm font-mono uppercase tracking-[0.2em] mb-6', isDark ? 'text-gray-400' : 'text-gray-500'),
+          children: subtitle
+        }), title && /*#__PURE__*/jsxRuntime.jsx("h2", {
+          className: clsx('text-5xl sm:text-6xl md:text-7xl font-light mb-8 leading-[1.1] tracking-tight', isDark ? 'text-white' : 'text-gray-900'),
+          children: title.split(' ').map(function (word, i) {
+            return /*#__PURE__*/jsxRuntime.jsxs("span", {
+              className: i % 2 === 0 ? 'font-normal' : clsx('font-light', isDark ? 'text-gray-400' : 'text-gray-400'),
+              children: [word, ' ']
+            }, i);
+          })
+        }), description && /*#__PURE__*/jsxRuntime.jsx("p", {
+          className: clsx('text-lg sm:text-xl max-w-2xl font-light leading-relaxed', isDark ? 'text-gray-300' : 'text-gray-500', alignment === 'center' && 'mx-auto', alignment === 'right' && 'ml-auto', alignment === 'left' && 'mr-auto'),
+          children: description
+        })]
+      }), /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: clsx('grid gap-8 sm:gap-12', gridColumnsClasses[columns] || gridColumnsClasses[3]),
+        children: plans.map(function (plan, index) {
+          var isFeatured = featuredPlanIndex === index || plan.featured || plan.popular;
+          var colors = getColorScheme(index);
+          var rotation = index % 2 === 0 ? 'rotate-[-1deg]' : 'rotate-[1deg]';
+          return /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: clsx('relative group', isFeatured && 'lg:scale-105'),
+            children: [isFeatured && showPopular && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: clsx('absolute -top-3 -right-3 z-50', 'px-5 py-2 rounded-md', isDark ? 'bg-white text-gray-900' : clsx(colors.bgDark, 'text-white'), 'shadow-2xl transform rotate-12', 'font-bold text-xs sm:text-xs uppercase tracking-widest', 'whitespace-nowrap', isDark ? 'border-2 border-gray-800' : 'border-2 border-white'),
+              children: plan.badgeText || 'Popular'
+            }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: clsx('relative h-full flex flex-col', 'transition-all duration-500', 'backdrop-blur-xl', isDark ? clsx('bg-gray-900/40 border border-gray-800/50', 'backdrop-blur-xl', isFeatured ? 'shadow-2xl border-gray-700/50 bg-gray-900/60' : 'shadow-md hover:shadow-2xl hover:bg-gray-900/50') : clsx('bg-white border border-gray-200', isFeatured ? 'shadow-2xl border-gray-300' : 'shadow-md hover:shadow-2xl'), 'hover:-translate-y-2', !isFeatured && rotation, 'hover:rotate-0'),
+              style: {
+                clipPath: isFeatured ? 'polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%)' : 'polygon(20px 0, 100% 0, 100% 100%, 0 100%, 0 20px)'
+              },
+              children: [!isDark && /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: clsx('absolute top-0 left-0 w-20 h-20', colors.bgGradient, isFeatured && 'w-24 h-24'),
+                style: {
+                  clipPath: 'polygon(0 0, 100% 0, 0 100%)'
+                }
+              }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: "relative z-10 p-8 sm:p-10 flex flex-col h-full",
+                children: [plan.name && /*#__PURE__*/jsxRuntime.jsxs("div", {
+                  className: "mb-6",
+                  children: [/*#__PURE__*/jsxRuntime.jsx("h3", {
+                    className: clsx('text-3xl sm:text-4xl font-bold mb-2', isDark ? 'text-white' : colors.textDark),
+                    children: plan.name
+                  }), plan.description && /*#__PURE__*/jsxRuntime.jsx("p", {
+                    className: clsx('text-sm font-light', isDark ? 'text-gray-400' : 'text-gray-500'),
+                    children: plan.description
+                  })]
+                }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+                  className: "mb-8",
+                  children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+                    className: "flex items-baseline gap-2 mb-2",
+                    children: [/*#__PURE__*/jsxRuntime.jsxs("span", {
+                      className: clsx('text-5xl sm:text-6xl font-black', isDark ? 'text-white' : colors.textDark),
+                      children: [currency, plan.price]
+                    }), /*#__PURE__*/jsxRuntime.jsxs("span", {
+                      className: clsx('text-xl font-light', isDark ? 'text-gray-400' : 'text-gray-400'),
+                      children: ["/", billingPeriod]
+                    })]
+                  }), plan.priceNote && /*#__PURE__*/jsxRuntime.jsx("p", {
+                    className: clsx('text-xs font-light', isDark ? 'text-gray-500' : 'text-gray-400'),
+                    children: plan.priceNote
+                  })]
+                }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: clsx('h-px mb-8 bg-gradient-to-r', isDark ? 'from-gray-700 via-gray-600 to-transparent' : clsx(colors.borderLight, colors.borderMid, 'to-transparent'))
+                }), plan.features && plan.features.length > 0 && /*#__PURE__*/jsxRuntime.jsx("ul", {
+                  className: "space-y-4 mb-10 flex-1",
+                  children: plan.features.map(function (feature, fIndex) {
+                    var featureText = typeof feature === 'string' ? feature : feature.text;
+                    var featureIncluded = typeof feature === 'string' ? true : feature.included !== false;
+                    return /*#__PURE__*/jsxRuntime.jsxs("li", {
+                      className: "flex items-start gap-3 group/item",
+                      children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                        className: clsx('flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center mt-0.5 transition-all duration-300', featureIncluded ? isDark ? 'bg-gray-800 group-hover/item:scale-125' : "".concat(colors.bgLight, " group-hover/item:scale-125") : isDark ? 'bg-gray-800' : 'bg-gray-100'),
+                        children: featureIncluded ? /*#__PURE__*/jsxRuntime.jsx("svg", {
+                          className: clsx('w-3 h-3', isDark ? 'text-gray-300' : colors.textDark),
+                          fill: "none",
+                          stroke: "currentColor",
+                          viewBox: "0 0 24 24",
+                          children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                            strokeLinecap: "round",
+                            strokeLinejoin: "round",
+                            strokeWidth: 3,
+                            d: "M5 13l4 4L19 7"
+                          })
+                        }) : /*#__PURE__*/jsxRuntime.jsx("div", {
+                          className: clsx('w-1.5 h-1.5 rounded-full', isDark ? 'bg-gray-600' : 'bg-gray-300')
+                        })
+                      }), /*#__PURE__*/jsxRuntime.jsx("span", {
+                        className: clsx('text-sm font-light leading-relaxed flex-1', isDark ? 'text-gray-300' : 'text-gray-700'),
+                        children: featureText
+                      })]
+                    }, fIndex);
+                  })
+                }), plan.button && /*#__PURE__*/jsxRuntime.jsx("a", {
+                  href: plan.button.href || '#',
+                  onClick: plan.button.onClick,
+                  className: clsx('relative block w-full px-6 py-4 text-center font-semibold text-sm', 'transition-all duration-500 overflow-hidden group/btn', 'border-2 rounded-lg', isDark ? isFeatured ? 'bg-white text-gray-900 hover:bg-gray-100 border-white' : 'bg-gray-900 text-white hover:bg-gray-800 border-gray-700' : isFeatured ? clsx(colors.bgDark, 'text-white hover:bg-transparent hover:text-current') : clsx(colors.borderClass, colors.textDark, colors.bgLight, colors.borderHover, 'hover:bg-opacity-80'), 'before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent', 'before:translate-x-[-100%] group-hover/btn:before:translate-x-[100%] before:transition-transform before:duration-1000', plan.button.className),
+                  children: /*#__PURE__*/jsxRuntime.jsxs("span", {
+                    className: "relative z-10 flex items-center justify-center gap-2",
+                    children: [plan.button.text || 'Get Started', /*#__PURE__*/jsxRuntime.jsx("svg", {
+                      className: clsx('w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1', isDark ? isFeatured ? 'text-gray-900' : 'text-white' : isFeatured ? 'text-white group-hover/btn:text-current' : colors.textDark),
+                      fill: "none",
+                      stroke: "currentColor",
+                      viewBox: "0 0 24 24",
+                      children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                        strokeLinecap: "round",
+                        strokeLinejoin: "round",
+                        strokeWidth: 2,
+                        d: "M17 8l4 4m0 0l-4 4m4-4H3"
+                      })
+                    })]
+                  })
+                })]
+              }), !isDark && /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: clsx('absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none', colors.bgLight, 'bg-opacity-50')
+              })]
+            }), !isDark && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: clsx('absolute inset-0 -z-10 transition-all duration-500', colors.bgLight, 'opacity-0 group-hover:opacity-100 blur-xl', isFeatured ? 'opacity-30' : '')
+            })]
+          }, index);
+        })
+      })]
+    })]
+  });
+};
+
+var PricePremium = function PricePremium(_ref) {
+  var _plans$;
+  var data = _ref.data,
+    className = _ref.className,
+    id = _ref.id,
+    _ref$loader = _ref.loader,
+    loader = _ref$loader === void 0 ? false : _ref$loader;
+  // Safety check for data
+  if (!data || _typeof(data) !== 'object') {
+    console.error('PricePremium: data prop is required and must be an object');
+    return null;
+  }
+  var title = data.title,
+    subtitle = data.subtitle,
+    description = data.description,
+    _data$plans = data.plans,
+    plans = _data$plans === void 0 ? [] : _data$plans,
+    _data$alignment = data.alignment,
+    alignment = _data$alignment === void 0 ? 'center' : _data$alignment,
+    _data$columns = data.columns,
+    columns = _data$columns === void 0 ? 3 : _data$columns,
+    _data$currency = data.currency,
+    currency = _data$currency === void 0 ? '$' : _data$currency,
+    _data$showToggle = data.showToggle,
+    showToggle = _data$showToggle === void 0 ? true : _data$showToggle,
+    _data$showComparison = data.showComparison,
+    showComparison = _data$showComparison === void 0 ? false : _data$showComparison,
+    featuredPlanIndex = data.featuredPlanIndex,
+    dataClassName = data.className;
+  var _useState = react.useState('month'),
+    _useState2 = _slicedToArray(_useState, 2),
+    billingPeriod = _useState2[0],
+    setBillingPeriod = _useState2[1];
+  var _useState3 = react.useState(loader),
+    _useState4 = _slicedToArray(_useState3, 2),
+    showLoader = _useState4[0],
+    setShowLoader = _useState4[1];
+
+  // Auto-hide loader after 2 seconds when loader prop is true
+  react.useEffect(function () {
+    if (loader) {
+      var timer = setTimeout(function () {
+        setShowLoader(false);
+      }, 2000);
+      return function () {
+        return clearTimeout(timer);
+      };
+    } else {
+      setShowLoader(false);
+    }
+  }, [loader]);
+
+  // Show skeleton loader if loader prop is true
+  if (showLoader) {
+    var _alignmentClasses = {
+      left: 'text-left items-start',
+      center: 'text-center items-center',
+      right: 'text-right items-end'
+    };
+    var _gridColumnsClasses = {
+      1: 'grid-cols-1',
+      2: 'grid-cols-1 md:grid-cols-2',
+      3: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3',
+      4: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-4'
+    };
+    var effectiveAlignment = alignment || 'center';
+    return /*#__PURE__*/jsxRuntime.jsx("section", {
+      id: id,
+      className: clsx('w-full py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8', 'bg-white', className, dataClassName),
+      children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "max-w-7xl mx-auto w-full",
+        children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: clsx('mb-10 sm:mb-12 flex flex-col', _alignmentClasses[effectiveAlignment]),
+          children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "h-4 bg-gray-400 rounded w-24 mb-3 mx-auto animate-pulse"
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "h-10 bg-gray-400 rounded w-full max-w-2xl mb-4 mx-auto animate-pulse"
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "h-5 bg-gray-300 rounded w-full max-w-xl mb-6 mx-auto animate-pulse"
+          })]
+        }), showToggle && /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "flex justify-center mb-8",
+          children: /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "h-12 bg-gray-200 rounded-full w-64 animate-pulse"
+          })
+        }), /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: clsx('grid gap-6', _gridColumnsClasses[columns]),
+          children: [0, 1, 2].map(function (index) {
+            return /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "border border-gray-200 rounded-lg p-6 bg-white",
+              children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "h-6 bg-gray-400 rounded w-32 mb-4 animate-pulse"
+              }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: "mb-4",
+                children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "h-12 bg-gray-400 rounded w-24 mb-2 animate-pulse"
+                }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "h-4 bg-gray-300 rounded w-20 animate-pulse"
+                })]
+              }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "space-y-3 mb-6",
+                children: [0, 1, 2, 3].map(function (featureIndex) {
+                  return /*#__PURE__*/jsxRuntime.jsxs("div", {
+                    className: "flex items-center gap-2",
+                    children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                      className: "h-4 w-4 bg-gray-300 rounded animate-pulse"
+                    }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                      className: "h-4 bg-gray-300 rounded flex-1 animate-pulse"
+                    })]
+                  }, featureIndex);
+                })
+              }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "h-12 bg-gray-400 rounded-lg w-full animate-pulse"
+              })]
+            }, index);
+          })
+        })]
+      })
+    });
+  }
+  var alignmentClasses = {
+    left: 'text-left items-start',
+    center: 'text-center items-center',
+    right: 'text-right items-end'
+  };
+  var gridColumnsClasses = {
+    1: 'grid-cols-1',
+    2: 'grid-cols-1 sm:grid-cols-2',
+    3: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3',
+    4: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4'
+  };
+
+  // Get price based on billing period
+  var getPrice = function getPrice(plan) {
+    if (billingPeriod === 'year' && plan.yearlyPrice !== undefined) {
+      return plan.yearlyPrice;
+    }
+    return plan.price;
+  };
+
+  // Get savings percentage
+  var getSavings = function getSavings(plan) {
+    if (billingPeriod === 'year' && plan.yearlyPrice !== undefined && plan.price) {
+      var monthlyTotal = plan.price * 12;
+      var savings = (monthlyTotal - plan.yearlyPrice) / monthlyTotal * 100;
+      return Math.round(savings);
+    }
+    return null;
+  };
+  if (plans.length === 0) {
+    console.warn('PricePremium: plans array is empty');
+    return null;
+  }
+  return /*#__PURE__*/jsxRuntime.jsx("section", {
+    id: id,
+    className: clsx('w-full py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8', 'bg-white', className, dataClassName),
+    children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+      className: "max-w-7xl mx-auto w-full",
+      children: [(title || subtitle || description) && /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: clsx('mb-12 sm:mb-16 flex flex-col', alignmentClasses[alignment]),
+        children: [subtitle && /*#__PURE__*/jsxRuntime.jsx("p", {
+          className: "text-sm sm:text-base font-semibold text-primary-600 uppercase tracking-wider mb-3",
+          children: subtitle
+        }), title && /*#__PURE__*/jsxRuntime.jsx("h2", {
+          className: "text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight",
+          children: title
+        }), description && /*#__PURE__*/jsxRuntime.jsx("p", {
+          className: clsx('text-lg sm:text-xl text-gray-600 max-w-3xl', alignment === 'center' && 'mx-auto', alignment === 'right' && 'ml-auto', alignment === 'left' && 'mr-auto'),
+          children: description
+        })]
+      }), showToggle && /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "flex justify-center mb-12",
+        children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "inline-flex items-center bg-gray-100 rounded-full p-1",
+          children: [/*#__PURE__*/jsxRuntime.jsx("button", {
+            onClick: function onClick() {
+              return setBillingPeriod('month');
+            },
+            className: clsx('px-6 py-3 rounded-full font-semibold text-sm transition-all duration-300', billingPeriod === 'month' ? 'bg-white text-gray-900 shadow-md' : 'text-gray-600 hover:text-gray-900'),
+            children: "Monthly"
+          }), /*#__PURE__*/jsxRuntime.jsxs("button", {
+            onClick: function onClick() {
+              return setBillingPeriod('year');
+            },
+            className: clsx('px-6 py-3 rounded-full font-semibold text-sm transition-all duration-300', billingPeriod === 'year' ? 'bg-white text-gray-900 shadow-md' : 'text-gray-600 hover:text-gray-900'),
+            children: ["Yearly", plans.some(function (p) {
+              return p.yearlyPrice !== undefined;
+            }) && /*#__PURE__*/jsxRuntime.jsxs("span", {
+              className: "ml-2 px-2 py-0.5 bg-primary-100 text-primary-700 text-xs rounded-full",
+              children: ["Save up to ", Math.max.apply(Math, _toConsumableArray(plans.filter(function (p) {
+                return p.yearlyPrice;
+              }).map(function (p) {
+                return getSavings(p) || 0;
+              }))), "%"]
+            })]
+          })]
+        })
+      }), showComparison ? /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "overflow-x-auto",
+        children: /*#__PURE__*/jsxRuntime.jsxs("table", {
+          className: "w-full border-collapse",
+          children: [/*#__PURE__*/jsxRuntime.jsx("thead", {
+            children: /*#__PURE__*/jsxRuntime.jsxs("tr", {
+              className: "border-b-2 border-gray-200",
+              children: [/*#__PURE__*/jsxRuntime.jsx("th", {
+                className: "text-left py-4 px-6 font-semibold text-gray-900",
+                children: "Features"
+              }), plans.map(function (plan, index) {
+                return /*#__PURE__*/jsxRuntime.jsxs("th", {
+                  className: "text-center py-4 px-6 font-semibold text-gray-900",
+                  children: [plan.name, featuredPlanIndex === index && /*#__PURE__*/jsxRuntime.jsx("span", {
+                    className: "ml-2 px-2 py-1 text-xs font-semibold bg-primary-600 text-white rounded-full",
+                    children: "Popular"
+                  })]
+                }, index);
+              })]
+            })
+          }), /*#__PURE__*/jsxRuntime.jsxs("tbody", {
+            children: [/*#__PURE__*/jsxRuntime.jsxs("tr", {
+              className: "border-b border-gray-100",
+              children: [/*#__PURE__*/jsxRuntime.jsx("td", {
+                className: "py-6 px-6 font-semibold text-gray-900",
+                children: "Price"
+              }), plans.map(function (plan, index) {
+                return /*#__PURE__*/jsxRuntime.jsxs("td", {
+                  className: "py-6 px-6 text-center",
+                  children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+                    className: "text-3xl font-bold text-gray-900",
+                    children: [currency, getPrice(plan)]
+                  }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+                    className: "text-sm text-gray-500 mt-1",
+                    children: ["/", billingPeriod]
+                  }), getSavings(plan) && /*#__PURE__*/jsxRuntime.jsxs("div", {
+                    className: "text-xs text-green-600 font-semibold mt-1",
+                    children: ["Save ", getSavings(plan), "%"]
+                  })]
+                }, index);
+              })]
+            }), (_plans$ = plans[0]) === null || _plans$ === void 0 || (_plans$ = _plans$.features) === null || _plans$ === void 0 ? void 0 : _plans$.map(function (_, featureIndex) {
+              return /*#__PURE__*/jsxRuntime.jsxs("tr", {
+                className: "border-b border-gray-100",
+                children: [/*#__PURE__*/jsxRuntime.jsx("td", {
+                  className: "py-4 px-6 text-gray-700",
+                  children: typeof plans[0].features[featureIndex] === 'string' ? plans[0].features[featureIndex] : plans[0].features[featureIndex].text
+                }), plans.map(function (plan, planIndex) {
+                  var _plan$features;
+                  var feature = (_plan$features = plan.features) === null || _plan$features === void 0 ? void 0 : _plan$features[featureIndex];
+                  typeof feature === 'string' ? feature : feature === null || feature === void 0 ? void 0 : feature.text;
+                  var featureIncluded = typeof feature === 'string' ? true : (feature === null || feature === void 0 ? void 0 : feature.included) !== false;
+                  return /*#__PURE__*/jsxRuntime.jsx("td", {
+                    className: "py-4 px-6 text-center",
+                    children: featureIncluded ? /*#__PURE__*/jsxRuntime.jsx("svg", {
+                      className: "w-6 h-6 mx-auto text-green-500",
+                      fill: "none",
+                      stroke: "currentColor",
+                      viewBox: "0 0 24 24",
+                      children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                        strokeLinecap: "round",
+                        strokeLinejoin: "round",
+                        strokeWidth: 2,
+                        d: "M5 13l4 4L19 7"
+                      })
+                    }) : /*#__PURE__*/jsxRuntime.jsx("svg", {
+                      className: "w-6 h-6 mx-auto text-gray-300",
+                      fill: "none",
+                      stroke: "currentColor",
+                      viewBox: "0 0 24 24",
+                      children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                        strokeLinecap: "round",
+                        strokeLinejoin: "round",
+                        strokeWidth: 2,
+                        d: "M6 18L18 6M6 6l12 12"
+                      })
+                    })
+                  }, planIndex);
+                })]
+              }, featureIndex);
+            }), /*#__PURE__*/jsxRuntime.jsxs("tr", {
+              children: [/*#__PURE__*/jsxRuntime.jsx("td", {
+                className: "py-6 px-6"
+              }), plans.map(function (plan, index) {
+                return /*#__PURE__*/jsxRuntime.jsx("td", {
+                  className: "py-6 px-6 text-center",
+                  children: plan.button && /*#__PURE__*/jsxRuntime.jsx("a", {
+                    href: plan.button.href || '#',
+                    onClick: plan.button.onClick,
+                    className: clsx('inline-block px-8 py-3 rounded-lg font-semibold text-base transition-all duration-300', 'transform hover:scale-105', featuredPlanIndex === index ? 'bg-primary-600 text-white hover:bg-primary-700 shadow-lg' : 'bg-gray-900 text-white hover:bg-gray-800 shadow-md', plan.button.className),
+                    children: plan.button.text || 'Get Started'
+                  })
+                }, index);
+              })]
+            })]
+          })]
+        })
+      }) :
+      /*#__PURE__*/
+      /* Grid/Card View */
+      jsxRuntime.jsx("div", {
+        className: clsx('grid gap-6 sm:gap-8', gridColumnsClasses[columns] || gridColumnsClasses[3]),
+        children: plans.map(function (plan, index) {
+          var isFeatured = featuredPlanIndex === index || plan.featured || plan.popular;
+          var savings = getSavings(plan);
+          return /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: clsx('relative transition-all duration-300 flex flex-col h-full', 'rounded-2xl p-8 sm:p-10', isFeatured ? 'bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 text-white shadow-2xl border-2 border-primary-500 scale-105 z-10' : 'bg-white border-2 border-gray-200 shadow-lg hover:shadow-xl hover:border-primary-200', 'transform hover:scale-[1.02]'),
+            children: [isFeatured && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "absolute -top-4 left-1/2 -translate-x-1/2",
+              children: /*#__PURE__*/jsxRuntime.jsx("span", {
+                className: "inline-flex items-center px-4 py-2 text-xs font-bold uppercase tracking-wider bg-primary-500 text-white rounded-full shadow-lg",
+                children: plan.badgeText || 'Most Popular'
+              })
+            }), plan.name && /*#__PURE__*/jsxRuntime.jsx("h3", {
+              className: clsx('text-3xl sm:text-4xl font-bold mb-3', isFeatured ? 'text-white' : 'text-gray-900'),
+              children: plan.name
+            }), plan.description && /*#__PURE__*/jsxRuntime.jsx("p", {
+              className: clsx('text-base mb-6', isFeatured ? 'text-primary-100' : 'text-gray-600'),
+              children: plan.description
+            }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "mb-8",
+              children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: clsx('flex items-baseline justify-center', isFeatured ? 'text-white' : 'text-gray-900'),
+                children: [/*#__PURE__*/jsxRuntime.jsxs("span", {
+                  className: "text-5xl sm:text-6xl font-extrabold",
+                  children: [currency, getPrice(plan)]
+                }), /*#__PURE__*/jsxRuntime.jsxs("span", {
+                  className: clsx('text-lg sm:text-xl ml-2 font-medium', isFeatured ? 'text-primary-100' : 'text-gray-500'),
+                  children: ["/", billingPeriod]
+                })]
+              }), savings && /*#__PURE__*/jsxRuntime.jsxs("p", {
+                className: "text-center mt-2 text-sm font-semibold text-green-600",
+                children: ["Save ", savings, "% annually"]
+              }), plan.priceNote && /*#__PURE__*/jsxRuntime.jsx("p", {
+                className: clsx('text-sm mt-3 text-center', isFeatured ? 'text-primary-100' : 'text-gray-500'),
+                children: plan.priceNote
+              })]
+            }), plan.features && plan.features.length > 0 && /*#__PURE__*/jsxRuntime.jsx("ul", {
+              className: "space-y-4 mb-8 flex-1",
+              children: plan.features.map(function (feature, fIndex) {
+                var featureText = typeof feature === 'string' ? feature : feature.text;
+                var featureIncluded = typeof feature === 'string' ? true : feature.included !== false;
+                return /*#__PURE__*/jsxRuntime.jsxs("li", {
+                  className: "flex items-start",
+                  children: [featureIncluded ? /*#__PURE__*/jsxRuntime.jsx("svg", {
+                    className: clsx('w-6 h-6 flex-shrink-0 mt-0.5 mr-3', isFeatured ? 'text-white' : 'text-primary-600'),
+                    fill: "none",
+                    stroke: "currentColor",
+                    viewBox: "0 0 24 24",
+                    children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                      strokeLinecap: "round",
+                      strokeLinejoin: "round",
+                      strokeWidth: 2.5,
+                      d: "M5 13l4 4L19 7"
+                    })
+                  }) : /*#__PURE__*/jsxRuntime.jsx("svg", {
+                    className: "w-6 h-6 flex-shrink-0 mt-0.5 mr-3 text-gray-400",
+                    fill: "none",
+                    stroke: "currentColor",
+                    viewBox: "0 0 24 24",
+                    children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                      strokeLinecap: "round",
+                      strokeLinejoin: "round",
+                      strokeWidth: 2,
+                      d: "M6 18L18 6M6 6l12 12"
+                    })
+                  }), /*#__PURE__*/jsxRuntime.jsx("span", {
+                    className: clsx('text-base', isFeatured ? 'text-white' : 'text-gray-700'),
+                    children: featureText
+                  })]
+                }, fIndex);
+              })
+            }), plan.button && /*#__PURE__*/jsxRuntime.jsx("a", {
+              href: plan.button.href || '#',
+              onClick: plan.button.onClick,
+              className: clsx('block w-full px-6 py-4 rounded-xl font-bold text-base transition-all duration-300', 'text-center transform hover:scale-105 active:scale-95', isFeatured ? 'bg-white text-primary-600 hover:bg-gray-50 shadow-lg' : 'bg-gradient-to-r from-primary-600 to-primary-700 text-white hover:from-primary-700 hover:to-primary-800 shadow-lg hover:shadow-xl', plan.button.className),
+              children: plan.button.text || 'Get Started'
+            })]
+          }, index);
+        })
+      })]
+    })
+  });
+};
+
+var TrustBlock = function TrustBlock(_ref) {
+  var data = _ref.data,
+    className = _ref.className,
+    id = _ref.id,
+    _ref$loader = _ref.loader,
+    loader = _ref$loader === void 0 ? false : _ref$loader;
+  // Safety check for data
+  if (!data || _typeof(data) !== 'object') {
+    console.error('TrustBlock: data prop is required and must be an object');
+    return null;
+  }
+  var _useState = react.useState(loader),
+    _useState2 = _slicedToArray(_useState, 2),
+    showLoader = _useState2[0],
+    setShowLoader = _useState2[1];
+
+  // Auto-hide loader after 2 seconds when loader prop is true
+  react.useEffect(function () {
+    if (loader) {
+      var timer = setTimeout(function () {
+        setShowLoader(false);
+      }, 2000);
+      return function () {
+        return clearTimeout(timer);
+      };
+    } else {
+      setShowLoader(false);
+    }
+  }, [loader]);
+  var title = data.title,
+    subtitle = data.subtitle,
+    description = data.description,
+    _data$testimonials = data.testimonials,
+    testimonials = _data$testimonials === void 0 ? [] : _data$testimonials,
+    _data$variant = data.variant,
+    variant = _data$variant === void 0 ? 'default' : _data$variant,
+    _data$alignment = data.alignment,
+    alignment = _data$alignment === void 0 ? 'center' : _data$alignment,
+    cardAlignment = data.cardAlignment,
+    _data$columns = data.columns,
+    columns = _data$columns === void 0 ? 3 : _data$columns,
+    _data$showRating = data.showRating,
+    showRating = _data$showRating === void 0 ? true : _data$showRating,
+    _data$showAvatar = data.showAvatar,
+    showAvatar = _data$showAvatar === void 0 ? true : _data$showAvatar,
+    dataClassName = data.className;
+
+  // Card alignment is independent from header alignment
+  // Default to 'left' if not specified (separate from header alignment)
+  var effectiveCardAlignment = cardAlignment || 'left';
+
+  // Show skeleton loader if loader prop is true
+  if (showLoader) {
+    var _alignmentClasses = {
+      left: 'text-left items-start',
+      center: 'text-center items-center',
+      right: 'text-right items-end'
+    };
+    var _gridColumnsClasses = {
+      1: 'grid-cols-1',
+      2: 'grid-cols-1 md:grid-cols-2',
+      3: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3',
+      4: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-4'
+    };
+    var effectiveAlignment = alignment || 'center';
+    return /*#__PURE__*/jsxRuntime.jsx("section", {
+      id: id,
+      className: clsx('w-full py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8', 'bg-white', className, dataClassName),
+      children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "max-w-7xl mx-auto w-full",
+        children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: clsx('mb-10 sm:mb-12 flex flex-col', _alignmentClasses[effectiveAlignment]),
+          children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "h-4 bg-gray-400 rounded w-24 mb-3 mx-auto animate-pulse"
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "h-10 bg-gray-400 rounded w-full max-w-2xl mb-4 mx-auto animate-pulse"
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "h-5 bg-gray-300 rounded w-full max-w-xl mb-6 mx-auto animate-pulse"
+          })]
+        }), /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: clsx('grid gap-6', _gridColumnsClasses[columns]),
+          children: [0, 1, 2, 3, 4, 5].slice(0, columns * 2).map(function (index) {
+            return /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "bg-white border border-gray-200 rounded-lg p-6",
+              children: [showRating && /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "flex gap-1 mb-4 justify-center",
+                children: [0, 1, 2, 3, 4].map(function (star) {
+                  return /*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: "w-4 h-4 bg-gray-300 rounded animate-pulse"
+                  }, star);
+                })
+              }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: "space-y-2 mb-6",
+                children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "h-4 bg-gray-400 rounded w-full animate-pulse"
+                }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "h-4 bg-gray-400 rounded w-5/6 animate-pulse"
+                }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "h-4 bg-gray-300 rounded w-4/6 animate-pulse"
+                })]
+              }), showAvatar && /*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: "flex items-center gap-3",
+                children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "w-12 h-12 bg-gray-300 rounded-full animate-pulse"
+                }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+                  className: "flex-1",
+                  children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: "h-5 bg-gray-400 rounded w-32 mb-2 animate-pulse"
+                  }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: "h-4 bg-gray-300 rounded w-24 animate-pulse"
+                  })]
+                })]
+              })]
+            }, index);
+          })
+        })]
+      })
+    });
+  }
+  var alignmentClasses = {
+    left: 'text-left items-start',
+    center: 'text-center items-center',
+    right: 'text-right items-end'
+  };
+  var cardAlignmentClasses = {
+    left: 'text-left',
+    center: 'text-center',
+    right: 'text-right'
+  };
+  var variantClasses = {
+    "default": 'bg-white',
+    bordered: 'bg-white',
+    minimal: 'bg-transparent',
+    gradient: 'bg-white',
+    shadow: 'bg-white',
+    colored: 'bg-gray-50',
+    outlined: 'bg-white',
+    filled: 'bg-white',
+    card: 'bg-white',
+    modern: 'bg-white',
+    classic: 'bg-white',
+    'minimal-card': 'bg-transparent',
+    quote: 'bg-white',
+    'avatar-focused': 'bg-white',
+    grid: 'bg-white'
+  };
+  var gridColumnsClasses = {
+    1: 'grid-cols-1',
+    2: 'grid-cols-1 sm:grid-cols-2',
+    3: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3',
+    4: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4'
+  };
+  var getTestimonialClasses = function getTestimonialClasses(testimonial, index) {
+    var baseClasses = 'transition-all duration-300 flex flex-col h-full';
+
+    // Default variant - clean white cards
+    if (variant === 'default') {
+      return clsx(baseClasses, 'bg-white rounded-lg p-6 sm:p-8 border border-gray-200', 'hover:shadow-lg hover:border-gray-300');
+    }
+
+    // Bordered variant - thick borders
+    if (variant === 'bordered') {
+      return clsx(baseClasses, 'bg-white rounded-lg p-6 sm:p-8 border-2 border-gray-300', 'hover:border-gray-400');
+    }
+
+    // Minimal variant - transparent with subtle borders
+    if (variant === 'minimal') {
+      return clsx(baseClasses, 'bg-transparent rounded-lg p-6 sm:p-8 border border-gray-100', 'hover:bg-gray-50');
+    }
+
+    // Gradient variant - light blue gradient backgrounds
+    if (variant === 'gradient') {
+      return clsx(baseClasses, 'bg-gradient-to-br from-primary-50 via-primary-100 to-primary-200 rounded-lg p-6 sm:p-8 border border-gray-200 shadow-sm', 'hover:shadow-lg');
+    }
+
+    // Shadow variant - prominent shadows
+    if (variant === 'shadow') {
+      return clsx(baseClasses, 'bg-white rounded-lg p-6 sm:p-8 border border-gray-200 shadow-md', 'hover:shadow-lg');
+    }
+
+    // Colored variant - colored backgrounds
+    if (variant === 'colored') {
+      return clsx(baseClasses, 'bg-primary-50 rounded-lg p-6 sm:p-8 border border-primary-100', 'hover:bg-primary-100');
+    }
+
+    // Outlined variant - thick outlined borders
+    if (variant === 'outlined') {
+      return clsx(baseClasses, 'bg-white rounded-lg p-6 sm:p-8 border-2 border-gray-400', 'hover:border-gray-500');
+    }
+
+    // Filled variant - filled backgrounds
+    if (variant === 'filled') {
+      return clsx(baseClasses, 'bg-gray-100 rounded-lg p-6 sm:p-8 border border-gray-300', 'hover:bg-gray-200');
+    }
+
+    // Card variant - modern card with shadow
+    if (variant === 'card') {
+      return clsx(baseClasses, 'bg-white rounded-xl p-6 sm:p-8 border border-gray-200 shadow-lg', 'hover:shadow-xl hover:scale-105');
+    }
+
+    // Modern variant - rounded corners with shadows
+    if (variant === 'modern') {
+      return clsx(baseClasses, 'bg-white rounded-2xl p-6 sm:p-8 border border-gray-100 shadow-lg', 'hover:shadow-xl');
+    }
+
+    // Classic variant - traditional style
+    if (variant === 'classic') {
+      return clsx(baseClasses, 'bg-white rounded p-6 sm:p-8 border-2 border-gray-300', 'hover:border-gray-400');
+    }
+
+    // Minimal-card variant - minimal with subtle cards
+    if (variant === 'minimal-card') {
+      return clsx(baseClasses, 'bg-white rounded-lg p-6 sm:p-8 border border-gray-200 shadow-sm', 'hover:shadow-md');
+    }
+
+    // Quote variant - quote-focused design
+    if (variant === 'quote') {
+      return clsx(baseClasses, 'bg-white rounded-lg p-6 sm:p-8 border-l-4 border-primary-300 shadow-sm', 'hover:shadow-md');
+    }
+
+    // Avatar-focused variant - emphasizes avatar
+    if (variant === 'avatar-focused') {
+      return clsx(baseClasses, 'bg-white rounded-lg p-6 sm:p-8 border border-gray-200 shadow-sm text-center', 'hover:shadow-lg');
+    }
+
+    // Grid variant - clean grid layout
+    if (variant === 'grid') {
+      return clsx(baseClasses, 'bg-white rounded-lg p-6 sm:p-8 border border-gray-200', 'hover:border-gray-300');
+    }
+    return clsx(baseClasses, 'bg-white rounded-lg p-6 sm:p-8');
+  };
+  var renderRating = function renderRating(rating, cardAlignment) {
+    if (!showRating || !rating) return null;
+    var fullStars = Math.floor(rating);
+    var hasHalfStar = rating % 1 !== 0;
+    var ratingAlignmentClasses = {
+      left: 'justify-start',
+      center: 'justify-center',
+      right: 'justify-end'
+    };
+    return /*#__PURE__*/jsxRuntime.jsx("div", {
+      className: clsx('flex items-center gap-1 mb-4', ratingAlignmentClasses[cardAlignment] || 'justify-start'),
+      children: _toConsumableArray(Array(5)).map(function (_, i) {
+        if (i < fullStars) {
+          return /*#__PURE__*/jsxRuntime.jsx("svg", {
+            className: "w-5 h-5 text-yellow-400 fill-current",
+            viewBox: "0 0 20 20",
+            children: /*#__PURE__*/jsxRuntime.jsx("path", {
+              d: "M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"
+            })
+          }, i);
+        } else if (i === fullStars && hasHalfStar) {
+          return /*#__PURE__*/jsxRuntime.jsxs("svg", {
+            className: "w-5 h-5 text-yellow-400 fill-current",
+            viewBox: "0 0 20 20",
+            children: [/*#__PURE__*/jsxRuntime.jsx("defs", {
+              children: /*#__PURE__*/jsxRuntime.jsxs("linearGradient", {
+                id: "half-".concat(i),
+                children: [/*#__PURE__*/jsxRuntime.jsx("stop", {
+                  offset: "50%",
+                  stopColor: "currentColor"
+                }), /*#__PURE__*/jsxRuntime.jsx("stop", {
+                  offset: "50%",
+                  stopColor: "transparent",
+                  stopOpacity: "1"
+                })]
+              })
+            }), /*#__PURE__*/jsxRuntime.jsx("path", {
+              fill: "url(#half-".concat(i, ")"),
+              d: "M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"
+            })]
+          }, i);
+        } else {
+          return /*#__PURE__*/jsxRuntime.jsx("svg", {
+            className: "w-5 h-5 text-gray-300 fill-current",
+            viewBox: "0 0 20 20",
+            children: /*#__PURE__*/jsxRuntime.jsx("path", {
+              d: "M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"
+            })
+          }, i);
+        }
+      })
+    });
+  };
+  var renderAvatar = function renderAvatar(testimonial) {
+    if (!showAvatar) return null;
+    if (testimonial.avatar) {
+      return /*#__PURE__*/jsxRuntime.jsx("img", {
+        src: testimonial.avatar,
+        alt: testimonial.name || 'User',
+        className: clsx('rounded-full object-cover', variant === 'avatar-focused' ? 'w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-4 border-4 border-white shadow-lg' : 'w-12 h-12 sm:w-14 sm:h-14 mb-4', effectiveCardAlignment === 'center' && variant !== 'avatar-focused' && 'mx-auto', effectiveCardAlignment === 'right' && variant !== 'avatar-focused' && 'ml-auto')
+      });
+    }
+
+    // Fallback avatar with initials
+    var initials = testimonial.name ? testimonial.name.split(' ').map(function (n) {
+      return n[0];
+    }).join('').toUpperCase().slice(0, 2) : 'U';
+    return /*#__PURE__*/jsxRuntime.jsx("div", {
+      className: clsx('rounded-full bg-primary-500 text-white flex items-center justify-center font-semibold', variant === 'avatar-focused' ? 'w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-4 border-4 border-white shadow-lg text-xl sm:text-2xl' : 'w-12 h-12 sm:w-14 sm:h-14 mb-4 text-sm', effectiveCardAlignment === 'center' && variant !== 'avatar-focused' && 'mx-auto', effectiveCardAlignment === 'right' && variant !== 'avatar-focused' && 'ml-auto'),
+      children: initials
+    });
+  };
+  if (testimonials.length === 0) {
+    console.warn('TrustBlock: testimonials array is empty');
+    return null;
+  }
+  return /*#__PURE__*/jsxRuntime.jsx("section", {
+    id: id,
+    className: clsx('w-full py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8', variantClasses[variant], className, dataClassName),
+    children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+      className: "max-w-7xl mx-auto w-full",
+      children: [(title || subtitle || description) && /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: clsx('mb-10 sm:mb-12 flex flex-col', alignmentClasses[alignment]),
+        children: [subtitle && /*#__PURE__*/jsxRuntime.jsx("p", {
+          className: "text-sm sm:text-base font-semibold text-primary-600 uppercase tracking-wider mb-3",
+          children: subtitle
+        }), title && /*#__PURE__*/jsxRuntime.jsx("h2", {
+          className: "text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight",
+          children: title
+        }), description && /*#__PURE__*/jsxRuntime.jsx("p", {
+          className: clsx('text-base sm:text-lg text-gray-500 max-w-2xl', alignment === 'center' && 'mx-auto', alignment === 'right' && 'ml-auto', alignment === 'left' && 'mr-auto'),
+          children: description
+        })]
+      }), /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: clsx('grid gap-6 sm:gap-8', gridColumnsClasses[columns] || gridColumnsClasses[3]),
+        children: testimonials.map(function (testimonial, index) {
+          return /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: clsx(getTestimonialClasses(), cardAlignmentClasses[effectiveCardAlignment]),
+            children: [variant === 'quote' && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "mb-4",
+              children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+                className: "w-8 h-8 text-primary-300",
+                fill: "currentColor",
+                viewBox: "0 0 24 24",
+                children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                  d: "M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.996 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.984zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"
+                })
+              })
+            }), variant === 'avatar-focused' && renderAvatar(testimonial), renderRating(testimonial.rating, effectiveCardAlignment), testimonial.text && /*#__PURE__*/jsxRuntime.jsx("p", {
+              className: clsx('text-base sm:text-lg text-gray-700 mb-6 flex-1 testimonial-text', variant === 'quote' && 'italic', variant === 'avatar-focused' && 'text-center'),
+              children: testimonial.text
+            }), variant === 'quote' && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "mt-auto flex justify-end",
+              children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+                className: "w-6 h-6 text-primary-300 transform rotate-180",
+                fill: "currentColor",
+                viewBox: "0 0 24 24",
+                children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                  d: "M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.996 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.984zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"
+                })
+              })
+            }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: clsx('flex items-center', variant === 'avatar-focused' ? 'flex-col' : 'gap-4', effectiveCardAlignment === 'center' && variant !== 'avatar-focused' && 'justify-center', effectiveCardAlignment === 'right' && variant !== 'avatar-focused' && 'justify-end'),
+              children: [variant !== 'avatar-focused' && renderAvatar(testimonial), /*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: clsx(variant === 'avatar-focused' && 'text-center mt-2'),
+                children: [testimonial.name && /*#__PURE__*/jsxRuntime.jsx("h4", {
+                  className: "text-lg font-bold text-gray-900",
+                  children: testimonial.name
+                }), testimonial.role && /*#__PURE__*/jsxRuntime.jsx("p", {
+                  className: "text-sm text-gray-600 mt-1",
+                  children: testimonial.role
+                }), testimonial.company && /*#__PURE__*/jsxRuntime.jsx("p", {
+                  className: "text-sm text-gray-500 mt-1",
+                  children: testimonial.company
+                })]
+              })]
+            })]
+          }, index);
+        })
+      })]
+    })
+  });
+};
+
+var TestimonialCarousel = function TestimonialCarousel(_ref) {
+  var data = _ref.data,
+    className = _ref.className,
+    id = _ref.id,
+    _ref$loader = _ref.loader,
+    loader = _ref$loader === void 0 ? false : _ref$loader;
+  if (!data || _typeof(data) !== 'object') {
+    console.error('TestimonialCarousel: data prop is required and must be an object');
+    return null;
+  }
+  var _useState = react.useState(loader),
+    _useState2 = _slicedToArray(_useState, 2),
+    showLoader = _useState2[0],
+    setShowLoader = _useState2[1];
+
+  // Auto-hide loader after 2 seconds when loader prop is true
+  react.useEffect(function () {
+    if (loader) {
+      var timer = setTimeout(function () {
+        setShowLoader(false);
+      }, 2000);
+      return function () {
+        return clearTimeout(timer);
+      };
+    } else {
+      setShowLoader(false);
+    }
+  }, [loader]);
+  var title = data.title,
+    subtitle = data.subtitle,
+    description = data.description,
+    _data$testimonials = data.testimonials,
+    testimonials = _data$testimonials === void 0 ? [] : _data$testimonials,
+    _data$alignment = data.alignment,
+    alignment = _data$alignment === void 0 ? 'center' : _data$alignment,
+    _data$autoPlay = data.autoPlay,
+    autoPlay = _data$autoPlay === void 0 ? true : _data$autoPlay,
+    _data$autoPlayInterva = data.autoPlayInterval,
+    autoPlayInterval = _data$autoPlayInterva === void 0 ? 5000 : _data$autoPlayInterva,
+    _data$showRating = data.showRating,
+    showRating = _data$showRating === void 0 ? true : _data$showRating,
+    _data$showAvatar = data.showAvatar,
+    showAvatar = _data$showAvatar === void 0 ? true : _data$showAvatar,
+    _data$showNavigation = data.showNavigation,
+    showNavigation = _data$showNavigation === void 0 ? true : _data$showNavigation,
+    _data$showDots = data.showDots,
+    showDots = _data$showDots === void 0 ? true : _data$showDots,
+    dataClassName = data.className;
+
+  // Show skeleton loader if loader prop is true (check this FIRST before any other checks)
+  if (showLoader) {
+    var _alignmentClasses = {
+      left: 'text-left items-start',
+      center: 'text-center items-center',
+      right: 'text-right items-end'
+    };
+    var effectiveAlignment = alignment || 'center';
+    return /*#__PURE__*/jsxRuntime.jsx("section", {
+      id: id,
+      className: clsx('w-full py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8', 'bg-white', className, dataClassName),
+      children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "max-w-7xl mx-auto w-full",
+        children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: clsx('mb-10 sm:mb-12 flex flex-col', _alignmentClasses[effectiveAlignment]),
+          children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "h-4 bg-gray-400 rounded w-24 mb-3 mx-auto animate-pulse"
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "h-10 bg-gray-400 rounded w-full max-w-2xl mb-4 mx-auto animate-pulse"
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "h-5 bg-gray-300 rounded w-full max-w-xl mb-6 mx-auto animate-pulse"
+          })]
+        }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "relative",
+          children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "bg-white border border-gray-200 rounded-xl p-8 shadow-lg max-w-3xl mx-auto",
+            children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "flex gap-1 justify-center mb-6",
+              children: [0, 1, 2, 3, 4].map(function (star) {
+                return /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "w-5 h-5 bg-gray-300 rounded animate-pulse"
+                }, star);
+              })
+            }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "space-y-3 mb-8",
+              children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "h-5 bg-gray-400 rounded w-full animate-pulse"
+              }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "h-5 bg-gray-400 rounded w-full animate-pulse"
+              }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "h-5 bg-gray-400 rounded w-3/4 mx-auto animate-pulse"
+              })]
+            }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "flex items-center justify-center gap-4",
+              children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "w-16 h-16 bg-gray-300 rounded-full animate-pulse"
+              }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: "space-y-2",
+                children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "h-5 bg-gray-400 rounded w-32 animate-pulse"
+                }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "h-4 bg-gray-300 rounded w-24 animate-pulse"
+                })]
+              })]
+            })]
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "flex justify-center gap-2 mt-8",
+            children: [0, 1, 2].map(function (dot) {
+              return /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "w-2 h-2 bg-gray-300 rounded-full animate-pulse"
+              }, dot);
+            })
+          })]
+        })]
+      })
+    });
+  }
+  var _useState3 = react.useState(0),
+    _useState4 = _slicedToArray(_useState3, 2),
+    currentIndex = _useState4[0],
+    setCurrentIndex = _useState4[1];
+  var _useState5 = react.useState(false),
+    _useState6 = _slicedToArray(_useState5, 2),
+    isPaused = _useState6[0],
+    setIsPaused = _useState6[1];
+  var alignmentClasses = {
+    left: 'text-left items-start',
+    center: 'text-center items-center',
+    right: 'text-right items-end'
+  };
+
+  // Auto-play functionality
+  react.useEffect(function () {
+    if (!autoPlay || isPaused || testimonials.length <= 1) return;
+    var interval = setInterval(function () {
+      setCurrentIndex(function (prev) {
+        return (prev + 1) % testimonials.length;
+      });
+    }, autoPlayInterval);
+    return function () {
+      return clearInterval(interval);
+    };
+  }, [autoPlay, autoPlayInterval, isPaused, testimonials.length]);
+  var goToSlide = function goToSlide(index) {
+    setCurrentIndex(index);
+  };
+  var goToPrevious = function goToPrevious() {
+    setCurrentIndex(function (prev) {
+      return (prev - 1 + testimonials.length) % testimonials.length;
+    });
+  };
+  var goToNext = function goToNext() {
+    setCurrentIndex(function (prev) {
+      return (prev + 1) % testimonials.length;
+    });
+  };
+  var renderRating = function renderRating(rating) {
+    if (!showRating || !rating) return null;
+    var fullStars = Math.floor(rating);
+    var hasHalfStar = rating % 1 !== 0;
+    return /*#__PURE__*/jsxRuntime.jsx("div", {
+      className: "flex items-center justify-center gap-1 mb-6",
+      children: _toConsumableArray(Array(5)).map(function (_, i) {
+        if (i < fullStars) {
+          return /*#__PURE__*/jsxRuntime.jsx("svg", {
+            className: "w-6 h-6 text-yellow-400 fill-current",
+            viewBox: "0 0 20 20",
+            children: /*#__PURE__*/jsxRuntime.jsx("path", {
+              d: "M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"
+            })
+          }, i);
+        } else if (i === fullStars && hasHalfStar) {
+          return /*#__PURE__*/jsxRuntime.jsxs("svg", {
+            className: "w-6 h-6 text-yellow-400 fill-current",
+            viewBox: "0 0 20 20",
+            children: [/*#__PURE__*/jsxRuntime.jsx("defs", {
+              children: /*#__PURE__*/jsxRuntime.jsxs("linearGradient", {
+                id: "half-carousel-".concat(i),
+                children: [/*#__PURE__*/jsxRuntime.jsx("stop", {
+                  offset: "50%",
+                  stopColor: "currentColor"
+                }), /*#__PURE__*/jsxRuntime.jsx("stop", {
+                  offset: "50%",
+                  stopColor: "transparent",
+                  stopOpacity: "1"
+                })]
+              })
+            }), /*#__PURE__*/jsxRuntime.jsx("path", {
+              fill: "url(#half-carousel-".concat(i, ")"),
+              d: "M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"
+            })]
+          }, i);
+        } else {
+          return /*#__PURE__*/jsxRuntime.jsx("svg", {
+            className: "w-6 h-6 text-gray-300 fill-current",
+            viewBox: "0 0 20 20",
+            children: /*#__PURE__*/jsxRuntime.jsx("path", {
+              d: "M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"
+            })
+          }, i);
+        }
+      })
+    });
+  };
+  var renderAvatar = function renderAvatar(testimonial) {
+    if (!showAvatar) return null;
+    if (testimonial.avatar) {
+      return /*#__PURE__*/jsxRuntime.jsx("img", {
+        src: testimonial.avatar,
+        alt: testimonial.name || 'User',
+        className: "w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover mx-auto mb-6 border-4 border-white shadow-xl"
+      });
+    }
+    var initials = testimonial.name ? testimonial.name.split(' ').map(function (n) {
+      return n[0];
+    }).join('').toUpperCase().slice(0, 2) : 'U';
+    return /*#__PURE__*/jsxRuntime.jsx("div", {
+      className: "w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-gradient-to-br from-primary-500 to-primary-700 text-white flex items-center justify-center font-bold text-xl sm:text-2xl mx-auto mb-6 border-4 border-white shadow-xl",
+      children: initials
+    });
+  };
+  if (testimonials.length === 0) {
+    console.warn('TestimonialCarousel: testimonials array is empty');
+    return null;
+  }
+  var currentTestimonial = testimonials[currentIndex];
+  return /*#__PURE__*/jsxRuntime.jsxs("section", {
+    id: id,
+    className: clsx('w-full py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-50 via-white to-gray-50 relative overflow-hidden', className, dataClassName),
+    onMouseEnter: function onMouseEnter() {
+      return setIsPaused(true);
+    },
+    onMouseLeave: function onMouseLeave() {
+      return setIsPaused(false);
+    },
+    children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+      className: "absolute inset-0 overflow-hidden pointer-events-none",
+      children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "absolute top-0 left-1/4 w-96 h-96 bg-primary-100 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"
+      }), /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "absolute top-0 right-1/4 w-96 h-96 bg-purple-100 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"
+      }), /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "absolute bottom-0 left-1/2 w-96 h-96 bg-pink-100 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"
+      })]
+    }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+      className: "max-w-6xl mx-auto w-full relative z-10",
+      children: [(title || subtitle || description) && /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: clsx('mb-12 sm:mb-16 flex flex-col', alignmentClasses[alignment]),
+        children: [subtitle && /*#__PURE__*/jsxRuntime.jsx("p", {
+          className: "text-sm sm:text-base font-semibold text-primary-600 uppercase tracking-wider mb-3",
+          children: subtitle
+        }), title && /*#__PURE__*/jsxRuntime.jsx("h2", {
+          className: "text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight",
+          children: title
+        }), description && /*#__PURE__*/jsxRuntime.jsx("p", {
+          className: clsx('text-lg sm:text-xl text-gray-600 max-w-3xl', alignment === 'center' && 'mx-auto', alignment === 'right' && 'ml-auto', alignment === 'left' && 'mr-auto'),
+          children: description
+        })]
+      }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "relative",
+        children: [showNavigation && testimonials.length > 1 && /*#__PURE__*/jsxRuntime.jsxs(jsxRuntime.Fragment, {
+          children: [/*#__PURE__*/jsxRuntime.jsx("button", {
+            onClick: goToPrevious,
+            className: "absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 sm:-translate-x-12 z-20 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white shadow-lg hover:shadow-xl flex items-center justify-center text-gray-700 hover:text-primary-600 transition-all duration-300 hover:scale-110 border border-gray-200",
+            "aria-label": "Previous testimonial",
+            children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+              className: "w-6 h-6",
+              fill: "none",
+              stroke: "currentColor",
+              viewBox: "0 0 24 24",
+              children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M15 19l-7-7 7-7"
+              })
+            })
+          }), /*#__PURE__*/jsxRuntime.jsx("button", {
+            onClick: goToNext,
+            className: "absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 sm:translate-x-12 z-20 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white shadow-lg hover:shadow-xl flex items-center justify-center text-gray-700 hover:text-primary-600 transition-all duration-300 hover:scale-110 border border-gray-200",
+            "aria-label": "Next testimonial",
+            children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+              className: "w-6 h-6",
+              fill: "none",
+              stroke: "currentColor",
+              viewBox: "0 0 24 24",
+              children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M9 5l7 7-7 7"
+              })
+            })
+          })]
+        }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "bg-white rounded-3xl shadow-2xl p-8 sm:p-12 lg:p-16 mx-auto max-w-4xl transform transition-all duration-500 ease-in-out hover:shadow-3xl",
+          children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "flex justify-center mb-6",
+            children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+              className: "w-12 h-12 sm:w-16 sm:h-16 text-primary-300",
+              fill: "currentColor",
+              viewBox: "0 0 24 24",
+              children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                d: "M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.996 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.984zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"
+              })
+            })
+          }), renderAvatar(currentTestimonial), renderRating(currentTestimonial.rating), (currentTestimonial.text || currentTestimonial.content) && /*#__PURE__*/jsxRuntime.jsxs("p", {
+            className: "text-xl sm:text-2xl lg:text-3xl text-gray-800 mb-8 leading-relaxed font-light italic text-center px-4",
+            children: ["\"", currentTestimonial.text || currentTestimonial.content, "\""]
+          }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "text-center",
+            children: [currentTestimonial.name && /*#__PURE__*/jsxRuntime.jsx("h4", {
+              className: "text-xl sm:text-2xl font-bold text-gray-900 mb-2",
+              children: currentTestimonial.name
+            }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4",
+              children: [currentTestimonial.role && /*#__PURE__*/jsxRuntime.jsx("p", {
+                className: "text-base sm:text-lg text-gray-600 font-medium",
+                children: currentTestimonial.role
+              }), currentTestimonial.company && /*#__PURE__*/jsxRuntime.jsxs(jsxRuntime.Fragment, {
+                children: [currentTestimonial.role && /*#__PURE__*/jsxRuntime.jsx("span", {
+                  className: "hidden sm:inline text-gray-400",
+                  children: "\u2022"
+                }), /*#__PURE__*/jsxRuntime.jsx("p", {
+                  className: "text-base sm:text-lg text-primary-600 font-semibold",
+                  children: currentTestimonial.company
+                })]
+              })]
+            })]
+          })]
+        }), showDots && testimonials.length > 1 && /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "flex justify-center items-center gap-2 mt-8",
+          children: testimonials.map(function (_, index) {
+            return /*#__PURE__*/jsxRuntime.jsx("button", {
+              onClick: function onClick() {
+                return goToSlide(index);
+              },
+              className: clsx('w-3 h-3 rounded-full transition-all duration-300', index === currentIndex ? 'bg-primary-600 w-8 scale-110' : 'bg-gray-300 hover:bg-gray-400'),
+              "aria-label": "Go to testimonial ".concat(index + 1)
+            }, index);
+          })
+        })]
+      })]
+    })]
+  });
+};
+
+var TestimonialTimeline = function TestimonialTimeline(_ref) {
+  var data = _ref.data,
+    className = _ref.className,
+    id = _ref.id,
+    _ref$loader = _ref.loader,
+    loader = _ref$loader === void 0 ? false : _ref$loader;
+  if (!data || _typeof(data) !== 'object') {
+    console.error('TestimonialTimeline: data prop is required and must be an object');
+    return null;
+  }
+  var _useState = react.useState(loader),
+    _useState2 = _slicedToArray(_useState, 2),
+    showLoader = _useState2[0],
+    setShowLoader = _useState2[1];
+
+  // Auto-hide loader after 2 seconds when loader prop is true
+  react.useEffect(function () {
+    if (loader) {
+      var timer = setTimeout(function () {
+        setShowLoader(false);
+      }, 2000);
+      return function () {
+        return clearTimeout(timer);
+      };
+    } else {
+      setShowLoader(false);
+    }
+  }, [loader]);
+  var title = data.title,
+    subtitle = data.subtitle,
+    description = data.description,
+    _data$testimonials = data.testimonials,
+    testimonials = _data$testimonials === void 0 ? [] : _data$testimonials,
+    _data$alignment = data.alignment,
+    alignment = _data$alignment === void 0 ? 'center' : _data$alignment,
+    _data$variant = data.variant,
+    variant = _data$variant === void 0 ? 'default' : _data$variant,
+    _data$showRating = data.showRating,
+    showRating = _data$showRating === void 0 ? true : _data$showRating,
+    _data$showAvatar = data.showAvatar,
+    showAvatar = _data$showAvatar === void 0 ? true : _data$showAvatar,
+    dataClassName = data.className;
+
+  // Show skeleton loader if loader prop is true
+  if (showLoader) {
+    var _alignmentClasses = {
+      left: 'text-left items-start',
+      center: 'text-center items-center',
+      right: 'text-right items-end'
+    };
+    var effectiveAlignment = alignment || 'center';
+    return /*#__PURE__*/jsxRuntime.jsx("section", {
+      id: id,
+      className: clsx('w-full py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8', 'bg-white', className, dataClassName),
+      children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "max-w-7xl mx-auto w-full",
+        children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: clsx('mb-10 sm:mb-12 flex flex-col', _alignmentClasses[effectiveAlignment]),
+          children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "h-4 bg-gray-400 rounded w-24 mb-3 mx-auto animate-pulse"
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "h-10 bg-gray-400 rounded w-full max-w-2xl mb-4 mx-auto animate-pulse"
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "h-5 bg-gray-300 rounded w-full max-w-xl mb-6 mx-auto animate-pulse"
+          })]
+        }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "relative",
+          children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "absolute left-8 top-0 bottom-0 w-0.5 bg-gray-200"
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "space-y-8",
+            children: [0, 1, 2, 3].map(function (index) {
+              return /*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: "relative flex gap-6",
+                children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "flex-shrink-0",
+                  children: /*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: "w-16 h-16 bg-gray-300 rounded-full animate-pulse"
+                  })
+                }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+                  className: "flex-1 pt-2",
+                  children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: "flex gap-1 mb-3",
+                    children: [0, 1, 2, 3, 4].map(function (star) {
+                      return /*#__PURE__*/jsxRuntime.jsx("div", {
+                        className: "w-4 h-4 bg-gray-300 rounded animate-pulse"
+                      }, star);
+                    })
+                  }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+                    className: "space-y-2 mb-4",
+                    children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                      className: "h-4 bg-gray-400 rounded w-full animate-pulse"
+                    }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                      className: "h-4 bg-gray-400 rounded w-5/6 animate-pulse"
+                    }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                      className: "h-4 bg-gray-300 rounded w-4/6 animate-pulse"
+                    })]
+                  }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+                    className: "flex items-center gap-3",
+                    children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                      className: "h-5 bg-gray-400 rounded w-32 animate-pulse"
+                    }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                      className: "h-4 bg-gray-300 rounded w-24 animate-pulse"
+                    })]
+                  })]
+                })]
+              }, index);
+            })
+          })]
+        })]
+      })
+    });
+  }
+  var alignmentClasses = {
+    left: 'text-left items-start',
+    center: 'text-center items-center',
+    right: 'text-right items-end'
+  };
+  var renderRating = function renderRating(rating) {
+    if (!showRating || !rating) return null;
+    var fullStars = Math.floor(rating);
+    var hasHalfStar = rating % 1 !== 0;
+    return /*#__PURE__*/jsxRuntime.jsx("div", {
+      className: "flex items-center gap-1 mb-4",
+      children: _toConsumableArray(Array(5)).map(function (_, i) {
+        if (i < fullStars) {
+          return /*#__PURE__*/jsxRuntime.jsx("svg", {
+            className: "w-4 h-4 text-yellow-400 fill-current",
+            viewBox: "0 0 20 20",
+            children: /*#__PURE__*/jsxRuntime.jsx("path", {
+              d: "M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"
+            })
+          }, i);
+        } else if (i === fullStars && hasHalfStar) {
+          return /*#__PURE__*/jsxRuntime.jsxs("svg", {
+            className: "w-4 h-4 text-yellow-400 fill-current",
+            viewBox: "0 0 20 20",
+            children: [/*#__PURE__*/jsxRuntime.jsx("defs", {
+              children: /*#__PURE__*/jsxRuntime.jsxs("linearGradient", {
+                id: "half-timeline-".concat(i),
+                children: [/*#__PURE__*/jsxRuntime.jsx("stop", {
+                  offset: "50%",
+                  stopColor: "currentColor"
+                }), /*#__PURE__*/jsxRuntime.jsx("stop", {
+                  offset: "50%",
+                  stopColor: "transparent",
+                  stopOpacity: "1"
+                })]
+              })
+            }), /*#__PURE__*/jsxRuntime.jsx("path", {
+              fill: "url(#half-timeline-".concat(i, ")"),
+              d: "M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"
+            })]
+          }, i);
+        } else {
+          return /*#__PURE__*/jsxRuntime.jsx("svg", {
+            className: "w-4 h-4 text-gray-300 fill-current",
+            viewBox: "0 0 20 20",
+            children: /*#__PURE__*/jsxRuntime.jsx("path", {
+              d: "M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"
+            })
+          }, i);
+        }
+      })
+    });
+  };
+  var renderAvatar = function renderAvatar(testimonial) {
+    var isOpposite = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+    if (!showAvatar) return null;
+    var sizeClasses = isOpposite ? 'w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28' : 'w-14 h-14 sm:w-16 sm:h-16';
+    var textSizeClasses = isOpposite ? 'text-lg sm:text-xl lg:text-2xl' : 'text-sm sm:text-base';
+    var avatarWrapperClasses = isOpposite ? 'timeline-avatar-opposite relative group' : '';
+    if (testimonial.avatar) {
+      return /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: avatarWrapperClasses,
+        children: [isOpposite && /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "absolute inset-0 rounded-full bg-primary-400 opacity-0 group-hover:opacity-30 blur-xl transition-opacity duration-300 animate-pulse-slow"
+        }), isOpposite && /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "absolute inset-0 rounded-full border-4 border-primary-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 scale-110"
+        }), /*#__PURE__*/jsxRuntime.jsx("img", {
+          src: testimonial.avatar,
+          alt: testimonial.name || 'User',
+          className: clsx('rounded-full object-cover border-2 border-white shadow-lg flex-shrink-0 relative z-10 transition-all duration-300', isOpposite && 'group-hover:scale-110 group-hover:shadow-2xl group-hover:border-primary-300', sizeClasses)
+        })]
+      });
+    }
+    var initials = testimonial.name ? testimonial.name.split(' ').map(function (n) {
+      return n[0];
+    }).join('').toUpperCase().slice(0, 2) : 'U';
+    return /*#__PURE__*/jsxRuntime.jsxs("div", {
+      className: avatarWrapperClasses,
+      children: [isOpposite && /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "absolute inset-0 rounded-full bg-primary-400 opacity-0 group-hover:opacity-30 blur-xl transition-opacity duration-300 animate-pulse-slow"
+      }), isOpposite && /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "absolute inset-0 rounded-full border-4 border-primary-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 scale-110"
+      }), /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: clsx('rounded-full bg-gradient-to-br from-primary-500 to-primary-700 text-white flex items-center justify-center font-bold border-2 border-white shadow-lg flex-shrink-0 relative z-10 transition-all duration-300', isOpposite && 'group-hover:scale-110 group-hover:shadow-2xl group-hover:border-primary-300 group-hover:from-primary-600 group-hover:to-primary-800', sizeClasses, textSizeClasses),
+        children: initials
+      })]
+    });
+  };
+  if (testimonials.length === 0) {
+    console.warn('TestimonialTimeline: testimonials array is empty');
+    return null;
+  }
+  return /*#__PURE__*/jsxRuntime.jsx("section", {
+    id: id,
+    className: clsx('w-full py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-white relative', className, dataClassName),
+    children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+      className: "max-w-7xl mx-auto w-full",
+      children: [(title || subtitle || description) && /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: clsx('mb-12 sm:mb-16 flex flex-col', alignmentClasses[alignment]),
+        children: [subtitle && /*#__PURE__*/jsxRuntime.jsx("p", {
+          className: "text-sm sm:text-base font-semibold text-primary-600 uppercase tracking-wider mb-3",
+          children: subtitle
+        }), title && /*#__PURE__*/jsxRuntime.jsx("h2", {
+          className: "text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight",
+          children: title
+        }), description && /*#__PURE__*/jsxRuntime.jsx("p", {
+          className: clsx('text-base sm:text-lg text-gray-600 max-w-2xl', alignment === 'center' && 'mx-auto', alignment === 'right' && 'ml-auto', alignment === 'left' && 'mr-auto'),
+          children: description
+        })]
+      }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "relative w-full timeline-container",
+        children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-primary-200 via-primary-400 to-primary-200 hidden lg:block timeline-line-fix"
+        }), /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "relative z-0 pb-8",
+          children: /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "space-y-12 sm:space-y-16 lg:space-y-20",
+            children: testimonials.map(function (testimonial, index) {
+              var isEven = index % 2 === 0;
+              var isLeft = isEven;
+              var isAvatarOpposite = variant === 'avatar-opposite';
+              return /*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: clsx('relative flex items-center timeline-item', 'lg:flex-row', isLeft ? 'lg:flex-row-reverse' : 'lg:flex-row', 'flex-col lg:justify-between'),
+                children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 top-1/2 z-10 hidden lg:flex",
+                  children: /*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: "w-6 h-6 rounded-full bg-primary-600 border-4 border-white shadow-lg timeline-node"
+                  })
+                }), isAvatarOpposite && /*#__PURE__*/jsxRuntime.jsxs("div", {
+                  className: clsx('hidden lg:flex items-center relative group', 'w-[20%]', isLeft ? 'justify-end pl-8' : 'justify-start pr-8'),
+                  children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: clsx('absolute top-1/2 transform -translate-y-1/2 h-0.5 bg-gradient-to-r bg-primary-300 opacity-50 transition-all duration-300 group-hover:opacity-100 group-hover:w-20', isLeft ? 'right-0 w-16 origin-right' : 'left-0 w-16 origin-left')
+                  }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: "relative z-20",
+                    children: renderAvatar(testimonial, true)
+                  })]
+                }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+                  className: clsx('w-full lg:w-[60%] relative', isLeft ? 'lg:pr-8' : 'lg:pl-8'),
+                  children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+                    className: clsx('bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 timeline-card', isLeft ? 'border-l-primary-500 lg:border-l-0 lg:border-r-4 lg:border-r-primary-500' : 'border-l-primary-500'),
+                    children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                      className: "mb-4",
+                      children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+                        className: "w-8 h-8 text-primary-300",
+                        fill: "currentColor",
+                        viewBox: "0 0 24 24",
+                        children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                          d: "M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.996 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.984zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"
+                        })
+                      })
+                    }), renderRating(testimonial.rating), (testimonial.text || testimonial.content) && /*#__PURE__*/jsxRuntime.jsx("p", {
+                      className: "text-base sm:text-lg text-gray-700 mb-6 leading-relaxed",
+                      children: testimonial.text || testimonial.content
+                    }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+                      className: clsx('pt-4 border-t border-gray-200', isAvatarOpposite ? 'flex flex-col' : 'flex items-center gap-4'),
+                      children: [!isAvatarOpposite && renderAvatar(testimonial), /*#__PURE__*/jsxRuntime.jsxs("div", {
+                        children: [testimonial.name && /*#__PURE__*/jsxRuntime.jsx("h4", {
+                          className: "text-lg font-bold text-gray-900 mb-1",
+                          children: testimonial.name
+                        }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+                          className: "flex flex-col",
+                          children: [testimonial.role && /*#__PURE__*/jsxRuntime.jsx("p", {
+                            className: "text-sm text-gray-600",
+                            children: testimonial.role
+                          }), testimonial.company && /*#__PURE__*/jsxRuntime.jsx("p", {
+                            className: "text-sm text-primary-600 font-medium",
+                            children: testimonial.company
+                          })]
+                        })]
+                      })]
+                    })]
+                  }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: clsx('hidden lg:block absolute top-1/2 transform -translate-y-1/2 w-0 h-0', isLeft ? 'right-0 border-t-8 border-b-8 border-l-8 border-t-transparent border-b-transparent border-l-primary-500' : 'left-0 border-t-8 border-b-8 border-r-8 border-t-transparent border-b-transparent border-r-primary-500')
+                  })]
+                }), !isAvatarOpposite && /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "hidden lg:block w-[20%]"
+                })]
+              }, index);
+            })
+          })
+        })]
+      })]
+    })
+  });
+};
+
+var SlideFlow = function SlideFlow(_ref) {
+  var data = _ref.data,
+    className = _ref.className,
+    id = _ref.id,
+    _ref$loader = _ref.loader,
+    loader = _ref$loader === void 0 ? false : _ref$loader;
+  // Safety check for data
+  if (!data || _typeof(data) !== 'object') {
+    console.error('SlideFlow: data prop is required and must be an object');
+    return null;
+  }
+  var _useState = react.useState(loader),
+    _useState2 = _slicedToArray(_useState, 2),
+    showLoader = _useState2[0],
+    setShowLoader = _useState2[1];
+
+  // Auto-hide loader after 2 seconds when loader prop is true
+  react.useEffect(function () {
+    if (loader) {
+      var timer = setTimeout(function () {
+        setShowLoader(false);
+      }, 2000);
+      return function () {
+        return clearTimeout(timer);
+      };
+    } else {
+      setShowLoader(false);
+    }
+  }, [loader]);
+  var title = data.title,
+    subtitle = data.subtitle,
+    description = data.description,
+    _data$slides = data.slides,
+    slides = _data$slides === void 0 ? [] : _data$slides,
+    _data$variant = data.variant,
+    variant = _data$variant === void 0 ? 'default' : _data$variant,
+    _data$transition = data.transition,
+    transition = _data$transition === void 0 ? 'slide' : _data$transition,
+    _data$alignment = data.alignment,
+    alignment = _data$alignment === void 0 ? 'center' : _data$alignment,
+    _data$slidesToShow = data.slidesToShow,
+    slidesToShow = _data$slidesToShow === void 0 ? 1 : _data$slidesToShow,
+    _data$autoplayInterva = data.autoplayInterval,
+    autoplayInterval = _data$autoplayInterva === void 0 ? 3000 : _data$autoplayInterva,
+    _data$showArrows = data.showArrows,
+    showArrows = _data$showArrows === void 0 ? true : _data$showArrows,
+    _data$showDots = data.showDots,
+    showDots = _data$showDots === void 0 ? true : _data$showDots,
+    _data$showThumbnails = data.showThumbnails,
+    showThumbnails = _data$showThumbnails === void 0 ? false : _data$showThumbnails,
+    _data$infinite = data.infinite,
+    infinite = _data$infinite === void 0 ? true : _data$infinite,
+    _data$pauseOnHover = data.pauseOnHover,
+    pauseOnHover = _data$pauseOnHover === void 0 ? true : _data$pauseOnHover,
+    dataClassName = data.className;
+
+  // Show loader if loader prop is true
+  if (showLoader) {
+    return /*#__PURE__*/jsxRuntime.jsx("section", {
+      id: id,
+      className: clsx('w-full py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8', 'bg-white', className, dataClassName),
+      children: /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "max-w-7xl mx-auto w-full flex items-center justify-center min-h-[400px]",
+        children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "flex flex-col items-center gap-4",
+          children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "w-12 h-12 border-4 border-primary-200 border-t-primary-600 rounded-full animate-spin"
+          }), /*#__PURE__*/jsxRuntime.jsx("p", {
+            className: "text-gray-600 text-sm",
+            children: "Loading..."
+          })]
+        })
+      })
+    });
+  }
+  var _useState3 = react.useState(0),
+    _useState4 = _slicedToArray(_useState3, 2),
+    currentIndex = _useState4[0],
+    setCurrentIndex = _useState4[1];
+  var _useState5 = react.useState(false),
+    _useState6 = _slicedToArray(_useState5, 2),
+    isPaused = _useState6[0],
+    setIsPaused = _useState6[1];
+  var _useState7 = react.useState(false),
+    _useState8 = _slicedToArray(_useState7, 2),
+    isTransitioning = _useState8[0],
+    setIsTransitioning = _useState8[1];
+  var carouselRef = react.useRef(null);
+  var autoplayTimerRef = react.useRef(null);
+
+  // Determine if autoplay should be enabled
+  var isAutoplay = variant === 'autoplay' || variant.includes('autoplay');
+
+  // Handle next slide
+  var nextSlide = function nextSlide() {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    if (infinite || currentIndex < slides.length - slidesToShow) {
+      setCurrentIndex(function (prev) {
+        return (prev + 1) % slides.length;
+      });
+    } else {
+      setCurrentIndex(slides.length - slidesToShow);
+    }
+    setTimeout(function () {
+      return setIsTransitioning(false);
+    }, 300);
+  };
+
+  // Handle previous slide
+  var prevSlide = function prevSlide() {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    if (infinite || currentIndex > 0) {
+      setCurrentIndex(function (prev) {
+        return (prev - 1 + slides.length) % slides.length;
+      });
+    } else {
+      setCurrentIndex(0);
+    }
+    setTimeout(function () {
+      return setIsTransitioning(false);
+    }, 300);
+  };
+
+  // Go to specific slide
+  var goToSlide = function goToSlide(index) {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    setCurrentIndex(index);
+    setTimeout(function () {
+      return setIsTransitioning(false);
+    }, 300);
+  };
+
+  // Autoplay effect
+  react.useEffect(function () {
+    if (isAutoplay && !isPaused && slides.length > 1) {
+      autoplayTimerRef.current = setInterval(function () {
+        setCurrentIndex(function (prev) {
+          if (infinite || prev < slides.length - slidesToShow) {
+            return (prev + 1) % slides.length;
+          }
+          return slides.length - slidesToShow;
+        });
+      }, autoplayInterval);
+      return function () {
+        if (autoplayTimerRef.current) {
+          clearInterval(autoplayTimerRef.current);
+        }
+      };
+    }
+  }, [isAutoplay, isPaused, autoplayInterval, slides.length, infinite, slidesToShow]);
+
+  // Handle mouse enter/leave for pause on hover
+  var handleMouseEnter = function handleMouseEnter() {
+    if (pauseOnHover && isAutoplay) {
+      setIsPaused(true);
+    }
+  };
+  var handleMouseLeave = function handleMouseLeave() {
+    if (pauseOnHover && isAutoplay) {
+      setIsPaused(false);
+    }
+  };
+  if (slides.length === 0) {
+    console.warn('SlideFlow: slides array is empty');
+    return null;
+  }
+  var alignmentClasses = {
+    left: 'text-left items-start',
+    center: 'text-center items-center',
+    right: 'text-right items-end'
+  };
+
+  // Button variant classes - same as PriceBoard
+  var buttonVariantClasses = {
+    primary: 'bg-primary-600 hover:bg-primary-700 text-white',
+    secondary: 'bg-gray-600 hover:bg-gray-700 text-white',
+    outline: 'border-2 border-white text-white hover:bg-white hover:text-gray-900'
+  };
+  var variantClasses = {
+    "default": 'bg-white',
+    autoplay: 'bg-white',
+    dots: 'bg-white',
+    arrows: 'bg-white',
+    thumbnails: 'bg-white',
+    fade: 'bg-white',
+    slide: 'bg-white',
+    vertical: 'bg-white',
+    multiple: 'bg-white',
+    infinite: 'bg-white',
+    center: 'bg-white',
+    minimal: 'bg-transparent',
+    modern: 'bg-gray-50',
+    classic: 'bg-white',
+    card: 'bg-white',
+    fullscreen: 'bg-black'
+  };
+  var getCarouselClasses = function getCarouselClasses() {
+    var baseClasses = 'relative w-full overflow-hidden';
+    if (variant === 'fullscreen') {
+      return clsx(baseClasses, 'h-screen');
+    }
+    if (variant === 'vertical') {
+      return clsx(baseClasses, 'h-[600px]');
+    }
+    return clsx(baseClasses, 'h-[500px] sm:h-[600px]');
+  };
+  var getSlideClasses = function getSlideClasses(index) {
+    var baseClasses = 'absolute inset-0 transition-all duration-500 ease-in-out';
+
+    // Fade transition
+    if (transition === 'fade' || variant === 'fade') {
+      var isActive = index >= currentIndex && index < currentIndex + slidesToShow;
+      return clsx(baseClasses, isActive ? 'opacity-100 z-10' : 'opacity-0 z-0');
+    }
+
+    // Zoom transition
+    if (transition === 'zoom') {
+      var _isActive = index >= currentIndex && index < currentIndex + slidesToShow;
+      return clsx(baseClasses, _isActive ? 'opacity-100 scale-100 z-10' : 'opacity-0 scale-110 z-0');
+    }
+
+    // Flip transition
+    if (transition === 'flip') {
+      var _isActive2 = index >= currentIndex && index < currentIndex + slidesToShow;
+      return clsx(baseClasses, _isActive2 ? 'opacity-100 z-10' : 'opacity-0 z-0');
+    }
+
+    // All other transitions use inline styles for transforms
+    return baseClasses;
+  };
+  var getSlideStyle = function getSlideStyle(index) {
+    // Fade transition - no transform needed
+    if (transition === 'fade' || variant === 'fade') {
+      return {};
+    }
+
+    // Zoom transition - handled by classes
+    if (transition === 'zoom') {
+      return {};
+    }
+
+    // Flip transition - handled by classes
+    if (transition === 'flip') {
+      return {};
+    }
+
+    // Vertical variant
+    if (variant === 'vertical') {
+      var _offset = (index - currentIndex) * 100;
+      return {
+        transform: "translateY(".concat(_offset, "%)")
+      };
+    }
+
+    // Multiple slides visible
+    if (variant === 'multiple' || slidesToShow > 1) {
+      var _offset2 = (index - currentIndex) * (100 / slidesToShow);
+      var isVisible = index >= currentIndex && index < currentIndex + slidesToShow;
+      return {
+        transform: "translateX(".concat(_offset2, "%)"),
+        opacity: isVisible ? 1 : 0,
+        zIndex: isVisible ? 10 : 0
+      };
+    }
+
+    // Center mode
+    if (variant === 'center') {
+      var _offset3 = (index - currentIndex) * 100;
+      var isActive = index === currentIndex;
+      return {
+        transform: "translateX(".concat(_offset3, "%) scale(").concat(isActive ? 1 : 0.95, ")"),
+        opacity: isActive ? 1 : 0.5,
+        zIndex: isActive ? 10 : 0
+      };
+    }
+
+    // Default slide transition
+    var offset = (index - currentIndex) * 100;
+    return {
+      transform: "translateX(".concat(offset, "%)")
+    };
+  };
+  var renderSlide = function renderSlide(slide, index) {
+    var slideContent = slide.image ? /*#__PURE__*/jsxRuntime.jsxs("div", {
+      className: "relative w-full h-full",
+      children: [/*#__PURE__*/jsxRuntime.jsx("img", {
+        src: slide.image,
+        alt: slide.title || "Slide ".concat(index + 1),
+        className: "w-full h-full object-cover"
+      }), (slide.title || slide.description || slide.content) && /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: clsx('absolute inset-0 flex flex-col justify-center px-4 sm:px-6 lg:px-8', variant === 'fullscreen' && 'bg-black bg-opacity-40', alignmentClasses[alignment]),
+        children: [slide.title && /*#__PURE__*/jsxRuntime.jsx("h3", {
+          className: "text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4",
+          children: slide.title
+        }), slide.description && /*#__PURE__*/jsxRuntime.jsx("p", {
+          className: "text-base sm:text-lg md:text-xl text-white mb-6 max-w-2xl",
+          children: slide.description
+        }), slide.content && /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "text-white",
+          children: slide.content
+        }), slide.buttons && slide.buttons.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: clsx('flex flex-wrap gap-4 mt-6', alignment === 'center' && 'justify-center', alignment === 'right' && 'justify-end', alignment === 'left' && 'justify-start'),
+          children: slide.buttons.map(function (button, btnIndex) {
+            var ButtonComponent = button.href ? 'a' : 'button';
+            return /*#__PURE__*/jsxRuntime.jsx(ButtonComponent, {
+              href: button.href,
+              onClick: button.onClick,
+              className: clsx('px-6 py-3 sm:px-8 sm:py-4 rounded-lg font-semibold text-base sm:text-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent', buttonVariantClasses[button.variant || 'primary'], button.className),
+              children: button.text
+            }, btnIndex);
+          })
+        }), slide.button && !slide.buttons && /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: clsx('flex flex-wrap gap-4 mt-6', alignment === 'center' && 'justify-center', alignment === 'right' && 'justify-end', alignment === 'left' && 'justify-start'),
+          children: function () {
+            var ButtonComponent = slide.button.href ? 'a' : 'button';
+            return /*#__PURE__*/jsxRuntime.jsx(ButtonComponent, {
+              href: slide.button.href,
+              onClick: slide.button.onClick,
+              className: clsx('px-6 py-3 sm:px-8 sm:py-4 rounded-lg font-semibold text-base sm:text-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent', buttonVariantClasses[slide.button.variant || 'primary'], slide.button.className),
+              children: slide.button.text || 'Learn More'
+            });
+          }()
+        })]
+      })]
+    }) : /*#__PURE__*/jsxRuntime.jsxs("div", {
+      className: clsx('w-full h-full flex flex-col justify-center px-4 sm:px-6 lg:px-8', variant === 'card' && 'bg-white rounded-lg shadow-lg m-4', variant === 'minimal' && 'bg-transparent', variant === 'modern' && 'bg-gradient-to-br from-primary-50 to-purple-50 rounded-lg m-4', variant === 'classic' && 'bg-white border-2 border-gray-300 rounded m-4', alignmentClasses[alignment]),
+      children: [slide.title && /*#__PURE__*/jsxRuntime.jsx("h3", {
+        className: "text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4",
+        children: slide.title
+      }), slide.description && /*#__PURE__*/jsxRuntime.jsx("p", {
+        className: "text-base sm:text-lg md:text-xl text-gray-600 mb-6 max-w-2xl",
+        children: slide.description
+      }), slide.content && /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "text-gray-700",
+        children: slide.content
+      }), slide.buttons && slide.buttons.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: clsx('flex flex-wrap gap-4 mt-6', alignment === 'center' && 'justify-center', alignment === 'right' && 'justify-end', alignment === 'left' && 'justify-start'),
+        children: slide.buttons.map(function (button, btnIndex) {
+          var ButtonComponent = button.href ? 'a' : 'button';
+          return /*#__PURE__*/jsxRuntime.jsx(ButtonComponent, {
+            href: button.href,
+            onClick: button.onClick,
+            className: clsx('px-6 py-3 sm:px-8 sm:py-4 rounded-lg font-semibold text-base sm:text-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2', buttonVariantClasses[button.variant || 'primary'], button.className),
+            children: button.text
+          }, btnIndex);
+        })
+      }), slide.button && !slide.buttons && /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: clsx('flex flex-wrap gap-4 mt-6', alignment === 'center' && 'justify-center', alignment === 'right' && 'justify-end', alignment === 'left' && 'justify-start'),
+        children: function () {
+          var ButtonComponent = slide.button.href ? 'a' : 'button';
+          return /*#__PURE__*/jsxRuntime.jsx(ButtonComponent, {
+            href: slide.button.href,
+            onClick: slide.button.onClick,
+            className: clsx('px-6 py-3 sm:px-8 sm:py-4 rounded-lg font-semibold text-base sm:text-lg transition-all duration-300 transform hover:scale-105', buttonVariantClasses[slide.button.variant || 'primary'], slide.button.className),
+            children: slide.button.text || 'Learn More'
+          });
+        }()
+      })]
+    });
+    return /*#__PURE__*/jsxRuntime.jsx("div", {
+      className: getSlideClasses(index),
+      style: getSlideStyle(index),
+      children: slideContent
+    }, index);
+  };
+  var renderArrows = function renderArrows() {
+    if (!showArrows || variant === 'minimal') return null;
+    var arrowClasses = clsx('absolute top-1/2 -translate-y-1/2 z-30', 'w-10 h-10 sm:w-12 sm:h-12', 'flex items-center justify-center', 'bg-white bg-opacity-90 hover:bg-opacity-100', 'rounded-full shadow-lg', 'transition-all duration-300', 'cursor-pointer', 'text-gray-800 hover:text-primary-600', variant === 'fullscreen' && 'bg-black bg-opacity-50 text-white hover:bg-opacity-70', variant === 'modern' && 'bg-primary-600 text-white hover:bg-primary-700', variant === 'classic' && 'border-2 border-gray-300 hover:border-gray-400');
+    return /*#__PURE__*/jsxRuntime.jsxs(jsxRuntime.Fragment, {
+      children: [/*#__PURE__*/jsxRuntime.jsx("button", {
+        onClick: prevSlide,
+        className: clsx(arrowClasses, 'left-2 sm:left-4'),
+        "aria-label": "Previous slide",
+        children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+          className: "w-5 h-5 sm:w-6 sm:h-6",
+          fill: "none",
+          stroke: "currentColor",
+          viewBox: "0 0 24 24",
+          children: /*#__PURE__*/jsxRuntime.jsx("path", {
+            strokeLinecap: "round",
+            strokeLinejoin: "round",
+            strokeWidth: 2,
+            d: "M15 19l-7-7 7-7"
+          })
+        })
+      }), /*#__PURE__*/jsxRuntime.jsx("button", {
+        onClick: nextSlide,
+        className: clsx(arrowClasses, 'right-2 sm:right-4'),
+        "aria-label": "Next slide",
+        children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+          className: "w-5 h-5 sm:w-6 sm:h-6",
+          fill: "none",
+          stroke: "currentColor",
+          viewBox: "0 0 24 24",
+          children: /*#__PURE__*/jsxRuntime.jsx("path", {
+            strokeLinecap: "round",
+            strokeLinejoin: "round",
+            strokeWidth: 2,
+            d: "M9 5l7 7-7 7"
+          })
+        })
+      })]
+    });
+  };
+  var renderDots = function renderDots() {
+    if (!showDots || variant === 'minimal' || variant === 'thumbnails') return null;
+    return /*#__PURE__*/jsxRuntime.jsx("div", {
+      className: "absolute bottom-4 left-1/2 -translate-x-1/2 z-30 flex gap-2",
+      children: slides.map(function (_, index) {
+        var isActive = index === currentIndex;
+        return /*#__PURE__*/jsxRuntime.jsx("button", {
+          onClick: function onClick() {
+            return goToSlide(index);
+          },
+          className: clsx('w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-300', isActive ? variant === 'fullscreen' ? 'bg-white w-8' : variant === 'modern' ? 'bg-primary-600 w-8' : 'bg-primary-600 w-8' : variant === 'fullscreen' ? 'bg-white bg-opacity-50' : 'bg-gray-400 hover:bg-gray-500'),
+          "aria-label": "Go to slide ".concat(index + 1)
+        }, index);
+      })
+    });
+  };
+  var renderThumbnails = function renderThumbnails() {
+    if (!showThumbnails || variant !== 'thumbnails') return null;
+    return /*#__PURE__*/jsxRuntime.jsx("div", {
+      className: "absolute bottom-0 left-0 right-0 z-30 bg-black bg-opacity-50 p-4 overflow-x-auto",
+      children: /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "flex gap-2 justify-center",
+        children: slides.map(function (slide, index) {
+          var isActive = index === currentIndex;
+          return /*#__PURE__*/jsxRuntime.jsx("button", {
+            onClick: function onClick() {
+              return goToSlide(index);
+            },
+            className: clsx('flex-shrink-0 w-20 h-20 sm:w-24 sm:h-24 rounded overflow-hidden border-2 transition-all duration-300', isActive ? 'border-primary-500 scale-110' : 'border-transparent opacity-60 hover:opacity-100'),
+            "aria-label": "Go to slide ".concat(index + 1),
+            children: slide.image ? /*#__PURE__*/jsxRuntime.jsx("img", {
+              src: slide.image,
+              alt: slide.title || "Thumbnail ".concat(index + 1),
+              className: "w-full h-full object-cover"
+            }) : /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "w-full h-full bg-gray-300 flex items-center justify-center text-gray-600 text-xs",
+              children: index + 1
+            })
+          }, index);
+        })
+      })
+    });
+  };
+  return /*#__PURE__*/jsxRuntime.jsx("section", {
+    id: id,
+    className: clsx('w-full py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8', variantClasses[variant] || variantClasses["default"], className, dataClassName),
+    children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+      className: "max-w-7xl mx-auto w-full",
+      children: [(title || subtitle || description) && /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: clsx('mb-10 sm:mb-12 flex flex-col', alignmentClasses[alignment]),
+        children: [subtitle && /*#__PURE__*/jsxRuntime.jsx("p", {
+          className: "text-sm sm:text-base font-semibold text-primary-600 uppercase tracking-wider mb-3",
+          children: subtitle
+        }), title && /*#__PURE__*/jsxRuntime.jsx("h2", {
+          className: "text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight",
+          children: title
+        }), description && /*#__PURE__*/jsxRuntime.jsx("p", {
+          className: clsx('text-base sm:text-lg text-gray-500 max-w-2xl', alignment === 'center' && 'mx-auto', alignment === 'right' && 'ml-auto', alignment === 'left' && 'mr-auto'),
+          children: description
+        })]
+      }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+        ref: carouselRef,
+        className: getCarouselClasses(),
+        onMouseEnter: handleMouseEnter,
+        onMouseLeave: handleMouseLeave,
+        children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "relative w-full h-full",
+          children: slides.map(function (slide, index) {
+            return renderSlide(slide, index);
+          })
+        }), renderArrows(), renderDots(), renderThumbnails()]
+      })]
+    })
+  });
+};
+
+var HeaderLayout = function HeaderLayout(_ref) {
+  var data = _ref.data,
+    className = _ref.className,
+    id = _ref.id;
+  if (!data || _typeof(data) !== 'object') {
+    console.error('HeaderLayout: data prop is required and must be an object');
+    return null;
+  }
+  var _data$logo = data.logo,
+    logo = _data$logo === void 0 ? 'Your Logo' : _data$logo,
+    _data$logoHref = data.logoHref,
+    logoHref = _data$logoHref === void 0 ? '/' : _data$logoHref,
+    _data$navItems = data.navItems,
+    navItems = _data$navItems === void 0 ? [] : _data$navItems,
+    _data$ctaButtons = data.ctaButtons,
+    ctaButtons = _data$ctaButtons === void 0 ? [] : _data$ctaButtons,
+    _data$showSearch = data.showSearch,
+    showSearch = _data$showSearch === void 0 ? false : _data$showSearch,
+    onSearch = data.onSearch,
+    _data$socialIcons = data.socialIcons,
+    socialIcons = _data$socialIcons === void 0 ? [] : _data$socialIcons,
+    _data$variant = data.variant,
+    variant = _data$variant === void 0 ? 'dark' : _data$variant,
+    _data$sticky = data.sticky,
+    sticky = _data$sticky === void 0 ? true : _data$sticky,
+    topBarText = data.topBarText,
+    subtitle = data.subtitle,
+    _data$loader = data.loader,
+    loader = _data$loader === void 0 ? false : _data$loader;
+
+  // Show skeleton loader if loader prop is true (check this FIRST before any other checks)
+  if (loader) {
+    var skeletonVariant = variant || 'dark';
+
+    // Dark variant skeleton
+    if (skeletonVariant === 'dark') {
+      return /*#__PURE__*/jsxRuntime.jsx("header", {
+        id: id,
+        className: clsx('relative w-full z-40 transition-all duration-300', 'bg-black', 'border-b border-white/10', sticky && 'sticky top-0', className),
+        children: /*#__PURE__*/jsxRuntime.jsx("nav", {
+          className: "container mx-auto px-4 sm:px-5 md:px-6 lg:px-8",
+          "aria-label": "Main navigation",
+          children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex items-center justify-between h-16 sm:h-20",
+            children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "flex items-center gap-2 sm:gap-3",
+              children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-full bg-gray-700 animate-pulse"
+              }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "hidden sm:block w-24 h-6 bg-gray-700 rounded animate-pulse"
+              })]
+            }), /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "hidden md:flex items-center gap-3 md:gap-4 lg:gap-6 flex-1 justify-center mx-2 md:mx-3 lg:mx-4",
+              children: [0, 1, 2, 3, 4].map(function (index) {
+                return /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "h-5 w-16 bg-gray-700 rounded animate-pulse"
+                }, index);
+              })
+            }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "flex items-center gap-2 sm:gap-2.5 md:gap-3 lg:gap-4",
+              children: [showSearch && /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "hidden md:block w-40 md:w-52 lg:w-64 h-9 bg-gray-700 rounded-full animate-pulse"
+              }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "md:hidden w-10 h-10 bg-gray-700 rounded-lg animate-pulse"
+              })]
+            })]
+          })
+        })
+      });
+    }
+
+    // Rounded variant skeleton
+    if (skeletonVariant === 'rounded') {
+      return /*#__PURE__*/jsxRuntime.jsx("header", {
+        id: id,
+        className: clsx('relative w-full z-50 transition-all duration-300', 'bg-gradient-to-r from-purple-600 via-purple-500 to-indigo-600', 'rounded-b-2xl sm:rounded-b-3xl mt-0 shadow-2xl shadow-purple-500/30', sticky && 'sticky top-0', className),
+        children: /*#__PURE__*/jsxRuntime.jsx("nav", {
+          className: "container mx-auto px-4 sm:px-5 md:px-6 lg:px-8",
+          "aria-label": "Main navigation",
+          children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex items-center justify-between h-16 sm:h-20",
+            children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "flex items-center gap-2 sm:gap-3",
+              children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-white/20 animate-pulse"
+              }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "hidden xs:block w-20 h-6 bg-white/20 rounded animate-pulse"
+              })]
+            }), /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "hidden md:flex items-center gap-3 md:gap-4 lg:gap-6 flex-1 justify-center mx-2 md:mx-3 lg:mx-4",
+              children: [0, 1, 2, 3, 4].map(function (index) {
+                return /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "h-5 w-16 bg-white/20 rounded animate-pulse"
+                }, index);
+              })
+            }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "flex items-center gap-2 sm:gap-2.5 md:gap-3 lg:gap-4",
+              children: [ctaButtons.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "hidden md:flex items-center gap-2 lg:gap-3",
+                children: [0, 1].map(function (index) {
+                  return /*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: "h-9 w-24 bg-white/20 rounded-full animate-pulse"
+                  }, index);
+                })
+              }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "md:hidden w-10 h-10 bg-white/20 rounded-lg animate-pulse"
+              })]
+            })]
+          })
+        })
+      });
+    }
+
+    // Two-tier variant skeleton
+    if (skeletonVariant === 'two-tier') {
+      return /*#__PURE__*/jsxRuntime.jsxs("header", {
+        id: id,
+        className: clsx('relative w-full z-40 transition-all duration-300', 'bg-white', 'border-b border-gray-200', sticky && 'sticky top-0', className),
+        children: [topBarText && /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "h-8 sm:h-9 flex items-center bg-gradient-to-r from-primary-50 via-primary-100/50 to-primary-50 border-b border-primary-200/50",
+          children: /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "container mx-auto px-4 sm:px-5 md:px-6 lg:px-8",
+            children: /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "flex items-center justify-end",
+              children: /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "h-4 w-32 bg-primary-200 rounded animate-pulse"
+              })
+            })
+          })
+        }), /*#__PURE__*/jsxRuntime.jsx("nav", {
+          className: "container mx-auto px-4 sm:px-5 md:px-6 lg:px-8",
+          "aria-label": "Main navigation",
+          children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex items-center justify-between h-16 sm:h-20",
+            children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "flex items-center gap-1.5 sm:gap-2 md:gap-3",
+              children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 rounded-xl bg-gray-200 animate-pulse"
+              }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: "flex flex-col gap-1",
+                children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "h-4 w-24 bg-gray-300 rounded animate-pulse"
+                }), subtitle && /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "hidden md:block h-3 w-32 bg-gray-200 rounded animate-pulse"
+                })]
+              })]
+            }), /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "hidden lg:flex items-center gap-1.5 md:gap-2 lg:gap-4 xl:gap-6 flex-1 justify-center mx-1 md:mx-2 lg:mx-4 xl:mx-8",
+              children: [0, 1, 2, 3, 4].map(function (index) {
+                return /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "h-4 w-16 bg-gray-200 rounded animate-pulse"
+                }, index);
+              })
+            }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "flex items-center gap-1 sm:gap-1.5 md:gap-2 lg:gap-4",
+              children: [socialIcons.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "hidden lg:flex items-center gap-1.5",
+                children: [0, 1, 2].map(function (index) {
+                  return /*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: "w-9 h-9 bg-gray-200 rounded-full animate-pulse"
+                  }, index);
+                })
+              }), ctaButtons.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "hidden lg:flex items-center",
+                children: /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "h-9 w-24 bg-primary-200 rounded-lg animate-pulse"
+                })
+              }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "lg:hidden w-10 h-10 bg-gray-200 rounded-lg animate-pulse"
+              })]
+            })]
+          })
+        })]
+      });
+    }
+
+    // Modern variant skeleton
+    if (skeletonVariant === 'modern') {
+      return /*#__PURE__*/jsxRuntime.jsx("header", {
+        id: id,
+        className: clsx('relative w-full z-50 transition-all duration-300', 'bg-white', 'border-b border-gray-200', sticky && 'sticky top-0', className),
+        children: /*#__PURE__*/jsxRuntime.jsx("nav", {
+          className: "container mx-auto px-4 sm:px-5 md:px-6 lg:px-8",
+          "aria-label": "Main navigation",
+          children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex items-center justify-between h-16 sm:h-18 md:h-20",
+            children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "flex items-center gap-2 sm:gap-3",
+              children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-gray-200 animate-pulse"
+              }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "hidden sm:block w-24 h-6 bg-gray-200 rounded animate-pulse"
+              })]
+            }), /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "hidden md:flex items-center gap-1 md:gap-2 lg:gap-4 xl:gap-6 flex-1 justify-center mx-2 md:mx-3 lg:mx-4 max-w-5xl",
+              children: [0, 1, 2, 3, 4].map(function (index) {
+                return /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "h-5 w-16 bg-gray-200 rounded animate-pulse"
+                }, index);
+              })
+            }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "flex items-center gap-2 sm:gap-2.5 md:gap-3 lg:gap-4",
+              children: [showSearch && /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "hidden lg:flex items-center w-48 xl:w-64",
+                children: /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "w-full h-9 bg-gray-100 rounded-lg animate-pulse"
+                })
+              }), ctaButtons.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "hidden md:flex items-center gap-2 lg:gap-3",
+                children: [0, 1].map(function (index) {
+                  return /*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: "h-9 w-24 bg-gray-200 rounded-lg animate-pulse"
+                  }, index);
+                })
+              }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "md:hidden w-10 h-10 bg-gray-200 rounded-lg animate-pulse"
+              })]
+            })]
+          })
+        })
+      });
+    }
+
+    // Default skeleton (for glass or any other variant)
+    return /*#__PURE__*/jsxRuntime.jsx("header", {
+      id: id,
+      className: clsx('relative w-full z-40 transition-all duration-300', 'bg-white/80 backdrop-blur-xl border-b border-gray-200/50', sticky && 'sticky top-0', className),
+      children: /*#__PURE__*/jsxRuntime.jsx("nav", {
+        className: "container mx-auto px-4 sm:px-5 md:px-6 lg:px-8",
+        "aria-label": "Main navigation",
+        children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "flex items-center justify-between h-16 sm:h-20",
+          children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex items-center gap-2 sm:gap-3",
+            children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "w-10 h-10 rounded-xl bg-gray-200 animate-pulse"
+            }), /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "hidden sm:block w-24 h-6 bg-gray-200 rounded animate-pulse"
+            })]
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "hidden md:flex items-center gap-3 md:gap-5 lg:gap-6 flex-1 justify-center mx-3 md:mx-5 lg:mx-8",
+            children: [0, 1, 2, 3, 4].map(function (index) {
+              return /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "h-5 w-16 bg-gray-200 rounded animate-pulse"
+              }, index);
+            })
+          }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex items-center gap-2 sm:gap-2.5 md:gap-3 lg:gap-4",
+            children: [socialIcons.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "hidden md:flex items-center gap-2",
+              children: [0, 1, 2].map(function (index) {
+                return /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "w-9 h-9 bg-gray-200 rounded-full animate-pulse"
+                }, index);
+              })
+            }), ctaButtons.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "hidden md:flex items-center",
+              children: /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "h-9 w-24 bg-gray-200 rounded-lg animate-pulse"
+              })
+            }), /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "md:hidden w-10 h-10 bg-gray-200 rounded-lg animate-pulse"
+            })]
+          })]
+        })
+      })
+    });
+  }
+  var _useState = react.useState(false),
+    _useState2 = _slicedToArray(_useState, 2),
+    isScrolled = _useState2[0],
+    setIsScrolled = _useState2[1];
+  var _useState3 = react.useState(false),
+    _useState4 = _slicedToArray(_useState3, 2),
+    isMobileMenuOpen = _useState4[0],
+    setIsMobileMenuOpen = _useState4[1];
+  // First nav link (index 0) is active by default if navItems exist
+  var _useState5 = react.useState(navItems && navItems.length > 0 ? 0 : null),
+    _useState6 = _slicedToArray(_useState5, 2),
+    activeNavIndex = _useState6[0],
+    setActiveNavIndex = _useState6[1];
+  var _useState7 = react.useState(''),
+    _useState8 = _slicedToArray(_useState7, 2),
+    searchQuery = _useState8[0],
+    setSearchQuery = _useState8[1];
+  var _useState9 = react.useState(null),
+    _useState0 = _slicedToArray(_useState9, 2),
+    openDropdown = _useState0[0],
+    setOpenDropdown = _useState0[1];
+  var dropdownRef = react.useRef(null);
+
+  // Function to check if a nav item is active
+  var isNavItemActive = function isNavItemActive(item, index) {
+    // First nav link (index 0) is active by default, or the clicked nav index
+    return activeNavIndex === index;
+  };
+
+  // Handle nav item click
+  var handleNavClick = function handleNavClick(index, e) {
+    setActiveNavIndex(index);
+    // Close mobile menu if open
+    setIsMobileMenuOpen(false);
+    // Close dropdown if open
+    setOpenDropdown(null);
+  };
+
+  // Reset active nav index if navItems change and current active index is out of bounds
+  react.useEffect(function () {
+    if (navItems && navItems.length > 0) {
+      // If current active index is out of bounds, reset to first item (index 0)
+      setActiveNavIndex(function (prevIndex) {
+        if (prevIndex === null || prevIndex >= navItems.length) {
+          return 0;
+        }
+        return prevIndex;
+      });
+    } else {
+      // No nav items, set to null
+      setActiveNavIndex(null);
+    }
+  }, [navItems]);
+  react.useEffect(function () {
+    if (!sticky) return;
+    var handleScroll = function handleScroll() {
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return function () {
+      return window.removeEventListener('scroll', handleScroll);
+    };
+  }, [sticky]);
+
+  // Close dropdown when clicking outside
+  react.useEffect(function () {
+    var handleClickOutside = function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setOpenDropdown(null);
+      }
+    };
+    if (openDropdown !== null) {
+      document.addEventListener('mousedown', handleClickOutside);
+      return function () {
+        return document.removeEventListener('mousedown', handleClickOutside);
+      };
+    }
+  }, [openDropdown]);
+
+  // Keyboard navigation
+  react.useEffect(function () {
+    if (!isMobileMenuOpen) return;
+    var handleKeyDown = function handleKeyDown(e) {
+      if (e.key === 'Escape') {
+        setIsMobileMenuOpen(false);
+        setOpenDropdown(null);
+      }
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    return function () {
+      return document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isMobileMenuOpen]);
+  var handleSearchSubmit = function handleSearchSubmit(e) {
+    e.preventDefault();
+    if (onSearch && searchQuery.trim()) {
+      onSearch(searchQuery);
+    }
+  };
+
+  // Social icon component
+  var SocialIcon = function SocialIcon(_ref2) {
+    var name = _ref2.name,
+      href = _ref2.href,
+      _ref2$lightMode = _ref2.lightMode,
+      lightMode = _ref2$lightMode === void 0 ? false : _ref2$lightMode;
+    var icons = {
+      twitter: /*#__PURE__*/jsxRuntime.jsx("svg", {
+        className: "w-5 h-5",
+        fill: "currentColor",
+        viewBox: "0 0 24 24",
+        children: /*#__PURE__*/jsxRuntime.jsx("path", {
+          d: "M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"
+        })
+      }),
+      facebook: /*#__PURE__*/jsxRuntime.jsx("svg", {
+        className: "w-5 h-5",
+        fill: "currentColor",
+        viewBox: "0 0 24 24",
+        children: /*#__PURE__*/jsxRuntime.jsx("path", {
+          d: "M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"
+        })
+      }),
+      youtube: /*#__PURE__*/jsxRuntime.jsx("svg", {
+        className: "w-5 h-5",
+        fill: "currentColor",
+        viewBox: "0 0 24 24",
+        children: /*#__PURE__*/jsxRuntime.jsx("path", {
+          d: "M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"
+        })
+      }),
+      linkedin: /*#__PURE__*/jsxRuntime.jsxs("svg", {
+        className: "w-5 h-5",
+        fill: "currentColor",
+        viewBox: "0 0 24 24",
+        children: [/*#__PURE__*/jsxRuntime.jsx("path", {
+          d: "M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"
+        }), /*#__PURE__*/jsxRuntime.jsx("circle", {
+          cx: "4",
+          cy: "4",
+          r: "2"
+        })]
+      })
+    };
+    return /*#__PURE__*/jsxRuntime.jsx("a", {
+      href: href || '#',
+      className: clsx('w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110', lightMode ? 'bg-primary-50 hover:bg-primary-100 border border-primary-200 hover:border-primary-300 text-primary-600 hover:text-primary-700' : 'bg-white/10 hover:bg-amber-400/20 border border-white/10 hover:border-amber-400/30 text-white/80 hover:text-amber-300'),
+      "aria-label": name,
+      children: icons[name.toLowerCase()] || icons.twitter
+    });
+  };
+
+  // Render logo
+  var renderLogo = function renderLogo() {
+    if (typeof logo === 'string' && logo.startsWith('http')) {
+      return /*#__PURE__*/jsxRuntime.jsx("img", {
+        src: logo,
+        alt: "Logo",
+        className: "h-8 sm:h-9 md:h-10 w-auto max-w-[120px] sm:max-w-[140px] md:max-w-none"
+      });
+    }
+    if (_typeof(logo) === 'object') {
+      if (logo.image) {
+        return /*#__PURE__*/jsxRuntime.jsx("img", {
+          src: logo.image,
+          alt: logo.text || 'Logo',
+          className: "h-8 sm:h-10 w-auto max-w-[120px] sm:max-w-none"
+        });
+      }
+      if (logo.text) {
+        return /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "flex items-center gap-2 sm:gap-3",
+          children: [logo.icon && /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "text-xl sm:text-2xl",
+            children: logo.icon
+          }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex flex-col",
+            children: [/*#__PURE__*/jsxRuntime.jsx("span", {
+              className: "text-lg sm:text-xl font-bold text-white",
+              children: logo.text
+            }), subtitle && /*#__PURE__*/jsxRuntime.jsx("span", {
+              className: "text-xs text-primary-400 hidden sm:block",
+              children: subtitle
+            })]
+          })]
+        });
+      }
+    }
+
+    // Default logo rendering based on variant
+    if (variant === 'two-tier') {
+      return /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "flex items-center gap-1.5 sm:gap-2 md:gap-3",
+        children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 rounded-xl bg-primary-600 flex items-center justify-center shadow-xl transition-all duration-300 flex-shrink-0",
+          children: /*#__PURE__*/jsxRuntime.jsx("span", {
+            className: "text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-white",
+            children: "YL"
+          })
+        }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "flex flex-col min-w-0",
+          children: [/*#__PURE__*/jsxRuntime.jsx("span", {
+            className: "text-sm sm:text-base md:text-lg lg:text-xl font-bold text-gray-900 tracking-tight truncate",
+            children: typeof logo === 'string' ? logo : 'EDUNAME'
+          }), subtitle && /*#__PURE__*/jsxRuntime.jsx("span", {
+            className: "text-xs font-semibold text-primary-600 mt-0.5 hidden md:block truncate",
+            children: subtitle
+          })]
+        })]
+      });
+    }
+    if (variant === 'rounded') {
+      return /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "flex items-center gap-2 sm:gap-3",
+        children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-white flex items-center justify-center shadow-xl ring-2 ring-white/40 hover:ring-white/60 transition-all duration-300",
+          children: /*#__PURE__*/jsxRuntime.jsx("span", {
+            className: "text-xl sm:text-2xl",
+            children: "YL"
+          })
+        }), /*#__PURE__*/jsxRuntime.jsx("span", {
+          className: "text-base sm:text-xl font-bold text-white tracking-tight hidden xs:block",
+          children: typeof logo === 'string' ? logo : 'BOOKLY'
+        })]
+      });
+    }
+    if (variant === 'glass') {
+      return /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "flex items-center gap-2 sm:gap-3",
+        children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg",
+          children: /*#__PURE__*/jsxRuntime.jsx("span", {
+            className: "text-white font-bold text-xs sm:text-sm",
+            children: typeof logo === 'string' ? logo.split(' ').map(function (w) {
+              return w[0];
+            }).join('') : 'YL'
+          })
+        }), typeof logo === 'string' && /*#__PURE__*/jsxRuntime.jsx("span", {
+          className: "text-base sm:text-xl font-bold text-gray-900 hidden sm:block",
+          children: logo
+        })]
+      });
+    }
+    if (variant === 'modern') {
+      return /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "flex items-center gap-2 sm:gap-3",
+        children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-gradient-to-br from-gray-900 to-gray-800 flex items-center justify-center shadow-sm ring-1 ring-gray-200",
+          children: /*#__PURE__*/jsxRuntime.jsx("span", {
+            className: "text-white font-bold text-xs sm:text-sm",
+            children: typeof logo === 'string' ? logo.split(' ').map(function (w) {
+              return w[0];
+            }).join('') : 'YL'
+          })
+        }), typeof logo === 'string' && /*#__PURE__*/jsxRuntime.jsx("span", {
+          className: "text-base sm:text-lg md:text-xl font-semibold text-gray-900 hidden sm:block tracking-tight",
+          children: logo
+        })]
+      });
+    }
+
+    // Dark variant
+    return /*#__PURE__*/jsxRuntime.jsxs("div", {
+      className: "flex items-center gap-2 sm:gap-3",
+      children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-full bg-primary-600 flex items-center justify-center shadow-xl transition-all duration-300",
+        children: /*#__PURE__*/jsxRuntime.jsx("span", {
+          className: "text-white font-bold text-xs sm:text-sm",
+          children: typeof logo === 'string' ? logo.split(' ').map(function (w) {
+            return w[0];
+          }).join('') : 'YL'
+        })
+      }), typeof logo === 'string' && /*#__PURE__*/jsxRuntime.jsx("span", {
+        className: "text-base sm:text-lg md:text-xl font-bold text-white hidden sm:block tracking-tight",
+        children: logo
+      })]
+    });
+  };
+
+  // Variant 1: Dark Header - Perfect Design
+  if (variant === 'dark') {
+    return /*#__PURE__*/jsxRuntime.jsx("header", {
+      id: id,
+      className: clsx('relative w-full z-40 transition-all duration-300', 'bg-black', 'border-b border-white/10', sticky && 'sticky top-0', isScrolled && 'bg-black shadow-2xl shadow-black/20', className),
+      children: /*#__PURE__*/jsxRuntime.jsxs("nav", {
+        className: "container mx-auto px-4 sm:px-5 md:px-6 lg:px-8",
+        "aria-label": "Main navigation",
+        children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "flex items-center justify-between h-16 sm:h-20",
+          children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "flex items-center flex-shrink-0 min-w-0",
+            children: /*#__PURE__*/jsxRuntime.jsx("a", {
+              href: logoHref,
+              className: "flex items-center gap-2 sm:gap-3 group hover:opacity-90 transition-opacity duration-200",
+              "aria-label": "Home",
+              children: renderLogo()
+            })
+          }), navItems && navItems.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "hidden md:flex items-center gap-3 md:gap-4 lg:gap-6 flex-1 justify-center mx-2 md:mx-3 lg:mx-4 max-w-5xl",
+            children: navItems.map(function (item, index) {
+              if (!item || !item.label) return null;
+              var hasDropdown = item.dropdown && item.dropdown.length > 0;
+              return /*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: "relative",
+                ref: hasDropdown && openDropdown === index ? dropdownRef : null,
+                children: [/*#__PURE__*/jsxRuntime.jsxs("a", {
+                  href: item.href || '#',
+                  onClick: function onClick(e) {
+                    return handleNavClick(index);
+                  },
+                  onMouseEnter: function onMouseEnter() {
+                    return hasDropdown && setOpenDropdown(index);
+                  },
+                  className: clsx('relative text-sm md:text-base font-semibold transition-all duration-300 whitespace-nowrap', 'px-2 md:px-3 py-2 rounded-lg', 'after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2', 'after:w-0 after:h-0.5 after:bg-blue-400 after:transition-all after:duration-300', 'hover:after:w-3/4 hover:text-blue-400', isNavItemActive(item, index) ? 'text-blue-400 after:w-3/4' : 'text-white/90 hover:text-white hover:bg-white/5'),
+                  children: [item.label, hasDropdown && /*#__PURE__*/jsxRuntime.jsx("svg", {
+                    className: "inline-block w-4 h-4 ml-1.5 transition-transform duration-200",
+                    fill: "none",
+                    stroke: "currentColor",
+                    viewBox: "0 0 24 24",
+                    children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                      strokeLinecap: "round",
+                      strokeLinejoin: "round",
+                      strokeWidth: 2,
+                      d: "M19 9l-7 7-7-7"
+                    })
+                  })]
+                }), hasDropdown && openDropdown === index && /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "absolute left-0 top-full mt-2 w-56 bg-white rounded-xl shadow-2xl border border-gray-100 overflow-hidden animate-slideDown z-50 ",
+                  children: /*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: "py-2",
+                    children: item.dropdown.map(function (dropdownItem, idx) {
+                      return /*#__PURE__*/jsxRuntime.jsx("a", {
+                        href: dropdownItem.href || '#',
+                        className: "block px-4 py-2.5 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600 transition-all duration-200 font-medium",
+                        onClick: function onClick() {
+                          return setOpenDropdown(null);
+                        },
+                        children: dropdownItem.label
+                      }, idx);
+                    })
+                  })
+                })]
+              }, index);
+            })
+          }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex items-center gap-2 sm:gap-2.5 md:gap-3 lg:gap-4 flex-shrink-0",
+            children: [showSearch && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "hidden md:flex items-center w-40 md:w-52 lg:w-64",
+              children: /*#__PURE__*/jsxRuntime.jsxs("form", {
+                onSubmit: handleSearchSubmit,
+                className: "relative w-full",
+                children: [/*#__PURE__*/jsxRuntime.jsx("input", {
+                  type: "text",
+                  placeholder: "Search...",
+                  value: searchQuery,
+                  onChange: function onChange(e) {
+                    return setSearchQuery(e.target.value);
+                  },
+                  className: "w-full pl-9 md:pl-10 pr-3 md:pr-4 py-2 md:py-2.5 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-xs md:text-sm text-white placeholder-white/50 focus:bg-white/15 focus:outline-none focus:ring-2 focus:ring-primary-600/50 focus:border-primary-600/50 transition-all duration-200",
+                  "aria-label": "Search"
+                }), /*#__PURE__*/jsxRuntime.jsx("button", {
+                  type: "submit",
+                  className: "absolute left-3 top-1/2 transform -translate-y-1/2 text-white/60 hover:text-white transition-colors duration-200",
+                  "aria-label": "Submit search",
+                  children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+                    className: "w-4 h-4 sm:w-5 sm:h-5",
+                    fill: "none",
+                    stroke: "currentColor",
+                    viewBox: "0 0 24 24",
+                    children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                      strokeLinecap: "round",
+                      strokeLinejoin: "round",
+                      strokeWidth: 2,
+                      d: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                    })
+                  })
+                })]
+              })
+            }), /*#__PURE__*/jsxRuntime.jsx("button", {
+              onClick: function onClick() {
+                return setIsMobileMenuOpen(!isMobileMenuOpen);
+              },
+              className: "md:hidden w-10 h-10 sm:w-11 sm:h-11 flex items-center justify-center text-white hover:bg-white/10 rounded-lg transition-colors touch-manipulation",
+              "aria-label": "Toggle mobile menu",
+              "aria-expanded": isMobileMenuOpen,
+              children: isMobileMenuOpen ? /*#__PURE__*/jsxRuntime.jsx("svg", {
+                className: "w-6 h-6",
+                fill: "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2,
+                  d: "M6 18L18 6M6 6l12 12"
+                })
+              }) : /*#__PURE__*/jsxRuntime.jsx("svg", {
+                className: "w-6 h-6",
+                fill: "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2,
+                  d: "M4 6h16M4 12h16M4 18h16"
+                })
+              })
+            })]
+          })]
+        }), isMobileMenuOpen && /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "md:hidden py-4 border-t border-white/10 animate-slideDown bg-black max-h-[calc(100vh-5rem)] overflow-y-auto",
+          children: [navItems.map(function (item, index) {
+            var hasDropdown = item.dropdown && item.dropdown.length > 0;
+            var isDropdownOpen = openDropdown === index;
+            return /*#__PURE__*/jsxRuntime.jsxs("div", {
+              children: [/*#__PURE__*/jsxRuntime.jsx("a", {
+                href: item.href || '#',
+                className: clsx('block px-4 py-3 text-base font-medium rounded-lg transition-all duration-200 touch-manipulation', isNavItemActive(item, index) ? 'text-blue-400 bg-blue-400/10' : 'text-white/90 hover:text-white hover:bg-white/10'),
+                onClick: function onClick(e) {
+                  if (hasDropdown) {
+                    e.preventDefault();
+                    setOpenDropdown(isDropdownOpen ? null : index);
+                  } else {
+                    handleNavClick(index);
+                    setIsMobileMenuOpen(false);
+                  }
+                },
+                children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+                  className: "flex items-center justify-between",
+                  children: [/*#__PURE__*/jsxRuntime.jsx("span", {
+                    children: item.label
+                  }), hasDropdown && /*#__PURE__*/jsxRuntime.jsx("svg", {
+                    className: clsx('w-5 h-5 transition-transform duration-200', isDropdownOpen && 'rotate-180'),
+                    fill: "none",
+                    stroke: "currentColor",
+                    viewBox: "0 0 24 24",
+                    children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                      strokeLinecap: "round",
+                      strokeLinejoin: "round",
+                      strokeWidth: 2,
+                      d: "M19 9l-7 7-7-7"
+                    })
+                  })]
+                })
+              }), hasDropdown && isDropdownOpen && /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "pl-4 pr-4 pb-2 space-y-1",
+                children: item.dropdown.map(function (dropdownItem, idx) {
+                  return /*#__PURE__*/jsxRuntime.jsx("a", {
+                    href: dropdownItem.href || '#',
+                    className: "block px-4 py-2.5 text-sm text-white/70 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-200 touch-manipulation",
+                    onClick: function onClick() {
+                      setOpenDropdown(null);
+                      setIsMobileMenuOpen(false);
+                    },
+                    children: dropdownItem.label
+                  }, idx);
+                })
+              })]
+            }, index);
+          }), showSearch && /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "px-4 mt-4",
+            children: /*#__PURE__*/jsxRuntime.jsxs("form", {
+              onSubmit: handleSearchSubmit,
+              className: "relative",
+              children: [/*#__PURE__*/jsxRuntime.jsx("input", {
+                type: "text",
+                placeholder: "Search...",
+                value: searchQuery,
+                onChange: function onChange(e) {
+                  return setSearchQuery(e.target.value);
+                },
+                className: "w-full pl-10 pr-4 py-2.5 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-sm text-white placeholder-white/50 focus:bg-white/15 focus:outline-none focus:ring-2 focus:ring-primary-600/50 transition-all"
+              }), /*#__PURE__*/jsxRuntime.jsx("button", {
+                type: "submit",
+                className: "absolute left-3 top-1/2 transform -translate-y-1/2 text-white/60 hover:text-white transition-colors touch-manipulation",
+                children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+                  className: "w-5 h-5",
+                  fill: "none",
+                  stroke: "currentColor",
+                  viewBox: "0 0 24 24",
+                  children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                    strokeLinecap: "round",
+                    strokeLinejoin: "round",
+                    strokeWidth: 2,
+                    d: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  })
+                })
+              })]
+            })
+          })]
+        })]
+      })
+    });
+  }
+
+  // Variant 2: Rounded Purple Header - Perfect Design
+  if (variant === 'rounded') {
+    return /*#__PURE__*/jsxRuntime.jsx("header", {
+      id: id,
+      className: clsx('relative w-full z-40 transition-all duration-300', 'bg-gradient-to-r from-purple-600 via-purple-500 to-indigo-600', 'rounded-b-2xl sm:rounded-b-3xl mt-0 shadow-2xl shadow-purple-500/30', sticky && 'sticky top-0', isScrolled && 'rounded-b-xl sm:rounded-b-2xl mx-1 sm:mx-2 shadow-2xl shadow-purple-500/40', className),
+      children: /*#__PURE__*/jsxRuntime.jsxs("nav", {
+        className: "container mx-auto px-4 sm:px-5 md:px-6 lg:px-8",
+        "aria-label": "Main navigation",
+        children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "flex items-center justify-between h-16 sm:h-20",
+          children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "flex items-center flex-shrink-0 min-w-0",
+            children: /*#__PURE__*/jsxRuntime.jsx("a", {
+              href: logoHref,
+              className: "flex items-center gap-2 sm:gap-3 group hover:scale-105 transition-transform duration-200",
+              "aria-label": "Home",
+              children: renderLogo()
+            })
+          }), navItems && navItems.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "hidden md:flex items-center gap-3 md:gap-4 lg:gap-6 flex-1 justify-center mx-2 md:mx-3 lg:mx-4 max-w-5xl",
+            children: navItems.map(function (item, index) {
+              if (!item || !item.label) return null;
+              var hasDropdown = item.dropdown && item.dropdown.length > 0;
+              return /*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: "relative",
+                ref: hasDropdown && openDropdown === index ? dropdownRef : null,
+                children: [/*#__PURE__*/jsxRuntime.jsxs("a", {
+                  href: item.href || '#',
+                  onClick: function onClick(e) {
+                    return handleNavClick(index);
+                  },
+                  onMouseEnter: function onMouseEnter() {
+                    return hasDropdown && setOpenDropdown(index);
+                  },
+                  className: clsx('relative text-sm md:text-base font-semibold transition-all duration-300 flex items-center gap-1.5 whitespace-nowrap', 'px-2 md:px-4 py-2 rounded-lg', 'hover:bg-white/10 active:bg-white/15', isNavItemActive(item, index) ? 'text-white bg-white/10' : 'text-white/95 hover:text-white'),
+                  children: [item.label, hasDropdown && /*#__PURE__*/jsxRuntime.jsx("svg", {
+                    className: "w-4 h-4 transition-transform duration-200",
+                    fill: "none",
+                    stroke: "currentColor",
+                    viewBox: "0 0 24 24",
+                    children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                      strokeLinecap: "round",
+                      strokeLinejoin: "round",
+                      strokeWidth: 2,
+                      d: "M19 9l-7 7-7-7"
+                    })
+                  })]
+                }), hasDropdown && openDropdown === index && /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "absolute left-0 top-full mt-2 w-56 bg-white rounded-xl shadow-2xl border border-gray-100 overflow-hidden animate-slideDown z-50",
+                  children: /*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: "py-2",
+                    children: item.dropdown.map(function (dropdownItem, idx) {
+                      return /*#__PURE__*/jsxRuntime.jsx("a", {
+                        href: dropdownItem.href || '#',
+                        className: "block px-4 py-2.5 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-600 transition-all duration-200 font-medium",
+                        onClick: function onClick() {
+                          return setOpenDropdown(null);
+                        },
+                        children: dropdownItem.label
+                      }, idx);
+                    })
+                  })
+                })]
+              }, index);
+            })
+          }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex items-center gap-2 sm:gap-2.5 md:gap-3 lg:gap-4 flex-shrink-0",
+            children: [ctaButtons.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "hidden md:flex items-center gap-2 lg:gap-3",
+              children: ctaButtons.map(function (button, index) {
+                return /*#__PURE__*/jsxRuntime.jsx("a", {
+                  href: button.href || '#',
+                  className: clsx('px-4 xl:px-5 py-2 xl:py-2.5 rounded-full text-xs xl:text-sm font-semibold transition-all duration-300 whitespace-nowrap', 'transform hover:scale-105 active:scale-95', button.variant === 'primary' ? 'bg-white text-purple-600 hover:bg-white/95 shadow-lg hover:shadow-xl hover:-translate-y-0.5' : 'text-white/90 hover:text-white border border-white/30 hover:border-white/50 hover:bg-white/10 px-2 md:px-3 lg:px-4'),
+                  children: button.label
+                }, index);
+              })
+            }), /*#__PURE__*/jsxRuntime.jsx("button", {
+              onClick: function onClick() {
+                return setIsMobileMenuOpen(!isMobileMenuOpen);
+              },
+              className: "md:hidden w-10 h-10 sm:w-11 sm:h-11 flex items-center justify-center text-white hover:bg-white/10 rounded-lg transition-colors touch-manipulation",
+              "aria-label": "Toggle mobile menu",
+              "aria-expanded": isMobileMenuOpen,
+              children: isMobileMenuOpen ? /*#__PURE__*/jsxRuntime.jsx("svg", {
+                className: "w-6 h-6",
+                fill: "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2,
+                  d: "M6 18L18 6M6 6l12 12"
+                })
+              }) : /*#__PURE__*/jsxRuntime.jsx("svg", {
+                className: "w-6 h-6",
+                fill: "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2,
+                  d: "M4 6h16M4 12h16M4 18h16"
+                })
+              })
+            })]
+          })]
+        }), isMobileMenuOpen && /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "md:hidden py-4 border-t border-white/20 animate-slideDown bg-gradient-to-b from-purple-600 to-indigo-600 max-h-[calc(100vh-5rem)] overflow-y-auto",
+          children: [navItems.map(function (item, index) {
+            var hasDropdown = item.dropdown && item.dropdown.length > 0;
+            var isDropdownOpen = openDropdown === index;
+            return /*#__PURE__*/jsxRuntime.jsxs("div", {
+              children: [/*#__PURE__*/jsxRuntime.jsx("a", {
+                href: item.href || '#',
+                className: clsx('block px-4 py-3 text-base font-medium rounded-lg transition-all duration-200 touch-manipulation', isNavItemActive(item, index) ? 'text-white bg-white/20' : 'text-white/95 hover:text-white hover:bg-white/10'),
+                onClick: function onClick(e) {
+                  if (hasDropdown) {
+                    e.preventDefault();
+                    setOpenDropdown(isDropdownOpen ? null : index);
+                  } else {
+                    handleNavClick(index);
+                    setIsMobileMenuOpen(false);
+                  }
+                },
+                children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+                  className: "flex items-center justify-between",
+                  children: [/*#__PURE__*/jsxRuntime.jsx("span", {
+                    children: item.label
+                  }), hasDropdown && /*#__PURE__*/jsxRuntime.jsx("svg", {
+                    className: clsx('w-5 h-5 transition-transform duration-200', isDropdownOpen && 'rotate-180'),
+                    fill: "none",
+                    stroke: "currentColor",
+                    viewBox: "0 0 24 24",
+                    children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                      strokeLinecap: "round",
+                      strokeLinejoin: "round",
+                      strokeWidth: 2,
+                      d: "M19 9l-7 7-7-7"
+                    })
+                  })]
+                })
+              }), hasDropdown && isDropdownOpen && /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "pl-4 pr-4 pb-2 space-y-1",
+                children: item.dropdown.map(function (dropdownItem, idx) {
+                  return /*#__PURE__*/jsxRuntime.jsx("a", {
+                    href: dropdownItem.href || '#',
+                    className: "block px-4 py-2.5 text-sm text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200 touch-manipulation",
+                    onClick: function onClick() {
+                      setOpenDropdown(null);
+                      setIsMobileMenuOpen(false);
+                    },
+                    children: dropdownItem.label
+                  }, idx);
+                })
+              })]
+            }, index);
+          }), ctaButtons.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "px-4 mt-4 flex flex-col gap-2",
+            children: ctaButtons.map(function (button, index) {
+              return /*#__PURE__*/jsxRuntime.jsx("a", {
+                href: button.href || '#',
+                className: clsx('px-4 py-3 rounded-full text-base font-semibold text-center transition-all duration-300 touch-manipulation', button.variant === 'primary' ? 'bg-white text-purple-600 hover:bg-white/95 shadow-lg' : 'text-white border border-white/30 hover:bg-white/10'),
+                onClick: function onClick() {
+                  return setIsMobileMenuOpen(false);
+                },
+                children: button.label
+              }, index);
+            })
+          })]
+        })]
+      })
+    });
+  }
+
+  // Variant 3: Two-Tier Header - Perfect Design (Light Mode)
+  if (variant === 'two-tier') {
+    return /*#__PURE__*/jsxRuntime.jsxs("header", {
+      id: id,
+      className: clsx('relative w-full z-40 transition-all duration-300', 'bg-white', 'border-b border-gray-200', sticky && 'sticky top-0', isScrolled && 'shadow-lg shadow-gray-200/50', className),
+      children: [topBarText && /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "h-8 sm:h-9 flex items-center bg-gradient-to-r from-primary-50 via-primary-100/50 to-primary-50 border-b border-primary-200/50",
+        children: /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "container mx-auto px-4 sm:px-5 md:px-6 lg:px-8",
+          children: /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "flex items-center justify-end",
+            children: /*#__PURE__*/jsxRuntime.jsx("span", {
+              className: "text-xs sm:text-sm font-medium text-primary-600 truncate",
+              children: topBarText
+            })
+          })
+        })
+      }), /*#__PURE__*/jsxRuntime.jsxs("nav", {
+        className: "container mx-auto px-4 sm:px-5 md:px-6 lg:px-8",
+        "aria-label": "Main navigation",
+        children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "flex items-center justify-between h-16 sm:h-20",
+          children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "flex items-center flex-shrink-0 min-w-0 max-w-[40%] sm:max-w-[35%] md:max-w-[30%] lg:max-w-none",
+            children: /*#__PURE__*/jsxRuntime.jsx("a", {
+              href: logoHref,
+              className: "flex items-center gap-1.5 sm:gap-2 md:gap-3 group hover:opacity-90 transition-opacity duration-200",
+              "aria-label": "Home",
+              children: renderLogo()
+            })
+          }), navItems && navItems.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "hidden lg:flex items-center gap-1.5 md:gap-2 lg:gap-4 xl:gap-6 flex-1 justify-center mx-1 md:mx-2 lg:mx-4 xl:mx-8 min-w-0",
+            children: navItems.map(function (item, index) {
+              if (!item || !item.label) return null;
+              return /*#__PURE__*/jsxRuntime.jsx("a", {
+                href: item.href || '#',
+                onClick: function onClick(e) {
+                  return handleNavClick(index);
+                },
+                className: clsx('relative text-xs md:text-sm lg:text-base font-semibold transition-all duration-300 whitespace-nowrap', 'px-1 md:px-1.5 lg:px-2.5 py-2 rounded-lg', 'after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2', 'after:w-0 after:h-0.5 after:bg-primary-600 after:transition-all after:duration-300', 'hover:after:w-3/4', isNavItemActive(item, index) ? 'text-primary-600 after:w-3/4' : 'text-gray-700 hover:text-primary-600 hover:bg-primary-50/50'),
+                children: item.label
+              }, index);
+            })
+          }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex items-center gap-1 sm:gap-1.5 md:gap-2 lg:gap-4 flex-shrink-0",
+            children: [socialIcons.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "hidden lg:flex items-center gap-1.5",
+              children: socialIcons.map(function (icon, index) {
+                return /*#__PURE__*/jsxRuntime.jsx(SocialIcon, {
+                  name: icon.name,
+                  href: icon.href,
+                  lightMode: variant === 'two-tier'
+                }, index);
+              })
+            }), ctaButtons.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "hidden lg:flex items-center",
+              children: ctaButtons.map(function (button, index) {
+                return /*#__PURE__*/jsxRuntime.jsx("a", {
+                  href: button.href || '#',
+                  className: "px-2 md:px-2.5 lg:px-4 xl:px-6 py-1.5 md:py-2 lg:py-2.5 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-lg text-xs md:text-xs lg:text-sm font-bold hover:from-primary-500 hover:to-primary-600 transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 transform active:scale-95 whitespace-nowrap",
+                  children: button.label
+                }, index);
+              })
+            }), /*#__PURE__*/jsxRuntime.jsx("button", {
+              onClick: function onClick() {
+                return setIsMobileMenuOpen(!isMobileMenuOpen);
+              },
+              className: "lg:hidden w-10 h-10 sm:w-11 sm:h-11 flex items-center justify-center text-gray-700 hover:bg-gray-100 rounded-lg transition-colors touch-manipulation",
+              "aria-label": "Toggle mobile menu",
+              "aria-expanded": isMobileMenuOpen,
+              children: isMobileMenuOpen ? /*#__PURE__*/jsxRuntime.jsx("svg", {
+                className: "w-6 h-6",
+                fill: "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2,
+                  d: "M6 18L18 6M6 6l12 12"
+                })
+              }) : /*#__PURE__*/jsxRuntime.jsx("svg", {
+                className: "w-6 h-6",
+                fill: "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2,
+                  d: "M4 6h16M4 12h16M4 18h16"
+                })
+              })
+            })]
+          })]
+        }), isMobileMenuOpen && /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "lg:hidden block py-4 border-t border-gray-200 animate-slideDown bg-white max-h-[calc(100vh-5rem)] overflow-y-auto",
+          children: [navItems.map(function (item, index) {
+            var hasDropdown = item.dropdown && item.dropdown.length > 0;
+            var isDropdownOpen = openDropdown === index;
+            return /*#__PURE__*/jsxRuntime.jsxs("div", {
+              children: [/*#__PURE__*/jsxRuntime.jsx("a", {
+                href: item.href || '#',
+                className: clsx('block px-4 py-3 text-base font-medium rounded-lg transition-all duration-200 touch-manipulation', isNavItemActive(item, index) ? 'text-primary-600 bg-primary-50' : 'text-gray-700 hover:text-primary-600 hover:bg-primary-50/50'),
+                onClick: function onClick(e) {
+                  if (hasDropdown) {
+                    e.preventDefault();
+                    setOpenDropdown(isDropdownOpen ? null : index);
+                  } else {
+                    handleNavClick(index);
+                    setIsMobileMenuOpen(false);
+                  }
+                },
+                children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+                  className: "flex items-center justify-between",
+                  children: [/*#__PURE__*/jsxRuntime.jsx("span", {
+                    children: item.label
+                  }), hasDropdown && /*#__PURE__*/jsxRuntime.jsx("svg", {
+                    className: clsx('w-5 h-5 transition-transform duration-200', isDropdownOpen && 'rotate-180'),
+                    fill: "none",
+                    stroke: "currentColor",
+                    viewBox: "0 0 24 24",
+                    children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                      strokeLinecap: "round",
+                      strokeLinejoin: "round",
+                      strokeWidth: 2,
+                      d: "M19 9l-7 7-7-7"
+                    })
+                  })]
+                })
+              }), hasDropdown && isDropdownOpen && /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "pl-4 pr-4 pb-2 space-y-1",
+                children: item.dropdown.map(function (dropdownItem, idx) {
+                  return /*#__PURE__*/jsxRuntime.jsx("a", {
+                    href: dropdownItem.href || '#',
+                    className: "block px-4 py-2.5 text-sm text-gray-600 hover:text-primary-600 hover:bg-primary-50/50 rounded-lg transition-all duration-200 touch-manipulation",
+                    onClick: function onClick() {
+                      setOpenDropdown(null);
+                      setIsMobileMenuOpen(false);
+                    },
+                    children: dropdownItem.label
+                  }, idx);
+                })
+              })]
+            }, index);
+          }), socialIcons.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "px-4 mt-4 flex items-center gap-2",
+            children: socialIcons.map(function (icon, index) {
+              return /*#__PURE__*/jsxRuntime.jsx(SocialIcon, {
+                name: icon.name,
+                href: icon.href,
+                lightMode: variant === 'two-tier'
+              }, index);
+            })
+          }), ctaButtons.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "px-4 mt-4",
+            children: ctaButtons.map(function (button, index) {
+              return /*#__PURE__*/jsxRuntime.jsx("a", {
+                href: button.href || '#',
+                className: "block px-4 py-3 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-lg text-center text-base font-bold hover:from-primary-500 hover:to-primary-600 transition-all duration-300 shadow-lg touch-manipulation",
+                onClick: function onClick() {
+                  return setIsMobileMenuOpen(false);
+                },
+                children: button.label
+              }, index);
+            })
+          })]
+        })]
+      })]
+    });
+  }
+
+  // Variant 4: Modern Header - Clean and Minimal Design
+  if (variant === 'modern') {
+    return /*#__PURE__*/jsxRuntime.jsx("header", {
+      id: id,
+      className: clsx('relative w-full z-40 transition-all duration-300', 'bg-white', 'border-b border-gray-200', sticky && 'sticky top-0', isScrolled && 'shadow-sm bg-white/95 backdrop-blur-sm', className),
+      children: /*#__PURE__*/jsxRuntime.jsxs("nav", {
+        className: "container mx-auto px-4 sm:px-5 md:px-6 lg:px-8",
+        "aria-label": "Main navigation",
+        children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "flex items-center justify-between h-16 sm:h-18 md:h-20",
+          children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "flex items-center flex-shrink-0 min-w-0",
+            children: /*#__PURE__*/jsxRuntime.jsx("a", {
+              href: logoHref,
+              className: "flex items-center gap-2 sm:gap-3 group hover:opacity-90 transition-opacity duration-200",
+              "aria-label": "Home",
+              children: renderLogo()
+            })
+          }), navItems && navItems.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "hidden md:flex items-center gap-1 md:gap-2 lg:gap-4 xl:gap-6 flex-1 justify-center mx-2 md:mx-3 lg:mx-4 max-w-5xl",
+            children: navItems.map(function (item, index) {
+              if (!item || !item.label) return null;
+              var hasDropdown = item.dropdown && item.dropdown.length > 0;
+              return /*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: "relative",
+                ref: hasDropdown && openDropdown === index ? dropdownRef : null,
+                children: [/*#__PURE__*/jsxRuntime.jsxs("a", {
+                  href: item.href || '#',
+                  onClick: function onClick(e) {
+                    return handleNavClick(index);
+                  },
+                  onMouseEnter: function onMouseEnter() {
+                    return hasDropdown && setOpenDropdown(index);
+                  },
+                  className: clsx('relative text-sm md:text-base font-medium transition-all duration-200 whitespace-nowrap', 'px-3 md:px-4 py-2 rounded-md', 'hover:bg-gray-50', isNavItemActive(item, index) ? 'text-gray-900 font-semibold' : 'text-gray-600 hover:text-gray-900'),
+                  children: [item.label, hasDropdown && /*#__PURE__*/jsxRuntime.jsx("svg", {
+                    className: "inline-block w-4 h-4 ml-1.5 transition-transform duration-200",
+                    fill: "none",
+                    stroke: "currentColor",
+                    viewBox: "0 0 24 24",
+                    children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                      strokeLinecap: "round",
+                      strokeLinejoin: "round",
+                      strokeWidth: 2,
+                      d: "M19 9l-7 7-7-7"
+                    })
+                  })]
+                }), hasDropdown && openDropdown === index && /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "absolute left-0 top-full mt-1 w-56 bg-white rounded-lg shadow-xl border border-gray-100 overflow-hidden animate-slideDown z-50 ",
+                  children: /*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: "py-1",
+                    children: item.dropdown.map(function (dropdownItem, idx) {
+                      return /*#__PURE__*/jsxRuntime.jsx("a", {
+                        href: dropdownItem.href || '#',
+                        className: "block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900 transition-all duration-200",
+                        onClick: function onClick() {
+                          return setOpenDropdown(null);
+                        },
+                        children: dropdownItem.label
+                      }, idx);
+                    })
+                  })
+                })]
+              }, index);
+            })
+          }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex items-center gap-2 sm:gap-2.5 md:gap-3 lg:gap-4 flex-shrink-0",
+            children: [showSearch && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "hidden lg:flex items-center w-48 xl:w-64",
+              children: /*#__PURE__*/jsxRuntime.jsxs("form", {
+                onSubmit: handleSearchSubmit,
+                className: "relative w-full",
+                children: [/*#__PURE__*/jsxRuntime.jsx("input", {
+                  type: "text",
+                  placeholder: "Search...",
+                  value: searchQuery,
+                  onChange: function onChange(e) {
+                    return setSearchQuery(e.target.value);
+                  },
+                  className: "w-full pl-10 pr-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-900 placeholder-gray-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-gray-900/10 focus:border-gray-300 transition-all duration-200",
+                  "aria-label": "Search"
+                }), /*#__PURE__*/jsxRuntime.jsx("button", {
+                  type: "submit",
+                  className: "absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors duration-200",
+                  "aria-label": "Submit search",
+                  children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+                    className: "w-4 h-4 sm:w-5 sm:h-5",
+                    fill: "none",
+                    stroke: "currentColor",
+                    viewBox: "0 0 24 24",
+                    children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                      strokeLinecap: "round",
+                      strokeLinejoin: "round",
+                      strokeWidth: 2,
+                      d: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                    })
+                  })
+                })]
+              })
+            }), ctaButtons.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "hidden md:flex items-center gap-2 lg:gap-3",
+              children: ctaButtons.map(function (button, index) {
+                return /*#__PURE__*/jsxRuntime.jsx("a", {
+                  href: button.href || '#',
+                  className: clsx('px-4 xl:px-5 py-2 xl:py-2.5 rounded-lg text-xs xl:text-sm font-medium transition-all duration-200 whitespace-nowrap', button.variant === 'primary' ? 'bg-gray-900 text-white hover:bg-gray-800 shadow-sm hover:shadow-md' : 'text-gray-700 hover:text-gray-900 border border-gray-300 hover:border-gray-400 hover:bg-gray-50'),
+                  children: button.label
+                }, index);
+              })
+            }), /*#__PURE__*/jsxRuntime.jsx("button", {
+              onClick: function onClick() {
+                return setIsMobileMenuOpen(!isMobileMenuOpen);
+              },
+              className: "md:hidden w-10 h-10 sm:w-11 sm:h-11 flex items-center justify-center text-gray-700 hover:bg-gray-100 rounded-lg transition-colors touch-manipulation",
+              "aria-label": "Toggle mobile menu",
+              "aria-expanded": isMobileMenuOpen,
+              children: isMobileMenuOpen ? /*#__PURE__*/jsxRuntime.jsx("svg", {
+                className: "w-6 h-6",
+                fill: "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2,
+                  d: "M6 18L18 6M6 6l12 12"
+                })
+              }) : /*#__PURE__*/jsxRuntime.jsx("svg", {
+                className: "w-6 h-6",
+                fill: "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2,
+                  d: "M4 6h16M4 12h16M4 18h16"
+                })
+              })
+            })]
+          })]
+        }), isMobileMenuOpen && /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "md:hidden py-4 border-t border-gray-200 animate-slideDown bg-white max-h-[calc(100vh-5rem)] overflow-y-auto",
+          children: [navItems.map(function (item, index) {
+            var hasDropdown = item.dropdown && item.dropdown.length > 0;
+            var isDropdownOpen = openDropdown === index;
+            return /*#__PURE__*/jsxRuntime.jsxs("div", {
+              children: [/*#__PURE__*/jsxRuntime.jsx("a", {
+                href: item.href || '#',
+                className: clsx('block px-4 py-3 text-base font-medium rounded-lg transition-all duration-200 touch-manipulation', isNavItemActive(item, index) ? 'text-gray-900 bg-gray-50 font-semibold' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'),
+                onClick: function onClick(e) {
+                  if (hasDropdown) {
+                    e.preventDefault();
+                    setOpenDropdown(isDropdownOpen ? null : index);
+                  } else {
+                    handleNavClick(index);
+                    setIsMobileMenuOpen(false);
+                  }
+                },
+                children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+                  className: "flex items-center justify-between",
+                  children: [/*#__PURE__*/jsxRuntime.jsx("span", {
+                    children: item.label
+                  }), hasDropdown && /*#__PURE__*/jsxRuntime.jsx("svg", {
+                    className: clsx('w-5 h-5 transition-transform duration-200', isDropdownOpen && 'rotate-180'),
+                    fill: "none",
+                    stroke: "currentColor",
+                    viewBox: "0 0 24 24",
+                    children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                      strokeLinecap: "round",
+                      strokeLinejoin: "round",
+                      strokeWidth: 2,
+                      d: "M19 9l-7 7-7-7"
+                    })
+                  })]
+                })
+              }), hasDropdown && isDropdownOpen && /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "pl-4 pr-4 pb-2 space-y-1",
+                children: item.dropdown.map(function (dropdownItem, idx) {
+                  return /*#__PURE__*/jsxRuntime.jsx("a", {
+                    href: dropdownItem.href || '#',
+                    className: "block px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-all duration-200 touch-manipulation",
+                    onClick: function onClick() {
+                      setOpenDropdown(null);
+                      setIsMobileMenuOpen(false);
+                    },
+                    children: dropdownItem.label
+                  }, idx);
+                })
+              })]
+            }, index);
+          }), showSearch && /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "px-4 mt-4",
+            children: /*#__PURE__*/jsxRuntime.jsxs("form", {
+              onSubmit: handleSearchSubmit,
+              className: "relative",
+              children: [/*#__PURE__*/jsxRuntime.jsx("input", {
+                type: "text",
+                placeholder: "Search...",
+                value: searchQuery,
+                onChange: function onChange(e) {
+                  return setSearchQuery(e.target.value);
+                },
+                className: "w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-900 placeholder-gray-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-gray-900/10 focus:border-gray-300 transition-all"
+              }), /*#__PURE__*/jsxRuntime.jsx("button", {
+                type: "submit",
+                className: "absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors touch-manipulation",
+                children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+                  className: "w-5 h-5",
+                  fill: "none",
+                  stroke: "currentColor",
+                  viewBox: "0 0 24 24",
+                  children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                    strokeLinecap: "round",
+                    strokeLinejoin: "round",
+                    strokeWidth: 2,
+                    d: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  })
+                })
+              })]
+            })
+          }), ctaButtons.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "px-4 mt-4 flex flex-col gap-2",
+            children: ctaButtons.map(function (button, index) {
+              return /*#__PURE__*/jsxRuntime.jsx("a", {
+                href: button.href || '#',
+                className: clsx('px-4 py-3 rounded-lg text-base font-medium text-center transition-all duration-200 touch-manipulation', button.variant === 'primary' ? 'bg-gray-900 text-white hover:bg-gray-800 shadow-sm' : 'text-gray-700 border border-gray-300 hover:bg-gray-50'),
+                onClick: function onClick() {
+                  return setIsMobileMenuOpen(false);
+                },
+                children: button.label
+              }, index);
+            })
+          })]
+        })]
+      })
+    });
+  }
+
+  // Variant 5: Glassmorphism Modern Header (using className only, no CSS file)
+  // if (variant === 'glass') {
+  //   return (
+  //     <header
+  //       id={id}
+  //       className={clsx(
+  //         'relative w-full z-50 transition-all duration-300',
+  //         'bg-white/70 backdrop-blur-xl border-b border-gray-200/50',
+  //         'shadow-sm',
+  //         sticky && 'sticky top-0',
+  //         isScrolled && 'bg-white/90 shadow-md',
+  //         className
+  //       )}
+  //     >
+  //       <nav className="container mx-auto px-4 sm:px-6 lg:px-8" aria-label="Main navigation">
+  //         <div className="flex items-center justify-between h-20">
+  //           {/* Logo */}
+  //           <div className="flex items-center flex-shrink-0">
+  //             <a href={logoHref} className="flex items-center gap-2 group hover:scale-105 transition-transform duration-200" aria-label="Home">
+  //               {renderLogo()}
+  //             </a>
+  //           </div>
+
+  //           {/* Desktop Navigation - Center */}
+  //           {navItems && navItems.length > 0 && (
+  //             <div className="hidden md:flex items-center gap-8 flex-1 justify-center mx-4">
+  //               {navItems.map((item, index) => {
+  //                 if (!item || !item.label) return null;
+  //                 const hasDropdown = item.dropdown && item.dropdown.length > 0;
+
+  //                 return (
+  //                   <div key={index} className="relative" ref={hasDropdown && openDropdown === index ? dropdownRef : null}>
+  //                     <a
+  //                       href={item.href || '#'}
+  //                       onMouseEnter={() => hasDropdown && setOpenDropdown(index)}
+  //                       className={clsx(
+  //                         'text-sm font-semibold transition-all duration-200 whitespace-nowrap relative',
+  //                         'after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-gradient-to-r after:from-indigo-600 after:to-purple-600',
+  //                         'after:w-0 after:transition-all after:duration-300 hover:after:w-full',
+  //                         item.active
+  //                           ? 'text-indigo-600 after:w-full'
+  //                           : 'text-gray-700 hover:text-indigo-600'
+  //                       )}
+  //                     >
+  //                       {item.label}
+  //                       {hasDropdown && (
+  //                         <svg className="inline-block w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  //                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+  //                         </svg>
+  //                       )}
+  //                     </a>
+
+  //                     {/* Dropdown Menu */}
+  //                     {hasDropdown && openDropdown === index && (
+  //                       <div className="absolute left-0 top-full mt-2 w-48 bg-white/95 backdrop-blur-md rounded-xl shadow-xl border border-gray-200/50 py-2 animate-slideDown">
+  //                         {item.dropdown.map((dropdownItem, idx) => (
+  //                           <a
+  //                             key={idx}
+  //                             href={dropdownItem.href || '#'}
+  //                             className="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 transition-colors"
+  //                             onClick={() => setOpenDropdown(null)}
+  //                           >
+  //                             {dropdownItem.label}
+  //                           </a>
+  //                         ))}
+  //                       </div>
+  //                     )}
+  //                   </div>
+  //                 );
+  //               })}
+  //             </div>
+  //           )}
+
+  //           {/* Right Section: CTA Buttons + Mobile Menu Button */}
+  //           <div className="flex items-center gap-4 flex-shrink-0">
+  //             {/* CTA Buttons */}
+  //             {ctaButtons.length > 0 && (
+  //               <div className="hidden md:flex items-center gap-3">
+  //                 {ctaButtons.map((button, index) => (
+  //                   <a
+  //                     key={index}
+  //                     href={button.href || '#'}
+  //                     className={clsx(
+  //                       'px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 whitespace-nowrap',
+  //                       button.variant === 'primary'
+  //                         ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white hover:from-indigo-700 hover:to-purple-700 shadow-lg hover:shadow-xl hover:-translate-y-0.5'
+  //                         : 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50'
+  //                     )}
+  //                   >
+  //                     {button.label}
+  //                   </a>
+  //                 ))}
+  //               </div>
+  //             )}
+
+  //             {/* Mobile Menu Button */}
+  //             <button
+  //               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+  //               className="md:hidden w-10 h-10 flex items-center justify-center text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+  //               aria-label="Toggle mobile menu"
+  //               aria-expanded={isMobileMenuOpen}
+  //             >
+  //               {isMobileMenuOpen ? (
+  //                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  //                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+  //                 </svg>
+  //               ) : (
+  //                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  //                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+  //                 </svg>
+  //               )}
+  //             </button>
+  //           </div>
+  //         </div>
+
+  //         {/* Mobile Menu */}
+  //         {isMobileMenuOpen && (
+  //           <div className="md:hidden py-4 border-t border-gray-200/50 bg-white/95 backdrop-blur-md animate-slideDown">
+  //             {navItems.map((item, index) => (
+  //               <a
+  //                 key={index}
+  //                 href={item.href || '#'}
+  //                 className="block px-4 py-3 text-base font-medium text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-lg transition-colors"
+  //                 onClick={() => setIsMobileMenuOpen(false)}
+  //               >
+  //                 {item.label}
+  //               </a>
+  //             ))}
+  //             {ctaButtons.length > 0 && (
+  //               <div className="px-4 mt-4 flex flex-col gap-2">
+  //                 {ctaButtons.map((button, index) => (
+  //                   <a
+  //                     key={index}
+  //                     href={button.href || '#'}
+  //                     className={clsx(
+  //                       'px-4 py-3 rounded-lg text-base font-semibold text-center transition-all',
+  //                       button.variant === 'primary'
+  //                         ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white hover:from-indigo-700 hover:to-purple-700'
+  //                         : 'text-gray-700 hover:bg-indigo-50'
+  //                     )}
+  //                     onClick={() => setIsMobileMenuOpen(false)}
+  //                   >
+  //                     {button.label}
+  //                   </a>
+  //                 ))}
+  //               </div>
+  //             )}
+  //           </div>
+  //         )}
+  //       </nav>
+  //     </header>
+  //   );
+  // }
+
+  // Default fallback to two-tier variant
+  return /*#__PURE__*/jsxRuntime.jsxs("header", {
+    id: id,
+    className: clsx('header-variant-two-tier relative w-full z-40 transition-all duration-300', sticky && 'sticky top-0', isScrolled && 'header-scrolled', className),
+    children: [topBarText && /*#__PURE__*/jsxRuntime.jsx("div", {
+      className: "header-top-bar h-8 sm:h-9 flex items-center",
+      children: /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "container mx-auto px-4 sm:px-5 md:px-6 lg:px-8",
+        children: /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "flex items-center justify-end",
+          children: /*#__PURE__*/jsxRuntime.jsx("span", {
+            className: "text-xs sm:text-sm text-white/80 truncate",
+            children: topBarText
+          })
+        })
+      })
+    }), /*#__PURE__*/jsxRuntime.jsxs("nav", {
+      className: "container mx-auto px-4 sm:px-5 md:px-6 lg:px-8",
+      "aria-label": "Main navigation",
+      children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "flex items-center justify-between h-16 sm:h-20",
+        children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "flex items-center flex-shrink-0 min-w-0",
+          children: /*#__PURE__*/jsxRuntime.jsx("a", {
+            href: logoHref,
+            className: "flex items-center gap-2 sm:gap-3 group",
+            "aria-label": "Home",
+            children: renderLogo()
+          })
+        }), navItems && navItems.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "hidden md:flex items-center gap-3 md:gap-5 lg:gap-6 flex-1 justify-center mx-3 md:mx-5 lg:mx-8 max-w-5xl",
+          children: navItems.map(function (item, index) {
+            if (!item || !item.label) return null;
+            return /*#__PURE__*/jsxRuntime.jsx("a", {
+              href: item.href || '#',
+              onClick: function onClick(e) {
+                return handleNavClick(index);
+              },
+              className: clsx('header-nav-link text-sm md:text-base font-medium transition-colors duration-200 whitespace-nowrap', isNavItemActive(item, index) ? 'text-primary-400' : 'text-white hover:text-primary-400'),
+              children: item.label
+            }, index);
+          })
+        }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "flex items-center gap-2 sm:gap-2.5 md:gap-3 lg:gap-4 flex-shrink-0",
+          children: [socialIcons.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "hidden md:flex items-center gap-2",
+            children: socialIcons.map(function (icon, index) {
+              return /*#__PURE__*/jsxRuntime.jsx(SocialIcon, {
+                name: icon.name,
+                href: icon.href
+              }, index);
+            })
+          }), ctaButtons.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "hidden md:flex items-center",
+            children: ctaButtons.map(function (button, index) {
+              return /*#__PURE__*/jsxRuntime.jsx("a", {
+                href: button.href || '#',
+                className: "px-3 md:px-4 lg:px-6 py-2 md:py-2.5 bg-primary-400 text-white rounded-lg text-xs md:text-sm font-semibold hover:bg-primary-500 transition-colors duration-200 shadow-md hover:shadow-lg whitespace-nowrap",
+                children: button.label
+              }, index);
+            })
+          }), /*#__PURE__*/jsxRuntime.jsx("button", {
+            onClick: function onClick() {
+              return setIsMobileMenuOpen(!isMobileMenuOpen);
+            },
+            className: "md:hidden w-10 h-10 sm:w-11 sm:h-11 flex items-center justify-center text-white hover:bg-white/10 rounded-lg transition-colors touch-manipulation",
+            "aria-label": "Toggle mobile menu",
+            "aria-expanded": isMobileMenuOpen,
+            children: isMobileMenuOpen ? /*#__PURE__*/jsxRuntime.jsx("svg", {
+              className: "w-6 h-6",
+              fill: "none",
+              stroke: "currentColor",
+              viewBox: "0 0 24 24",
+              children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M6 18L18 6M6 6l12 12"
+              })
+            }) : /*#__PURE__*/jsxRuntime.jsx("svg", {
+              className: "w-6 h-6",
+              fill: "none",
+              stroke: "currentColor",
+              viewBox: "0 0 24 24",
+              children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M4 6h16M4 12h16M4 18h16"
+              })
+            })
+          })]
+        })]
+      }), isMobileMenuOpen && /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "md:hidden py-4 border-t border-white/10 animate-slideDown max-h-[calc(100vh-5rem)] overflow-y-auto",
+        children: [navItems.map(function (item, index) {
+          var hasDropdown = item.dropdown && item.dropdown.length > 0;
+          var isDropdownOpen = openDropdown === index;
+          return /*#__PURE__*/jsxRuntime.jsxs("div", {
+            children: [/*#__PURE__*/jsxRuntime.jsx("a", {
+              href: item.href || '#',
+              className: clsx('block px-4 py-3 text-base font-medium rounded-lg transition-all duration-200 touch-manipulation', isNavItemActive(item, index) ? 'text-primary-400 bg-primary-400/10' : 'text-white hover:text-primary-400 hover:bg-white/10'),
+              onClick: function onClick(e) {
+                if (hasDropdown) {
+                  e.preventDefault();
+                  setOpenDropdown(isDropdownOpen ? null : index);
+                } else {
+                  handleNavClick(index);
+                  setIsMobileMenuOpen(false);
+                }
+              },
+              children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: "flex items-center justify-between",
+                children: [/*#__PURE__*/jsxRuntime.jsx("span", {
+                  children: item.label
+                }), hasDropdown && /*#__PURE__*/jsxRuntime.jsx("svg", {
+                  className: clsx('w-5 h-5 transition-transform duration-200', isDropdownOpen && 'rotate-180'),
+                  fill: "none",
+                  stroke: "currentColor",
+                  viewBox: "0 0 24 24",
+                  children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                    strokeLinecap: "round",
+                    strokeLinejoin: "round",
+                    strokeWidth: 2,
+                    d: "M19 9l-7 7-7-7"
+                  })
+                })]
+              })
+            }), hasDropdown && isDropdownOpen && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "pl-4 pr-4 pb-2 space-y-1",
+              children: item.dropdown.map(function (dropdownItem, idx) {
+                return /*#__PURE__*/jsxRuntime.jsx("a", {
+                  href: dropdownItem.href || '#',
+                  className: "block px-4 py-2.5 text-sm text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200 touch-manipulation",
+                  onClick: function onClick() {
+                    setOpenDropdown(null);
+                    setIsMobileMenuOpen(false);
+                  },
+                  children: dropdownItem.label
+                }, idx);
+              })
+            })]
+          }, index);
+        }), socialIcons.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "px-4 mt-4 flex items-center gap-2",
+          children: socialIcons.map(function (icon, index) {
+            return /*#__PURE__*/jsxRuntime.jsx(SocialIcon, {
+              name: icon.name,
+              href: icon.href
+            }, index);
+          })
+        }), ctaButtons.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "px-4 mt-4",
+          children: ctaButtons.map(function (button, index) {
+            return /*#__PURE__*/jsxRuntime.jsx("a", {
+              href: button.href || '#',
+              className: "block px-4 py-3 bg-primary-400 text-white rounded-lg text-center text-base font-semibold hover:bg-primary-500 transition-colors touch-manipulation",
+              onClick: function onClick() {
+                return setIsMobileMenuOpen(false);
+              },
+              children: button.label
+            }, index);
+          })
+        })]
+      })]
+    })]
+  });
+};
+
+var HeaderStandard = function HeaderStandard(_ref) {
+  var data = _ref.data,
+    className = _ref.className,
+    id = _ref.id;
+  if (!data || _typeof(data) !== 'object') {
+    console.error('HeaderStandard: data prop is required and must be an object');
+    return null;
+  }
+  var _data$logo = data.logo,
+    logo = _data$logo === void 0 ? 'Your Logo' : _data$logo,
+    _data$logoHref = data.logoHref,
+    logoHref = _data$logoHref === void 0 ? '/' : _data$logoHref,
+    _data$navItems = data.navItems,
+    navItems = _data$navItems === void 0 ? [] : _data$navItems,
+    _data$ctaButtons = data.ctaButtons,
+    ctaButtons = _data$ctaButtons === void 0 ? [] : _data$ctaButtons,
+    _data$showSearch = data.showSearch,
+    showSearch = _data$showSearch === void 0 ? false : _data$showSearch,
+    onSearch = data.onSearch,
+    _data$topLinks = data.topLinks,
+    topLinks = _data$topLinks === void 0 ? [] : _data$topLinks,
+    _data$tabs = data.tabs,
+    tabs = _data$tabs === void 0 ? [] : _data$tabs,
+    user = data.user,
+    _data$variant = data.variant,
+    variant = _data$variant === void 0 ? 'simple' : _data$variant,
+    _data$sticky = data.sticky,
+    sticky = _data$sticky === void 0 ? true : _data$sticky,
+    _data$loader = data.loader,
+    loader = _data$loader === void 0 ? false : _data$loader;
+
+  // Show skeleton loader if loader prop is true (check this FIRST before any other checks)
+  if (loader) {
+    var skeletonVariant = variant || 'simple';
+
+    // Multiple Layers variant skeleton
+    if (skeletonVariant === 'multiple-layers') {
+      return /*#__PURE__*/jsxRuntime.jsxs("header", {
+        id: id,
+        className: clsx('relative w-full z-50 bg-white border-b border-gray-200', sticky && 'sticky top-0', className),
+        children: [topLinks.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "hidden sm:block bg-gray-50 border-b border-gray-200",
+          children: /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "container mx-auto px-4 sm:px-6 lg:px-8",
+            children: /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "flex items-center justify-end h-9",
+              children: /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "flex items-center gap-3 sm:gap-4",
+                children: [0, 1, 2].map(function (index) {
+                  return /*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: "h-4 w-24 bg-gray-200 rounded animate-pulse"
+                  }, index);
+                })
+              })
+            })
+          })
+        }), /*#__PURE__*/jsxRuntime.jsx("nav", {
+          className: "container mx-auto px-4 sm:px-6 lg:px-8",
+          "aria-label": "Main navigation",
+          children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex items-center justify-between h-14 sm:h-16",
+            children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "flex items-center flex-shrink-0",
+              children: /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "h-7 sm:h-8 w-24 sm:w-28 bg-gray-200 rounded animate-pulse"
+              })
+            }), /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "hidden lg:flex items-center gap-6 xl:gap-8 flex-1 justify-center",
+              children: [0, 1, 2, 3, 4].map(function (index) {
+                return /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "h-5 w-16 bg-gray-200 rounded animate-pulse"
+                }, index);
+              })
+            }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "flex items-center gap-2 sm:gap-4 flex-shrink-0",
+              children: [ctaButtons.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "hidden md:flex items-center gap-2 lg:gap-3",
+                children: [0, 1].map(function (index) {
+                  return /*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: "h-8 w-20 bg-gray-200 rounded-md animate-pulse"
+                  }, index);
+                })
+              }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "lg:hidden w-10 h-10 bg-gray-200 rounded-md animate-pulse"
+              })]
+            })]
+          })
+        })]
+      });
+    }
+
+    // Mega Menu variant skeleton
+    if (skeletonVariant === 'mega-menu') {
+      return /*#__PURE__*/jsxRuntime.jsx("header", {
+        id: id,
+        className: clsx('relative w-full z-50 bg-white border-b border-gray-200', sticky && 'sticky top-0', className),
+        children: /*#__PURE__*/jsxRuntime.jsx("nav", {
+          className: "container mx-auto px-4 sm:px-6 lg:px-8",
+          "aria-label": "Main navigation",
+          children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex items-center justify-between h-14 sm:h-16",
+            children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "flex items-center flex-shrink-0",
+              children: /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "h-7 sm:h-8 w-24 sm:w-28 bg-gray-200 rounded animate-pulse"
+              })
+            }), /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "hidden md:flex items-stretch h-full gap-6 xl:gap-8 flex-1 justify-center",
+              children: [0, 1, 2, 3].map(function (index) {
+                return /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "h-5 w-16 bg-gray-200 rounded animate-pulse"
+                }, index);
+              })
+            }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "flex items-center gap-2 sm:gap-4 flex-shrink-0",
+              children: [ctaButtons.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "hidden md:flex items-center gap-2 lg:gap-3",
+                children: [0, 1].map(function (index) {
+                  return /*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: "h-8 w-20 bg-gray-200 rounded-md animate-pulse"
+                  }, index);
+                })
+              }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "md:hidden w-10 h-10 bg-gray-200 rounded-md animate-pulse"
+              })]
+            })]
+          })
+        })
+      });
+    }
+
+    // Menus variant skeleton
+    if (skeletonVariant === 'menus') {
+      return /*#__PURE__*/jsxRuntime.jsx("header", {
+        id: id,
+        className: clsx('relative w-full z-50 bg-white border-b border-gray-200', sticky && 'sticky top-0', className),
+        children: /*#__PURE__*/jsxRuntime.jsx("nav", {
+          className: "container mx-auto px-4 sm:px-6 lg:px-8",
+          "aria-label": "Main navigation",
+          children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex items-center justify-between h-14 sm:h-16",
+            children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "flex items-center flex-shrink-0",
+              children: /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "h-7 sm:h-8 w-24 sm:w-28 bg-gray-200 rounded animate-pulse"
+              })
+            }), /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "hidden md:flex items-center gap-6 xl:gap-8 flex-1 justify-center",
+              children: [0, 1, 2, 3, 4].map(function (index) {
+                return /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "h-5 w-16 bg-gray-200 rounded animate-pulse"
+                }, index);
+              })
+            }), /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "flex items-center gap-4 flex-shrink-0",
+              children: /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "md:hidden w-10 h-10 bg-gray-200 rounded-md animate-pulse"
+              })
+            })]
+          })
+        })
+      });
+    }
+
+    // Search variant skeleton
+    if (skeletonVariant === 'search') {
+      return /*#__PURE__*/jsxRuntime.jsx("header", {
+        id: id,
+        className: clsx('relative w-full z-50 bg-white border-b border-gray-200', sticky && 'sticky top-0', className),
+        children: /*#__PURE__*/jsxRuntime.jsx("nav", {
+          className: "container mx-auto px-4 sm:px-6 lg:px-8",
+          "aria-label": "Main navigation",
+          children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex items-center justify-between h-14 sm:h-16 gap-2 sm:gap-4",
+            children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "flex items-center flex-shrink-0",
+              children: /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "h-7 sm:h-8 w-24 sm:w-28 bg-gray-200 rounded animate-pulse"
+              })
+            }), showSearch && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "hidden md:flex items-center flex-1 max-w-md mx-4 xl:mx-8",
+              children: /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "w-full h-9 bg-gray-100 rounded-md animate-pulse"
+              })
+            }), /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "hidden md:flex items-center gap-4 lg:gap-6",
+              children: [0, 1, 2, 3].map(function (index) {
+                return /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "h-5 w-16 bg-gray-200 rounded animate-pulse"
+                }, index);
+              })
+            }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "flex items-center gap-2 sm:gap-4 flex-shrink-0",
+              children: [ctaButtons.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "hidden md:flex items-center gap-2 lg:gap-3",
+                children: [0, 1].map(function (index) {
+                  return /*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: "h-8 w-20 bg-gray-200 rounded-md animate-pulse"
+                  }, index);
+                })
+              }), showSearch && /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "md:hidden w-10 h-10 bg-gray-200 rounded-md animate-pulse"
+              }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "md:hidden w-10 h-10 bg-gray-200 rounded-md animate-pulse"
+              })]
+            })]
+          })
+        })
+      });
+    }
+
+    // Tabs variant skeleton
+    if (skeletonVariant === 'tabs') {
+      return /*#__PURE__*/jsxRuntime.jsx("header", {
+        id: id,
+        className: clsx('relative w-full z-50 bg-white border-b border-gray-200', sticky && 'sticky top-0', className),
+        children: /*#__PURE__*/jsxRuntime.jsxs("nav", {
+          className: "container mx-auto px-4 sm:px-6 lg:px-8",
+          "aria-label": "Main navigation",
+          children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex items-center justify-between h-14 sm:h-16 border-b border-gray-200",
+            children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "flex items-center flex-shrink-0",
+              children: /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "h-7 sm:h-8 w-24 sm:w-28 bg-gray-200 rounded animate-pulse"
+              })
+            }), user && /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "hidden md:flex items-center gap-2 lg:gap-3",
+              children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: "text-right",
+                children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "h-4 w-24 bg-gray-200 rounded mb-1 animate-pulse"
+                }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "h-3 w-32 bg-gray-200 rounded animate-pulse"
+                })]
+              }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gray-200 animate-pulse"
+              })]
+            }), /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "md:hidden w-10 h-10 bg-gray-200 rounded-md animate-pulse"
+            })]
+          }), tabs.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "flex items-center h-11 sm:h-12 border-b border-gray-200",
+            children: /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "flex items-center gap-1 overflow-x-auto w-full px-4 sm:px-6 lg:px-8",
+              children: [0, 1, 2, 3, 4].map(function (index) {
+                return /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "h-6 w-20 bg-gray-200 rounded animate-pulse flex-shrink-0"
+                }, index);
+              })
+            })
+          })]
+        })
+      });
+    }
+
+    // Simple variant skeleton (default)
+    return /*#__PURE__*/jsxRuntime.jsx("header", {
+      id: id,
+      className: clsx('relative w-full z-50 bg-white border-b border-gray-200', sticky && 'sticky top-0', className),
+      children: /*#__PURE__*/jsxRuntime.jsx("nav", {
+        className: "container mx-auto px-4 sm:px-6 lg:px-8",
+        "aria-label": "Main navigation",
+        children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "flex items-center justify-between h-14 sm:h-16",
+          children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "flex items-center flex-shrink-0",
+            children: /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "h-7 sm:h-8 w-24 sm:w-28 bg-gray-200 rounded animate-pulse"
+            })
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "hidden md:flex items-center gap-6 xl:gap-8 flex-1 justify-center",
+            children: [0, 1, 2, 3, 4].map(function (index) {
+              return /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "h-5 w-16 bg-gray-200 rounded animate-pulse"
+              }, index);
+            })
+          }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex items-center gap-2 sm:gap-4 flex-shrink-0",
+            children: [ctaButtons.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "hidden md:flex items-center gap-2 lg:gap-3",
+              children: [0, 1].map(function (index) {
+                return /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "h-8 w-20 bg-gray-200 rounded-md animate-pulse"
+                }, index);
+              })
+            }), /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "md:hidden w-10 h-10 bg-gray-200 rounded-md animate-pulse"
+            })]
+          })]
+        })
+      })
+    });
+  }
+  var _useState = react.useState(false),
+    _useState2 = _slicedToArray(_useState, 2),
+    isScrolled = _useState2[0],
+    setIsScrolled = _useState2[1];
+  var _useState3 = react.useState(false),
+    _useState4 = _slicedToArray(_useState3, 2),
+    isMobileMenuOpen = _useState4[0],
+    setIsMobileMenuOpen = _useState4[1];
+  var _useState5 = react.useState(navItems && navItems.length > 0 ? 0 : null),
+    _useState6 = _slicedToArray(_useState5, 2),
+    activeNavIndex = _useState6[0],
+    setActiveNavIndex = _useState6[1];
+  var _useState7 = react.useState(''),
+    _useState8 = _slicedToArray(_useState7, 2),
+    searchQuery = _useState8[0],
+    setSearchQuery = _useState8[1];
+  var _useState9 = react.useState(null),
+    _useState0 = _slicedToArray(_useState9, 2),
+    openDropdown = _useState0[0],
+    setOpenDropdown = _useState0[1];
+  var _useState1 = react.useState(null),
+    _useState10 = _slicedToArray(_useState1, 2),
+    openMegaMenu = _useState10[0],
+    setOpenMegaMenu = _useState10[1];
+  var _useState11 = react.useState(null),
+    _useState12 = _slicedToArray(_useState11, 2),
+    openMobileDropdown = _useState12[0],
+    setOpenMobileDropdown = _useState12[1];
+  var _useState13 = react.useState(null),
+    _useState14 = _slicedToArray(_useState13, 2),
+    openMobileMegaMenu = _useState14[0],
+    setOpenMobileMegaMenu = _useState14[1];
+  var _useState15 = react.useState(false),
+    _useState16 = _slicedToArray(_useState15, 2),
+    isMobile = _useState16[0],
+    setIsMobile = _useState16[1];
+  var dropdownRef = react.useRef(null);
+  var megaMenuRef = react.useRef(null);
+  var mobileMenuRef = react.useRef(null);
+  var isNavItemActive = function isNavItemActive(item, index) {
+    return activeNavIndex === index || item.active;
+  };
+  var handleNavClick = function handleNavClick(index, e) {
+    setActiveNavIndex(index);
+    setIsMobileMenuOpen(false);
+    setOpenDropdown(null);
+    setOpenMegaMenu(null);
+    setOpenMobileDropdown(null);
+    setOpenMobileMegaMenu(null);
+  };
+
+  // Check if device is mobile
+  react.useEffect(function () {
+    var checkMobile = function checkMobile() {
+      setIsMobile(window.innerWidth < 768); // md breakpoint
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return function () {
+      return window.removeEventListener('resize', checkMobile);
+    };
+  }, []);
+
+  // Lock body scroll when mobile menu is open
+  react.useEffect(function () {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return function () {
+      document.body.style.overflow = '';
+    };
+  }, [isMobileMenuOpen]);
+  react.useEffect(function () {
+    if (navItems && navItems.length > 0) {
+      setActiveNavIndex(function (prevIndex) {
+        if (prevIndex === null || prevIndex >= navItems.length) {
+          return 0;
+        }
+        return prevIndex;
+      });
+    } else {
+      setActiveNavIndex(null);
+    }
+  }, [navItems]);
+  react.useEffect(function () {
+    if (!sticky) return;
+    var handleScroll = function handleScroll() {
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return function () {
+      return window.removeEventListener('scroll', handleScroll);
+    };
+  }, [sticky]);
+  react.useEffect(function () {
+    var handleClickOutside = function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setOpenDropdown(null);
+      }
+      if (megaMenuRef.current && !megaMenuRef.current.contains(event.target)) {
+        setOpenMegaMenu(null);
+      }
+      if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target)) {
+        // Only close if clicking the backdrop, not menu items
+        if (isMobileMenuOpen && event.target.classList.contains('mobile-menu-backdrop')) {
+          setIsMobileMenuOpen(false);
+        }
+      }
+    };
+    if (openDropdown !== null || openMegaMenu !== null || isMobileMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+      return function () {
+        return document.removeEventListener('mousedown', handleClickOutside);
+      };
+    }
+  }, [openDropdown, openMegaMenu, isMobileMenuOpen]);
+
+  // Handle escape key to close mobile menu
+  react.useEffect(function () {
+    var handleEscape = function handleEscape(e) {
+      if (e.key === 'Escape' && isMobileMenuOpen) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleEscape);
+    return function () {
+      return window.removeEventListener('keydown', handleEscape);
+    };
+  }, [isMobileMenuOpen]);
+  var handleSearchSubmit = function handleSearchSubmit(e) {
+    e.preventDefault();
+    if (onSearch && searchQuery.trim()) {
+      onSearch(searchQuery);
+    }
+  };
+  var renderLogo = function renderLogo() {
+    if (typeof logo === 'string' && logo.startsWith('http')) {
+      return /*#__PURE__*/jsxRuntime.jsx("img", {
+        src: logo,
+        alt: "Logo",
+        className: "h-7 sm:h-8 w-auto"
+      });
+    }
+    if (_typeof(logo) === 'object') {
+      if (logo.image) {
+        return /*#__PURE__*/jsxRuntime.jsx("img", {
+          src: logo.image,
+          alt: logo.text || 'Logo',
+          className: "h-7 sm:h-8 w-auto"
+        });
+      }
+      if (logo.text) {
+        return /*#__PURE__*/jsxRuntime.jsx("span", {
+          className: "text-base sm:text-lg font-semibold text-gray-900",
+          children: logo.text
+        });
+      }
+    }
+    return /*#__PURE__*/jsxRuntime.jsx("span", {
+      className: "text-base sm:text-lg font-semibold text-gray-900",
+      children: logo
+    });
+  };
+
+  // Variant 1: Header with Multiple Layers
+  if (variant === 'multiple-layers') {
+    return /*#__PURE__*/jsxRuntime.jsxs(jsxRuntime.Fragment, {
+      children: [isMobileMenuOpen && /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "mobile-menu-backdrop fixed inset-0 bg-black/50 z-40 md:hidden transition-opacity duration-300",
+        onClick: function onClick() {
+          return setIsMobileMenuOpen(false);
+        },
+        "aria-hidden": "true"
+      }), /*#__PURE__*/jsxRuntime.jsxs("header", {
+        id: id,
+        className: clsx('relative w-full z-50 bg-white border-b border-gray-200', sticky && 'sticky top-0', isScrolled && 'shadow-sm', className),
+        children: [topLinks.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "hidden sm:block bg-gray-50 border-b border-gray-200",
+          children: /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "container mx-auto px-4 sm:px-6 lg:px-8",
+            children: /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "flex items-center justify-end h-9",
+              children: /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "flex items-center gap-3 sm:gap-4 text-xs sm:text-sm",
+                children: topLinks.map(function (link, index) {
+                  return /*#__PURE__*/jsxRuntime.jsx("a", {
+                    href: link.href || '#',
+                    className: "text-gray-600 hover:text-gray-900 transition-colors whitespace-nowrap",
+                    children: link.label
+                  }, index);
+                })
+              })
+            })
+          })
+        }), /*#__PURE__*/jsxRuntime.jsxs("nav", {
+          className: "container mx-auto px-4 sm:px-6 lg:px-8",
+          "aria-label": "Main navigation",
+          children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex items-center justify-between h-14 sm:h-16",
+            children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "flex items-center flex-shrink-0",
+              children: /*#__PURE__*/jsxRuntime.jsx("a", {
+                href: logoHref,
+                className: "flex items-center",
+                "aria-label": "Home",
+                children: renderLogo()
+              })
+            }), navItems && navItems.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "hidden lg:flex items-center gap-6 xl:gap-8 flex-1 justify-center",
+              children: navItems.map(function (item, index) {
+                if (!item || !item.label) return null;
+                var hasDropdown = item.dropdown && item.dropdown.length > 0;
+                return /*#__PURE__*/jsxRuntime.jsxs("div", {
+                  className: "relative",
+                  ref: hasDropdown && openDropdown === index ? dropdownRef : null,
+                  children: [/*#__PURE__*/jsxRuntime.jsxs("a", {
+                    href: item.href || '#',
+                    onClick: function onClick(e) {
+                      return handleNavClick(index);
+                    },
+                    onMouseEnter: function onMouseEnter() {
+                      return !isMobile && hasDropdown && setOpenDropdown(index);
+                    },
+                    onMouseLeave: function onMouseLeave() {
+                      return !isMobile && hasDropdown && openDropdown === index && setOpenDropdown(null);
+                    },
+                    className: clsx('text-sm font-medium transition-colors h-full flex items-center ', isNavItemActive(item, index) ? 'text-gray-900' : 'text-gray-600 hover:text-gray-900'),
+                    children: [item.label, hasDropdown && /*#__PURE__*/jsxRuntime.jsx("svg", {
+                      className: "inline-block w-4 h-4 ml-1",
+                      fill: "none",
+                      stroke: "currentColor",
+                      viewBox: "0 0 24 24",
+                      children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                        strokeLinecap: "round",
+                        strokeLinejoin: "round",
+                        strokeWidth: 2,
+                        d: "M19 9l-7 7-7-7"
+                      })
+                    })]
+                  }), hasDropdown && openDropdown === index && /*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: "absolute left-0 top-full mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50 animate-slideDown",
+                    children: item.dropdown.map(function (dropdownItem, idx) {
+                      return /*#__PURE__*/jsxRuntime.jsx("a", {
+                        href: dropdownItem.href || '#',
+                        className: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900 transition-colors",
+                        onClick: function onClick() {
+                          return setOpenDropdown(null);
+                        },
+                        children: dropdownItem.label
+                      }, idx);
+                    })
+                  })]
+                }, index);
+              })
+            }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "flex items-center gap-2 sm:gap-4 flex-shrink-0",
+              children: [ctaButtons.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "hidden md:flex items-center gap-2 lg:gap-3",
+                children: ctaButtons.map(function (button, index) {
+                  return /*#__PURE__*/jsxRuntime.jsx("a", {
+                    href: button.href || '#',
+                    className: clsx('px-3 sm:px-4 py-1.5 sm:py-2 rounded-md text-xs sm:text-sm font-medium transition-colors whitespace-nowrap', button.variant === 'primary' ? 'bg-primary-600 text-white hover:bg-primary-700' : 'text-gray-700 hover:text-gray-900 border border-gray-300 hover:border-gray-400'),
+                    children: button.label
+                  }, index);
+                })
+              }), /*#__PURE__*/jsxRuntime.jsx("button", {
+                onClick: function onClick() {
+                  return setIsMobileMenuOpen(!isMobileMenuOpen);
+                },
+                className: "lg:hidden w-10 h-10 flex items-center justify-center text-gray-700 hover:bg-gray-100 rounded-md transition-colors",
+                "aria-label": "Toggle mobile menu",
+                "aria-expanded": isMobileMenuOpen,
+                children: isMobileMenuOpen ? /*#__PURE__*/jsxRuntime.jsx("svg", {
+                  className: "w-6 h-6",
+                  fill: "none",
+                  stroke: "currentColor",
+                  viewBox: "0 0 24 24",
+                  children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                    strokeLinecap: "round",
+                    strokeLinejoin: "round",
+                    strokeWidth: 2,
+                    d: "M6 18L18 6M6 6l12 12"
+                  })
+                }) : /*#__PURE__*/jsxRuntime.jsx("svg", {
+                  className: "w-6 h-6",
+                  fill: "none",
+                  stroke: "currentColor",
+                  viewBox: "0 0 24 24",
+                  children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                    strokeLinecap: "round",
+                    strokeLinejoin: "round",
+                    strokeWidth: 2,
+                    d: "M4 6h16M4 12h16M4 18h16"
+                  })
+                })
+              })]
+            })]
+          }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+            ref: mobileMenuRef,
+            className: clsx('lg:hidden fixed top-0 right-0 h-full w-full max-w-sm bg-white shadow-xl z-50 transform transition-transform duration-300 ease-in-out overflow-y-auto', isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'),
+            children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "p-4 border-b border-gray-200 flex items-center justify-between",
+              children: [/*#__PURE__*/jsxRuntime.jsx("a", {
+                href: logoHref,
+                className: "flex items-center",
+                "aria-label": "Home",
+                children: renderLogo()
+              }), /*#__PURE__*/jsxRuntime.jsx("button", {
+                onClick: function onClick() {
+                  return setIsMobileMenuOpen(false);
+                },
+                className: "w-10 h-10 flex items-center justify-center text-gray-700 hover:bg-gray-100 rounded-md transition-colors",
+                "aria-label": "Close mobile menu",
+                children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+                  className: "w-6 h-6",
+                  fill: "none",
+                  stroke: "currentColor",
+                  viewBox: "0 0 24 24",
+                  children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                    strokeLinecap: "round",
+                    strokeLinejoin: "round",
+                    strokeWidth: 2,
+                    d: "M6 18L18 6M6 6l12 12"
+                  })
+                })
+              })]
+            }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "py-4",
+              children: [topLinks.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "px-4 pb-4 mb-4 border-b border-gray-200",
+                children: /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "space-y-2",
+                  children: topLinks.map(function (link, index) {
+                    return /*#__PURE__*/jsxRuntime.jsx("a", {
+                      href: link.href || '#',
+                      className: "block text-sm text-gray-600 hover:text-gray-900 transition-colors",
+                      onClick: function onClick() {
+                        return setIsMobileMenuOpen(false);
+                      },
+                      children: link.label
+                    }, index);
+                  })
+                })
+              }), navItems.map(function (item, index) {
+                if (!item || !item.label) return null;
+                var hasDropdown = item.dropdown && item.dropdown.length > 0;
+                var isDropdownOpen = openMobileDropdown === index;
+                return /*#__PURE__*/jsxRuntime.jsxs("div", {
+                  className: "border-b border-gray-100 last:border-b-0",
+                  children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+                    className: "flex items-center justify-between",
+                    children: [/*#__PURE__*/jsxRuntime.jsx("a", {
+                      href: item.href || '#',
+                      className: "flex-1 block px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 transition-colors",
+                      onClick: function onClick(e) {
+                        if (hasDropdown) {
+                          e.preventDefault();
+                          setOpenMobileDropdown(isDropdownOpen ? null : index);
+                        } else {
+                          handleNavClick(index);
+                        }
+                      },
+                      children: item.label
+                    }), hasDropdown && /*#__PURE__*/jsxRuntime.jsx("button", {
+                      onClick: function onClick() {
+                        return setOpenMobileDropdown(isDropdownOpen ? null : index);
+                      },
+                      className: "px-4 py-3 text-gray-500 hover:text-gray-700 transition-colors",
+                      "aria-label": "Toggle ".concat(item.label, " menu"),
+                      children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+                        className: clsx('w-5 h-5 transition-transform', isDropdownOpen && 'rotate-180'),
+                        fill: "none",
+                        stroke: "currentColor",
+                        viewBox: "0 0 24 24",
+                        children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                          strokeLinecap: "round",
+                          strokeLinejoin: "round",
+                          strokeWidth: 2,
+                          d: "M19 9l-7 7-7-7"
+                        })
+                      })
+                    })]
+                  }), hasDropdown && isDropdownOpen && /*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: "bg-gray-50",
+                    children: item.dropdown.map(function (dropdownItem, idx) {
+                      return /*#__PURE__*/jsxRuntime.jsx("a", {
+                        href: dropdownItem.href || '#',
+                        className: "block px-8 py-2 text-sm text-gray-600 hover:bg-gray-100 hover:text-gray-900 transition-colors",
+                        onClick: function onClick() {
+                          setOpenMobileDropdown(null);
+                          setIsMobileMenuOpen(false);
+                        },
+                        children: dropdownItem.label
+                      }, idx);
+                    })
+                  })]
+                }, index);
+              }), ctaButtons.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "px-4 pt-4 mt-4 border-t border-gray-200 space-y-2",
+                children: ctaButtons.map(function (button, index) {
+                  return /*#__PURE__*/jsxRuntime.jsx("a", {
+                    href: button.href || '#',
+                    className: clsx('block w-full text-center px-4 py-2.5 rounded-md text-sm font-medium transition-colors', button.variant === 'primary' ? 'bg-primary-600 text-white hover:bg-primary-700' : 'text-gray-700 hover:text-gray-900 border border-gray-300 hover:border-gray-400'),
+                    onClick: function onClick() {
+                      return setIsMobileMenuOpen(false);
+                    },
+                    children: button.label
+                  }, index);
+                })
+              })]
+            })]
+          })]
+        })]
+      })]
+    });
+  }
+
+  // Variant 2: Header with Mega Menu
+  if (variant === 'mega-menu') {
+    return /*#__PURE__*/jsxRuntime.jsxs(jsxRuntime.Fragment, {
+      children: [isMobileMenuOpen && /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "mobile-menu-backdrop fixed inset-0 bg-black/50 z-40 md:hidden transition-opacity duration-300",
+        onClick: function onClick() {
+          return setIsMobileMenuOpen(false);
+        },
+        "aria-hidden": "true"
+      }), /*#__PURE__*/jsxRuntime.jsx("header", {
+        id: id,
+        className: clsx('relative w-full z-50 bg-white border-b border-gray-200', sticky && 'sticky top-0', isScrolled && 'shadow-sm', className),
+        children: /*#__PURE__*/jsxRuntime.jsxs("nav", {
+          className: "container mx-auto px-4 sm:px-6 lg:px-8",
+          "aria-label": "Main navigation",
+          children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex items-center justify-between h-14 sm:h-16",
+            children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "flex items-center flex-shrink-0",
+              children: /*#__PURE__*/jsxRuntime.jsx("a", {
+                href: logoHref,
+                className: "flex items-center",
+                "aria-label": "Home",
+                children: renderLogo()
+              })
+            }), navItems && navItems.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "hidden md:flex items-stretch h-full gap-6 xl:gap-8 flex-1 justify-center",
+              children: navItems.map(function (item, index) {
+                if (!item || !item.label) return null;
+                var hasMegaMenu = item.megaMenu && item.megaMenu.length > 0;
+                return /*#__PURE__*/jsxRuntime.jsxs("div", {
+                  className: "relative",
+                  ref: hasMegaMenu && openMegaMenu === index ? megaMenuRef : null,
+                  children: [/*#__PURE__*/jsxRuntime.jsxs("a", {
+                    href: item.href || '#',
+                    onClick: function onClick(e) {
+                      return handleNavClick(index);
+                    },
+                    onMouseEnter: function onMouseEnter() {
+                      return !isMobile && hasMegaMenu && setOpenMegaMenu(index);
+                    },
+                    onMouseLeave: function onMouseLeave() {
+                      return !isMobile && hasMegaMenu && openMegaMenu === index && setOpenMegaMenu(null);
+                    },
+                    className: clsx('text-sm font-medium transition-colors h-full flex items-center ', isNavItemActive(item, index) ? 'text-gray-900' : 'text-gray-600 hover:text-gray-900'),
+                    children: [item.label, hasMegaMenu && /*#__PURE__*/jsxRuntime.jsx("svg", {
+                      className: "inline-block w-4 h-4 ml-1",
+                      fill: "none",
+                      stroke: "currentColor",
+                      viewBox: "0 0 24 24",
+                      children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                        strokeLinecap: "round",
+                        strokeLinejoin: "round",
+                        strokeWidth: 2,
+                        d: "M19 9l-7 7-7-7"
+                      })
+                    })]
+                  }), hasMegaMenu && openMegaMenu === index && /*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: "absolute left-1/2 transform -translate-x-1/2 top-full w-screen max-w-5xl bg-white rounded-lg shadow-xl border border-gray-200 p-4 sm:p-6 z-50 animate-slideDown",
+                    children: /*#__PURE__*/jsxRuntime.jsx("div", {
+                      className: "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6",
+                      children: item.megaMenu.map(function (megaItem, idx) {
+                        return /*#__PURE__*/jsxRuntime.jsxs("div", {
+                          children: [megaItem.title && /*#__PURE__*/jsxRuntime.jsx("h3", {
+                            className: "text-sm font-semibold text-gray-900 mb-2 sm:mb-3",
+                            children: megaItem.title
+                          }), megaItem.links && megaItem.links.length > 0 && /*#__PURE__*/jsxRuntime.jsx("ul", {
+                            className: "space-y-1.5 sm:space-y-2",
+                            children: megaItem.links.map(function (link, linkIdx) {
+                              return /*#__PURE__*/jsxRuntime.jsx("li", {
+                                children: /*#__PURE__*/jsxRuntime.jsx("a", {
+                                  href: link.href || '#',
+                                  className: "text-sm text-gray-600 hover:text-gray-900 transition-colors block py-1",
+                                  onClick: function onClick() {
+                                    return setOpenMegaMenu(null);
+                                  },
+                                  children: link.label
+                                })
+                              }, linkIdx);
+                            })
+                          })]
+                        }, idx);
+                      })
+                    })
+                  })]
+                }, index);
+              })
+            }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "flex items-center gap-2 sm:gap-4 flex-shrink-0",
+              children: [ctaButtons.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "hidden md:flex items-center gap-2 lg:gap-3",
+                children: ctaButtons.map(function (button, index) {
+                  return /*#__PURE__*/jsxRuntime.jsx("a", {
+                    href: button.href || '#',
+                    className: clsx('px-3 sm:px-4 py-1.5 sm:py-2 rounded-md text-xs sm:text-sm font-medium transition-colors whitespace-nowrap', button.variant === 'primary' ? 'bg-primary-600 text-white hover:bg-primary-700' : 'text-gray-700 hover:text-gray-900 border border-gray-300 hover:border-gray-400'),
+                    children: button.label
+                  }, index);
+                })
+              }), /*#__PURE__*/jsxRuntime.jsx("button", {
+                onClick: function onClick() {
+                  return setIsMobileMenuOpen(!isMobileMenuOpen);
+                },
+                className: "md:hidden w-10 h-10 flex items-center justify-center text-gray-700 hover:bg-gray-100 rounded-md transition-colors",
+                "aria-label": "Toggle mobile menu",
+                "aria-expanded": isMobileMenuOpen,
+                children: isMobileMenuOpen ? /*#__PURE__*/jsxRuntime.jsx("svg", {
+                  className: "w-6 h-6",
+                  fill: "none",
+                  stroke: "currentColor",
+                  viewBox: "0 0 24 24",
+                  children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                    strokeLinecap: "round",
+                    strokeLinejoin: "round",
+                    strokeWidth: 2,
+                    d: "M6 18L18 6M6 6l12 12"
+                  })
+                }) : /*#__PURE__*/jsxRuntime.jsx("svg", {
+                  className: "w-6 h-6",
+                  fill: "none",
+                  stroke: "currentColor",
+                  viewBox: "0 0 24 24",
+                  children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                    strokeLinecap: "round",
+                    strokeLinejoin: "round",
+                    strokeWidth: 2,
+                    d: "M4 6h16M4 12h16M4 18h16"
+                  })
+                })
+              })]
+            })]
+          }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+            ref: mobileMenuRef,
+            className: clsx('md:hidden fixed top-0 right-0 h-full w-full max-w-sm bg-white shadow-xl z-50 transform transition-transform duration-300 ease-in-out overflow-y-auto', isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'),
+            children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "p-4 border-b border-gray-200 flex items-center justify-between",
+              children: [/*#__PURE__*/jsxRuntime.jsx("a", {
+                href: logoHref,
+                className: "flex items-center",
+                "aria-label": "Home",
+                children: renderLogo()
+              }), /*#__PURE__*/jsxRuntime.jsx("button", {
+                onClick: function onClick() {
+                  return setIsMobileMenuOpen(false);
+                },
+                className: "w-10 h-10 flex items-center justify-center text-gray-700 hover:bg-gray-100 rounded-md transition-colors",
+                "aria-label": "Close mobile menu",
+                children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+                  className: "w-6 h-6",
+                  fill: "none",
+                  stroke: "currentColor",
+                  viewBox: "0 0 24 24",
+                  children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                    strokeLinecap: "round",
+                    strokeLinejoin: "round",
+                    strokeWidth: 2,
+                    d: "M6 18L18 6M6 6l12 12"
+                  })
+                })
+              })]
+            }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "py-4",
+              children: [navItems.map(function (item, index) {
+                if (!item || !item.label) return null;
+                var hasMegaMenu = item.megaMenu && item.megaMenu.length > 0;
+                var isMegaMenuOpen = openMobileMegaMenu === index;
+                return /*#__PURE__*/jsxRuntime.jsxs("div", {
+                  className: "border-b border-gray-100 last:border-b-0",
+                  children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+                    className: "flex items-center justify-between",
+                    children: [/*#__PURE__*/jsxRuntime.jsx("a", {
+                      href: item.href || '#',
+                      className: "flex-1 block px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 transition-colors",
+                      onClick: function onClick(e) {
+                        if (hasMegaMenu) {
+                          e.preventDefault();
+                          setOpenMobileMegaMenu(isMegaMenuOpen ? null : index);
+                        } else {
+                          handleNavClick(index);
+                        }
+                      },
+                      children: item.label
+                    }), hasMegaMenu && /*#__PURE__*/jsxRuntime.jsx("button", {
+                      onClick: function onClick() {
+                        return setOpenMobileMegaMenu(isMegaMenuOpen ? null : index);
+                      },
+                      className: "px-4 py-3 text-gray-500 hover:text-gray-700 transition-colors",
+                      "aria-label": "Toggle ".concat(item.label, " menu"),
+                      children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+                        className: clsx('w-5 h-5 transition-transform', isMegaMenuOpen && 'rotate-180'),
+                        fill: "none",
+                        stroke: "currentColor",
+                        viewBox: "0 0 24 24",
+                        children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                          strokeLinecap: "round",
+                          strokeLinejoin: "round",
+                          strokeWidth: 2,
+                          d: "M19 9l-7 7-7-7"
+                        })
+                      })
+                    })]
+                  }), hasMegaMenu && isMegaMenuOpen && /*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: "bg-gray-50 px-4 py-3",
+                    children: item.megaMenu.map(function (megaItem, idx) {
+                      return /*#__PURE__*/jsxRuntime.jsxs("div", {
+                        className: "mb-4 last:mb-0",
+                        children: [megaItem.title && /*#__PURE__*/jsxRuntime.jsx("h3", {
+                          className: "text-sm font-semibold text-gray-900 mb-2",
+                          children: megaItem.title
+                        }), megaItem.links && megaItem.links.length > 0 && /*#__PURE__*/jsxRuntime.jsx("ul", {
+                          className: "space-y-1.5",
+                          children: megaItem.links.map(function (link, linkIdx) {
+                            return /*#__PURE__*/jsxRuntime.jsx("li", {
+                              children: /*#__PURE__*/jsxRuntime.jsx("a", {
+                                href: link.href || '#',
+                                className: "block text-sm text-gray-600 hover:text-gray-900 transition-colors py-1",
+                                onClick: function onClick() {
+                                  setOpenMobileMegaMenu(null);
+                                  setIsMobileMenuOpen(false);
+                                },
+                                children: link.label
+                              })
+                            }, linkIdx);
+                          })
+                        })]
+                      }, idx);
+                    })
+                  })]
+                }, index);
+              }), ctaButtons.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "px-4 pt-4 mt-4 border-t border-gray-200 space-y-2",
+                children: ctaButtons.map(function (button, index) {
+                  return /*#__PURE__*/jsxRuntime.jsx("a", {
+                    href: button.href || '#',
+                    className: clsx('block w-full text-center px-4 py-2.5 rounded-md text-sm font-medium transition-colors', button.variant === 'primary' ? 'bg-primary-600 text-white hover:bg-primary-700' : 'text-gray-700 hover:text-gray-900 border border-gray-300 hover:border-gray-400'),
+                    onClick: function onClick() {
+                      return setIsMobileMenuOpen(false);
+                    },
+                    children: button.label
+                  }, index);
+                })
+              })]
+            })]
+          })]
+        })
+      })]
+    });
+  }
+
+  // Variant 3: Header with Menus
+  if (variant === 'menus') {
+    return /*#__PURE__*/jsxRuntime.jsxs(jsxRuntime.Fragment, {
+      children: [isMobileMenuOpen && /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "mobile-menu-backdrop fixed inset-0 bg-black/50 z-40 md:hidden transition-opacity duration-300",
+        onClick: function onClick() {
+          return setIsMobileMenuOpen(false);
+        },
+        "aria-hidden": "true"
+      }), /*#__PURE__*/jsxRuntime.jsx("header", {
+        id: id,
+        className: clsx('relative w-full z-50 bg-white border-b border-gray-200', sticky && 'sticky top-0', isScrolled && 'shadow-sm', className),
+        children: /*#__PURE__*/jsxRuntime.jsxs("nav", {
+          className: "container mx-auto px-4 sm:px-6 lg:px-8",
+          "aria-label": "Main navigation",
+          children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex items-center justify-between h-14 sm:h-16",
+            children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "flex items-center flex-shrink-0",
+              children: /*#__PURE__*/jsxRuntime.jsx("a", {
+                href: logoHref,
+                className: "flex items-center",
+                "aria-label": "Home",
+                children: renderLogo()
+              })
+            }), navItems && navItems.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "hidden md:flex items-center gap-6 xl:gap-8 flex-1 justify-center",
+              children: navItems.map(function (item, index) {
+                if (!item || !item.label) return null;
+                var hasDropdown = item.dropdown && item.dropdown.length > 0;
+                return /*#__PURE__*/jsxRuntime.jsxs("div", {
+                  className: "relative",
+                  ref: hasDropdown && openDropdown === index ? dropdownRef : null,
+                  children: [/*#__PURE__*/jsxRuntime.jsxs("a", {
+                    href: item.href || '#',
+                    onClick: function onClick(e) {
+                      return handleNavClick(index);
+                    },
+                    onMouseEnter: function onMouseEnter() {
+                      return !isMobile && hasDropdown && setOpenDropdown(index);
+                    },
+                    onMouseLeave: function onMouseLeave() {
+                      return !isMobile && hasDropdown && openDropdown === index && setOpenDropdown(null);
+                    },
+                    className: clsx('text-sm font-medium transition-colors', isNavItemActive(item, index) ? 'text-gray-900' : 'text-gray-600 hover:text-gray-900'),
+                    children: [item.label, hasDropdown && /*#__PURE__*/jsxRuntime.jsx("svg", {
+                      className: "inline-block w-4 h-4 ml-1",
+                      fill: "none",
+                      stroke: "currentColor",
+                      viewBox: "0 0 24 24",
+                      children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                        strokeLinecap: "round",
+                        strokeLinejoin: "round",
+                        strokeWidth: 2,
+                        d: "M19 9l-7 7-7-7"
+                      })
+                    })]
+                  }), hasDropdown && openDropdown === index && /*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: "absolute left-0 top-full mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50 animate-slideDown",
+                    children: item.dropdown.map(function (dropdownItem, idx) {
+                      return /*#__PURE__*/jsxRuntime.jsx("a", {
+                        href: dropdownItem.href || '#',
+                        className: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900 transition-colors",
+                        onClick: function onClick() {
+                          return setOpenDropdown(null);
+                        },
+                        children: dropdownItem.label
+                      }, idx);
+                    })
+                  })]
+                }, index);
+              })
+            }), /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "flex items-center gap-4 flex-shrink-0",
+              children: /*#__PURE__*/jsxRuntime.jsx("button", {
+                onClick: function onClick() {
+                  return setIsMobileMenuOpen(!isMobileMenuOpen);
+                },
+                className: "md:hidden w-10 h-10 flex items-center justify-center text-gray-700 hover:bg-gray-100 rounded-md transition-colors",
+                "aria-label": "Toggle mobile menu",
+                "aria-expanded": isMobileMenuOpen,
+                children: isMobileMenuOpen ? /*#__PURE__*/jsxRuntime.jsx("svg", {
+                  className: "w-6 h-6",
+                  fill: "none",
+                  stroke: "currentColor",
+                  viewBox: "0 0 24 24",
+                  children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                    strokeLinecap: "round",
+                    strokeLinejoin: "round",
+                    strokeWidth: 2,
+                    d: "M6 18L18 6M6 6l12 12"
+                  })
+                }) : /*#__PURE__*/jsxRuntime.jsx("svg", {
+                  className: "w-6 h-6",
+                  fill: "none",
+                  stroke: "currentColor",
+                  viewBox: "0 0 24 24",
+                  children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                    strokeLinecap: "round",
+                    strokeLinejoin: "round",
+                    strokeWidth: 2,
+                    d: "M4 6h16M4 12h16M4 18h16"
+                  })
+                })
+              })
+            })]
+          }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+            ref: mobileMenuRef,
+            className: clsx('md:hidden fixed top-0 right-0 h-full w-full max-w-sm bg-white shadow-xl z-50 transform transition-transform duration-300 ease-in-out overflow-y-auto', isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'),
+            children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "p-4 border-b border-gray-200 flex items-center justify-between",
+              children: [/*#__PURE__*/jsxRuntime.jsx("a", {
+                href: logoHref,
+                className: "flex items-center",
+                "aria-label": "Home",
+                children: renderLogo()
+              }), /*#__PURE__*/jsxRuntime.jsx("button", {
+                onClick: function onClick() {
+                  return setIsMobileMenuOpen(false);
+                },
+                className: "w-10 h-10 flex items-center justify-center text-gray-700 hover:bg-gray-100 rounded-md transition-colors",
+                "aria-label": "Close mobile menu",
+                children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+                  className: "w-6 h-6",
+                  fill: "none",
+                  stroke: "currentColor",
+                  viewBox: "0 0 24 24",
+                  children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                    strokeLinecap: "round",
+                    strokeLinejoin: "round",
+                    strokeWidth: 2,
+                    d: "M6 18L18 6M6 6l12 12"
+                  })
+                })
+              })]
+            }), /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "py-4",
+              children: navItems.map(function (item, index) {
+                if (!item || !item.label) return null;
+                var hasDropdown = item.dropdown && item.dropdown.length > 0;
+                var isDropdownOpen = openMobileDropdown === index;
+                return /*#__PURE__*/jsxRuntime.jsxs("div", {
+                  className: "border-b border-gray-100 last:border-b-0",
+                  children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+                    className: "flex items-center justify-between",
+                    children: [/*#__PURE__*/jsxRuntime.jsx("a", {
+                      href: item.href || '#',
+                      className: "flex-1 block px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 transition-colors",
+                      onClick: function onClick(e) {
+                        if (hasDropdown) {
+                          e.preventDefault();
+                          setOpenMobileDropdown(isDropdownOpen ? null : index);
+                        } else {
+                          handleNavClick(index);
+                        }
+                      },
+                      children: item.label
+                    }), hasDropdown && /*#__PURE__*/jsxRuntime.jsx("button", {
+                      onClick: function onClick() {
+                        return setOpenMobileDropdown(isDropdownOpen ? null : index);
+                      },
+                      className: "px-4 py-3 text-gray-500 hover:text-gray-700 transition-colors",
+                      "aria-label": "Toggle ".concat(item.label, " menu"),
+                      children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+                        className: clsx('w-5 h-5 transition-transform', isDropdownOpen && 'rotate-180'),
+                        fill: "none",
+                        stroke: "currentColor",
+                        viewBox: "0 0 24 24",
+                        children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                          strokeLinecap: "round",
+                          strokeLinejoin: "round",
+                          strokeWidth: 2,
+                          d: "M19 9l-7 7-7-7"
+                        })
+                      })
+                    })]
+                  }), hasDropdown && isDropdownOpen && /*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: "bg-gray-50",
+                    children: item.dropdown.map(function (dropdownItem, idx) {
+                      return /*#__PURE__*/jsxRuntime.jsx("a", {
+                        href: dropdownItem.href || '#',
+                        className: "block px-8 py-2 text-sm text-gray-600 hover:bg-gray-100 hover:text-gray-900 transition-colors",
+                        onClick: function onClick() {
+                          setOpenMobileDropdown(null);
+                          setIsMobileMenuOpen(false);
+                        },
+                        children: dropdownItem.label
+                      }, idx);
+                    })
+                  })]
+                }, index);
+              })
+            })]
+          })]
+        })
+      })]
+    });
+  }
+
+  // Variant 4: Header with Search
+  if (variant === 'search') {
+    return /*#__PURE__*/jsxRuntime.jsxs(jsxRuntime.Fragment, {
+      children: [isMobileMenuOpen && /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "mobile-menu-backdrop fixed inset-0 bg-black/50 z-40 md:hidden transition-opacity duration-300",
+        onClick: function onClick() {
+          return setIsMobileMenuOpen(false);
+        },
+        "aria-hidden": "true"
+      }), /*#__PURE__*/jsxRuntime.jsx("header", {
+        id: id,
+        className: clsx('relative w-full z-50 bg-white border-b border-gray-200', sticky && 'sticky top-0', isScrolled && 'shadow-sm', className),
+        children: /*#__PURE__*/jsxRuntime.jsxs("nav", {
+          className: "container mx-auto px-4 sm:px-6 lg:px-8",
+          "aria-label": "Main navigation",
+          children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex items-center justify-between h-14 sm:h-16 gap-2 sm:gap-4",
+            children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "flex items-center flex-shrink-0",
+              children: /*#__PURE__*/jsxRuntime.jsx("a", {
+                href: logoHref,
+                className: "flex items-center",
+                "aria-label": "Home",
+                children: renderLogo()
+              })
+            }), showSearch && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "hidden md:flex items-center flex-1 max-w-md mx-4 xl:mx-8",
+              children: /*#__PURE__*/jsxRuntime.jsxs("form", {
+                onSubmit: handleSearchSubmit,
+                className: "relative w-full",
+                children: [/*#__PURE__*/jsxRuntime.jsx("input", {
+                  type: "text",
+                  placeholder: "Search...",
+                  value: searchQuery,
+                  onChange: function onChange(e) {
+                    return setSearchQuery(e.target.value);
+                  },
+                  className: "w-full pl-10 pr-4 py-2 bg-gray-50 border border-gray-200 rounded-md text-sm text-gray-900 placeholder-gray-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors",
+                  "aria-label": "Search"
+                }), /*#__PURE__*/jsxRuntime.jsx("button", {
+                  type: "submit",
+                  className: "absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors",
+                  "aria-label": "Submit search",
+                  children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+                    className: "w-5 h-5",
+                    fill: "none",
+                    stroke: "currentColor",
+                    viewBox: "0 0 24 24",
+                    children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                      strokeLinecap: "round",
+                      strokeLinejoin: "round",
+                      strokeWidth: 2,
+                      d: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                    })
+                  })
+                })]
+              })
+            }), navItems && navItems.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "hidden md:flex items-center gap-4 lg:gap-6",
+              children: navItems.map(function (item, index) {
+                return /*#__PURE__*/jsxRuntime.jsx("a", {
+                  href: item.href || '#',
+                  onClick: function onClick(e) {
+                    return handleNavClick(index);
+                  },
+                  className: clsx('text-sm font-medium transition-colors whitespace-nowrap', isNavItemActive(item, index) ? 'text-gray-900' : 'text-gray-600 hover:text-gray-900'),
+                  children: item.label
+                }, index);
+              })
+            }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "flex items-center gap-2 sm:gap-4 flex-shrink-0",
+              children: [ctaButtons.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "hidden md:flex items-center gap-2 lg:gap-3",
+                children: ctaButtons.map(function (button, index) {
+                  return /*#__PURE__*/jsxRuntime.jsx("a", {
+                    href: button.href || '#',
+                    className: clsx('px-3 sm:px-4 py-1.5 sm:py-2 rounded-md text-xs sm:text-sm font-medium transition-colors whitespace-nowrap', button.variant === 'primary' ? 'bg-primary-600 text-white hover:bg-primary-700' : 'text-gray-700 hover:text-gray-900 border border-gray-300 hover:border-gray-400'),
+                    children: button.label
+                  }, index);
+                })
+              }), showSearch && /*#__PURE__*/jsxRuntime.jsx("button", {
+                onClick: function onClick() {
+                  return setIsMobileMenuOpen(!isMobileMenuOpen);
+                },
+                className: "md:hidden w-10 h-10 flex items-center justify-center text-gray-700 hover:bg-gray-100 rounded-md transition-colors",
+                "aria-label": "Toggle search",
+                children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+                  className: "w-5 h-5",
+                  fill: "none",
+                  stroke: "currentColor",
+                  viewBox: "0 0 24 24",
+                  children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                    strokeLinecap: "round",
+                    strokeLinejoin: "round",
+                    strokeWidth: 2,
+                    d: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  })
+                })
+              }), /*#__PURE__*/jsxRuntime.jsx("button", {
+                onClick: function onClick() {
+                  return setIsMobileMenuOpen(!isMobileMenuOpen);
+                },
+                className: "md:hidden w-10 h-10 flex items-center justify-center text-gray-700 hover:bg-gray-100 rounded-md transition-colors",
+                "aria-label": "Toggle mobile menu",
+                "aria-expanded": isMobileMenuOpen,
+                children: isMobileMenuOpen ? /*#__PURE__*/jsxRuntime.jsx("svg", {
+                  className: "w-6 h-6",
+                  fill: "none",
+                  stroke: "currentColor",
+                  viewBox: "0 0 24 24",
+                  children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                    strokeLinecap: "round",
+                    strokeLinejoin: "round",
+                    strokeWidth: 2,
+                    d: "M6 18L18 6M6 6l12 12"
+                  })
+                }) : /*#__PURE__*/jsxRuntime.jsx("svg", {
+                  className: "w-6 h-6",
+                  fill: "none",
+                  stroke: "currentColor",
+                  viewBox: "0 0 24 24",
+                  children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                    strokeLinecap: "round",
+                    strokeLinejoin: "round",
+                    strokeWidth: 2,
+                    d: "M4 6h16M4 12h16M4 18h16"
+                  })
+                })
+              })]
+            })]
+          }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+            ref: mobileMenuRef,
+            className: clsx('md:hidden fixed top-0 right-0 h-full w-full max-w-sm bg-white shadow-xl z-50 transform transition-transform duration-300 ease-in-out overflow-y-auto', isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'),
+            children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "p-4 border-b border-gray-200 flex items-center justify-between",
+              children: [/*#__PURE__*/jsxRuntime.jsx("a", {
+                href: logoHref,
+                className: "flex items-center",
+                "aria-label": "Home",
+                children: renderLogo()
+              }), /*#__PURE__*/jsxRuntime.jsx("button", {
+                onClick: function onClick() {
+                  return setIsMobileMenuOpen(false);
+                },
+                className: "w-10 h-10 flex items-center justify-center text-gray-700 hover:bg-gray-100 rounded-md transition-colors",
+                "aria-label": "Close mobile menu",
+                children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+                  className: "w-6 h-6",
+                  fill: "none",
+                  stroke: "currentColor",
+                  viewBox: "0 0 24 24",
+                  children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                    strokeLinecap: "round",
+                    strokeLinejoin: "round",
+                    strokeWidth: 2,
+                    d: "M6 18L18 6M6 6l12 12"
+                  })
+                })
+              })]
+            }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "py-4",
+              children: [showSearch && /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "px-4 mb-4",
+                children: /*#__PURE__*/jsxRuntime.jsxs("form", {
+                  onSubmit: handleSearchSubmit,
+                  className: "relative",
+                  children: [/*#__PURE__*/jsxRuntime.jsx("input", {
+                    type: "text",
+                    placeholder: "Search...",
+                    value: searchQuery,
+                    onChange: function onChange(e) {
+                      return setSearchQuery(e.target.value);
+                    },
+                    className: "w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-md text-sm text-gray-900 placeholder-gray-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent",
+                    "aria-label": "Search"
+                  }), /*#__PURE__*/jsxRuntime.jsx("button", {
+                    type: "submit",
+                    className: "absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors",
+                    "aria-label": "Submit search",
+                    children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+                      className: "w-5 h-5",
+                      fill: "none",
+                      stroke: "currentColor",
+                      viewBox: "0 0 24 24",
+                      children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                        strokeLinecap: "round",
+                        strokeLinejoin: "round",
+                        strokeWidth: 2,
+                        d: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                      })
+                    })
+                  })]
+                })
+              }), navItems.map(function (item, index) {
+                return /*#__PURE__*/jsxRuntime.jsx("a", {
+                  href: item.href || '#',
+                  className: "block px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-b-0",
+                  onClick: function onClick() {
+                    return setIsMobileMenuOpen(false);
+                  },
+                  children: item.label
+                }, index);
+              }), ctaButtons.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "px-4 pt-4 mt-4 border-t border-gray-200 space-y-2",
+                children: ctaButtons.map(function (button, index) {
+                  return /*#__PURE__*/jsxRuntime.jsx("a", {
+                    href: button.href || '#',
+                    className: clsx('block w-full text-center px-4 py-2.5 rounded-md text-sm font-medium transition-colors', button.variant === 'primary' ? 'bg-primary-600 text-white hover:bg-primary-700' : 'text-gray-700 hover:text-gray-900 border border-gray-300 hover:border-gray-400'),
+                    onClick: function onClick() {
+                      return setIsMobileMenuOpen(false);
+                    },
+                    children: button.label
+                  }, index);
+                })
+              })]
+            })]
+          })]
+        })
+      })]
+    });
+  }
+
+  // Variant 5: Simple Header
+  if (variant === 'simple') {
+    return /*#__PURE__*/jsxRuntime.jsxs(jsxRuntime.Fragment, {
+      children: [isMobileMenuOpen && /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "mobile-menu-backdrop fixed inset-0 bg-black/50 z-40 md:hidden transition-opacity duration-300",
+        onClick: function onClick() {
+          return setIsMobileMenuOpen(false);
+        },
+        "aria-hidden": "true"
+      }), /*#__PURE__*/jsxRuntime.jsx("header", {
+        id: id,
+        className: clsx('relative w-full z-50 bg-white border-b border-gray-200', sticky && 'sticky top-0', isScrolled && 'shadow-sm', className),
+        children: /*#__PURE__*/jsxRuntime.jsxs("nav", {
+          className: "container mx-auto px-4 sm:px-6 lg:px-8",
+          "aria-label": "Main navigation",
+          children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex items-center justify-between h-14 sm:h-16",
+            children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "flex items-center flex-shrink-0",
+              children: /*#__PURE__*/jsxRuntime.jsx("a", {
+                href: logoHref,
+                className: "flex items-center",
+                "aria-label": "Home",
+                children: renderLogo()
+              })
+            }), navItems && navItems.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "hidden md:flex items-center gap-6 xl:gap-8 flex-1 justify-center",
+              children: navItems.map(function (item, index) {
+                return /*#__PURE__*/jsxRuntime.jsx("a", {
+                  href: item.href || '#',
+                  onClick: function onClick(e) {
+                    return handleNavClick(index);
+                  },
+                  className: clsx('text-sm font-medium transition-colors whitespace-nowrap', isNavItemActive(item, index) ? 'text-gray-900' : 'text-gray-600 hover:text-gray-900'),
+                  children: item.label
+                }, index);
+              })
+            }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "flex items-center gap-2 sm:gap-4 flex-shrink-0",
+              children: [ctaButtons.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "hidden md:flex items-center gap-2 lg:gap-3",
+                children: ctaButtons.map(function (button, index) {
+                  return /*#__PURE__*/jsxRuntime.jsx("a", {
+                    href: button.href || '#',
+                    className: clsx('px-3 sm:px-4 py-1.5 sm:py-2 rounded-md text-xs sm:text-sm font-medium transition-colors whitespace-nowrap', button.variant === 'primary' ? 'bg-primary-600 text-white hover:bg-primary-700' : 'text-gray-700 hover:text-gray-900 border border-gray-300 hover:border-gray-400'),
+                    children: button.label
+                  }, index);
+                })
+              }), /*#__PURE__*/jsxRuntime.jsx("button", {
+                onClick: function onClick() {
+                  return setIsMobileMenuOpen(!isMobileMenuOpen);
+                },
+                className: "md:hidden w-10 h-10 flex items-center justify-center text-gray-700 hover:bg-gray-100 rounded-md transition-colors",
+                "aria-label": "Toggle mobile menu",
+                "aria-expanded": isMobileMenuOpen,
+                children: isMobileMenuOpen ? /*#__PURE__*/jsxRuntime.jsx("svg", {
+                  className: "w-6 h-6",
+                  fill: "none",
+                  stroke: "currentColor",
+                  viewBox: "0 0 24 24",
+                  children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                    strokeLinecap: "round",
+                    strokeLinejoin: "round",
+                    strokeWidth: 2,
+                    d: "M6 18L18 6M6 6l12 12"
+                  })
+                }) : /*#__PURE__*/jsxRuntime.jsx("svg", {
+                  className: "w-6 h-6",
+                  fill: "none",
+                  stroke: "currentColor",
+                  viewBox: "0 0 24 24",
+                  children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                    strokeLinecap: "round",
+                    strokeLinejoin: "round",
+                    strokeWidth: 2,
+                    d: "M4 6h16M4 12h16M4 18h16"
+                  })
+                })
+              })]
+            })]
+          }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+            ref: mobileMenuRef,
+            className: clsx('md:hidden fixed top-0 right-0 h-full w-full max-w-sm bg-white shadow-xl z-50 transform transition-transform duration-300 ease-in-out overflow-y-auto', isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'),
+            children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "p-4 border-b border-gray-200 flex items-center justify-between",
+              children: [/*#__PURE__*/jsxRuntime.jsx("a", {
+                href: logoHref,
+                className: "flex items-center",
+                "aria-label": "Home",
+                children: renderLogo()
+              }), /*#__PURE__*/jsxRuntime.jsx("button", {
+                onClick: function onClick() {
+                  return setIsMobileMenuOpen(false);
+                },
+                className: "w-10 h-10 flex items-center justify-center text-gray-700 hover:bg-gray-100 rounded-md transition-colors",
+                "aria-label": "Close mobile menu",
+                children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+                  className: "w-6 h-6",
+                  fill: "none",
+                  stroke: "currentColor",
+                  viewBox: "0 0 24 24",
+                  children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                    strokeLinecap: "round",
+                    strokeLinejoin: "round",
+                    strokeWidth: 2,
+                    d: "M6 18L18 6M6 6l12 12"
+                  })
+                })
+              })]
+            }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "py-4",
+              children: [navItems.map(function (item, index) {
+                return /*#__PURE__*/jsxRuntime.jsx("a", {
+                  href: item.href || '#',
+                  className: "block px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-b-0",
+                  onClick: function onClick() {
+                    return setIsMobileMenuOpen(false);
+                  },
+                  children: item.label
+                }, index);
+              }), ctaButtons.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "px-4 pt-4 mt-4 border-t border-gray-200 space-y-2",
+                children: ctaButtons.map(function (button, index) {
+                  return /*#__PURE__*/jsxRuntime.jsx("a", {
+                    href: button.href || '#',
+                    className: clsx('block w-full text-center px-4 py-2.5 rounded-md text-sm font-medium transition-colors', button.variant === 'primary' ? 'bg-primary-600 text-white hover:bg-primary-700' : 'text-gray-700 hover:text-gray-900 border border-gray-300 hover:border-gray-400'),
+                    onClick: function onClick() {
+                      return setIsMobileMenuOpen(false);
+                    },
+                    children: button.label
+                  }, index);
+                })
+              })]
+            })]
+          })]
+        })
+      })]
+    });
+  }
+
+  // Variant 6: Header with Tabs
+  if (variant === 'tabs') {
+    var _useState17 = react.useState(tabs.length > 0 ? 0 : null),
+      _useState18 = _slicedToArray(_useState17, 2),
+      activeTab = _useState18[0],
+      setActiveTab = _useState18[1];
+    return /*#__PURE__*/jsxRuntime.jsxs(jsxRuntime.Fragment, {
+      children: [isMobileMenuOpen && /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "mobile-menu-backdrop fixed inset-0 bg-black/50 z-40 md:hidden transition-opacity duration-300",
+        onClick: function onClick() {
+          return setIsMobileMenuOpen(false);
+        },
+        "aria-hidden": "true"
+      }), /*#__PURE__*/jsxRuntime.jsx("header", {
+        id: id,
+        className: clsx('relative w-full z-50 bg-white border-b border-gray-200', sticky && 'sticky top-0', isScrolled && 'shadow-sm', className),
+        children: /*#__PURE__*/jsxRuntime.jsxs("nav", {
+          className: "container mx-auto px-4 sm:px-6 lg:px-8",
+          "aria-label": "Main navigation",
+          children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex items-center justify-between h-14 sm:h-16 border-b border-gray-200",
+            children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "flex items-center flex-shrink-0",
+              children: /*#__PURE__*/jsxRuntime.jsx("a", {
+                href: logoHref,
+                className: "flex items-center",
+                "aria-label": "Home",
+                children: renderLogo()
+              })
+            }), user && /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "hidden md:flex items-center gap-2 lg:gap-3",
+              children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: "text-right block",
+                children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "text-sm font-medium text-gray-900",
+                  children: user.name
+                }), user.email && /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "text-xs text-gray-500",
+                  children: user.email
+                })]
+              }), user.avatar ? /*#__PURE__*/jsxRuntime.jsx("img", {
+                src: user.avatar,
+                alt: user.name,
+                className: "w-9 h-9 sm:w-10 sm:h-10 rounded-full"
+              }) : /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gray-300 flex items-center justify-center",
+                children: /*#__PURE__*/jsxRuntime.jsx("span", {
+                  className: "text-xs sm:text-sm font-medium text-gray-700",
+                  children: user.name.split(' ').map(function (n) {
+                    return n[0];
+                  }).join('')
+                })
+              })]
+            }), /*#__PURE__*/jsxRuntime.jsx("button", {
+              onClick: function onClick() {
+                return setIsMobileMenuOpen(!isMobileMenuOpen);
+              },
+              className: "md:hidden w-10 h-10 flex items-center justify-center text-gray-700 hover:bg-gray-100 rounded-md transition-colors",
+              "aria-label": "Toggle mobile menu",
+              "aria-expanded": isMobileMenuOpen,
+              children: isMobileMenuOpen ? /*#__PURE__*/jsxRuntime.jsx("svg", {
+                className: "w-6 h-6",
+                fill: "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2,
+                  d: "M6 18L18 6M6 6l12 12"
+                })
+              }) : /*#__PURE__*/jsxRuntime.jsx("svg", {
+                className: "w-6 h-6",
+                fill: "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2,
+                  d: "M4 6h16M4 12h16M4 18h16"
+                })
+              })
+            })]
+          }), tabs.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "flex items-center h-11 sm:h-12 border-b border-gray-200 overflow-hidden",
+            children: /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "flex items-center gap-1 overflow-x-auto scrollbar-hide w-full -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8",
+              children: tabs.map(function (tab, index) {
+                return /*#__PURE__*/jsxRuntime.jsx("a", {
+                  href: tab.href || '#',
+                  onClick: function onClick(e) {
+                    e.preventDefault();
+                    setActiveTab(index);
+                  },
+                  className: clsx('px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium whitespace-nowrap transition-colors border-b-2 flex-shrink-0', activeTab === index || tab.active ? 'text-primary-600 border-primary-600' : 'text-gray-600 border-transparent hover:text-gray-900 hover:border-gray-300'),
+                  children: tab.label
+                }, index);
+              })
+            })
+          }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+            ref: mobileMenuRef,
+            className: clsx('lg:hidden fixed top-0 right-0 h-full w-full max-w-sm bg-white shadow-xl z-50 transform transition-transform duration-300 ease-in-out overflow-y-auto', isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'),
+            children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "p-4 border-b border-gray-200 flex items-center justify-between",
+              children: [/*#__PURE__*/jsxRuntime.jsx("a", {
+                href: logoHref,
+                className: "flex items-center",
+                "aria-label": "Home",
+                children: renderLogo()
+              }), /*#__PURE__*/jsxRuntime.jsx("button", {
+                onClick: function onClick() {
+                  return setIsMobileMenuOpen(false);
+                },
+                className: "w-10 h-10 flex items-center justify-center text-gray-700 hover:bg-gray-100 rounded-md transition-colors",
+                "aria-label": "Close mobile menu",
+                children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+                  className: "w-6 h-6",
+                  fill: "none",
+                  stroke: "currentColor",
+                  viewBox: "0 0 24 24",
+                  children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                    strokeLinecap: "round",
+                    strokeLinejoin: "round",
+                    strokeWidth: 2,
+                    d: "M6 18L18 6M6 6l12 12"
+                  })
+                })
+              })]
+            }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "py-4",
+              children: [user && /*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: "px-4 mb-4 pb-4 border-b border-gray-200 flex items-center gap-3",
+                children: [user.avatar ? /*#__PURE__*/jsxRuntime.jsx("img", {
+                  src: user.avatar,
+                  alt: user.name,
+                  className: "w-10 h-10 rounded-full"
+                }) : /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center",
+                  children: /*#__PURE__*/jsxRuntime.jsx("span", {
+                    className: "text-sm font-medium text-gray-700",
+                    children: user.name.split(' ').map(function (n) {
+                      return n[0];
+                    }).join('')
+                  })
+                }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+                  children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: "text-sm font-medium text-gray-900",
+                    children: user.name
+                  }), user.email && /*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: "text-xs text-gray-500",
+                    children: user.email
+                  })]
+                })]
+              }), tabs.map(function (tab, index) {
+                return /*#__PURE__*/jsxRuntime.jsx("a", {
+                  href: tab.href || '#',
+                  className: clsx('block px-4 py-3 text-base font-medium transition-colors border-b border-gray-100 last:border-b-0', activeTab === index || tab.active ? 'text-primary-600 bg-primary-50' : 'text-gray-700 hover:bg-gray-50'),
+                  onClick: function onClick() {
+                    setActiveTab(index);
+                    setIsMobileMenuOpen(false);
+                  },
+                  children: tab.label
+                }, index);
+              })]
+            })]
+          })]
+        })
+      })]
+    });
+  }
+
+  // Default fallback
+  return null;
+};
+
+var HeaderPremium = function HeaderPremium(_ref) {
+  var data = _ref.data,
+    className = _ref.className,
+    id = _ref.id;
+  if (!data || _typeof(data) !== 'object') {
+    console.error('HeaderPremium: data prop is required and must be an object');
+    return null;
+  }
+  var _data$logo = data.logo,
+    logo = _data$logo === void 0 ? 'Your Logo' : _data$logo,
+    _data$logoHref = data.logoHref,
+    logoHref = _data$logoHref === void 0 ? '/' : _data$logoHref,
+    _data$navItems = data.navItems,
+    navItems = _data$navItems === void 0 ? [] : _data$navItems,
+    _data$ctaButtons = data.ctaButtons,
+    ctaButtons = _data$ctaButtons === void 0 ? [] : _data$ctaButtons,
+    _data$showSearch = data.showSearch,
+    showSearch = _data$showSearch === void 0 ? false : _data$showSearch,
+    onSearch = data.onSearch,
+    _data$variant = data.variant,
+    variant = _data$variant === void 0 ? 'split' : _data$variant,
+    _data$sticky = data.sticky,
+    sticky = _data$sticky === void 0 ? true : _data$sticky;
+  var _useState = react.useState(false),
+    _useState2 = _slicedToArray(_useState, 2),
+    isScrolled = _useState2[0],
+    setIsScrolled = _useState2[1];
+  var _useState3 = react.useState(false),
+    _useState4 = _slicedToArray(_useState3, 2),
+    isMobileMenuOpen = _useState4[0],
+    setIsMobileMenuOpen = _useState4[1];
+  var _useState5 = react.useState(null),
+    _useState6 = _slicedToArray(_useState5, 2),
+    activeNavIndex = _useState6[0],
+    setActiveNavIndex = _useState6[1];
+  var _useState7 = react.useState(''),
+    _useState8 = _slicedToArray(_useState7, 2),
+    searchQuery = _useState8[0],
+    setSearchQuery = _useState8[1];
+  var _useState9 = react.useState(null),
+    _useState0 = _slicedToArray(_useState9, 2),
+    openDropdown = _useState0[0],
+    setOpenDropdown = _useState0[1];
+  var _useState1 = react.useState({
+      x: 0,
+      y: 0
+    }),
+    _useState10 = _slicedToArray(_useState1, 2),
+    mousePosition = _useState10[0],
+    setMousePosition = _useState10[1];
+  var dropdownRef = react.useRef(null);
+  var headerRef = react.useRef(null);
+  var isNavItemActive = function isNavItemActive(item, index) {
+    return activeNavIndex === index || item.active;
+  };
+  var handleNavClick = function handleNavClick(index, e) {
+    setActiveNavIndex(index);
+    setIsMobileMenuOpen(false);
+    setOpenDropdown(null);
+  };
+  react.useEffect(function () {
+    if (navItems && navItems.length > 0 && activeNavIndex === null) {
+      var activeIndex = navItems.findIndex(function (item) {
+        return item.active;
+      });
+      setActiveNavIndex(activeIndex >= 0 ? activeIndex : null);
+    }
+  }, [navItems, activeNavIndex]);
+  react.useEffect(function () {
+    if (!sticky) return;
+    var handleScroll = function handleScroll() {
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return function () {
+      return window.removeEventListener('scroll', handleScroll);
+    };
+  }, [sticky]);
+  react.useEffect(function () {
+    var handleClickOutside = function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setOpenDropdown(null);
+      }
+    };
+    if (openDropdown !== null) {
+      document.addEventListener('mousedown', handleClickOutside);
+      return function () {
+        return document.removeEventListener('mousedown', handleClickOutside);
+      };
+    }
+  }, [openDropdown]);
+  react.useEffect(function () {
+    if (variant === 'particle' && headerRef.current) {
+      var handleMouseMove = function handleMouseMove(e) {
+        var rect = headerRef.current.getBoundingClientRect();
+        setMousePosition({
+          x: e.clientX - rect.left,
+          y: e.clientY - rect.top
+        });
+      };
+      headerRef.current.addEventListener('mousemove', handleMouseMove);
+      return function () {
+        if (headerRef.current) {
+          headerRef.current.removeEventListener('mousemove', handleMouseMove);
+        }
+      };
+    }
+  }, [variant]);
+  var handleSearchSubmit = function handleSearchSubmit(e) {
+    e.preventDefault();
+    if (onSearch && searchQuery.trim()) {
+      onSearch(searchQuery);
+    }
+  };
+  var renderLogo = function renderLogo() {
+    if (typeof logo === 'string' && logo.startsWith('http')) {
+      return /*#__PURE__*/jsxRuntime.jsx("img", {
+        src: logo,
+        alt: "Logo",
+        className: "h-10 w-auto"
+      });
+    }
+    if (_typeof(logo) === 'object') {
+      if (logo.image) {
+        return /*#__PURE__*/jsxRuntime.jsx("img", {
+          src: logo.image,
+          alt: logo.text || 'Logo',
+          className: "h-10 w-auto"
+        });
+      }
+      if (logo.text) {
+        return /*#__PURE__*/jsxRuntime.jsx("span", {
+          className: "text-2xl font-black tracking-tight",
+          children: logo.text
+        });
+      }
+    }
+    return /*#__PURE__*/jsxRuntime.jsx("span", {
+      className: "text-2xl font-black tracking-tight",
+      children: logo
+    });
+  };
+
+  // Variant 1: Split Asymmetric Header
+  if (variant === 'split') {
+    return /*#__PURE__*/jsxRuntime.jsxs("header", {
+      id: id,
+      ref: headerRef,
+      className: clsx('relative w-full z-50 overflow-hidden', sticky && 'sticky top-0', className),
+      children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "absolute inset-0 flex",
+        children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+          className: clsx('flex-1 transition-all duration-500', isScrolled ? 'bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900' : 'bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600')
+        }), /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: clsx('flex-1 transition-all duration-500', isScrolled ? 'bg-white' : 'bg-gradient-to-br from-cyan-400 via-blue-500 to-indigo-600')
+        })]
+      }), /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "absolute inset-0 pointer-events-none",
+        children: /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "absolute top-0 left-0 w-full h-full",
+          children: /*#__PURE__*/jsxRuntime.jsxs("svg", {
+            className: "w-full h-full",
+            viewBox: "0 0 100 100",
+            preserveAspectRatio: "none",
+            children: [/*#__PURE__*/jsxRuntime.jsx("polygon", {
+              points: "0,0 50,0 0,100",
+              className: "fill-white/10"
+            }), /*#__PURE__*/jsxRuntime.jsx("line", {
+              x1: "50",
+              y1: "0",
+              x2: "0",
+              y2: "100",
+              stroke: "currentColor",
+              strokeWidth: "0.5",
+              className: "text-white/20"
+            })]
+          })
+        })
+      }), /*#__PURE__*/jsxRuntime.jsxs("nav", {
+        className: "relative container mx-auto px-4 sm:px-6 lg:px-8",
+        "aria-label": "Main navigation",
+        children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "flex items-center justify-between h-24",
+          children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "flex items-center flex-shrink-0 z-10",
+            children: /*#__PURE__*/jsxRuntime.jsxs("a", {
+              href: logoHref,
+              className: "flex items-center group",
+              "aria-label": "Home",
+              children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: "relative",
+                children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "absolute -inset-2 bg-white/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300"
+                }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "relative bg-white/10 backdrop-blur-md rounded-2xl p-3 border border-white/20 group-hover:scale-105 transition-transform duration-300",
+                  children: /*#__PURE__*/jsxRuntime.jsx("span", {
+                    className: "text-white font-black text-xl",
+                    children: typeof logo === 'string' ? logo.split(' ').map(function (w) {
+                      return w[0];
+                    }).join('') : 'YL'
+                  })
+                })]
+              }), /*#__PURE__*/jsxRuntime.jsx("span", {
+                className: "ml-3 text-white font-bold text-lg hidden sm:block",
+                children: typeof logo === 'string' ? logo : 'Your Logo'
+              })]
+            })
+          }), navItems && navItems.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "hidden lg:flex items-center gap-1 flex-1 justify-center mx-8",
+            children: navItems.map(function (item, index) {
+              if (!item || !item.label) return null;
+              var hasDropdown = item.dropdown && item.dropdown.length > 0;
+              var isActive = isNavItemActive(item, index);
+              return /*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: "relative",
+                ref: hasDropdown && openDropdown === index ? dropdownRef : null,
+                children: [/*#__PURE__*/jsxRuntime.jsxs("a", {
+                  href: item.href || '#',
+                  onClick: function onClick(e) {
+                    return handleNavClick(index);
+                  },
+                  onMouseEnter: function onMouseEnter() {
+                    return hasDropdown && setOpenDropdown(index);
+                  },
+                  className: clsx('relative px-6 py-3 text-sm font-bold rounded-full transition-all duration-300 transform', isActive ? 'bg-white text-purple-900 shadow-2xl scale-110' : 'text-white/90 hover:text-white hover:bg-white/10 backdrop-blur-sm'),
+                  children: [item.label, isActive && /*#__PURE__*/jsxRuntime.jsx("span", {
+                    className: "absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-white rounded-full animate-pulse"
+                  }), hasDropdown && /*#__PURE__*/jsxRuntime.jsx("svg", {
+                    className: "inline-block w-4 h-4 ml-2",
+                    fill: "none",
+                    stroke: "currentColor",
+                    viewBox: "0 0 24 24",
+                    children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                      strokeLinecap: "round",
+                      strokeLinejoin: "round",
+                      strokeWidth: 2.5,
+                      d: "M19 9l-7 7-7-7"
+                    })
+                  })]
+                }), hasDropdown && openDropdown === index && /*#__PURE__*/jsxRuntime.jsxs("div", {
+                  className: "absolute left-1/2 transform -translate-x-1/2 top-full mt-3 w-72 bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border-2 border-purple-200/50 py-3 z-50 overflow-hidden",
+                  children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: "absolute top-0 left-0 w-1/2 h-full bg-gradient-to-br from-purple-500/10 to-pink-500/10"
+                  }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: "relative",
+                    children: item.dropdown.map(function (dropdownItem, idx) {
+                      return /*#__PURE__*/jsxRuntime.jsx("a", {
+                        href: dropdownItem.href || '#',
+                        className: "block px-5 py-3 text-sm font-semibold text-gray-800 hover:text-purple-600 hover:bg-purple-50/50 transition-all duration-200 relative z-10",
+                        onClick: function onClick() {
+                          return setOpenDropdown(null);
+                        },
+                        children: /*#__PURE__*/jsxRuntime.jsxs("span", {
+                          className: "flex items-center",
+                          children: [/*#__PURE__*/jsxRuntime.jsx("span", {
+                            className: "w-2 h-2 bg-purple-500 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity"
+                          }), dropdownItem.label]
+                        })
+                      }, idx);
+                    })
+                  })]
+                })]
+              }, index);
+            })
+          }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex items-center gap-4 flex-shrink-0 z-10",
+            children: [showSearch && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "hidden xl:flex items-center",
+              children: /*#__PURE__*/jsxRuntime.jsxs("form", {
+                onSubmit: handleSearchSubmit,
+                className: "relative",
+                children: [/*#__PURE__*/jsxRuntime.jsx("input", {
+                  type: "text",
+                  placeholder: "Search...",
+                  value: searchQuery,
+                  onChange: function onChange(e) {
+                    return setSearchQuery(e.target.value);
+                  },
+                  className: "w-64 pl-12 pr-4 py-2.5 bg-white/20 backdrop-blur-md border-2 border-white/30 rounded-full text-sm text-white placeholder-white/60 focus:bg-white/30 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white transition-all"
+                }), /*#__PURE__*/jsxRuntime.jsx("button", {
+                  type: "submit",
+                  className: "absolute left-4 top-1/2 transform -translate-y-1/2 text-white/70 hover:text-white transition-colors",
+                  children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+                    className: "w-5 h-5",
+                    fill: "none",
+                    stroke: "currentColor",
+                    viewBox: "0 0 24 24",
+                    children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                      strokeLinecap: "round",
+                      strokeLinejoin: "round",
+                      strokeWidth: 2,
+                      d: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                    })
+                  })
+                })]
+              })
+            }), ctaButtons.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "hidden md:flex items-center gap-3",
+              children: ctaButtons.map(function (button, index) {
+                return /*#__PURE__*/jsxRuntime.jsx("a", {
+                  href: button.href || '#',
+                  className: clsx('px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 transform hover:scale-110', button.variant === 'primary' ? 'bg-white text-purple-900 shadow-xl hover:shadow-2xl' : 'bg-white/20 backdrop-blur-md text-white border-2 border-white/30 hover:bg-white/30'),
+                  children: button.label
+                }, index);
+              })
+            }), /*#__PURE__*/jsxRuntime.jsx("button", {
+              onClick: function onClick() {
+                return setIsMobileMenuOpen(!isMobileMenuOpen);
+              },
+              className: "lg:hidden w-12 h-12 flex items-center justify-center text-white bg-white/20 backdrop-blur-md border-2 border-white/30 rounded-full hover:bg-white/30 transition-all",
+              "aria-label": "Toggle mobile menu",
+              children: isMobileMenuOpen ? /*#__PURE__*/jsxRuntime.jsx("svg", {
+                className: "w-6 h-6",
+                fill: "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2.5,
+                  d: "M6 18L18 6M6 6l12 12"
+                })
+              }) : /*#__PURE__*/jsxRuntime.jsx("svg", {
+                className: "w-6 h-6",
+                fill: "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2.5,
+                  d: "M4 6h16M4 12h16M4 18h16"
+                })
+              })
+            })]
+          })]
+        }), isMobileMenuOpen && /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "lg:hidden fixed inset-0 bg-gradient-to-br from-purple-900 via-indigo-900 to-slate-900 z-50 animate-slideDown",
+          children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "container mx-auto px-4 py-8 h-full flex flex-col",
+            children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "flex justify-between items-center mb-8",
+              children: [/*#__PURE__*/jsxRuntime.jsx("a", {
+                href: logoHref,
+                className: "text-white text-2xl font-black",
+                children: typeof logo === 'string' ? logo : 'Your Logo'
+              }), /*#__PURE__*/jsxRuntime.jsx("button", {
+                onClick: function onClick() {
+                  return setIsMobileMenuOpen(false);
+                },
+                className: "w-10 h-10 flex items-center justify-center text-white",
+                children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+                  className: "w-6 h-6",
+                  fill: "none",
+                  stroke: "currentColor",
+                  viewBox: "0 0 24 24",
+                  children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                    strokeLinecap: "round",
+                    strokeLinejoin: "round",
+                    strokeWidth: 2,
+                    d: "M6 18L18 6M6 6l12 12"
+                  })
+                })
+              })]
+            }), /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "flex-1 space-y-2",
+              children: navItems.map(function (item, index) {
+                return /*#__PURE__*/jsxRuntime.jsx("a", {
+                  href: item.href || '#',
+                  className: clsx('block px-6 py-4 text-lg font-bold rounded-2xl transition-all duration-300', isNavItemActive(item, index) ? 'bg-white text-purple-900 shadow-2xl' : 'text-white/90 hover:text-white hover:bg-white/10 backdrop-blur-sm'),
+                  onClick: function onClick() {
+                    return setIsMobileMenuOpen(false);
+                  },
+                  children: item.label
+                }, index);
+              })
+            })]
+          })
+        })]
+      })]
+    });
+  }
+
+  // Variant 2: Neon Cyberpunk Header
+  if (variant === 'neon') {
+    return /*#__PURE__*/jsxRuntime.jsxs("header", {
+      id: id,
+      ref: headerRef,
+      className: clsx('relative w-full z-50 bg-black border-b-2 border-cyan-500/50', sticky && 'sticky top-0', isScrolled && 'shadow-[0_0_30px_rgba(6,182,212,0.5)]', className),
+      children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "absolute inset-0 opacity-20",
+        children: /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "absolute inset-0",
+          style: {
+            backgroundImage: "\n              linear-gradient(cyan 1px, transparent 1px),\n              linear-gradient(90deg, cyan 1px, transparent 1px)\n            ",
+            backgroundSize: '50px 50px',
+            animation: 'gridMove 20s linear infinite'
+          }
+        })
+      }), /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "absolute inset-0 bg-gradient-to-r from-cyan-500/0 via-cyan-500/10 to-cyan-500/0 blur-3xl"
+      }), /*#__PURE__*/jsxRuntime.jsxs("nav", {
+        className: "relative container mx-auto px-4 sm:px-6 lg:px-8",
+        "aria-label": "Main navigation",
+        children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "flex items-center justify-between h-20",
+          children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "flex items-center flex-shrink-0",
+            children: /*#__PURE__*/jsxRuntime.jsxs("a", {
+              href: logoHref,
+              className: "flex items-center group",
+              "aria-label": "Home",
+              children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: "relative",
+                children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "absolute inset-0 bg-cyan-500 blur-xl opacity-50 group-hover:opacity-100 transition-opacity"
+                }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "relative bg-black border-2 border-cyan-500 rounded-lg p-2 group-hover:border-cyan-300 transition-all",
+                  children: /*#__PURE__*/jsxRuntime.jsx("span", {
+                    className: "text-cyan-400 font-black text-xl group-hover:text-cyan-300 transition-colors",
+                    children: typeof logo === 'string' ? logo.split(' ').map(function (w) {
+                      return w[0];
+                    }).join('') : 'YL'
+                  })
+                })]
+              }), /*#__PURE__*/jsxRuntime.jsx("span", {
+                className: "ml-3 text-cyan-400 font-bold text-lg hidden sm:block group-hover:text-cyan-300 transition-colors drop-shadow-[0_0_10px_rgba(6,182,212,0.8)]",
+                children: typeof logo === 'string' ? logo : 'Your Logo'
+              })]
+            })
+          }), navItems && navItems.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "hidden md:flex items-center gap-2 flex-1 justify-center",
+            children: navItems.map(function (item, index) {
+              if (!item || !item.label) return null;
+              var hasDropdown = item.dropdown && item.dropdown.length > 0;
+              var isActive = isNavItemActive(item, index);
+              return /*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: "relative",
+                ref: hasDropdown && openDropdown === index ? dropdownRef : null,
+                children: [/*#__PURE__*/jsxRuntime.jsxs("a", {
+                  href: item.href || '#',
+                  onClick: function onClick(e) {
+                    return handleNavClick(index);
+                  },
+                  onMouseEnter: function onMouseEnter() {
+                    return hasDropdown && setOpenDropdown(index);
+                  },
+                  className: clsx('relative px-5 py-2.5 text-sm font-bold border-2 rounded-lg transition-all duration-300', isActive ? 'bg-cyan-500 text-black border-cyan-400 shadow-[0_0_20px_rgba(6,182,212,0.8)]' : 'text-cyan-400 border-cyan-500/50 hover:border-cyan-400 hover:text-cyan-300 hover:shadow-[0_0_15px_rgba(6,182,212,0.5)]'),
+                  children: [item.label, hasDropdown && /*#__PURE__*/jsxRuntime.jsx("svg", {
+                    className: "inline-block w-4 h-4 ml-2",
+                    fill: "none",
+                    stroke: "currentColor",
+                    viewBox: "0 0 24 24",
+                    children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                      strokeLinecap: "round",
+                      strokeLinejoin: "round",
+                      strokeWidth: 2.5,
+                      d: "M19 9l-7 7-7-7"
+                    })
+                  })]
+                }), hasDropdown && openDropdown === index && /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "absolute left-0 top-full mt-2 w-64 bg-black border-2 border-cyan-500 rounded-lg shadow-[0_0_30px_rgba(6,182,212,0.8)] py-2 z-50",
+                  children: item.dropdown.map(function (dropdownItem, idx) {
+                    return /*#__PURE__*/jsxRuntime.jsx("a", {
+                      href: dropdownItem.href || '#',
+                      className: "block px-5 py-2.5 text-sm font-semibold text-cyan-400 hover:text-cyan-300 hover:bg-cyan-500/10 border-l-2 border-transparent hover:border-cyan-500 transition-all",
+                      onClick: function onClick() {
+                        return setOpenDropdown(null);
+                      },
+                      children: dropdownItem.label
+                    }, idx);
+                  })
+                })]
+              }, index);
+            })
+          }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex items-center gap-4 flex-shrink-0",
+            children: [showSearch && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "hidden lg:flex items-center",
+              children: /*#__PURE__*/jsxRuntime.jsxs("form", {
+                onSubmit: handleSearchSubmit,
+                className: "relative",
+                children: [/*#__PURE__*/jsxRuntime.jsx("input", {
+                  type: "text",
+                  placeholder: "Search...",
+                  value: searchQuery,
+                  onChange: function onChange(e) {
+                    return setSearchQuery(e.target.value);
+                  },
+                  className: "w-64 pl-12 pr-4 py-2.5 bg-black border-2 border-cyan-500/50 rounded-lg text-sm text-cyan-400 placeholder-cyan-500/50 focus:border-cyan-400 focus:outline-none focus:shadow-[0_0_15px_rgba(6,182,212,0.5)] transition-all"
+                }), /*#__PURE__*/jsxRuntime.jsx("button", {
+                  type: "submit",
+                  className: "absolute left-4 top-1/2 transform -translate-y-1/2 text-cyan-500 hover:text-cyan-400 transition-colors",
+                  children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+                    className: "w-5 h-5",
+                    fill: "none",
+                    stroke: "currentColor",
+                    viewBox: "0 0 24 24",
+                    children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                      strokeLinecap: "round",
+                      strokeLinejoin: "round",
+                      strokeWidth: 2,
+                      d: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                    })
+                  })
+                })]
+              })
+            }), ctaButtons.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "hidden md:flex items-center gap-3",
+              children: ctaButtons.map(function (button, index) {
+                return /*#__PURE__*/jsxRuntime.jsx("a", {
+                  href: button.href || '#',
+                  className: clsx('px-6 py-2.5 rounded-lg text-sm font-bold border-2 transition-all duration-300', button.variant === 'primary' ? 'bg-cyan-500 text-black border-cyan-400 shadow-[0_0_20px_rgba(6,182,212,0.8)] hover:shadow-[0_0_30px_rgba(6,182,212,1)]' : 'text-cyan-400 border-cyan-500/50 hover:border-cyan-400 hover:bg-cyan-500/10'),
+                  children: button.label
+                }, index);
+              })
+            }), /*#__PURE__*/jsxRuntime.jsx("button", {
+              onClick: function onClick() {
+                return setIsMobileMenuOpen(!isMobileMenuOpen);
+              },
+              className: "md:hidden w-10 h-10 flex items-center justify-center text-cyan-400 border-2 border-cyan-500/50 rounded-lg hover:border-cyan-400 transition-all",
+              "aria-label": "Toggle mobile menu",
+              children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+                className: "w-6 h-6",
+                fill: "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2,
+                  d: "M4 6h16M4 12h16M4 18h16"
+                })
+              })
+            })]
+          })]
+        }), isMobileMenuOpen && /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "md:hidden py-4 border-t-2 border-cyan-500/50 bg-black animate-slideDown",
+          children: navItems.map(function (item, index) {
+            return /*#__PURE__*/jsxRuntime.jsx("a", {
+              href: item.href || '#',
+              className: clsx('block px-4 py-3 text-base font-bold border-l-2 transition-all', isNavItemActive(item, index) ? 'text-cyan-300 border-cyan-400 bg-cyan-500/10' : 'text-cyan-400 border-transparent hover:border-cyan-500 hover:bg-cyan-500/5'),
+              onClick: function onClick() {
+                return setIsMobileMenuOpen(false);
+              },
+              children: item.label
+            }, index);
+          })
+        })]
+      }), /*#__PURE__*/jsxRuntime.jsx("style", {
+        jsx: true,
+        children: "\n          @keyframes gridMove {\n            0% { transform: translate(0, 0); }\n            100% { transform: translate(50px, 50px); }\n          }\n        "
+      })]
+    });
+  }
+
+  // Variant 3: Morphing Shapes Header
+  if (variant === 'morph') {
+    return /*#__PURE__*/jsxRuntime.jsxs("header", {
+      id: id,
+      ref: headerRef,
+      className: clsx('relative w-full z-50 overflow-hidden', sticky && 'sticky top-0', className),
+      children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "absolute inset-0 overflow-hidden",
+        children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "absolute -top-20 -left-20 w-96 h-96 bg-gradient-to-br from-pink-500 to-purple-600 rounded-full blur-3xl opacity-30 animate-pulse"
+        }), /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "absolute -bottom-20 -right-20 w-96 h-96 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-full blur-3xl opacity-30 animate-pulse",
+          style: {
+            animationDelay: '1s'
+          }
+        }), /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full blur-3xl opacity-20 animate-pulse",
+          style: {
+            animationDelay: '2s'
+          }
+        })]
+      }), /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "absolute inset-0 bg-white/80 backdrop-blur-xl border-b border-white/20"
+      }), /*#__PURE__*/jsxRuntime.jsxs("nav", {
+        className: "relative container mx-auto px-4 sm:px-6 lg:px-8",
+        "aria-label": "Main navigation",
+        children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "flex items-center justify-between h-20",
+          children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "flex items-center flex-shrink-0",
+            children: /*#__PURE__*/jsxRuntime.jsxs("a", {
+              href: logoHref,
+              className: "flex items-center group",
+              "aria-label": "Home",
+              children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: "relative",
+                children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "absolute inset-0 bg-gradient-to-br from-pink-500 to-purple-600 rounded-2xl blur-md group-hover:blur-xl transition-all duration-500 group-hover:scale-110"
+                }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "relative bg-gradient-to-br from-pink-500 to-purple-600 rounded-2xl p-3 group-hover:rounded-3xl transition-all duration-500",
+                  children: /*#__PURE__*/jsxRuntime.jsx("span", {
+                    className: "text-white font-black text-xl",
+                    children: typeof logo === 'string' ? logo.split(' ').map(function (w) {
+                      return w[0];
+                    }).join('') : 'YL'
+                  })
+                })]
+              }), /*#__PURE__*/jsxRuntime.jsx("span", {
+                className: "ml-3 bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent font-black text-xl hidden sm:block",
+                children: typeof logo === 'string' ? logo : 'Your Logo'
+              })]
+            })
+          }), navItems && navItems.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "hidden md:flex items-center gap-2 flex-1 justify-center",
+            children: navItems.map(function (item, index) {
+              if (!item || !item.label) return null;
+              var hasDropdown = item.dropdown && item.dropdown.length > 0;
+              var isActive = isNavItemActive(item, index);
+              return /*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: "relative",
+                ref: hasDropdown && openDropdown === index ? dropdownRef : null,
+                children: [/*#__PURE__*/jsxRuntime.jsxs("a", {
+                  href: item.href || '#',
+                  onClick: function onClick(e) {
+                    return handleNavClick(index);
+                  },
+                  onMouseEnter: function onMouseEnter() {
+                    return hasDropdown && setOpenDropdown(index);
+                  },
+                  className: clsx('relative px-6 py-3 text-sm font-bold rounded-full transition-all duration-500 overflow-hidden group', isActive ? 'bg-gradient-to-r from-pink-500 to-purple-600 text-white shadow-xl scale-110' : 'bg-white/50 backdrop-blur-sm text-gray-700 hover:bg-gradient-to-r hover:from-pink-500 hover:to-purple-600 hover:text-white hover:scale-105'),
+                  children: [/*#__PURE__*/jsxRuntime.jsx("span", {
+                    className: "relative z-10",
+                    children: item.label
+                  }), hasDropdown && /*#__PURE__*/jsxRuntime.jsx("svg", {
+                    className: "inline-block w-4 h-4 ml-2 relative z-10",
+                    fill: "none",
+                    stroke: "currentColor",
+                    viewBox: "0 0 24 24",
+                    children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                      strokeLinecap: "round",
+                      strokeLinejoin: "round",
+                      strokeWidth: 2.5,
+                      d: "M19 9l-7 7-7-7"
+                    })
+                  })]
+                }), hasDropdown && openDropdown === index && /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "absolute left-1/2 transform -translate-x-1/2 top-full mt-3 w-64 bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-pink-200/50 py-3 z-50 animate-fadeIn",
+                  children: item.dropdown.map(function (dropdownItem, idx) {
+                    return /*#__PURE__*/jsxRuntime.jsx("a", {
+                      href: dropdownItem.href || '#',
+                      className: "block px-5 py-2.5 text-sm font-semibold text-gray-700 hover:text-pink-600 hover:bg-gradient-to-r hover:from-pink-50 hover:to-purple-50 transition-all rounded-lg mx-2",
+                      onClick: function onClick() {
+                        return setOpenDropdown(null);
+                      },
+                      children: dropdownItem.label
+                    }, idx);
+                  })
+                })]
+              }, index);
+            })
+          }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex items-center gap-4 flex-shrink-0",
+            children: [showSearch && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "hidden lg:flex items-center",
+              children: /*#__PURE__*/jsxRuntime.jsxs("form", {
+                onSubmit: handleSearchSubmit,
+                className: "relative",
+                children: [/*#__PURE__*/jsxRuntime.jsx("input", {
+                  type: "text",
+                  placeholder: "Search...",
+                  value: searchQuery,
+                  onChange: function onChange(e) {
+                    return setSearchQuery(e.target.value);
+                  },
+                  className: "w-64 pl-12 pr-4 py-2.5 bg-white/50 backdrop-blur-sm border border-gray-200 rounded-full text-sm text-gray-900 placeholder-gray-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-pink-500/50 focus:border-pink-500 transition-all"
+                }), /*#__PURE__*/jsxRuntime.jsx("button", {
+                  type: "submit",
+                  className: "absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-pink-600 transition-colors",
+                  children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+                    className: "w-5 h-5",
+                    fill: "none",
+                    stroke: "currentColor",
+                    viewBox: "0 0 24 24",
+                    children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                      strokeLinecap: "round",
+                      strokeLinejoin: "round",
+                      strokeWidth: 2,
+                      d: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                    })
+                  })
+                })]
+              })
+            }), ctaButtons.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "hidden md:flex items-center gap-3",
+              children: ctaButtons.map(function (button, index) {
+                return /*#__PURE__*/jsxRuntime.jsx("a", {
+                  href: button.href || '#',
+                  className: clsx('px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-500', button.variant === 'primary' ? 'bg-gradient-to-r from-pink-500 to-purple-600 text-white shadow-xl hover:shadow-2xl hover:scale-110' : 'bg-white/50 backdrop-blur-sm text-gray-700 border border-gray-200 hover:bg-gradient-to-r hover:from-pink-500 hover:to-purple-600 hover:text-white hover:border-transparent'),
+                  children: button.label
+                }, index);
+              })
+            }), /*#__PURE__*/jsxRuntime.jsx("button", {
+              onClick: function onClick() {
+                return setIsMobileMenuOpen(!isMobileMenuOpen);
+              },
+              className: "md:hidden w-12 h-12 flex items-center justify-center bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-full shadow-lg hover:scale-110 transition-all",
+              "aria-label": "Toggle mobile menu",
+              children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+                className: "w-6 h-6",
+                fill: "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2,
+                  d: "M4 6h16M4 12h16M4 18h16"
+                })
+              })
+            })]
+          })]
+        }), isMobileMenuOpen && /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "md:hidden py-4 border-t border-pink-200/50 bg-white/95 backdrop-blur-xl animate-slideDown",
+          children: navItems.map(function (item, index) {
+            return /*#__PURE__*/jsxRuntime.jsx("a", {
+              href: item.href || '#',
+              className: clsx('block px-4 py-3 text-base font-bold rounded-xl mx-2 transition-all', isNavItemActive(item, index) ? 'bg-gradient-to-r from-pink-500 to-purple-600 text-white' : 'text-gray-700 hover:bg-gradient-to-r hover:from-pink-50 hover:to-purple-50'),
+              onClick: function onClick() {
+                return setIsMobileMenuOpen(false);
+              },
+              children: item.label
+            }, index);
+          })
+        })]
+      })]
+    });
+  }
+
+  // Variant 4: Particle Interactive Header
+  if (variant === 'particle') {
+    return /*#__PURE__*/jsxRuntime.jsxs("header", {
+      id: id,
+      ref: headerRef,
+      className: clsx('relative w-full z-50 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900', sticky && 'sticky top-0', className),
+      onMouseMove: function onMouseMove(e) {
+        if (headerRef.current) {
+          var rect = headerRef.current.getBoundingClientRect();
+          setMousePosition({
+            x: e.clientX - rect.left,
+            y: e.clientY - rect.top
+          });
+        }
+      },
+      children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "absolute inset-0 pointer-events-none",
+        style: {
+          background: "radial-gradient(circle at ".concat(mousePosition.x, "px ").concat(mousePosition.y, "px, rgba(139, 92, 246, 0.3) 0%, transparent 50%)")
+        }
+      }), /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "absolute inset-0 overflow-hidden",
+        children: _toConsumableArray(Array(20)).map(function (_, i) {
+          return /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "absolute w-1 h-1 bg-purple-400 rounded-full opacity-60",
+            style: {
+              left: "".concat(Math.random() * 100, "%"),
+              top: "".concat(Math.random() * 100, "%"),
+              animation: "float ".concat(3 + Math.random() * 4, "s ease-in-out infinite"),
+              animationDelay: "".concat(Math.random() * 2, "s")
+            }
+          }, i);
+        })
+      }), /*#__PURE__*/jsxRuntime.jsxs("nav", {
+        className: "relative container mx-auto px-4 sm:px-6 lg:px-8",
+        "aria-label": "Main navigation",
+        children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "flex items-center justify-between h-20",
+          children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "flex items-center flex-shrink-0",
+            children: /*#__PURE__*/jsxRuntime.jsxs("a", {
+              href: logoHref,
+              className: "flex items-center group",
+              "aria-label": "Home",
+              children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: "relative",
+                children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "absolute inset-0 bg-purple-500 rounded-xl blur-xl group-hover:blur-2xl opacity-50 group-hover:opacity-100 transition-all"
+                }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "relative bg-purple-600 rounded-xl p-3 border border-purple-400/50 group-hover:border-purple-300 transition-all",
+                  children: /*#__PURE__*/jsxRuntime.jsx("span", {
+                    className: "text-white font-black text-xl",
+                    children: typeof logo === 'string' ? logo.split(' ').map(function (w) {
+                      return w[0];
+                    }).join('') : 'YL'
+                  })
+                })]
+              }), /*#__PURE__*/jsxRuntime.jsx("span", {
+                className: "ml-3 text-purple-300 font-bold text-lg hidden sm:block group-hover:text-purple-200 transition-colors",
+                children: typeof logo === 'string' ? logo : 'Your Logo'
+              })]
+            })
+          }), navItems && navItems.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "hidden md:flex items-center gap-3 flex-1 justify-center",
+            children: navItems.map(function (item, index) {
+              if (!item || !item.label) return null;
+              var hasDropdown = item.dropdown && item.dropdown.length > 0;
+              var isActive = isNavItemActive(item, index);
+              return /*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: "relative",
+                ref: hasDropdown && openDropdown === index ? dropdownRef : null,
+                children: [/*#__PURE__*/jsxRuntime.jsxs("a", {
+                  href: item.href || '#',
+                  onClick: function onClick(e) {
+                    return handleNavClick(index);
+                  },
+                  onMouseEnter: function onMouseEnter() {
+                    return hasDropdown && setOpenDropdown(index);
+                  },
+                  className: clsx('relative px-5 py-2.5 text-sm font-bold rounded-lg transition-all duration-300 backdrop-blur-sm', isActive ? 'bg-purple-600/80 text-white shadow-lg shadow-purple-500/50' : 'bg-white/5 text-purple-300 border border-purple-500/30 hover:bg-purple-600/50 hover:text-white hover:border-purple-400 hover:shadow-lg hover:shadow-purple-500/30'),
+                  children: [item.label, hasDropdown && /*#__PURE__*/jsxRuntime.jsx("svg", {
+                    className: "inline-block w-4 h-4 ml-2",
+                    fill: "none",
+                    stroke: "currentColor",
+                    viewBox: "0 0 24 24",
+                    children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                      strokeLinecap: "round",
+                      strokeLinejoin: "round",
+                      strokeWidth: 2.5,
+                      d: "M19 9l-7 7-7-7"
+                    })
+                  })]
+                }), hasDropdown && openDropdown === index && /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "absolute left-0 top-full mt-2 w-64 bg-slate-800/95 backdrop-blur-xl border border-purple-500/50 rounded-xl shadow-2xl shadow-purple-500/20 py-3 z-50 animate-fadeIn",
+                  children: item.dropdown.map(function (dropdownItem, idx) {
+                    return /*#__PURE__*/jsxRuntime.jsx("a", {
+                      href: dropdownItem.href || '#',
+                      className: "block px-5 py-2.5 text-sm font-semibold text-purple-300 hover:text-white hover:bg-purple-600/30 transition-all rounded-lg mx-2",
+                      onClick: function onClick() {
+                        return setOpenDropdown(null);
+                      },
+                      children: dropdownItem.label
+                    }, idx);
+                  })
+                })]
+              }, index);
+            })
+          }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex items-center gap-4 flex-shrink-0",
+            children: [showSearch && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "hidden lg:flex items-center",
+              children: /*#__PURE__*/jsxRuntime.jsxs("form", {
+                onSubmit: handleSearchSubmit,
+                className: "relative",
+                children: [/*#__PURE__*/jsxRuntime.jsx("input", {
+                  type: "text",
+                  placeholder: "Search...",
+                  value: searchQuery,
+                  onChange: function onChange(e) {
+                    return setSearchQuery(e.target.value);
+                  },
+                  className: "w-64 pl-12 pr-4 py-2.5 bg-white/5 backdrop-blur-sm border border-purple-500/30 rounded-lg text-sm text-purple-300 placeholder-purple-500/50 focus:bg-white/10 focus:border-purple-400 focus:outline-none focus:shadow-lg focus:shadow-purple-500/20 transition-all"
+                }), /*#__PURE__*/jsxRuntime.jsx("button", {
+                  type: "submit",
+                  className: "absolute left-4 top-1/2 transform -translate-y-1/2 text-purple-400 hover:text-purple-300 transition-colors",
+                  children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+                    className: "w-5 h-5",
+                    fill: "none",
+                    stroke: "currentColor",
+                    viewBox: "0 0 24 24",
+                    children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                      strokeLinecap: "round",
+                      strokeLinejoin: "round",
+                      strokeWidth: 2,
+                      d: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                    })
+                  })
+                })]
+              })
+            }), ctaButtons.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "hidden md:flex items-center gap-3",
+              children: ctaButtons.map(function (button, index) {
+                return /*#__PURE__*/jsxRuntime.jsx("a", {
+                  href: button.href || '#',
+                  className: clsx('px-6 py-2.5 rounded-lg text-sm font-bold transition-all duration-300', button.variant === 'primary' ? 'bg-purple-600 text-white shadow-lg shadow-purple-500/50 hover:shadow-xl hover:shadow-purple-500/70 hover:scale-105' : 'bg-white/5 backdrop-blur-sm text-purple-300 border border-purple-500/30 hover:bg-purple-600/50 hover:text-white hover:border-purple-400'),
+                  children: button.label
+                }, index);
+              })
+            }), /*#__PURE__*/jsxRuntime.jsx("button", {
+              onClick: function onClick() {
+                return setIsMobileMenuOpen(!isMobileMenuOpen);
+              },
+              className: "md:hidden w-10 h-10 flex items-center justify-center text-purple-300 border border-purple-500/30 rounded-lg hover:bg-purple-600/50 transition-all",
+              "aria-label": "Toggle mobile menu",
+              children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+                className: "w-6 h-6",
+                fill: "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2,
+                  d: "M4 6h16M4 12h16M4 18h16"
+                })
+              })
+            })]
+          })]
+        }), isMobileMenuOpen && /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "md:hidden py-4 border-t border-purple-500/30 bg-slate-800/95 backdrop-blur-xl animate-slideDown",
+          children: navItems.map(function (item, index) {
+            return /*#__PURE__*/jsxRuntime.jsx("a", {
+              href: item.href || '#',
+              className: clsx('block px-4 py-3 text-base font-bold rounded-lg mx-2 transition-all', isNavItemActive(item, index) ? 'bg-purple-600 text-white shadow-lg' : 'text-purple-300 hover:bg-purple-600/30 hover:text-white'),
+              onClick: function onClick() {
+                return setIsMobileMenuOpen(false);
+              },
+              children: item.label
+            }, index);
+          })
+        })]
+      }), /*#__PURE__*/jsxRuntime.jsx("style", {
+        jsx: true,
+        children: "\n          @keyframes float {\n            0%, 100% { transform: translateY(0px) translateX(0px); }\n            25% { transform: translateY(-20px) translateX(10px); }\n            50% { transform: translateY(-10px) translateX(-10px); }\n            75% { transform: translateY(-15px) translateX(5px); }\n          }\n        "
+      })]
+    });
+  }
+
+  // Variant 5: Clean Minimal Header (Tailblocks Style)
+  if (variant === 'clean') {
+    return /*#__PURE__*/jsxRuntime.jsx("header", {
+      id: id,
+      ref: headerRef,
+      className: clsx('relative w-full z-50 bg-white border-b border-gray-200', sticky && 'sticky top-0', isScrolled && 'shadow-sm', className),
+      children: /*#__PURE__*/jsxRuntime.jsxs("nav", {
+        className: "relative container mx-auto px-4 sm:px-6 lg:px-8",
+        "aria-label": "Main navigation",
+        children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "flex items-center justify-between h-16",
+          children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "flex items-center flex-shrink-0",
+            children: /*#__PURE__*/jsxRuntime.jsx("a", {
+              href: logoHref,
+              className: "flex items-center group",
+              "aria-label": "Home",
+              children: renderLogo()
+            })
+          }), navItems && navItems.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "hidden md:flex items-center gap-8 flex-1 justify-center",
+            children: navItems.map(function (item, index) {
+              if (!item || !item.label) return null;
+              var hasDropdown = item.dropdown && item.dropdown.length > 0;
+              var isActive = isNavItemActive(item, index);
+              return /*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: "relative",
+                ref: hasDropdown && openDropdown === index ? dropdownRef : null,
+                children: [/*#__PURE__*/jsxRuntime.jsxs("a", {
+                  href: item.href || '#',
+                  onClick: function onClick(e) {
+                    return handleNavClick(index);
+                  },
+                  onMouseEnter: function onMouseEnter() {
+                    return hasDropdown && setOpenDropdown(index);
+                  },
+                  className: clsx('text-sm font-medium transition-colors duration-200', isActive ? 'text-gray-900' : 'text-gray-600 hover:text-gray-900'),
+                  children: [item.label, hasDropdown && /*#__PURE__*/jsxRuntime.jsx("svg", {
+                    className: "inline-block w-4 h-4 ml-1",
+                    fill: "none",
+                    stroke: "currentColor",
+                    viewBox: "0 0 24 24",
+                    children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                      strokeLinecap: "round",
+                      strokeLinejoin: "round",
+                      strokeWidth: 2,
+                      d: "M19 9l-7 7-7-7"
+                    })
+                  })]
+                }), hasDropdown && openDropdown === index && /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "absolute left-1/2 transform -translate-x-1/2 top-full mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50",
+                  children: item.dropdown.map(function (dropdownItem, idx) {
+                    return /*#__PURE__*/jsxRuntime.jsx("a", {
+                      href: dropdownItem.href || '#',
+                      className: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors",
+                      onClick: function onClick() {
+                        return setOpenDropdown(null);
+                      },
+                      children: dropdownItem.label
+                    }, idx);
+                  })
+                })]
+              }, index);
+            })
+          }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex items-center gap-4 flex-shrink-0",
+            children: [showSearch && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "hidden lg:flex items-center",
+              children: /*#__PURE__*/jsxRuntime.jsxs("form", {
+                onSubmit: handleSearchSubmit,
+                className: "relative",
+                children: [/*#__PURE__*/jsxRuntime.jsx("input", {
+                  type: "text",
+                  placeholder: "Search...",
+                  value: searchQuery,
+                  onChange: function onChange(e) {
+                    return setSearchQuery(e.target.value);
+                  },
+                  className: "w-64 pl-10 pr-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-900 placeholder-gray-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all"
+                }), /*#__PURE__*/jsxRuntime.jsx("button", {
+                  type: "submit",
+                  className: "absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors",
+                  children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+                    className: "w-5 h-5",
+                    fill: "none",
+                    stroke: "currentColor",
+                    viewBox: "0 0 24 24",
+                    children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                      strokeLinecap: "round",
+                      strokeLinejoin: "round",
+                      strokeWidth: 2,
+                      d: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                    })
+                  })
+                })]
+              })
+            }), ctaButtons.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "hidden md:flex items-center gap-3",
+              children: ctaButtons.map(function (button, index) {
+                return /*#__PURE__*/jsxRuntime.jsx("a", {
+                  href: button.href || '#',
+                  className: clsx('px-4 py-2 text-sm font-medium rounded-lg transition-colors duration-200', button.variant === 'primary' ? 'bg-gray-900 text-white hover:bg-gray-800' : 'text-gray-700 hover:bg-gray-100'),
+                  children: button.label
+                }, index);
+              })
+            }), /*#__PURE__*/jsxRuntime.jsx("button", {
+              onClick: function onClick() {
+                return setIsMobileMenuOpen(!isMobileMenuOpen);
+              },
+              className: "md:hidden w-10 h-10 flex items-center justify-center text-gray-600 hover:text-gray-900 transition-colors",
+              "aria-label": "Toggle mobile menu",
+              children: isMobileMenuOpen ? /*#__PURE__*/jsxRuntime.jsx("svg", {
+                className: "w-6 h-6",
+                fill: "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2,
+                  d: "M6 18L18 6M6 6l12 12"
+                })
+              }) : /*#__PURE__*/jsxRuntime.jsx("svg", {
+                className: "w-6 h-6",
+                fill: "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2,
+                  d: "M4 6h16M4 12h16M4 18h16"
+                })
+              })
+            })]
+          })]
+        }), isMobileMenuOpen && /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "md:hidden py-4 border-t border-gray-200",
+          children: navItems.map(function (item, index) {
+            return /*#__PURE__*/jsxRuntime.jsx("a", {
+              href: item.href || '#',
+              className: clsx('block px-4 py-3 text-base font-medium transition-colors', isNavItemActive(item, index) ? 'text-gray-900 bg-gray-50' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'),
+              onClick: function onClick() {
+                return setIsMobileMenuOpen(false);
+              },
+              children: item.label
+            }, index);
+          })
+        })]
+      })
+    });
+  }
+
+  // Variant 6: Professional Business Header (Tailblocks Style)
+  if (variant === 'business') {
+    return /*#__PURE__*/jsxRuntime.jsx("header", {
+      id: id,
+      ref: headerRef,
+      className: clsx('relative w-full z-50 bg-white', sticky && 'sticky top-0', isScrolled && 'shadow-md', className),
+      children: /*#__PURE__*/jsxRuntime.jsxs("nav", {
+        className: "relative container mx-auto px-4 sm:px-6 lg:px-8",
+        "aria-label": "Main navigation",
+        children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "flex items-center justify-between h-20",
+          children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "flex items-center flex-shrink-0",
+            children: /*#__PURE__*/jsxRuntime.jsx("a", {
+              href: logoHref,
+              className: "flex items-center group",
+              "aria-label": "Home",
+              children: renderLogo()
+            })
+          }), navItems && navItems.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "hidden lg:flex items-center gap-1 flex-1 justify-center mx-8",
+            children: navItems.map(function (item, index) {
+              if (!item || !item.label) return null;
+              var hasDropdown = item.dropdown && item.dropdown.length > 0;
+              var isActive = isNavItemActive(item, index);
+              return /*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: "relative",
+                ref: hasDropdown && openDropdown === index ? dropdownRef : null,
+                children: [/*#__PURE__*/jsxRuntime.jsxs("a", {
+                  href: item.href || '#',
+                  onClick: function onClick(e) {
+                    return handleNavClick(index);
+                  },
+                  onMouseEnter: function onMouseEnter() {
+                    return hasDropdown && setOpenDropdown(index);
+                  },
+                  className: clsx('px-4 py-2 text-sm font-semibold rounded-md transition-all duration-200', isActive ? 'text-gray-900 bg-gray-100' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'),
+                  children: [item.label, hasDropdown && /*#__PURE__*/jsxRuntime.jsx("svg", {
+                    className: "inline-block w-4 h-4 ml-1",
+                    fill: "none",
+                    stroke: "currentColor",
+                    viewBox: "0 0 24 24",
+                    children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                      strokeLinecap: "round",
+                      strokeLinejoin: "round",
+                      strokeWidth: 2,
+                      d: "M19 9l-7 7-7-7"
+                    })
+                  })]
+                }), hasDropdown && openDropdown === index && /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "absolute left-0 top-full mt-2 w-64 bg-white rounded-lg shadow-xl border border-gray-200 py-2 z-50",
+                  children: item.dropdown.map(function (dropdownItem, idx) {
+                    return /*#__PURE__*/jsxRuntime.jsx("a", {
+                      href: dropdownItem.href || '#',
+                      className: "block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors border-l-4 border-transparent hover:border-gray-900",
+                      onClick: function onClick() {
+                        return setOpenDropdown(null);
+                      },
+                      children: dropdownItem.label
+                    }, idx);
+                  })
+                })]
+              }, index);
+            })
+          }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex items-center gap-4 flex-shrink-0",
+            children: [showSearch && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "hidden xl:flex items-center",
+              children: /*#__PURE__*/jsxRuntime.jsxs("form", {
+                onSubmit: handleSearchSubmit,
+                className: "relative",
+                children: [/*#__PURE__*/jsxRuntime.jsx("input", {
+                  type: "text",
+                  placeholder: "Search...",
+                  value: searchQuery,
+                  onChange: function onChange(e) {
+                    return setSearchQuery(e.target.value);
+                  },
+                  className: "w-64 pl-10 pr-4 py-2 bg-gray-50 border border-gray-300 rounded-lg text-sm text-gray-900 placeholder-gray-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all"
+                }), /*#__PURE__*/jsxRuntime.jsx("button", {
+                  type: "submit",
+                  className: "absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors",
+                  children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+                    className: "w-5 h-5",
+                    fill: "none",
+                    stroke: "currentColor",
+                    viewBox: "0 0 24 24",
+                    children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                      strokeLinecap: "round",
+                      strokeLinejoin: "round",
+                      strokeWidth: 2,
+                      d: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                    })
+                  })
+                })]
+              })
+            }), ctaButtons.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "hidden md:flex items-center gap-3",
+              children: ctaButtons.map(function (button, index) {
+                return /*#__PURE__*/jsxRuntime.jsx("a", {
+                  href: button.href || '#',
+                  className: clsx('px-5 py-2.5 text-sm font-semibold rounded-lg transition-all duration-200', button.variant === 'primary' ? 'bg-gray-900 text-white hover:bg-gray-800 shadow-lg hover:shadow-xl' : 'text-gray-700 hover:bg-gray-100 border border-gray-300'),
+                  children: button.label
+                }, index);
+              })
+            }), /*#__PURE__*/jsxRuntime.jsx("button", {
+              onClick: function onClick() {
+                return setIsMobileMenuOpen(!isMobileMenuOpen);
+              },
+              className: "lg:hidden w-10 h-10 flex items-center justify-center text-gray-600 hover:text-gray-900 transition-colors",
+              "aria-label": "Toggle mobile menu",
+              children: isMobileMenuOpen ? /*#__PURE__*/jsxRuntime.jsx("svg", {
+                className: "w-6 h-6",
+                fill: "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2,
+                  d: "M6 18L18 6M6 6l12 12"
+                })
+              }) : /*#__PURE__*/jsxRuntime.jsx("svg", {
+                className: "w-6 h-6",
+                fill: "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2,
+                  d: "M4 6h16M4 12h16M4 18h16"
+                })
+              })
+            })]
+          })]
+        }), isMobileMenuOpen && /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "lg:hidden py-4 border-t border-gray-200 bg-white",
+          children: navItems.map(function (item, index) {
+            return /*#__PURE__*/jsxRuntime.jsx("a", {
+              href: item.href || '#',
+              className: clsx('block px-4 py-3 text-base font-semibold transition-colors', isNavItemActive(item, index) ? 'text-gray-900 bg-gray-100' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'),
+              onClick: function onClick() {
+                return setIsMobileMenuOpen(false);
+              },
+              children: item.label
+            }, index);
+          })
+        })]
+      })
+    });
+  }
+
+  // Variant 7: Modern Gradient Header (Tailblocks Style)
+  if (variant === 'gradient') {
+    return /*#__PURE__*/jsxRuntime.jsx("header", {
+      id: id,
+      ref: headerRef,
+      className: clsx('relative w-full z-50 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600', sticky && 'sticky top-0', isScrolled && 'shadow-lg', className),
+      children: /*#__PURE__*/jsxRuntime.jsxs("nav", {
+        className: "relative container mx-auto px-4 sm:px-6 lg:px-8",
+        "aria-label": "Main navigation",
+        children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "flex items-center justify-between h-20",
+          children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "flex items-center flex-shrink-0",
+            children: /*#__PURE__*/jsxRuntime.jsxs("a", {
+              href: logoHref,
+              className: "flex items-center group",
+              "aria-label": "Home",
+              children: [typeof logo === 'string' && !logo.startsWith('http') && /*#__PURE__*/jsxRuntime.jsx("span", {
+                className: "text-2xl font-bold text-white",
+                children: logo
+              }), typeof logo === 'string' && logo.startsWith('http') && /*#__PURE__*/jsxRuntime.jsx("img", {
+                src: logo,
+                alt: "Logo",
+                className: "h-10 w-auto"
+              }), _typeof(logo) === 'object' && logo.image && /*#__PURE__*/jsxRuntime.jsx("img", {
+                src: logo.image,
+                alt: logo.text || 'Logo',
+                className: "h-10 w-auto"
+              }), _typeof(logo) === 'object' && logo.text && !logo.image && /*#__PURE__*/jsxRuntime.jsx("span", {
+                className: "text-2xl font-bold text-white",
+                children: logo.text
+              })]
+            })
+          }), navItems && navItems.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "hidden md:flex items-center gap-2 flex-1 justify-center",
+            children: navItems.map(function (item, index) {
+              if (!item || !item.label) return null;
+              var hasDropdown = item.dropdown && item.dropdown.length > 0;
+              var isActive = isNavItemActive(item, index);
+              return /*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: "relative",
+                ref: hasDropdown && openDropdown === index ? dropdownRef : null,
+                children: [/*#__PURE__*/jsxRuntime.jsxs("a", {
+                  href: item.href || '#',
+                  onClick: function onClick(e) {
+                    return handleNavClick(index);
+                  },
+                  onMouseEnter: function onMouseEnter() {
+                    return hasDropdown && setOpenDropdown(index);
+                  },
+                  className: clsx('px-4 py-2 text-sm font-semibold rounded-lg transition-all duration-200', isActive ? 'bg-white text-purple-600 shadow-lg' : 'text-white/90 hover:text-white hover:bg-white/10'),
+                  children: [item.label, hasDropdown && /*#__PURE__*/jsxRuntime.jsx("svg", {
+                    className: "inline-block w-4 h-4 ml-1",
+                    fill: "none",
+                    stroke: "currentColor",
+                    viewBox: "0 0 24 24",
+                    children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                      strokeLinecap: "round",
+                      strokeLinejoin: "round",
+                      strokeWidth: 2,
+                      d: "M19 9l-7 7-7-7"
+                    })
+                  })]
+                }), hasDropdown && openDropdown === index && /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "absolute left-1/2 transform -translate-x-1/2 top-full mt-2 w-64 bg-white rounded-lg shadow-xl py-2 z-50",
+                  children: item.dropdown.map(function (dropdownItem, idx) {
+                    return /*#__PURE__*/jsxRuntime.jsx("a", {
+                      href: dropdownItem.href || '#',
+                      className: "block px-4 py-3 text-sm text-gray-700 hover:bg-purple-50 transition-colors",
+                      onClick: function onClick() {
+                        return setOpenDropdown(null);
+                      },
+                      children: dropdownItem.label
+                    }, idx);
+                  })
+                })]
+              }, index);
+            })
+          }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex items-center gap-4 flex-shrink-0",
+            children: [showSearch && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "hidden lg:flex items-center",
+              children: /*#__PURE__*/jsxRuntime.jsxs("form", {
+                onSubmit: handleSearchSubmit,
+                className: "relative",
+                children: [/*#__PURE__*/jsxRuntime.jsx("input", {
+                  type: "text",
+                  placeholder: "Search...",
+                  value: searchQuery,
+                  onChange: function onChange(e) {
+                    return setSearchQuery(e.target.value);
+                  },
+                  className: "w-64 pl-10 pr-4 py-2 bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg text-sm text-white placeholder-white/70 focus:bg-white/30 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent transition-all"
+                }), /*#__PURE__*/jsxRuntime.jsx("button", {
+                  type: "submit",
+                  className: "absolute left-3 top-1/2 transform -translate-y-1/2 text-white/70 hover:text-white transition-colors",
+                  children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+                    className: "w-5 h-5",
+                    fill: "none",
+                    stroke: "currentColor",
+                    viewBox: "0 0 24 24",
+                    children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                      strokeLinecap: "round",
+                      strokeLinejoin: "round",
+                      strokeWidth: 2,
+                      d: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                    })
+                  })
+                })]
+              })
+            }), ctaButtons.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "hidden md:flex items-center gap-3",
+              children: ctaButtons.map(function (button, index) {
+                return /*#__PURE__*/jsxRuntime.jsx("a", {
+                  href: button.href || '#',
+                  className: clsx('px-5 py-2.5 text-sm font-semibold rounded-lg transition-all duration-200', button.variant === 'primary' ? 'bg-white text-purple-600 shadow-lg hover:shadow-xl hover:scale-105' : 'text-white border-2 border-white/50 hover:bg-white/10'),
+                  children: button.label
+                }, index);
+              })
+            }), /*#__PURE__*/jsxRuntime.jsx("button", {
+              onClick: function onClick() {
+                return setIsMobileMenuOpen(!isMobileMenuOpen);
+              },
+              className: "md:hidden w-10 h-10 flex items-center justify-center text-white hover:bg-white/10 rounded-lg transition-colors",
+              "aria-label": "Toggle mobile menu",
+              children: isMobileMenuOpen ? /*#__PURE__*/jsxRuntime.jsx("svg", {
+                className: "w-6 h-6",
+                fill: "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2,
+                  d: "M6 18L18 6M6 6l12 12"
+                })
+              }) : /*#__PURE__*/jsxRuntime.jsx("svg", {
+                className: "w-6 h-6",
+                fill: "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2,
+                  d: "M4 6h16M4 12h16M4 18h16"
+                })
+              })
+            })]
+          })]
+        }), isMobileMenuOpen && /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "md:hidden py-4 border-t border-white/20 bg-gradient-to-b from-purple-700 to-indigo-700",
+          children: navItems.map(function (item, index) {
+            return /*#__PURE__*/jsxRuntime.jsx("a", {
+              href: item.href || '#',
+              className: clsx('block px-4 py-3 text-base font-semibold transition-colors', isNavItemActive(item, index) ? 'text-white bg-white/20' : 'text-white/90 hover:text-white hover:bg-white/10'),
+              onClick: function onClick() {
+                return setIsMobileMenuOpen(false);
+              },
+              children: item.label
+            }, index);
+          })
+        })]
+      })
+    });
+  }
+
+  // Variant 8: Simple Navigation Header (Tailblocks Style)
+  if (variant === 'simple') {
+    return /*#__PURE__*/jsxRuntime.jsx("header", {
+      id: id,
+      ref: headerRef,
+      className: clsx('relative w-full z-50 bg-gray-50 border-b border-gray-200', sticky && 'sticky top-0', isScrolled && 'bg-white shadow-sm', className),
+      children: /*#__PURE__*/jsxRuntime.jsxs("nav", {
+        className: "relative container mx-auto px-4 sm:px-6 lg:px-8",
+        "aria-label": "Main navigation",
+        children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "flex items-center justify-between h-16",
+          children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "flex items-center flex-shrink-0",
+            children: /*#__PURE__*/jsxRuntime.jsx("a", {
+              href: logoHref,
+              className: "flex items-center group",
+              "aria-label": "Home",
+              children: renderLogo()
+            })
+          }), navItems && navItems.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "hidden md:flex items-center gap-6",
+            children: navItems.map(function (item, index) {
+              if (!item || !item.label) return null;
+              var hasDropdown = item.dropdown && item.dropdown.length > 0;
+              var isActive = isNavItemActive(item, index);
+              return /*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: "relative",
+                ref: hasDropdown && openDropdown === index ? dropdownRef : null,
+                children: [/*#__PURE__*/jsxRuntime.jsxs("a", {
+                  href: item.href || '#',
+                  onClick: function onClick(e) {
+                    return handleNavClick(index);
+                  },
+                  onMouseEnter: function onMouseEnter() {
+                    return hasDropdown && setOpenDropdown(index);
+                  },
+                  className: clsx('text-sm font-medium transition-colors duration-200', isActive ? 'text-gray-900' : 'text-gray-500 hover:text-gray-900'),
+                  children: [item.label, hasDropdown && /*#__PURE__*/jsxRuntime.jsx("svg", {
+                    className: "inline-block w-4 h-4 ml-1",
+                    fill: "none",
+                    stroke: "currentColor",
+                    viewBox: "0 0 24 24",
+                    children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                      strokeLinecap: "round",
+                      strokeLinejoin: "round",
+                      strokeWidth: 2,
+                      d: "M19 9l-7 7-7-7"
+                    })
+                  })]
+                }), hasDropdown && openDropdown === index && /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "absolute left-0 top-full mt-1 w-48 bg-white rounded-md shadow-lg border border-gray-200 py-1 z-50",
+                  children: item.dropdown.map(function (dropdownItem, idx) {
+                    return /*#__PURE__*/jsxRuntime.jsx("a", {
+                      href: dropdownItem.href || '#',
+                      className: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors",
+                      onClick: function onClick() {
+                        return setOpenDropdown(null);
+                      },
+                      children: dropdownItem.label
+                    }, idx);
+                  })
+                })]
+              }, index);
+            })
+          }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex items-center gap-4 flex-shrink-0",
+            children: [ctaButtons.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "hidden md:flex items-center gap-2",
+              children: ctaButtons.map(function (button, index) {
+                return /*#__PURE__*/jsxRuntime.jsx("a", {
+                  href: button.href || '#',
+                  className: clsx('px-4 py-2 text-sm font-medium rounded-md transition-colors duration-200', button.variant === 'primary' ? 'bg-gray-900 text-white hover:bg-gray-800' : 'text-gray-700 hover:bg-gray-200'),
+                  children: button.label
+                }, index);
+              })
+            }), /*#__PURE__*/jsxRuntime.jsx("button", {
+              onClick: function onClick() {
+                return setIsMobileMenuOpen(!isMobileMenuOpen);
+              },
+              className: "md:hidden w-10 h-10 flex items-center justify-center text-gray-600 hover:text-gray-900 transition-colors",
+              "aria-label": "Toggle mobile menu",
+              children: isMobileMenuOpen ? /*#__PURE__*/jsxRuntime.jsx("svg", {
+                className: "w-6 h-6",
+                fill: "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2,
+                  d: "M6 18L18 6M6 6l12 12"
+                })
+              }) : /*#__PURE__*/jsxRuntime.jsx("svg", {
+                className: "w-6 h-6",
+                fill: "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2,
+                  d: "M4 6h16M4 12h16M4 18h16"
+                })
+              })
+            })]
+          })]
+        }), isMobileMenuOpen && /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "md:hidden py-4 border-t border-gray-200 bg-white",
+          children: navItems.map(function (item, index) {
+            return /*#__PURE__*/jsxRuntime.jsx("a", {
+              href: item.href || '#',
+              className: clsx('block px-4 py-2 text-base font-medium transition-colors', isNavItemActive(item, index) ? 'text-gray-900' : 'text-gray-600 hover:text-gray-900'),
+              onClick: function onClick() {
+                return setIsMobileMenuOpen(false);
+              },
+              children: item.label
+            }, index);
+          })
+        })]
+      })
+    });
+  }
+
+  // Variant 9: Ultra Minimal Header (Tailblocks Style)
+  if (variant === 'minimal') {
+    return /*#__PURE__*/jsxRuntime.jsx("header", {
+      id: id,
+      ref: headerRef,
+      className: clsx('relative w-full z-50 bg-white', sticky && 'sticky top-0', isScrolled && 'border-b border-gray-200', className),
+      children: /*#__PURE__*/jsxRuntime.jsxs("nav", {
+        className: "relative container mx-auto px-4 sm:px-6 lg:px-8",
+        "aria-label": "Main navigation",
+        children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "flex items-center justify-between h-14",
+          children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "flex items-center flex-shrink-0",
+            children: /*#__PURE__*/jsxRuntime.jsx("a", {
+              href: logoHref,
+              className: "flex items-center group",
+              "aria-label": "Home",
+              children: renderLogo()
+            })
+          }), navItems && navItems.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "hidden md:flex items-center gap-8",
+            children: navItems.map(function (item, index) {
+              if (!item || !item.label) return null;
+              var isActive = isNavItemActive(item, index);
+              return /*#__PURE__*/jsxRuntime.jsx("a", {
+                href: item.href || '#',
+                onClick: function onClick(e) {
+                  return handleNavClick(index);
+                },
+                className: clsx('text-sm font-normal transition-colors duration-200', isActive ? 'text-gray-900' : 'text-gray-500 hover:text-gray-900'),
+                children: item.label
+              }, index);
+            })
+          }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex items-center gap-6 flex-shrink-0",
+            children: [ctaButtons.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "hidden md:flex items-center gap-4",
+              children: ctaButtons.map(function (button, index) {
+                return /*#__PURE__*/jsxRuntime.jsx("a", {
+                  href: button.href || '#',
+                  className: clsx('text-sm font-medium transition-colors duration-200', button.variant === 'primary' ? 'text-gray-900' : 'text-gray-500 hover:text-gray-900'),
+                  children: button.label
+                }, index);
+              })
+            }), /*#__PURE__*/jsxRuntime.jsx("button", {
+              onClick: function onClick() {
+                return setIsMobileMenuOpen(!isMobileMenuOpen);
+              },
+              className: "md:hidden w-8 h-8 flex items-center justify-center text-gray-600 hover:text-gray-900 transition-colors",
+              "aria-label": "Toggle mobile menu",
+              children: isMobileMenuOpen ? /*#__PURE__*/jsxRuntime.jsx("svg", {
+                className: "w-5 h-5",
+                fill: "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2,
+                  d: "M6 18L18 6M6 6l12 12"
+                })
+              }) : /*#__PURE__*/jsxRuntime.jsx("svg", {
+                className: "w-5 h-5",
+                fill: "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2,
+                  d: "M4 6h16M4 12h16M4 18h16"
+                })
+              })
+            })]
+          })]
+        }), isMobileMenuOpen && /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "md:hidden py-3 border-t border-gray-200",
+          children: navItems.map(function (item, index) {
+            return /*#__PURE__*/jsxRuntime.jsx("a", {
+              href: item.href || '#',
+              className: clsx('block px-4 py-2 text-sm font-normal transition-colors', isNavItemActive(item, index) ? 'text-gray-900' : 'text-gray-500 hover:text-gray-900'),
+              onClick: function onClick() {
+                return setIsMobileMenuOpen(false);
+              },
+              children: item.label
+            }, index);
+          })
+        })]
+      })
+    });
+  }
+
+  // Default fallback
+  return null;
+};
+
+var FooterLayout = function FooterLayout(_ref) {
+  var data = _ref.data,
+    className = _ref.className,
+    id = _ref.id;
+  if (!data || _typeof(data) !== 'object') {
+    console.error('FooterLayout: data prop is required and must be an object');
+    return null;
+  }
+  var _data$logo = data.logo,
+    logo = _data$logo === void 0 ? 'Your Logo' : _data$logo,
+    _data$logoHref = data.logoHref,
+    logoHref = _data$logoHref === void 0 ? '/' : _data$logoHref,
+    description = data.description,
+    _data$links = data.links,
+    links = _data$links === void 0 ? [] : _data$links,
+    _data$socialIcons = data.socialIcons,
+    socialIcons = _data$socialIcons === void 0 ? [] : _data$socialIcons,
+    newsletter = data.newsletter,
+    _data$copyright = data.copyright,
+    copyright = _data$copyright === void 0 ? "\xA9 ".concat(new Date().getFullYear(), " Your Company. All rights reserved.") : _data$copyright,
+    _data$bottomLinks = data.bottomLinks,
+    bottomLinks = _data$bottomLinks === void 0 ? [] : _data$bottomLinks,
+    _data$variant = data.variant,
+    variant = _data$variant === void 0 ? 'classic' : _data$variant,
+    _data$loader = data.loader,
+    loader = _data$loader === void 0 ? false : _data$loader;
+
+  // Show skeleton loader if loader prop is true (check this FIRST before any other checks)
+  if (loader) {
+    var skeletonVariant = variant || 'classic';
+
+    // Classic variant skeleton
+    if (skeletonVariant === 'classic') {
+      return /*#__PURE__*/jsxRuntime.jsx("footer", {
+        id: id,
+        className: clsx('bg-gray-900 text-gray-300', className),
+        children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "container mx-auto px-4 sm:px-6 lg:px-8 py-12",
+          children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8",
+            children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "lg:col-span-1",
+              children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "h-8 w-32 bg-gray-700 rounded mb-4 animate-pulse"
+              }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "h-4 w-full bg-gray-800 rounded mb-4 animate-pulse"
+              }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "h-4 w-3/4 bg-gray-800 rounded mb-4 animate-pulse"
+              }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "flex gap-3",
+                children: [0, 1, 2, 3].map(function (index) {
+                  return /*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: "w-8 h-8 bg-gray-700 rounded-full animate-pulse"
+                  }, index);
+                })
+              })]
+            }), [0, 1, 2].map(function (sectionIndex) {
+              return /*#__PURE__*/jsxRuntime.jsxs("div", {
+                children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "h-5 w-24 bg-gray-700 rounded mb-4 animate-pulse"
+                }), /*#__PURE__*/jsxRuntime.jsx("ul", {
+                  className: "space-y-2",
+                  children: [0, 1, 2, 3].map(function (itemIndex) {
+                    return /*#__PURE__*/jsxRuntime.jsx("li", {
+                      children: /*#__PURE__*/jsxRuntime.jsx("div", {
+                        className: "h-4 w-20 bg-gray-800 rounded animate-pulse"
+                      })
+                    }, itemIndex);
+                  })
+                })]
+              }, sectionIndex);
+            })]
+          }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "border-t border-gray-800 mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4",
+            children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "h-4 w-48 bg-gray-800 rounded animate-pulse"
+            }), /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "flex gap-6",
+              children: [0, 1, 2].map(function (index) {
+                return /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "h-4 w-16 bg-gray-800 rounded animate-pulse"
+                }, index);
+              })
+            })]
+          })]
+        })
+      });
+    }
+
+    // Minimal variant skeleton
+    if (skeletonVariant === 'minimal') {
+      return /*#__PURE__*/jsxRuntime.jsx("footer", {
+        id: id,
+        className: clsx('bg-white border-t border-gray-200', className),
+        children: /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "container mx-auto px-4 sm:px-6 lg:px-8 py-10",
+          children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex flex-col md:flex-row justify-between items-center gap-6",
+            children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "flex flex-col md:flex-row items-center gap-6",
+              children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "h-8 w-32 bg-gray-200 rounded animate-pulse"
+              }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "flex gap-6",
+                children: [0, 1, 2].map(function (index) {
+                  return /*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: "h-4 w-16 bg-gray-200 rounded animate-pulse"
+                  }, index);
+                })
+              })]
+            }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "flex items-center gap-4",
+              children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "flex gap-3",
+                children: [0, 1, 2, 3].map(function (index) {
+                  return /*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: "w-8 h-8 bg-gray-200 rounded-full animate-pulse"
+                  }, index);
+                })
+              }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "h-4 w-40 bg-gray-200 rounded animate-pulse"
+              })]
+            })]
+          })
+        })
+      });
+    }
+
+    // Gradient variant skeleton
+    if (skeletonVariant === 'gradient') {
+      return /*#__PURE__*/jsxRuntime.jsx("footer", {
+        id: id,
+        className: clsx('bg-primary-600 text-white', className),
+        children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "container mx-auto px-4 sm:px-6 lg:px-8 py-16",
+          children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mb-12",
+            children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+              children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "h-8 w-32 bg-white/20 rounded mb-4 animate-pulse"
+              }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "h-4 w-full bg-white/20 rounded mb-2 animate-pulse"
+              }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "h-4 w-3/4 bg-white/20 rounded mb-6 animate-pulse"
+              }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "flex gap-3",
+                children: [0, 1, 2, 3].map(function (index) {
+                  return /*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: "w-8 h-8 bg-white/20 rounded-full animate-pulse"
+                  }, index);
+                })
+              })]
+            }), [0, 1].map(function (sectionIndex) {
+              return /*#__PURE__*/jsxRuntime.jsxs("div", {
+                children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "h-5 w-24 bg-white/20 rounded mb-5 animate-pulse"
+                }), /*#__PURE__*/jsxRuntime.jsx("ul", {
+                  className: "space-y-3",
+                  children: [0, 1, 2, 3].map(function (itemIndex) {
+                    return /*#__PURE__*/jsxRuntime.jsx("li", {
+                      children: /*#__PURE__*/jsxRuntime.jsx("div", {
+                        className: "h-4 w-20 bg-white/20 rounded animate-pulse"
+                      })
+                    }, itemIndex);
+                  })
+                })]
+              }, sectionIndex);
+            })]
+          }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "border-t border-white/20 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4",
+            children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "h-4 w-48 bg-white/20 rounded animate-pulse"
+            }), /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "flex gap-6",
+              children: [0, 1, 2].map(function (index) {
+                return /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "h-4 w-16 bg-white/20 rounded animate-pulse"
+                }, index);
+              })
+            })]
+          })]
+        })
+      });
+    }
+
+    // Split variant skeleton
+    if (skeletonVariant === 'split') {
+      return /*#__PURE__*/jsxRuntime.jsx("footer", {
+        id: id,
+        className: clsx('bg-gray-50', className),
+        children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "container mx-auto px-4 sm:px-6 lg:px-8",
+          children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "bg-gray-900 text-white py-12",
+            children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8",
+              children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+                children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "h-8 w-32 bg-gray-700 rounded mb-4 animate-pulse"
+                }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "h-4 w-full bg-gray-800 rounded animate-pulse"
+                })]
+              }), [0, 1, 2].map(function (sectionIndex) {
+                return /*#__PURE__*/jsxRuntime.jsxs("div", {
+                  children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: "h-5 w-24 bg-gray-700 rounded mb-4 animate-pulse"
+                  }), /*#__PURE__*/jsxRuntime.jsx("ul", {
+                    className: "space-y-2",
+                    children: [0, 1, 2, 3].map(function (itemIndex) {
+                      return /*#__PURE__*/jsxRuntime.jsx("li", {
+                        children: /*#__PURE__*/jsxRuntime.jsx("div", {
+                          className: "h-4 w-20 bg-gray-800 rounded animate-pulse"
+                        })
+                      }, itemIndex);
+                    })
+                  })]
+                }, sectionIndex);
+              })]
+            })
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "bg-white border-t border-gray-200 py-6",
+            children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "flex flex-col sm:flex-row justify-between items-center gap-4",
+              children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "h-4 w-48 bg-gray-300 rounded animate-pulse"
+              }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: "flex items-center gap-6",
+                children: [[0, 1, 2].map(function (index) {
+                  return /*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: "h-4 w-16 bg-gray-300 rounded animate-pulse"
+                  }, index);
+                }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "flex gap-3 ml-4",
+                  children: [0, 1, 2].map(function (index) {
+                    return /*#__PURE__*/jsxRuntime.jsx("div", {
+                      className: "w-8 h-8 bg-gray-200 rounded-full animate-pulse"
+                    }, index);
+                  })
+                })]
+              })]
+            })
+          })]
+        })
+      });
+    }
+
+    // Newsletter variant skeleton
+    if (skeletonVariant === 'newsletter') {
+      return /*#__PURE__*/jsxRuntime.jsxs("footer", {
+        id: id,
+        className: clsx('bg-gray-900 text-white', className),
+        children: [newsletter && /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "bg-gradient-to-r from-blue-600 to-indigo-600 py-12",
+          children: /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "container mx-auto px-4 sm:px-6 lg:px-8",
+            children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "max-w-2xl mx-auto text-center",
+              children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "h-8 w-64 bg-white/20 rounded mx-auto mb-3 animate-pulse"
+              }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: "flex flex-col sm:flex-row gap-3 mt-6",
+                children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "flex-1 h-12 bg-white/20 rounded-lg animate-pulse"
+                }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "h-12 w-32 bg-white/20 rounded-lg animate-pulse"
+                })]
+              })]
+            })
+          })
+        }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "container mx-auto px-4 sm:px-6 lg:px-8 py-12",
+          children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8",
+            children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+              children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "h-8 w-32 bg-gray-700 rounded mb-4 animate-pulse"
+              }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "h-4 w-full bg-gray-800 rounded animate-pulse"
+              })]
+            }), [0, 1, 2].map(function (sectionIndex) {
+              return /*#__PURE__*/jsxRuntime.jsxs("div", {
+                children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "h-5 w-24 bg-gray-700 rounded mb-4 animate-pulse"
+                }), /*#__PURE__*/jsxRuntime.jsx("ul", {
+                  className: "space-y-2",
+                  children: [0, 1, 2, 3].map(function (itemIndex) {
+                    return /*#__PURE__*/jsxRuntime.jsx("li", {
+                      children: /*#__PURE__*/jsxRuntime.jsx("div", {
+                        className: "h-4 w-20 bg-gray-800 rounded animate-pulse"
+                      })
+                    }, itemIndex);
+                  })
+                })]
+              }, sectionIndex);
+            })]
+          }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "border-t border-gray-800 mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4",
+            children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "h-4 w-48 bg-gray-800 rounded animate-pulse"
+            }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "flex items-center gap-6",
+              children: [[0, 1, 2].map(function (index) {
+                return /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "h-4 w-16 bg-gray-800 rounded animate-pulse"
+                }, index);
+              }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "flex gap-3 ml-4",
+                children: [0, 1, 2].map(function (index) {
+                  return /*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: "w-8 h-8 bg-gray-700 rounded-full animate-pulse"
+                  }, index);
+                })
+              })]
+            })]
+          })]
+        })]
+      });
+    }
+
+    // Social variant skeleton
+    if (skeletonVariant === 'social') {
+      return /*#__PURE__*/jsxRuntime.jsx("footer", {
+        id: id,
+        className: clsx('bg-black text-white', className),
+        children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "container mx-auto px-4 sm:px-6 lg:px-8 py-16",
+          children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "text-center mb-12",
+            children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "h-8 w-32 bg-gray-800 rounded mx-auto mb-6 animate-pulse"
+            }), /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "h-4 w-full max-w-2xl bg-gray-800 rounded mx-auto mb-8 animate-pulse"
+            }), /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "flex justify-center gap-4 flex-wrap",
+              children: [0, 1, 2, 3, 4].map(function (index) {
+                return /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "w-14 h-14 bg-gray-800 rounded-full animate-pulse"
+                }, index);
+              })
+            })]
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "grid grid-cols-2 md:grid-cols-4 gap-8 mb-12",
+            children: [0, 1, 2, 3].map(function (sectionIndex) {
+              return /*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: "text-center md:text-left",
+                children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "h-5 w-24 bg-gray-800 rounded mb-4 mx-auto md:mx-0 animate-pulse"
+                }), /*#__PURE__*/jsxRuntime.jsx("ul", {
+                  className: "space-y-2",
+                  children: [0, 1, 2, 3].map(function (itemIndex) {
+                    return /*#__PURE__*/jsxRuntime.jsx("li", {
+                      children: /*#__PURE__*/jsxRuntime.jsx("div", {
+                        className: "h-4 w-20 bg-gray-800 rounded mx-auto md:mx-0 animate-pulse"
+                      })
+                    }, itemIndex);
+                  })
+                })]
+              }, sectionIndex);
+            })
+          }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "border-t border-gray-800 pt-8 text-center",
+            children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "h-4 w-48 bg-gray-800 rounded mx-auto mb-4 animate-pulse"
+            }), /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "flex justify-center gap-6 flex-wrap",
+              children: [0, 1, 2].map(function (index) {
+                return /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "h-4 w-16 bg-gray-800 rounded animate-pulse"
+                }, index);
+              })
+            })]
+          })]
+        })
+      });
+    }
+
+    // Branded variant skeleton
+    if (skeletonVariant === 'branded') {
+      return /*#__PURE__*/jsxRuntime.jsx("footer", {
+        id: id,
+        className: clsx('bg-primary-800 text-white', className),
+        children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "container mx-auto px-4 sm:px-6 lg:px-8 py-14",
+          children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "grid grid-cols-1 md:grid-cols-3 gap-10 mb-10",
+            children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "md:col-span-1",
+              children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "h-10 w-40 bg-white/20 rounded mb-5 animate-pulse"
+              }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "h-4 w-full bg-white/20 rounded mb-2 animate-pulse"
+              }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "h-4 w-3/4 bg-white/20 rounded mb-6 animate-pulse"
+              })]
+            }), [0, 1].map(function (sectionIndex) {
+              return /*#__PURE__*/jsxRuntime.jsxs("div", {
+                children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "h-5 w-24 bg-white/20 rounded mb-5 animate-pulse"
+                }), /*#__PURE__*/jsxRuntime.jsx("ul", {
+                  className: "space-y-3",
+                  children: [0, 1, 2, 3].map(function (itemIndex) {
+                    return /*#__PURE__*/jsxRuntime.jsx("li", {
+                      children: /*#__PURE__*/jsxRuntime.jsx("div", {
+                        className: "h-4 w-20 bg-white/20 rounded animate-pulse"
+                      })
+                    }, itemIndex);
+                  })
+                })]
+              }, sectionIndex);
+            })]
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "border-t border-white/20 pt-8",
+            children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "flex flex-col md:flex-row justify-between items-center gap-6",
+              children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "h-4 w-48 bg-white/20 rounded animate-pulse"
+              }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: "flex items-center gap-6",
+                children: [[0, 1, 2].map(function (index) {
+                  return /*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: "h-4 w-16 bg-white/20 rounded animate-pulse"
+                  }, index);
+                }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "flex gap-3 ml-4",
+                  children: [0, 1, 2].map(function (index) {
+                    return /*#__PURE__*/jsxRuntime.jsx("div", {
+                      className: "w-8 h-8 bg-white/20 rounded-full animate-pulse"
+                    }, index);
+                  })
+                })]
+              })]
+            })
+          })]
+        })
+      });
+    }
+
+    // Multi-column variant skeleton
+    if (skeletonVariant === 'multi-column') {
+      return /*#__PURE__*/jsxRuntime.jsx("footer", {
+        id: id,
+        className: clsx('bg-gray-50 border-t border-gray-200', className),
+        children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "container mx-auto px-4 sm:px-6 lg:px-8 py-14",
+          children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 mb-10",
+            children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "col-span-2 md:col-span-1",
+              children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "h-8 w-32 bg-gray-200 rounded mb-4 animate-pulse"
+              }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "h-4 w-full bg-gray-200 rounded mt-3 animate-pulse"
+              })]
+            }), [0, 1, 2, 3, 4].map(function (sectionIndex) {
+              return /*#__PURE__*/jsxRuntime.jsxs("div", {
+                children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "h-5 w-20 bg-gray-300 rounded mb-4 animate-pulse"
+                }), /*#__PURE__*/jsxRuntime.jsx("ul", {
+                  className: "space-y-2",
+                  children: [0, 1, 2, 3].map(function (itemIndex) {
+                    return /*#__PURE__*/jsxRuntime.jsx("li", {
+                      children: /*#__PURE__*/jsxRuntime.jsx("div", {
+                        className: "h-4 w-16 bg-gray-200 rounded animate-pulse"
+                      })
+                    }, itemIndex);
+                  })
+                })]
+              }, sectionIndex);
+            })]
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "border-t border-gray-200 pt-8",
+            children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "flex flex-col md:flex-row justify-between items-center gap-4",
+              children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "h-4 w-48 bg-gray-300 rounded animate-pulse"
+              }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: "flex items-center gap-6",
+                children: [[0, 1, 2].map(function (index) {
+                  return /*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: "h-4 w-16 bg-gray-300 rounded animate-pulse"
+                  }, index);
+                }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "flex gap-3 ml-4",
+                  children: [0, 1, 2].map(function (index) {
+                    return /*#__PURE__*/jsxRuntime.jsx("div", {
+                      className: "w-8 h-8 bg-gray-200 rounded-full animate-pulse"
+                    }, index);
+                  })
+                })]
+              })]
+            })
+          })]
+        })
+      });
+    }
+
+    // Centered variant skeleton
+    if (skeletonVariant === 'centered') {
+      return /*#__PURE__*/jsxRuntime.jsx("footer", {
+        id: id,
+        className: clsx('bg-white border-t border-gray-200', className),
+        children: /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "container mx-auto px-4 sm:px-6 lg:px-8 py-12",
+          children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "max-w-4xl mx-auto text-center",
+            children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "h-8 w-32 bg-gray-200 rounded mx-auto mb-6 animate-pulse"
+            }), /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "h-4 w-full max-w-2xl bg-gray-200 rounded mx-auto mb-8 animate-pulse"
+            }), /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "flex flex-wrap justify-center gap-8 mb-8",
+              children: [0, 1, 2].map(function (sectionIndex) {
+                return /*#__PURE__*/jsxRuntime.jsxs("div", {
+                  children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: "h-5 w-20 bg-gray-300 rounded mb-3 mx-auto animate-pulse"
+                  }), /*#__PURE__*/jsxRuntime.jsx("ul", {
+                    className: "space-y-2",
+                    children: [0, 1, 2].map(function (itemIndex) {
+                      return /*#__PURE__*/jsxRuntime.jsx("li", {
+                        children: /*#__PURE__*/jsxRuntime.jsx("div", {
+                          className: "h-4 w-16 bg-gray-200 rounded mx-auto animate-pulse"
+                        })
+                      }, itemIndex);
+                    })
+                  })]
+                }, sectionIndex);
+              })
+            }), /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "flex justify-center gap-4 mb-8",
+              children: [0, 1, 2, 3, 4].map(function (index) {
+                return /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "w-8 h-8 bg-gray-200 rounded-full animate-pulse"
+                }, index);
+              })
+            }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "border-t border-gray-200 pt-8",
+              children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "h-4 w-48 bg-gray-300 rounded mx-auto mb-4 animate-pulse"
+              }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "flex justify-center gap-6 flex-wrap",
+                children: [0, 1, 2].map(function (index) {
+                  return /*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: "h-4 w-16 bg-gray-300 rounded animate-pulse"
+                  }, index);
+                })
+              })]
+            })]
+          })
+        })
+      });
+    }
+
+    // Glass variant skeleton (default fallback)
+    return /*#__PURE__*/jsxRuntime.jsx("footer", {
+      id: id,
+      className: clsx('bg-white/80 backdrop-blur-xl border-t border-gray-200/50', className),
+      children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "container mx-auto px-4 sm:px-6 lg:px-8 py-12",
+        children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-10",
+          children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+            children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "h-8 w-32 bg-gray-200 rounded mb-4 animate-pulse"
+            }), /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "h-4 w-full bg-gray-200 rounded mb-4 animate-pulse"
+            }), /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "flex gap-3",
+              children: [0, 1, 2, 3].map(function (index) {
+                return /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "w-8 h-8 bg-gray-200 rounded-full animate-pulse"
+                }, index);
+              })
+            })]
+          }), [0, 1, 2].map(function (sectionIndex) {
+            return /*#__PURE__*/jsxRuntime.jsxs("div", {
+              children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "h-5 w-24 bg-gray-300 rounded mb-4 animate-pulse"
+              }), /*#__PURE__*/jsxRuntime.jsx("ul", {
+                className: "space-y-2",
+                children: [0, 1, 2, 3].map(function (itemIndex) {
+                  return /*#__PURE__*/jsxRuntime.jsx("li", {
+                    children: /*#__PURE__*/jsxRuntime.jsx("div", {
+                      className: "h-4 w-20 bg-gray-200 rounded animate-pulse"
+                    })
+                  }, itemIndex);
+                })
+              })]
+            }, sectionIndex);
+          })]
+        }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "border-t border-gray-200/50 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4",
+          children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "h-4 w-48 bg-gray-300 rounded animate-pulse"
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "flex gap-6",
+            children: [0, 1, 2].map(function (index) {
+              return /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "h-4 w-16 bg-gray-300 rounded animate-pulse"
+              }, index);
+            })
+          })]
+        })]
+      })
+    });
+  }
+
+  // Social icon component
+  var SocialIcon = function SocialIcon(_ref2) {
+    var name = _ref2.name,
+      href = _ref2.href,
+      _ref2$size = _ref2.size,
+      size = _ref2$size === void 0 ? 'md' : _ref2$size,
+      _ref2$className = _ref2.className,
+      className = _ref2$className === void 0 ? '' : _ref2$className;
+    var sizeClasses = {
+      sm: 'w-8 h-8',
+      md: 'w-10 h-10',
+      lg: 'w-12 h-12',
+      xl: 'w-14 h-14'
+    };
+    var icons = {
+      twitter: /*#__PURE__*/jsxRuntime.jsx("svg", {
+        className: "w-5 h-5",
+        fill: "currentColor",
+        viewBox: "0 0 24 24",
+        children: /*#__PURE__*/jsxRuntime.jsx("path", {
+          d: "M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"
+        })
+      }),
+      facebook: /*#__PURE__*/jsxRuntime.jsx("svg", {
+        className: "w-5 h-5",
+        fill: "currentColor",
+        viewBox: "0 0 24 24",
+        children: /*#__PURE__*/jsxRuntime.jsx("path", {
+          d: "M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"
+        })
+      }),
+      youtube: /*#__PURE__*/jsxRuntime.jsx("svg", {
+        className: "w-5 h-5",
+        fill: "currentColor",
+        viewBox: "0 0 24 24",
+        children: /*#__PURE__*/jsxRuntime.jsx("path", {
+          d: "M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"
+        })
+      }),
+      linkedin: /*#__PURE__*/jsxRuntime.jsxs("svg", {
+        className: "w-5 h-5",
+        fill: "currentColor",
+        viewBox: "0 0 24 24",
+        children: [/*#__PURE__*/jsxRuntime.jsx("path", {
+          d: "M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"
+        }), /*#__PURE__*/jsxRuntime.jsx("circle", {
+          cx: "4",
+          cy: "4",
+          r: "2"
+        })]
+      }),
+      instagram: /*#__PURE__*/jsxRuntime.jsx("svg", {
+        className: "w-5 h-5",
+        fill: "currentColor",
+        viewBox: "0 0 24 24",
+        children: /*#__PURE__*/jsxRuntime.jsx("path", {
+          d: "M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+        })
+      }),
+      github: /*#__PURE__*/jsxRuntime.jsx("svg", {
+        className: "w-5 h-5",
+        fill: "currentColor",
+        viewBox: "0 0 24 24",
+        children: /*#__PURE__*/jsxRuntime.jsx("path", {
+          d: "M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+        })
+      })
+    };
+    return /*#__PURE__*/jsxRuntime.jsx("a", {
+      href: href || '#',
+      className: clsx('flex items-center justify-center rounded-full transition-all duration-300 hover:scale-110', sizeClasses[size], className),
+      "aria-label": name,
+      children: icons[name.toLowerCase()] || icons.twitter
+    });
+  };
+
+  // Render logo
+  var renderLogo = function renderLogo() {
+    if (typeof logo === 'string' && logo.startsWith('http')) {
+      return /*#__PURE__*/jsxRuntime.jsx("img", {
+        src: logo,
+        alt: "Logo",
+        className: "h-8 w-auto"
+      });
+    }
+    if (_typeof(logo) === 'object') {
+      if (logo.image) {
+        return /*#__PURE__*/jsxRuntime.jsx("img", {
+          src: logo.image,
+          alt: logo.text || 'Logo',
+          className: "h-8 w-auto"
+        });
+      }
+      if (logo.text) {
+        return /*#__PURE__*/jsxRuntime.jsx("span", {
+          className: "text-xl font-bold",
+          children: logo.text
+        });
+      }
+    }
+    return /*#__PURE__*/jsxRuntime.jsx("span", {
+      className: "text-xl font-bold",
+      children: logo
+    });
+  };
+
+  // Variant 1: Classic Dark Footer
+  if (variant === 'classic') {
+    return /*#__PURE__*/jsxRuntime.jsx("footer", {
+      id: id,
+      className: clsx('bg-gray-900 text-gray-300', className),
+      children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "container mx-auto px-4 sm:px-6 lg:px-8 py-12",
+        children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8",
+          children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "lg:col-span-1",
+            children: [/*#__PURE__*/jsxRuntime.jsx("a", {
+              href: logoHref,
+              className: "inline-block mb-4",
+              children: renderLogo()
+            }), description && /*#__PURE__*/jsxRuntime.jsx("p", {
+              className: "text-sm text-gray-400 mb-4",
+              children: description
+            }), socialIcons.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "flex gap-3",
+              children: socialIcons.map(function (icon, index) {
+                return /*#__PURE__*/jsxRuntime.jsx(SocialIcon, {
+                  name: icon.name,
+                  href: icon.href,
+                  size: "sm"
+                }, index);
+              })
+            })]
+          }), links.map(function (section, index) {
+            var _section$items;
+            return /*#__PURE__*/jsxRuntime.jsxs("div", {
+              children: [/*#__PURE__*/jsxRuntime.jsx("h3", {
+                className: "text-white font-semibold mb-4 text-sm uppercase tracking-wider",
+                children: section.title
+              }), /*#__PURE__*/jsxRuntime.jsx("ul", {
+                className: "space-y-2",
+                children: (_section$items = section.items) === null || _section$items === void 0 ? void 0 : _section$items.map(function (item, idx) {
+                  return /*#__PURE__*/jsxRuntime.jsx("li", {
+                    children: /*#__PURE__*/jsxRuntime.jsx("a", {
+                      href: item.href || '#',
+                      className: "text-sm text-gray-400 hover:text-white transition-colors duration-200",
+                      children: item.label
+                    })
+                  }, idx);
+                })
+              })]
+            }, index);
+          })]
+        }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "border-t border-gray-800 mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4",
+          children: [/*#__PURE__*/jsxRuntime.jsx("p", {
+            className: "text-sm text-gray-400",
+            children: copyright
+          }), bottomLinks.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "flex gap-6",
+            children: bottomLinks.map(function (link, index) {
+              return /*#__PURE__*/jsxRuntime.jsx("a", {
+                href: link.href || '#',
+                className: "text-sm text-gray-400 hover:text-white transition-colors duration-200",
+                children: link.label
+              }, index);
+            })
+          })]
+        })]
+      })
+    });
+  }
+
+  // Variant 2: Minimalist Light Footer
+  if (variant === 'minimal') {
+    return /*#__PURE__*/jsxRuntime.jsx("footer", {
+      id: id,
+      className: clsx('bg-white border-t border-gray-200', className),
+      children: /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "container mx-auto px-4 sm:px-6 lg:px-8 py-10",
+        children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "flex flex-col md:flex-row justify-between items-center gap-6",
+          children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex flex-col md:flex-row items-center gap-6",
+            children: [/*#__PURE__*/jsxRuntime.jsx("a", {
+              href: logoHref,
+              className: "text-gray-900",
+              children: renderLogo()
+            }), bottomLinks.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "flex gap-6",
+              children: bottomLinks.map(function (link, index) {
+                return /*#__PURE__*/jsxRuntime.jsx("a", {
+                  href: link.href || '#',
+                  className: "text-sm text-gray-600 hover:text-gray-900 transition-colors duration-200",
+                  children: link.label
+                }, index);
+              })
+            })]
+          }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex items-center gap-4",
+            children: [socialIcons.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "flex gap-3",
+              children: socialIcons.map(function (icon, index) {
+                return /*#__PURE__*/jsxRuntime.jsx(SocialIcon, {
+                  name: icon.name,
+                  href: icon.href,
+                  size: "sm"
+                }, index);
+              })
+            }), /*#__PURE__*/jsxRuntime.jsx("p", {
+              className: "text-sm text-gray-500",
+              children: copyright
+            })]
+          })]
+        })
+      })
+    });
+  }
+
+  // Variant 3: Gradient Modern Footer
+  if (variant === 'gradient') {
+    return /*#__PURE__*/jsxRuntime.jsx("footer", {
+      id: id,
+      className: clsx('bg-primary-600 text-white', className),
+      children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "container mx-auto px-4 sm:px-6 lg:px-8 py-16",
+        children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mb-12",
+          children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+            children: [/*#__PURE__*/jsxRuntime.jsx("a", {
+              href: logoHref,
+              className: "inline-block mb-4",
+              children: renderLogo()
+            }), description && /*#__PURE__*/jsxRuntime.jsx("p", {
+              className: "text-white/90 text-sm leading-relaxed mb-6",
+              children: description
+            }), socialIcons.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "flex gap-3",
+              children: socialIcons.map(function (icon, index) {
+                return /*#__PURE__*/jsxRuntime.jsx(SocialIcon, {
+                  name: icon.name,
+                  href: icon.href,
+                  size: "sm",
+                  className: "bg-white/20 hover:bg-white/30"
+                }, index);
+              })
+            })]
+          }), links.slice(0, 2).map(function (section, index) {
+            var _section$items2;
+            return /*#__PURE__*/jsxRuntime.jsxs("div", {
+              children: [/*#__PURE__*/jsxRuntime.jsx("h3", {
+                className: "text-white font-bold mb-5 text-base",
+                children: section.title
+              }), /*#__PURE__*/jsxRuntime.jsx("ul", {
+                className: "space-y-3",
+                children: (_section$items2 = section.items) === null || _section$items2 === void 0 ? void 0 : _section$items2.map(function (item, idx) {
+                  return /*#__PURE__*/jsxRuntime.jsx("li", {
+                    children: /*#__PURE__*/jsxRuntime.jsx("a", {
+                      href: item.href || '#',
+                      className: "text-sm text-white/80 hover:text-white transition-colors duration-200 inline-block",
+                      children: item.label
+                    })
+                  }, idx);
+                })
+              })]
+            }, index);
+          })]
+        }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "border-t border-white/20 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4",
+          children: [/*#__PURE__*/jsxRuntime.jsx("p", {
+            className: "text-sm text-white/80",
+            children: copyright
+          }), bottomLinks.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "flex gap-6",
+            children: bottomLinks.map(function (link, index) {
+              return /*#__PURE__*/jsxRuntime.jsx("a", {
+                href: link.href || '#',
+                className: "text-sm text-white/80 hover:text-white transition-colors duration-200",
+                children: link.label
+              }, index);
+            })
+          })]
+        })]
+      })
+    });
+  }
+
+  // Variant 4: Split Color Footer
+  if (variant === 'split') {
+    return /*#__PURE__*/jsxRuntime.jsx("footer", {
+      id: id,
+      className: clsx('bg-gray-50', className),
+      children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "container mx-auto px-4 sm:px-6 lg:px-8",
+        children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "bg-gray-900 text-white py-12",
+          children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8",
+            children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+              children: [/*#__PURE__*/jsxRuntime.jsx("a", {
+                href: logoHref,
+                className: "inline-block mb-4",
+                children: renderLogo()
+              }), description && /*#__PURE__*/jsxRuntime.jsx("p", {
+                className: "text-sm text-gray-400",
+                children: description
+              })]
+            }), links.map(function (section, index) {
+              var _section$items3;
+              return /*#__PURE__*/jsxRuntime.jsxs("div", {
+                children: [/*#__PURE__*/jsxRuntime.jsx("h3", {
+                  className: "font-semibold mb-4 text-sm uppercase tracking-wider",
+                  children: section.title
+                }), /*#__PURE__*/jsxRuntime.jsx("ul", {
+                  className: "space-y-2",
+                  children: (_section$items3 = section.items) === null || _section$items3 === void 0 ? void 0 : _section$items3.map(function (item, idx) {
+                    return /*#__PURE__*/jsxRuntime.jsx("li", {
+                      children: /*#__PURE__*/jsxRuntime.jsx("a", {
+                        href: item.href || '#',
+                        className: "text-sm text-gray-400 hover:text-white transition-colors duration-200",
+                        children: item.label
+                      })
+                    }, idx);
+                  })
+                })]
+              }, index);
+            })]
+          })
+        }), /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "bg-white border-t border-gray-200 py-6",
+          children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex flex-col sm:flex-row justify-between items-center gap-4",
+            children: [/*#__PURE__*/jsxRuntime.jsx("p", {
+              className: "text-sm text-gray-600",
+              children: copyright
+            }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "flex items-center gap-6",
+              children: [bottomLinks.map(function (link, index) {
+                return /*#__PURE__*/jsxRuntime.jsx("a", {
+                  href: link.href || '#',
+                  className: "text-sm text-gray-600 hover:text-gray-900 transition-colors duration-200",
+                  children: link.label
+                }, index);
+              }), socialIcons.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "flex gap-3 ml-4",
+                children: socialIcons.map(function (icon, index) {
+                  return /*#__PURE__*/jsxRuntime.jsx(SocialIcon, {
+                    name: icon.name,
+                    href: icon.href,
+                    size: "sm"
+                  }, index);
+                })
+              })]
+            })]
+          })
+        })]
+      })
+    });
+  }
+
+  // Variant 5: Newsletter Footer
+  if (variant === 'newsletter') {
+    return /*#__PURE__*/jsxRuntime.jsxs("footer", {
+      id: id,
+      className: clsx('bg-gray-900 text-white', className),
+      children: [newsletter && /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "bg-gradient-to-r from-blue-600 to-indigo-600 py-12",
+        children: /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "container mx-auto px-4 sm:px-6 lg:px-8",
+          children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "max-w-2xl mx-auto text-center",
+            children: [/*#__PURE__*/jsxRuntime.jsx("h3", {
+              className: "text-2xl font-bold mb-3",
+              children: newsletter.title
+            }), /*#__PURE__*/jsxRuntime.jsxs("form", {
+              onSubmit: function onSubmit(e) {
+                e.preventDefault();
+                if (newsletter.onSubmit) {
+                  var input = e.target.querySelector('input');
+                  newsletter.onSubmit(input.value);
+                  input.value = '';
+                }
+              },
+              className: "flex flex-col sm:flex-row gap-3 mt-6",
+              children: [/*#__PURE__*/jsxRuntime.jsx("input", {
+                type: "email",
+                placeholder: newsletter.placeholder || 'Enter your email',
+                className: "flex-1 px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-white/50",
+                required: true
+              }), /*#__PURE__*/jsxRuntime.jsx("button", {
+                type: "submit",
+                className: "px-6 py-3 bg-white text-blue-600 font-semibold rounded-lg hover:bg-gray-100 transition-colors duration-200",
+                children: "Subscribe"
+              })]
+            })]
+          })
+        })
+      }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "container mx-auto px-4 sm:px-6 lg:px-8 py-12",
+        children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8",
+          children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+            children: [/*#__PURE__*/jsxRuntime.jsx("a", {
+              href: logoHref,
+              className: "inline-block mb-4",
+              children: renderLogo()
+            }), description && /*#__PURE__*/jsxRuntime.jsx("p", {
+              className: "text-sm text-gray-400",
+              children: description
+            })]
+          }), links.map(function (section, index) {
+            var _section$items4;
+            return /*#__PURE__*/jsxRuntime.jsxs("div", {
+              children: [/*#__PURE__*/jsxRuntime.jsx("h3", {
+                className: "font-semibold mb-4 text-sm uppercase tracking-wider",
+                children: section.title
+              }), /*#__PURE__*/jsxRuntime.jsx("ul", {
+                className: "space-y-2",
+                children: (_section$items4 = section.items) === null || _section$items4 === void 0 ? void 0 : _section$items4.map(function (item, idx) {
+                  return /*#__PURE__*/jsxRuntime.jsx("li", {
+                    children: /*#__PURE__*/jsxRuntime.jsx("a", {
+                      href: item.href || '#',
+                      className: "text-sm text-gray-400 hover:text-white transition-colors duration-200",
+                      children: item.label
+                    })
+                  }, idx);
+                })
+              })]
+            }, index);
+          })]
+        }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "border-t border-gray-800 mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4",
+          children: [/*#__PURE__*/jsxRuntime.jsx("p", {
+            className: "text-sm text-gray-400",
+            children: copyright
+          }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex items-center gap-6",
+            children: [bottomLinks.map(function (link, index) {
+              return /*#__PURE__*/jsxRuntime.jsx("a", {
+                href: link.href || '#',
+                className: "text-sm text-gray-400 hover:text-white transition-colors duration-200",
+                children: link.label
+              }, index);
+            }), socialIcons.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "flex gap-3 ml-4",
+              children: socialIcons.map(function (icon, index) {
+                return /*#__PURE__*/jsxRuntime.jsx(SocialIcon, {
+                  name: icon.name,
+                  href: icon.href,
+                  size: "sm",
+                  className: "text-gray-400 hover:text-white"
+                }, index);
+              })
+            })]
+          })]
+        })]
+      })]
+    });
+  }
+
+  // Variant 6: Social Media Focus Footer
+  if (variant === 'social') {
+    return /*#__PURE__*/jsxRuntime.jsx("footer", {
+      id: id,
+      className: clsx('bg-black text-white', className),
+      children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "container mx-auto px-4 sm:px-6 lg:px-8 py-16",
+        children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "text-center mb-12",
+          children: [/*#__PURE__*/jsxRuntime.jsx("a", {
+            href: logoHref,
+            className: "inline-block mb-6",
+            children: renderLogo()
+          }), description && /*#__PURE__*/jsxRuntime.jsx("p", {
+            className: "text-gray-400 max-w-2xl mx-auto mb-8",
+            children: description
+          }), socialIcons.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "flex justify-center gap-4 flex-wrap",
+            children: socialIcons.map(function (icon, index) {
+              return /*#__PURE__*/jsxRuntime.jsx(SocialIcon, {
+                name: icon.name,
+                href: icon.href,
+                size: "xl",
+                className: "bg-gray-800 hover:bg-gray-700 hover:rotate-6"
+              }, index);
+            })
+          })]
+        }), /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "grid grid-cols-2 md:grid-cols-4 gap-8 mb-12",
+          children: links.map(function (section, index) {
+            var _section$items5;
+            return /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "text-center md:text-left",
+              children: [/*#__PURE__*/jsxRuntime.jsx("h3", {
+                className: "font-semibold mb-4 text-sm uppercase tracking-wider",
+                children: section.title
+              }), /*#__PURE__*/jsxRuntime.jsx("ul", {
+                className: "space-y-2",
+                children: (_section$items5 = section.items) === null || _section$items5 === void 0 ? void 0 : _section$items5.map(function (item, idx) {
+                  return /*#__PURE__*/jsxRuntime.jsx("li", {
+                    children: /*#__PURE__*/jsxRuntime.jsx("a", {
+                      href: item.href || '#',
+                      className: "text-sm text-gray-400 hover:text-white transition-colors duration-200",
+                      children: item.label
+                    })
+                  }, idx);
+                })
+              })]
+            }, index);
+          })
+        }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "border-t border-gray-800 pt-8 text-center",
+          children: [/*#__PURE__*/jsxRuntime.jsx("p", {
+            className: "text-sm text-gray-500 mb-4",
+            children: copyright
+          }), bottomLinks.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "flex justify-center gap-6 flex-wrap",
+            children: bottomLinks.map(function (link, index) {
+              return /*#__PURE__*/jsxRuntime.jsx("a", {
+                href: link.href || '#',
+                className: "text-sm text-gray-500 hover:text-white transition-colors duration-200",
+                children: link.label
+              }, index);
+            })
+          })]
+        })]
+      })
+    });
+  }
+
+  // Variant 7: Branded Footer
+  if (variant === 'branded') {
+    return /*#__PURE__*/jsxRuntime.jsx("footer", {
+      id: id,
+      className: clsx('bg-primary-800 text-white', className),
+      children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "container mx-auto px-4 sm:px-6 lg:px-8 py-14",
+        children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "grid grid-cols-1 md:grid-cols-3 gap-10 mb-10",
+          children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "md:col-span-1",
+            children: [/*#__PURE__*/jsxRuntime.jsx("a", {
+              href: logoHref,
+              className: "inline-block mb-5",
+              children: /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "text-3xl font-bold",
+                children: renderLogo()
+              })
+            }), description && /*#__PURE__*/jsxRuntime.jsx("p", {
+              className: "text-white/90 text-sm leading-relaxed mb-6",
+              children: description
+            })]
+          }), links.slice(0, 2).map(function (section, index) {
+            var _section$items6;
+            return /*#__PURE__*/jsxRuntime.jsxs("div", {
+              children: [/*#__PURE__*/jsxRuntime.jsx("h3", {
+                className: "font-bold mb-5 text-base",
+                children: section.title
+              }), /*#__PURE__*/jsxRuntime.jsx("ul", {
+                className: "space-y-3",
+                children: (_section$items6 = section.items) === null || _section$items6 === void 0 ? void 0 : _section$items6.map(function (item, idx) {
+                  return /*#__PURE__*/jsxRuntime.jsx("li", {
+                    children: /*#__PURE__*/jsxRuntime.jsxs("a", {
+                      href: item.href || '#',
+                      className: "text-sm text-white/80 hover:text-white transition-colors duration-200 inline-flex items-center gap-2",
+                      children: [/*#__PURE__*/jsxRuntime.jsx("span", {
+                        className: "w-1.5 h-1.5 rounded-full bg-white/60"
+                      }), item.label]
+                    })
+                  }, idx);
+                })
+              })]
+            }, index);
+          })]
+        }), /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "border-t border-white/20 pt-8",
+          children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex flex-col md:flex-row justify-between items-center gap-6",
+            children: [/*#__PURE__*/jsxRuntime.jsx("p", {
+              className: "text-sm text-white/80",
+              children: copyright
+            }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "flex items-center gap-6",
+              children: [bottomLinks.map(function (link, index) {
+                return /*#__PURE__*/jsxRuntime.jsx("a", {
+                  href: link.href || '#',
+                  className: "text-sm text-white/80 hover:text-white transition-colors duration-200",
+                  children: link.label
+                }, index);
+              }), socialIcons.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "flex gap-3 ml-4",
+                children: socialIcons.map(function (icon, index) {
+                  return /*#__PURE__*/jsxRuntime.jsx(SocialIcon, {
+                    name: icon.name,
+                    href: icon.href,
+                    size: "sm",
+                    className: "bg-white/20 hover:bg-white/30"
+                  }, index);
+                })
+              })]
+            })]
+          })
+        })]
+      })
+    });
+  }
+
+  // Variant 8: Multi-column Footer
+  if (variant === 'multi-column') {
+    return /*#__PURE__*/jsxRuntime.jsx("footer", {
+      id: id,
+      className: clsx('bg-gray-50 border-t border-gray-200', className),
+      children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "container mx-auto px-4 sm:px-6 lg:px-8 py-14",
+        children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 mb-10",
+          children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "col-span-2 md:col-span-1",
+            children: [/*#__PURE__*/jsxRuntime.jsx("a", {
+              href: logoHref,
+              className: "inline-block mb-4",
+              children: renderLogo()
+            }), description && /*#__PURE__*/jsxRuntime.jsx("p", {
+              className: "text-sm text-gray-600 mt-3",
+              children: description
+            })]
+          }), links.map(function (section, index) {
+            var _section$items7;
+            return /*#__PURE__*/jsxRuntime.jsxs("div", {
+              children: [/*#__PURE__*/jsxRuntime.jsx("h3", {
+                className: "font-semibold mb-4 text-sm text-gray-900",
+                children: section.title
+              }), /*#__PURE__*/jsxRuntime.jsx("ul", {
+                className: "space-y-2",
+                children: (_section$items7 = section.items) === null || _section$items7 === void 0 ? void 0 : _section$items7.map(function (item, idx) {
+                  return /*#__PURE__*/jsxRuntime.jsx("li", {
+                    children: /*#__PURE__*/jsxRuntime.jsx("a", {
+                      href: item.href || '#',
+                      className: "text-sm text-gray-600 hover:text-gray-900 transition-colors duration-200",
+                      children: item.label
+                    })
+                  }, idx);
+                })
+              })]
+            }, index);
+          })]
+        }), /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "border-t border-gray-200 pt-8",
+          children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex flex-col md:flex-row justify-between items-center gap-4",
+            children: [/*#__PURE__*/jsxRuntime.jsx("p", {
+              className: "text-sm text-gray-600",
+              children: copyright
+            }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "flex items-center gap-6",
+              children: [bottomLinks.map(function (link, index) {
+                return /*#__PURE__*/jsxRuntime.jsx("a", {
+                  href: link.href || '#',
+                  className: "text-sm text-gray-600 hover:text-gray-900 transition-colors duration-200",
+                  children: link.label
+                }, index);
+              }), socialIcons.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "flex gap-3 ml-4",
+                children: socialIcons.map(function (icon, index) {
+                  return /*#__PURE__*/jsxRuntime.jsx(SocialIcon, {
+                    name: icon.name,
+                    href: icon.href,
+                    size: "sm"
+                  }, index);
+                })
+              })]
+            })]
+          })
+        })]
+      })
+    });
+  }
+
+  // Variant 9: Centered Footer
+  if (variant === 'centered') {
+    return /*#__PURE__*/jsxRuntime.jsx("footer", {
+      id: id,
+      className: clsx('bg-white border-t border-gray-200', className),
+      children: /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "container mx-auto px-4 sm:px-6 lg:px-8 py-12",
+        children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "max-w-4xl mx-auto text-center",
+          children: [/*#__PURE__*/jsxRuntime.jsx("a", {
+            href: logoHref,
+            className: "inline-block mb-6",
+            children: renderLogo()
+          }), description && /*#__PURE__*/jsxRuntime.jsx("p", {
+            className: "text-gray-600 mb-8 max-w-2xl mx-auto",
+            children: description
+          }), links.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "flex flex-wrap justify-center gap-8 mb-8",
+            children: links.map(function (section, index) {
+              var _section$items8;
+              return /*#__PURE__*/jsxRuntime.jsxs("div", {
+                children: [/*#__PURE__*/jsxRuntime.jsx("h3", {
+                  className: "font-semibold mb-3 text-sm text-gray-900",
+                  children: section.title
+                }), /*#__PURE__*/jsxRuntime.jsx("ul", {
+                  className: "space-y-2",
+                  children: (_section$items8 = section.items) === null || _section$items8 === void 0 ? void 0 : _section$items8.map(function (item, idx) {
+                    return /*#__PURE__*/jsxRuntime.jsx("li", {
+                      children: /*#__PURE__*/jsxRuntime.jsx("a", {
+                        href: item.href || '#',
+                        className: "text-sm text-gray-600 hover:text-gray-900 transition-colors duration-200",
+                        children: item.label
+                      })
+                    }, idx);
+                  })
+                })]
+              }, index);
+            })
+          }), socialIcons.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "flex justify-center gap-4 mb-8",
+            children: socialIcons.map(function (icon, index) {
+              return /*#__PURE__*/jsxRuntime.jsx(SocialIcon, {
+                name: icon.name,
+                href: icon.href,
+                size: "sm",
+                className: "bg-gray-100 hover:bg-gray-200"
+              }, index);
+            })
+          }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "border-t border-gray-200 pt-8",
+            children: [/*#__PURE__*/jsxRuntime.jsx("p", {
+              className: "text-sm text-gray-500 mb-4",
+              children: copyright
+            }), bottomLinks.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "flex justify-center gap-6 flex-wrap",
+              children: bottomLinks.map(function (link, index) {
+                return /*#__PURE__*/jsxRuntime.jsx("a", {
+                  href: link.href || '#',
+                  className: "text-sm text-gray-500 hover:text-gray-900 transition-colors duration-200",
+                  children: link.label
+                }, index);
+              })
+            })]
+          })]
+        })
+      })
+    });
+  }
+
+  // Variant 10: Glassmorphism Footer
+  if (variant === 'glass') {
+    return /*#__PURE__*/jsxRuntime.jsx("footer", {
+      id: id,
+      className: clsx('bg-white/80 backdrop-blur-xl border-t border-gray-200/50', className),
+      children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "container mx-auto px-4 sm:px-6 lg:px-8 py-12",
+        children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-10",
+          children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+            children: [/*#__PURE__*/jsxRuntime.jsx("a", {
+              href: logoHref,
+              className: "inline-block mb-4",
+              children: renderLogo()
+            }), description && /*#__PURE__*/jsxRuntime.jsx("p", {
+              className: "text-sm text-gray-600 mb-4",
+              children: description
+            }), socialIcons.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "flex gap-3",
+              children: socialIcons.map(function (icon, index) {
+                return /*#__PURE__*/jsxRuntime.jsx(SocialIcon, {
+                  name: icon.name,
+                  href: icon.href,
+                  size: "sm",
+                  className: "bg-gray-100/80 hover:bg-gray-200/80 backdrop-blur-sm"
+                }, index);
+              })
+            })]
+          }), links.map(function (section, index) {
+            var _section$items9;
+            return /*#__PURE__*/jsxRuntime.jsxs("div", {
+              children: [/*#__PURE__*/jsxRuntime.jsx("h3", {
+                className: "font-semibold mb-4 text-sm text-gray-900",
+                children: section.title
+              }), /*#__PURE__*/jsxRuntime.jsx("ul", {
+                className: "space-y-2",
+                children: (_section$items9 = section.items) === null || _section$items9 === void 0 ? void 0 : _section$items9.map(function (item, idx) {
+                  return /*#__PURE__*/jsxRuntime.jsx("li", {
+                    children: /*#__PURE__*/jsxRuntime.jsx("a", {
+                      href: item.href || '#',
+                      className: "text-sm text-gray-600 hover:text-gray-900 transition-colors duration-200",
+                      children: item.label
+                    })
+                  }, idx);
+                })
+              })]
+            }, index);
+          })]
+        }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "border-t border-gray-200/50 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4",
+          children: [/*#__PURE__*/jsxRuntime.jsx("p", {
+            className: "text-sm text-gray-600",
+            children: copyright
+          }), bottomLinks.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "flex gap-6",
+            children: bottomLinks.map(function (link, index) {
+              return /*#__PURE__*/jsxRuntime.jsx("a", {
+                href: link.href || '#',
+                className: "text-sm text-gray-600 hover:text-gray-900 transition-colors duration-200",
+                children: link.label
+              }, index);
+            })
+          })]
+        })]
+      })
+    });
+  }
+
+  // Default fallback to classic variant
+  return null;
+};
+
+var BlogCard = function BlogCard(_ref) {
+  var data = _ref.data,
+    className = _ref.className,
+    id = _ref.id,
+    _ref$loader = _ref.loader,
+    loader = _ref$loader === void 0 ? false : _ref$loader;
+  // Safety check for data
+  if (!data || _typeof(data) !== 'object') {
+    console.error('BlogCard: data prop is required and must be an object');
+    return null;
+  }
+  var title = data.title,
+    description = data.description,
+    image = data.image,
+    author = data.author,
+    authorImage = data.authorImage,
+    date = data.date,
+    category = data.category,
+    readTime = data.readTime,
+    likes = data.likes,
+    views = data.views,
+    comments = data.comments,
+    _data$href = data.href,
+    href = _data$href === void 0 ? '#' : _data$href,
+    button = data.button,
+    _data$variant = data.variant,
+    variant = _data$variant === void 0 ? 'default' : _data$variant,
+    _data$theme = data.theme,
+    theme = _data$theme === void 0 ? 'light' : _data$theme,
+    _data$hoverEffect = data.hoverEffect,
+    hoverEffect = _data$hoverEffect === void 0 ? true : _data$hoverEffect,
+    dataClassName = data.className;
+
+  // Normalize button prop - can be string or object
+  var buttonConfig = typeof button === 'string' ? {
+    text: button,
+    href: href
+  } : button;
+  var _useState = react.useState(false),
+    _useState2 = _slicedToArray(_useState, 2),
+    isHovered = _useState2[0],
+    setIsHovered = _useState2[1];
+  var _useState3 = react.useState(loader),
+    _useState4 = _slicedToArray(_useState3, 2),
+    showLoader = _useState4[0],
+    setShowLoader = _useState4[1];
+
+  // Auto-hide loader after 2 seconds when loader prop is true
+  react.useEffect(function () {
+    if (loader) {
+      var timer = setTimeout(function () {
+        setShowLoader(false);
+      }, 2000);
+      return function () {
+        return clearTimeout(timer);
+      };
+    } else {
+      setShowLoader(false);
+    }
+  }, [loader]);
+
+  // Loading skeleton
+  if (showLoader) {
+    return /*#__PURE__*/jsxRuntime.jsxs("div", {
+      className: clsx('blog-card-skeleton', className),
+      id: id,
+      children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "skeleton-image"
+      }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "skeleton-content",
+        children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "skeleton-line skeleton-line-title"
+        }), /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "skeleton-line"
+        }), /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "skeleton-line skeleton-line-short"
+        })]
+      })]
+    });
+  }
+  var handleClick = function handleClick() {
+    if (href && href !== '#') {
+      window.location.href = href;
+    }
+  };
+  var cardClasses = clsx('blog-card', "blog-card-".concat(variant), "blog-card-".concat(theme), hoverEffect && 'blog-card-hover', isHovered && 'blog-card-hovered', className, dataClassName);
+
+  // Default variant - Clean article card
+  if (variant === 'default') {
+    return /*#__PURE__*/jsxRuntime.jsxs("article", {
+      className: cardClasses,
+      id: id,
+      onMouseEnter: function onMouseEnter() {
+        return setIsHovered(true);
+      },
+      onMouseLeave: function onMouseLeave() {
+        return setIsHovered(false);
+      },
+      onClick: handleClick,
+      children: [image && /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "blog-card-image",
+        children: /*#__PURE__*/jsxRuntime.jsx("img", {
+          src: image,
+          alt: title
+        })
+      }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "blog-card-content",
+        children: [category && /*#__PURE__*/jsxRuntime.jsx("span", {
+          className: "blog-card-category",
+          children: category
+        }), /*#__PURE__*/jsxRuntime.jsx("h3", {
+          className: "blog-card-title",
+          children: title
+        }), description && /*#__PURE__*/jsxRuntime.jsx("p", {
+          className: "blog-card-description",
+          children: description
+        }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "blog-card-meta",
+          children: [author && /*#__PURE__*/jsxRuntime.jsx("span", {
+            className: "blog-card-author",
+            children: author
+          }), date && /*#__PURE__*/jsxRuntime.jsx("span", {
+            className: "blog-card-date",
+            children: date
+          })]
+        })]
+      })]
+    });
+  }
+
+  // With Image variant - Article card with prominent image
+  if (variant === 'with-image') {
+    return /*#__PURE__*/jsxRuntime.jsxs("article", {
+      className: cardClasses,
+      id: id,
+      onMouseEnter: function onMouseEnter() {
+        return setIsHovered(true);
+      },
+      onMouseLeave: function onMouseLeave() {
+        return setIsHovered(false);
+      },
+      onClick: handleClick,
+      children: [image && /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "blog-card-image-wrapper",
+        children: /*#__PURE__*/jsxRuntime.jsx("img", {
+          src: image,
+          alt: title
+        })
+      }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "blog-card-content",
+        children: [category && /*#__PURE__*/jsxRuntime.jsx("span", {
+          className: "blog-card-category-badge",
+          children: category
+        }), /*#__PURE__*/jsxRuntime.jsx("h3", {
+          className: "blog-card-title",
+          children: title
+        }), description && /*#__PURE__*/jsxRuntime.jsx("p", {
+          className: "blog-card-description",
+          children: description
+        }), author && /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "blog-card-footer",
+          children: [authorImage && /*#__PURE__*/jsxRuntime.jsx("img", {
+            src: authorImage,
+            alt: author,
+            className: "blog-card-author-avatar"
+          }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+            children: [/*#__PURE__*/jsxRuntime.jsx("p", {
+              className: "blog-card-author-name",
+              children: author
+            }), date && /*#__PURE__*/jsxRuntime.jsx("p", {
+              className: "blog-card-date-small",
+              children: date
+            })]
+          })]
+        })]
+      })]
+    });
+  }
+
+  // With Footer variant - Card with detailed footer
+  if (variant === 'with-footer') {
+    return /*#__PURE__*/jsxRuntime.jsxs("article", {
+      className: cardClasses,
+      id: id,
+      onMouseEnter: function onMouseEnter() {
+        return setIsHovered(true);
+      },
+      onMouseLeave: function onMouseLeave() {
+        return setIsHovered(false);
+      },
+      onClick: handleClick,
+      children: [image && /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "blog-card-image-wrapper",
+        children: /*#__PURE__*/jsxRuntime.jsx("img", {
+          src: image,
+          alt: title
+        })
+      }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "blog-card-content",
+        children: [category && /*#__PURE__*/jsxRuntime.jsx("span", {
+          className: "blog-card-category-tag",
+          children: category
+        }), /*#__PURE__*/jsxRuntime.jsx("h3", {
+          className: "blog-card-title",
+          children: title
+        }), author && /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "blog-card-author-section",
+          children: [authorImage && /*#__PURE__*/jsxRuntime.jsx("img", {
+            src: authorImage,
+            alt: author,
+            className: "blog-card-author-avatar-small"
+          }), /*#__PURE__*/jsxRuntime.jsx("span", {
+            className: "blog-card-author-name",
+            children: author
+          })]
+        })]
+      }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "blog-card-footer-detailed",
+        children: [date && /*#__PURE__*/jsxRuntime.jsx("span", {
+          className: "blog-card-footer-text",
+          children: date
+        }), likes !== undefined && /*#__PURE__*/jsxRuntime.jsxs("span", {
+          className: "blog-card-footer-text",
+          children: [likes, " people liked this"]
+        })]
+      })]
+    });
+  }
+
+  // Vertical variant - Horizontal article card (image left, content right)
+  if (variant === 'vertical') {
+    return /*#__PURE__*/jsxRuntime.jsx("article", {
+      className: cardClasses,
+      id: id,
+      onMouseEnter: function onMouseEnter() {
+        return setIsHovered(true);
+      },
+      onMouseLeave: function onMouseLeave() {
+        return setIsHovered(false);
+      },
+      onClick: handleClick,
+      children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "blog-card-vertical-wrapper",
+        children: [image && /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "blog-card-image-vertical",
+          children: /*#__PURE__*/jsxRuntime.jsx("img", {
+            src: image,
+            alt: title
+          })
+        }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "blog-card-content-vertical",
+          children: [category && /*#__PURE__*/jsxRuntime.jsx("span", {
+            className: "blog-card-category-vertical",
+            children: category
+          }), /*#__PURE__*/jsxRuntime.jsx("h3", {
+            className: "blog-card-title-vertical",
+            children: title
+          }), author && date && /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "blog-card-meta-vertical",
+            children: [authorImage && /*#__PURE__*/jsxRuntime.jsx("img", {
+              src: authorImage,
+              alt: author,
+              className: "blog-card-author-avatar-vertical"
+            }), /*#__PURE__*/jsxRuntime.jsx("span", {
+              className: "blog-card-author-vertical",
+              children: author
+            }), /*#__PURE__*/jsxRuntime.jsx("span", {
+              className: "blog-card-divider",
+              children: "\u2022"
+            }), /*#__PURE__*/jsxRuntime.jsx("span", {
+              className: "blog-card-date-vertical",
+              children: date
+            })]
+          })]
+        })]
+      })
+    });
+  }
+
+  // Gradient Border variant - Card with gradient border
+  if (variant === 'gradient-border') {
+    return /*#__PURE__*/jsxRuntime.jsx("article", {
+      className: cardClasses,
+      id: id,
+      onMouseEnter: function onMouseEnter() {
+        return setIsHovered(true);
+      },
+      onMouseLeave: function onMouseLeave() {
+        return setIsHovered(false);
+      },
+      onClick: handleClick,
+      children: /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "blog-card-gradient-border",
+        children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "blog-card-inner",
+          children: [category && /*#__PURE__*/jsxRuntime.jsx("span", {
+            className: "blog-card-category",
+            children: category
+          }), /*#__PURE__*/jsxRuntime.jsx("h3", {
+            className: "blog-card-title",
+            children: title
+          }), description && /*#__PURE__*/jsxRuntime.jsx("p", {
+            className: "blog-card-description",
+            children: description
+          })]
+        })
+      })
+    });
+  }
+
+  // Background Image variant - Card with image as background
+  if (variant === 'background-image') {
+    var handleButtonClick = function handleButtonClick(e) {
+      e.stopPropagation();
+      if (buttonConfig !== null && buttonConfig !== void 0 && buttonConfig.href && buttonConfig.href !== '#') {
+        window.location.href = buttonConfig.href;
+      }
+    };
+    return /*#__PURE__*/jsxRuntime.jsx("article", {
+      className: cardClasses,
+      id: id,
+      onMouseEnter: function onMouseEnter() {
+        return setIsHovered(true);
+      },
+      onMouseLeave: function onMouseLeave() {
+        return setIsHovered(false);
+      },
+      onClick: handleClick,
+      style: image ? {
+        backgroundImage: "url(".concat(image, ")")
+      } : {},
+      children: /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "blog-card-background-overlay",
+        children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "blog-card-content-overlay",
+          children: [category && /*#__PURE__*/jsxRuntime.jsx("span", {
+            className: "blog-card-category-light",
+            children: category
+          }), /*#__PURE__*/jsxRuntime.jsx("h3", {
+            className: "blog-card-title-light",
+            children: title
+          }), buttonConfig && buttonConfig.text && /*#__PURE__*/jsxRuntime.jsx("button", {
+            onClick: handleButtonClick,
+            className: "blog-card-background-button",
+            children: buttonConfig.text
+          }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "blog-card-author-info",
+            children: [authorImage && /*#__PURE__*/jsxRuntime.jsx("img", {
+              src: authorImage,
+              alt: author,
+              className: "blog-card-author-avatar-circle"
+            }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+              children: [author && /*#__PURE__*/jsxRuntime.jsx("p", {
+                className: "blog-card-author-name-light",
+                children: author
+              }), likes !== undefined && /*#__PURE__*/jsxRuntime.jsx("p", {
+                className: "blog-card-likes",
+                children: likes
+              })]
+            })]
+          })]
+        })
+      })
+    });
+  }
+
+  // Minimal variant - Clean minimal design
+  if (variant === 'minimal') {
+    return /*#__PURE__*/jsxRuntime.jsxs("article", {
+      className: cardClasses,
+      id: id,
+      onMouseEnter: function onMouseEnter() {
+        return setIsHovered(true);
+      },
+      onMouseLeave: function onMouseLeave() {
+        return setIsHovered(false);
+      },
+      onClick: handleClick,
+      children: [image && /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "blog-card-image-minimal",
+        children: /*#__PURE__*/jsxRuntime.jsx("img", {
+          src: image,
+          alt: title
+        })
+      }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "blog-card-content-minimal",
+        children: [date && /*#__PURE__*/jsxRuntime.jsx("span", {
+          className: "blog-card-date-minimal",
+          children: date
+        }), /*#__PURE__*/jsxRuntime.jsx("h3", {
+          className: "blog-card-title-minimal",
+          children: title
+        }), description && /*#__PURE__*/jsxRuntime.jsx("p", {
+          className: "blog-card-description-minimal",
+          children: description
+        })]
+      })]
+    });
+  }
+
+  // Modern variant - Contemporary design with shadows
+  if (variant === 'modern') {
+    return /*#__PURE__*/jsxRuntime.jsxs("article", {
+      className: cardClasses,
+      id: id,
+      onMouseEnter: function onMouseEnter() {
+        return setIsHovered(true);
+      },
+      onMouseLeave: function onMouseLeave() {
+        return setIsHovered(false);
+      },
+      onClick: handleClick,
+      children: [image && /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "blog-card-image-modern",
+        children: [/*#__PURE__*/jsxRuntime.jsx("img", {
+          src: image,
+          alt: title
+        }), category && /*#__PURE__*/jsxRuntime.jsx("span", {
+          className: "blog-card-category-modern",
+          children: category
+        })]
+      }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "blog-card-content-modern",
+        children: [/*#__PURE__*/jsxRuntime.jsx("h3", {
+          className: "blog-card-title-modern",
+          children: title
+        }), description && /*#__PURE__*/jsxRuntime.jsx("p", {
+          className: "blog-card-description-modern",
+          children: description
+        }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "blog-card-footer-modern",
+          children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "blog-card-author-modern",
+            children: [authorImage && /*#__PURE__*/jsxRuntime.jsx("img", {
+              src: authorImage,
+              alt: author,
+              className: "blog-card-author-avatar-modern"
+            }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+              children: [author && /*#__PURE__*/jsxRuntime.jsx("span", {
+                className: "blog-card-author-name-modern",
+                children: author
+              }), date && /*#__PURE__*/jsxRuntime.jsx("span", {
+                className: "blog-card-date-modern",
+                children: date
+              })]
+            })]
+          }), readTime && /*#__PURE__*/jsxRuntime.jsx("span", {
+            className: "blog-card-read-time",
+            children: readTime
+          })]
+        })]
+      })]
+    });
+  }
+
+  // Elegant variant - Sophisticated design
+  if (variant === 'elegant') {
+    return /*#__PURE__*/jsxRuntime.jsxs("article", {
+      className: cardClasses,
+      id: id,
+      onMouseEnter: function onMouseEnter() {
+        return setIsHovered(true);
+      },
+      onMouseLeave: function onMouseLeave() {
+        return setIsHovered(false);
+      },
+      onClick: handleClick,
+      children: [image && /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "blog-card-image-elegant",
+        children: /*#__PURE__*/jsxRuntime.jsx("img", {
+          src: image,
+          alt: title
+        })
+      }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "blog-card-content-elegant",
+        children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "blog-card-header-elegant",
+          children: [category && /*#__PURE__*/jsxRuntime.jsx("span", {
+            className: "blog-card-category-elegant",
+            children: category
+          }), date && /*#__PURE__*/jsxRuntime.jsx("span", {
+            className: "blog-card-date-elegant",
+            children: date
+          })]
+        }), /*#__PURE__*/jsxRuntime.jsx("h3", {
+          className: "blog-card-title-elegant",
+          children: title
+        }), description && /*#__PURE__*/jsxRuntime.jsx("p", {
+          className: "blog-card-description-elegant",
+          children: description
+        }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "blog-card-footer-elegant",
+          children: [author && /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "blog-card-author-elegant",
+            children: [authorImage && /*#__PURE__*/jsxRuntime.jsx("img", {
+              src: authorImage,
+              alt: author,
+              className: "blog-card-author-avatar-elegant"
+            }), /*#__PURE__*/jsxRuntime.jsx("span", {
+              className: "blog-card-author-name-elegant",
+              children: author
+            })]
+          }), readTime && /*#__PURE__*/jsxRuntime.jsx("span", {
+            className: "blog-card-read-time-elegant",
+            children: readTime
+          })]
+        })]
+      })]
+    });
+  }
+
+  // Featured Gradient variant - Card with gradient overlay bar on image
+  if (variant === 'featured-gradient') {
+    return /*#__PURE__*/jsxRuntime.jsxs("article", {
+      className: cardClasses,
+      id: id,
+      onMouseEnter: function onMouseEnter() {
+        return setIsHovered(true);
+      },
+      onMouseLeave: function onMouseLeave() {
+        return setIsHovered(false);
+      },
+      onClick: handleClick,
+      children: [image && /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "blog-card-image-featured-gradient",
+        children: [/*#__PURE__*/jsxRuntime.jsx("img", {
+          src: image,
+          alt: title
+        }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "blog-card-gradient-overlay",
+          children: [author && /*#__PURE__*/jsxRuntime.jsx("span", {
+            className: "blog-card-gradient-author",
+            children: author
+          }), date && /*#__PURE__*/jsxRuntime.jsx("span", {
+            className: "blog-card-gradient-date",
+            children: date
+          })]
+        })]
+      }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "blog-card-content-featured-gradient",
+        children: [/*#__PURE__*/jsxRuntime.jsx("h3", {
+          className: "blog-card-title-featured-gradient",
+          children: title
+        }), description && /*#__PURE__*/jsxRuntime.jsx("p", {
+          className: "blog-card-description-featured-gradient",
+          children: description
+        })]
+      })]
+    });
+  }
+
+  // Background Metrics variant - Background image with title, author, views, and comments
+  if (variant === 'background-metrics') {
+    return /*#__PURE__*/jsxRuntime.jsx("article", {
+      className: cardClasses,
+      id: id,
+      onMouseEnter: function onMouseEnter() {
+        return setIsHovered(true);
+      },
+      onMouseLeave: function onMouseLeave() {
+        return setIsHovered(false);
+      },
+      onClick: handleClick,
+      style: image ? {
+        backgroundImage: "url(".concat(image, ")")
+      } : {},
+      children: /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "blog-card-background-metrics-overlay",
+        children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "blog-card-content-metrics",
+          children: [/*#__PURE__*/jsxRuntime.jsx("h3", {
+            className: "blog-card-title-metrics",
+            children: title
+          }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "blog-card-meta-metrics",
+            children: [author && /*#__PURE__*/jsxRuntime.jsx("span", {
+              className: "blog-card-author-metrics",
+              children: author
+            }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "blog-card-engagement-metrics",
+              children: [views !== undefined && /*#__PURE__*/jsxRuntime.jsxs("span", {
+                className: "blog-card-views-metrics",
+                children: [/*#__PURE__*/jsxRuntime.jsxs("svg", {
+                  className: "blog-card-icon-metrics",
+                  fill: "none",
+                  stroke: "currentColor",
+                  viewBox: "0 0 24 24",
+                  xmlns: "http://www.w3.org/2000/svg",
+                  children: [/*#__PURE__*/jsxRuntime.jsx("path", {
+                    strokeLinecap: "round",
+                    strokeLinejoin: "round",
+                    strokeWidth: 2,
+                    d: "M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                  }), /*#__PURE__*/jsxRuntime.jsx("path", {
+                    strokeLinecap: "round",
+                    strokeLinejoin: "round",
+                    strokeWidth: 2,
+                    d: "M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                  })]
+                }), views]
+              }), comments !== undefined && /*#__PURE__*/jsxRuntime.jsxs("span", {
+                className: "blog-card-comments-metrics",
+                children: [/*#__PURE__*/jsxRuntime.jsx("svg", {
+                  className: "blog-card-icon-metrics",
+                  fill: "none",
+                  stroke: "currentColor",
+                  viewBox: "0 0 24 24",
+                  xmlns: "http://www.w3.org/2000/svg",
+                  children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                    strokeLinecap: "round",
+                    strokeLinejoin: "round",
+                    strokeWidth: 2,
+                    d: "M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                  })
+                }), comments]
+              })]
+            })]
+          })]
+        })
+      })
+    });
+  }
+
+  // Fallback to default
+  return /*#__PURE__*/jsxRuntime.jsxs("article", {
+    className: cardClasses,
+    id: id,
+    children: [/*#__PURE__*/jsxRuntime.jsx("h3", {
+      children: title
+    }), description && /*#__PURE__*/jsxRuntime.jsx("p", {
+      children: description
+    })]
+  });
+};
+
+var BlogGrid = function BlogGrid(_ref) {
+  var data = _ref.data,
+    className = _ref.className,
+    id = _ref.id,
+    _ref$loader = _ref.loader,
+    loader = _ref$loader === void 0 ? false : _ref$loader;
+  // Safety check for data
+  if (!data || _typeof(data) !== 'object') {
+    console.error('BlogGrid: data prop is required and must be an object');
+    return null;
+  }
+  var _useState = react.useState(loader),
+    _useState2 = _slicedToArray(_useState, 2),
+    showLoader = _useState2[0],
+    setShowLoader = _useState2[1];
+
+  // Auto-hide loader after 2 seconds when loader prop is true
+  react.useEffect(function () {
+    if (loader) {
+      var timer = setTimeout(function () {
+        setShowLoader(false);
+      }, 2000);
+      return function () {
+        return clearTimeout(timer);
+      };
+    } else {
+      setShowLoader(false);
+    }
+  }, [loader]);
+  var _data$posts = data.posts,
+    posts = _data$posts === void 0 ? [] : _data$posts,
+    title = data.title,
+    subtitle = data.subtitle,
+    description = data.description,
+    _data$variant = data.variant,
+    variant = _data$variant === void 0 ? 'default' : _data$variant,
+    _data$layout = data.layout,
+    layout = _data$layout === void 0 ? 'grid' : _data$layout,
+    _data$theme = data.theme,
+    theme = _data$theme === void 0 ? 'light' : _data$theme,
+    _data$columns = data.columns,
+    columns = _data$columns === void 0 ? 3 : _data$columns,
+    _data$alignment = data.alignment,
+    alignment = _data$alignment === void 0 ? 'left' : _data$alignment,
+    _data$gap = data.gap,
+    gap = _data$gap === void 0 ? 'medium' : _data$gap,
+    dataClassName = data.className;
+  var alignmentClasses = {
+    left: 'text-left',
+    center: 'text-center',
+    right: 'text-right'
+  };
+  var gapClasses = {
+    small: 'gap-4',
+    medium: 'gap-6',
+    large: 'gap-8'
+  };
+  var columnClasses = {
+    1: 'grid-cols-1',
+    2: 'grid-cols-1 md:grid-cols-2',
+    3: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3',
+    4: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-4'
+  };
+  var sectionClasses = clsx('blog-grid-section', "blog-grid-".concat(theme), alignmentClasses[alignment], className, dataClassName);
+  var gridClasses = clsx('blog-grid', layout === 'featured-asymmetric' ? 'blog-grid-featured-asymmetric' : '', layout === 'featured-asymmetric' ? '' : columnClasses[columns] || columnClasses[3], gapClasses[gap] || gapClasses.medium);
+
+  // Featured asymmetric layout: 1 large card left, 2x2 small cards right
+  if (layout === 'featured-asymmetric') {
+    if (showLoader) {
+      // Show skeleton loaders for featured-asymmetric layout
+      return /*#__PURE__*/jsxRuntime.jsxs("section", {
+        className: sectionClasses,
+        id: id,
+        children: [(title || subtitle || description) && /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "blog-grid-header",
+          children: [subtitle && /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "blog-grid-subtitle-skeleton"
+          }), title && /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "blog-grid-title-skeleton"
+          }), description && /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "blog-grid-description-skeleton"
+          })]
+        }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: gridClasses,
+          children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "blog-grid-featured-large",
+            children: /*#__PURE__*/jsxRuntime.jsx(BlogCard, {
+              data: {
+                title: '',
+                variant: 'featured-gradient',
+                theme: theme
+              },
+              loader: true
+            })
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "blog-grid-featured-small",
+            children: Array.from({
+              length: 4
+            }).map(function (_, index) {
+              return /*#__PURE__*/jsxRuntime.jsx(BlogCard, {
+                data: {
+                  title: '',
+                  variant: 'featured-gradient',
+                  theme: theme
+                },
+                loader: true
+              }, "skeleton-small-".concat(index));
+            })
+          })]
+        })]
+      });
+    }
+
+    // Show actual posts for featured-asymmetric layout
+    var featuredPost = posts[0];
+    var smallPosts = posts.slice(1, 5); // Get next 4 posts for 2x2 grid
+
+    return /*#__PURE__*/jsxRuntime.jsxs("section", {
+      className: sectionClasses,
+      id: id,
+      children: [(title || subtitle || description) && /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "blog-grid-header",
+        children: [subtitle && /*#__PURE__*/jsxRuntime.jsx("p", {
+          className: "blog-grid-subtitle",
+          children: subtitle
+        }), title && /*#__PURE__*/jsxRuntime.jsx("h2", {
+          className: "blog-grid-title",
+          children: title
+        }), description && /*#__PURE__*/jsxRuntime.jsx("p", {
+          className: "blog-grid-description",
+          children: description
+        })]
+      }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: gridClasses,
+        children: [featuredPost && /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "blog-grid-featured-large",
+          children: /*#__PURE__*/jsxRuntime.jsx(BlogCard, {
+            data: _objectSpread2(_objectSpread2({}, featuredPost), {}, {
+              variant: 'featured-gradient',
+              theme: featuredPost.theme || theme
+            })
+          })
+        }), /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "blog-grid-featured-small",
+          children: smallPosts.map(function (post, index) {
+            return /*#__PURE__*/jsxRuntime.jsx(BlogCard, {
+              data: _objectSpread2(_objectSpread2({}, post), {}, {
+                variant: 'featured-gradient',
+                theme: post.theme || theme
+              })
+            }, post.id || index);
+          })
+        })]
+      })]
+    });
+  }
+  return /*#__PURE__*/jsxRuntime.jsxs("section", {
+    className: sectionClasses,
+    id: id,
+    children: [(title || subtitle || description) && /*#__PURE__*/jsxRuntime.jsx("div", {
+      className: "blog-grid-header",
+      children: showLoader ?
+      /*#__PURE__*/
+      // Show skeleton loaders for header
+      jsxRuntime.jsxs(jsxRuntime.Fragment, {
+        children: [subtitle && /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "blog-grid-subtitle-skeleton"
+        }), title && /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "blog-grid-title-skeleton"
+        }), description && /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "blog-grid-description-skeleton"
+        })]
+      }) :
+      /*#__PURE__*/
+      // Show actual header content
+      jsxRuntime.jsxs(jsxRuntime.Fragment, {
+        children: [subtitle && /*#__PURE__*/jsxRuntime.jsx("p", {
+          className: "blog-grid-subtitle",
+          children: subtitle
+        }), title && /*#__PURE__*/jsxRuntime.jsx("h2", {
+          className: "blog-grid-title",
+          children: title
+        }), description && /*#__PURE__*/jsxRuntime.jsx("p", {
+          className: "blog-grid-description",
+          children: description
+        })]
+      })
+    }), /*#__PURE__*/jsxRuntime.jsx("div", {
+      className: gridClasses,
+      children: showLoader ?
+      // Show skeleton loaders
+      Array.from({
+        length: columns || 3
+      }).map(function (_, index) {
+        return /*#__PURE__*/jsxRuntime.jsx(BlogCard, {
+          data: {
+            title: '',
+            variant: variant,
+            theme: theme
+          },
+          loader: true
+        }, "skeleton-".concat(index));
+      }) :
+      // Show actual posts
+      posts.map(function (post, index) {
+        return /*#__PURE__*/jsxRuntime.jsx(BlogCard, {
+          data: _objectSpread2(_objectSpread2({}, post), {}, {
+            variant: post.variant || variant,
+            theme: post.theme || theme
+          })
+        }, post.id || index);
+      })
+    })]
+  });
+};
+
+var BlogSingle = function BlogSingle(_ref) {
+  var data = _ref.data,
+    className = _ref.className,
+    id = _ref.id,
+    _ref$loader = _ref.loader,
+    loader = _ref$loader === void 0 ? false : _ref$loader;
+  // Safety check for data
+  if (!data || _typeof(data) !== 'object') {
+    console.error('BlogSingle: data prop is required and must be an object');
+    return null;
+  }
+  var _useState = react.useState(loader),
+    _useState2 = _slicedToArray(_useState, 2),
+    showLoader = _useState2[0],
+    setShowLoader = _useState2[1];
+
+  // Auto-hide loader after 2 seconds when loader prop is true
+  react.useEffect(function () {
+    if (loader) {
+      var timer = setTimeout(function () {
+        setShowLoader(false);
+      }, 2000);
+      return function () {
+        return clearTimeout(timer);
+      };
+    } else {
+      setShowLoader(false);
+    }
+  }, [loader]);
+  var title = data.title,
+    subtitle = data.subtitle,
+    content = data.content,
+    excerpt = data.excerpt,
+    image = data.image,
+    author = data.author,
+    authorImage = data.authorImage,
+    authorBio = data.authorBio,
+    date = data.date;
+    data.updatedDate;
+    var category = data.category,
+    _data$tags = data.tags,
+    tags = _data$tags === void 0 ? [] : _data$tags,
+    readTime = data.readTime,
+    views = data.views,
+    likes = data.likes,
+    comments = data.comments,
+    _data$variant = data.variant,
+    variant = _data$variant === void 0 ? 'default' : _data$variant,
+    _data$theme = data.theme,
+    theme = _data$theme === void 0 ? 'light' : _data$theme,
+    _data$showAuthor = data.showAuthor,
+    showAuthor = _data$showAuthor === void 0 ? true : _data$showAuthor,
+    _data$showTags = data.showTags,
+    showTags = _data$showTags === void 0 ? true : _data$showTags,
+    _data$showSocialShare = data.showSocialShare,
+    showSocialShare = _data$showSocialShare === void 0 ? true : _data$showSocialShare,
+    _data$showRelatedPost = data.showRelatedPosts,
+    showRelatedPosts = _data$showRelatedPost === void 0 ? false : _data$showRelatedPost,
+    _data$relatedPosts = data.relatedPosts,
+    relatedPosts = _data$relatedPosts === void 0 ? [] : _data$relatedPosts,
+    _data$socialShareUrl = data.socialShareUrl,
+    socialShareUrl = _data$socialShareUrl === void 0 ? typeof window !== 'undefined' ? window.location.href : '' : _data$socialShareUrl,
+    dataClassName = data.className;
+
+  // Social sharing handlers
+  var handleSocialShare = function handleSocialShare(platform) {
+    var encodedUrl = encodeURIComponent(socialShareUrl);
+    var encodedTitle = encodeURIComponent(title || '');
+    var shareUrls = {
+      twitter: "https://twitter.com/intent/tweet?url=".concat(encodedUrl, "&text=").concat(encodedTitle),
+      facebook: "https://www.facebook.com/sharer/sharer.php?u=".concat(encodedUrl),
+      linkedin: "https://www.linkedin.com/sharing/share-offsite/?url=".concat(encodedUrl),
+      whatsapp: "https://wa.me/?text=".concat(encodedTitle, " ").concat(encodedUrl),
+      telegram: "https://t.me/share/url?url=".concat(encodedUrl, "&text=").concat(encodedTitle),
+      copy: function copy() {
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(socialShareUrl);
+          alert('Link copied to clipboard!');
+        }
+      }
+    };
+    if (platform === 'copy') {
+      shareUrls.copy();
+    } else if (shareUrls[platform]) {
+      window.open(shareUrls[platform], '_blank', 'width=600,height=400');
+    }
+  };
+  var containerClasses = clsx('blog-single', "blog-single-".concat(variant), "blog-single-".concat(theme), className, dataClassName);
+
+  // Loading skeleton
+  if (showLoader) {
+    return /*#__PURE__*/jsxRuntime.jsx("article", {
+      className: containerClasses,
+      id: id,
+      children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "blog-single-skeleton",
+        children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "skeleton-image-full"
+        }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "blog-single-container",
+          children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "skeleton-line skeleton-line-title"
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "skeleton-line"
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "skeleton-line skeleton-line-short"
+          }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "skeleton-content",
+            children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "skeleton-line"
+            }), /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "skeleton-line"
+            }), /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "skeleton-line"
+            }), /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "skeleton-line skeleton-line-short"
+            })]
+          })]
+        })]
+      })
+    });
+  }
+
+  // Default variant - Standard blog post layout
+  if (variant === 'default') {
+    return /*#__PURE__*/jsxRuntime.jsxs("article", {
+      className: containerClasses,
+      id: id,
+      children: [image && /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "blog-single-hero",
+        children: /*#__PURE__*/jsxRuntime.jsx("img", {
+          src: image,
+          alt: title,
+          className: "blog-single-hero-image"
+        })
+      }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "blog-single-container",
+        children: [/*#__PURE__*/jsxRuntime.jsxs("header", {
+          className: "blog-single-header",
+          children: [category && /*#__PURE__*/jsxRuntime.jsx("span", {
+            className: "blog-single-category",
+            children: category
+          }), /*#__PURE__*/jsxRuntime.jsx("h1", {
+            className: "blog-single-title",
+            children: title
+          }), subtitle && /*#__PURE__*/jsxRuntime.jsx("p", {
+            className: "blog-single-subtitle",
+            children: subtitle
+          }), excerpt && /*#__PURE__*/jsxRuntime.jsx("p", {
+            className: "blog-single-excerpt",
+            children: excerpt
+          }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "blog-single-meta",
+            children: [authorImage && /*#__PURE__*/jsxRuntime.jsx("img", {
+              src: authorImage,
+              alt: author,
+              className: "blog-single-author-avatar"
+            }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "blog-single-meta-info",
+              children: [author && /*#__PURE__*/jsxRuntime.jsx("span", {
+                className: "blog-single-author",
+                children: author
+              }), date && /*#__PURE__*/jsxRuntime.jsx("span", {
+                className: "blog-single-date",
+                children: date
+              }), readTime && /*#__PURE__*/jsxRuntime.jsx("span", {
+                className: "blog-single-read-time",
+                children: readTime
+              })]
+            })]
+          }), (views !== undefined || likes !== undefined || comments !== undefined) && /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "blog-single-stats",
+            children: [views !== undefined && /*#__PURE__*/jsxRuntime.jsxs("span", {
+              className: "blog-single-stat",
+              children: [/*#__PURE__*/jsxRuntime.jsxs("svg", {
+                className: "blog-single-stat-icon",
+                fill: "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                children: [/*#__PURE__*/jsxRuntime.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2,
+                  d: "M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                }), /*#__PURE__*/jsxRuntime.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2,
+                  d: "M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                })]
+              }), views]
+            }), likes !== undefined && /*#__PURE__*/jsxRuntime.jsxs("span", {
+              className: "blog-single-stat",
+              children: [/*#__PURE__*/jsxRuntime.jsx("svg", {
+                className: "blog-single-stat-icon",
+                fill: "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2,
+                  d: "M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                })
+              }), likes]
+            }), comments !== undefined && /*#__PURE__*/jsxRuntime.jsxs("span", {
+              className: "blog-single-stat",
+              children: [/*#__PURE__*/jsxRuntime.jsx("svg", {
+                className: "blog-single-stat-icon",
+                fill: "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2,
+                  d: "M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                })
+              }), comments]
+            })]
+          })]
+        }), content && /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "blog-single-content",
+          children: typeof content === 'string' ? /*#__PURE__*/jsxRuntime.jsx("div", {
+            dangerouslySetInnerHTML: {
+              __html: content
+            }
+          }) : content
+        }), showTags && tags.length > 0 && /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "blog-single-tags",
+          children: [/*#__PURE__*/jsxRuntime.jsx("span", {
+            className: "blog-single-tags-label",
+            children: "Tags:"
+          }), tags.map(function (tag, index) {
+            return /*#__PURE__*/jsxRuntime.jsx("span", {
+              className: "blog-single-tag",
+              children: tag
+            }, index);
+          })]
+        }), showSocialShare && /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "blog-single-social",
+          children: [/*#__PURE__*/jsxRuntime.jsx("span", {
+            className: "blog-single-social-label",
+            children: "Share:"
+          }), /*#__PURE__*/jsxRuntime.jsx("button", {
+            onClick: function onClick() {
+              return handleSocialShare('twitter');
+            },
+            className: "blog-single-social-btn",
+            "aria-label": "Share on Twitter",
+            children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+              fill: "currentColor",
+              viewBox: "0 0 24 24",
+              className: "blog-single-social-icon",
+              children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                d: "M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"
+              })
+            })
+          }), /*#__PURE__*/jsxRuntime.jsx("button", {
+            onClick: function onClick() {
+              return handleSocialShare('facebook');
+            },
+            className: "blog-single-social-btn",
+            "aria-label": "Share on Facebook",
+            children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+              fill: "currentColor",
+              viewBox: "0 0 24 24",
+              className: "blog-single-social-icon",
+              children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                fillRule: "evenodd",
+                d: "M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z",
+                clipRule: "evenodd"
+              })
+            })
+          }), /*#__PURE__*/jsxRuntime.jsx("button", {
+            onClick: function onClick() {
+              return handleSocialShare('linkedin');
+            },
+            className: "blog-single-social-btn",
+            "aria-label": "Share on LinkedIn",
+            children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+              fill: "currentColor",
+              viewBox: "0 0 24 24",
+              className: "blog-single-social-icon",
+              children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                fillRule: "evenodd",
+                d: "M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z",
+                clipRule: "evenodd"
+              })
+            })
+          }), /*#__PURE__*/jsxRuntime.jsx("button", {
+            onClick: function onClick() {
+              return handleSocialShare('copy');
+            },
+            className: "blog-single-social-btn",
+            "aria-label": "Copy link",
+            children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+              fill: "none",
+              stroke: "currentColor",
+              viewBox: "0 0 24 24",
+              className: "blog-single-social-icon",
+              children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+              })
+            })
+          })]
+        }), showAuthor && author && /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "blog-single-author-section",
+          children: [authorImage && /*#__PURE__*/jsxRuntime.jsx("img", {
+            src: authorImage,
+            alt: author,
+            className: "blog-single-author-section-avatar"
+          }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "blog-single-author-section-info",
+            children: [/*#__PURE__*/jsxRuntime.jsx("h3", {
+              className: "blog-single-author-section-name",
+              children: author
+            }), authorBio && /*#__PURE__*/jsxRuntime.jsx("p", {
+              className: "blog-single-author-section-bio",
+              children: authorBio
+            })]
+          })]
+        }), showRelatedPosts && relatedPosts.length > 0 && /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "blog-single-related",
+          children: [/*#__PURE__*/jsxRuntime.jsx("h2", {
+            className: "blog-single-related-title",
+            children: "Related Posts"
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "blog-single-related-grid",
+            children: relatedPosts.map(function (post, index) {
+              return /*#__PURE__*/jsxRuntime.jsxs("a", {
+                href: post.href || '#',
+                className: "blog-single-related-card",
+                children: [post.image && /*#__PURE__*/jsxRuntime.jsx("img", {
+                  src: post.image,
+                  alt: post.title,
+                  className: "blog-single-related-image"
+                }), /*#__PURE__*/jsxRuntime.jsx("h3", {
+                  className: "blog-single-related-card-title",
+                  children: post.title
+                }), post.date && /*#__PURE__*/jsxRuntime.jsx("span", {
+                  className: "blog-single-related-card-date",
+                  children: post.date
+                })]
+              }, index);
+            })
+          })]
+        })]
+      })]
+    });
+  }
+
+  // Modern variant - Contemporary design with enhanced visuals
+  if (variant === 'modern') {
+    return /*#__PURE__*/jsxRuntime.jsxs("article", {
+      className: containerClasses,
+      id: id,
+      children: [image && /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "blog-single-hero-modern",
+        children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "blog-single-hero-modern-overlay"
+        }), /*#__PURE__*/jsxRuntime.jsx("img", {
+          src: image,
+          alt: title,
+          className: "blog-single-hero-modern-image"
+        }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "blog-single-hero-modern-content",
+          children: [category && /*#__PURE__*/jsxRuntime.jsx("span", {
+            className: "blog-single-category-modern",
+            children: category
+          }), /*#__PURE__*/jsxRuntime.jsx("h1", {
+            className: "blog-single-title-modern",
+            children: title
+          }), subtitle && /*#__PURE__*/jsxRuntime.jsx("p", {
+            className: "blog-single-subtitle-modern",
+            children: subtitle
+          })]
+        })]
+      }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "blog-single-container-modern",
+        children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "blog-single-meta-modern",
+          children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "blog-single-meta-modern-left",
+            children: [authorImage && /*#__PURE__*/jsxRuntime.jsx("img", {
+              src: authorImage,
+              alt: author,
+              className: "blog-single-meta-avatar-modern"
+            }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+              children: [author && /*#__PURE__*/jsxRuntime.jsx("span", {
+                className: "blog-single-meta-author-modern",
+                children: author
+              }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: "blog-single-meta-details-modern",
+                children: [date && /*#__PURE__*/jsxRuntime.jsx("span", {
+                  children: date
+                }), readTime && /*#__PURE__*/jsxRuntime.jsxs("span", {
+                  children: ["\u2022 ", readTime]
+                }), views !== undefined && /*#__PURE__*/jsxRuntime.jsxs("span", {
+                  children: ["\u2022 ", views, " views"]
+                })]
+              })]
+            })]
+          }), showSocialShare && /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "blog-single-meta-modern-right",
+            children: ['twitter', 'facebook', 'linkedin', 'copy'].map(function (platform) {
+              return /*#__PURE__*/jsxRuntime.jsxs("button", {
+                onClick: function onClick() {
+                  return handleSocialShare(platform);
+                },
+                className: "blog-single-social-btn-modern",
+                "aria-label": "Share on ".concat(platform),
+                children: [platform === 'twitter' && /*#__PURE__*/jsxRuntime.jsx("svg", {
+                  fill: "currentColor",
+                  viewBox: "0 0 24 24",
+                  className: "w-5 h-5",
+                  children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                    d: "M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"
+                  })
+                }), platform === 'facebook' && /*#__PURE__*/jsxRuntime.jsx("svg", {
+                  fill: "currentColor",
+                  viewBox: "0 0 24 24",
+                  className: "w-5 h-5",
+                  children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                    fillRule: "evenodd",
+                    d: "M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z",
+                    clipRule: "evenodd"
+                  })
+                }), platform === 'linkedin' && /*#__PURE__*/jsxRuntime.jsx("svg", {
+                  fill: "currentColor",
+                  viewBox: "0 0 24 24",
+                  className: "w-5 h-5",
+                  children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                    fillRule: "evenodd",
+                    d: "M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z",
+                    clipRule: "evenodd"
+                  })
+                }), platform === 'copy' && /*#__PURE__*/jsxRuntime.jsx("svg", {
+                  fill: "none",
+                  stroke: "currentColor",
+                  viewBox: "0 0 24 24",
+                  className: "w-5 h-5",
+                  children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                    strokeLinecap: "round",
+                    strokeLinejoin: "round",
+                    strokeWidth: 2,
+                    d: "M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                  })
+                })]
+              }, platform);
+            })
+          })]
+        }), content && /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "blog-single-content-modern",
+          children: typeof content === 'string' ? /*#__PURE__*/jsxRuntime.jsx("div", {
+            dangerouslySetInnerHTML: {
+              __html: content
+            }
+          }) : content
+        }), showTags && tags.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "blog-single-tags-modern",
+          children: tags.map(function (tag, index) {
+            return /*#__PURE__*/jsxRuntime.jsx("span", {
+              className: "blog-single-tag-modern",
+              children: tag
+            }, index);
+          })
+        }), showAuthor && author && /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "blog-single-author-section-modern",
+          children: [authorImage && /*#__PURE__*/jsxRuntime.jsx("img", {
+            src: authorImage,
+            alt: author,
+            className: "blog-single-author-section-avatar-modern"
+          }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "blog-single-author-section-info-modern",
+            children: [/*#__PURE__*/jsxRuntime.jsx("h3", {
+              className: "blog-single-author-section-name-modern",
+              children: author
+            }), authorBio && /*#__PURE__*/jsxRuntime.jsx("p", {
+              className: "blog-single-author-section-bio-modern",
+              children: authorBio
+            })]
+          })]
+        })]
+      })]
+    });
+  }
+
+  // Elegant variant - Sophisticated and refined design
+  if (variant === 'elegant') {
+    return /*#__PURE__*/jsxRuntime.jsx("article", {
+      className: containerClasses,
+      id: id,
+      children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "blog-single-container-elegant",
+        children: [/*#__PURE__*/jsxRuntime.jsxs("header", {
+          className: "blog-single-header-elegant",
+          children: [category && /*#__PURE__*/jsxRuntime.jsx("span", {
+            className: "blog-single-category-elegant",
+            children: category
+          }), /*#__PURE__*/jsxRuntime.jsx("h1", {
+            className: "blog-single-title-elegant",
+            children: title
+          }), subtitle && /*#__PURE__*/jsxRuntime.jsx("p", {
+            className: "blog-single-subtitle-elegant",
+            children: subtitle
+          }), excerpt && /*#__PURE__*/jsxRuntime.jsx("p", {
+            className: "blog-single-excerpt-elegant",
+            children: excerpt
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "blog-single-divider-elegant"
+          }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "blog-single-meta-elegant",
+            children: [authorImage && /*#__PURE__*/jsxRuntime.jsx("img", {
+              src: authorImage,
+              alt: author,
+              className: "blog-single-meta-avatar-elegant"
+            }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "blog-single-meta-info-elegant",
+              children: [/*#__PURE__*/jsxRuntime.jsx("span", {
+                className: "blog-single-meta-author-elegant",
+                children: author
+              }), /*#__PURE__*/jsxRuntime.jsx("span", {
+                className: "blog-single-meta-date-elegant",
+                children: date
+              }), readTime && /*#__PURE__*/jsxRuntime.jsx("span", {
+                className: "blog-single-meta-read-time-elegant",
+                children: readTime
+              })]
+            })]
+          })]
+        }), image && /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "blog-single-image-elegant",
+          children: /*#__PURE__*/jsxRuntime.jsx("img", {
+            src: image,
+            alt: title
+          })
+        }), content && /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "blog-single-content-elegant",
+          children: typeof content === 'string' ? /*#__PURE__*/jsxRuntime.jsx("div", {
+            dangerouslySetInnerHTML: {
+              __html: content
+            }
+          }) : content
+        }), /*#__PURE__*/jsxRuntime.jsxs("footer", {
+          className: "blog-single-footer-elegant",
+          children: [showTags && tags.length > 0 && /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "blog-single-tags-elegant",
+            children: [/*#__PURE__*/jsxRuntime.jsx("span", {
+              className: "blog-single-tags-label-elegant",
+              children: "Tags:"
+            }), /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "blog-single-tags-list-elegant",
+              children: tags.map(function (tag, index) {
+                return /*#__PURE__*/jsxRuntime.jsx("span", {
+                  className: "blog-single-tag-elegant",
+                  children: tag
+                }, index);
+              })
+            })]
+          }), showSocialShare && /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "blog-single-social-elegant",
+            children: [/*#__PURE__*/jsxRuntime.jsx("span", {
+              className: "blog-single-social-label-elegant",
+              children: "Share Article:"
+            }), /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "blog-single-social-buttons-elegant",
+              children: ['twitter', 'facebook', 'linkedin', 'copy'].map(function (platform) {
+                return /*#__PURE__*/jsxRuntime.jsxs("button", {
+                  onClick: function onClick() {
+                    return handleSocialShare(platform);
+                  },
+                  className: "blog-single-social-btn-elegant",
+                  "aria-label": "Share on ".concat(platform),
+                  children: [platform === 'twitter' && /*#__PURE__*/jsxRuntime.jsx("svg", {
+                    fill: "currentColor",
+                    viewBox: "0 0 24 24",
+                    className: "w-4 h-4",
+                    children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                      d: "M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"
+                    })
+                  }), platform === 'facebook' && /*#__PURE__*/jsxRuntime.jsx("svg", {
+                    fill: "currentColor",
+                    viewBox: "0 0 24 24",
+                    className: "w-4 h-4",
+                    children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                      fillRule: "evenodd",
+                      d: "M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z",
+                      clipRule: "evenodd"
+                    })
+                  }), platform === 'linkedin' && /*#__PURE__*/jsxRuntime.jsx("svg", {
+                    fill: "currentColor",
+                    viewBox: "0 0 24 24",
+                    className: "w-4 h-4",
+                    children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                      fillRule: "evenodd",
+                      d: "M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z",
+                      clipRule: "evenodd"
+                    })
+                  }), platform === 'copy' && /*#__PURE__*/jsxRuntime.jsx("svg", {
+                    fill: "none",
+                    stroke: "currentColor",
+                    viewBox: "0 0 24 24",
+                    className: "w-4 h-4",
+                    children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                      strokeLinecap: "round",
+                      strokeLinejoin: "round",
+                      strokeWidth: 2,
+                      d: "M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                    })
+                  })]
+                }, platform);
+              })
+            })]
+          }), showAuthor && author && /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "blog-single-author-section-elegant",
+            children: [authorImage && /*#__PURE__*/jsxRuntime.jsx("img", {
+              src: authorImage,
+              alt: author,
+              className: "blog-single-author-section-avatar-elegant"
+            }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "blog-single-author-section-info-elegant",
+              children: [/*#__PURE__*/jsxRuntime.jsxs("h3", {
+                className: "blog-single-author-section-name-elegant",
+                children: ["About ", author]
+              }), authorBio && /*#__PURE__*/jsxRuntime.jsx("p", {
+                className: "blog-single-author-section-bio-elegant",
+                children: authorBio
+              })]
+            })]
+          })]
+        })]
+      })
+    });
+  }
+
+  // Minimal variant - Clean and simple design
+  if (variant === 'minimal') {
+    return /*#__PURE__*/jsxRuntime.jsx("article", {
+      className: containerClasses,
+      id: id,
+      children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "blog-single-container-minimal",
+        children: [/*#__PURE__*/jsxRuntime.jsxs("header", {
+          className: "blog-single-header-minimal",
+          children: [/*#__PURE__*/jsxRuntime.jsx("h1", {
+            className: "blog-single-title-minimal",
+            children: title
+          }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "blog-single-meta-minimal",
+            children: [date && /*#__PURE__*/jsxRuntime.jsx("span", {
+              children: date
+            }), readTime && /*#__PURE__*/jsxRuntime.jsxs("span", {
+              children: ["\u2022 ", readTime]
+            }), category && /*#__PURE__*/jsxRuntime.jsxs("span", {
+              children: ["\u2022 ", category]
+            })]
+          })]
+        }), image && /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "blog-single-image-minimal",
+          children: /*#__PURE__*/jsxRuntime.jsx("img", {
+            src: image,
+            alt: title
+          })
+        }), content && /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "blog-single-content-minimal",
+          children: typeof content === 'string' ? /*#__PURE__*/jsxRuntime.jsx("div", {
+            dangerouslySetInnerHTML: {
+              __html: content
+            }
+          }) : content
+        }), /*#__PURE__*/jsxRuntime.jsxs("footer", {
+          className: "blog-single-footer-minimal",
+          children: [showTags && tags.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "blog-single-tags-minimal",
+            children: tags.map(function (tag, index) {
+              return /*#__PURE__*/jsxRuntime.jsxs("span", {
+                className: "blog-single-tag-minimal",
+                children: ["#", tag]
+              }, index);
+            })
+          }), showAuthor && author && /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "blog-single-author-minimal",
+            children: [authorImage && /*#__PURE__*/jsxRuntime.jsx("img", {
+              src: authorImage,
+              alt: author,
+              className: "blog-single-author-avatar-minimal"
+            }), /*#__PURE__*/jsxRuntime.jsx("span", {
+              children: author
+            })]
+          })]
+        })]
+      })
+    });
+  }
+
+  // Centered variant - Center-aligned content layout
+  if (variant === 'centered') {
+    return /*#__PURE__*/jsxRuntime.jsxs("article", {
+      className: containerClasses,
+      id: id,
+      children: [image && /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "blog-single-hero-centered",
+        children: /*#__PURE__*/jsxRuntime.jsx("img", {
+          src: image,
+          alt: title,
+          className: "blog-single-hero-image-centered"
+        })
+      }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "blog-single-container-centered",
+        children: [/*#__PURE__*/jsxRuntime.jsxs("header", {
+          className: "blog-single-header-centered",
+          children: [category && /*#__PURE__*/jsxRuntime.jsx("span", {
+            className: "blog-single-category-centered",
+            children: category
+          }), /*#__PURE__*/jsxRuntime.jsx("h1", {
+            className: "blog-single-title-centered",
+            children: title
+          }), subtitle && /*#__PURE__*/jsxRuntime.jsx("p", {
+            className: "blog-single-subtitle-centered",
+            children: subtitle
+          }), excerpt && /*#__PURE__*/jsxRuntime.jsx("p", {
+            className: "blog-single-excerpt-centered",
+            children: excerpt
+          }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "blog-single-meta-centered",
+            children: [authorImage && /*#__PURE__*/jsxRuntime.jsx("img", {
+              src: authorImage,
+              alt: author,
+              className: "blog-single-meta-avatar-centered"
+            }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+              children: [author && /*#__PURE__*/jsxRuntime.jsx("span", {
+                className: "blog-single-meta-author-centered",
+                children: author
+              }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+                children: [date && /*#__PURE__*/jsxRuntime.jsx("span", {
+                  children: date
+                }), readTime && /*#__PURE__*/jsxRuntime.jsxs("span", {
+                  children: [" \u2022 ", readTime]
+                })]
+              })]
+            })]
+          })]
+        }), content && /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "blog-single-content-centered",
+          children: typeof content === 'string' ? /*#__PURE__*/jsxRuntime.jsx("div", {
+            dangerouslySetInnerHTML: {
+              __html: content
+            }
+          }) : content
+        }), /*#__PURE__*/jsxRuntime.jsxs("footer", {
+          className: "blog-single-footer-centered",
+          children: [showTags && tags.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "blog-single-tags-centered",
+            children: tags.map(function (tag, index) {
+              return /*#__PURE__*/jsxRuntime.jsx("span", {
+                className: "blog-single-tag-centered",
+                children: tag
+              }, index);
+            })
+          }), showSocialShare && /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "blog-single-social-centered",
+            children: ['twitter', 'facebook', 'linkedin', 'copy'].map(function (platform) {
+              return /*#__PURE__*/jsxRuntime.jsxs("button", {
+                onClick: function onClick() {
+                  return handleSocialShare(platform);
+                },
+                className: "blog-single-social-btn-centered",
+                "aria-label": "Share on ".concat(platform),
+                children: [platform === 'twitter' && /*#__PURE__*/jsxRuntime.jsx("svg", {
+                  fill: "currentColor",
+                  viewBox: "0 0 24 24",
+                  className: "w-5 h-5",
+                  children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                    d: "M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"
+                  })
+                }), platform === 'facebook' && /*#__PURE__*/jsxRuntime.jsx("svg", {
+                  fill: "currentColor",
+                  viewBox: "0 0 24 24",
+                  className: "w-5 h-5",
+                  children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                    fillRule: "evenodd",
+                    d: "M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z",
+                    clipRule: "evenodd"
+                  })
+                }), platform === 'linkedin' && /*#__PURE__*/jsxRuntime.jsx("svg", {
+                  fill: "currentColor",
+                  viewBox: "0 0 24 24",
+                  className: "w-5 h-5",
+                  children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                    fillRule: "evenodd",
+                    d: "M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z",
+                    clipRule: "evenodd"
+                  })
+                }), platform === 'copy' && /*#__PURE__*/jsxRuntime.jsx("svg", {
+                  fill: "none",
+                  stroke: "currentColor",
+                  viewBox: "0 0 24 24",
+                  className: "w-5 h-5",
+                  children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                    strokeLinecap: "round",
+                    strokeLinejoin: "round",
+                    strokeWidth: 2,
+                    d: "M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                  })
+                })]
+              }, platform);
+            })
+          }), showAuthor && author && /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "blog-single-author-section-centered",
+            children: [authorImage && /*#__PURE__*/jsxRuntime.jsx("img", {
+              src: authorImage,
+              alt: author,
+              className: "blog-single-author-section-avatar-centered"
+            }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+              children: [/*#__PURE__*/jsxRuntime.jsx("h3", {
+                className: "blog-single-author-section-name-centered",
+                children: author
+              }), authorBio && /*#__PURE__*/jsxRuntime.jsx("p", {
+                className: "blog-single-author-section-bio-centered",
+                children: authorBio
+              })]
+            })]
+          })]
+        })]
+      })]
+    });
+  }
+
+  // Fallback to default
+  return null;
+};
+
+var BlogAuthor = function BlogAuthor(_ref) {
+  var data = _ref.data,
+    className = _ref.className,
+    id = _ref.id,
+    _ref$loader = _ref.loader,
+    loader = _ref$loader === void 0 ? false : _ref$loader;
+  if (!data || _typeof(data) !== 'object') {
+    console.error('BlogAuthor: data prop is required and must be an object');
+    return null;
+  }
+  var _useState = react.useState(loader),
+    _useState2 = _slicedToArray(_useState, 2),
+    showLoader = _useState2[0],
+    setShowLoader = _useState2[1];
+  react.useEffect(function () {
+    if (loader) {
+      var timer = setTimeout(function () {
+        setShowLoader(false);
+      }, 2000);
+      return function () {
+        return clearTimeout(timer);
+      };
+    } else {
+      setShowLoader(false);
+    }
+  }, [loader]);
+  var name = data.name,
+    image = data.image,
+    bio = data.bio,
+    role = data.role,
+    company = data.company,
+    email = data.email,
+    website = data.website,
+    _data$socialLinks = data.socialLinks,
+    socialLinks = _data$socialLinks === void 0 ? [] : _data$socialLinks,
+    postCount = data.postCount,
+    _data$variant = data.variant,
+    variant = _data$variant === void 0 ? 'default' : _data$variant,
+    _data$theme = data.theme,
+    theme = _data$theme === void 0 ? 'light' : _data$theme,
+    _data$alignment = data.alignment,
+    alignment = _data$alignment === void 0 ? 'left' : _data$alignment,
+    dataClassName = data.className;
+  var containerClasses = clsx('blog-author', "blog-author-".concat(variant), "blog-author-".concat(theme), "blog-author-".concat(alignment), className, dataClassName);
+
+  // Loading skeleton
+  if (showLoader) {
+    return /*#__PURE__*/jsxRuntime.jsx("div", {
+      className: containerClasses,
+      id: id,
+      children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "blog-author-skeleton",
+        children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "skeleton-avatar"
+        }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "skeleton-content",
+          children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "skeleton-line skeleton-line-title"
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "skeleton-line"
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "skeleton-line skeleton-line-short"
+          })]
+        })]
+      })
+    });
+  }
+
+  // Default variant - Standard author card
+  if (variant === 'default') {
+    return /*#__PURE__*/jsxRuntime.jsx("div", {
+      className: containerClasses,
+      id: id,
+      children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "blog-author-content",
+        children: [image && /*#__PURE__*/jsxRuntime.jsx("img", {
+          src: image,
+          alt: name,
+          className: "blog-author-avatar"
+        }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "blog-author-info",
+          children: [/*#__PURE__*/jsxRuntime.jsx("h3", {
+            className: "blog-author-name",
+            children: name
+          }), (role || company) && /*#__PURE__*/jsxRuntime.jsxs("p", {
+            className: "blog-author-meta",
+            children: [role && /*#__PURE__*/jsxRuntime.jsx("span", {
+              children: role
+            }), role && company && /*#__PURE__*/jsxRuntime.jsx("span", {
+              children: " \u2022 "
+            }), company && /*#__PURE__*/jsxRuntime.jsx("span", {
+              children: company
+            })]
+          }), bio && /*#__PURE__*/jsxRuntime.jsx("p", {
+            className: "blog-author-bio",
+            children: bio
+          }), (socialLinks.length > 0 || email || website) && /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "blog-author-links",
+            children: [email && /*#__PURE__*/jsxRuntime.jsx("a", {
+              href: "mailto:".concat(email),
+              className: "blog-author-link",
+              "aria-label": "Email",
+              children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+                fill: "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                className: "w-5 h-5",
+                children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2,
+                  d: "M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                })
+              })
+            }), website && /*#__PURE__*/jsxRuntime.jsx("a", {
+              href: website,
+              target: "_blank",
+              rel: "noopener noreferrer",
+              className: "blog-author-link",
+              "aria-label": "Website",
+              children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+                fill: "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                className: "w-5 h-5",
+                children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2,
+                  d: "M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
+                })
+              })
+            }), socialLinks.map(function (link, index) {
+              return /*#__PURE__*/jsxRuntime.jsxs("a", {
+                href: link.url,
+                target: "_blank",
+                rel: "noopener noreferrer",
+                className: "blog-author-link",
+                "aria-label": link.platform,
+                children: [link.platform === 'twitter' && /*#__PURE__*/jsxRuntime.jsx("svg", {
+                  fill: "currentColor",
+                  viewBox: "0 0 24 24",
+                  className: "w-5 h-5",
+                  children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                    d: "M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"
+                  })
+                }), link.platform === 'linkedin' && /*#__PURE__*/jsxRuntime.jsx("svg", {
+                  fill: "currentColor",
+                  viewBox: "0 0 24 24",
+                  className: "w-5 h-5",
+                  children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                    fillRule: "evenodd",
+                    d: "M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z",
+                    clipRule: "evenodd"
+                  })
+                }), link.platform === 'github' && /*#__PURE__*/jsxRuntime.jsx("svg", {
+                  fill: "currentColor",
+                  viewBox: "0 0 24 24",
+                  className: "w-5 h-5",
+                  children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                    fillRule: "evenodd",
+                    d: "M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z",
+                    clipRule: "evenodd"
+                  })
+                }), (!link.platform || !['twitter', 'linkedin', 'github'].includes(link.platform)) && /*#__PURE__*/jsxRuntime.jsx("svg", {
+                  fill: "none",
+                  stroke: "currentColor",
+                  viewBox: "0 0 24 24",
+                  className: "w-5 h-5",
+                  children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                    strokeLinecap: "round",
+                    strokeLinejoin: "round",
+                    strokeWidth: 2,
+                    d: "M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+                  })
+                })]
+              }, index);
+            })]
+          }), postCount !== undefined && /*#__PURE__*/jsxRuntime.jsxs("p", {
+            className: "blog-author-posts",
+            children: [postCount, " ", postCount === 1 ? 'post' : 'posts']
+          })]
+        })]
+      })
+    });
+  }
+
+  // Compact variant - Smaller, inline style
+  if (variant === 'compact') {
+    return /*#__PURE__*/jsxRuntime.jsx("div", {
+      className: containerClasses,
+      id: id,
+      children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "blog-author-compact",
+        children: [image && /*#__PURE__*/jsxRuntime.jsx("img", {
+          src: image,
+          alt: name,
+          className: "blog-author-avatar-compact"
+        }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+          children: [/*#__PURE__*/jsxRuntime.jsx("h3", {
+            className: "blog-author-name-compact",
+            children: name
+          }), bio && /*#__PURE__*/jsxRuntime.jsx("p", {
+            className: "blog-author-bio-compact",
+            children: bio
+          })]
+        })]
+      })
+    });
+  }
+
+  // Detailed variant - More information with card style
+  if (variant === 'detailed') {
+    return /*#__PURE__*/jsxRuntime.jsx("div", {
+      className: containerClasses,
+      id: id,
+      children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "blog-author-detailed",
+        children: [image && /*#__PURE__*/jsxRuntime.jsx("img", {
+          src: image,
+          alt: name,
+          className: "blog-author-avatar-detailed"
+        }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "blog-author-info-detailed",
+          children: [/*#__PURE__*/jsxRuntime.jsx("h3", {
+            className: "blog-author-name-detailed",
+            children: name
+          }), (role || company) && /*#__PURE__*/jsxRuntime.jsxs("p", {
+            className: "blog-author-meta-detailed",
+            children: [role && /*#__PURE__*/jsxRuntime.jsx("span", {
+              children: role
+            }), role && company && /*#__PURE__*/jsxRuntime.jsxs("span", {
+              children: [" at ", company]
+            }), !role && company && /*#__PURE__*/jsxRuntime.jsx("span", {
+              children: company
+            })]
+          }), bio && /*#__PURE__*/jsxRuntime.jsx("p", {
+            className: "blog-author-bio-detailed",
+            children: bio
+          }), (socialLinks.length > 0 || email || website) && /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "blog-author-links-detailed",
+            children: [email && /*#__PURE__*/jsxRuntime.jsxs("a", {
+              href: "mailto:".concat(email),
+              className: "blog-author-link-detailed",
+              children: [/*#__PURE__*/jsxRuntime.jsx("svg", {
+                fill: "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                className: "w-4 h-4",
+                children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2,
+                  d: "M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                })
+              }), "Email"]
+            }), website && /*#__PURE__*/jsxRuntime.jsxs("a", {
+              href: website,
+              target: "_blank",
+              rel: "noopener noreferrer",
+              className: "blog-author-link-detailed",
+              children: [/*#__PURE__*/jsxRuntime.jsx("svg", {
+                fill: "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                className: "w-4 h-4",
+                children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2,
+                  d: "M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
+                })
+              }), "Website"]
+            }), socialLinks.map(function (link, index) {
+              return /*#__PURE__*/jsxRuntime.jsx("a", {
+                href: link.url,
+                target: "_blank",
+                rel: "noopener noreferrer",
+                className: "blog-author-link-detailed",
+                children: link.platform
+              }, index);
+            })]
+          })]
+        })]
+      })
+    });
+  }
+
+  // Card variant - Card-style with border
+  if (variant === 'card') {
+    return /*#__PURE__*/jsxRuntime.jsx("div", {
+      className: containerClasses,
+      id: id,
+      children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "blog-author-card",
+        children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "blog-author-card-header",
+          children: [image && /*#__PURE__*/jsxRuntime.jsx("img", {
+            src: image,
+            alt: name,
+            className: "blog-author-avatar-card"
+          }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+            children: [/*#__PURE__*/jsxRuntime.jsx("h3", {
+              className: "blog-author-name-card",
+              children: name
+            }), (role || company) && /*#__PURE__*/jsxRuntime.jsxs("p", {
+              className: "blog-author-meta-card",
+              children: [role && /*#__PURE__*/jsxRuntime.jsx("span", {
+                children: role
+              }), role && company && /*#__PURE__*/jsxRuntime.jsx("span", {
+                children: " \u2022 "
+              }), company && /*#__PURE__*/jsxRuntime.jsx("span", {
+                children: company
+              })]
+            })]
+          })]
+        }), bio && /*#__PURE__*/jsxRuntime.jsx("p", {
+          className: "blog-author-bio-card",
+          children: bio
+        }), (socialLinks.length > 0 || email || website) && /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "blog-author-links-card",
+          children: [email && /*#__PURE__*/jsxRuntime.jsx("a", {
+            href: "mailto:".concat(email),
+            className: "blog-author-link-card",
+            "aria-label": "Email",
+            children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+              fill: "none",
+              stroke: "currentColor",
+              viewBox: "0 0 24 24",
+              className: "w-5 h-5",
+              children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+              })
+            })
+          }), website && /*#__PURE__*/jsxRuntime.jsx("a", {
+            href: website,
+            target: "_blank",
+            rel: "noopener noreferrer",
+            className: "blog-author-link-card",
+            "aria-label": "Website",
+            children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+              fill: "none",
+              stroke: "currentColor",
+              viewBox: "0 0 24 24",
+              className: "w-5 h-5",
+              children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
+              })
+            })
+          }), socialLinks.map(function (link, index) {
+            return /*#__PURE__*/jsxRuntime.jsx("a", {
+              href: link.url,
+              target: "_blank",
+              rel: "noopener noreferrer",
+              className: "blog-author-link-card",
+              "aria-label": link.platform,
+              children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+                fill: "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                className: "w-5 h-5",
+                children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2,
+                  d: "M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+                })
+              })
+            }, index);
+          })]
+        })]
+      })
+    });
+  }
+
+  // Minimal variant - Very simple layout
+  if (variant === 'minimal') {
+    return /*#__PURE__*/jsxRuntime.jsx("div", {
+      className: containerClasses,
+      id: id,
+      children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "blog-author-minimal",
+        children: [image && /*#__PURE__*/jsxRuntime.jsx("img", {
+          src: image,
+          alt: name,
+          className: "blog-author-avatar-minimal"
+        }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+          children: [/*#__PURE__*/jsxRuntime.jsx("h3", {
+            className: "blog-author-name-minimal",
+            children: name
+          }), bio && /*#__PURE__*/jsxRuntime.jsx("p", {
+            className: "blog-author-bio-minimal",
+            children: bio
+          })]
+        })]
+      })
+    });
+  }
+  return null;
+};
+
+var BlogComments = function BlogComments(_ref) {
+  var data = _ref.data,
+    className = _ref.className,
+    id = _ref.id,
+    _ref$loader = _ref.loader,
+    loader = _ref$loader === void 0 ? false : _ref$loader;
+  if (!data || _typeof(data) !== 'object') {
+    console.error('BlogComments: data prop is required and must be an object');
+    return null;
+  }
+  var _useState = react.useState(loader),
+    _useState2 = _slicedToArray(_useState, 2),
+    showLoader = _useState2[0],
+    setShowLoader = _useState2[1];
+  var _useState3 = react.useState(data.comments || []),
+    _useState4 = _slicedToArray(_useState3, 2),
+    comments = _useState4[0],
+    setComments = _useState4[1];
+  var _useState5 = react.useState({
+      name: '',
+      email: '',
+      content: ''
+    }),
+    _useState6 = _slicedToArray(_useState5, 2),
+    newComment = _useState6[0],
+    setNewComment = _useState6[1];
+  react.useEffect(function () {
+    if (loader) {
+      var timer = setTimeout(function () {
+        setShowLoader(false);
+      }, 2000);
+      return function () {
+        return clearTimeout(timer);
+      };
+    } else {
+      setShowLoader(false);
+    }
+  }, [loader]);
+  react.useEffect(function () {
+    setComments(data.comments || []);
+  }, [data.comments]);
+  var totalComments = data.totalComments,
+    _data$allowNewComment = data.allowNewComments,
+    allowNewComments = _data$allowNewComment === void 0 ? true : _data$allowNewComment,
+    _data$variant = data.variant,
+    variant = _data$variant === void 0 ? 'default' : _data$variant,
+    _data$theme = data.theme,
+    theme = _data$theme === void 0 ? 'light' : _data$theme,
+    dataClassName = data.className;
+  var handleSubmit = function handleSubmit(e) {
+    e.preventDefault();
+    // Handle comment submission - this would typically be handled by parent component
+    console.log('Comment submitted:', newComment);
+    setNewComment({
+      name: '',
+      email: '',
+      content: ''
+    });
+  };
+  var containerClasses = clsx('blog-comments', "blog-comments-".concat(variant), "blog-comments-".concat(theme), className, dataClassName);
+
+  // Loading skeleton
+  if (showLoader) {
+    return /*#__PURE__*/jsxRuntime.jsx("div", {
+      className: containerClasses,
+      id: id,
+      children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "blog-comments-skeleton",
+        children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "skeleton-line skeleton-line-title"
+        }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "blog-comments-skeleton-item",
+          children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "skeleton-avatar"
+          }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "skeleton-content",
+            children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "skeleton-line"
+            }), /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "skeleton-line"
+            }), /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "skeleton-line skeleton-line-short"
+            })]
+          })]
+        })]
+      })
+    });
+  }
+
+  // Render comment item
+  var _renderComment = function renderComment(comment, index) {
+    var depth = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+    return /*#__PURE__*/jsxRuntime.jsxs("div", {
+      className: clsx('blog-comment', depth > 0 && 'blog-comment-reply'),
+      children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "blog-comment-header",
+        children: [comment.avatar && /*#__PURE__*/jsxRuntime.jsx("img", {
+          src: comment.avatar,
+          alt: comment.author,
+          className: "blog-comment-avatar"
+        }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "blog-comment-meta",
+          children: [/*#__PURE__*/jsxRuntime.jsx("h4", {
+            className: "blog-comment-author",
+            children: comment.author
+          }), comment.date && /*#__PURE__*/jsxRuntime.jsx("span", {
+            className: "blog-comment-date",
+            children: comment.date
+          })]
+        })]
+      }), /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "blog-comment-content",
+        children: typeof comment.content === 'string' ? /*#__PURE__*/jsxRuntime.jsx("p", {
+          children: comment.content
+        }) : comment.content
+      }), comment.replies && comment.replies.length > 0 && variant !== 'minimal' && /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "blog-comment-replies",
+        children: comment.replies.map(function (reply, replyIndex) {
+          return _renderComment(reply, "".concat(index, "-").concat(replyIndex), depth + 1);
+        })
+      })]
+    }, index);
+  };
+
+  // Default variant
+  if (variant === 'default' || variant === 'nested' || variant === 'threaded') {
+    return /*#__PURE__*/jsxRuntime.jsxs("div", {
+      className: containerClasses,
+      id: id,
+      children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "blog-comments-header",
+        children: /*#__PURE__*/jsxRuntime.jsxs("h2", {
+          className: "blog-comments-title",
+          children: [totalComments !== undefined ? "".concat(totalComments, " ") : '', totalComments === 1 ? 'Comment' : 'Comments']
+        })
+      }), comments.length > 0 ? /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "blog-comments-list",
+        children: comments.map(function (comment, index) {
+          return _renderComment(comment, index);
+        })
+      }) : /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "blog-comments-empty",
+        children: /*#__PURE__*/jsxRuntime.jsx("p", {
+          children: "No comments yet. Be the first to comment!"
+        })
+      }), allowNewComments && /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "blog-comments-form",
+        children: [/*#__PURE__*/jsxRuntime.jsx("h3", {
+          className: "blog-comments-form-title",
+          children: "Leave a Comment"
+        }), /*#__PURE__*/jsxRuntime.jsxs("form", {
+          onSubmit: handleSubmit,
+          children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "blog-comments-form-row",
+            children: [/*#__PURE__*/jsxRuntime.jsx("input", {
+              type: "text",
+              placeholder: "Your Name",
+              className: "blog-comments-form-input",
+              value: newComment.name,
+              onChange: function onChange(e) {
+                return setNewComment(_objectSpread2(_objectSpread2({}, newComment), {}, {
+                  name: e.target.value
+                }));
+              },
+              required: true
+            }), /*#__PURE__*/jsxRuntime.jsx("input", {
+              type: "email",
+              placeholder: "Your Email",
+              className: "blog-comments-form-input",
+              value: newComment.email,
+              onChange: function onChange(e) {
+                return setNewComment(_objectSpread2(_objectSpread2({}, newComment), {}, {
+                  email: e.target.value
+                }));
+              },
+              required: true
+            })]
+          }), /*#__PURE__*/jsxRuntime.jsx("textarea", {
+            placeholder: "Your Comment",
+            className: "blog-comments-form-textarea",
+            rows: "5",
+            value: newComment.content,
+            onChange: function onChange(e) {
+              return setNewComment(_objectSpread2(_objectSpread2({}, newComment), {}, {
+                content: e.target.value
+              }));
+            },
+            required: true
+          }), /*#__PURE__*/jsxRuntime.jsx("button", {
+            type: "submit",
+            className: "blog-comments-form-submit",
+            children: "Post Comment"
+          })]
+        })]
+      })]
+    });
+  }
+
+  // Minimal variant
+  if (variant === 'minimal') {
+    return /*#__PURE__*/jsxRuntime.jsxs("div", {
+      className: containerClasses,
+      id: id,
+      children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "blog-comments-header-minimal",
+        children: /*#__PURE__*/jsxRuntime.jsxs("h2", {
+          className: "blog-comments-title-minimal",
+          children: [totalComments !== undefined ? "".concat(totalComments, " ") : '', "Comments"]
+        })
+      }), comments.length > 0 ? /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "blog-comments-list-minimal",
+        children: comments.map(function (comment, index) {
+          return /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "blog-comment-minimal",
+            children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "blog-comment-header-minimal",
+              children: [/*#__PURE__*/jsxRuntime.jsx("span", {
+                className: "blog-comment-author-minimal",
+                children: comment.author
+              }), comment.date && /*#__PURE__*/jsxRuntime.jsxs("span", {
+                className: "blog-comment-date-minimal",
+                children: [" \u2022 ", comment.date]
+              })]
+            }), /*#__PURE__*/jsxRuntime.jsx("p", {
+              className: "blog-comment-content-minimal",
+              children: comment.content
+            })]
+          }, index);
+        })
+      }) : /*#__PURE__*/jsxRuntime.jsx("p", {
+        className: "blog-comments-empty-minimal",
+        children: "No comments yet."
+      })]
+    });
+  }
+  return null;
+};
+
+var BlogNavigation = function BlogNavigation(_ref) {
+  var data = _ref.data,
+    className = _ref.className,
+    id = _ref.id,
+    _ref$loader = _ref.loader,
+    loader = _ref$loader === void 0 ? false : _ref$loader;
+  if (!data || _typeof(data) !== 'object') {
+    console.error('BlogNavigation: data prop is required and must be an object');
+    return null;
+  }
+  var _useState = react.useState(loader),
+    _useState2 = _slicedToArray(_useState, 2),
+    showLoader = _useState2[0],
+    setShowLoader = _useState2[1];
+  react.useEffect(function () {
+    if (loader) {
+      var timer = setTimeout(function () {
+        setShowLoader(false);
+      }, 2000);
+      return function () {
+        return clearTimeout(timer);
+      };
+    } else {
+      setShowLoader(false);
+    }
+  }, [loader]);
+  var previous = data.previous,
+    next = data.next,
+    _data$variant = data.variant,
+    variant = _data$variant === void 0 ? 'default' : _data$variant,
+    _data$theme = data.theme,
+    theme = _data$theme === void 0 ? 'light' : _data$theme,
+    dataClassName = data.className;
+  var containerClasses = clsx('blog-navigation', "blog-navigation-".concat(variant), "blog-navigation-".concat(theme), className, dataClassName);
+
+  // Loading skeleton
+  if (showLoader) {
+    return /*#__PURE__*/jsxRuntime.jsx("div", {
+      className: containerClasses,
+      id: id,
+      children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "blog-navigation-skeleton",
+        children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "blog-navigation-skeleton-item"
+        }), /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "blog-navigation-skeleton-item"
+        })]
+      })
+    });
+  }
+
+  // Default variant - Arrow navigation
+  if (variant === 'default') {
+    return /*#__PURE__*/jsxRuntime.jsx("div", {
+      className: containerClasses,
+      id: id,
+      children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "blog-navigation-content",
+        children: [previous && /*#__PURE__*/jsxRuntime.jsxs("a", {
+          href: previous.href || '#',
+          className: "blog-navigation-link blog-navigation-prev",
+          children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "blog-navigation-arrow",
+            children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+              fill: "none",
+              stroke: "currentColor",
+              viewBox: "0 0 24 24",
+              className: "w-5 h-5",
+              children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M15 19l-7-7 7-7"
+              })
+            })
+          }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "blog-navigation-text",
+            children: [/*#__PURE__*/jsxRuntime.jsx("span", {
+              className: "blog-navigation-label",
+              children: "Previous"
+            }), /*#__PURE__*/jsxRuntime.jsx("span", {
+              className: "blog-navigation-title",
+              children: previous.title
+            })]
+          })]
+        }), next && /*#__PURE__*/jsxRuntime.jsxs("a", {
+          href: next.href || '#',
+          className: "blog-navigation-link blog-navigation-next",
+          children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "blog-navigation-text",
+            children: [/*#__PURE__*/jsxRuntime.jsx("span", {
+              className: "blog-navigation-label",
+              children: "Next"
+            }), /*#__PURE__*/jsxRuntime.jsx("span", {
+              className: "blog-navigation-title",
+              children: next.title
+            })]
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "blog-navigation-arrow",
+            children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+              fill: "none",
+              stroke: "currentColor",
+              viewBox: "0 0 24 24",
+              className: "w-5 h-5",
+              children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M9 5l7 7-7 7"
+              })
+            })
+          })]
+        })]
+      })
+    });
+  }
+
+  // Cards variant - Card-style navigation with images
+  if (variant === 'cards') {
+    return /*#__PURE__*/jsxRuntime.jsx("div", {
+      className: containerClasses,
+      id: id,
+      children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "blog-navigation-cards",
+        children: [previous && /*#__PURE__*/jsxRuntime.jsxs("a", {
+          href: previous.href || '#',
+          className: "blog-navigation-card blog-navigation-card-prev",
+          children: [previous.image && /*#__PURE__*/jsxRuntime.jsx("img", {
+            src: previous.image,
+            alt: previous.title,
+            className: "blog-navigation-card-image"
+          }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "blog-navigation-card-content",
+            children: [/*#__PURE__*/jsxRuntime.jsx("span", {
+              className: "blog-navigation-card-label",
+              children: "\u2190 Previous"
+            }), /*#__PURE__*/jsxRuntime.jsx("h3", {
+              className: "blog-navigation-card-title",
+              children: previous.title
+            })]
+          })]
+        }), next && /*#__PURE__*/jsxRuntime.jsxs("a", {
+          href: next.href || '#',
+          className: "blog-navigation-card blog-navigation-card-next",
+          children: [next.image && /*#__PURE__*/jsxRuntime.jsx("img", {
+            src: next.image,
+            alt: next.title,
+            className: "blog-navigation-card-image"
+          }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "blog-navigation-card-content",
+            children: [/*#__PURE__*/jsxRuntime.jsx("span", {
+              className: "blog-navigation-card-label",
+              children: "Next \u2192"
+            }), /*#__PURE__*/jsxRuntime.jsx("h3", {
+              className: "blog-navigation-card-title",
+              children: next.title
+            })]
+          })]
+        })]
+      })
+    });
+  }
+
+  // Minimal variant - Simple text links
+  if (variant === 'minimal') {
+    return /*#__PURE__*/jsxRuntime.jsx("div", {
+      className: containerClasses,
+      id: id,
+      children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "blog-navigation-minimal",
+        children: [previous && /*#__PURE__*/jsxRuntime.jsxs("a", {
+          href: previous.href || '#',
+          className: "blog-navigation-link-minimal",
+          children: ["\u2190 ", previous.title]
+        }), next && /*#__PURE__*/jsxRuntime.jsxs("a", {
+          href: next.href || '#',
+          className: "blog-navigation-link-minimal",
+          children: [next.title, " \u2192"]
+        })]
+      })
+    });
+  }
+
+  // Compact variant - Smaller arrows
+  if (variant === 'compact') {
+    return /*#__PURE__*/jsxRuntime.jsx("div", {
+      className: containerClasses,
+      id: id,
+      children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "blog-navigation-compact",
+        children: [previous && /*#__PURE__*/jsxRuntime.jsxs("a", {
+          href: previous.href || '#',
+          className: "blog-navigation-link-compact",
+          children: [/*#__PURE__*/jsxRuntime.jsx("svg", {
+            fill: "none",
+            stroke: "currentColor",
+            viewBox: "0 0 24 24",
+            className: "w-4 h-4",
+            children: /*#__PURE__*/jsxRuntime.jsx("path", {
+              strokeLinecap: "round",
+              strokeLinejoin: "round",
+              strokeWidth: 2,
+              d: "M15 19l-7-7 7-7"
+            })
+          }), /*#__PURE__*/jsxRuntime.jsx("span", {
+            children: previous.title
+          })]
+        }), next && /*#__PURE__*/jsxRuntime.jsxs("a", {
+          href: next.href || '#',
+          className: "blog-navigation-link-compact",
+          children: [/*#__PURE__*/jsxRuntime.jsx("span", {
+            children: next.title
+          }), /*#__PURE__*/jsxRuntime.jsx("svg", {
+            fill: "none",
+            stroke: "currentColor",
+            viewBox: "0 0 24 24",
+            className: "w-4 h-4",
+            children: /*#__PURE__*/jsxRuntime.jsx("path", {
+              strokeLinecap: "round",
+              strokeLinejoin: "round",
+              strokeWidth: 2,
+              d: "M9 5l7 7-7 7"
+            })
+          })]
+        })]
+      })
+    });
+  }
+  return null;
+};
+
+var BlogShare = function BlogShare(_ref) {
+  var data = _ref.data,
+    className = _ref.className,
+    id = _ref.id,
+    _ref$loader = _ref.loader,
+    loader = _ref$loader === void 0 ? false : _ref$loader;
+  if (!data || _typeof(data) !== 'object') {
+    console.error('BlogShare: data prop is required and must be an object');
+    return null;
+  }
+  var _useState = react.useState(loader),
+    _useState2 = _slicedToArray(_useState, 2),
+    showLoader = _useState2[0],
+    setShowLoader = _useState2[1];
+  var _useState3 = react.useState(false),
+    _useState4 = _slicedToArray(_useState3, 2),
+    copied = _useState4[0],
+    setCopied = _useState4[1];
+  react.useEffect(function () {
+    if (loader) {
+      var timer = setTimeout(function () {
+        setShowLoader(false);
+      }, 2000);
+      return function () {
+        return clearTimeout(timer);
+      };
+    } else {
+      setShowLoader(false);
+    }
+  }, [loader]);
+  var _data$url = data.url,
+    url = _data$url === void 0 ? typeof window !== 'undefined' ? window.location.href : '' : _data$url,
+    _data$title = data.title,
+    title = _data$title === void 0 ? '' : _data$title;
+    data.description;
+    var _data$platforms = data.platforms,
+    platforms = _data$platforms === void 0 ? ['twitter', 'facebook', 'linkedin', 'copy'] : _data$platforms,
+    _data$variant = data.variant,
+    variant = _data$variant === void 0 ? 'default' : _data$variant,
+    _data$theme = data.theme,
+    theme = _data$theme === void 0 ? 'light' : _data$theme,
+    _data$alignment = data.alignment,
+    alignment = _data$alignment === void 0 ? 'left' : _data$alignment,
+    dataClassName = data.className;
+  var handleShare = function handleShare(platform) {
+    var encodedUrl = encodeURIComponent(url);
+    var encodedTitle = encodeURIComponent(title);
+    var shareUrls = {
+      twitter: "https://twitter.com/intent/tweet?url=".concat(encodedUrl, "&text=").concat(encodedTitle),
+      facebook: "https://www.facebook.com/sharer/sharer.php?u=".concat(encodedUrl),
+      linkedin: "https://www.linkedin.com/sharing/share-offsite/?url=".concat(encodedUrl),
+      whatsapp: "https://wa.me/?text=".concat(encodedTitle, " ").concat(encodedUrl),
+      telegram: "https://t.me/share/url?url=".concat(encodedUrl, "&text=").concat(encodedTitle),
+      reddit: "https://reddit.com/submit?url=".concat(encodedUrl, "&title=").concat(encodedTitle),
+      pinterest: "https://pinterest.com/pin/create/button/?url=".concat(encodedUrl, "&description=").concat(encodedTitle),
+      copy: function copy() {
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(url);
+          setCopied(true);
+          setTimeout(function () {
+            return setCopied(false);
+          }, 2000);
+        }
+      }
+    };
+    if (platform === 'copy') {
+      shareUrls.copy();
+    } else if (shareUrls[platform]) {
+      window.open(shareUrls[platform], '_blank', 'width=600,height=400');
+    }
+  };
+  var getPlatformIcon = function getPlatformIcon(platform) {
+    switch (platform) {
+      case 'twitter':
+        return /*#__PURE__*/jsxRuntime.jsx("svg", {
+          fill: "currentColor",
+          viewBox: "0 0 24 24",
+          className: "w-5 h-5",
+          children: /*#__PURE__*/jsxRuntime.jsx("path", {
+            d: "M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"
+          })
+        });
+      case 'facebook':
+        return /*#__PURE__*/jsxRuntime.jsx("svg", {
+          fill: "currentColor",
+          viewBox: "0 0 24 24",
+          className: "w-5 h-5",
+          children: /*#__PURE__*/jsxRuntime.jsx("path", {
+            fillRule: "evenodd",
+            d: "M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z",
+            clipRule: "evenodd"
+          })
+        });
+      case 'linkedin':
+        return /*#__PURE__*/jsxRuntime.jsx("svg", {
+          fill: "currentColor",
+          viewBox: "0 0 24 24",
+          className: "w-5 h-5",
+          children: /*#__PURE__*/jsxRuntime.jsx("path", {
+            fillRule: "evenodd",
+            d: "M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z",
+            clipRule: "evenodd"
+          })
+        });
+      case 'copy':
+        return /*#__PURE__*/jsxRuntime.jsx("svg", {
+          fill: "none",
+          stroke: "currentColor",
+          viewBox: "0 0 24 24",
+          className: "w-5 h-5",
+          children: /*#__PURE__*/jsxRuntime.jsx("path", {
+            strokeLinecap: "round",
+            strokeLinejoin: "round",
+            strokeWidth: 2,
+            d: "M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+          })
+        });
+      default:
+        return /*#__PURE__*/jsxRuntime.jsx("svg", {
+          fill: "none",
+          stroke: "currentColor",
+          viewBox: "0 0 24 24",
+          className: "w-5 h-5",
+          children: /*#__PURE__*/jsxRuntime.jsx("path", {
+            strokeLinecap: "round",
+            strokeLinejoin: "round",
+            strokeWidth: 2,
+            d: "M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+          })
+        });
+    }
+  };
+  var getPlatformName = function getPlatformName(platform) {
+    return platform.charAt(0).toUpperCase() + platform.slice(1);
+  };
+  var containerClasses = clsx('blog-share', "blog-share-".concat(variant), "blog-share-".concat(theme), "blog-share-".concat(alignment), className, dataClassName);
+
+  // Loading skeleton
+  if (showLoader) {
+    return /*#__PURE__*/jsxRuntime.jsx("div", {
+      className: containerClasses,
+      id: id,
+      children: /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "blog-share-skeleton",
+        children: platforms.map(function (_, index) {
+          return /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "skeleton-button"
+          }, index);
+        })
+      })
+    });
+  }
+
+  // Default variant - Icons with labels
+  if (variant === 'default' || variant === 'icons') {
+    return /*#__PURE__*/jsxRuntime.jsxs("div", {
+      className: containerClasses,
+      id: id,
+      children: [/*#__PURE__*/jsxRuntime.jsx("span", {
+        className: "blog-share-label",
+        children: "Share:"
+      }), /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "blog-share-buttons",
+        children: platforms.map(function (platform, index) {
+          return /*#__PURE__*/jsxRuntime.jsxs("button", {
+            onClick: function onClick() {
+              return handleShare(platform);
+            },
+            className: clsx('blog-share-button', platform === 'copy' && copied && 'blog-share-button-copied'),
+            "aria-label": "Share on ".concat(getPlatformName(platform)),
+            children: [getPlatformIcon(platform), variant === 'default' && /*#__PURE__*/jsxRuntime.jsx("span", {
+              children: getPlatformName(platform)
+            })]
+          }, index);
+        })
+      })]
+    });
+  }
+
+  // Buttons variant - Full button style
+  if (variant === 'buttons') {
+    return /*#__PURE__*/jsxRuntime.jsx("div", {
+      className: containerClasses,
+      id: id,
+      children: /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "blog-share-buttons-full",
+        children: platforms.map(function (platform, index) {
+          return /*#__PURE__*/jsxRuntime.jsxs("button", {
+            onClick: function onClick() {
+              return handleShare(platform);
+            },
+            className: clsx('blog-share-button-full', "blog-share-button-".concat(platform)),
+            children: [getPlatformIcon(platform), /*#__PURE__*/jsxRuntime.jsx("span", {
+              children: getPlatformName(platform)
+            })]
+          }, index);
+        })
+      })
+    });
+  }
+
+  // Minimal variant - Just icons
+  if (variant === 'minimal') {
+    return /*#__PURE__*/jsxRuntime.jsx("div", {
+      className: containerClasses,
+      id: id,
+      children: /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: "blog-share-minimal",
+        children: platforms.map(function (platform, index) {
+          return /*#__PURE__*/jsxRuntime.jsx("button", {
+            onClick: function onClick() {
+              return handleShare(platform);
+            },
+            className: "blog-share-button-minimal",
+            "aria-label": "Share on ".concat(getPlatformName(platform)),
+            children: getPlatformIcon(platform)
+          }, index);
+        })
+      })
+    });
+  }
+  return null;
+};
+
+/**
+ * Load hero section data from a JSON file or object
+ * @param {string|Object} data - JSON data or path to JSON file
+ * @returns {Promise<Object>} HeroSectionData object
+ */
+var loadHeroData = /*#__PURE__*/function () {
+  var _ref = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee(data) {
+    var response;
+    return _regenerator().w(function (_context) {
+      while (1) switch (_context.n) {
+        case 0:
+          if (!(typeof data === 'string')) {
+            _context.n = 4;
+            break;
+          }
+          _context.n = 1;
+          return fetch(data);
+        case 1:
+          response = _context.v;
+          if (response.ok) {
+            _context.n = 2;
+            break;
+          }
+          throw new Error("Failed to load hero data from ".concat(data));
+        case 2:
+          _context.n = 3;
+          return response.json();
+        case 3:
+          return _context.a(2, _context.v);
+        case 4:
+          return _context.a(2, data);
+      }
+    }, _callee);
+  }));
+  return function loadHeroData(_x) {
+    return _ref.apply(this, arguments);
+  };
+}();
+
+/**
+ * Load hero section data synchronously from a JSON object
+ * @param {Object} data - JSON data object
+ * @returns {Object} HeroSectionData object
+ */
+var loadHeroDataSync = function loadHeroDataSync(data) {
+  return data;
+};
+
+exports.BlogAuthor = BlogAuthor;
+exports.BlogCard = BlogCard;
+exports.BlogComments = BlogComments;
+exports.BlogGrid = BlogGrid;
+exports.BlogNavigation = BlogNavigation;
+exports.BlogShare = BlogShare;
+exports.BlogSingle = BlogSingle;
+exports.FaqHub = FaqHub;
+exports.FaqModern = FaqModern;
+exports.FaqVisual = FaqVisual;
+exports.FeatureDeck = FeatureDeck;
+exports.FeatureModern = FeatureModern;
+exports.FeaturePrime = FeaturePrime;
+exports.FooterLayout = FooterLayout;
+exports.HeaderLayout = HeaderLayout;
+exports.HeaderPremium = HeaderPremium;
+exports.HeaderStandard = HeaderStandard;
+exports.HeroGlass = HeroGlass;
+exports.HeroGradient = HeroGradient;
+exports.HeroPrime = HeroPrime;
+exports.PriceBoard = PriceBoard;
+exports.PriceModern = PriceModern;
+exports.PricePremium = PricePremium;
+exports.SlideFlow = SlideFlow;
+exports.TestimonialCarousel = TestimonialCarousel;
+exports.TestimonialTimeline = TestimonialTimeline;
+exports.TrustBlock = TrustBlock;
+exports.loadHeroData = loadHeroData;
+exports.loadHeroDataSync = loadHeroDataSync;
+//# sourceMappingURL=index.js.map

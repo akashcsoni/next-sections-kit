@@ -1,0 +1,13 @@
+node_modules/
+src/
+examples/
+*.config.js
+*.config.ts
+tsconfig.json
+.gitignore
+*.log
+.env
+.DS_Store
+.idea/
+.vscode/
+
