@@ -6459,18 +6459,18 @@ var HeaderLayout = function HeaderLayout(_ref) {
                 className: "hidden sm:block w-24 h-6 bg-gray-700 rounded animate-pulse"
               })]
             }), /*#__PURE__*/jsx("div", {
-              className: "hidden md:flex items-center gap-3 md:gap-4 lg:gap-6 flex-1 justify-center mx-2 md:mx-3 lg:mx-4",
+              className: "hidden lg:flex items-center gap-2 md:gap-3 lg:gap-4 flex-1 justify-center mx-2 md:mx-2.5 lg:mx-3",
               children: [0, 1, 2, 3, 4].map(function (index) {
                 return /*#__PURE__*/jsx("div", {
-                  className: "h-5 w-16 bg-gray-700 rounded animate-pulse"
+                  className: "h-4 md:h-4.5 lg:h-5 w-12 md:w-14 lg:w-16 bg-gray-700 rounded animate-pulse"
                 }, index);
               })
             }), /*#__PURE__*/jsxs("div", {
-              className: "flex items-center gap-2 sm:gap-2.5 md:gap-3 lg:gap-4",
+              className: "flex items-center gap-2 sm:gap-2.5 md:gap-2.5 lg:gap-3",
               children: [showSearch && /*#__PURE__*/jsx("div", {
-                className: "hidden md:block w-40 md:w-52 lg:w-64 h-9 bg-gray-700 rounded-full animate-pulse"
+                className: "hidden lg:block w-36 md:w-44 lg:w-52 xl:w-64 h-8 md:h-9 bg-gray-700 rounded-full animate-pulse"
               }), /*#__PURE__*/jsx("div", {
-                className: "md:hidden w-10 h-10 bg-gray-700 rounded-lg animate-pulse"
+                className: "lg:hidden w-10 h-10 bg-gray-700 rounded-lg animate-pulse"
               })]
             })]
           })
@@ -6496,23 +6496,23 @@ var HeaderLayout = function HeaderLayout(_ref) {
                 className: "hidden xs:block w-20 h-6 bg-white/20 rounded animate-pulse"
               })]
             }), /*#__PURE__*/jsx("div", {
-              className: "hidden md:flex items-center gap-3 md:gap-4 lg:gap-6 flex-1 justify-center mx-2 md:mx-3 lg:mx-4",
+              className: "hidden lg:flex items-center gap-2 md:gap-3 lg:gap-4 flex-1 justify-center mx-2 md:mx-2.5 lg:mx-3",
               children: [0, 1, 2, 3, 4].map(function (index) {
                 return /*#__PURE__*/jsx("div", {
-                  className: "h-5 w-16 bg-white/20 rounded animate-pulse"
+                  className: "h-4 md:h-4.5 lg:h-5 w-12 md:w-14 lg:w-16 bg-white/20 rounded animate-pulse"
                 }, index);
               })
             }), /*#__PURE__*/jsxs("div", {
-              className: "flex items-center gap-2 sm:gap-2.5 md:gap-3 lg:gap-4",
+              className: "flex items-center gap-2 sm:gap-2.5 md:gap-2.5 lg:gap-3",
               children: [ctaButtons.length > 0 && /*#__PURE__*/jsx("div", {
-                className: "hidden md:flex items-center gap-2 lg:gap-3",
+                className: "hidden lg:flex items-center gap-1.5 md:gap-2 lg:gap-2.5",
                 children: [0, 1].map(function (index) {
                   return /*#__PURE__*/jsx("div", {
-                    className: "h-9 w-24 bg-white/20 rounded-full animate-pulse"
+                    className: "h-8 md:h-9 w-20 md:w-22 lg:w-24 bg-white/20 rounded-full animate-pulse"
                   }, index);
                 })
               }), /*#__PURE__*/jsx("div", {
-                className: "md:hidden w-10 h-10 bg-white/20 rounded-lg animate-pulse"
+                className: "lg:hidden w-10 h-10 bg-white/20 rounded-lg animate-pulse"
               })]
             })]
           })
@@ -6554,25 +6554,25 @@ var HeaderLayout = function HeaderLayout(_ref) {
                 })]
               })]
             }), /*#__PURE__*/jsx("div", {
-              className: "hidden lg:flex items-center gap-1.5 md:gap-2 lg:gap-4 xl:gap-6 flex-1 justify-center mx-1 md:mx-2 lg:mx-4 xl:mx-8",
+              className: "hidden lg:flex items-center gap-1.5 md:gap-2 lg:gap-3 xl:gap-4 flex-1 justify-center mx-1 md:mx-2 lg:mx-3 xl:mx-4",
               children: [0, 1, 2, 3, 4].map(function (index) {
                 return /*#__PURE__*/jsx("div", {
-                  className: "h-4 w-16 bg-gray-200 rounded animate-pulse"
+                  className: "h-3.5 md:h-4 lg:h-4.5 w-12 md:w-14 lg:w-16 bg-gray-200 rounded animate-pulse"
                 }, index);
               })
             }), /*#__PURE__*/jsxs("div", {
-              className: "flex items-center gap-1 sm:gap-1.5 md:gap-2 lg:gap-4",
+              className: "flex items-center gap-1 sm:gap-1.5 md:gap-2 lg:gap-3",
               children: [socialIcons.length > 0 && /*#__PURE__*/jsx("div", {
-                className: "hidden lg:flex items-center gap-1.5",
+                className: "hidden lg:flex items-center gap-1 md:gap-1.5",
                 children: [0, 1, 2].map(function (index) {
                   return /*#__PURE__*/jsx("div", {
-                    className: "w-9 h-9 bg-gray-200 rounded-full animate-pulse"
+                    className: "w-8 md:w-8.5 lg:w-9 h-8 md:h-8.5 lg:h-9 bg-gray-200 rounded-full animate-pulse"
                   }, index);
                 })
               }), ctaButtons.length > 0 && /*#__PURE__*/jsx("div", {
                 className: "hidden lg:flex items-center",
                 children: /*#__PURE__*/jsx("div", {
-                  className: "h-9 w-24 bg-primary-200 rounded-lg animate-pulse"
+                  className: "h-8 md:h-8.5 lg:h-9 w-20 md:w-22 lg:w-24 bg-primary-200 rounded-lg animate-pulse"
                 })
               }), /*#__PURE__*/jsx("div", {
                 className: "lg:hidden w-10 h-10 bg-gray-200 rounded-lg animate-pulse"
@@ -6601,7 +6601,7 @@ var HeaderLayout = function HeaderLayout(_ref) {
                 className: "hidden sm:block w-24 h-6 bg-gray-200 rounded animate-pulse"
               })]
             }), /*#__PURE__*/jsx("div", {
-              className: "hidden md:flex items-center gap-1 md:gap-2 lg:gap-4 xl:gap-6 flex-1 justify-center mx-2 md:mx-3 lg:mx-4 max-w-5xl",
+              className: "hidden lg:flex items-center gap-1 md:gap-2 lg:gap-4 xl:gap-6 flex-1 justify-center mx-2 md:mx-3 lg:mx-4 max-w-5xl",
               children: [0, 1, 2, 3, 4].map(function (index) {
                 return /*#__PURE__*/jsx("div", {
                   className: "h-5 w-16 bg-gray-200 rounded animate-pulse"
@@ -6615,14 +6615,14 @@ var HeaderLayout = function HeaderLayout(_ref) {
                   className: "w-full h-9 bg-gray-100 rounded-lg animate-pulse"
                 })
               }), ctaButtons.length > 0 && /*#__PURE__*/jsx("div", {
-                className: "hidden md:flex items-center gap-2 lg:gap-3",
+                className: "hidden lg:flex items-center gap-2 lg:gap-3",
                 children: [0, 1].map(function (index) {
                   return /*#__PURE__*/jsx("div", {
                     className: "h-9 w-24 bg-gray-200 rounded-lg animate-pulse"
                   }, index);
                 })
               }), /*#__PURE__*/jsx("div", {
-                className: "md:hidden w-10 h-10 bg-gray-200 rounded-lg animate-pulse"
+                className: "lg:hidden w-10 h-10 bg-gray-200 rounded-lg animate-pulse"
               })]
             })]
           })
@@ -6647,28 +6647,28 @@ var HeaderLayout = function HeaderLayout(_ref) {
               className: "hidden sm:block w-24 h-6 bg-gray-200 rounded animate-pulse"
             })]
           }), /*#__PURE__*/jsx("div", {
-            className: "hidden md:flex items-center gap-3 md:gap-5 lg:gap-6 flex-1 justify-center mx-3 md:mx-5 lg:mx-8",
+            className: "hidden lg:flex items-center gap-2 md:gap-3 lg:gap-4 xl:gap-5 flex-1 justify-center mx-2 md:mx-3 lg:mx-4 xl:mx-6",
             children: [0, 1, 2, 3, 4].map(function (index) {
               return /*#__PURE__*/jsx("div", {
-                className: "h-5 w-16 bg-gray-200 rounded animate-pulse"
+                className: "h-4 md:h-4.5 lg:h-5 w-12 md:w-14 lg:w-16 bg-gray-200 rounded animate-pulse"
               }, index);
             })
           }), /*#__PURE__*/jsxs("div", {
-            className: "flex items-center gap-2 sm:gap-2.5 md:gap-3 lg:gap-4",
+            className: "flex items-center gap-2 sm:gap-2.5 md:gap-2.5 lg:gap-3",
             children: [socialIcons.length > 0 && /*#__PURE__*/jsx("div", {
-              className: "hidden md:flex items-center gap-2",
+              className: "hidden lg:flex items-center gap-1.5 md:gap-2",
               children: [0, 1, 2].map(function (index) {
                 return /*#__PURE__*/jsx("div", {
-                  className: "w-9 h-9 bg-gray-200 rounded-full animate-pulse"
+                  className: "w-8 md:w-8.5 lg:w-9 h-8 md:h-8.5 lg:h-9 bg-gray-200 rounded-full animate-pulse"
                 }, index);
               })
             }), ctaButtons.length > 0 && /*#__PURE__*/jsx("div", {
-              className: "hidden md:flex items-center",
+              className: "hidden lg:flex items-center",
               children: /*#__PURE__*/jsx("div", {
-                className: "h-9 w-24 bg-gray-200 rounded-lg animate-pulse"
+                className: "h-8 md:h-8.5 lg:h-9 w-20 md:w-22 lg:w-24 bg-gray-200 rounded-lg animate-pulse"
               })
             }), /*#__PURE__*/jsx("div", {
-              className: "md:hidden w-10 h-10 bg-gray-200 rounded-lg animate-pulse"
+              className: "lg:hidden w-10 h-10 bg-gray-200 rounded-lg animate-pulse"
             })]
           })]
         })
@@ -6783,7 +6783,7 @@ var HeaderLayout = function HeaderLayout(_ref) {
       lightMode = _ref2$lightMode === void 0 ? false : _ref2$lightMode;
     var icons = {
       twitter: /*#__PURE__*/jsx("svg", {
-        className: "w-5 h-5",
+        className: "w-4 h-4 md:w-4.5 md:h-4.5 lg:w-5 lg:h-5",
         fill: "currentColor",
         viewBox: "0 0 24 24",
         children: /*#__PURE__*/jsx("path", {
@@ -6791,7 +6791,7 @@ var HeaderLayout = function HeaderLayout(_ref) {
         })
       }),
       facebook: /*#__PURE__*/jsx("svg", {
-        className: "w-5 h-5",
+        className: "w-4 h-4 md:w-4.5 md:h-4.5 lg:w-5 lg:h-5",
         fill: "currentColor",
         viewBox: "0 0 24 24",
         children: /*#__PURE__*/jsx("path", {
@@ -6799,7 +6799,7 @@ var HeaderLayout = function HeaderLayout(_ref) {
         })
       }),
       youtube: /*#__PURE__*/jsx("svg", {
-        className: "w-5 h-5",
+        className: "w-4 h-4 md:w-4.5 md:h-4.5 lg:w-5 lg:h-5",
         fill: "currentColor",
         viewBox: "0 0 24 24",
         children: /*#__PURE__*/jsx("path", {
@@ -6807,7 +6807,7 @@ var HeaderLayout = function HeaderLayout(_ref) {
         })
       }),
       linkedin: /*#__PURE__*/jsxs("svg", {
-        className: "w-5 h-5",
+        className: "w-4 h-4 md:w-4.5 md:h-4.5 lg:w-5 lg:h-5",
         fill: "currentColor",
         viewBox: "0 0 24 24",
         children: [/*#__PURE__*/jsx("path", {
@@ -6821,7 +6821,7 @@ var HeaderLayout = function HeaderLayout(_ref) {
     };
     return /*#__PURE__*/jsx("a", {
       href: href || '#',
-      className: clsx('w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110', lightMode ? 'bg-primary-50 hover:bg-primary-100 border border-primary-200 hover:border-primary-300 text-primary-600 hover:text-primary-700' : 'bg-white/10 hover:bg-amber-400/20 border border-white/10 hover:border-amber-400/30 text-white/80 hover:text-amber-300'),
+      className: clsx('w-8 h-8 md:w-8.5 md:h-8.5 lg:w-9 lg:h-9 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110', lightMode ? 'bg-primary-50 hover:bg-primary-100 border border-primary-200 hover:border-primary-300 text-primary-600 hover:text-primary-700' : 'bg-white/10 hover:bg-amber-400/20 border border-white/10 hover:border-amber-400/30 text-white/80 hover:text-amber-300'),
       "aria-label": name,
       children: icons[name.toLowerCase()] || icons.twitter
     });
@@ -6867,17 +6867,17 @@ var HeaderLayout = function HeaderLayout(_ref) {
     // Default logo rendering based on variant
     if (variant === 'two-tier') {
       return /*#__PURE__*/jsxs("div", {
-        className: "flex items-center gap-1.5 sm:gap-2 md:gap-3",
+        className: "flex items-center gap-1.5 sm:gap-2 md:gap-2.5 lg:gap-3",
         children: [/*#__PURE__*/jsx("div", {
-          className: "w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 rounded-xl bg-primary-600 flex items-center justify-center shadow-xl transition-all duration-300 flex-shrink-0",
+          className: "w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 lg:w-12 lg:h-12 xl:w-14 xl:h-14 rounded-xl bg-primary-600 flex items-center justify-center shadow-xl transition-all duration-300 flex-shrink-0",
           children: /*#__PURE__*/jsx("span", {
-            className: "text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-white",
+            className: "text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl font-bold text-white",
             children: "YL"
           })
         }), /*#__PURE__*/jsxs("div", {
           className: "flex flex-col min-w-0",
           children: [/*#__PURE__*/jsx("span", {
-            className: "text-sm sm:text-base md:text-lg lg:text-xl font-bold text-gray-900 tracking-tight truncate",
+            className: "text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl font-bold text-gray-900 tracking-tight truncate",
             children: typeof logo === 'string' ? logo : 'EDUNAME'
           }), subtitle && /*#__PURE__*/jsx("span", {
             className: "text-xs font-semibold text-primary-600 mt-0.5 hidden md:block truncate",
@@ -6888,15 +6888,15 @@ var HeaderLayout = function HeaderLayout(_ref) {
     }
     if (variant === 'rounded') {
       return /*#__PURE__*/jsxs("div", {
-        className: "flex items-center gap-2 sm:gap-3",
+        className: "flex items-center gap-2 sm:gap-2.5 md:gap-3",
         children: [/*#__PURE__*/jsx("div", {
-          className: "w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-white flex items-center justify-center shadow-xl ring-2 ring-white/40 hover:ring-white/60 transition-all duration-300",
+          className: "w-9 h-9 sm:w-10 sm:h-10 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-xl bg-white flex items-center justify-center shadow-xl ring-2 ring-white/40 hover:ring-white/60 transition-all duration-300",
           children: /*#__PURE__*/jsx("span", {
-            className: "text-xl sm:text-2xl",
+            className: "text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-purple-600",
             children: "YL"
           })
         }), /*#__PURE__*/jsx("span", {
-          className: "text-base sm:text-xl font-bold text-white tracking-tight hidden xs:block",
+          className: "text-sm sm:text-base md:text-lg lg:text-xl font-bold text-white tracking-tight hidden xs:block",
           children: typeof logo === 'string' ? logo : 'BOOKLY'
         })]
       });
@@ -6920,17 +6920,17 @@ var HeaderLayout = function HeaderLayout(_ref) {
     }
     if (variant === 'modern') {
       return /*#__PURE__*/jsxs("div", {
-        className: "flex items-center gap-2 sm:gap-3",
+        className: "flex items-center gap-2 sm:gap-2.5 md:gap-3",
         children: [/*#__PURE__*/jsx("div", {
-          className: "w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-gradient-to-br from-gray-900 to-gray-800 flex items-center justify-center shadow-sm ring-1 ring-gray-200",
+          className: "w-8 h-8 sm:w-9 sm:h-9 md:w-9 md:h-9 lg:w-10 lg:h-10 rounded-lg bg-gradient-to-br from-gray-900 to-gray-800 flex items-center justify-center shadow-sm ring-1 ring-gray-200 flex-shrink-0",
           children: /*#__PURE__*/jsx("span", {
-            className: "text-white font-bold text-xs sm:text-sm",
+            className: "text-white font-bold text-[10px] sm:text-xs md:text-xs lg:text-sm",
             children: typeof logo === 'string' ? logo.split(' ').map(function (w) {
               return w[0];
             }).join('') : 'YL'
           })
         }), typeof logo === 'string' && /*#__PURE__*/jsx("span", {
-          className: "text-base sm:text-lg md:text-xl font-semibold text-gray-900 hidden sm:block tracking-tight",
+          className: "text-sm sm:text-base md:text-base lg:text-lg xl:text-xl font-semibold text-gray-900 hidden sm:block tracking-tight truncate",
           children: logo
         })]
       });
@@ -6938,17 +6938,17 @@ var HeaderLayout = function HeaderLayout(_ref) {
 
     // Dark variant
     return /*#__PURE__*/jsxs("div", {
-      className: "flex items-center gap-2 sm:gap-3",
+      className: "flex items-center gap-2 sm:gap-2.5 md:gap-3",
       children: [/*#__PURE__*/jsx("div", {
-        className: "w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-full bg-primary-600 flex items-center justify-center shadow-xl transition-all duration-300",
+        className: "w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 lg:w-11 lg:h-11 xl:w-12 xl:h-12 rounded-full bg-primary-600 flex items-center justify-center shadow-xl transition-all duration-300 flex-shrink-0",
         children: /*#__PURE__*/jsx("span", {
-          className: "text-white font-bold text-xs sm:text-sm",
+          className: "text-white font-bold text-[10px] sm:text-xs md:text-xs lg:text-sm",
           children: typeof logo === 'string' ? logo.split(' ').map(function (w) {
             return w[0];
           }).join('') : 'YL'
         })
       }), typeof logo === 'string' && /*#__PURE__*/jsx("span", {
-        className: "text-base sm:text-lg md:text-xl font-bold text-white hidden sm:block tracking-tight",
+        className: "text-sm sm:text-base md:text-base lg:text-lg xl:text-xl font-bold text-white hidden sm:block tracking-tight truncate",
         children: logo
       })]
     });
@@ -6973,7 +6973,7 @@ var HeaderLayout = function HeaderLayout(_ref) {
               children: renderLogo()
             })
           }), navItems && navItems.length > 0 && /*#__PURE__*/jsx("div", {
-            className: "hidden md:flex items-center gap-3 md:gap-4 lg:gap-6 flex-1 justify-center mx-2 md:mx-3 lg:mx-4 max-w-5xl",
+            className: "hidden lg:flex items-center gap-1 md:gap-1.5 lg:gap-3 xl:gap-4 2xl:gap-6 flex-1 justify-center mx-1 md:mx-1.5 lg:mx-2 xl:mx-3 2xl:mx-4 max-w-[calc(100%-200px)] lg:max-w-5xl",
             children: navItems.map(function (item, index) {
               if (!item || !item.label) return null;
               var hasDropdown = item.dropdown && item.dropdown.length > 0;
@@ -6988,9 +6988,9 @@ var HeaderLayout = function HeaderLayout(_ref) {
                   onMouseEnter: function onMouseEnter() {
                     return hasDropdown && setOpenDropdown(index);
                   },
-                  className: clsx('relative text-sm md:text-base font-semibold transition-all duration-300 whitespace-nowrap', 'px-2 md:px-3 py-2 rounded-lg', 'after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2', 'after:w-0 after:h-0.5 after:bg-blue-400 after:transition-all after:duration-300', 'hover:after:w-3/4 hover:text-blue-400', isNavItemActive(item, index) ? 'text-blue-400 after:w-3/4' : 'text-white/90 hover:text-white hover:bg-white/5'),
+                  className: clsx('relative text-[11px] md:text-xs lg:text-sm xl:text-base font-semibold transition-all duration-300 whitespace-nowrap', 'px-1 md:px-1.5 lg:px-2 xl:px-3 py-1.5 md:py-2 rounded-lg', 'after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2', 'after:w-0 after:h-0.5 after:bg-blue-400 after:transition-all after:duration-300', 'hover:after:w-3/4 hover:text-blue-400', isNavItemActive(item, index) ? 'text-blue-400 after:w-3/4' : 'text-white/90 hover:text-white hover:bg-white/5'),
                   children: [item.label, hasDropdown && /*#__PURE__*/jsx("svg", {
-                    className: "inline-block w-4 h-4 ml-1.5 transition-transform duration-200",
+                    className: "inline-block w-3 h-3 md:w-3.5 md:h-3.5 lg:w-4 lg:h-4 ml-0.5 md:ml-1 lg:ml-1.5 transition-transform duration-200",
                     fill: "none",
                     stroke: "currentColor",
                     viewBox: "0 0 24 24",
@@ -7020,9 +7020,9 @@ var HeaderLayout = function HeaderLayout(_ref) {
               }, index);
             })
           }), /*#__PURE__*/jsxs("div", {
-            className: "flex items-center gap-2 sm:gap-2.5 md:gap-3 lg:gap-4 flex-shrink-0",
+            className: "flex items-center gap-2 sm:gap-2.5 md:gap-2.5 lg:gap-3 xl:gap-4 flex-shrink-0",
             children: [showSearch && /*#__PURE__*/jsx("div", {
-              className: "hidden md:flex items-center w-40 md:w-52 lg:w-64",
+              className: "hidden lg:flex items-center w-36 md:w-44 lg:w-52 xl:w-64",
               children: /*#__PURE__*/jsxs("form", {
                 onSubmit: handleSearchSubmit,
                 className: "relative w-full",
@@ -7033,7 +7033,7 @@ var HeaderLayout = function HeaderLayout(_ref) {
                   onChange: function onChange(e) {
                     return setSearchQuery(e.target.value);
                   },
-                  className: "w-full pl-9 md:pl-10 pr-3 md:pr-4 py-2 md:py-2.5 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-xs md:text-sm text-white placeholder-white/50 focus:bg-white/15 focus:outline-none focus:ring-2 focus:ring-primary-600/50 focus:border-primary-600/50 transition-all duration-200",
+                  className: "w-full pl-8 md:pl-9 lg:pl-10 pr-3 md:pr-4 py-1.5 md:py-2 lg:py-2.5 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-xs md:text-xs lg:text-sm text-white placeholder-white/50 focus:bg-white/15 focus:outline-none focus:ring-2 focus:ring-primary-600/50 focus:border-primary-600/50 transition-all duration-200",
                   "aria-label": "Search"
                 }), /*#__PURE__*/jsx("button", {
                   type: "submit",
@@ -7057,7 +7057,7 @@ var HeaderLayout = function HeaderLayout(_ref) {
               onClick: function onClick() {
                 return setIsMobileMenuOpen(!isMobileMenuOpen);
               },
-              className: "md:hidden w-10 h-10 sm:w-11 sm:h-11 flex items-center justify-center text-white hover:bg-white/10 rounded-lg transition-colors touch-manipulation",
+              className: "lg:hidden w-10 h-10 sm:w-11 sm:h-11 flex items-center justify-center text-white hover:bg-white/10 rounded-lg transition-colors touch-manipulation",
               "aria-label": "Toggle mobile menu",
               "aria-expanded": isMobileMenuOpen,
               children: isMobileMenuOpen ? /*#__PURE__*/jsx("svg", {
@@ -7086,7 +7086,7 @@ var HeaderLayout = function HeaderLayout(_ref) {
             })]
           })]
         }), isMobileMenuOpen && /*#__PURE__*/jsxs("div", {
-          className: "md:hidden py-4 border-t border-white/10 animate-slideDown bg-black max-h-[calc(100vh-5rem)] overflow-y-auto",
+          className: "lg:hidden py-4 border-t border-white/10 animate-slideDown bg-black max-h-[calc(100vh-5rem)] overflow-y-auto",
           children: [navItems.map(function (item, index) {
             var hasDropdown = item.dropdown && item.dropdown.length > 0;
             var isDropdownOpen = openDropdown === index;
@@ -7182,15 +7182,15 @@ var HeaderLayout = function HeaderLayout(_ref) {
         children: [/*#__PURE__*/jsxs("div", {
           className: "flex items-center justify-between h-16 sm:h-20",
           children: [/*#__PURE__*/jsx("div", {
-            className: "flex items-center flex-shrink-0 min-w-0",
+            className: "flex items-center flex-shrink-0 min-w-0 max-w-[140px] md:max-w-[160px] lg:max-w-none",
             children: /*#__PURE__*/jsx("a", {
               href: logoHref,
-              className: "flex items-center gap-2 sm:gap-3 group hover:scale-105 transition-transform duration-200",
+              className: "flex items-center gap-2 sm:gap-2.5 md:gap-3 group hover:scale-105 transition-transform duration-200",
               "aria-label": "Home",
               children: renderLogo()
             })
           }), navItems && navItems.length > 0 && /*#__PURE__*/jsx("div", {
-            className: "hidden md:flex items-center gap-3 md:gap-4 lg:gap-6 flex-1 justify-center mx-2 md:mx-3 lg:mx-4 max-w-5xl",
+            className: "hidden lg:flex items-center gap-1 md:gap-1.5 lg:gap-2.5 xl:gap-4 2xl:gap-6 flex-1 justify-center mx-1 md:mx-1.5 lg:mx-2 xl:mx-3 2xl:mx-4 max-w-[calc(100%-200px)] lg:max-w-5xl",
             children: navItems.map(function (item, index) {
               if (!item || !item.label) return null;
               var hasDropdown = item.dropdown && item.dropdown.length > 0;
@@ -7205,9 +7205,9 @@ var HeaderLayout = function HeaderLayout(_ref) {
                   onMouseEnter: function onMouseEnter() {
                     return hasDropdown && setOpenDropdown(index);
                   },
-                  className: clsx('relative text-sm md:text-base font-semibold transition-all duration-300 flex items-center gap-1.5 whitespace-nowrap', 'px-2 md:px-4 py-2 rounded-lg', 'hover:bg-white/10 active:bg-white/15', isNavItemActive(item, index) ? 'text-white bg-white/10' : 'text-white/95 hover:text-white'),
+                  className: clsx('relative text-[11px] md:text-xs lg:text-sm xl:text-base font-semibold transition-all duration-300 flex items-center gap-0.5 md:gap-1 whitespace-nowrap', 'px-1 md:px-1.5 lg:px-2.5 xl:px-3 py-1.5 md:py-2 rounded-lg', 'hover:bg-white/10 active:bg-white/15', isNavItemActive(item, index) ? 'text-white bg-white/10' : 'text-white/95 hover:text-white'),
                   children: [item.label, hasDropdown && /*#__PURE__*/jsx("svg", {
-                    className: "w-4 h-4 transition-transform duration-200",
+                    className: "w-3 h-3 md:w-3.5 md:h-3.5 lg:w-4 lg:h-4 transition-transform duration-200",
                     fill: "none",
                     stroke: "currentColor",
                     viewBox: "0 0 24 24",
@@ -7237,13 +7237,13 @@ var HeaderLayout = function HeaderLayout(_ref) {
               }, index);
             })
           }), /*#__PURE__*/jsxs("div", {
-            className: "flex items-center gap-2 sm:gap-2.5 md:gap-3 lg:gap-4 flex-shrink-0",
+            className: "flex items-center gap-2 sm:gap-2.5 md:gap-2.5 lg:gap-3 xl:gap-4 flex-shrink-0",
             children: [ctaButtons.length > 0 && /*#__PURE__*/jsx("div", {
-              className: "hidden md:flex items-center gap-2 lg:gap-3",
+              className: "hidden lg:flex items-center gap-1.5 md:gap-2 lg:gap-2.5 xl:gap-3",
               children: ctaButtons.map(function (button, index) {
                 return /*#__PURE__*/jsx("a", {
                   href: button.href || '#',
-                  className: clsx('px-4 xl:px-5 py-2 xl:py-2.5 rounded-full text-xs xl:text-sm font-semibold transition-all duration-300 whitespace-nowrap', 'transform hover:scale-105 active:scale-95', button.variant === 'primary' ? 'bg-white text-purple-600 hover:bg-white/95 shadow-lg hover:shadow-xl hover:-translate-y-0.5' : 'text-white/90 hover:text-white border border-white/30 hover:border-white/50 hover:bg-white/10 px-2 md:px-3 lg:px-4'),
+                  className: clsx('px-3 md:px-3.5 lg:px-4 xl:px-5 py-1.5 md:py-2 lg:py-2.5 rounded-full text-xs md:text-xs lg:text-sm font-semibold transition-all duration-300 whitespace-nowrap', 'transform hover:scale-105 active:scale-95', button.variant === 'primary' ? 'bg-white text-purple-600 hover:bg-white/95 shadow-lg hover:shadow-xl hover:-translate-y-0.5' : 'text-white/90 hover:text-white border border-white/30 hover:border-white/50 hover:bg-white/10'),
                   children: button.label
                 }, index);
               })
@@ -7251,7 +7251,7 @@ var HeaderLayout = function HeaderLayout(_ref) {
               onClick: function onClick() {
                 return setIsMobileMenuOpen(!isMobileMenuOpen);
               },
-              className: "md:hidden w-10 h-10 sm:w-11 sm:h-11 flex items-center justify-center text-white hover:bg-white/10 rounded-lg transition-colors touch-manipulation",
+              className: "lg:hidden w-10 h-10 sm:w-11 sm:h-11 flex items-center justify-center text-white hover:bg-white/10 rounded-lg transition-colors touch-manipulation",
               "aria-label": "Toggle mobile menu",
               "aria-expanded": isMobileMenuOpen,
               children: isMobileMenuOpen ? /*#__PURE__*/jsx("svg", {
@@ -7280,7 +7280,7 @@ var HeaderLayout = function HeaderLayout(_ref) {
             })]
           })]
         }), isMobileMenuOpen && /*#__PURE__*/jsxs("div", {
-          className: "md:hidden py-4 border-t border-white/20 animate-slideDown bg-gradient-to-b from-purple-600 to-indigo-600 max-h-[calc(100vh-5rem)] overflow-y-auto",
+          className: "lg:hidden py-4 border-t border-white/20 animate-slideDown bg-gradient-to-b from-purple-600 to-indigo-600 max-h-[calc(100vh-5rem)] overflow-y-auto",
           children: [navItems.map(function (item, index) {
             var hasDropdown = item.dropdown && item.dropdown.length > 0;
             var isDropdownOpen = openDropdown === index;
@@ -7370,15 +7370,15 @@ var HeaderLayout = function HeaderLayout(_ref) {
         children: [/*#__PURE__*/jsxs("div", {
           className: "flex items-center justify-between h-16 sm:h-20",
           children: [/*#__PURE__*/jsx("div", {
-            className: "flex items-center flex-shrink-0 min-w-0 max-w-[40%] sm:max-w-[35%] md:max-w-[30%] lg:max-w-none",
+            className: "flex items-center flex-shrink-0 min-w-0 max-w-[140px] md:max-w-[160px] lg:max-w-[180px] xl:max-w-none",
             children: /*#__PURE__*/jsx("a", {
               href: logoHref,
-              className: "flex items-center gap-1.5 sm:gap-2 md:gap-3 group hover:opacity-90 transition-opacity duration-200",
+              className: "flex items-center gap-1.5 sm:gap-2 md:gap-2.5 lg:gap-3 group hover:opacity-90 transition-opacity duration-200",
               "aria-label": "Home",
               children: renderLogo()
             })
           }), navItems && navItems.length > 0 && /*#__PURE__*/jsx("div", {
-            className: "hidden lg:flex items-center gap-1.5 md:gap-2 lg:gap-4 xl:gap-6 flex-1 justify-center mx-1 md:mx-2 lg:mx-4 xl:mx-8 min-w-0",
+            className: "hidden lg:flex items-center gap-1 md:gap-1.5 lg:gap-2.5 xl:gap-4 2xl:gap-6 flex-1 justify-center mx-1 md:mx-1.5 lg:mx-2 xl:mx-3 2xl:mx-6 min-w-0 max-w-[calc(100%-280px)] lg:max-w-none",
             children: navItems.map(function (item, index) {
               if (!item || !item.label) return null;
               return /*#__PURE__*/jsx("a", {
@@ -7386,14 +7386,14 @@ var HeaderLayout = function HeaderLayout(_ref) {
                 onClick: function onClick(e) {
                   return handleNavClick(index);
                 },
-                className: clsx('relative text-xs md:text-sm lg:text-base font-semibold transition-all duration-300 whitespace-nowrap', 'px-1 md:px-1.5 lg:px-2.5 py-2 rounded-lg', 'after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2', 'after:w-0 after:h-0.5 after:bg-primary-600 after:transition-all after:duration-300', 'hover:after:w-3/4', isNavItemActive(item, index) ? 'text-primary-600 after:w-3/4' : 'text-gray-700 hover:text-primary-600 hover:bg-primary-50/50'),
+                className: clsx('relative text-[11px] md:text-xs lg:text-sm xl:text-base font-semibold transition-all duration-300 whitespace-nowrap', 'px-1 md:px-1.5 lg:px-2 xl:px-2.5 py-1.5 md:py-2 rounded-lg', 'after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2', 'after:w-0 after:h-0.5 after:bg-primary-600 after:transition-all after:duration-300', 'hover:after:w-3/4', isNavItemActive(item, index) ? 'text-primary-600 after:w-3/4' : 'text-gray-700 hover:text-primary-600 hover:bg-primary-50/50'),
                 children: item.label
               }, index);
             })
           }), /*#__PURE__*/jsxs("div", {
-            className: "flex items-center gap-1 sm:gap-1.5 md:gap-2 lg:gap-4 flex-shrink-0",
+            className: "flex items-center gap-1 sm:gap-1.5 md:gap-2 lg:gap-3 xl:gap-4 flex-shrink-0",
             children: [socialIcons.length > 0 && /*#__PURE__*/jsx("div", {
-              className: "hidden lg:flex items-center gap-1.5",
+              className: "hidden md:flex items-center gap-1 md:gap-1.5",
               children: socialIcons.map(function (icon, index) {
                 return /*#__PURE__*/jsx(SocialIcon, {
                   name: icon.name,
@@ -7406,7 +7406,7 @@ var HeaderLayout = function HeaderLayout(_ref) {
               children: ctaButtons.map(function (button, index) {
                 return /*#__PURE__*/jsx("a", {
                   href: button.href || '#',
-                  className: "px-2 md:px-2.5 lg:px-4 xl:px-6 py-1.5 md:py-2 lg:py-2.5 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-lg text-xs md:text-xs lg:text-sm font-bold hover:from-primary-500 hover:to-primary-600 transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 transform active:scale-95 whitespace-nowrap",
+                  className: "px-2 md:px-3 lg:px-4 xl:px-5 2xl:px-6 py-1.5 md:py-2 lg:py-2.5 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-lg text-xs md:text-xs lg:text-sm font-bold hover:from-primary-500 hover:to-primary-600 transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 transform active:scale-95 whitespace-nowrap",
                   children: button.label
                 }, index);
               })
@@ -7530,15 +7530,15 @@ var HeaderLayout = function HeaderLayout(_ref) {
         children: [/*#__PURE__*/jsxs("div", {
           className: "flex items-center justify-between h-16 sm:h-18 md:h-20",
           children: [/*#__PURE__*/jsx("div", {
-            className: "flex items-center flex-shrink-0 min-w-0",
+            className: "flex items-center flex-shrink-0 min-w-0 max-w-[140px] md:max-w-[160px] lg:max-w-none",
             children: /*#__PURE__*/jsx("a", {
               href: logoHref,
-              className: "flex items-center gap-2 sm:gap-3 group hover:opacity-90 transition-opacity duration-200",
+              className: "flex items-center gap-2 sm:gap-2.5 md:gap-3 group hover:opacity-90 transition-opacity duration-200",
               "aria-label": "Home",
               children: renderLogo()
             })
           }), navItems && navItems.length > 0 && /*#__PURE__*/jsx("div", {
-            className: "hidden md:flex items-center gap-1 md:gap-2 lg:gap-4 xl:gap-6 flex-1 justify-center mx-2 md:mx-3 lg:mx-4 max-w-5xl",
+            className: "hidden lg:flex items-center gap-1 md:gap-1.5 lg:gap-2.5 xl:gap-4 2xl:gap-6 flex-1 justify-center mx-1 md:mx-1.5 lg:mx-2 xl:mx-3 max-w-[calc(100%-240px)] lg:max-w-5xl",
             children: navItems.map(function (item, index) {
               if (!item || !item.label) return null;
               var hasDropdown = item.dropdown && item.dropdown.length > 0;
@@ -7553,9 +7553,9 @@ var HeaderLayout = function HeaderLayout(_ref) {
                   onMouseEnter: function onMouseEnter() {
                     return hasDropdown && setOpenDropdown(index);
                   },
-                  className: clsx('relative text-sm md:text-base font-medium transition-all duration-200 whitespace-nowrap', 'px-3 md:px-4 py-2 rounded-md', 'hover:bg-gray-50', isNavItemActive(item, index) ? 'text-gray-900 font-semibold' : 'text-gray-600 hover:text-gray-900'),
+                  className: clsx('relative text-[11px] md:text-xs lg:text-sm xl:text-base font-medium transition-all duration-200 whitespace-nowrap', 'px-1 md:px-1.5 lg:px-2.5 xl:px-3 py-1.5 md:py-2 rounded-md', 'hover:bg-gray-50', isNavItemActive(item, index) ? 'text-gray-900 font-semibold' : 'text-gray-600 hover:text-gray-900'),
                   children: [item.label, hasDropdown && /*#__PURE__*/jsx("svg", {
-                    className: "inline-block w-4 h-4 ml-1.5 transition-transform duration-200",
+                    className: "inline-block w-3 h-3 md:w-3.5 md:h-3.5 lg:w-4 lg:h-4 ml-0.5 md:ml-1 lg:ml-1.5 transition-transform duration-200",
                     fill: "none",
                     stroke: "currentColor",
                     viewBox: "0 0 24 24",
@@ -7585,9 +7585,9 @@ var HeaderLayout = function HeaderLayout(_ref) {
               }, index);
             })
           }), /*#__PURE__*/jsxs("div", {
-            className: "flex items-center gap-2 sm:gap-2.5 md:gap-3 lg:gap-4 flex-shrink-0",
+            className: "flex items-center gap-2 sm:gap-2.5 md:gap-2.5 lg:gap-3 xl:gap-4 flex-shrink-0",
             children: [showSearch && /*#__PURE__*/jsx("div", {
-              className: "hidden lg:flex items-center w-48 xl:w-64",
+              className: "hidden lg:flex items-center w-40 md:w-44 lg:w-52 xl:w-64",
               children: /*#__PURE__*/jsxs("form", {
                 onSubmit: handleSearchSubmit,
                 className: "relative w-full",
@@ -7598,7 +7598,7 @@ var HeaderLayout = function HeaderLayout(_ref) {
                   onChange: function onChange(e) {
                     return setSearchQuery(e.target.value);
                   },
-                  className: "w-full pl-10 pr-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-900 placeholder-gray-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-gray-900/10 focus:border-gray-300 transition-all duration-200",
+                  className: "w-full pl-8 md:pl-9 lg:pl-10 pr-3 md:pr-4 py-1.5 md:py-2 bg-gray-50 border border-gray-200 rounded-lg text-xs md:text-xs lg:text-sm text-gray-900 placeholder-gray-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-gray-900/10 focus:border-gray-300 transition-all duration-200",
                   "aria-label": "Search"
                 }), /*#__PURE__*/jsx("button", {
                   type: "submit",
@@ -7619,11 +7619,11 @@ var HeaderLayout = function HeaderLayout(_ref) {
                 })]
               })
             }), ctaButtons.length > 0 && /*#__PURE__*/jsx("div", {
-              className: "hidden md:flex items-center gap-2 lg:gap-3",
+              className: "hidden md:flex items-center gap-1.5 md:gap-2 lg:gap-2.5 xl:gap-3",
               children: ctaButtons.map(function (button, index) {
                 return /*#__PURE__*/jsx("a", {
                   href: button.href || '#',
-                  className: clsx('px-4 xl:px-5 py-2 xl:py-2.5 rounded-lg text-xs xl:text-sm font-medium transition-all duration-200 whitespace-nowrap', button.variant === 'primary' ? 'bg-gray-900 text-white hover:bg-gray-800 shadow-sm hover:shadow-md' : 'text-gray-700 hover:text-gray-900 border border-gray-300 hover:border-gray-400 hover:bg-gray-50'),
+                  className: clsx('px-3 md:px-3.5 lg:px-4 xl:px-5 py-1.5 md:py-2 lg:py-2.5 rounded-lg text-xs md:text-xs lg:text-sm font-medium transition-all duration-200 whitespace-nowrap', button.variant === 'primary' ? 'bg-gray-900 text-white hover:bg-gray-800 shadow-sm hover:shadow-md' : 'text-gray-700 hover:text-gray-900 border border-gray-300 hover:border-gray-400 hover:bg-gray-50'),
                   children: button.label
                 }, index);
               })
@@ -7631,7 +7631,7 @@ var HeaderLayout = function HeaderLayout(_ref) {
               onClick: function onClick() {
                 return setIsMobileMenuOpen(!isMobileMenuOpen);
               },
-              className: "md:hidden w-10 h-10 sm:w-11 sm:h-11 flex items-center justify-center text-gray-700 hover:bg-gray-100 rounded-lg transition-colors touch-manipulation",
+              className: "lg:hidden w-10 h-10 sm:w-11 sm:h-11 flex items-center justify-center text-gray-700 hover:bg-gray-100 rounded-lg transition-colors touch-manipulation",
               "aria-label": "Toggle mobile menu",
               "aria-expanded": isMobileMenuOpen,
               children: isMobileMenuOpen ? /*#__PURE__*/jsx("svg", {
@@ -7660,7 +7660,7 @@ var HeaderLayout = function HeaderLayout(_ref) {
             })]
           })]
         }), isMobileMenuOpen && /*#__PURE__*/jsxs("div", {
-          className: "md:hidden py-4 border-t border-gray-200 animate-slideDown bg-white max-h-[calc(100vh-5rem)] overflow-y-auto",
+          className: "lg:hidden py-4 border-t border-gray-200 animate-slideDown bg-white max-h-[calc(100vh-5rem)] overflow-y-auto",
           children: [navItems.map(function (item, index) {
             var hasDropdown = item.dropdown && item.dropdown.length > 0;
             var isDropdownOpen = openDropdown === index;
@@ -7933,15 +7933,15 @@ var HeaderLayout = function HeaderLayout(_ref) {
       children: [/*#__PURE__*/jsxs("div", {
         className: "flex items-center justify-between h-16 sm:h-20",
         children: [/*#__PURE__*/jsx("div", {
-          className: "flex items-center flex-shrink-0 min-w-0",
+          className: "flex items-center flex-shrink-0 min-w-0 max-w-[140px] md:max-w-[160px] lg:max-w-none",
           children: /*#__PURE__*/jsx("a", {
             href: logoHref,
-            className: "flex items-center gap-2 sm:gap-3 group",
+            className: "flex items-center gap-2 sm:gap-2.5 md:gap-3 group",
             "aria-label": "Home",
             children: renderLogo()
           })
         }), navItems && navItems.length > 0 && /*#__PURE__*/jsx("div", {
-          className: "hidden md:flex items-center gap-3 md:gap-5 lg:gap-6 flex-1 justify-center mx-3 md:mx-5 lg:mx-8 max-w-5xl",
+          className: "hidden lg:flex items-center gap-1 md:gap-1.5 lg:gap-2.5 xl:gap-4 2xl:gap-6 flex-1 justify-center mx-1 md:mx-1.5 lg:mx-2 xl:mx-3 2xl:mx-6 max-w-[calc(100%-240px)] lg:max-w-5xl",
           children: navItems.map(function (item, index) {
             if (!item || !item.label) return null;
             return /*#__PURE__*/jsx("a", {
@@ -7949,14 +7949,14 @@ var HeaderLayout = function HeaderLayout(_ref) {
               onClick: function onClick(e) {
                 return handleNavClick(index);
               },
-              className: clsx('header-nav-link text-sm md:text-base font-medium transition-colors duration-200 whitespace-nowrap', isNavItemActive(item, index) ? 'text-primary-400' : 'text-white hover:text-primary-400'),
+              className: clsx('header-nav-link text-[11px] md:text-xs lg:text-sm xl:text-base font-medium transition-colors duration-200 whitespace-nowrap', 'px-1 md:px-1.5 lg:px-2 xl:px-2.5 py-1.5 md:py-2', isNavItemActive(item, index) ? 'text-primary-400' : 'text-white hover:text-primary-400'),
               children: item.label
             }, index);
           })
         }), /*#__PURE__*/jsxs("div", {
-          className: "flex items-center gap-2 sm:gap-2.5 md:gap-3 lg:gap-4 flex-shrink-0",
+          className: "flex items-center gap-2 sm:gap-2.5 md:gap-2.5 lg:gap-3 xl:gap-4 flex-shrink-0",
           children: [socialIcons.length > 0 && /*#__PURE__*/jsx("div", {
-            className: "hidden md:flex items-center gap-2",
+            className: "hidden lg:flex items-center gap-1.5 md:gap-2",
             children: socialIcons.map(function (icon, index) {
               return /*#__PURE__*/jsx(SocialIcon, {
                 name: icon.name,
@@ -7964,11 +7964,11 @@ var HeaderLayout = function HeaderLayout(_ref) {
               }, index);
             })
           }), ctaButtons.length > 0 && /*#__PURE__*/jsx("div", {
-            className: "hidden md:flex items-center",
+            className: "hidden lg:flex items-center",
             children: ctaButtons.map(function (button, index) {
               return /*#__PURE__*/jsx("a", {
                 href: button.href || '#',
-                className: "px-3 md:px-4 lg:px-6 py-2 md:py-2.5 bg-primary-400 text-white rounded-lg text-xs md:text-sm font-semibold hover:bg-primary-500 transition-colors duration-200 shadow-md hover:shadow-lg whitespace-nowrap",
+                className: "px-2.5 md:px-3 lg:px-4 xl:px-5 2xl:px-6 py-1.5 md:py-2 lg:py-2.5 bg-primary-400 text-white rounded-lg text-xs md:text-xs lg:text-sm font-semibold hover:bg-primary-500 transition-colors duration-200 shadow-md hover:shadow-lg whitespace-nowrap",
                 children: button.label
               }, index);
             })
@@ -7976,7 +7976,7 @@ var HeaderLayout = function HeaderLayout(_ref) {
             onClick: function onClick() {
               return setIsMobileMenuOpen(!isMobileMenuOpen);
             },
-            className: "md:hidden w-10 h-10 sm:w-11 sm:h-11 flex items-center justify-center text-white hover:bg-white/10 rounded-lg transition-colors touch-manipulation",
+            className: "lg:hidden w-10 h-10 sm:w-11 sm:h-11 flex items-center justify-center text-white hover:bg-white/10 rounded-lg transition-colors touch-manipulation",
             "aria-label": "Toggle mobile menu",
             "aria-expanded": isMobileMenuOpen,
             children: isMobileMenuOpen ? /*#__PURE__*/jsx("svg", {
@@ -8005,7 +8005,7 @@ var HeaderLayout = function HeaderLayout(_ref) {
           })]
         })]
       }), isMobileMenuOpen && /*#__PURE__*/jsxs("div", {
-        className: "md:hidden py-4 border-t border-white/10 animate-slideDown max-h-[calc(100vh-5rem)] overflow-y-auto",
+        className: "lg:hidden py-4 border-t border-white/10 animate-slideDown max-h-[calc(100vh-5rem)] overflow-y-auto",
         children: [navItems.map(function (item, index) {
           var hasDropdown = item.dropdown && item.dropdown.length > 0;
           var isDropdownOpen = openDropdown === index;
