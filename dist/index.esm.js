@@ -6554,7 +6554,7 @@ var HeaderLayout = function HeaderLayout(_ref) {
                 })]
               })]
             }), /*#__PURE__*/jsx("div", {
-              className: "hidden lg:flex items-center gap-1.5 md:gap-2 lg:gap-3 xl:gap-4 flex-1 justify-center mx-1 md:mx-2 lg:mx-3 xl:mx-4",
+              className: "hidden xl:flex items-center gap-1.5 md:gap-2 lg:gap-3 xl:gap-4 flex-1 justify-center mx-1 md:mx-2 lg:mx-3 xl:mx-4",
               children: [0, 1, 2, 3, 4].map(function (index) {
                 return /*#__PURE__*/jsx("div", {
                   className: "h-3.5 md:h-4 lg:h-4.5 w-12 md:w-14 lg:w-16 bg-gray-200 rounded animate-pulse"
@@ -6563,14 +6563,14 @@ var HeaderLayout = function HeaderLayout(_ref) {
             }), /*#__PURE__*/jsxs("div", {
               className: "flex items-center gap-1 sm:gap-1.5 md:gap-2 lg:gap-3",
               children: [socialIcons.length > 0 && /*#__PURE__*/jsx("div", {
-                className: "hidden lg:flex items-center gap-1 md:gap-1.5",
+                className: "hidden xl:flex items-center gap-1 md:gap-1.5",
                 children: [0, 1, 2].map(function (index) {
                   return /*#__PURE__*/jsx("div", {
                     className: "w-8 md:w-8.5 lg:w-9 h-8 md:h-8.5 lg:h-9 bg-gray-200 rounded-full animate-pulse"
                   }, index);
                 })
               }), ctaButtons.length > 0 && /*#__PURE__*/jsx("div", {
-                className: "hidden lg:flex items-center",
+                className: "hidden xl:flex items-center",
                 children: /*#__PURE__*/jsx("div", {
                   className: "h-8 md:h-8.5 lg:h-9 w-20 md:w-22 lg:w-24 bg-primary-200 rounded-lg animate-pulse"
                 })
@@ -7378,7 +7378,7 @@ var HeaderLayout = function HeaderLayout(_ref) {
               children: renderLogo()
             })
           }), navItems && navItems.length > 0 && /*#__PURE__*/jsx("div", {
-            className: "hidden lg:flex items-center gap-1 md:gap-1.5 lg:gap-2.5 xl:gap-4 2xl:gap-6 flex-1 justify-center mx-1 md:mx-1.5 lg:mx-2 xl:mx-3 2xl:mx-6 min-w-0 max-w-[calc(100%-280px)] lg:max-w-none",
+            className: "hidden xl:flex items-center gap-1 md:gap-1.5 lg:gap-2.5 xl:gap-4 2xl:gap-6 flex-1 justify-center mx-1 md:mx-1.5 lg:mx-2 xl:mx-3 2xl:mx-6 min-w-0 max-w-[calc(100%-280px)] lg:max-w-none",
             children: navItems.map(function (item, index) {
               if (!item || !item.label) return null;
               return /*#__PURE__*/jsx("a", {
@@ -7393,7 +7393,7 @@ var HeaderLayout = function HeaderLayout(_ref) {
           }), /*#__PURE__*/jsxs("div", {
             className: "flex items-center gap-1 sm:gap-1.5 md:gap-2 lg:gap-3 xl:gap-4 flex-shrink-0",
             children: [socialIcons.length > 0 && /*#__PURE__*/jsx("div", {
-              className: "hidden md:flex items-center gap-1 md:gap-1.5",
+              className: "hidden xl:flex items-center gap-1 md:gap-1.5",
               children: socialIcons.map(function (icon, index) {
                 return /*#__PURE__*/jsx(SocialIcon, {
                   name: icon.name,
@@ -7402,7 +7402,7 @@ var HeaderLayout = function HeaderLayout(_ref) {
                 }, index);
               })
             }), ctaButtons.length > 0 && /*#__PURE__*/jsx("div", {
-              className: "hidden lg:flex items-center",
+              className: "hidden xl:flex items-center",
               children: ctaButtons.map(function (button, index) {
                 return /*#__PURE__*/jsx("a", {
                   href: button.href || '#',
@@ -7414,7 +7414,7 @@ var HeaderLayout = function HeaderLayout(_ref) {
               onClick: function onClick() {
                 return setIsMobileMenuOpen(!isMobileMenuOpen);
               },
-              className: "lg:hidden w-10 h-10 sm:w-11 sm:h-11 flex items-center justify-center text-gray-700 hover:bg-gray-100 rounded-lg transition-colors touch-manipulation",
+              className: "xl:hidden w-10 h-10 sm:w-11 sm:h-11 flex items-center justify-center text-gray-700 hover:bg-gray-100 rounded-lg transition-colors touch-manipulation",
               "aria-label": "Toggle mobile menu",
               "aria-expanded": isMobileMenuOpen,
               children: isMobileMenuOpen ? /*#__PURE__*/jsx("svg", {
@@ -7443,7 +7443,7 @@ var HeaderLayout = function HeaderLayout(_ref) {
             })]
           })]
         }), isMobileMenuOpen && /*#__PURE__*/jsxs("div", {
-          className: "lg:hidden block py-4 border-t border-gray-200 animate-slideDown bg-white max-h-[calc(100vh-5rem)] overflow-y-auto",
+          className: "xl:hidden block py-4 border-t border-gray-200 animate-slideDown bg-white max-h-[calc(100vh-5rem)] overflow-y-auto",
           children: [navItems.map(function (item, index) {
             var hasDropdown = item.dropdown && item.dropdown.length > 0;
             var isDropdownOpen = openDropdown === index;
@@ -7619,7 +7619,7 @@ var HeaderLayout = function HeaderLayout(_ref) {
                 })]
               })
             }), ctaButtons.length > 0 && /*#__PURE__*/jsx("div", {
-              className: "hidden md:flex items-center gap-1.5 md:gap-2 lg:gap-2.5 xl:gap-3",
+              className: "hidden lg:flex items-center gap-1.5 md:gap-2 lg:gap-2.5 xl:gap-3",
               children: ctaButtons.map(function (button, index) {
                 return /*#__PURE__*/jsx("a", {
                   href: button.href || '#',
@@ -15605,6 +15605,1696 @@ var BlogShare = function BlogShare(_ref) {
   return null;
 };
 
+var ProductLayout = function ProductLayout(_ref) {
+  var data = _ref.data,
+    className = _ref.className,
+    id = _ref.id,
+    _ref$loader = _ref.loader,
+    loader = _ref$loader === void 0 ? false : _ref$loader;
+  // Safety check for data
+  if (!data || _typeof(data) !== 'object') {
+    console.error('ProductLayout: data prop is required and must be an object');
+    return null;
+  }
+  var _useState = useState(loader),
+    _useState2 = _slicedToArray(_useState, 2),
+    showLoader = _useState2[0],
+    setShowLoader = _useState2[1];
+
+  // Auto-hide loader after 2 seconds when loader prop is true
+  useEffect(function () {
+    if (loader) {
+      var timer = setTimeout(function () {
+        setShowLoader(false);
+      }, 2000);
+      return function () {
+        return clearTimeout(timer);
+      };
+    } else {
+      setShowLoader(false);
+    }
+  }, [loader]);
+  var title = data.title,
+    subtitle = data.subtitle,
+    description = data.description,
+    _data$products = data.products,
+    products = _data$products === void 0 ? [] : _data$products,
+    _data$variant = data.variant,
+    variant = _data$variant === void 0 ? 'default' : _data$variant,
+    _data$alignment = data.alignment,
+    alignment = _data$alignment === void 0 ? 'center' : _data$alignment,
+    _data$columns = data.columns,
+    columns = _data$columns === void 0 ? 3 : _data$columns,
+    _data$currency = data.currency,
+    currency = _data$currency === void 0 ? '$' : _data$currency,
+    _data$showRating = data.showRating,
+    showRating = _data$showRating === void 0 ? false : _data$showRating,
+    _data$showBadge = data.showBadge,
+    showBadge = _data$showBadge === void 0 ? false : _data$showBadge,
+    dataClassName = data.className;
+
+  // Show skeleton loader if loader prop is true
+  if (showLoader) {
+    var _alignmentClasses = {
+      left: 'text-left items-start',
+      center: 'text-center items-center',
+      right: 'text-right items-end'
+    };
+    return /*#__PURE__*/jsx("section", {
+      id: id,
+      className: clsx('w-full py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8', 'bg-white', className, dataClassName),
+      children: /*#__PURE__*/jsxs("div", {
+        className: "max-w-7xl mx-auto w-full",
+        children: [/*#__PURE__*/jsxs("div", {
+          className: clsx('mb-10 sm:mb-12 flex flex-col', _alignmentClasses[alignment]),
+          children: [subtitle && /*#__PURE__*/jsx("div", {
+            className: "h-4 bg-gray-400 rounded w-24 mb-3 mx-auto animate-pulse"
+          }), title && /*#__PURE__*/jsx("div", {
+            className: "h-10 bg-gray-400 rounded w-full max-w-2xl mb-4 mx-auto animate-pulse"
+          }), description && /*#__PURE__*/jsx("div", {
+            className: "h-5 bg-gray-300 rounded w-full max-w-xl mb-6 mx-auto animate-pulse"
+          })]
+        }), /*#__PURE__*/jsx("div", {
+          className: clsx('grid gap-6', columns === 1 ? 'grid-cols-1' : columns === 2 ? 'grid-cols-1 sm:grid-cols-2' : columns === 3 ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3' : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4'),
+          children: [0, 1, 2, 3].slice(0, columns).map(function (index) {
+            return /*#__PURE__*/jsxs("div", {
+              className: "border border-gray-200 rounded-lg p-4 bg-white",
+              children: [/*#__PURE__*/jsx("div", {
+                className: "h-48 bg-gray-300 rounded-lg mb-4 animate-pulse"
+              }), showBadge && /*#__PURE__*/jsx("div", {
+                className: "h-5 bg-gray-300 rounded w-16 mb-2 animate-pulse"
+              }), /*#__PURE__*/jsx("div", {
+                className: "h-6 bg-gray-400 rounded w-3/4 mb-2 animate-pulse"
+              }), showRating && /*#__PURE__*/jsx("div", {
+                className: "h-4 bg-gray-300 rounded w-24 mb-2 animate-pulse"
+              }), /*#__PURE__*/jsx("div", {
+                className: "h-8 bg-gray-400 rounded w-20 mb-4 animate-pulse"
+              }), /*#__PURE__*/jsx("div", {
+                className: "h-10 bg-gray-400 rounded-lg w-full animate-pulse"
+              })]
+            }, index);
+          })
+        })]
+      })
+    });
+  }
+  var alignmentClasses = {
+    left: 'text-left items-start',
+    center: 'text-center items-center',
+    right: 'text-right items-end'
+  };
+  var gridColumnsClasses = {
+    1: 'grid-cols-1',
+    2: 'grid-cols-1 sm:grid-cols-1',
+    3: 'grid-cols-1 sm:grid-cols-1 lg:grid-cols-3',
+    4: 'grid-cols-1 sm:grid-cols-1 lg:grid-cols-4'
+  };
+
+  // Render rating stars
+  var renderRating = function renderRating() {
+    var rating = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+    var fullStars = Math.floor(rating);
+    var hasHalfStar = rating % 1 >= 0.5;
+    var emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+    return /*#__PURE__*/jsxs("div", {
+      className: "flex items-center gap-0.5",
+      children: [_toConsumableArray(Array(fullStars)).map(function (_, i) {
+        return /*#__PURE__*/jsx("svg", {
+          className: "w-4 h-4 text-yellow-400 fill-current",
+          viewBox: "0 0 20 20",
+          children: /*#__PURE__*/jsx("path", {
+            d: "M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"
+          })
+        }, i);
+      }), hasHalfStar && /*#__PURE__*/jsxs("svg", {
+        className: "w-4 h-4 text-yellow-400 fill-current",
+        viewBox: "0 0 20 20",
+        children: [/*#__PURE__*/jsx("defs", {
+          children: /*#__PURE__*/jsxs("linearGradient", {
+            id: "half",
+            children: [/*#__PURE__*/jsx("stop", {
+              offset: "50%",
+              stopColor: "currentColor"
+            }), /*#__PURE__*/jsx("stop", {
+              offset: "50%",
+              stopColor: "transparent",
+              stopOpacity: "1"
+            })]
+          })
+        }), /*#__PURE__*/jsx("path", {
+          fill: "url(#half)",
+          d: "M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"
+        })]
+      }), _toConsumableArray(Array(emptyStars)).map(function (_, i) {
+        return /*#__PURE__*/jsx("svg", {
+          className: "w-4 h-4 text-gray-300 fill-current",
+          viewBox: "0 0 20 20",
+          children: /*#__PURE__*/jsx("path", {
+            d: "M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"
+          })
+        }, i);
+      }), rating > 0 && /*#__PURE__*/jsxs("span", {
+        className: "ml-1 text-sm text-gray-600",
+        children: ["(", rating.toFixed(1), ")"]
+      })]
+    });
+  };
+
+  // Get card classes based on variant
+  var getCardClasses = function getCardClasses(product, index) {
+    var baseClasses = 'relative overflow-hidden transition-all duration-300';
+    var isFeatured = product.featured || product.popular;
+
+    // Default variant - clean white cards with subtle shadows
+    if (variant === 'default') {
+      return clsx(baseClasses, 'bg-white rounded-lg p-4 sm:p-6 border border-gray-200 shadow-sm', 'hover:shadow-lg hover:-translate-y-1');
+    }
+
+    // Grid variant - compact grid layout
+    if (variant === 'grid') {
+      return clsx(baseClasses, 'bg-white rounded-lg p-4 border border-gray-200', 'hover:shadow-md hover:border-primary-300');
+    }
+
+    // Card variant - modern card with prominent shadow
+    if (variant === 'card') {
+      return clsx(baseClasses, 'bg-white rounded-xl p-5 sm:p-6 border border-gray-200 shadow-lg', isFeatured && 'ring-2 ring-primary-500 shadow-xl', 'hover:shadow-2xl hover:scale-105');
+    }
+
+    // Minimal variant - clean minimal design
+    if (variant === 'minimal') {
+      return clsx(baseClasses, 'bg-gray-50 rounded-lg p-4 sm:p-6 border-b-2 border-gray-200', 'hover:border-primary-500 hover:bg-gray-100');
+    }
+
+    // Featured variant - scale effect on featured products
+    if (variant === 'featured') {
+      return clsx(baseClasses, 'bg-white rounded-lg p-5 sm:p-6 border-2', isFeatured ? 'border-primary-500 shadow-xl scale-105 z-10 bg-gradient-to-br from-primary-50 to-white' : 'border-gray-200 shadow-sm', 'hover:shadow-lg');
+    }
+
+    // Modern variant - rounded corners with modern shadows
+    if (variant === 'modern') {
+      return clsx(baseClasses, 'bg-white rounded-2xl p-5 sm:p-6 border border-gray-100 shadow-lg', isFeatured && 'border-primary-400 shadow-2xl bg-gradient-to-br from-primary-50 to-white', 'hover:shadow-xl hover:-translate-y-2');
+    }
+
+    // Bordered variant - prominent borders
+    if (variant === 'bordered') {
+      return clsx(baseClasses, 'bg-white rounded-lg p-5 sm:p-6 border-2', isFeatured ? 'border-primary-600 shadow-md' : 'border-gray-300', 'hover:border-primary-400');
+    }
+
+    // Gradient variant - gradient backgrounds
+    if (variant === 'gradient') {
+      return clsx(baseClasses, 'rounded-lg p-5 sm:p-6 border shadow-sm', isFeatured ? 'bg-gradient-to-br from-primary-500 via-primary-600 to-primary-700 text-white border-transparent shadow-lg' : 'bg-gradient-to-br from-gray-50 via-white to-gray-50 border-gray-200', 'hover:shadow-lg');
+    }
+
+    // Shadow variant - prominent shadows
+    if (variant === 'shadow') {
+      return clsx(baseClasses, 'bg-white rounded-lg p-5 sm:p-6 border border-gray-200', isFeatured ? 'shadow-xl border-gray-300' : 'shadow-md', 'hover:shadow-2xl');
+    }
+
+    // Ecommerce variant - ecommerce-style layout
+    if (variant === 'ecommerce') {
+      return clsx(baseClasses, 'bg-white rounded-lg p-4 sm:p-5 border border-gray-200 shadow-sm', 'hover:shadow-lg hover:border-primary-400 group');
+    }
+
+    // Pill variant - tall pill card with split layout
+    if (variant === 'pill') {
+      return clsx(baseClasses, 'bg-transparent p-0', 'hover:-translate-y-1 transition-transform duration-300');
+    }
+
+    // Horizontal banner variant - wide colored strip card
+    if (variant === 'banner') {
+      return clsx(baseClasses, 'bg-transparent rounded-2xl p-0 shadow-lg overflow-hidden', 'hover:shadow-2xl hover:-translate-y-1');
+    }
+
+    // Default fallback
+    return clsx(baseClasses, 'bg-white rounded-lg p-5 sm:p-6 border border-gray-200 shadow-sm', 'hover:shadow-lg');
+  };
+
+  // Render product image
+  var renderImage = function renderImage(product, index) {
+    var imageClasses = {
+      "default": 'w-full h-48 sm:h-56 object-cover rounded-lg mb-4',
+      grid: 'w-full h-40 sm:h-48 object-cover rounded-md mb-3',
+      card: 'w-full h-52 sm:h-64 object-cover rounded-xl mb-4',
+      minimal: 'w-full h-40 sm:h-48 object-cover rounded-lg mb-4',
+      featured: 'w-full h-48 sm:h-56 object-cover rounded-lg mb-4',
+      modern: 'w-full h-48 sm:h-64 object-cover rounded-2xl mb-4',
+      bordered: 'w-full h-48 sm:h-56 object-cover rounded-lg mb-4',
+      gradient: 'w-full h-48 sm:h-56 object-cover rounded-lg mb-4',
+      shadow: 'w-full h-48 sm:h-56 object-cover rounded-lg mb-4',
+      ecommerce: 'w-full h-48 sm:h-56 object-cover rounded-lg mb-4 group-hover:scale-105 transition-transform duration-300'
+    };
+    var placeholder = /*#__PURE__*/jsx("div", {
+      className: clsx('bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center mb-4', imageClasses[variant] || imageClasses["default"]),
+      children: /*#__PURE__*/jsx("svg", {
+        className: "w-16 h-16 text-gray-400",
+        fill: "none",
+        stroke: "currentColor",
+        viewBox: "0 0 24 24",
+        children: /*#__PURE__*/jsx("path", {
+          strokeLinecap: "round",
+          strokeLinejoin: "round",
+          strokeWidth: 2,
+          d: "M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+        })
+      })
+    });
+    if (product.image) {
+      return /*#__PURE__*/jsxs("div", {
+        className: "relative overflow-hidden rounded-lg",
+        children: [/*#__PURE__*/jsx("img", {
+          src: product.image,
+          alt: product.title || 'Product',
+          className: imageClasses[variant] || imageClasses["default"],
+          loading: "lazy",
+          onError: function onError(e) {
+            e.target.style.display = 'none';
+            var placeholder = e.target.parentElement.querySelector('.image-placeholder');
+            if (placeholder) placeholder.style.display = 'flex';
+          }
+        }), /*#__PURE__*/jsx("div", {
+          className: "image-placeholder hidden bg-gradient-to-br from-gray-100 to-gray-200 items-center justify-center mb-4",
+          style: {
+            display: 'none'
+          },
+          children: /*#__PURE__*/jsx("svg", {
+            className: "w-16 h-16 text-gray-400",
+            fill: "none",
+            stroke: "currentColor",
+            viewBox: "0 0 24 24",
+            children: /*#__PURE__*/jsx("path", {
+              strokeLinecap: "round",
+              strokeLinejoin: "round",
+              strokeWidth: 2,
+              d: "M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+            })
+          })
+        }), product.badge && showBadge && /*#__PURE__*/jsx("span", {
+          className: clsx('absolute top-2 right-2 px-2 py-1 text-xs font-semibold rounded z-10', product.badge === 'New' && 'bg-green-500 text-white', product.badge === 'Sale' && 'bg-red-500 text-white', product.badge === 'Hot' && 'bg-orange-500 text-white', !['New', 'Sale', 'Hot'].includes(product.badge) && 'bg-primary-500 text-white'),
+          children: product.badge
+        })]
+      });
+    }
+
+    // Placeholder if no image or image error
+    return /*#__PURE__*/jsxs("div", {
+      className: "relative",
+      children: [placeholder, product.badge && showBadge && /*#__PURE__*/jsx("span", {
+        className: clsx('absolute top-2 right-2 px-2 py-1 text-xs font-semibold rounded z-10', product.badge === 'New' && 'bg-green-500 text-white', product.badge === 'Sale' && 'bg-red-500 text-white', product.badge === 'Hot' && 'bg-orange-500 text-white', !['New', 'Sale', 'Hot'].includes(product.badge) && 'bg-primary-500 text-white'),
+        children: product.badge
+      })]
+    });
+  };
+
+  // Render product button
+  var renderButton = function renderButton(product) {
+    var buttonConfig = product.button || {};
+    var buttonText = buttonConfig.text || 'View Product';
+    var buttonHref = buttonConfig.href || '#';
+    var buttonVariant = buttonConfig.variant || 'primary';
+    var buttonOnClick = buttonConfig.onClick;
+    var buttonClasses = {
+      primary: 'bg-primary-600 text-white hover:bg-primary-700',
+      secondary: 'bg-gray-600 text-white hover:bg-gray-700',
+      outline: 'border-2 border-primary-600 text-primary-600 hover:bg-primary-50'
+    };
+    var baseButtonClasses = clsx('w-full px-4 py-2.5 rounded-lg font-semibold text-sm transition-colors duration-200', buttonClasses[buttonVariant] || buttonClasses.primary);
+    if (buttonOnClick) {
+      return /*#__PURE__*/jsx("button", {
+        onClick: buttonOnClick,
+        className: baseButtonClasses,
+        children: buttonText
+      });
+    }
+    return /*#__PURE__*/jsx("a", {
+      href: buttonHref,
+      className: baseButtonClasses,
+      children: buttonText
+    });
+  };
+  return /*#__PURE__*/jsx("section", {
+    id: id,
+    className: clsx('w-full py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8', variant === 'gradient' && 'bg-gradient-to-br from-gray-50 to-white', variant !== 'gradient' && 'bg-white', className, dataClassName),
+    children: /*#__PURE__*/jsxs("div", {
+      className: "max-w-7xl mx-auto w-full",
+      children: [(title || subtitle || description) && /*#__PURE__*/jsxs("div", {
+        className: clsx('mb-10 sm:mb-12 lg:mb-16 flex flex-col', alignmentClasses[alignment]),
+        children: [subtitle && /*#__PURE__*/jsx("p", {
+          className: "text-sm sm:text-base font-semibold text-primary-600 uppercase tracking-wide mb-2",
+          children: subtitle
+        }), title && /*#__PURE__*/jsx("h2", {
+          className: "text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4",
+          children: title
+        }), description && /*#__PURE__*/jsx("p", {
+          className: "text-base sm:text-lg text-gray-600 max-w-2xl mx-auto",
+          children: description
+        })]
+      }), products.length > 0 && /*#__PURE__*/jsx("div", {
+        className: clsx('grid gap-6 sm:gap-8', gridColumnsClasses[columns] || gridColumnsClasses[3]),
+        children: products.map(function (product, index) {
+          // Special pill layout (tall rounded card with dark bottom)
+          if (variant === 'pill') {
+            var buttonConfig = product.button || {};
+            var buttonText = buttonConfig.text || 'Buy Now';
+            var buttonHref = buttonConfig.href || '#';
+            var buttonOnClick = buttonConfig.onClick;
+            return /*#__PURE__*/jsx("div", {
+              className: getCardClasses(product),
+              children: /*#__PURE__*/jsxs("div", {
+                className: "bg-white rounded-full overflow-hidden shadow-2xl flex flex-col h-full max-w-sm mx-auto",
+                children: [/*#__PURE__*/jsx("div", {
+                  className: "bg-white pt-8 px-6 pb-4 flex justify-center items-center flex-1 min-h-[280px] sm:min-h-[320px]",
+                  children: product.image ? /*#__PURE__*/jsx("img", {
+                    src: product.image,
+                    alt: product.title || 'Product',
+                    className: "w-full max-w-[200px] h-auto object-contain",
+                    loading: "lazy",
+                    onError: function onError(e) {
+                      e.target.style.display = 'none';
+                    }
+                  }) : /*#__PURE__*/jsx("div", {
+                    className: "w-full max-w-[200px] h-64 bg-gray-100 rounded-2xl flex items-center justify-center",
+                    children: /*#__PURE__*/jsx("svg", {
+                      className: "w-16 h-16 text-gray-400",
+                      fill: "none",
+                      stroke: "currentColor",
+                      viewBox: "0 0 24 24",
+                      children: /*#__PURE__*/jsx("path", {
+                        strokeLinecap: "round",
+                        strokeLinejoin: "round",
+                        strokeWidth: 2,
+                        d: "M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                      })
+                    })
+                  })
+                }), /*#__PURE__*/jsxs("div", {
+                  className: "bg-gray-900 px-6 py-6 sm:py-8 text-center rounded-b-[3rem] sm:rounded-b-[4rem]",
+                  children: [product.title && /*#__PURE__*/jsx("h3", {
+                    className: "text-lg sm:text-xl font-semibold text-white mb-2",
+                    children: product.title
+                  }), product.description && function () {
+                    var maxWords = 8;
+                    var words = product.description.split(' ');
+                    var truncated = words.length > maxWords ? words.slice(0, maxWords).join(' ') + '...' : product.description;
+                    return /*#__PURE__*/jsx("p", {
+                      className: "text-sm sm:text-base text-gray-300 mb-5 sm:mb-6",
+                      children: truncated
+                    });
+                  }(), /*#__PURE__*/jsx("div", {
+                    className: "mb-4 sm:mb-5",
+                    children: buttonOnClick ? /*#__PURE__*/jsx("button", {
+                      onClick: buttonOnClick,
+                      className: "bg-white text-gray-900 px-8 py-2.5 sm:py-3 rounded-full font-semibold text-sm sm:text-base border border-gray-200 hover:bg-gray-50 transition-colors duration-200 w-full max-w-[200px]",
+                      children: buttonText
+                    }) : /*#__PURE__*/jsx("a", {
+                      href: buttonHref,
+                      className: "inline-block bg-white text-gray-900 px-8 py-2.5 sm:py-3 rounded-full font-semibold text-sm sm:text-base border border-gray-200 hover:bg-gray-50 transition-colors duration-200 w-full max-w-[200px]",
+                      children: buttonText
+                    })
+                  }), product.price !== undefined && /*#__PURE__*/jsx("div", {
+                    className: "text-white",
+                    children: /*#__PURE__*/jsxs("span", {
+                      className: "text-base sm:text-lg font-medium",
+                      children: [currency, product.price.toFixed ? product.price.toFixed(2) : product.price]
+                    })
+                  })]
+                })]
+              })
+            }, index);
+          }
+
+          // Special horizontal banner layout
+          if (variant === 'banner') {
+            return /*#__PURE__*/jsx("div", {
+              className: getCardClasses(product),
+              children: /*#__PURE__*/jsxs("div", {
+                className: "bg-gradient-to-r from-primary-500/90 via-primary-400/90 to-primary-500/90 text-white rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row items-center gap-4 sm:gap-6",
+                children: [/*#__PURE__*/jsx("div", {
+                  className: "w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden bg-white/10 flex-shrink-0",
+                  children: product.image ? /*#__PURE__*/jsx("img", {
+                    src: product.image,
+                    alt: product.title || 'Product',
+                    className: "w-full h-full object-cover",
+                    loading: "lazy"
+                  }) : null
+                }), /*#__PURE__*/jsxs("div", {
+                  className: "flex-1 text-left",
+                  children: [product.title && /*#__PURE__*/jsx("h3", {
+                    className: "text-base sm:text-lg font-semibold mb-1",
+                    children: product.title
+                  }), product.description && /*#__PURE__*/jsx("p", {
+                    className: "text-xs sm:text-sm text-white/90 mb-2 line-clamp-2",
+                    children: product.description
+                  }), showRating && product.rating !== undefined && /*#__PURE__*/jsx("div", {
+                    className: "mt-1",
+                    children: renderRating(product.rating)
+                  })]
+                }), /*#__PURE__*/jsxs("div", {
+                  className: "flex flex-col items-end gap-2",
+                  children: [product.price !== undefined && /*#__PURE__*/jsxs("div", {
+                    className: "text-right",
+                    children: [/*#__PURE__*/jsxs("span", {
+                      className: "text-sm sm:text-base font-semibold",
+                      children: [currency, product.price]
+                    }), product.originalPrice && product.originalPrice > product.price && /*#__PURE__*/jsxs("div", {
+                      className: "text-xs line-through text-white/70",
+                      children: [currency, product.originalPrice]
+                    })]
+                  }), /*#__PURE__*/jsx("div", {
+                    className: "w-full sm:w-auto",
+                    children: renderButton(product)
+                  })]
+                })]
+              })
+            }, index);
+          }
+
+          // Default layouts for all other variants
+          return /*#__PURE__*/jsxs("div", {
+            className: getCardClasses(product),
+            children: [renderImage(product), product.badge && showBadge && variant !== 'ecommerce' && /*#__PURE__*/jsx("div", {
+              className: "mb-2",
+              children: /*#__PURE__*/jsx("span", {
+                className: clsx('inline-block px-2 py-1 text-xs font-semibold rounded', product.badge === 'New' && 'bg-green-500 text-white', product.badge === 'Sale' && 'bg-red-500 text-white', product.badge === 'Hot' && 'bg-orange-500 text-white', !['New', 'Sale', 'Hot'].includes(product.badge) && 'bg-primary-500 text-white'),
+                children: product.badge
+              })
+            }), product.title && /*#__PURE__*/jsx("h3", {
+              className: clsx('text-lg sm:text-xl font-bold text-gray-900 mb-2', variant === 'minimal' && 'text-xl sm:text-2xl', variant === 'gradient' && product.featured && 'text-white'),
+              children: product.title
+            }), product.description && /*#__PURE__*/jsx("p", {
+              className: clsx('text-sm sm:text-base text-gray-600 mb-3 line-clamp-2', variant === 'gradient' && product.featured && 'text-white/90'),
+              children: product.description
+            }), showRating && product.rating !== undefined && /*#__PURE__*/jsx("div", {
+              className: "mb-3",
+              children: renderRating(product.rating)
+            }), product.price !== undefined && /*#__PURE__*/jsxs("div", {
+              className: "mb-4",
+              children: [/*#__PURE__*/jsxs("div", {
+                className: "flex items-baseline gap-2",
+                children: [/*#__PURE__*/jsxs("span", {
+                  className: clsx('text-2xl sm:text-3xl font-bold', variant === 'gradient' && product.featured ? 'text-white' : 'text-gray-900'),
+                  children: [currency, product.price]
+                }), product.originalPrice && product.originalPrice > product.price && /*#__PURE__*/jsxs("span", {
+                  className: clsx('text-base sm:text-lg line-through', variant === 'gradient' && product.featured ? 'text-white/70' : 'text-gray-400'),
+                  children: [currency, product.originalPrice]
+                })]
+              }), product.priceNote && /*#__PURE__*/jsx("p", {
+                className: clsx('text-xs sm:text-sm mt-1', variant === 'gradient' && product.featured ? 'text-white/80' : 'text-gray-500'),
+                children: product.priceNote
+              })]
+            }), renderButton(product)]
+          }, index);
+        })
+      }), products.length === 0 && /*#__PURE__*/jsx("div", {
+        className: "text-center py-12",
+        children: /*#__PURE__*/jsx("p", {
+          className: "text-gray-500 text-lg",
+          children: "No products available"
+        })
+      })]
+    })
+  });
+};
+
+// Product Card Component for profile/lesson variant (overlapping cards with product image, colored top section, features)
+var ProfileLessonCard = function ProfileLessonCard(_ref) {
+  var product = _ref.product,
+    index = _ref.index,
+    currency = _ref.currency;
+  // Get product data
+  var title = product.title || '';
+  var brand = product.brand || product.creator || '';
+  var images = Array.isArray(product.images) ? product.images : product.image ? [product.image] : [];
+  var productImage = images.length > 0 ? images[0] : '';
+  var features = product.features || product.categories || product.tags || [];
+  var price = product.price;
+  var topColor = product.topColor || product.color || '#FBCFE8'; // Default pink
+  var imageBgColor = product.imageBgColor || product.avatarBgColor || '#DBEAFE'; // Default light blue
+
+  // Get button configuration
+  var buttonConfig = product.button || {};
+  var buttonText = buttonConfig.text || 'BUY NOW';
+  var buttonHref = buttonConfig.href || '#';
+  var buttonOnClick = buttonConfig.onClick;
+  var formatPrice = function formatPrice(price) {
+    if (typeof price === 'number' && price % 1 === 0) {
+      return price;
+    } else if (typeof price === 'number') {
+      return price.toFixed(2);
+    }
+    return price;
+  };
+
+  // Calculate rotation and z-index for overlapping effect
+  var rotations = index % 3 === 0 ? '-3deg' : index % 3 === 1 ? '0deg' : '3deg';
+  var zIndex = index % 3 === 1 ? 10 : 5;
+  return /*#__PURE__*/jsxs("div", {
+    className: "w-full sm:w-[300px] md:w-[320px] lg:w-[340px] xl:w-[360px] relative bg-white rounded-3xl shadow-xl",
+    style: {
+      transform: "rotate(".concat(rotations, ")"),
+      zIndex: zIndex,
+      transition: 'transform 0.3s ease'
+    },
+    onMouseEnter: function onMouseEnter(e) {
+      e.currentTarget.style.transform = "rotate(0deg) scale(1.05)";
+      e.currentTarget.style.zIndex = '20';
+    },
+    onMouseLeave: function onMouseLeave(e) {
+      e.currentTarget.style.transform = "rotate(".concat(rotations, ") scale(1)");
+      e.currentTarget.style.zIndex = zIndex.toString();
+    },
+    children: [/*#__PURE__*/jsxs("div", {
+      className: "relative pt-16 sm:pt-20 md:pt-20 pb-4 sm:pb-5 md:pb-6 px-4 sm:px-5 md:px-6",
+      style: {
+        backgroundColor: topColor
+      },
+      children: [/*#__PURE__*/jsx("div", {
+        className: "absolute -top-16 sm:-top-18 md:-top-20 left-1/2 transform -translate-x-1/2",
+        children: /*#__PURE__*/jsx("div", {
+          className: "w-32 h-32 sm:w-36 sm:h-36 md:w-40 md:h-40 rounded-full flex items-center justify-center border-4 border-white shadow-xl overflow-hidden",
+          style: {
+            backgroundColor: imageBgColor
+          },
+          children: productImage ? /*#__PURE__*/jsx("img", {
+            src: productImage,
+            alt: title,
+            className: "w-full h-full object-cover"
+          }) : /*#__PURE__*/jsx("div", {
+            className: "w-full h-full bg-gray-300 flex items-center justify-center",
+            children: /*#__PURE__*/jsx("svg", {
+              className: "w-20 h-20 text-gray-600",
+              fill: "none",
+              stroke: "currentColor",
+              viewBox: "0 0 24 24",
+              children: /*#__PURE__*/jsx("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+              })
+            })
+          })
+        })
+      }), title && /*#__PURE__*/jsx("h3", {
+        className: "text-center font-bold text-lg sm:text-xl md:text-2xl text-gray-900 mt-2 sm:mt-3",
+        children: title
+      }), brand && /*#__PURE__*/jsx("p", {
+        className: "text-center text-base text-gray-700 mt-2",
+        children: brand
+      })]
+    }), /*#__PURE__*/jsxs("div", {
+      className: "bg-white px-4 sm:px-5 md:px-6 pb-4 sm:pb-5 md:pb-6 pt-4 sm:pt-5 md:pt-6",
+      children: [features.length > 0 ? /*#__PURE__*/jsx("div", {
+        className: "space-y-3 sm:space-y-4 mb-3 sm:mb-4",
+        children: features.slice(0, 3).map(function (feature, idx) {
+          var flagColors = ['#3B82F6', '#EF4444', '#A855F7']; // Blue, Red, Purple
+          var flagColor = _typeof(feature) === 'object' && feature.flagColor ? feature.flagColor : flagColors[idx % flagColors.length];
+          var featureText = _typeof(feature) === 'object' && feature.label ? feature.label : _typeof(feature) === 'object' && feature.name ? feature.name : feature;
+          return /*#__PURE__*/jsxs("div", {
+            className: "flex items-center gap-2 sm:gap-3",
+            children: [/*#__PURE__*/jsx("svg", {
+              className: "w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0",
+              fill: flagColor,
+              viewBox: "0 0 24 24",
+              children: /*#__PURE__*/jsx("path", {
+                d: "M3 2v20h2v-8h14l-2-5 2-5H5V2H3z"
+              })
+            }), /*#__PURE__*/jsx("span", {
+              className: "text-sm sm:text-base text-gray-900",
+              children: featureText
+            })]
+          }, idx);
+        })
+      }) : null, /*#__PURE__*/jsxs("div", {
+        className: "mt-auto pt-3 sm:pt-4 border-t border-gray-200",
+        children: [price !== undefined && /*#__PURE__*/jsx("div", {
+          className: "mb-3 sm:mb-4",
+          children: /*#__PURE__*/jsxs("span", {
+            className: "text-gray-900 font-bold text-xl sm:text-2xl",
+            children: [formatPrice(price), currency]
+          })
+        }), buttonOnClick ? /*#__PURE__*/jsx("button", {
+          onClick: buttonOnClick,
+          className: "w-full bg-gray-900 text-white px-4 sm:px-5 md:px-6 py-2.5 sm:py-3 rounded-lg font-semibold text-xs sm:text-sm md:text-base uppercase tracking-wide hover:bg-gray-800 transition-colors duration-200",
+          children: buttonText
+        }) : /*#__PURE__*/jsx("a", {
+          href: buttonHref,
+          className: "block w-full bg-gray-900 text-white px-4 sm:px-5 md:px-6 py-2.5 sm:py-3 rounded-lg font-semibold text-xs sm:text-sm md:text-base uppercase tracking-wide hover:bg-gray-800 transition-colors duration-200 text-center",
+          children: buttonText
+        })]
+      })]
+    })]
+  });
+};
+
+// Product Card Component for horizontal variant (simple two-column layout: image left, details right)
+var HorizontalProductCard = function HorizontalProductCard(_ref2) {
+  var product = _ref2.product,
+    currency = _ref2.currency;
+  // Get images array (support single image or multiple)
+  var images = Array.isArray(product.images) ? product.images : product.image ? [product.image] : [];
+
+  // Get button configuration
+  var buttonConfig = product.button || {};
+  var buttonText = buttonConfig.text || 'BUY NOW';
+  var buttonHref = buttonConfig.href || '#';
+  var buttonOnClick = buttonConfig.onClick;
+
+  // Get optional properties - black & white only
+  var grayShade = product.grayShade || '#F3F4F6'; // Light gray for image section
+
+  var formatPrice = function formatPrice(price) {
+    if (typeof price === 'number' && price % 1 === 0) {
+      return price;
+    } else if (typeof price === 'number') {
+      return price.toFixed(2);
+    }
+    return price;
+  };
+  return /*#__PURE__*/jsxs("div", {
+    className: "relative bg-white border border-gray-200 rounded-lg overflow-hidden flex flex-col sm:flex-row h-full",
+    children: [/*#__PURE__*/jsx("div", {
+      className: "w-full sm:w-2/5 lg:w-2/5 flex items-center justify-center p-3 sm:p-4 md:p-5",
+      style: {
+        backgroundColor: grayShade
+      },
+      children: images.length > 0 && images[0] ? /*#__PURE__*/jsx("img", {
+        src: images[0],
+        alt: product.title || 'Product',
+        className: "w-full h-auto object-contain",
+        loading: "lazy",
+        onError: function onError(e) {
+          e.target.style.display = 'none';
+        }
+      }) : /*#__PURE__*/jsx("div", {
+        className: "w-full h-32 flex items-center justify-center",
+        children: /*#__PURE__*/jsx("svg", {
+          className: "w-10 h-10 text-gray-300",
+          fill: "none",
+          stroke: "currentColor",
+          viewBox: "0 0 24 24",
+          children: /*#__PURE__*/jsx("path", {
+            strokeLinecap: "round",
+            strokeLinejoin: "round",
+            strokeWidth: 2,
+            d: "M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+          })
+        })
+      })
+    }), /*#__PURE__*/jsxs("div", {
+      className: "w-full sm:w-3/5 bg-white p-4 sm:p-5 md:p-6 flex flex-col justify-between",
+      children: [/*#__PURE__*/jsxs("div", {
+        children: [product.title && /*#__PURE__*/jsx("h3", {
+          className: "text-gray-900 font-semibold text-base sm:text-lg md:text-xl mb-2 sm:mb-3",
+          children: product.title
+        }), product.description && /*#__PURE__*/jsx("p", {
+          className: "text-gray-600 text-xs sm:text-sm md:text-base mb-3 sm:mb-4 line-clamp-2 sm:line-clamp-3",
+          children: product.description
+        })]
+      }), /*#__PURE__*/jsxs("div", {
+        className: "mt-auto flex items-center justify-between",
+        children: [product.price !== undefined && /*#__PURE__*/jsxs("span", {
+          className: "text-gray-900 font-bold text-lg sm:text-xl md:text-2xl",
+          children: [formatPrice(product.price), currency]
+        }), buttonOnClick ? /*#__PURE__*/jsx("button", {
+          onClick: buttonOnClick,
+          className: "bg-gray-900 text-white px-4 py-2 rounded text-sm font-medium hover:bg-gray-800 transition-colors",
+          children: buttonText
+        }) : /*#__PURE__*/jsx("a", {
+          href: buttonHref,
+          className: "bg-gray-900 text-white px-4 py-2 rounded text-sm font-medium hover:bg-gray-800 transition-colors",
+          children: buttonText
+        })]
+      })]
+    })]
+  });
+};
+
+// Product Card Component for arch-top variant (arch-like rounded top, black & white only)
+var ArchTopProductCard = function ArchTopProductCard(_ref3) {
+  var product = _ref3.product,
+    currency = _ref3.currency;
+  // Get gray shade (light gray for top section)
+  var grayShade = product.grayShade || '#E5E7EB'; // Light gray by default
+
+  // Get images array (support single image or multiple)
+  var images = Array.isArray(product.images) ? product.images : product.image ? [product.image] : [];
+
+  // Get button configuration
+  var buttonConfig = product.button || {};
+  var buttonText = buttonConfig.text || 'BUY NOW';
+  var buttonHref = buttonConfig.href || '#';
+  var buttonOnClick = buttonConfig.onClick;
+
+  // Favorite icon state
+  var _useState = useState(product.favorite || false),
+    _useState2 = _slicedToArray(_useState, 2),
+    isFavorite = _useState2[0],
+    setIsFavorite = _useState2[1];
+  var formatPrice = function formatPrice(price) {
+    if (typeof price === 'number' && price % 1 === 0) {
+      return price;
+    } else if (typeof price === 'number') {
+      return price.toFixed(2);
+    }
+    return price;
+  };
+  return /*#__PURE__*/jsxs("div", {
+    className: "relative bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col h-full",
+    children: [/*#__PURE__*/jsxs("div", {
+      className: "px-4 sm:px-5 md:px-6 pt-5 sm:pt-6 md:pt-7 pb-6 sm:pb-8 md:pb-10 relative min-h-[200px] sm:min-h-[220px] md:min-h-[240px] lg:min-h-[260px]",
+      style: {
+        backgroundColor: grayShade,
+        clipPath: 'ellipse(130% 110% at 50% -10%)'
+      },
+      children: [/*#__PURE__*/jsx("div", {
+        className: "absolute top-4 right-4 sm:top-5 sm:right-5 z-10",
+        children: /*#__PURE__*/jsx("button", {
+          onClick: function onClick() {
+            return setIsFavorite(!isFavorite);
+          },
+          className: "w-9 h-9 rounded-full bg-transparent border-2 border-gray-600 flex items-center justify-center hover:border-gray-800 transition-colors",
+          "aria-label": "Add to favorites",
+          children: /*#__PURE__*/jsx("svg", {
+            className: "w-3.5 h-3.5 sm:w-4 sm:h-4 ".concat(isFavorite ? 'fill-red-500 text-red-500' : 'text-gray-600'),
+            fill: isFavorite ? 'currentColor' : 'none',
+            stroke: "currentColor",
+            viewBox: "0 0 24 24",
+            children: /*#__PURE__*/jsx("path", {
+              strokeLinecap: "round",
+              strokeLinejoin: "round",
+              strokeWidth: 2,
+              d: "M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+            })
+          })
+        })
+      }), product.badge && /*#__PURE__*/jsx("div", {
+        className: "absolute top-4 left-1/2 transform -translate-x-1/2 sm:top-5 z-10",
+        children: /*#__PURE__*/jsx("span", {
+          className: "bg-gray-100 text-gray-900 text-xs font-semibold px-3 py-1 rounded-full border border-gray-300",
+          children: product.badge
+        })
+      }), /*#__PURE__*/jsx("div", {
+        className: "relative h-full flex items-center justify-center mt-6 sm:mt-8",
+        children: /*#__PURE__*/jsxs("div", {
+          className: "relative",
+          style: {
+            transform: 'rotate(-8deg)'
+          },
+          children: [/*#__PURE__*/jsx("div", {
+            className: "absolute border-2 border-white border-dashed pointer-events-none w-32 h-32 sm:w-36 sm:h-36 md:w-40 md:h-40",
+            style: {
+              transform: 'translate(-50%, -50%)',
+              left: '50%',
+              top: '50%',
+              zIndex: 1
+            }
+          }), images.length > 0 && images[0] ? /*#__PURE__*/jsx("img", {
+            src: images[0],
+            alt: product.title || 'Product',
+            className: "w-32 h-32 sm:w-36 sm:h-36 object-contain relative z-10",
+            loading: "lazy",
+            onError: function onError(e) {
+              e.target.style.display = 'none';
+            }
+          }) : /*#__PURE__*/jsx("div", {
+            className: "w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 flex items-center justify-center bg-white/30 rounded-lg relative z-10",
+            children: /*#__PURE__*/jsx("svg", {
+              className: "w-10 h-10 sm:w-12 sm:h-12 text-gray-400",
+              fill: "none",
+              stroke: "currentColor",
+              viewBox: "0 0 24 24",
+              children: /*#__PURE__*/jsx("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+              })
+            })
+          })]
+        })
+      })]
+    }), /*#__PURE__*/jsxs("div", {
+      className: "bg-white px-5 pb-5 pt-6 sm:px-6 sm:pb-6 sm:pt-7 flex flex-col flex-1",
+      children: [product.title && /*#__PURE__*/jsx("h3", {
+        className: "text-gray-900 font-bold text-xl sm:text-2xl mb-3 text-center",
+        children: product.title
+      }), product.price !== undefined && /*#__PURE__*/jsx("div", {
+        className: "mb-3 sm:mb-4 flex justify-center",
+        children: /*#__PURE__*/jsxs("span", {
+          className: "inline-block px-4 sm:px-5 md:px-6 py-1.5 sm:py-2 rounded-full bg-gray-900 text-white text-xs sm:text-sm md:text-base font-semibold",
+          children: [currency, formatPrice(product.price), " USD"]
+        })
+      }), /*#__PURE__*/jsx("div", {
+        className: "flex justify-center mb-3 sm:mb-4",
+        children: /*#__PURE__*/jsx("div", {
+          className: "w-16 h-0.5 bg-gray-400"
+        })
+      }), product.description && /*#__PURE__*/jsx("p", {
+        className: "text-gray-600 text-xs sm:text-sm md:text-base leading-relaxed text-center line-clamp-3 mb-3 sm:mb-4 md:mb-5",
+        children: product.description
+      }), /*#__PURE__*/jsx("div", {
+        className: "mt-auto",
+        children: buttonOnClick ? /*#__PURE__*/jsx("button", {
+          onClick: buttonOnClick,
+          className: "w-full bg-gray-900 text-white px-4 py-2.5 rounded-lg font-semibold text-sm uppercase tracking-wide hover:bg-gray-800 transition-colors duration-200",
+          children: buttonText
+        }) : /*#__PURE__*/jsx("a", {
+          href: buttonHref,
+          className: "block w-full bg-gray-900 text-white px-4 py-2.5 rounded-lg font-semibold text-sm uppercase tracking-wide hover:bg-gray-800 transition-colors duration-200 text-center",
+          children: buttonText
+        })
+      })]
+    })]
+  });
+};
+
+// Product Card Component for beauty variant (image in top section, dual price, new badge)
+var BeautyProductCard = function BeautyProductCard(_ref4) {
+  var product = _ref4.product,
+    currency = _ref4.currency;
+  // Get gray shade (light gray for top section) - black & white only
+  var grayShade = product.grayShade || '#E5E7EB'; // Light gray by default
+
+  // Get images array (support single image or multiple)
+  var images = Array.isArray(product.images) ? product.images : product.image ? [product.image] : [];
+
+  // Get button configuration
+  var buttonConfig = product.button || {};
+  var buttonText = buttonConfig.text || 'BUY NOW';
+  var buttonHref = buttonConfig.href || '#';
+  var buttonOnClick = buttonConfig.onClick;
+  var formatPrice = function formatPrice(price) {
+    if (typeof price === 'number' && price % 1 === 0) {
+      return price;
+    } else if (typeof price === 'number') {
+      return price.toFixed(1);
+    }
+    return price;
+  };
+  return /*#__PURE__*/jsxs("div", {
+    className: "relative bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col h-full",
+    children: [/*#__PURE__*/jsxs("div", {
+      className: "px-4 sm:px-5 md:px-6 pt-4 sm:pt-5 md:pt-6 pb-5 sm:pb-6 md:pb-8 relative min-h-[180px] sm:min-h-[200px] md:min-h-[220px] lg:min-h-[240px]",
+      style: {
+        backgroundColor: grayShade
+      },
+      children: [product.badge && /*#__PURE__*/jsx("div", {
+        className: "absolute top-3 left-3 sm:top-4 sm:left-4 z-10",
+        children: /*#__PURE__*/jsx("span", {
+          className: "bg-gray-900 text-white text-xs sm:text-sm font-semibold px-2 sm:px-2.5 md:px-3 py-0.5 sm:py-1 rounded-md",
+          children: product.badge
+        })
+      }), product.price !== undefined && /*#__PURE__*/jsx("div", {
+        className: "absolute top-3 right-3 sm:top-4 sm:right-4 z-10",
+        children: /*#__PURE__*/jsx("div", {
+          className: "w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-white flex items-center justify-center border-4 border-gray-400 font-bold text-sm sm:text-base",
+          children: /*#__PURE__*/jsxs("span", {
+            className: "text-gray-900",
+            children: [currency, formatPrice(product.price)]
+          })
+        })
+      }), /*#__PURE__*/jsx("div", {
+        className: "relative h-full flex items-center justify-center mt-8 sm:mt-10",
+        children: /*#__PURE__*/jsx("div", {
+          className: "relative",
+          style: {
+            transform: 'rotate(-5deg)'
+          },
+          children: images.length > 0 && images[0] ? /*#__PURE__*/jsx("img", {
+            src: images[0],
+            alt: product.title || 'Product',
+            className: "w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-40 object-contain",
+            loading: "lazy",
+            onError: function onError(e) {
+              e.target.style.display = 'none';
+            }
+          }) : /*#__PURE__*/jsx("div", {
+            className: "w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-40 flex items-center justify-center bg-white/30 rounded-full",
+            children: /*#__PURE__*/jsx("svg", {
+              className: "w-10 h-10 sm:w-12 sm:h-12 text-gray-400",
+              fill: "none",
+              stroke: "currentColor",
+              viewBox: "0 0 24 24",
+              children: /*#__PURE__*/jsx("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+              })
+            })
+          })
+        })
+      }), /*#__PURE__*/jsxs("div", {
+        className: "absolute bottom-4 left-5 right-5 sm:left-6 sm:right-6 sm:bottom-6",
+        children: [product.category && /*#__PURE__*/jsx("h3", {
+          className: "text-gray-900 font-bold text-base sm:text-lg md:text-xl mb-1",
+          children: product.category
+        }), product.brand && /*#__PURE__*/jsx("p", {
+          className: "text-gray-700 text-xs sm:text-sm line-clamp-2",
+          children: product.brand
+        })]
+      })]
+    }), /*#__PURE__*/jsxs("div", {
+      className: "bg-white px-4 sm:px-5 md:px-6 pb-4 sm:pb-5 md:pb-6 pt-3 sm:pt-4 md:pt-5 flex flex-col flex-1",
+      children: [product.price !== undefined && /*#__PURE__*/jsx("div", {
+        className: "mb-2 sm:mb-3 md:mb-4 flex justify-center",
+        children: /*#__PURE__*/jsxs("span", {
+          className: "inline-block px-3 sm:px-4 md:px-5 py-1 sm:py-1.5 rounded-full bg-gray-900 text-white text-xs sm:text-sm md:text-base font-semibold",
+          children: [currency, formatPrice(product.price)]
+        })
+      }), /*#__PURE__*/jsxs("div", {
+        className: "mb-3 sm:mb-4 md:mb-5",
+        children: [product.title && /*#__PURE__*/jsx("h3", {
+          className: "text-gray-900 font-bold text-base sm:text-lg md:text-xl mb-1 sm:mb-2",
+          children: product.title
+        }), product.features && Array.isArray(product.features) && product.features.length > 0 ? /*#__PURE__*/jsx("ul", {
+          className: "text-gray-600 text-sm leading-relaxed space-y-1",
+          children: product.features.slice(0, 3).map(function (feature, idx) {
+            return /*#__PURE__*/jsxs("li", {
+              className: "flex items-center gap-2",
+              children: [/*#__PURE__*/jsx("span", {
+                className: "text-gray-900",
+                children: "\u2022"
+              }), /*#__PURE__*/jsx("span", {
+                children: typeof feature === 'string' ? feature : feature.label || feature.name
+              })]
+            }, idx);
+          })
+        }) : product.specifications && Array.isArray(product.specifications) && product.specifications.length > 0 ? /*#__PURE__*/jsx("ul", {
+          className: "text-gray-600 text-sm leading-relaxed space-y-1",
+          children: product.specifications.slice(0, 3).map(function (spec, idx) {
+            return /*#__PURE__*/jsxs("li", {
+              className: "flex items-center gap-2",
+              children: [/*#__PURE__*/jsx("span", {
+                className: "text-gray-900",
+                children: "\u2022"
+              }), /*#__PURE__*/jsx("span", {
+                children: typeof spec === 'string' ? spec : spec.label || spec.name
+              })]
+            }, idx);
+          })
+        }) : null]
+      }), /*#__PURE__*/jsx("div", {
+        className: "mt-auto",
+        children: buttonOnClick ? /*#__PURE__*/jsx("button", {
+          onClick: buttonOnClick,
+          className: "w-full bg-gray-900 text-white px-4 py-2.5 rounded-lg font-semibold text-sm uppercase tracking-wide hover:bg-gray-800 transition-colors duration-200",
+          children: buttonText
+        }) : /*#__PURE__*/jsx("a", {
+          href: buttonHref,
+          className: "block w-full bg-gray-900 text-white px-4 py-2.5 rounded-lg font-semibold text-sm uppercase tracking-wide hover:bg-gray-800 transition-colors duration-200 text-center",
+          children: buttonText
+        })
+      })]
+    })]
+  });
+};
+
+// Product Card Component for split-color variant
+var SplitColorProductCard = function SplitColorProductCard(_ref5) {
+  var product = _ref5.product,
+    currency = _ref5.currency;
+  var _useState3 = useState(0),
+    _useState4 = _slicedToArray(_useState3, 2),
+    currentImageIndex = _useState4[0],
+    setCurrentImageIndex = _useState4[1];
+
+  // Get gray shade (default gray for top section) - black & white only
+  var grayShade = product.grayShade || '#E5E7EB'; // Light gray by default
+
+  // Get images array (support single image or multiple)
+  var images = Array.isArray(product.images) ? product.images : product.image ? [product.image] : [];
+
+  // Pagination dots count (use images length or default to 4)
+  var dotsCount = product.paginationDots || (images.length > 1 ? images.length : 4);
+
+  // Get button configuration
+  var buttonConfig = product.button || {};
+  var buttonText = buttonConfig.text || 'ADD TO CART';
+  var buttonHref = buttonConfig.href || '#';
+  var buttonOnClick = buttonConfig.onClick;
+  return /*#__PURE__*/jsxs("div", {
+    className: "relative bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col h-full",
+    children: [/*#__PURE__*/jsxs("div", {
+      className: "px-4 sm:px-6 md:px-8 pt-5 sm:pt-6 md:pt-8 pb-6 sm:pb-8 md:pb-10 relative",
+      style: {
+        backgroundColor: grayShade
+      },
+      children: [product.price !== undefined && /*#__PURE__*/jsx("div", {
+        className: "absolute top-4 right-4 sm:top-6 sm:right-6",
+        children: /*#__PURE__*/jsx("div", {
+          className: "w-14 h-14 sm:w-16 sm:h-16 md:w-[72px] md:h-[72px] lg:w-20 lg:h-20 rounded-full bg-white flex items-center justify-center border-2 md:border-4 border-gray-400 font-bold text-sm sm:text-base md:text-lg lg:text-xl",
+          children: /*#__PURE__*/jsxs("span", {
+            className: "text-gray-900",
+            children: [currency, typeof product.price === 'number' && product.price % 1 === 0 ? product.price : typeof product.price === 'number' ? product.price.toFixed(2) : product.price]
+          })
+        })
+      }), /*#__PURE__*/jsxs("div", {
+        className: "pr-20 sm:pr-24",
+        children: [product.title && /*#__PURE__*/jsx("h3", {
+          className: "text-gray-900 font-bold text-xl sm:text-2xl mb-2",
+          children: product.title
+        }), product.description && /*#__PURE__*/jsx("p", {
+          className: "text-gray-700 text-xs sm:text-sm md:text-base",
+          children: product.description
+        })]
+      })]
+    }), /*#__PURE__*/jsxs("div", {
+      className: "bg-white px-6 pb-6 pt-8 sm:px-8 sm:pb-8 sm:pt-10 flex flex-col items-center flex-1",
+      children: [/*#__PURE__*/jsx("div", {
+        className: "relative mb-6 sm:mb-8",
+        children: /*#__PURE__*/jsx("div", {
+          className: "w-48 h-48 sm:w-56 sm:h-56 rounded-full flex items-center justify-center overflow-hidden mx-auto",
+          style: {
+            backgroundColor: product.imageBgColor || '#F3F4F6'
+          },
+          children: images.length > 0 && images[currentImageIndex] ? /*#__PURE__*/jsx("img", {
+            src: images[currentImageIndex],
+            alt: product.title || 'Product',
+            className: "w-full h-full object-contain p-3 sm:p-4 md:p-5",
+            loading: "lazy",
+            onError: function onError(e) {
+              e.target.style.display = 'none';
+            }
+          }) : /*#__PURE__*/jsx("div", {
+            className: "w-full h-full flex items-center justify-center",
+            children: /*#__PURE__*/jsx("svg", {
+              className: "w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 text-gray-400",
+              fill: "none",
+              stroke: "currentColor",
+              viewBox: "0 0 24 24",
+              children: /*#__PURE__*/jsx("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+              })
+            })
+          })
+        })
+      }), /*#__PURE__*/jsx("div", {
+        className: "flex gap-2 mb-6 sm:mb-8 justify-center",
+        children: Array.from({
+          length: dotsCount
+        }).map(function (_, dotIndex) {
+          return /*#__PURE__*/jsx("button", {
+            onClick: function onClick() {
+              if (images.length > 1) {
+                setCurrentImageIndex(dotIndex % images.length);
+              }
+            },
+            className: clsx('w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full transition-colors duration-200', dotIndex === currentImageIndex % dotsCount || images.length <= 1 && dotIndex === 0 ? 'bg-gray-600 opacity-100' : 'bg-gray-300 opacity-40'),
+            "aria-label": "View image ".concat(dotIndex + 1)
+          }, dotIndex);
+        })
+      }), /*#__PURE__*/jsx("div", {
+        className: "w-full mt-auto",
+        children: buttonOnClick ? /*#__PURE__*/jsx("button", {
+          onClick: buttonOnClick,
+          className: "w-full bg-gray-900 text-white px-6 py-3 rounded-lg font-semibold text-sm sm:text-base uppercase tracking-wide hover:bg-gray-800 transition-colors duration-200",
+          children: buttonText
+        }) : /*#__PURE__*/jsx("a", {
+          href: buttonHref,
+          className: "block w-full bg-gray-900 text-white px-6 py-3 rounded-lg font-semibold text-sm sm:text-base uppercase tracking-wide hover:bg-gray-800 transition-colors duration-200 text-center",
+          children: buttonText
+        })
+      })]
+    })]
+  });
+};
+
+/**
+ * ProductStandard Component - Product cards with split-color circular image variant
+ * @param {Object} props - Component props
+ * @param {Object} props.data - Product section configuration data
+ * @param {string} [props.data.title] - Main heading text
+ * @param {string} [props.data.subtitle] - Subtitle text displayed above title
+ * @param {string} [props.data.description] - Description text displayed below title
+ * @param {Array} props.data.products - Array of product items
+ * @param {string} [props.data.variant='split-color'] - Style variant: 'split-color' | 'beauty' | 'arch-top' | 'horizontal'
+ * @param {string} [props.data.alignment='center'] - Header text alignment: 'left' | 'center' | 'right'
+ * @param {number} [props.data.columns=3] - Number of columns for grid layout (1-4)
+ * @param {string} [props.data.currency='$'] - Currency symbol
+ * @param {string} [props.className] - Additional CSS classes
+ * @param {string} [props.id] - ID attribute for the section element
+ * @param {boolean} [props.loader=false] - Show loading state
+ */
+var ProductStandard = function ProductStandard(_ref6) {
+  var data = _ref6.data,
+    className = _ref6.className,
+    id = _ref6.id;
+    _ref6.loader;
+  // Safety check for data
+  if (!data || _typeof(data) !== 'object') {
+    console.error('ProductStandard: data prop is required and must be an object');
+    return null;
+  }
+  var title = data.title,
+    subtitle = data.subtitle,
+    description = data.description,
+    _data$products = data.products,
+    products = _data$products === void 0 ? [] : _data$products,
+    _data$variant = data.variant,
+    variant = _data$variant === void 0 ? 'split-color' : _data$variant,
+    _data$alignment = data.alignment,
+    alignment = _data$alignment === void 0 ? 'center' : _data$alignment,
+    _data$columns = data.columns,
+    columns = _data$columns === void 0 ? 3 : _data$columns,
+    _data$currency = data.currency,
+    currency = _data$currency === void 0 ? '$' : _data$currency,
+    dataClassName = data.className;
+  var alignmentClasses = {
+    left: 'text-left items-start',
+    center: 'text-center items-center',
+    right: 'text-right items-end'
+  };
+  var gridColumnsClasses = {
+    1: 'grid-cols-1',
+    2: 'grid-cols-1 sm:grid-cols-2',
+    3: 'grid-cols-1 sm:grid-cols-1 lg:grid-cols-3',
+    4: 'grid-cols-1 sm:grid-cols-1 lg:grid-cols-4'
+  };
+  return /*#__PURE__*/jsx("section", {
+    id: id,
+    className: clsx('w-full py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12', className, dataClassName),
+    children: /*#__PURE__*/jsxs("div", {
+      className: "max-w-7xl mx-auto w-full",
+      children: [(title || subtitle || description) && /*#__PURE__*/jsxs("div", {
+        className: clsx('mb-8 sm:mb-10 md:mb-12 lg:mb-16 flex flex-col', alignmentClasses[alignment] || alignmentClasses.center),
+        children: [subtitle && /*#__PURE__*/jsx("p", {
+          className: "text-sm sm:text-base font-semibold text-primary-600 uppercase tracking-wide mb-2",
+          children: subtitle
+        }), title && /*#__PURE__*/jsx("h2", {
+          className: "text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-3 sm:mb-4",
+          children: title
+        }), description && /*#__PURE__*/jsx("p", {
+          className: "text-sm sm:text-base md:text-lg text-gray-600 max-w-2xl mx-auto px-4 sm:px-0",
+          children: description
+        })]
+      }), products.length > 0 && /*#__PURE__*/jsx("div", {
+        className: clsx(variant === 'overlapping' ? 'flex flex-wrap justify-center gap-4 sm:gap-5 md:gap-6 items-start mt-12 sm:mt-16 md:mt-24 lg:mt-32 xl:mt-[8rem]' : 'grid gap-4 sm:gap-5 md:gap-6 lg:gap-8', variant !== 'overlapping' && (gridColumnsClasses[columns] || gridColumnsClasses[3])),
+        children: products.map(function (product, index) {
+          if (variant === 'overlapping' || variant === 'profile-lesson') {
+            return /*#__PURE__*/jsx(ProfileLessonCard, {
+              product: product,
+              index: index,
+              currency: currency
+            }, index);
+          }
+          if (variant === 'horizontal') {
+            return /*#__PURE__*/jsx(HorizontalProductCard, {
+              product: product,
+              currency: currency
+            }, index);
+          }
+          if (variant === 'arch-top') {
+            return /*#__PURE__*/jsx(ArchTopProductCard, {
+              product: product,
+              currency: currency
+            }, index);
+          }
+          if (variant === 'beauty') {
+            return /*#__PURE__*/jsx(BeautyProductCard, {
+              product: product,
+              currency: currency
+            }, index);
+          }
+          // Default to split-color variant
+          return /*#__PURE__*/jsx(SplitColorProductCard, {
+            product: product,
+            currency: currency
+          }, index);
+        })
+      }), products.length === 0 && /*#__PURE__*/jsx("div", {
+        className: "text-center py-12",
+        children: /*#__PURE__*/jsx("p", {
+          className: "text-gray-500 text-sm sm:text-base md:text-lg",
+          children: "No products available"
+        })
+      })]
+    })
+  });
+};
+
+var GlassmorphismProductCard = function GlassmorphismProductCard(_ref) {
+  var _product$button;
+  var product = _ref.product,
+    currency = _ref.currency;
+  var images = Array.isArray(product.images) ? product.images : product.image ? [product.image] : [];
+  var buttonConfig = product.button || {};
+  var buttonText = buttonConfig.text || 'ADD TO CART';
+  var buttonHref = buttonConfig.href || '#';
+  var buttonOnClick = (_product$button = product.button) === null || _product$button === void 0 ? void 0 : _product$button.onClick;
+  var _useState = useState(false),
+    _useState2 = _slicedToArray(_useState, 2),
+    isHovered = _useState2[0],
+    setIsHovered = _useState2[1];
+  var formatPrice = function formatPrice(price) {
+    if (typeof price === 'number' && price % 1 === 0) {
+      return price;
+    } else if (typeof price === 'number') {
+      return price.toFixed(2);
+    }
+    return price;
+  };
+  return /*#__PURE__*/jsxs("div", {
+    className: "relative group rounded-3xl overflow-hidden",
+    onMouseEnter: function onMouseEnter() {
+      return setIsHovered(true);
+    },
+    onMouseLeave: function onMouseLeave() {
+      return setIsHovered(false);
+    },
+    children: [/*#__PURE__*/jsxs("div", {
+      className: "relative h-56 sm:h-64 md:h-72 lg:h-80 overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200",
+      children: [images.length > 0 && images[0] ? /*#__PURE__*/jsx("img", {
+        src: images[0],
+        alt: product.title || 'Product',
+        className: "w-full h-full object-cover transition-transform duration-700 ".concat(isHovered ? 'scale-110' : 'scale-100'),
+        loading: "lazy"
+      }) : /*#__PURE__*/jsx("div", {
+        className: "w-full h-full flex items-center justify-center bg-gray-200",
+        children: /*#__PURE__*/jsx("svg", {
+          className: "w-16 h-16 text-gray-400",
+          fill: "none",
+          stroke: "currentColor",
+          viewBox: "0 0 24 24",
+          children: /*#__PURE__*/jsx("path", {
+            strokeLinecap: "round",
+            strokeLinejoin: "round",
+            strokeWidth: 2,
+            d: "M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+          })
+        })
+      }), /*#__PURE__*/jsx("div", {
+        className: "absolute inset-0 bg-white/20 backdrop-blur-md transition-opacity duration-500 ".concat(isHovered ? 'opacity-100' : 'opacity-0'),
+        children: /*#__PURE__*/jsx("div", {
+          className: "absolute inset-0 flex items-center justify-center",
+          children: buttonOnClick ? /*#__PURE__*/jsx("button", {
+            onClick: buttonOnClick,
+            className: "bg-white/90 backdrop-blur-sm text-gray-900 px-6 py-3 rounded-full font-semibold text-sm shadow-lg hover:bg-white transition-all duration-300 transform hover:scale-105",
+            children: buttonText
+          }) : /*#__PURE__*/jsx("a", {
+            href: buttonHref,
+            className: "bg-white/90 backdrop-blur-sm text-gray-900 px-6 py-3 rounded-full font-semibold text-sm shadow-lg hover:bg-white transition-all duration-300 transform hover:scale-105",
+            children: buttonText
+          })
+        })
+      }), product.badge && /*#__PURE__*/jsx("div", {
+        className: "absolute top-4 left-4 z-10",
+        children: /*#__PURE__*/jsx("span", {
+          className: "bg-white/90 backdrop-blur-sm text-gray-900 text-xs font-bold px-3 py-1.5 rounded-full shadow-md",
+          children: product.badge
+        })
+      }), /*#__PURE__*/jsx("button", {
+        className: "absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-md hover:bg-white transition-colors",
+        children: /*#__PURE__*/jsx("svg", {
+          className: "w-5 h-5 text-gray-600",
+          fill: "none",
+          stroke: "currentColor",
+          viewBox: "0 0 24 24",
+          children: /*#__PURE__*/jsx("path", {
+            strokeLinecap: "round",
+            strokeLinejoin: "round",
+            strokeWidth: 2,
+            d: "M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+          })
+        })
+      })]
+    }), /*#__PURE__*/jsxs("div", {
+      className: "relative -mt-8 sm:-mt-10 md:-mt-12 mx-3 sm:mx-4 bg-white/80 backdrop-blur-xl rounded-2xl shadow-xl p-4 sm:p-5 border border-white/50",
+      children: [product.title && /*#__PURE__*/jsx("h3", {
+        className: "text-gray-900 font-bold text-base sm:text-lg md:text-xl mb-1 sm:mb-2",
+        children: product.title
+      }), product.category && /*#__PURE__*/jsx("p", {
+        className: "text-gray-500 text-xs sm:text-sm mb-2 sm:mb-3",
+        children: product.category
+      }), product.price !== undefined && /*#__PURE__*/jsxs("div", {
+        className: "flex items-center justify-between",
+        children: [/*#__PURE__*/jsxs("span", {
+          className: "text-gray-900 font-bold text-lg sm:text-xl md:text-2xl",
+          children: [currency, formatPrice(product.price)]
+        }), product.rating && /*#__PURE__*/jsxs("div", {
+          className: "flex items-center gap-1",
+          children: [/*#__PURE__*/jsx("span", {
+            className: "text-yellow-400",
+            children: "\u2605"
+          }), /*#__PURE__*/jsx("span", {
+            className: "text-gray-600 text-sm",
+            children: product.rating
+          })]
+        })]
+      })]
+    })]
+  });
+};
+
+// Minimal Variant - Clean, spacious design with large image and minimal text
+var MinimalProductCard = function MinimalProductCard(_ref2) {
+  var _product$button2;
+  var product = _ref2.product,
+    currency = _ref2.currency;
+  var images = Array.isArray(product.images) ? product.images : product.image ? [product.image] : [];
+  var buttonConfig = product.button || {};
+  var buttonText = buttonConfig.text || 'SHOP NOW';
+  var buttonHref = buttonConfig.href || '#';
+  var buttonOnClick = (_product$button2 = product.button) === null || _product$button2 === void 0 ? void 0 : _product$button2.onClick;
+  var formatPrice = function formatPrice(price) {
+    if (typeof price === 'number' && price % 1 === 0) {
+      return price;
+    } else if (typeof price === 'number') {
+      return price.toFixed(2);
+    }
+    return price;
+  };
+  return /*#__PURE__*/jsxs("div", {
+    className: "relative bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-shadow duration-300 group",
+    children: [/*#__PURE__*/jsxs("div", {
+      className: "relative bg-gray-50 aspect-square overflow-hidden",
+      children: [images.length > 0 && images[0] ? /*#__PURE__*/jsx("img", {
+        src: images[0],
+        alt: product.title || 'Product',
+        className: "w-full h-full object-contain p-8 group-hover:scale-105 transition-transform duration-500",
+        loading: "lazy"
+      }) : /*#__PURE__*/jsx("div", {
+        className: "w-full h-full flex items-center justify-center",
+        children: /*#__PURE__*/jsx("svg", {
+          className: "w-20 h-20 text-gray-300",
+          fill: "none",
+          stroke: "currentColor",
+          viewBox: "0 0 24 24",
+          children: /*#__PURE__*/jsx("path", {
+            strokeLinecap: "round",
+            strokeLinejoin: "round",
+            strokeWidth: 2,
+            d: "M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+          })
+        })
+      }), product.badge && /*#__PURE__*/jsx("div", {
+        className: "absolute top-4 left-4",
+        children: /*#__PURE__*/jsx("span", {
+          className: "bg-black text-white text-xs font-semibold px-3 py-1.5 rounded",
+          children: product.badge
+        })
+      })]
+    }), /*#__PURE__*/jsxs("div", {
+      className: "p-4 sm:p-5 md:p-6 space-y-2 sm:space-y-3",
+      children: [product.title && /*#__PURE__*/jsx("h3", {
+        className: "text-gray-900 font-semibold text-lg sm:text-xl md:text-2xl",
+        children: product.title
+      }), product.price !== undefined && /*#__PURE__*/jsxs("div", {
+        className: "flex items-baseline gap-2",
+        children: [/*#__PURE__*/jsxs("span", {
+          className: "text-gray-900 font-bold text-xl sm:text-2xl md:text-3xl",
+          children: [currency, formatPrice(product.price)]
+        }), product.originalPrice && /*#__PURE__*/jsxs("span", {
+          className: "text-gray-400 text-xs sm:text-sm line-through",
+          children: [currency, formatPrice(product.originalPrice)]
+        })]
+      }), buttonOnClick ? /*#__PURE__*/jsx("button", {
+        onClick: buttonOnClick,
+        className: "w-full bg-gray-900 text-white py-2.5 sm:py-3 rounded-lg font-medium text-xs sm:text-sm md:text-base hover:bg-gray-800 transition-colors",
+        children: buttonText
+      }) : /*#__PURE__*/jsx("a", {
+        href: buttonHref,
+        className: "block w-full bg-gray-900 text-white py-3 rounded-lg font-medium text-sm hover:bg-gray-800 transition-colors text-center",
+        children: buttonText
+      })]
+    })]
+  });
+};
+
+// Gradient Variant - Vibrant gradient backgrounds with modern layout
+var GradientProductCard = function GradientProductCard(_ref3) {
+  var _product$button3;
+  var product = _ref3.product,
+    currency = _ref3.currency;
+  var images = Array.isArray(product.images) ? product.images : product.image ? [product.image] : [];
+  var buttonConfig = product.button || {};
+  var buttonText = buttonConfig.text || 'EXPLORE';
+  var buttonHref = buttonConfig.href || '#';
+  var buttonOnClick = (_product$button3 = product.button) === null || _product$button3 === void 0 ? void 0 : _product$button3.onClick;
+  var gradientColors = product.gradient || ['#667eea', '#764ba2'];
+  var gradientStyle = {
+    background: "linear-gradient(135deg, ".concat(gradientColors[0], " 0%, ").concat(gradientColors[1], " 100%)")
+  };
+  var _useState3 = useState(false),
+    _useState4 = _slicedToArray(_useState3, 2),
+    isMenuOpen = _useState4[0],
+    setIsMenuOpen = _useState4[1];
+  var formatPrice = function formatPrice(price) {
+    if (typeof price === 'number' && price % 1 === 0) {
+      return price;
+    } else if (typeof price === 'number') {
+      return price.toFixed(2);
+    }
+    return price;
+  };
+  var handleMenuToggle = function handleMenuToggle(e) {
+    e.stopPropagation();
+    setIsMenuOpen(!isMenuOpen);
+  };
+  var handleAddToCart = function handleAddToCart(e) {
+    e.stopPropagation();
+    if (buttonOnClick) {
+      buttonOnClick(e);
+    }
+    setIsMenuOpen(false);
+  };
+  var handleWishlist = function handleWishlist(e) {
+    e.stopPropagation();
+    // You can add custom wishlist handler here
+    console.log('Add to wishlist:', product.title);
+    setIsMenuOpen(false);
+  };
+
+  // Close menu when clicking outside
+  useEffect(function () {
+    var handleClickOutside = function handleClickOutside() {
+      setIsMenuOpen(false);
+    };
+    if (isMenuOpen) {
+      document.addEventListener('click', handleClickOutside);
+      return function () {
+        return document.removeEventListener('click', handleClickOutside);
+      };
+    }
+  }, [isMenuOpen]);
+  return /*#__PURE__*/jsxs("div", {
+    className: "relative rounded-3xl overflow-hidden shadow-xl group",
+    style: gradientStyle,
+    children: [/*#__PURE__*/jsx("div", {
+      className: "absolute inset-0 opacity-10",
+      children: /*#__PURE__*/jsx("div", {
+        className: "absolute inset-0",
+        style: {
+          backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
+          backgroundSize: '40px 40px'
+        }
+      })
+    }), /*#__PURE__*/jsxs("div", {
+      className: "relative p-6 sm:p-8",
+      children: [/*#__PURE__*/jsxs("div", {
+        className: "flex items-start justify-between mb-6",
+        children: [product.badge && /*#__PURE__*/jsx("span", {
+          className: "bg-white/20 backdrop-blur-sm text-white text-xs font-bold px-3 py-1.5 rounded-full border border-white/30",
+          children: product.badge
+        }), /*#__PURE__*/jsxs("div", {
+          className: "relative",
+          children: [/*#__PURE__*/jsx("button", {
+            onClick: handleMenuToggle,
+            className: "w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center hover:bg-white/30 transition-colors z-20",
+            children: /*#__PURE__*/jsx("svg", {
+              className: "w-5 h-5 text-white",
+              fill: "none",
+              stroke: "currentColor",
+              viewBox: "0 0 24 24",
+              children: /*#__PURE__*/jsx("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"
+              })
+            })
+          }), isMenuOpen && /*#__PURE__*/jsxs("div", {
+            className: "absolute top-12 sm:top-14 right-0 bg-white rounded-lg shadow-xl py-2 min-w-[140px] sm:min-w-[160px] md:min-w-[180px] z-30 border border-gray-100",
+            onClick: function onClick(e) {
+              return e.stopPropagation();
+            },
+            children: [/*#__PURE__*/jsxs("button", {
+              onClick: handleAddToCart,
+              className: "w-full px-3 sm:px-4 py-2 sm:py-2.5 text-left text-gray-700 hover:bg-gray-50 transition-colors flex items-center gap-2 text-xs sm:text-sm font-medium",
+              children: [/*#__PURE__*/jsx("svg", {
+                className: "w-3.5 h-3.5 sm:w-4 sm:h-4",
+                fill: "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                children: /*#__PURE__*/jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2,
+                  d: "M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                })
+              }), "Add to cart"]
+            }), /*#__PURE__*/jsxs("button", {
+              onClick: handleWishlist,
+              className: "w-full px-3 sm:px-4 py-2 sm:py-2.5 text-left text-gray-700 hover:bg-gray-50 transition-colors flex items-center gap-2 text-xs sm:text-sm font-medium",
+              children: [/*#__PURE__*/jsx("svg", {
+                className: "w-3.5 h-3.5 sm:w-4 sm:h-4",
+                fill: "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                children: /*#__PURE__*/jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2,
+                  d: "M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                })
+              }), "Wishlist"]
+            })]
+          })]
+        })]
+      }), /*#__PURE__*/jsx("div", {
+        className: "relative mb-4 sm:mb-5 md:mb-6 h-40 sm:h-48 md:h-56 lg:h-64 flex items-center justify-center",
+        children: images.length > 0 && images[0] ? /*#__PURE__*/jsx("img", {
+          src: images[0],
+          alt: product.title || 'Product',
+          className: "max-w-full max-h-full object-contain drop-shadow-2xl group-hover:scale-110 transition-transform duration-500",
+          loading: "lazy"
+        }) : /*#__PURE__*/jsx("div", {
+          className: "w-full h-full flex items-center justify-center",
+          children: /*#__PURE__*/jsx("svg", {
+            className: "w-20 h-20 text-white/50",
+            fill: "none",
+            stroke: "currentColor",
+            viewBox: "0 0 24 24",
+            children: /*#__PURE__*/jsx("path", {
+              strokeLinecap: "round",
+              strokeLinejoin: "round",
+              strokeWidth: 2,
+              d: "M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+            })
+          })
+        })
+      }), /*#__PURE__*/jsxs("div", {
+        className: "space-y-4",
+        children: [product.category && /*#__PURE__*/jsx("p", {
+          className: "text-white/80 text-sm uppercase tracking-wider font-medium",
+          children: product.category
+        }), product.title && /*#__PURE__*/jsx("h3", {
+          className: "text-white font-bold text-2xl sm:text-3xl",
+          children: product.title
+        }), product.description && /*#__PURE__*/jsx("p", {
+          className: "text-white/90 text-sm leading-relaxed line-clamp-2",
+          children: product.description
+        }), product.price !== undefined && /*#__PURE__*/jsx("div", {
+          className: "flex items-center justify-between pt-2",
+          children: /*#__PURE__*/jsxs("span", {
+            className: "text-white font-bold text-xl sm:text-2xl md:text-3xl",
+            children: [currency, formatPrice(product.price)]
+          })
+        }), buttonOnClick ? /*#__PURE__*/jsx("button", {
+          onClick: buttonOnClick,
+          className: "w-full bg-white text-gray-900 py-3 rounded-xl font-bold text-sm hover:bg-white/90 transition-colors mt-4",
+          children: buttonText
+        }) : /*#__PURE__*/jsx("a", {
+          href: buttonHref,
+          className: "block w-full bg-white text-gray-900 py-3 rounded-xl font-bold text-sm hover:bg-white/90 transition-colors mt-4 text-center",
+          children: buttonText
+        })]
+      })]
+    })]
+  });
+};
+var ProductModern = function ProductModern(_ref4) {
+  var data = _ref4.data,
+    className = _ref4.className,
+    id = _ref4.id;
+    _ref4.loader;
+  if (!data || _typeof(data) !== 'object') {
+    console.error('ProductModern: data prop is required and must be an object');
+    return null;
+  }
+  var title = data.title,
+    subtitle = data.subtitle,
+    description = data.description,
+    _data$products = data.products,
+    products = _data$products === void 0 ? [] : _data$products,
+    _data$variant = data.variant,
+    variant = _data$variant === void 0 ? 'glassmorphism' : _data$variant,
+    _data$alignment = data.alignment,
+    alignment = _data$alignment === void 0 ? 'center' : _data$alignment,
+    _data$columns = data.columns,
+    columns = _data$columns === void 0 ? 3 : _data$columns,
+    _data$currency = data.currency,
+    currency = _data$currency === void 0 ? '$' : _data$currency,
+    dataClassName = data.className;
+  var alignmentClasses = {
+    left: 'text-left items-start',
+    center: 'text-center items-center',
+    right: 'text-right items-end'
+  };
+  var gridColumnsClasses = {
+    1: 'grid-cols-1',
+    2: 'grid-cols-1 sm:grid-cols-2',
+    3: 'grid-cols-1 sm:grid-cols-1 lg:grid-cols-3',
+    4: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'
+  };
+  return /*#__PURE__*/jsx("section", {
+    id: id,
+    className: clsx('w-full py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8', className, dataClassName),
+    children: /*#__PURE__*/jsxs("div", {
+      className: "max-w-7xl mx-auto w-full",
+      children: [(title || subtitle || description) && /*#__PURE__*/jsxs("div", {
+        className: clsx('mb-8 sm:mb-10 md:mb-12 lg:mb-16 flex flex-col', alignmentClasses[alignment] || alignmentClasses.center),
+        children: [subtitle && /*#__PURE__*/jsx("p", {
+          className: "text-sm sm:text-base font-semibold text-primary-600 uppercase tracking-wide mb-2",
+          children: subtitle
+        }), title && /*#__PURE__*/jsx("h2", {
+          className: "text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-3 sm:mb-4",
+          children: title
+        }), description && /*#__PURE__*/jsx("p", {
+          className: "text-sm sm:text-base md:text-lg text-gray-600 max-w-2xl mx-auto px-4 sm:px-0",
+          children: description
+        })]
+      }), products.length > 0 && /*#__PURE__*/jsx("div", {
+        className: clsx('grid gap-6', gridColumnsClasses[columns] || gridColumnsClasses[3]),
+        children: products.map(function (product, index) {
+          if (variant === 'glassmorphism') {
+            return /*#__PURE__*/jsx(GlassmorphismProductCard, {
+              product: product,
+              currency: currency
+            }, index);
+          }
+          if (variant === 'minimal') {
+            return /*#__PURE__*/jsx(MinimalProductCard, {
+              product: product,
+              currency: currency
+            }, index);
+          }
+          if (variant === 'gradient') {
+            return /*#__PURE__*/jsx(GradientProductCard, {
+              product: product,
+              currency: currency
+            }, index);
+          }
+          // Default to glassmorphism
+          return /*#__PURE__*/jsx(GlassmorphismProductCard, {
+            product: product,
+            currency: currency
+          }, index);
+        })
+      }), products.length === 0 && /*#__PURE__*/jsx("div", {
+        className: "text-center py-12",
+        children: /*#__PURE__*/jsx("p", {
+          className: "text-gray-500 text-lg",
+          children: "No products available"
+        })
+      })]
+    })
+  });
+};
+
 /**
  * Load hero section data from a JSON file or object
  * @param {string|Object} data - JSON data or path to JSON file
@@ -15653,5 +17343,5 @@ var loadHeroDataSync = function loadHeroDataSync(data) {
   return data;
 };
 
-export { BlogAuthor, BlogCard, BlogComments, BlogGrid, BlogNavigation, BlogShare, BlogSingle, FaqHub, FaqModern, FaqVisual, FeatureDeck, FeatureModern, FeaturePrime, FooterLayout, HeaderLayout, HeaderPremium, HeaderStandard, HeroGlass, HeroGradient, HeroPrime, PriceBoard, PriceModern, PricePremium, SlideFlow, TestimonialCarousel, TestimonialTimeline, TrustBlock, loadHeroData, loadHeroDataSync };
+export { BlogAuthor, BlogCard, BlogComments, BlogGrid, BlogNavigation, BlogShare, BlogSingle, FaqHub, FaqModern, FaqVisual, FeatureDeck, FeatureModern, FeaturePrime, FooterLayout, HeaderLayout, HeaderPremium, HeaderStandard, HeroGlass, HeroGradient, HeroPrime, PriceBoard, PriceModern, PricePremium, ProductLayout, ProductModern, ProductStandard, SlideFlow, TestimonialCarousel, TestimonialTimeline, TrustBlock, loadHeroData, loadHeroDataSync };
 //# sourceMappingURL=index.esm.js.map
