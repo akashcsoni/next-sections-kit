@@ -17367,27 +17367,41 @@ var ProductShop = function ProductShop(_ref) {
     _useState14 = _slicedToArray(_useState13, 2),
     filteredProducts = _useState14[0],
     setFilteredProducts = _useState14[1];
-  var _useState15 = useState(true),
+  var _useState15 = useState(12),
     _useState16 = _slicedToArray(_useState15, 2),
-    sidebarOpen = _useState16[0],
-    setSidebarOpen = _useState16[1];
-  var _useState17 = useState(false),
+    productsToShow = _useState16[0],
+    setProductsToShow = _useState16[1];
+  var _useState17 = useState(true),
     _useState18 = _slicedToArray(_useState17, 2),
-    sortDropdownOpen = _useState18[0],
-    setSortDropdownOpen = _useState18[1];
-  var _useState19 = useState({
+    sidebarOpen = _useState18[0],
+    setSidebarOpen = _useState18[1];
+  var _useState19 = useState(false),
+    _useState20 = _slicedToArray(_useState19, 2),
+    sortDropdownOpen = _useState20[0],
+    setSortDropdownOpen = _useState20[1];
+  var _useState21 = useState({
       categories: true,
       tags: true,
       price: true,
       sales: true
     }),
-    _useState20 = _slicedToArray(_useState19, 2),
-    expandedSections = _useState20[0],
-    setExpandedSections = _useState20[1];
-  var _useState21 = useState(loader),
     _useState22 = _slicedToArray(_useState21, 2),
-    showLoader = _useState22[0],
-    setShowLoader = _useState22[1];
+    expandedSections = _useState22[0],
+    setExpandedSections = _useState22[1];
+  var _useState23 = useState(loader),
+    _useState24 = _slicedToArray(_useState23, 2),
+    showLoader = _useState24[0],
+    setShowLoader = _useState24[1];
+
+  // Pagination for "Show More" button in default layout
+  var productsPerPage = 12;
+  var displayedProducts = filteredProducts.slice(0, productsToShow);
+  var hasMoreProducts = productsToShow < filteredProducts.length;
+  var handleShowMore = function handleShowMore() {
+    setProductsToShow(function (prev) {
+      return Math.min(prev + productsPerPage, filteredProducts.length);
+    });
+  };
 
   // Handle loader with 2 second delay
   useEffect(function () {
