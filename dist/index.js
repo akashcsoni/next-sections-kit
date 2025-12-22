@@ -17297,6 +17297,2907 @@ var ProductModern = function ProductModern(_ref4) {
   });
 };
 
+var ProductShop = function ProductShop(_ref) {
+  var data = _ref.data,
+    className = _ref.className,
+    id = _ref.id,
+    _ref$loader = _ref.loader,
+    loader = _ref$loader === void 0 ? false : _ref$loader;
+  // Safety check for data
+  if (!data || _typeof(data) !== 'object') {
+    console.error('ProductShop: data prop is required and must be an object');
+    return null;
+  }
+  var title = data.title,
+    subtitle = data.subtitle,
+    description = data.description,
+    _data$products = data.products,
+    products = _data$products === void 0 ? [] : _data$products,
+    _data$variant = data.variant,
+    variant = _data$variant === void 0 ? 'default' : _data$variant,
+    _data$alignment = data.alignment,
+    alignment = _data$alignment === void 0 ? 'left' : _data$alignment,
+    _data$sidebarAlignmen = data.sidebarAlignment,
+    sidebarAlignment = _data$sidebarAlignmen === void 0 ? 'left' : _data$sidebarAlignmen,
+    _data$columns = data.columns,
+    columns = _data$columns === void 0 ? 4 : _data$columns,
+    _data$currency = data.currency,
+    currency = _data$currency === void 0 ? '$' : _data$currency,
+    _data$categories = data.categories,
+    categories = _data$categories === void 0 ? [] : _data$categories,
+    _data$tags = data.tags,
+    tags = _data$tags === void 0 ? [] : _data$tags,
+    _data$priceRange = data.priceRange,
+    priceRange = _data$priceRange === void 0 ? {
+      min: 0,
+      max: 500
+    } : _data$priceRange,
+    _data$sales = data.sales,
+    sales = _data$sales === void 0 ? [] : _data$sales,
+    dataClassName = data.className;
+
+  // State management
+  var _useState = react.useState(''),
+    _useState2 = _slicedToArray(_useState, 2),
+    searchQuery = _useState2[0],
+    setSearchQuery = _useState2[1];
+  var _useState3 = react.useState([]),
+    _useState4 = _slicedToArray(_useState3, 2),
+    selectedCategories = _useState4[0],
+    setSelectedCategories = _useState4[1];
+  var _useState5 = react.useState([]),
+    _useState6 = _slicedToArray(_useState5, 2),
+    selectedTags = _useState6[0],
+    setSelectedTags = _useState6[1];
+  var _useState7 = react.useState([priceRange.min, priceRange.max]),
+    _useState8 = _slicedToArray(_useState7, 2),
+    priceFilter = _useState8[0],
+    setPriceFilter = _useState8[1];
+  var _useState9 = react.useState([]),
+    _useState0 = _slicedToArray(_useState9, 2),
+    selectedSales = _useState0[0],
+    setSelectedSales = _useState0[1];
+  var _useState1 = react.useState('best-seller'),
+    _useState10 = _slicedToArray(_useState1, 2),
+    sortBy = _useState10[0],
+    setSortBy = _useState10[1];
+  var _useState11 = react.useState(''),
+    _useState12 = _slicedToArray(_useState11, 2),
+    tagSearch = _useState12[0],
+    setTagSearch = _useState12[1];
+  var _useState13 = react.useState(products),
+    _useState14 = _slicedToArray(_useState13, 2),
+    filteredProducts = _useState14[0],
+    setFilteredProducts = _useState14[1];
+  var _useState15 = react.useState(true),
+    _useState16 = _slicedToArray(_useState15, 2),
+    sidebarOpen = _useState16[0],
+    setSidebarOpen = _useState16[1];
+  var _useState17 = react.useState(false),
+    _useState18 = _slicedToArray(_useState17, 2),
+    sortDropdownOpen = _useState18[0],
+    setSortDropdownOpen = _useState18[1];
+  var _useState19 = react.useState({
+      categories: true,
+      tags: true,
+      price: true,
+      sales: true
+    }),
+    _useState20 = _slicedToArray(_useState19, 2),
+    expandedSections = _useState20[0],
+    setExpandedSections = _useState20[1];
+  var _useState21 = react.useState(loader),
+    _useState22 = _slicedToArray(_useState21, 2),
+    showLoader = _useState22[0],
+    setShowLoader = _useState22[1];
+
+  // Handle loader with 2 second delay
+  react.useEffect(function () {
+    if (loader) {
+      setShowLoader(true);
+      var timer = setTimeout(function () {
+        setShowLoader(false);
+      }, 2000);
+      return function () {
+        return clearTimeout(timer);
+      };
+    } else {
+      setShowLoader(false);
+    }
+  }, [loader]);
+
+  // Filter products based on all filters
+  react.useEffect(function () {
+    var filtered = _toConsumableArray(products);
+
+    // Search filter
+    if (searchQuery) {
+      filtered = filtered.filter(function (product) {
+        return (product.title || '').toLowerCase().includes(searchQuery.toLowerCase()) || (product.description || '').toLowerCase().includes(searchQuery.toLowerCase()) || (product.author || '').toLowerCase().includes(searchQuery.toLowerCase());
+      });
+    }
+
+    // Category filter
+    if (selectedCategories.length > 0) {
+      filtered = filtered.filter(function (product) {
+        return selectedCategories.some(function (cat) {
+          var catName = getStringValue(cat);
+          var productCategory = String(product.category || '');
+          return productCategory.toLowerCase() === catName.toLowerCase();
+        });
+      });
+    }
+
+    // Tag filter
+    if (selectedTags.length > 0) {
+      filtered = filtered.filter(function (product) {
+        return selectedTags.some(function (tag) {
+          var tagName = getStringValue(tag);
+          return (product.tags || []).some(function (productTag) {
+            var productTagName = getStringValue(productTag);
+            return productTagName.toLowerCase() === tagName.toLowerCase();
+          });
+        });
+      });
+    }
+
+    // Price filter
+    filtered = filtered.filter(function (product) {
+      var price = product.price || 0;
+      return price >= priceFilter[0] && price <= priceFilter[1];
+    });
+
+    // Sales filter
+    if (selectedSales.length > 0) {
+      filtered = filtered.filter(function (product) {
+        return selectedSales.some(function (sale) {
+          var saleName = getStringValue(sale);
+          var productSalesLevel = String(product.salesLevel || '');
+          return productSalesLevel.toLowerCase() === saleName.toLowerCase();
+        });
+      });
+    }
+
+    // Sort products
+    var sorted = _toConsumableArray(filtered).sort(function (a, b) {
+      switch (sortBy) {
+        case 'newest':
+          return (b.createdAt || 0) - (a.createdAt || 0);
+        case 'best-rated':
+          return (b.rating || 0) - (a.rating || 0);
+        case 'trending':
+          return (b.trending || 0) - (a.trending || 0);
+        case 'price-low':
+          return (a.price || 0) - (b.price || 0);
+        case 'price-high':
+          return (b.price || 0) - (a.price || 0);
+        case 'best-seller':
+        default:
+          return (b.sales || 0) - (a.sales || 0);
+      }
+    });
+    setFilteredProducts(sorted);
+  }, [searchQuery, selectedCategories, selectedTags, priceFilter, selectedSales, sortBy, products]);
+
+  // Toggle category selection
+  var toggleCategory = function toggleCategory(category) {
+    var categoryValue = getStringValue(category);
+    setSelectedCategories(function (prev) {
+      return prev.some(function (c) {
+        return getStringValue(c) === categoryValue;
+      }) ? prev.filter(function (c) {
+        return getStringValue(c) !== categoryValue;
+      }) : [].concat(_toConsumableArray(prev), [categoryValue]);
+    });
+  };
+
+  // Toggle tag selection
+  var toggleTag = function toggleTag(tag) {
+    var tagValue = getStringValue(tag);
+    setSelectedTags(function (prev) {
+      return prev.some(function (t) {
+        return getStringValue(t) === tagValue;
+      }) ? prev.filter(function (t) {
+        return getStringValue(t) !== tagValue;
+      }) : [].concat(_toConsumableArray(prev), [tagValue]);
+    });
+  };
+
+  // Toggle sales selection
+  var toggleSales = function toggleSales(sale) {
+    var saleValue = getStringValue(sale);
+    setSelectedSales(function (prev) {
+      return prev.some(function (s) {
+        return getStringValue(s) === saleValue;
+      }) ? prev.filter(function (s) {
+        return getStringValue(s) !== saleValue;
+      }) : [].concat(_toConsumableArray(prev), [saleValue]);
+    });
+  };
+
+  // Clear all filters
+  var clearAllFilters = function clearAllFilters() {
+    setSelectedCategories([]);
+    setSelectedTags([]);
+    setPriceFilter([priceRange.min, priceRange.max]);
+    setSelectedSales([]);
+    setSearchQuery('');
+    setTagSearch('');
+  };
+
+  // Toggle section expansion
+  var toggleSection = function toggleSection(section) {
+    setExpandedSections(function (prev) {
+      return _objectSpread2(_objectSpread2({}, prev), {}, _defineProperty({}, section, !prev[section]));
+    });
+  };
+
+  // Helper function to get string value from string or object
+  var getStringValue = function getStringValue(value) {
+    if (typeof value === 'string') return value;
+    if (value && _typeof(value) === 'object') return value.name || value.label || String(value);
+    return String(value || '');
+  };
+
+  // Get filtered tags based on search
+  var filteredTags = tags.filter(function (tag) {
+    var tagName = getStringValue(tag);
+    return tagName.toLowerCase().includes(tagSearch.toLowerCase());
+  });
+
+  // Grid columns classes
+  var gridColumnsClasses = {
+    2: 'grid-cols-1 sm:grid-cols-2',
+    3: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3',
+    4: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3'
+  };
+
+  // Render skeleton loader based on variant
+  var renderSkeleton = function renderSkeleton() {
+    // Dark variant skeleton
+    if (variant === 'dark') {
+      return /*#__PURE__*/jsxRuntime.jsx("section", {
+        id: id,
+        className: clsx('w-full py-8 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 bg-gray-900', className, dataClassName),
+        children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "max-w-7xl mx-auto w-full",
+          children: [(title || subtitle || description) && /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: clsx('mb-8 sm:mb-10 flex flex-col', alignment === 'center' ? 'text-center items-center' : alignment === 'right' ? 'text-right items-end' : 'text-left items-start'),
+            children: [subtitle && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "h-4 w-32 bg-gray-800 rounded mb-2 animate-pulse"
+            }), title && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "h-12 w-64 bg-gray-800 rounded mb-4 animate-pulse"
+            }), description && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "h-4 w-96 bg-gray-800 rounded animate-pulse"
+            })]
+          }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: clsx('flex flex-col gap-6 lg:gap-8', sidebarAlignment === 'right' ? 'lg:flex-row-reverse' : 'lg:flex-row'),
+            children: [/*#__PURE__*/jsxRuntime.jsx("aside", {
+              className: "w-full lg:w-64 flex-shrink-0",
+              children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: "bg-gray-800 border border-gray-700 rounded-lg p-4 sticky top-4",
+                children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "h-6 w-20 bg-gray-700 rounded mb-4 animate-pulse"
+                }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+                  className: "space-y-4",
+                  children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+                    className: "space-y-2",
+                    children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                      className: "h-4 w-24 bg-gray-700 rounded animate-pulse"
+                    }), _toConsumableArray(Array(4)).map(function (_, i) {
+                      return /*#__PURE__*/jsxRuntime.jsx("div", {
+                        className: "h-8 bg-gray-700 rounded animate-pulse"
+                      }, i);
+                    })]
+                  }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+                    className: "space-y-2",
+                    children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                      className: "h-4 w-16 bg-gray-700 rounded animate-pulse"
+                    }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                      className: "h-8 bg-gray-700 rounded animate-pulse"
+                    }), _toConsumableArray(Array(3)).map(function (_, i) {
+                      return /*#__PURE__*/jsxRuntime.jsx("div", {
+                        className: "h-6 bg-gray-700 rounded animate-pulse"
+                      }, i);
+                    })]
+                  }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+                    className: "space-y-2",
+                    children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                      className: "h-4 w-20 bg-gray-700 rounded animate-pulse"
+                    }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                      className: "h-2 bg-gray-700 rounded animate-pulse"
+                    })]
+                  })]
+                })]
+              })
+            }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "flex-1",
+              children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "bg-gray-800 border border-gray-700 rounded-lg p-4 mb-6",
+                children: /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "h-10 bg-gray-700 rounded animate-pulse"
+                })
+              }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: "flex justify-between items-center mb-6",
+                children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "h-4 w-32 bg-gray-800 rounded animate-pulse"
+                }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "flex gap-3",
+                  children: _toConsumableArray(Array(4)).map(function (_, i) {
+                    return /*#__PURE__*/jsxRuntime.jsx("div", {
+                      className: "h-10 w-24 bg-gray-800 rounded animate-pulse"
+                    }, i);
+                  })
+                })]
+              }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: clsx('grid gap-4 sm:gap-6', gridColumnsClasses[columns] || gridColumnsClasses[4]),
+                children: _toConsumableArray(Array(6)).map(function (_, i) {
+                  return /*#__PURE__*/jsxRuntime.jsxs("div", {
+                    className: "bg-gray-800 border border-gray-700 overflow-hidden",
+                    children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                      className: "w-full h-48 bg-gray-700 animate-pulse"
+                    }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+                      className: "p-4 space-y-3",
+                      children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                        className: "h-3 w-16 bg-gray-700 rounded animate-pulse"
+                      }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                        className: "h-5 w-full bg-gray-700 rounded animate-pulse"
+                      }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                        className: "h-6 w-24 bg-gray-700 rounded animate-pulse"
+                      }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                        className: "h-4 w-32 bg-gray-700 rounded animate-pulse"
+                      }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                        className: "h-10 w-full bg-gray-700 rounded animate-pulse"
+                      })]
+                    })]
+                  }, i);
+                })
+              })]
+            })]
+          })]
+        })
+      });
+    }
+
+    // Top-sidebar variant skeleton
+    if (variant === 'top-sidebar') {
+      return /*#__PURE__*/jsxRuntime.jsx("section", {
+        id: id,
+        className: clsx('w-full py-8 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 bg-gray-50', className, dataClassName),
+        children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "max-w-7xl mx-auto w-full",
+          children: [(title || subtitle || description) && /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: clsx('mb-8 sm:mb-10 flex flex-col', alignment === 'center' ? 'text-center items-center' : alignment === 'right' ? 'text-right items-end' : 'text-left items-start'),
+            children: [subtitle && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "h-4 w-32 bg-gray-200 rounded mb-2 animate-pulse"
+            }), title && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "h-12 w-64 bg-gray-200 rounded mb-4 animate-pulse"
+            }), description && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "h-4 w-96 bg-gray-200 rounded animate-pulse"
+            })]
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "bg-white rounded-xl border border-gray-200 shadow-sm p-4 sm:p-6 mb-6",
+            children: /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4",
+              children: _toConsumableArray(Array(4)).map(function (_, i) {
+                return /*#__PURE__*/jsxRuntime.jsxs("div", {
+                  className: "space-y-2",
+                  children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: "h-4 w-20 bg-gray-200 rounded animate-pulse"
+                  }), _toConsumableArray(Array(3)).map(function (_, j) {
+                    return /*#__PURE__*/jsxRuntime.jsx("div", {
+                      className: "h-6 bg-gray-200 rounded animate-pulse"
+                    }, j);
+                  })]
+                }, i);
+              })
+            })
+          }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+            children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "bg-white rounded-xl border border-gray-200 shadow-sm p-4 mb-6",
+              children: /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "h-10 bg-gray-200 rounded animate-pulse"
+              })
+            }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "flex justify-between items-center mb-6",
+              children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "h-4 w-32 bg-gray-200 rounded animate-pulse"
+              }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "flex gap-3",
+                children: _toConsumableArray(Array(4)).map(function (_, i) {
+                  return /*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: "h-10 w-24 bg-gray-200 rounded animate-pulse"
+                  }, i);
+                })
+              })]
+            }), /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: clsx('grid gap-4 sm:gap-6', gridColumnsClasses[columns] || gridColumnsClasses[4]),
+              children: _toConsumableArray(Array(6)).map(function (_, i) {
+                return /*#__PURE__*/jsxRuntime.jsxs("div", {
+                  className: "bg-white rounded-2xl border border-gray-200 overflow-hidden",
+                  children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: "w-full h-56 bg-gray-200 animate-pulse"
+                  }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+                    className: "p-6 space-y-3",
+                    children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                      className: "h-3 w-16 bg-gray-200 rounded animate-pulse"
+                    }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                      className: "h-6 w-full bg-gray-200 rounded animate-pulse"
+                    }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                      className: "h-8 w-32 bg-gray-200 rounded animate-pulse"
+                    }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                      className: "h-4 w-40 bg-gray-200 rounded animate-pulse"
+                    }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                      className: "h-12 w-full bg-gray-200 rounded animate-pulse"
+                    })]
+                  })]
+                }, i);
+              })
+            })]
+          })]
+        })
+      });
+    }
+
+    // Right-sidebar variant skeleton
+    if (variant === 'right-sidebar') {
+      return /*#__PURE__*/jsxRuntime.jsx("section", {
+        id: id,
+        className: clsx('w-full py-8 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 bg-gray-50', className, dataClassName),
+        children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "max-w-7xl mx-auto w-full",
+          children: [(title || subtitle || description) && /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: clsx('mb-8 sm:mb-10 flex flex-col', alignment === 'center' ? 'text-center items-center' : alignment === 'right' ? 'text-right items-end' : 'text-left items-start'),
+            children: [subtitle && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "h-4 w-32 bg-gray-200 rounded mb-2 animate-pulse"
+            }), title && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "h-12 w-64 bg-gray-200 rounded mb-4 animate-pulse"
+            }), description && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "h-4 w-96 bg-gray-200 rounded animate-pulse"
+            })]
+          }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: clsx('flex flex-col gap-6 lg:gap-8', sidebarAlignment === 'right' ? 'lg:flex-row-reverse' : 'lg:flex-row'),
+            children: [/*#__PURE__*/jsxRuntime.jsx("aside", {
+              className: "w-full lg:w-80 flex-shrink-0",
+              children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: "bg-white rounded-2xl border-2 border-primary-200 shadow-xl p-6 sticky top-4",
+                children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "h-8 w-32 bg-gray-200 rounded mb-6 animate-pulse"
+                }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "space-y-5",
+                  children: _toConsumableArray(Array(4)).map(function (_, i) {
+                    return /*#__PURE__*/jsxRuntime.jsxs("div", {
+                      className: "bg-gray-50 rounded-xl p-4 space-y-3",
+                      children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                        className: "h-5 w-24 bg-gray-200 rounded animate-pulse"
+                      }), _toConsumableArray(Array(3)).map(function (_, j) {
+                        return /*#__PURE__*/jsxRuntime.jsx("div", {
+                          className: "h-8 bg-gray-200 rounded animate-pulse"
+                        }, j);
+                      })]
+                    }, i);
+                  })
+                })]
+              })
+            }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "flex-1",
+              children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "bg-white rounded-xl border border-gray-200 shadow-sm p-4 mb-6",
+                children: /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "h-10 bg-gray-200 rounded animate-pulse"
+                })
+              }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: "flex justify-between items-center mb-6",
+                children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "h-4 w-32 bg-gray-200 rounded animate-pulse"
+                }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "flex gap-3",
+                  children: _toConsumableArray(Array(4)).map(function (_, i) {
+                    return /*#__PURE__*/jsxRuntime.jsx("div", {
+                      className: "h-10 w-24 bg-gray-200 rounded animate-pulse"
+                    }, i);
+                  })
+                })]
+              }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: clsx('grid gap-4 sm:gap-6', gridColumnsClasses[columns] || gridColumnsClasses[4]),
+                children: _toConsumableArray(Array(6)).map(function (_, i) {
+                  return /*#__PURE__*/jsxRuntime.jsxs("div", {
+                    className: "bg-white rounded-2xl border border-gray-200 overflow-hidden",
+                    children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                      className: "w-full h-56 bg-gray-200 animate-pulse"
+                    }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+                      className: "p-6 space-y-3",
+                      children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                        className: "h-3 w-16 bg-gray-200 rounded animate-pulse"
+                      }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                        className: "h-6 w-full bg-gray-200 rounded animate-pulse"
+                      }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                        className: "h-8 w-32 bg-gray-200 rounded animate-pulse"
+                      }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                        className: "h-4 w-40 bg-gray-200 rounded animate-pulse"
+                      }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                        className: "h-12 w-full bg-gray-200 rounded animate-pulse"
+                      })]
+                    })]
+                  }, i);
+                })
+              })]
+            })]
+          })]
+        })
+      });
+    }
+
+    // Default, compact, minimal variants skeleton (light)
+    return /*#__PURE__*/jsxRuntime.jsx("section", {
+      id: id,
+      className: clsx('w-full py-8 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 bg-gray-50', className, dataClassName),
+      children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "max-w-7xl mx-auto w-full",
+        children: [(title || subtitle || description) && /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: clsx('mb-8 sm:mb-10 flex flex-col', alignment === 'center' ? 'text-center items-center' : alignment === 'right' ? 'text-right items-end' : 'text-left items-start'),
+          children: [subtitle && /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "h-4 w-32 bg-gray-200 rounded mb-2 animate-pulse"
+          }), title && /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "h-12 w-64 bg-gray-200 rounded mb-4 animate-pulse"
+          }), description && /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "h-4 w-96 bg-gray-200 rounded animate-pulse"
+          })]
+        }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: clsx('flex flex-col gap-6 lg:gap-8', sidebarAlignment === 'right' ? 'lg:flex-row-reverse' : 'lg:flex-row'),
+          children: [/*#__PURE__*/jsxRuntime.jsx("aside", {
+            className: clsx('w-full flex-shrink-0', variant === 'compact' ? 'lg:w-64' : variant === 'minimal' ? 'lg:w-60' : 'lg:w-72'),
+            children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: clsx('bg-white sticky top-4 p-4', variant === 'compact' ? 'rounded-lg border border-gray-200' : variant === 'minimal' ? 'border-b border-gray-100' : 'rounded-xl border border-gray-200 shadow-sm p-5 sm:p-6'),
+              children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "h-6 w-20 bg-gray-200 rounded mb-4 animate-pulse"
+              }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: "space-y-4",
+                children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+                  className: "space-y-2",
+                  children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: "h-4 w-24 bg-gray-200 rounded animate-pulse"
+                  }), _toConsumableArray(Array(4)).map(function (_, i) {
+                    return /*#__PURE__*/jsxRuntime.jsx("div", {
+                      className: "h-8 bg-gray-200 rounded animate-pulse"
+                    }, i);
+                  })]
+                }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+                  className: "space-y-2",
+                  children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: "h-4 w-16 bg-gray-200 rounded animate-pulse"
+                  }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: "h-8 bg-gray-200 rounded animate-pulse"
+                  }), _toConsumableArray(Array(3)).map(function (_, i) {
+                    return /*#__PURE__*/jsxRuntime.jsx("div", {
+                      className: "h-6 bg-gray-200 rounded animate-pulse"
+                    }, i);
+                  })]
+                }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+                  className: "space-y-2",
+                  children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: "h-4 w-20 bg-gray-200 rounded animate-pulse"
+                  }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: "h-2 bg-gray-200 rounded animate-pulse"
+                  })]
+                })]
+              })]
+            })
+          }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex-1",
+            children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "bg-white rounded-xl border border-gray-200 shadow-sm p-4 mb-6",
+              children: /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "h-10 bg-gray-200 rounded animate-pulse"
+              })
+            }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "flex justify-between items-center mb-6",
+              children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "h-4 w-32 bg-gray-200 rounded animate-pulse"
+              }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "flex gap-3",
+                children: _toConsumableArray(Array(4)).map(function (_, i) {
+                  return /*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: "h-10 w-24 bg-gray-200 rounded animate-pulse"
+                  }, i);
+                })
+              })]
+            }), /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: clsx('grid gap-4 sm:gap-6', gridColumnsClasses[columns] || gridColumnsClasses[4]),
+              children: _toConsumableArray(Array(6)).map(function (_, i) {
+                return /*#__PURE__*/jsxRuntime.jsxs("div", {
+                  className: clsx('bg-white overflow-hidden', variant === 'compact' ? 'rounded-xl border border-gray-200' : variant === 'minimal' ? 'border border-gray-200' : 'rounded-2xl border border-gray-200'),
+                  children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: clsx('w-full bg-gray-200 animate-pulse', variant === 'compact' ? 'h-44' : 'h-56')
+                  }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+                    className: clsx('space-y-3', variant === 'compact' ? 'p-4' : 'p-6'),
+                    children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                      className: "h-3 w-16 bg-gray-200 rounded animate-pulse"
+                    }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                      className: clsx('bg-gray-200 rounded animate-pulse', variant === 'compact' ? 'h-4' : 'h-6')
+                    }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                      className: clsx('bg-gray-200 rounded animate-pulse', variant === 'compact' ? 'h-5 w-24' : 'h-8 w-32')
+                    }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                      className: "h-4 w-40 bg-gray-200 rounded animate-pulse"
+                    }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                      className: clsx('bg-gray-200 rounded animate-pulse', variant === 'compact' ? 'h-8' : 'h-12')
+                    })]
+                  })]
+                }, i);
+              })
+            })]
+          })]
+        })]
+      })
+    });
+  };
+
+  // Render sidebar based on variant
+  var renderSidebar = function renderSidebar() {
+    // Top-sidebar variant - Filters at top, products below
+    if (variant === 'top-sidebar') {
+      return /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: clsx('w-full transition-all duration-300 mb-6', sidebarOpen ? 'block' : 'hidden'),
+        children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "bg-white rounded-xl border border-gray-200 shadow-sm p-5 sm:p-6",
+          children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex items-center justify-between mb-6 pb-4 border-b border-gray-200",
+            children: [/*#__PURE__*/jsxRuntime.jsxs("h3", {
+              className: "text-xl font-bold text-gray-900 flex items-center gap-2",
+              children: [/*#__PURE__*/jsxRuntime.jsx("svg", {
+                className: "w-5 h-5 text-primary-600",
+                fill: "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2,
+                  d: "M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"
+                })
+              }), "Filters"]
+            }), (selectedCategories.length > 0 || selectedTags.length > 0 || selectedSales.length > 0 || priceFilter[1] < priceRange.max || searchQuery) && /*#__PURE__*/jsxRuntime.jsx("button", {
+              onClick: clearAllFilters,
+              className: "text-xs text-primary-600 hover:text-primary-700 font-medium",
+              children: "Clear All"
+            })]
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6",
+            children: renderSidebarContent('top-sidebar')
+          })]
+        })
+      });
+    }
+
+    // Default variant sidebar - Rich design with shadows and rounded corners
+    if (variant === 'default') {
+      return /*#__PURE__*/jsxRuntime.jsx("aside", {
+        className: clsx('w-full lg:w-72 flex-shrink-0 transition-all duration-300', sidebarOpen ? 'block' : 'hidden'),
+        children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "bg-white rounded-xl border border-gray-200 shadow-sm p-5 sm:p-6 sticky top-4",
+          children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex items-center justify-between mb-6 pb-4 border-b border-gray-200",
+            children: [/*#__PURE__*/jsxRuntime.jsxs("h3", {
+              className: "text-xl font-bold text-gray-900 flex items-center gap-2",
+              children: [/*#__PURE__*/jsxRuntime.jsx("svg", {
+                className: "w-5 h-5 text-primary-600",
+                fill: "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2,
+                  d: "M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"
+                })
+              }), "Filters"]
+            }), (selectedCategories.length > 0 || selectedTags.length > 0 || selectedSales.length > 0 || priceFilter[1] < priceRange.max || searchQuery) && /*#__PURE__*/jsxRuntime.jsx("button", {
+              onClick: clearAllFilters,
+              className: "text-xs text-primary-600 hover:text-primary-700 font-medium",
+              children: "Clear All"
+            })]
+          }), renderSidebarContent('default')]
+        })
+      });
+    }
+
+    // Compact variant sidebar - Smaller, more condensed
+    if (variant === 'compact') {
+      return /*#__PURE__*/jsxRuntime.jsx("aside", {
+        className: clsx('w-full lg:w-64 flex-shrink-0 transition-all duration-300', sidebarOpen ? 'block' : 'hidden'),
+        children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "bg-white rounded-lg border border-gray-200 p-4 sticky top-4",
+          children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex items-center justify-between mb-4 pb-3 border-b border-gray-200",
+            children: [/*#__PURE__*/jsxRuntime.jsxs("h3", {
+              className: "text-lg font-semibold text-gray-900 flex items-center gap-2",
+              children: [/*#__PURE__*/jsxRuntime.jsx("svg", {
+                className: "w-4 h-4 text-primary-600",
+                fill: "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2,
+                  d: "M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"
+                })
+              }), "Filters"]
+            }), (selectedCategories.length > 0 || selectedTags.length > 0 || selectedSales.length > 0 || priceFilter[1] < priceRange.max || searchQuery) && /*#__PURE__*/jsxRuntime.jsx("button", {
+              onClick: clearAllFilters,
+              className: "text-xs text-primary-600 hover:text-primary-700 font-medium",
+              children: "Clear"
+            })]
+          }), renderSidebarContent('compact')]
+        })
+      });
+    }
+
+    // Minimal variant sidebar - Clean, minimal design
+    if (variant === 'minimal') {
+      return /*#__PURE__*/jsxRuntime.jsx("aside", {
+        className: clsx('w-full lg:w-60 flex-shrink-0 transition-all duration-300', sidebarOpen ? 'block' : 'hidden'),
+        children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "bg-white border-b border-gray-100 p-4 sticky top-4",
+          children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex items-center justify-between mb-4 pb-3 border-b border-gray-100",
+            children: [/*#__PURE__*/jsxRuntime.jsx("h3", {
+              className: "text-base font-medium text-gray-900",
+              children: "Filters"
+            }), (selectedCategories.length > 0 || selectedTags.length > 0 || selectedSales.length > 0 || priceFilter[1] < priceRange.max || searchQuery) && /*#__PURE__*/jsxRuntime.jsx("button", {
+              onClick: clearAllFilters,
+              className: "text-xs text-gray-500 hover:text-gray-700",
+              children: "Clear"
+            })]
+          }), renderSidebarContent('minimal')]
+        })
+      });
+    }
+
+    // Dark mode variant - Simple dark UI with clean design
+    if (variant === 'dark') {
+      return /*#__PURE__*/jsxRuntime.jsx("aside", {
+        className: clsx('w-full lg:w-64 flex-shrink-0 transition-all duration-300', sidebarOpen ? 'block' : 'hidden'),
+        children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "bg-gray-800 border border-gray-700 rounded-lg p-4 sticky top-4",
+          children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex items-center justify-between mb-4 pb-3 border-b border-gray-700",
+            children: [/*#__PURE__*/jsxRuntime.jsxs("h3", {
+              className: "text-base font-medium text-gray-200 flex items-center gap-2",
+              children: [/*#__PURE__*/jsxRuntime.jsx("svg", {
+                className: "w-4 h-4 text-gray-400",
+                fill: "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2,
+                  d: "M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"
+                })
+              }), "Filters"]
+            }), (selectedCategories.length > 0 || selectedTags.length > 0 || selectedSales.length > 0 || priceFilter[1] < priceRange.max || searchQuery) && /*#__PURE__*/jsxRuntime.jsx("button", {
+              onClick: clearAllFilters,
+              className: "text-xs text-gray-400 hover:text-gray-300 transition-colors",
+              children: "Clear"
+            })]
+          }), renderSidebarContent('dark')]
+        })
+      });
+    }
+
+    // Right-sidebar variant - Unique premium design with gradient and modern styling
+    if (variant === 'right-sidebar') {
+      return /*#__PURE__*/jsxRuntime.jsx("aside", {
+        className: clsx('w-full lg:w-80 flex-shrink-0 transition-all duration-300', sidebarOpen ? 'block' : 'hidden'),
+        children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "bg-gradient-to-br from-primary-50 via-white to-primary-50 rounded-2xl border-2 border-primary-200 shadow-xl p-6 sticky top-4 relative overflow-hidden",
+          children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "absolute top-0 right-0 w-32 h-32 bg-primary-200/20 rounded-full blur-3xl -z-0"
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "absolute bottom-0 left-0 w-24 h-24 bg-primary-300/20 rounded-full blur-2xl -z-0"
+          }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "relative z-10 flex items-center justify-between mb-6 pb-5 border-b-2 border-primary-200/50",
+            children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "flex items-center gap-3",
+              children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "w-10 h-10 bg-gradient-to-br from-primary-600 to-primary-700 rounded-xl flex items-center justify-center shadow-lg",
+                children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+                  className: "w-5 h-5 text-white",
+                  fill: "none",
+                  stroke: "currentColor",
+                  viewBox: "0 0 24 24",
+                  children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                    strokeLinecap: "round",
+                    strokeLinejoin: "round",
+                    strokeWidth: 2,
+                    d: "M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"
+                  })
+                })
+              }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+                children: [/*#__PURE__*/jsxRuntime.jsx("h3", {
+                  className: "text-xl font-bold text-gray-900",
+                  children: "Refine Results"
+                }), /*#__PURE__*/jsxRuntime.jsx("p", {
+                  className: "text-xs text-gray-500 mt-0.5",
+                  children: "Filter & Sort"
+                })]
+              })]
+            }), (selectedCategories.length > 0 || selectedTags.length > 0 || selectedSales.length > 0 || priceFilter[1] < priceRange.max || searchQuery) && /*#__PURE__*/jsxRuntime.jsx("button", {
+              onClick: clearAllFilters,
+              className: "px-3 py-1.5 bg-white border border-primary-300 text-primary-700 text-xs font-semibold rounded-lg hover:bg-primary-50 hover:border-primary-400 transition-all shadow-sm",
+              children: "Reset"
+            })]
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "relative z-10 space-y-5",
+            children: renderSidebarContent('right-sidebar')
+          })]
+        })
+      });
+    }
+
+    // Default fallback - return default variant
+    return /*#__PURE__*/jsxRuntime.jsx("aside", {
+      className: clsx('w-full lg:w-72 flex-shrink-0 transition-all duration-300', sidebarOpen ? 'block' : 'hidden'),
+      children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "bg-white rounded-xl border border-gray-200 shadow-sm p-5 sm:p-6 sticky top-4",
+        children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "flex items-center justify-between mb-6 pb-4 border-b border-gray-200",
+          children: [/*#__PURE__*/jsxRuntime.jsxs("h3", {
+            className: "text-xl font-bold text-gray-900 flex items-center gap-2",
+            children: [/*#__PURE__*/jsxRuntime.jsx("svg", {
+              className: "w-5 h-5 text-primary-600",
+              fill: "none",
+              stroke: "currentColor",
+              viewBox: "0 0 24 24",
+              children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"
+              })
+            }), "Filters"]
+          }), (selectedCategories.length > 0 || selectedTags.length > 0 || selectedSales.length > 0 || priceFilter[1] < priceRange.max || searchQuery) && /*#__PURE__*/jsxRuntime.jsx("button", {
+            onClick: clearAllFilters,
+            className: "text-xs text-primary-600 hover:text-primary-700 font-medium",
+            children: "Clear All"
+          })]
+        }), renderSidebarContent('default')]
+      })
+    });
+  };
+
+  // Render sidebar content based on variant
+  var renderSidebarContent = function renderSidebarContent(sidebarVariant) {
+    var isCompact = sidebarVariant === 'compact';
+    var isMinimal = sidebarVariant === 'minimal';
+    var isDefault = sidebarVariant === 'default';
+    var isTopSidebar = sidebarVariant === 'top-sidebar';
+    var isRightSidebar = sidebarVariant === 'right-sidebar';
+    var isDark = sidebarVariant === 'dark';
+    return /*#__PURE__*/jsxRuntime.jsxs(jsxRuntime.Fragment, {
+      children: [categories.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: isDefault ? "mb-5" : isCompact ? "mb-4" : isTopSidebar ? "mb-0" : isRightSidebar ? "mb-5" : isDark ? "mb-4" : "mb-3",
+        children: isDark ? /*#__PURE__*/jsxRuntime.jsxs("div", {
+          children: [/*#__PURE__*/jsxRuntime.jsxs("button", {
+            onClick: function onClick() {
+              return toggleSection('categories');
+            },
+            className: "w-full flex items-center justify-between mb-3 text-sm font-medium text-gray-300 hover:text-white transition-colors",
+            children: [/*#__PURE__*/jsxRuntime.jsx("span", {
+              children: "Categories"
+            }), /*#__PURE__*/jsxRuntime.jsx("svg", {
+              className: clsx('w-4 h-4 transition-transform duration-200 text-gray-400', expandedSections.categories ? 'rotate-180' : ''),
+              fill: "none",
+              stroke: "currentColor",
+              viewBox: "0 0 24 24",
+              children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M19 9l-7 7-7-7"
+              })
+            })]
+          }), expandedSections.categories && /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "space-y-2",
+            children: categories.map(function (category, index) {
+              var isSelected = selectedCategories.some(function (c) {
+                return getStringValue(c) === getStringValue(category);
+              });
+              return /*#__PURE__*/jsxRuntime.jsxs("label", {
+                className: clsx('flex items-center gap-3 cursor-pointer transition-colors p-2 rounded', isSelected ? 'bg-gray-700 text-white' : 'text-gray-400 hover:text-gray-300 hover:bg-gray-700/50'),
+                children: [/*#__PURE__*/jsxRuntime.jsx("input", {
+                  type: "checkbox",
+                  checked: isSelected,
+                  onChange: function onChange() {
+                    return toggleCategory(category);
+                  },
+                  className: "w-4 h-4 text-primary-600 border-gray-600 bg-gray-700 rounded focus:ring-primary-500 focus:ring-1"
+                }), /*#__PURE__*/jsxRuntime.jsx("span", {
+                  className: "text-sm flex-1",
+                  children: category.name || category
+                }), category.count !== undefined && /*#__PURE__*/jsxRuntime.jsx("span", {
+                  className: clsx('text-xs px-2 py-0.5 rounded', isSelected ? 'bg-gray-600 text-gray-200' : 'bg-gray-700 text-gray-400'),
+                  children: category.count
+                })]
+              }, index);
+            })
+          })]
+        }) : isRightSidebar ? /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "bg-white/80 backdrop-blur-sm rounded-xl border border-primary-200/50 p-4 shadow-sm",
+          children: [/*#__PURE__*/jsxRuntime.jsxs("button", {
+            onClick: function onClick() {
+              return toggleSection('categories');
+            },
+            className: "w-full flex items-center justify-between mb-3 transition-colors group",
+            children: [/*#__PURE__*/jsxRuntime.jsxs("span", {
+              className: "flex items-center gap-3",
+              children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-lg flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow",
+                children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+                  className: "w-4 h-4 text-white",
+                  fill: "none",
+                  stroke: "currentColor",
+                  viewBox: "0 0 24 24",
+                  children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                    strokeLinecap: "round",
+                    strokeLinejoin: "round",
+                    strokeWidth: 2,
+                    d: "M4 6h16M4 12h16M4 18h16"
+                  })
+                })
+              }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: "text-left",
+                children: [/*#__PURE__*/jsxRuntime.jsx("h4", {
+                  className: "text-sm font-bold text-gray-900",
+                  children: "Categories"
+                }), /*#__PURE__*/jsxRuntime.jsx("p", {
+                  className: "text-xs text-gray-500",
+                  children: "Select product type"
+                })]
+              })]
+            }), /*#__PURE__*/jsxRuntime.jsx("svg", {
+              className: clsx('w-5 h-5 text-primary-600 transition-transform duration-200', expandedSections.categories ? 'rotate-180' : ''),
+              fill: "none",
+              stroke: "currentColor",
+              viewBox: "0 0 24 24",
+              children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M19 9l-7 7-7-7"
+              })
+            })]
+          }), expandedSections.categories && /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "space-y-2 pt-2 border-t border-primary-100",
+            children: categories.map(function (category, index) {
+              var isSelected = selectedCategories.some(function (c) {
+                return getStringValue(c) === getStringValue(category);
+              });
+              return /*#__PURE__*/jsxRuntime.jsxs("label", {
+                className: clsx('flex items-center gap-3 cursor-pointer transition-all p-2.5 rounded-lg', isSelected ? 'bg-gradient-to-r from-primary-50 to-primary-100/50 border border-primary-300 shadow-sm' : 'bg-white/50 hover:bg-white border border-transparent hover:border-primary-200'),
+                children: [/*#__PURE__*/jsxRuntime.jsx("input", {
+                  type: "checkbox",
+                  checked: isSelected,
+                  onChange: function onChange() {
+                    return toggleCategory(category);
+                  },
+                  className: "w-4 h-4 text-primary-600 border-gray-300 rounded focus:ring-primary-500 focus:ring-2"
+                }), /*#__PURE__*/jsxRuntime.jsx("span", {
+                  className: clsx('text-sm flex-1 font-medium', isSelected ? 'text-primary-900' : 'text-gray-700'),
+                  children: category.name || category
+                }), category.count !== undefined && /*#__PURE__*/jsxRuntime.jsx("span", {
+                  className: clsx('text-xs px-2.5 py-1 rounded-full font-semibold', isSelected ? 'bg-primary-600 text-white' : 'bg-gray-200 text-gray-600'),
+                  children: category.count
+                })]
+              }, index);
+            })
+          })]
+        }) : /*#__PURE__*/jsxRuntime.jsxs(jsxRuntime.Fragment, {
+          children: [/*#__PURE__*/jsxRuntime.jsxs("button", {
+            onClick: function onClick() {
+              return toggleSection('categories');
+            },
+            className: clsx("w-full flex items-center justify-between mb-3 transition-colors", isDefault ? "text-sm font-semibold text-gray-900 hover:text-primary-600" : isCompact ? "text-sm font-medium text-gray-800 hover:text-primary-600" : isTopSidebar ? "text-sm font-semibold text-gray-900 hover:text-primary-600" : "text-sm font-normal text-gray-700 hover:text-gray-900"),
+            children: [/*#__PURE__*/jsxRuntime.jsxs("span", {
+              className: "flex items-center gap-2",
+              children: [!isMinimal && /*#__PURE__*/jsxRuntime.jsx("svg", {
+                className: isDefault || isTopSidebar ? "w-4 h-4" : "w-3.5 h-3.5",
+                fill: "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2,
+                  d: "M4 6h16M4 12h16M4 18h16"
+                })
+              }), "Categories"]
+            }), /*#__PURE__*/jsxRuntime.jsx("svg", {
+              className: clsx(isDefault || isTopSidebar ? 'w-4 h-4' : 'w-3.5 h-3.5', 'transition-transform duration-200', expandedSections.categories ? 'rotate-180' : ''),
+              fill: "none",
+              stroke: "currentColor",
+              viewBox: "0 0 24 24",
+              children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M19 9l-7 7-7-7"
+              })
+            })]
+          }), expandedSections.categories && /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: clsx("space-y-2", isDefault ? "pl-6" : isCompact ? "pl-4" : isTopSidebar ? "pl-0" : "pl-2"),
+            children: categories.map(function (category, index) {
+              var isSelected = selectedCategories.some(function (c) {
+                return getStringValue(c) === getStringValue(category);
+              });
+              return /*#__PURE__*/jsxRuntime.jsxs("label", {
+                className: clsx('flex items-center gap-3 cursor-pointer transition-colors', isDefault || isTopSidebar ? 'p-2 rounded-lg' : isCompact ? 'p-1.5 rounded-md' : 'p-1', isSelected ? isDefault || isTopSidebar ? 'bg-primary-50' : isCompact ? 'bg-primary-50' : 'bg-gray-50' : isDefault || isTopSidebar ? 'hover:bg-gray-50' : isCompact ? 'hover:bg-gray-50' : 'hover:bg-gray-50'),
+                children: [/*#__PURE__*/jsxRuntime.jsx("input", {
+                  type: "checkbox",
+                  checked: isSelected,
+                  onChange: function onChange() {
+                    return toggleCategory(category);
+                  },
+                  className: clsx("text-primary-600 border-gray-300 rounded focus:ring-primary-500 focus:ring-2", isDefault || isTopSidebar ? "w-4 h-4" : "w-3.5 h-3.5")
+                }), /*#__PURE__*/jsxRuntime.jsx("span", {
+                  className: clsx(isDefault || isTopSidebar ? 'text-sm flex-1' : isCompact ? 'text-xs flex-1' : 'text-xs flex-1', isSelected ? isDefault || isTopSidebar ? 'text-primary-700 font-medium' : isCompact ? 'text-primary-700 font-medium' : 'text-gray-900' : isDefault || isTopSidebar ? 'text-gray-700 group-hover:text-primary-600' : isCompact ? 'text-gray-600' : 'text-gray-600'),
+                  children: category.name || category
+                }), category.count !== undefined && /*#__PURE__*/jsxRuntime.jsx("span", {
+                  className: clsx(isDefault || isTopSidebar ? 'text-xs px-2 py-0.5 rounded-full' : isCompact ? 'text-xs px-1.5 py-0.5 rounded' : 'text-xs px-1.5 py-0.5 rounded', isSelected ? 'bg-primary-100 text-primary-700' : 'bg-gray-100 text-gray-600'),
+                  children: category.count
+                })]
+              }, index);
+            })
+          })]
+        })
+      }), tags.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: isDefault ? "mb-5" : isCompact ? "mb-4" : isTopSidebar ? "mb-0" : isRightSidebar ? "mb-5" : isDark ? "mb-4" : "mb-3",
+        children: isDark ? /*#__PURE__*/jsxRuntime.jsxs("div", {
+          children: [/*#__PURE__*/jsxRuntime.jsxs("button", {
+            onClick: function onClick() {
+              return toggleSection('tags');
+            },
+            className: "w-full flex items-center justify-between mb-3 text-sm font-medium text-gray-300 hover:text-white transition-colors",
+            children: [/*#__PURE__*/jsxRuntime.jsx("span", {
+              children: "Tags"
+            }), /*#__PURE__*/jsxRuntime.jsx("svg", {
+              className: clsx('w-4 h-4 transition-transform duration-200 text-gray-400', expandedSections.tags ? 'rotate-180' : ''),
+              fill: "none",
+              stroke: "currentColor",
+              viewBox: "0 0 24 24",
+              children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M19 9l-7 7-7-7"
+              })
+            })]
+          }), expandedSections.tags && /*#__PURE__*/jsxRuntime.jsxs(jsxRuntime.Fragment, {
+            children: [/*#__PURE__*/jsxRuntime.jsx("input", {
+              type: "text",
+              placeholder: "Search tags here.",
+              value: tagSearch,
+              onChange: function onChange(e) {
+                return setTagSearch(e.target.value);
+              },
+              className: "w-full border border-gray-600 bg-gray-700 text-gray-200 rounded-lg text-sm mb-3 px-3 py-2 focus:outline-none focus:ring-1 focus:ring-primary-500 focus:border-primary-500 placeholder-gray-500"
+            }), /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "space-y-2 max-h-48 overflow-y-auto",
+              children: filteredTags.map(function (tag, index) {
+                var isSelected = selectedTags.some(function (t) {
+                  return getStringValue(t) === getStringValue(tag);
+                });
+                return /*#__PURE__*/jsxRuntime.jsxs("label", {
+                  className: clsx('flex items-center gap-3 cursor-pointer transition-colors p-2 rounded', isSelected ? 'bg-gray-700 text-white' : 'text-gray-400 hover:text-gray-300 hover:bg-gray-700/50'),
+                  children: [/*#__PURE__*/jsxRuntime.jsx("input", {
+                    type: "checkbox",
+                    checked: isSelected,
+                    onChange: function onChange() {
+                      return toggleTag(tag);
+                    },
+                    className: "w-4 h-4 text-primary-600 border-gray-600 bg-gray-700 rounded focus:ring-primary-500 focus:ring-1"
+                  }), /*#__PURE__*/jsxRuntime.jsx("span", {
+                    className: "text-sm flex-1",
+                    children: tag.name || tag
+                  }), tag.count !== undefined && /*#__PURE__*/jsxRuntime.jsx("span", {
+                    className: clsx('text-xs px-2 py-0.5 rounded', isSelected ? 'bg-gray-600 text-gray-200' : 'bg-gray-700 text-gray-400'),
+                    children: tag.count
+                  })]
+                }, index);
+              })
+            })]
+          })]
+        }) : isRightSidebar ? /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "bg-white/80 backdrop-blur-sm rounded-xl border border-primary-200/50 p-4 shadow-sm",
+          children: [/*#__PURE__*/jsxRuntime.jsxs("button", {
+            onClick: function onClick() {
+              return toggleSection('tags');
+            },
+            className: "w-full flex items-center justify-between mb-3 transition-colors group",
+            children: [/*#__PURE__*/jsxRuntime.jsxs("span", {
+              className: "flex items-center gap-3",
+              children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "w-8 h-8 bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow",
+                children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+                  className: "w-4 h-4 text-white",
+                  fill: "none",
+                  stroke: "currentColor",
+                  viewBox: "0 0 24 24",
+                  children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                    strokeLinecap: "round",
+                    strokeLinejoin: "round",
+                    strokeWidth: 2,
+                    d: "M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
+                  })
+                })
+              }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: "text-left",
+                children: [/*#__PURE__*/jsxRuntime.jsx("h4", {
+                  className: "text-sm font-bold text-gray-900",
+                  children: "Tags"
+                }), /*#__PURE__*/jsxRuntime.jsx("p", {
+                  className: "text-xs text-gray-500",
+                  children: "Filter by tags"
+                })]
+              })]
+            }), /*#__PURE__*/jsxRuntime.jsx("svg", {
+              className: clsx('w-5 h-5 text-primary-600 transition-transform duration-200', expandedSections.tags ? 'rotate-180' : ''),
+              fill: "none",
+              stroke: "currentColor",
+              viewBox: "0 0 24 24",
+              children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M19 9l-7 7-7-7"
+              })
+            })]
+          }), expandedSections.tags && /*#__PURE__*/jsxRuntime.jsxs(jsxRuntime.Fragment, {
+            children: [/*#__PURE__*/jsxRuntime.jsx("input", {
+              type: "text",
+              placeholder: "Search tags here.",
+              value: tagSearch,
+              onChange: function onChange(e) {
+                return setTagSearch(e.target.value);
+              },
+              className: "w-full border border-primary-200 rounded-lg text-sm mb-3 px-3 py-2 bg-white/50 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-400"
+            }), /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "space-y-2 max-h-48 overflow-y-auto pt-2 border-t border-primary-100",
+              children: filteredTags.map(function (tag, index) {
+                var isSelected = selectedTags.some(function (t) {
+                  return getStringValue(t) === getStringValue(tag);
+                });
+                return /*#__PURE__*/jsxRuntime.jsxs("label", {
+                  className: clsx('flex items-center gap-3 cursor-pointer transition-all p-2.5 rounded-lg', isSelected ? 'bg-gradient-to-r from-purple-50 to-purple-100/50 border border-purple-300 shadow-sm' : 'bg-white/50 hover:bg-white border border-transparent hover:border-purple-200'),
+                  children: [/*#__PURE__*/jsxRuntime.jsx("input", {
+                    type: "checkbox",
+                    checked: isSelected,
+                    onChange: function onChange() {
+                      return toggleTag(tag);
+                    },
+                    className: "w-4 h-4 text-purple-600 border-gray-300 rounded focus:ring-purple-500 focus:ring-2"
+                  }), /*#__PURE__*/jsxRuntime.jsx("span", {
+                    className: clsx('text-sm flex-1 font-medium', isSelected ? 'text-purple-900' : 'text-gray-700'),
+                    children: tag.name || tag
+                  }), tag.count !== undefined && /*#__PURE__*/jsxRuntime.jsx("span", {
+                    className: clsx('text-xs px-2.5 py-1 rounded-full font-semibold', isSelected ? 'bg-purple-600 text-white' : 'bg-gray-200 text-gray-600'),
+                    children: tag.count
+                  })]
+                }, index);
+              })
+            })]
+          })]
+        }) : /*#__PURE__*/jsxRuntime.jsxs(jsxRuntime.Fragment, {
+          children: [/*#__PURE__*/jsxRuntime.jsxs("button", {
+            onClick: function onClick() {
+              return toggleSection('tags');
+            },
+            className: clsx("w-full flex items-center justify-between mb-3 transition-colors", isDefault ? "text-sm font-semibold text-gray-900 hover:text-primary-600" : isCompact ? "text-sm font-medium text-gray-800 hover:text-primary-600" : isTopSidebar ? "text-sm font-semibold text-gray-900 hover:text-primary-600" : "text-sm font-normal text-gray-700 hover:text-gray-900"),
+            children: [/*#__PURE__*/jsxRuntime.jsxs("span", {
+              className: "flex items-center gap-2",
+              children: [!isMinimal && /*#__PURE__*/jsxRuntime.jsx("svg", {
+                className: isDefault || isTopSidebar ? "w-4 h-4" : "w-3.5 h-3.5",
+                fill: "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2,
+                  d: "M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
+                })
+              }), "Tags"]
+            }), /*#__PURE__*/jsxRuntime.jsx("svg", {
+              className: clsx(isDefault || isTopSidebar ? 'w-4 h-4' : 'w-3.5 h-3.5', 'transition-transform duration-200', expandedSections.tags ? 'rotate-180' : ''),
+              fill: "none",
+              stroke: "currentColor",
+              viewBox: "0 0 24 24",
+              children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M19 9l-7 7-7-7"
+              })
+            })]
+          }), expandedSections.tags && /*#__PURE__*/jsxRuntime.jsxs(jsxRuntime.Fragment, {
+            children: [/*#__PURE__*/jsxRuntime.jsx("input", {
+              type: "text",
+              placeholder: "Search tags here.",
+              value: tagSearch,
+              onChange: function onChange(e) {
+                return setTagSearch(e.target.value);
+              },
+              className: clsx("w-full border border-gray-300 rounded-lg text-sm mb-3 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent", isDefault || isTopSidebar ? "px-3 py-2" : isCompact ? "px-2.5 py-1.5" : "px-2 py-1.5")
+            }), /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: clsx("space-y-2 max-h-48 overflow-y-auto", isDefault ? "pl-6" : isCompact ? "pl-4" : isTopSidebar ? "pl-0" : "pl-2"),
+              children: filteredTags.map(function (tag, index) {
+                var isSelected = selectedTags.some(function (t) {
+                  return getStringValue(t) === getStringValue(tag);
+                });
+                return /*#__PURE__*/jsxRuntime.jsxs("label", {
+                  className: clsx('flex items-center gap-3 cursor-pointer transition-colors', isDefault || isTopSidebar ? 'p-2 rounded-lg' : isCompact ? 'p-1.5 rounded-md' : 'p-1', isSelected ? isDefault || isTopSidebar ? 'bg-primary-50' : isCompact ? 'bg-primary-50' : 'bg-gray-50' : isDefault || isTopSidebar ? 'hover:bg-gray-50' : isCompact ? 'hover:bg-gray-50' : 'hover:bg-gray-50'),
+                  children: [/*#__PURE__*/jsxRuntime.jsx("input", {
+                    type: "checkbox",
+                    checked: isSelected,
+                    onChange: function onChange() {
+                      return toggleTag(tag);
+                    },
+                    className: clsx("text-primary-600 border-gray-300 rounded focus:ring-primary-500 focus:ring-2", isDefault || isTopSidebar ? "w-4 h-4" : "w-3.5 h-3.5")
+                  }), /*#__PURE__*/jsxRuntime.jsx("span", {
+                    className: clsx(isDefault || isTopSidebar ? 'text-sm flex-1' : isCompact ? 'text-xs flex-1' : 'text-xs flex-1', isSelected ? isDefault || isTopSidebar ? 'text-primary-700 font-medium' : isCompact ? 'text-primary-700 font-medium' : 'text-gray-900' : isDefault || isTopSidebar ? 'text-gray-700 group-hover:text-primary-600' : isCompact ? 'text-gray-600' : 'text-gray-600'),
+                    children: tag.name || tag
+                  }), tag.count !== undefined && /*#__PURE__*/jsxRuntime.jsx("span", {
+                    className: clsx(isDefault || isTopSidebar ? 'text-xs px-2 py-0.5 rounded-full' : isCompact ? 'text-xs px-1.5 py-0.5 rounded' : 'text-xs px-1.5 py-0.5 rounded', isSelected ? 'bg-primary-100 text-primary-700' : 'bg-gray-100 text-gray-600'),
+                    children: tag.count
+                  })]
+                }, index);
+              })
+            })]
+          })]
+        })
+      }), /*#__PURE__*/jsxRuntime.jsx("div", {
+        className: isDefault ? "mb-5" : isCompact ? "mb-4" : isTopSidebar ? "mb-0" : isRightSidebar ? "mb-5" : isDark ? "mb-4" : "mb-3",
+        children: isDark ? /*#__PURE__*/jsxRuntime.jsxs("div", {
+          children: [/*#__PURE__*/jsxRuntime.jsxs("button", {
+            onClick: function onClick() {
+              return toggleSection('price');
+            },
+            className: "w-full flex items-center justify-between mb-3 text-sm font-medium text-gray-300 hover:text-white transition-colors",
+            children: [/*#__PURE__*/jsxRuntime.jsx("span", {
+              children: "Price"
+            }), /*#__PURE__*/jsxRuntime.jsx("svg", {
+              className: clsx('w-4 h-4 transition-transform duration-200 text-gray-400', expandedSections.price ? 'rotate-180' : ''),
+              fill: "none",
+              stroke: "currentColor",
+              viewBox: "0 0 24 24",
+              children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M19 9l-7 7-7-7"
+              })
+            })]
+          }), expandedSections.price && /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "px-2",
+            children: [/*#__PURE__*/jsxRuntime.jsx("input", {
+              type: "range",
+              min: priceRange.min,
+              max: priceRange.max,
+              value: priceFilter[1],
+              onChange: function onChange(e) {
+                return setPriceFilter([priceFilter[0], parseInt(e.target.value)]);
+              },
+              className: "w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-primary-500"
+            }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "flex justify-between mt-3 text-sm",
+              children: [/*#__PURE__*/jsxRuntime.jsxs("span", {
+                className: "font-medium text-gray-300",
+                children: [currency, priceFilter[0]]
+              }), /*#__PURE__*/jsxRuntime.jsxs("span", {
+                className: "font-medium text-gray-300",
+                children: [currency, priceFilter[1]]
+              })]
+            })]
+          })]
+        }) : isRightSidebar ? /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "bg-white/80 backdrop-blur-sm rounded-xl border border-primary-200/50 p-4 shadow-sm",
+          children: [/*#__PURE__*/jsxRuntime.jsxs("button", {
+            onClick: function onClick() {
+              return toggleSection('price');
+            },
+            className: "w-full flex items-center justify-between mb-3 transition-colors group",
+            children: [/*#__PURE__*/jsxRuntime.jsxs("span", {
+              className: "flex items-center gap-3",
+              children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "w-8 h-8 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow",
+                children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+                  className: "w-4 h-4 text-white",
+                  fill: "none",
+                  stroke: "currentColor",
+                  viewBox: "0 0 24 24",
+                  children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                    strokeLinecap: "round",
+                    strokeLinejoin: "round",
+                    strokeWidth: 2,
+                    d: "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  })
+                })
+              }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: "text-left",
+                children: [/*#__PURE__*/jsxRuntime.jsx("h4", {
+                  className: "text-sm font-bold text-gray-900",
+                  children: "Price Range"
+                }), /*#__PURE__*/jsxRuntime.jsx("p", {
+                  className: "text-xs text-gray-500",
+                  children: "Set your budget"
+                })]
+              })]
+            }), /*#__PURE__*/jsxRuntime.jsx("svg", {
+              className: clsx('w-5 h-5 text-primary-600 transition-transform duration-200', expandedSections.price ? 'rotate-180' : ''),
+              fill: "none",
+              stroke: "currentColor",
+              viewBox: "0 0 24 24",
+              children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M19 9l-7 7-7-7"
+              })
+            })]
+          }), expandedSections.price && /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "px-2 pt-2 border-t border-primary-100",
+            children: [/*#__PURE__*/jsxRuntime.jsx("input", {
+              type: "range",
+              min: priceRange.min,
+              max: priceRange.max,
+              value: priceFilter[1],
+              onChange: function onChange(e) {
+                return setPriceFilter([priceFilter[0], parseInt(e.target.value)]);
+              },
+              className: "w-full h-2.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-green-600"
+            }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "flex justify-between mt-4",
+              children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: "bg-green-50 border border-green-200 rounded-lg px-3 py-2",
+                children: [/*#__PURE__*/jsxRuntime.jsx("span", {
+                  className: "text-xs text-green-600 font-medium",
+                  children: "Min"
+                }), /*#__PURE__*/jsxRuntime.jsxs("p", {
+                  className: "text-sm font-bold text-green-900",
+                  children: [currency, priceFilter[0]]
+                })]
+              }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: "bg-green-50 border border-green-200 rounded-lg px-3 py-2",
+                children: [/*#__PURE__*/jsxRuntime.jsx("span", {
+                  className: "text-xs text-green-600 font-medium",
+                  children: "Max"
+                }), /*#__PURE__*/jsxRuntime.jsxs("p", {
+                  className: "text-sm font-bold text-green-900",
+                  children: [currency, priceFilter[1]]
+                })]
+              })]
+            })]
+          })]
+        }) : /*#__PURE__*/jsxRuntime.jsxs(jsxRuntime.Fragment, {
+          children: [/*#__PURE__*/jsxRuntime.jsxs("button", {
+            onClick: function onClick() {
+              return toggleSection('price');
+            },
+            className: clsx("w-full flex items-center justify-between mb-3 transition-colors", isDefault ? "text-sm font-semibold text-gray-900 hover:text-primary-600" : isCompact ? "text-sm font-medium text-gray-800 hover:text-primary-600" : isTopSidebar ? "text-sm font-semibold text-gray-900 hover:text-primary-600" : "text-sm font-normal text-gray-700 hover:text-gray-900"),
+            children: [/*#__PURE__*/jsxRuntime.jsxs("span", {
+              className: "flex items-center gap-2",
+              children: [!isMinimal && /*#__PURE__*/jsxRuntime.jsx("svg", {
+                className: isDefault || isTopSidebar ? "w-4 h-4" : "w-3.5 h-3.5",
+                fill: "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2,
+                  d: "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                })
+              }), "Price"]
+            }), /*#__PURE__*/jsxRuntime.jsx("svg", {
+              className: clsx(isDefault || isTopSidebar ? 'w-4 h-4' : 'w-3.5 h-3.5', 'transition-transform duration-200', expandedSections.price ? 'rotate-180' : ''),
+              fill: "none",
+              stroke: "currentColor",
+              viewBox: "0 0 24 24",
+              children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M19 9l-7 7-7-7"
+              })
+            })]
+          }), expandedSections.price && /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: clsx("px-2", isDefault ? "pl-6" : isCompact ? "pl-4" : isTopSidebar ? "pl-0" : "pl-2"),
+            children: [/*#__PURE__*/jsxRuntime.jsx("input", {
+              type: "range",
+              min: priceRange.min,
+              max: priceRange.max,
+              value: priceFilter[1],
+              onChange: function onChange(e) {
+                return setPriceFilter([priceFilter[0], parseInt(e.target.value)]);
+              },
+              className: "w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary-600"
+            }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: clsx("flex justify-between mt-3", isDefault || isTopSidebar ? "text-sm" : "text-xs"),
+              children: [/*#__PURE__*/jsxRuntime.jsxs("span", {
+                className: isDefault || isTopSidebar ? "font-medium text-gray-700" : "font-normal text-gray-600",
+                children: [currency, priceFilter[0]]
+              }), /*#__PURE__*/jsxRuntime.jsxs("span", {
+                className: isDefault || isTopSidebar ? "font-medium text-gray-700" : "font-normal text-gray-600",
+                children: [currency, priceFilter[1]]
+              })]
+            })]
+          })]
+        })
+      }), sales.length > 0 && /*#__PURE__*/jsxRuntime.jsx("div", {
+        children: isDark ? /*#__PURE__*/jsxRuntime.jsxs("div", {
+          children: [/*#__PURE__*/jsxRuntime.jsxs("button", {
+            onClick: function onClick() {
+              return toggleSection('sales');
+            },
+            className: "w-full flex items-center justify-between mb-3 text-sm font-medium text-gray-300 hover:text-white transition-colors",
+            children: [/*#__PURE__*/jsxRuntime.jsx("span", {
+              children: "Sales"
+            }), /*#__PURE__*/jsxRuntime.jsx("svg", {
+              className: clsx('w-4 h-4 transition-transform duration-200 text-gray-400', expandedSections.sales ? 'rotate-180' : ''),
+              fill: "none",
+              stroke: "currentColor",
+              viewBox: "0 0 24 24",
+              children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M19 9l-7 7-7-7"
+              })
+            })]
+          }), expandedSections.sales && /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "space-y-2",
+            children: sales.map(function (sale, index) {
+              var isSelected = selectedSales.some(function (s) {
+                return getStringValue(s) === getStringValue(sale);
+              });
+              return /*#__PURE__*/jsxRuntime.jsxs("label", {
+                className: clsx('flex items-center gap-3 cursor-pointer transition-colors p-2 rounded', isSelected ? 'bg-gray-700 text-white' : 'text-gray-400 hover:text-gray-300 hover:bg-gray-700/50'),
+                children: [/*#__PURE__*/jsxRuntime.jsx("input", {
+                  type: "checkbox",
+                  checked: isSelected,
+                  onChange: function onChange() {
+                    return toggleSales(sale);
+                  },
+                  className: "w-4 h-4 text-primary-600 border-gray-600 bg-gray-700 rounded focus:ring-primary-500 focus:ring-1"
+                }), /*#__PURE__*/jsxRuntime.jsx("span", {
+                  className: "text-sm flex-1",
+                  children: sale.name || sale
+                }), sale.count !== undefined && /*#__PURE__*/jsxRuntime.jsx("span", {
+                  className: clsx('text-xs px-2 py-0.5 rounded', isSelected ? 'bg-gray-600 text-gray-200' : 'bg-gray-700 text-gray-400'),
+                  children: sale.count
+                })]
+              }, index);
+            })
+          })]
+        }) : isRightSidebar ? /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "bg-white/80 backdrop-blur-sm rounded-xl border border-primary-200/50 p-4 shadow-sm",
+          children: [/*#__PURE__*/jsxRuntime.jsxs("button", {
+            onClick: function onClick() {
+              return toggleSection('sales');
+            },
+            className: "w-full flex items-center justify-between mb-3 transition-colors group",
+            children: [/*#__PURE__*/jsxRuntime.jsxs("span", {
+              className: "flex items-center gap-3",
+              children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                className: "w-8 h-8 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow",
+                children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+                  className: "w-4 h-4 text-white",
+                  fill: "none",
+                  stroke: "currentColor",
+                  viewBox: "0 0 24 24",
+                  children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                    strokeLinecap: "round",
+                    strokeLinejoin: "round",
+                    strokeWidth: 2,
+                    d: "M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+                  })
+                })
+              }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: "text-left",
+                children: [/*#__PURE__*/jsxRuntime.jsx("h4", {
+                  className: "text-sm font-bold text-gray-900",
+                  children: "Sales Level"
+                }), /*#__PURE__*/jsxRuntime.jsx("p", {
+                  className: "text-xs text-gray-500",
+                  children: "Popular products"
+                })]
+              })]
+            }), /*#__PURE__*/jsxRuntime.jsx("svg", {
+              className: clsx('w-5 h-5 text-primary-600 transition-transform duration-200', expandedSections.sales ? 'rotate-180' : ''),
+              fill: "none",
+              stroke: "currentColor",
+              viewBox: "0 0 24 24",
+              children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M19 9l-7 7-7-7"
+              })
+            })]
+          }), expandedSections.sales && /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "space-y-2 pt-2 border-t border-primary-100",
+            children: sales.map(function (sale, index) {
+              var isSelected = selectedSales.some(function (s) {
+                return getStringValue(s) === getStringValue(sale);
+              });
+              return /*#__PURE__*/jsxRuntime.jsxs("label", {
+                className: clsx('flex items-center gap-3 cursor-pointer transition-all p-2.5 rounded-lg', isSelected ? 'bg-gradient-to-r from-orange-50 to-orange-100/50 border border-orange-300 shadow-sm' : 'bg-white/50 hover:bg-white border border-transparent hover:border-orange-200'),
+                children: [/*#__PURE__*/jsxRuntime.jsx("input", {
+                  type: "checkbox",
+                  checked: isSelected,
+                  onChange: function onChange() {
+                    return toggleSales(sale);
+                  },
+                  className: "w-4 h-4 text-orange-600 border-gray-300 rounded focus:ring-orange-500 focus:ring-2"
+                }), /*#__PURE__*/jsxRuntime.jsx("span", {
+                  className: clsx('text-sm flex-1 font-medium', isSelected ? 'text-orange-900' : 'text-gray-700'),
+                  children: sale.name || sale
+                }), sale.count !== undefined && /*#__PURE__*/jsxRuntime.jsx("span", {
+                  className: clsx('text-xs px-2.5 py-1 rounded-full font-semibold', isSelected ? 'bg-orange-600 text-white' : 'bg-gray-200 text-gray-600'),
+                  children: sale.count
+                })]
+              }, index);
+            })
+          })]
+        }) : /*#__PURE__*/jsxRuntime.jsxs(jsxRuntime.Fragment, {
+          children: [/*#__PURE__*/jsxRuntime.jsxs("button", {
+            onClick: function onClick() {
+              return toggleSection('sales');
+            },
+            className: clsx("w-full flex items-center justify-between mb-3 transition-colors", isDefault ? "text-sm font-semibold text-gray-900 hover:text-primary-600" : isCompact ? "text-sm font-medium text-gray-800 hover:text-primary-600" : isTopSidebar ? "text-sm font-semibold text-gray-900 hover:text-primary-600" : "text-sm font-normal text-gray-700 hover:text-gray-900"),
+            children: [/*#__PURE__*/jsxRuntime.jsxs("span", {
+              className: "flex items-center gap-2",
+              children: [!isMinimal && /*#__PURE__*/jsxRuntime.jsx("svg", {
+                className: isDefault || isTopSidebar ? "w-4 h-4" : "w-3.5 h-3.5",
+                fill: "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2,
+                  d: "M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+                })
+              }), "Sales"]
+            }), /*#__PURE__*/jsxRuntime.jsx("svg", {
+              className: clsx(isDefault || isTopSidebar ? 'w-4 h-4' : 'w-3.5 h-3.5', 'transition-transform duration-200', expandedSections.sales ? 'rotate-180' : ''),
+              fill: "none",
+              stroke: "currentColor",
+              viewBox: "0 0 24 24",
+              children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M19 9l-7 7-7-7"
+              })
+            })]
+          }), expandedSections.sales && /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: clsx("space-y-2", isDefault ? "pl-6" : isCompact ? "pl-4" : isTopSidebar ? "pl-0" : "pl-2"),
+            children: sales.map(function (sale, index) {
+              var isSelected = selectedSales.some(function (s) {
+                return getStringValue(s) === getStringValue(sale);
+              });
+              return /*#__PURE__*/jsxRuntime.jsxs("label", {
+                className: clsx('flex items-center gap-3 cursor-pointer transition-colors', isDefault || isTopSidebar ? 'p-2 rounded-lg' : isCompact ? 'p-1.5 rounded-md' : 'p-1', isSelected ? isDefault || isTopSidebar ? 'bg-primary-50' : isCompact ? 'bg-primary-50' : 'bg-gray-50' : isDefault || isTopSidebar ? 'hover:bg-gray-50' : isCompact ? 'hover:bg-gray-50' : 'hover:bg-gray-50'),
+                children: [/*#__PURE__*/jsxRuntime.jsx("input", {
+                  type: "checkbox",
+                  checked: isSelected,
+                  onChange: function onChange() {
+                    return toggleSales(sale);
+                  },
+                  className: clsx("text-primary-600 border-gray-300 rounded focus:ring-primary-500 focus:ring-2", isDefault || isTopSidebar ? "w-4 h-4" : "w-3.5 h-3.5")
+                }), /*#__PURE__*/jsxRuntime.jsx("span", {
+                  className: clsx(isDefault || isTopSidebar ? 'text-sm flex-1' : isCompact ? 'text-xs flex-1' : 'text-xs flex-1', isSelected ? isDefault || isTopSidebar ? 'text-primary-700 font-medium' : isCompact ? 'text-primary-700 font-medium' : 'text-gray-900' : isDefault || isTopSidebar ? 'text-gray-700 group-hover:text-primary-600' : isCompact ? 'text-gray-600' : 'text-gray-600'),
+                  children: sale.name || sale
+                }), sale.count !== undefined && /*#__PURE__*/jsxRuntime.jsx("span", {
+                  className: clsx(isDefault || isTopSidebar ? 'text-xs px-2 py-0.5 rounded-full' : isCompact ? 'text-xs px-1.5 py-0.5 rounded' : 'text-xs px-1.5 py-0.5 rounded', isSelected ? 'bg-primary-100 text-primary-700' : 'bg-gray-100 text-gray-600'),
+                  children: sale.count
+                })]
+              }, index);
+            })
+          })]
+        })
+      })]
+    });
+  };
+
+  // Render product card based on variant
+  var renderProductCard = function renderProductCard(product, index) {
+    var buttonConfig = product.button || {};
+    var buttonText = buttonConfig.text || 'View Product';
+    var buttonHref = buttonConfig.href || '#';
+    var buttonOnClick = buttonConfig.onClick;
+    var formatPrice = function formatPrice(price) {
+      if (typeof price === 'number' && price % 1 === 0) {
+        return price;
+      } else if (typeof price === 'number') {
+        return price.toFixed(2);
+      }
+      return price;
+    };
+
+    // Default variant - Premium design with enhanced features
+    if (variant === 'default') {
+      return /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-2xl hover:border-primary-400 transition-all duration-300 group relative",
+        children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "relative w-full h-56 sm:h-64 overflow-hidden bg-gradient-to-br from-gray-50 via-gray-100 to-gray-50",
+          children: [product.image ? /*#__PURE__*/jsxRuntime.jsxs(jsxRuntime.Fragment, {
+            children: [/*#__PURE__*/jsxRuntime.jsx("img", {
+              src: product.image,
+              alt: product.title || 'Product',
+              className: "w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out",
+              loading: "lazy"
+            }), /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "absolute inset-0 bg-gradient-to-t from-black/30 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            })]
+          }) : /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200",
+            children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+              className: "w-20 h-20 text-gray-400",
+              fill: "none",
+              stroke: "currentColor",
+              viewBox: "0 0 24 24",
+              children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+              })
+            })
+          }), product.badge && /*#__PURE__*/jsxRuntime.jsx("span", {
+            className: "absolute top-4 left-4 bg-gradient-to-r from-primary-600 to-primary-700 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-xl z-10",
+            children: product.badge
+          }), product.originalPrice && product.originalPrice > product.price && /*#__PURE__*/jsxRuntime.jsxs("span", {
+            className: "absolute top-4 right-4 bg-gradient-to-r from-green-500 to-green-600 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-xl z-10",
+            children: ["-", Math.round((product.originalPrice - product.price) / product.originalPrice * 100), "%"]
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "absolute inset-0 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/20 backdrop-blur-sm",
+            children: /*#__PURE__*/jsxRuntime.jsx("button", {
+              className: "bg-white/95 hover:bg-white text-gray-900 px-4 py-2 rounded-lg font-semibold text-sm shadow-lg transform hover:scale-105 transition-all duration-200",
+              children: "Quick View"
+            })
+          }), /*#__PURE__*/jsxRuntime.jsx("button", {
+            className: "absolute top-4 right-4 w-10 h-10 bg-white/95 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-white hover:scale-110 shadow-lg z-10",
+            children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+              className: "w-5 h-5 text-gray-700 hover:text-red-500 transition-colors",
+              fill: "none",
+              stroke: "currentColor",
+              viewBox: "0 0 24 24",
+              children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+              })
+            })
+          })]
+        }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "p-6",
+          children: [product.rating && /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex items-center gap-1 mb-3",
+            children: [_toConsumableArray(Array(5)).map(function (_, i) {
+              return /*#__PURE__*/jsxRuntime.jsx("svg", {
+                className: clsx("w-4 h-4", i < Math.floor(product.rating) ? "text-yellow-400 fill-yellow-400" : "text-gray-300"),
+                fill: "currentColor",
+                viewBox: "0 0 20 20",
+                children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                  d: "M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                })
+              }, i);
+            }), /*#__PURE__*/jsxRuntime.jsxs("span", {
+              className: "text-xs text-gray-500 ml-1",
+              children: ["(", product.rating, ")"]
+            })]
+          }), product.title && /*#__PURE__*/jsxRuntime.jsx("h3", {
+            className: "text-lg sm:text-xl font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-primary-600 transition-colors min-h-[3.5rem]",
+            children: product.title
+          }), product.price !== undefined && /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex items-baseline gap-3 mb-4",
+            children: [/*#__PURE__*/jsxRuntime.jsxs("span", {
+              className: "text-3xl sm:text-4xl font-extrabold text-gray-900",
+              children: [currency, formatPrice(product.price)]
+            }), product.originalPrice && product.originalPrice > product.price && /*#__PURE__*/jsxRuntime.jsxs("span", {
+              className: "text-lg text-gray-400 line-through",
+              children: [currency, formatPrice(product.originalPrice)]
+            })]
+          }), product.author && /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex items-center gap-2 mb-4 pb-4 border-b border-gray-100",
+            children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "w-8 h-8 rounded-full bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center text-white text-xs font-bold",
+              children: product.author.charAt(0).toUpperCase()
+            }), /*#__PURE__*/jsxRuntime.jsxs("p", {
+              className: "text-sm text-gray-600 font-medium",
+              children: ["by ", product.author]
+            })]
+          }), buttonOnClick ? /*#__PURE__*/jsxRuntime.jsx("button", {
+            onClick: buttonOnClick,
+            className: "w-full bg-gradient-to-r from-primary-600 to-primary-700 text-white px-6 py-3 rounded-xl font-bold text-sm hover:from-primary-700 hover:to-primary-800 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1",
+            children: buttonText
+          }) : /*#__PURE__*/jsxRuntime.jsx("a", {
+            href: buttonHref,
+            className: "block w-full bg-gradient-to-r from-primary-600 to-primary-700 text-white px-6 py-3 rounded-xl font-bold text-sm hover:from-primary-700 hover:to-primary-800 hover:shadow-xl transition-all duration-300 text-center transform hover:-translate-y-1",
+            children: buttonText
+          })]
+        })]
+      }, index);
+    }
+
+    // Compact variant - Modern compact design with enhanced features
+    if (variant === 'compact') {
+      return /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "bg-white rounded-xl border border-gray-200 overflow-hidden hover:shadow-lg hover:border-primary-300 transition-all duration-300 group",
+        children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "relative w-full h-44 sm:h-48 overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100",
+          children: [product.image ? /*#__PURE__*/jsxRuntime.jsxs(jsxRuntime.Fragment, {
+            children: [/*#__PURE__*/jsxRuntime.jsx("img", {
+              src: product.image,
+              alt: product.title || 'Product',
+              className: "w-full h-full object-cover group-hover:scale-110 transition-transform duration-500",
+              loading: "lazy"
+            }), /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            })]
+          }) : /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "w-full h-full flex items-center justify-center bg-gray-100",
+            children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+              className: "w-14 h-14 text-gray-400",
+              fill: "none",
+              stroke: "currentColor",
+              viewBox: "0 0 24 24",
+              children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+              })
+            })
+          }), product.badge && /*#__PURE__*/jsxRuntime.jsx("span", {
+            className: "absolute top-2 left-2 bg-primary-600 text-white text-xs font-bold px-2 py-1 rounded-md shadow-md z-10",
+            children: product.badge
+          }), product.originalPrice && product.originalPrice > product.price && /*#__PURE__*/jsxRuntime.jsxs("span", {
+            className: "absolute top-2 right-2 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded-md shadow-md z-10",
+            children: ["-", Math.round((product.originalPrice - product.price) / product.originalPrice * 100), "%"]
+          }), /*#__PURE__*/jsxRuntime.jsx("button", {
+            className: "absolute bottom-2 right-2 w-8 h-8 bg-white/95 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-white hover:scale-110 shadow-md z-10",
+            children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+              className: "w-4 h-4 text-gray-700 hover:text-red-500 transition-colors",
+              fill: "none",
+              stroke: "currentColor",
+              viewBox: "0 0 24 24",
+              children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+              })
+            })
+          })]
+        }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "p-4",
+          children: [product.rating && /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex items-center gap-1 mb-2",
+            children: [_toConsumableArray(Array(5)).map(function (_, i) {
+              return /*#__PURE__*/jsxRuntime.jsx("svg", {
+                className: clsx("w-3 h-3", i < Math.floor(product.rating) ? "text-yellow-400 fill-yellow-400" : "text-gray-300"),
+                fill: "currentColor",
+                viewBox: "0 0 20 20",
+                children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                  d: "M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                })
+              }, i);
+            }), /*#__PURE__*/jsxRuntime.jsxs("span", {
+              className: "text-xs text-gray-500 ml-1",
+              children: ["(", product.rating, ")"]
+            })]
+          }), product.title && /*#__PURE__*/jsxRuntime.jsx("h3", {
+            className: "text-sm font-bold text-gray-900 mb-2 line-clamp-2 group-hover:text-primary-600 transition-colors min-h-[2.5rem]",
+            children: product.title
+          }), product.price !== undefined && /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex items-baseline gap-2 mb-2",
+            children: [/*#__PURE__*/jsxRuntime.jsxs("span", {
+              className: "text-xl font-extrabold text-gray-900",
+              children: [currency, formatPrice(product.price)]
+            }), product.originalPrice && product.originalPrice > product.price && /*#__PURE__*/jsxRuntime.jsxs("span", {
+              className: "text-sm text-gray-400 line-through",
+              children: [currency, formatPrice(product.originalPrice)]
+            })]
+          }), product.author && /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex items-center gap-2 mb-3 pb-3 border-b border-gray-100",
+            children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "w-6 h-6 rounded-full bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center text-white text-xs font-bold",
+              children: product.author.charAt(0).toUpperCase()
+            }), /*#__PURE__*/jsxRuntime.jsx("p", {
+              className: "text-xs text-gray-600 font-medium",
+              children: product.author
+            })]
+          }), buttonOnClick ? /*#__PURE__*/jsxRuntime.jsx("button", {
+            onClick: buttonOnClick,
+            className: "w-full bg-primary-600 text-white px-4 py-2 rounded-lg font-semibold text-xs hover:bg-primary-700 hover:shadow-md transition-all duration-200 transform hover:-translate-y-0.5",
+            children: buttonText
+          }) : /*#__PURE__*/jsxRuntime.jsx("a", {
+            href: buttonHref,
+            className: "block w-full bg-primary-600 text-white px-4 py-2 rounded-lg font-semibold text-xs hover:bg-primary-700 hover:shadow-md transition-all duration-200 text-center transform hover:-translate-y-0.5",
+            children: buttonText
+          })]
+        })]
+      }, index);
+    }
+
+    // Minimal variant - Clean, elegant minimal design
+    if (variant === 'minimal') {
+      return /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "bg-white border border-gray-200 overflow-hidden hover:border-gray-300 hover:shadow-md transition-all duration-300 group",
+        children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "relative w-full h-56 sm:h-64 overflow-hidden bg-gray-50",
+          children: [product.image ? /*#__PURE__*/jsxRuntime.jsxs(jsxRuntime.Fragment, {
+            children: [/*#__PURE__*/jsxRuntime.jsx("img", {
+              src: product.image,
+              alt: product.title || 'Product',
+              className: "w-full h-full object-cover group-hover:scale-105 transition-transform duration-500",
+              loading: "lazy"
+            }), /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "absolute inset-0 bg-gradient-to-t from-white/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            })]
+          }) : /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "w-full h-full flex items-center justify-center bg-gray-50",
+            children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+              className: "w-16 h-16 text-gray-300",
+              fill: "none",
+              stroke: "currentColor",
+              viewBox: "0 0 24 24",
+              children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+              })
+            })
+          }), product.originalPrice && product.originalPrice > product.price && /*#__PURE__*/jsxRuntime.jsxs("span", {
+            className: "absolute top-3 right-3 bg-gray-900 text-white text-xs font-medium px-2.5 py-1 rounded z-10",
+            children: ["-", Math.round((product.originalPrice - product.price) / product.originalPrice * 100), "%"]
+          })]
+        }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "p-6",
+          children: [product.rating && /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "flex items-center gap-1 mb-3",
+            children: _toConsumableArray(Array(5)).map(function (_, i) {
+              return /*#__PURE__*/jsxRuntime.jsx("svg", {
+                className: clsx("w-3.5 h-3.5", i < Math.floor(product.rating) ? "text-yellow-400 fill-yellow-400" : "text-gray-200"),
+                fill: "currentColor",
+                viewBox: "0 0 20 20",
+                children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                  d: "M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                })
+              }, i);
+            })
+          }), product.title && /*#__PURE__*/jsxRuntime.jsx("h3", {
+            className: "text-lg font-semibold text-gray-900 mb-3 line-clamp-2 group-hover:text-gray-700 transition-colors",
+            children: product.title
+          }), product.price !== undefined && /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex items-baseline gap-3 mb-4",
+            children: [/*#__PURE__*/jsxRuntime.jsxs("span", {
+              className: "text-2xl font-bold text-gray-900",
+              children: [currency, formatPrice(product.price)]
+            }), product.originalPrice && product.originalPrice > product.price && /*#__PURE__*/jsxRuntime.jsxs("span", {
+              className: "text-base text-gray-400 line-through",
+              children: [currency, formatPrice(product.originalPrice)]
+            })]
+          }), product.author && /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex items-center gap-2 mb-5 pb-4 border-b border-gray-100",
+            children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "w-7 h-7 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 text-xs font-medium",
+              children: product.author.charAt(0).toUpperCase()
+            }), /*#__PURE__*/jsxRuntime.jsx("p", {
+              className: "text-sm text-gray-600",
+              children: product.author
+            })]
+          }), buttonOnClick ? /*#__PURE__*/jsxRuntime.jsx("button", {
+            onClick: buttonOnClick,
+            className: "w-full bg-gray-900 text-white px-5 py-2.5 rounded font-medium text-sm hover:bg-gray-800 transition-colors duration-200",
+            children: buttonText
+          }) : /*#__PURE__*/jsxRuntime.jsx("a", {
+            href: buttonHref,
+            className: "block w-full bg-gray-900 text-white px-5 py-2.5 rounded font-medium text-sm hover:bg-gray-800 transition-colors duration-200 text-center",
+            children: buttonText
+          })]
+        })]
+      }, index);
+    }
+
+    // Dark mode variant - Simple dark UI card design
+    if (variant === 'dark') {
+      return /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "bg-gray-800 border border-gray-700 overflow-hidden hover:border-gray-600 transition-all duration-300 group",
+        children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "relative w-full h-48 sm:h-56 overflow-hidden bg-gray-700",
+          children: [product.image ? /*#__PURE__*/jsxRuntime.jsx(jsxRuntime.Fragment, {
+            children: /*#__PURE__*/jsxRuntime.jsx("img", {
+              src: product.image,
+              alt: product.title || 'Product',
+              className: "w-full h-full object-cover group-hover:opacity-80 transition-opacity duration-300",
+              loading: "lazy"
+            })
+          }) : /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "w-full h-full flex items-center justify-center bg-gray-700",
+            children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+              className: "w-16 h-16 text-gray-600",
+              fill: "none",
+              stroke: "currentColor",
+              viewBox: "0 0 24 24",
+              children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+              })
+            })
+          }), product.originalPrice && product.originalPrice > product.price && /*#__PURE__*/jsxRuntime.jsxs("span", {
+            className: "absolute top-2 right-2 bg-gray-900 text-white text-xs font-medium px-2 py-1 rounded",
+            children: ["-", Math.round((product.originalPrice - product.price) / product.originalPrice * 100), "%"]
+          })]
+        }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "p-4",
+          children: [product.rating && /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "flex items-center gap-1 mb-2",
+            children: _toConsumableArray(Array(5)).map(function (_, i) {
+              return /*#__PURE__*/jsxRuntime.jsx("svg", {
+                className: clsx("w-3 h-3", i < Math.floor(product.rating) ? "text-yellow-400 fill-yellow-400" : "text-gray-600"),
+                fill: "currentColor",
+                viewBox: "0 0 20 20",
+                children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                  d: "M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                })
+              }, i);
+            })
+          }), product.title && /*#__PURE__*/jsxRuntime.jsx("h3", {
+            className: "text-base font-medium text-gray-200 mb-2 line-clamp-2 group-hover:text-white transition-colors",
+            children: product.title
+          }), product.price !== undefined && /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex items-baseline gap-2 mb-3",
+            children: [/*#__PURE__*/jsxRuntime.jsxs("span", {
+              className: "text-xl font-semibold text-white",
+              children: [currency, formatPrice(product.price)]
+            }), product.originalPrice && product.originalPrice > product.price && /*#__PURE__*/jsxRuntime.jsxs("span", {
+              className: "text-sm text-gray-500 line-through",
+              children: [currency, formatPrice(product.originalPrice)]
+            })]
+          }), product.author && /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex items-center gap-2 mb-3 pb-3 border-b border-gray-700",
+            children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "w-6 h-6 rounded-full bg-gray-700 flex items-center justify-center text-gray-400 text-xs font-medium",
+              children: product.author.charAt(0).toUpperCase()
+            }), /*#__PURE__*/jsxRuntime.jsx("p", {
+              className: "text-xs text-gray-400",
+              children: product.author
+            })]
+          }), buttonOnClick ? /*#__PURE__*/jsxRuntime.jsx("button", {
+            onClick: buttonOnClick,
+            className: "w-full bg-gray-700 text-white px-4 py-2 rounded font-medium text-sm hover:bg-gray-600 transition-colors",
+            children: buttonText
+          }) : /*#__PURE__*/jsxRuntime.jsx("a", {
+            href: buttonHref,
+            className: "block w-full bg-gray-700 text-white px-4 py-2 rounded font-medium text-sm hover:bg-gray-600 transition-colors text-center",
+            children: buttonText
+          })]
+        })]
+      }, index);
+    }
+
+    // Right-sidebar variant - Uses default card design
+    if (variant === 'right-sidebar') {
+      // Use the same card design as default variant
+      return /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-2xl hover:border-primary-400 transition-all duration-300 group relative",
+        children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "relative w-full h-56 sm:h-64 overflow-hidden bg-gradient-to-br from-gray-50 via-gray-100 to-gray-50",
+          children: [product.image ? /*#__PURE__*/jsxRuntime.jsxs(jsxRuntime.Fragment, {
+            children: [/*#__PURE__*/jsxRuntime.jsx("img", {
+              src: product.image,
+              alt: product.title || 'Product',
+              className: "w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out",
+              loading: "lazy"
+            }), /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "absolute inset-0 bg-gradient-to-t from-black/30 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            })]
+          }) : /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200",
+            children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+              className: "w-20 h-20 text-gray-400",
+              fill: "none",
+              stroke: "currentColor",
+              viewBox: "0 0 24 24",
+              children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+              })
+            })
+          }), product.badge && /*#__PURE__*/jsxRuntime.jsx("span", {
+            className: "absolute top-4 left-4 bg-gradient-to-r from-primary-600 to-primary-700 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-xl z-10",
+            children: product.badge
+          }), product.originalPrice && product.originalPrice > product.price && /*#__PURE__*/jsxRuntime.jsxs("span", {
+            className: "absolute top-4 right-4 bg-gradient-to-r from-green-500 to-green-600 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-xl z-10",
+            children: ["-", Math.round((product.originalPrice - product.price) / product.originalPrice * 100), "%"]
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "absolute inset-0 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/20 backdrop-blur-sm",
+            children: /*#__PURE__*/jsxRuntime.jsx("button", {
+              className: "bg-white/95 hover:bg-white text-gray-900 px-4 py-2 rounded-lg font-semibold text-sm shadow-lg transform hover:scale-105 transition-all duration-200",
+              children: "Quick View"
+            })
+          }), /*#__PURE__*/jsxRuntime.jsx("button", {
+            className: "absolute top-4 right-4 w-10 h-10 bg-white/95 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-white hover:scale-110 shadow-lg z-10",
+            children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+              className: "w-5 h-5 text-gray-700 hover:text-red-500 transition-colors",
+              fill: "none",
+              stroke: "currentColor",
+              viewBox: "0 0 24 24",
+              children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+              })
+            })
+          })]
+        }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "p-6",
+          children: [product.rating && /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex items-center gap-1 mb-3",
+            children: [_toConsumableArray(Array(5)).map(function (_, i) {
+              return /*#__PURE__*/jsxRuntime.jsx("svg", {
+                className: clsx("w-4 h-4", i < Math.floor(product.rating) ? "text-yellow-400 fill-yellow-400" : "text-gray-300"),
+                fill: "currentColor",
+                viewBox: "0 0 20 20",
+                children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                  d: "M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                })
+              }, i);
+            }), /*#__PURE__*/jsxRuntime.jsxs("span", {
+              className: "text-xs text-gray-500 ml-1",
+              children: ["(", product.rating, ")"]
+            })]
+          }), product.title && /*#__PURE__*/jsxRuntime.jsx("h3", {
+            className: "text-lg sm:text-xl font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-primary-600 transition-colors min-h-[3.5rem]",
+            children: product.title
+          }), product.price !== undefined && /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex items-baseline gap-3 mb-4",
+            children: [/*#__PURE__*/jsxRuntime.jsxs("span", {
+              className: "text-3xl sm:text-4xl font-extrabold text-gray-900",
+              children: [currency, formatPrice(product.price)]
+            }), product.originalPrice && product.originalPrice > product.price && /*#__PURE__*/jsxRuntime.jsxs("span", {
+              className: "text-lg text-gray-400 line-through",
+              children: [currency, formatPrice(product.originalPrice)]
+            })]
+          }), product.author && /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex items-center gap-2 mb-4 pb-4 border-b border-gray-100",
+            children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "w-8 h-8 rounded-full bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center text-white text-xs font-bold",
+              children: product.author.charAt(0).toUpperCase()
+            }), /*#__PURE__*/jsxRuntime.jsxs("p", {
+              className: "text-sm text-gray-600 font-medium",
+              children: ["by ", product.author]
+            })]
+          }), buttonOnClick ? /*#__PURE__*/jsxRuntime.jsx("button", {
+            onClick: buttonOnClick,
+            className: "w-full bg-gradient-to-r from-primary-600 to-primary-700 text-white px-6 py-3 rounded-xl font-bold text-sm hover:from-primary-700 hover:to-primary-800 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1",
+            children: buttonText
+          }) : /*#__PURE__*/jsxRuntime.jsx("a", {
+            href: buttonHref,
+            className: "block w-full bg-gradient-to-r from-primary-600 to-primary-700 text-white px-6 py-3 rounded-xl font-bold text-sm hover:from-primary-700 hover:to-primary-800 hover:shadow-xl transition-all duration-300 text-center transform hover:-translate-y-1",
+            children: buttonText
+          })]
+        })]
+      }, index);
+    }
+
+    // Top-sidebar variant - Uses default card design
+    if (variant === 'top-sidebar') {
+      // Use the same card design as default variant
+      return /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: "bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-2xl hover:border-primary-400 transition-all duration-300 group relative",
+        children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "relative w-full h-56 sm:h-64 overflow-hidden bg-gradient-to-br from-gray-50 via-gray-100 to-gray-50",
+          children: [product.image ? /*#__PURE__*/jsxRuntime.jsxs(jsxRuntime.Fragment, {
+            children: [/*#__PURE__*/jsxRuntime.jsx("img", {
+              src: product.image,
+              alt: product.title || 'Product',
+              className: "w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out",
+              loading: "lazy"
+            }), /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "absolute inset-0 bg-gradient-to-t from-black/30 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            })]
+          }) : /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200",
+            children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+              className: "w-20 h-20 text-gray-400",
+              fill: "none",
+              stroke: "currentColor",
+              viewBox: "0 0 24 24",
+              children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+              })
+            })
+          }), product.badge && /*#__PURE__*/jsxRuntime.jsx("span", {
+            className: "absolute top-4 left-4 bg-gradient-to-r from-primary-600 to-primary-700 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-xl z-10",
+            children: product.badge
+          }), product.originalPrice && product.originalPrice > product.price && /*#__PURE__*/jsxRuntime.jsxs("span", {
+            className: "absolute top-4 right-4 bg-gradient-to-r from-green-500 to-green-600 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-xl z-10",
+            children: ["-", Math.round((product.originalPrice - product.price) / product.originalPrice * 100), "%"]
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "absolute inset-0 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/20 backdrop-blur-sm",
+            children: /*#__PURE__*/jsxRuntime.jsx("button", {
+              className: "bg-white/95 hover:bg-white text-gray-900 px-4 py-2 rounded-lg font-semibold text-sm shadow-lg transform hover:scale-105 transition-all duration-200",
+              children: "Quick View"
+            })
+          }), /*#__PURE__*/jsxRuntime.jsx("button", {
+            className: "absolute top-4 right-4 w-10 h-10 bg-white/95 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-white hover:scale-110 shadow-lg z-10",
+            children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+              className: "w-5 h-5 text-gray-700 hover:text-red-500 transition-colors",
+              fill: "none",
+              stroke: "currentColor",
+              viewBox: "0 0 24 24",
+              children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+              })
+            })
+          })]
+        }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "p-6",
+          children: [product.rating && /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex items-center gap-1 mb-3",
+            children: [_toConsumableArray(Array(5)).map(function (_, i) {
+              return /*#__PURE__*/jsxRuntime.jsx("svg", {
+                className: clsx("w-4 h-4", i < Math.floor(product.rating) ? "text-yellow-400 fill-yellow-400" : "text-gray-300"),
+                fill: "currentColor",
+                viewBox: "0 0 20 20",
+                children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                  d: "M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                })
+              }, i);
+            }), /*#__PURE__*/jsxRuntime.jsxs("span", {
+              className: "text-xs text-gray-500 ml-1",
+              children: ["(", product.rating, ")"]
+            })]
+          }), product.title && /*#__PURE__*/jsxRuntime.jsx("h3", {
+            className: "text-lg sm:text-xl font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-primary-600 transition-colors min-h-[3.5rem]",
+            children: product.title
+          }), product.price !== undefined && /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex items-baseline gap-3 mb-4",
+            children: [/*#__PURE__*/jsxRuntime.jsxs("span", {
+              className: "text-3xl sm:text-4xl font-extrabold text-gray-900",
+              children: [currency, formatPrice(product.price)]
+            }), product.originalPrice && product.originalPrice > product.price && /*#__PURE__*/jsxRuntime.jsxs("span", {
+              className: "text-lg text-gray-400 line-through",
+              children: [currency, formatPrice(product.originalPrice)]
+            })]
+          }), product.author && /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex items-center gap-2 mb-4 pb-4 border-b border-gray-100",
+            children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "w-8 h-8 rounded-full bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center text-white text-xs font-bold",
+              children: product.author.charAt(0).toUpperCase()
+            }), /*#__PURE__*/jsxRuntime.jsxs("p", {
+              className: "text-sm text-gray-600 font-medium",
+              children: ["by ", product.author]
+            })]
+          }), buttonOnClick ? /*#__PURE__*/jsxRuntime.jsx("button", {
+            onClick: buttonOnClick,
+            className: "w-full bg-gradient-to-r from-primary-600 to-primary-700 text-white px-6 py-3 rounded-xl font-bold text-sm hover:from-primary-700 hover:to-primary-800 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1",
+            children: buttonText
+          }) : /*#__PURE__*/jsxRuntime.jsx("a", {
+            href: buttonHref,
+            className: "block w-full bg-gradient-to-r from-primary-600 to-primary-700 text-white px-6 py-3 rounded-xl font-bold text-sm hover:from-primary-700 hover:to-primary-800 hover:shadow-xl transition-all duration-300 text-center transform hover:-translate-y-1",
+            children: buttonText
+          })]
+        })]
+      }, index);
+    }
+
+    // Default fallback
+    return null;
+  };
+
+  // Show skeleton loader if showLoader state is true
+  if (showLoader) {
+    return renderSkeleton();
+  }
+  return /*#__PURE__*/jsxRuntime.jsx("section", {
+    id: id,
+    className: clsx('w-full py-8 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-8', variant === 'dark' ? 'bg-gray-900' : 'bg-gray-50', className, dataClassName),
+    children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+      className: "max-w-7xl mx-auto w-full",
+      children: [(title || subtitle || description) && /*#__PURE__*/jsxRuntime.jsxs("div", {
+        className: clsx('mb-8 sm:mb-10 flex flex-col', alignment === 'center' ? 'text-center items-center' : alignment === 'right' ? 'text-right items-end' : 'text-left items-start'),
+        children: [subtitle && /*#__PURE__*/jsxRuntime.jsx("p", {
+          className: clsx("text-sm sm:text-base font-semibold uppercase tracking-wide mb-2", variant === 'dark' ? 'text-primary-400' : 'text-primary-600'),
+          children: subtitle
+        }), title && /*#__PURE__*/jsxRuntime.jsx("h2", {
+          className: clsx("text-3xl sm:text-4xl lg:text-5xl font-bold mb-4", variant === 'dark' ? 'text-white' : 'text-gray-900'),
+          children: title
+        }), description && /*#__PURE__*/jsxRuntime.jsx("p", {
+          className: clsx("text-base sm:text-lg max-w-2xl", variant === 'dark' ? 'text-gray-300' : 'text-gray-600'),
+          children: description
+        })]
+      }), variant === 'dark' ?
+      /*#__PURE__*/
+      /* Dark Mode Layout - Sidebar alignment based on sidebarAlignment prop */
+      jsxRuntime.jsxs("div", {
+        className: clsx('flex flex-col gap-6 lg:gap-8', sidebarAlignment === 'right' ? 'lg:flex-row-reverse' : 'lg:flex-row'),
+        children: [renderSidebar(), /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "flex-1",
+          children: [/*#__PURE__*/jsxRuntime.jsxs("button", {
+            onClick: function onClick() {
+              return setSidebarOpen(!sidebarOpen);
+            },
+            className: "lg:hidden mb-4 flex items-center gap-2 px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-sm font-medium text-gray-300 hover:bg-gray-700",
+            children: [/*#__PURE__*/jsxRuntime.jsx("svg", {
+              className: "w-5 h-5",
+              fill: "none",
+              stroke: "currentColor",
+              viewBox: "0 0 24 24",
+              children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"
+              })
+            }), sidebarOpen ? 'Hide Filters' : 'Show Filters']
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "bg-gray-800 border border-gray-700 rounded-lg p-4 mb-6",
+            children: /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "flex flex-col sm:flex-row gap-4",
+              children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: "flex-1 relative",
+                children: [/*#__PURE__*/jsxRuntime.jsx("input", {
+                  type: "text",
+                  placeholder: "Search for mockups, Web Templates and More.....",
+                  value: searchQuery,
+                  onChange: function onChange(e) {
+                    return setSearchQuery(e.target.value);
+                  },
+                  className: "w-full px-4 py-2.5 pr-12 border border-gray-600 bg-gray-700 text-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 placeholder-gray-500"
+                }), /*#__PURE__*/jsxRuntime.jsx("button", {
+                  className: "absolute right-2 top-1/2 transform -translate-y-1/2 bg-gray-700 text-gray-300 p-2 rounded-lg hover:bg-gray-600 transition-colors",
+                  "aria-label": "Search",
+                  children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+                    className: "w-5 h-5",
+                    fill: "none",
+                    stroke: "currentColor",
+                    viewBox: "0 0 24 24",
+                    children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                      strokeLinecap: "round",
+                      strokeLinejoin: "round",
+                      strokeWidth: 2,
+                      d: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                    })
+                  })
+                })]
+              })
+            })
+          }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6",
+            children: [/*#__PURE__*/jsxRuntime.jsxs("p", {
+              className: "text-sm text-gray-400",
+              children: ["You found ", filteredProducts.length, " ", title || 'Products']
+            }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "flex flex-wrap items-center gap-3",
+              children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: "relative",
+                children: [/*#__PURE__*/jsxRuntime.jsxs("button", {
+                  onClick: function onClick() {
+                    return setSortDropdownOpen(!sortDropdownOpen);
+                  },
+                  className: "flex items-center gap-2 px-5 py-2.5 bg-gray-800 text-gray-200 rounded-lg text-sm font-medium hover:bg-gray-700 transition-colors border border-gray-700 shadow-lg",
+                  children: [/*#__PURE__*/jsxRuntime.jsxs("span", {
+                    children: [sortBy === 'best-seller' && 'Best Seller', sortBy === 'newest' && 'Newest', sortBy === 'best-rated' && 'Best Rated', sortBy === 'trending' && 'Trending', sortBy === 'price-low' && 'Price: Low to High', sortBy === 'price-high' && 'Price: High to Low']
+                  }), /*#__PURE__*/jsxRuntime.jsx("svg", {
+                    className: clsx('w-4 h-4 transition-transform duration-200', sortDropdownOpen ? 'rotate-180' : ''),
+                    fill: "none",
+                    stroke: "currentColor",
+                    viewBox: "0 0 24 24",
+                    children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                      strokeLinecap: "round",
+                      strokeLinejoin: "round",
+                      strokeWidth: 2,
+                      d: "M19 9l-7 7-7-7"
+                    })
+                  })]
+                }), sortDropdownOpen && /*#__PURE__*/jsxRuntime.jsxs(jsxRuntime.Fragment, {
+                  children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: "fixed inset-0 z-10",
+                    onClick: function onClick() {
+                      return setSortDropdownOpen(false);
+                    }
+                  }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: "absolute top-full left-0 mt-2 w-56 bg-gray-800 border border-gray-600 rounded-lg shadow-2xl z-20 overflow-hidden",
+                    children: /*#__PURE__*/jsxRuntime.jsx("div", {
+                      className: "py-1",
+                      children: [{
+                        value: 'best-seller',
+                        label: 'Best Seller'
+                      }, {
+                        value: 'newest',
+                        label: 'Newest'
+                      }, {
+                        value: 'best-rated',
+                        label: 'Best Rated'
+                      }, {
+                        value: 'trending',
+                        label: 'Trending'
+                      }, {
+                        value: 'price-low',
+                        label: 'Price: Low to High'
+                      }, {
+                        value: 'price-high',
+                        label: 'Price: High to Low'
+                      }].map(function (option) {
+                        return /*#__PURE__*/jsxRuntime.jsx("button", {
+                          onClick: function onClick() {
+                            setSortBy(option.value);
+                            setSortDropdownOpen(false);
+                          },
+                          className: clsx('w-full text-left px-5 py-3 text-sm font-medium transition-colors', sortBy === option.value ? 'bg-gray-700 text-white' : 'text-gray-300 hover:bg-gray-700/80 hover:text-white'),
+                          children: option.label
+                        }, option.value);
+                      })
+                    })
+                  })]
+                })]
+              }), /*#__PURE__*/jsxRuntime.jsx("button", {
+                onClick: function onClick() {
+                  return setSortBy('newest');
+                },
+                className: clsx('px-4 py-2.5 rounded-lg text-sm font-medium transition-all border border-gray-600', sortBy === 'newest' ? 'bg-gray-700 text-white' : 'bg-gray-800 text-gray-300 hover:bg-gray-700'),
+                children: "New"
+              }), /*#__PURE__*/jsxRuntime.jsx("button", {
+                onClick: function onClick() {
+                  return setSortBy('best-rated');
+                },
+                className: clsx('px-4 py-2.5 rounded-lg text-sm font-medium transition-all border border-gray-600', sortBy === 'best-rated' ? 'bg-gray-700 text-white' : 'bg-gray-800 text-gray-300 hover:bg-gray-700'),
+                children: "Best Rated"
+              }), /*#__PURE__*/jsxRuntime.jsx("button", {
+                onClick: function onClick() {
+                  return setSortBy('trending');
+                },
+                className: clsx('px-4 py-2.5 rounded-lg text-sm font-medium transition-all border border-gray-600', sortBy === 'trending' ? 'bg-gray-700 text-white' : 'bg-gray-800 text-gray-300 hover:bg-gray-700'),
+                children: "Trending"
+              }), /*#__PURE__*/jsxRuntime.jsx("button", {
+                onClick: function onClick() {
+                  return setSortBy(sortBy === 'price-low' ? 'price-high' : 'price-low');
+                },
+                className: clsx('px-4 py-2.5 rounded-lg text-sm font-medium transition-all border border-gray-600', sortBy === 'price-low' || sortBy === 'price-high' ? 'bg-gray-700 text-white' : 'bg-gray-800 text-gray-300 hover:bg-gray-700'),
+                children: "Price"
+              })]
+            })]
+          }), filteredProducts.length > 0 ? /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: clsx('grid gap-4 sm:gap-6', gridColumnsClasses[columns] || gridColumnsClasses[4]),
+            children: filteredProducts.map(function (product, index) {
+              return renderProductCard(product, index);
+            })
+          }) : /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "text-center py-12 bg-gray-800 rounded-lg border border-gray-700",
+            children: [/*#__PURE__*/jsxRuntime.jsx("p", {
+              className: "text-gray-400 text-lg",
+              children: "No products found"
+            }), /*#__PURE__*/jsxRuntime.jsx("p", {
+              className: "text-gray-500 text-sm mt-2",
+              children: "Try adjusting your filters"
+            })]
+          })]
+        })]
+      }) : variant === 'right-sidebar' ?
+      /*#__PURE__*/
+      /* Right Sidebar Layout - Sidebar alignment based on sidebarAlignment prop */
+      jsxRuntime.jsxs("div", {
+        className: clsx('flex flex-col gap-6 lg:gap-8', sidebarAlignment === 'right' ? 'lg:flex-row-reverse' : 'lg:flex-row'),
+        children: [renderSidebar(), /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "flex-1",
+          children: [/*#__PURE__*/jsxRuntime.jsxs("button", {
+            onClick: function onClick() {
+              return setSidebarOpen(!sidebarOpen);
+            },
+            className: "lg:hidden mb-4 flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50",
+            children: [/*#__PURE__*/jsxRuntime.jsx("svg", {
+              className: "w-5 h-5",
+              fill: "none",
+              stroke: "currentColor",
+              viewBox: "0 0 24 24",
+              children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"
+              })
+            }), sidebarOpen ? 'Hide Filters' : 'Show Filters']
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "bg-white rounded-xl border border-gray-200 shadow-sm p-4 mb-6",
+            children: /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "flex flex-col sm:flex-row gap-4",
+              children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: "flex-1 relative",
+                children: [/*#__PURE__*/jsxRuntime.jsx("input", {
+                  type: "text",
+                  placeholder: "Search for mockups, Web Templates and More.....",
+                  value: searchQuery,
+                  onChange: function onChange(e) {
+                    return setSearchQuery(e.target.value);
+                  },
+                  className: "w-full px-4 py-2.5 pr-12 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                }), /*#__PURE__*/jsxRuntime.jsx("button", {
+                  className: "absolute right-2 top-1/2 transform -translate-y-1/2 bg-primary-600 text-white p-2 rounded-lg hover:bg-primary-700 transition-colors",
+                  "aria-label": "Search",
+                  children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+                    className: "w-5 h-5",
+                    fill: "none",
+                    stroke: "currentColor",
+                    viewBox: "0 0 24 24",
+                    children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                      strokeLinecap: "round",
+                      strokeLinejoin: "round",
+                      strokeWidth: 2,
+                      d: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                    })
+                  })
+                })]
+              })
+            })
+          }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6",
+            children: [/*#__PURE__*/jsxRuntime.jsxs("p", {
+              className: "text-sm text-gray-600",
+              children: ["You found ", filteredProducts.length, " ", title || 'Products']
+            }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "flex flex-wrap items-center gap-3",
+              children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: "relative",
+                children: [/*#__PURE__*/jsxRuntime.jsxs("button", {
+                  onClick: function onClick() {
+                    return setSortDropdownOpen(!sortDropdownOpen);
+                  },
+                  className: "flex items-center gap-2 px-5 py-2.5 bg-primary-600 text-white rounded-lg text-sm font-semibold hover:bg-primary-700 transition-colors shadow-md",
+                  children: [/*#__PURE__*/jsxRuntime.jsxs("span", {
+                    children: [sortBy === 'best-seller' && 'Best Seller', sortBy === 'newest' && 'Newest', sortBy === 'best-rated' && 'Best Rated', sortBy === 'trending' && 'Trending', sortBy === 'price-low' && 'Price: Low to High', sortBy === 'price-high' && 'Price: High to Low']
+                  }), /*#__PURE__*/jsxRuntime.jsx("svg", {
+                    className: clsx('w-4 h-4 transition-transform duration-200', sortDropdownOpen ? 'rotate-180' : ''),
+                    fill: "none",
+                    stroke: "currentColor",
+                    viewBox: "0 0 24 24",
+                    children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                      strokeLinecap: "round",
+                      strokeLinejoin: "round",
+                      strokeWidth: 2,
+                      d: "M19 9l-7 7-7-7"
+                    })
+                  })]
+                }), sortDropdownOpen && /*#__PURE__*/jsxRuntime.jsxs(jsxRuntime.Fragment, {
+                  children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: "fixed inset-0 z-10",
+                    onClick: function onClick() {
+                      return setSortDropdownOpen(false);
+                    }
+                  }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: "absolute top-full left-0 mt-2 w-56 bg-primary-600 rounded-lg shadow-2xl z-20 overflow-hidden",
+                    children: /*#__PURE__*/jsxRuntime.jsx("div", {
+                      className: "py-1",
+                      children: [{
+                        value: 'best-seller',
+                        label: 'Best Seller'
+                      }, {
+                        value: 'newest',
+                        label: 'Newest'
+                      }, {
+                        value: 'best-rated',
+                        label: 'Best Rated'
+                      }, {
+                        value: 'trending',
+                        label: 'Trending'
+                      }, {
+                        value: 'price-low',
+                        label: 'Price: Low to High'
+                      }, {
+                        value: 'price-high',
+                        label: 'Price: High to Low'
+                      }].map(function (option) {
+                        return /*#__PURE__*/jsxRuntime.jsx("button", {
+                          onClick: function onClick() {
+                            setSortBy(option.value);
+                            setSortDropdownOpen(false);
+                          },
+                          className: clsx('w-full text-left px-5 py-3 text-sm font-medium transition-colors', sortBy === option.value ? 'bg-primary-700 text-white' : 'text-white/90 hover:bg-primary-700/50 hover:text-white'),
+                          children: option.label
+                        }, option.value);
+                      })
+                    })
+                  })]
+                })]
+              }), /*#__PURE__*/jsxRuntime.jsx("button", {
+                onClick: function onClick() {
+                  return setSortBy('newest');
+                },
+                className: clsx('px-4 py-2.5 rounded-lg text-sm font-semibold transition-all', sortBy === 'newest' ? 'bg-primary-600 text-white shadow-md' : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 hover:border-primary-300'),
+                children: "New"
+              }), /*#__PURE__*/jsxRuntime.jsx("button", {
+                onClick: function onClick() {
+                  return setSortBy('best-rated');
+                },
+                className: clsx('px-4 py-2.5 rounded-lg text-sm font-semibold transition-all', sortBy === 'best-rated' ? 'bg-primary-600 text-white shadow-md' : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 hover:border-primary-300'),
+                children: "Best Rated"
+              }), /*#__PURE__*/jsxRuntime.jsx("button", {
+                onClick: function onClick() {
+                  return setSortBy('trending');
+                },
+                className: clsx('px-4 py-2.5 rounded-lg text-sm font-semibold transition-all', sortBy === 'trending' ? 'bg-primary-600 text-white shadow-md' : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 hover:border-primary-300'),
+                children: "Trending"
+              }), /*#__PURE__*/jsxRuntime.jsx("button", {
+                onClick: function onClick() {
+                  return setSortBy(sortBy === 'price-low' ? 'price-high' : 'price-low');
+                },
+                className: clsx('px-4 py-2.5 rounded-lg text-sm font-semibold transition-all', sortBy === 'price-low' || sortBy === 'price-high' ? 'bg-primary-600 text-white shadow-md' : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 hover:border-primary-300'),
+                children: "Price"
+              })]
+            })]
+          }), filteredProducts.length > 0 ? /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: clsx('grid gap-4 sm:gap-6', gridColumnsClasses[columns] || gridColumnsClasses[4]),
+            children: filteredProducts.map(function (product, index) {
+              return renderProductCard(product, index);
+            })
+          }) : /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "text-center py-12 bg-white rounded-lg border border-gray-200",
+            children: [/*#__PURE__*/jsxRuntime.jsx("p", {
+              className: "text-gray-500 text-lg",
+              children: "No products found"
+            }), /*#__PURE__*/jsxRuntime.jsx("p", {
+              className: "text-gray-400 text-sm mt-2",
+              children: "Try adjusting your filters"
+            })]
+          })]
+        })]
+      }) : variant === 'top-sidebar' ?
+      /*#__PURE__*/
+      /* Top Sidebar Layout - Filters at top, products below */
+      jsxRuntime.jsxs("div", {
+        className: "space-y-6",
+        children: [renderSidebar(), /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: "bg-white rounded-xl border border-gray-200 shadow-sm p-4",
+          children: /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "flex flex-col sm:flex-row gap-4",
+            children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "flex-1 relative",
+              children: [/*#__PURE__*/jsxRuntime.jsx("input", {
+                type: "text",
+                placeholder: "Search for mockups, Web Templates and More.....",
+                value: searchQuery,
+                onChange: function onChange(e) {
+                  return setSearchQuery(e.target.value);
+                },
+                className: "w-full px-4 py-2.5 pr-12 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+              }), /*#__PURE__*/jsxRuntime.jsx("button", {
+                className: "absolute right-2 top-1/2 transform -translate-y-1/2 bg-primary-600 text-white p-2 rounded-lg hover:bg-primary-700 transition-colors",
+                "aria-label": "Search",
+                children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+                  className: "w-5 h-5",
+                  fill: "none",
+                  stroke: "currentColor",
+                  viewBox: "0 0 24 24",
+                  children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                    strokeLinecap: "round",
+                    strokeLinejoin: "round",
+                    strokeWidth: 2,
+                    d: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  })
+                })
+              })]
+            })
+          })
+        }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6",
+          children: [/*#__PURE__*/jsxRuntime.jsxs("p", {
+            className: "text-sm text-gray-600",
+            children: ["You found ", filteredProducts.length, " ", title || 'Products']
+          }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex flex-wrap items-center gap-3",
+            children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "relative",
+              children: [/*#__PURE__*/jsxRuntime.jsxs("button", {
+                onClick: function onClick() {
+                  return setSortDropdownOpen(!sortDropdownOpen);
+                },
+                className: "flex items-center gap-2 px-5 py-2.5 bg-primary-600 text-white rounded-lg text-sm font-semibold hover:bg-primary-700 transition-colors shadow-md",
+                children: [/*#__PURE__*/jsxRuntime.jsxs("span", {
+                  children: [sortBy === 'best-seller' && 'Best Seller', sortBy === 'newest' && 'Newest', sortBy === 'best-rated' && 'Best Rated', sortBy === 'trending' && 'Trending', sortBy === 'price-low' && 'Price: Low to High', sortBy === 'price-high' && 'Price: High to Low']
+                }), /*#__PURE__*/jsxRuntime.jsx("svg", {
+                  className: clsx('w-4 h-4 transition-transform duration-200', sortDropdownOpen ? 'rotate-180' : ''),
+                  fill: "none",
+                  stroke: "currentColor",
+                  viewBox: "0 0 24 24",
+                  children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                    strokeLinecap: "round",
+                    strokeLinejoin: "round",
+                    strokeWidth: 2,
+                    d: "M19 9l-7 7-7-7"
+                  })
+                })]
+              }), sortDropdownOpen && /*#__PURE__*/jsxRuntime.jsxs(jsxRuntime.Fragment, {
+                children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "fixed inset-0 z-10",
+                  onClick: function onClick() {
+                    return setSortDropdownOpen(false);
+                  }
+                }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                  className: "absolute top-full left-0 mt-2 w-56 bg-primary-600 rounded-lg shadow-2xl z-20 overflow-hidden",
+                  children: /*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: "py-1",
+                    children: [{
+                      value: 'best-seller',
+                      label: 'Best Seller'
+                    }, {
+                      value: 'newest',
+                      label: 'Newest'
+                    }, {
+                      value: 'best-rated',
+                      label: 'Best Rated'
+                    }, {
+                      value: 'trending',
+                      label: 'Trending'
+                    }, {
+                      value: 'price-low',
+                      label: 'Price: Low to High'
+                    }, {
+                      value: 'price-high',
+                      label: 'Price: High to Low'
+                    }].map(function (option) {
+                      return /*#__PURE__*/jsxRuntime.jsx("button", {
+                        onClick: function onClick() {
+                          setSortBy(option.value);
+                          setSortDropdownOpen(false);
+                        },
+                        className: clsx('w-full text-left px-5 py-3 text-sm font-medium transition-colors', sortBy === option.value ? 'bg-primary-700 text-white' : 'text-white/90 hover:bg-primary-700/50 hover:text-white'),
+                        children: option.label
+                      }, option.value);
+                    })
+                  })
+                })]
+              })]
+            }), /*#__PURE__*/jsxRuntime.jsx("button", {
+              onClick: function onClick() {
+                return setSortBy('newest');
+              },
+              className: clsx('px-4 py-2.5 rounded-lg text-sm font-semibold transition-all', sortBy === 'newest' ? 'bg-primary-600 text-white shadow-md' : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 hover:border-primary-300'),
+              children: "New"
+            }), /*#__PURE__*/jsxRuntime.jsx("button", {
+              onClick: function onClick() {
+                return setSortBy('best-rated');
+              },
+              className: clsx('px-4 py-2.5 rounded-lg text-sm font-semibold transition-all', sortBy === 'best-rated' ? 'bg-primary-600 text-white shadow-md' : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 hover:border-primary-300'),
+              children: "Best Rated"
+            }), /*#__PURE__*/jsxRuntime.jsx("button", {
+              onClick: function onClick() {
+                return setSortBy('trending');
+              },
+              className: clsx('px-4 py-2.5 rounded-lg text-sm font-semibold transition-all', sortBy === 'trending' ? 'bg-primary-600 text-white shadow-md' : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 hover:border-primary-300'),
+              children: "Trending"
+            }), /*#__PURE__*/jsxRuntime.jsx("button", {
+              onClick: function onClick() {
+                return setSortBy(sortBy === 'price-low' ? 'price-high' : 'price-low');
+              },
+              className: clsx('px-4 py-2.5 rounded-lg text-sm font-semibold transition-all', sortBy === 'price-low' || sortBy === 'price-high' ? 'bg-primary-600 text-white shadow-md' : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 hover:border-primary-300'),
+              children: "Price"
+            })]
+          })]
+        }), filteredProducts.length > 0 ? /*#__PURE__*/jsxRuntime.jsx("div", {
+          className: clsx('grid gap-4 sm:gap-6', gridColumnsClasses[columns] || gridColumnsClasses[4]),
+          children: filteredProducts.map(function (product, index) {
+            return renderProductCard(product, index);
+          })
+        }) : /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "text-center py-12 bg-white rounded-lg border border-gray-200",
+          children: [/*#__PURE__*/jsxRuntime.jsx("p", {
+            className: "text-gray-500 text-lg",
+            children: "No products found"
+          }), /*#__PURE__*/jsxRuntime.jsx("p", {
+            className: "text-gray-400 text-sm mt-2",
+            children: "Try adjusting your filters"
+          })]
+        })]
+      }) :
+      /*#__PURE__*/
+      /* Default Layout - Sidebar alignment based on sidebarAlignment prop */
+      jsxRuntime.jsxs("div", {
+        className: clsx('flex flex-col gap-6 lg:gap-8', sidebarAlignment === 'right' ? 'lg:flex-row-reverse' : 'lg:flex-row'),
+        children: [renderSidebar(), /*#__PURE__*/jsxRuntime.jsxs("div", {
+          className: "flex-1",
+          children: [/*#__PURE__*/jsxRuntime.jsxs("button", {
+            onClick: function onClick() {
+              return setSidebarOpen(!sidebarOpen);
+            },
+            className: "lg:hidden mb-4 flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50",
+            children: [/*#__PURE__*/jsxRuntime.jsx("svg", {
+              className: "w-5 h-5",
+              fill: "none",
+              stroke: "currentColor",
+              viewBox: "0 0 24 24",
+              children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"
+              })
+            }), sidebarOpen ? 'Hide Filters' : 'Show Filters']
+          }), /*#__PURE__*/jsxRuntime.jsx("div", {
+            className: "bg-white rounded-xl border border-gray-200 shadow-sm p-4 mb-6",
+            children: /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "flex flex-col sm:flex-row gap-4",
+              children: /*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: "flex-1 relative",
+                children: [/*#__PURE__*/jsxRuntime.jsx("input", {
+                  type: "text",
+                  placeholder: "Search for mockups, Web Templates and More.....",
+                  value: searchQuery,
+                  onChange: function onChange(e) {
+                    return setSearchQuery(e.target.value);
+                  },
+                  className: "w-full px-4 py-2.5 pr-12 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                }), /*#__PURE__*/jsxRuntime.jsx("button", {
+                  className: "absolute right-2 top-1/2 transform -translate-y-1/2 bg-primary-600 text-white p-2 rounded-lg hover:bg-primary-700 transition-colors",
+                  "aria-label": "Search",
+                  children: /*#__PURE__*/jsxRuntime.jsx("svg", {
+                    className: "w-5 h-5",
+                    fill: "none",
+                    stroke: "currentColor",
+                    viewBox: "0 0 24 24",
+                    children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                      strokeLinecap: "round",
+                      strokeLinejoin: "round",
+                      strokeWidth: 2,
+                      d: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                    })
+                  })
+                })]
+              })
+            })
+          }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6",
+            children: [/*#__PURE__*/jsxRuntime.jsxs("p", {
+              className: "text-sm text-gray-600",
+              children: ["You found ", filteredProducts.length, " ", title || 'Products']
+            }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+              className: "flex flex-wrap items-center gap-3",
+              children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+                className: "relative",
+                children: [/*#__PURE__*/jsxRuntime.jsxs("button", {
+                  onClick: function onClick() {
+                    return setSortDropdownOpen(!sortDropdownOpen);
+                  },
+                  className: "flex items-center gap-2 px-5 py-2.5 bg-primary-600 text-white rounded-lg text-sm font-semibold hover:bg-primary-700 transition-colors shadow-md",
+                  children: [/*#__PURE__*/jsxRuntime.jsxs("span", {
+                    children: [sortBy === 'best-seller' && 'Best Seller', sortBy === 'newest' && 'Newest', sortBy === 'best-rated' && 'Best Rated', sortBy === 'trending' && 'Trending', sortBy === 'price-low' && 'Price: Low to High', sortBy === 'price-high' && 'Price: High to Low']
+                  }), /*#__PURE__*/jsxRuntime.jsx("svg", {
+                    className: clsx('w-4 h-4 transition-transform duration-200', sortDropdownOpen ? 'rotate-180' : ''),
+                    fill: "none",
+                    stroke: "currentColor",
+                    viewBox: "0 0 24 24",
+                    children: /*#__PURE__*/jsxRuntime.jsx("path", {
+                      strokeLinecap: "round",
+                      strokeLinejoin: "round",
+                      strokeWidth: 2,
+                      d: "M19 9l-7 7-7-7"
+                    })
+                  })]
+                }), sortDropdownOpen && /*#__PURE__*/jsxRuntime.jsxs(jsxRuntime.Fragment, {
+                  children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: "fixed inset-0 z-10",
+                    onClick: function onClick() {
+                      return setSortDropdownOpen(false);
+                    }
+                  }), /*#__PURE__*/jsxRuntime.jsx("div", {
+                    className: "absolute top-full left-0 mt-2 w-56 bg-primary-600 rounded-lg shadow-2xl z-20 overflow-hidden",
+                    children: /*#__PURE__*/jsxRuntime.jsx("div", {
+                      className: "py-1",
+                      children: [{
+                        value: 'best-seller',
+                        label: 'Best Seller'
+                      }, {
+                        value: 'newest',
+                        label: 'Newest'
+                      }, {
+                        value: 'best-rated',
+                        label: 'Best Rated'
+                      }, {
+                        value: 'trending',
+                        label: 'Trending'
+                      }, {
+                        value: 'price-low',
+                        label: 'Price: Low to High'
+                      }, {
+                        value: 'price-high',
+                        label: 'Price: High to Low'
+                      }].map(function (option) {
+                        return /*#__PURE__*/jsxRuntime.jsx("button", {
+                          onClick: function onClick() {
+                            setSortBy(option.value);
+                            setSortDropdownOpen(false);
+                          },
+                          className: clsx('w-full text-left px-5 py-3 text-sm font-medium transition-colors', sortBy === option.value ? 'bg-primary-700 text-white' : 'text-white/90 hover:bg-primary-700/50 hover:text-white'),
+                          children: option.label
+                        }, option.value);
+                      })
+                    })
+                  })]
+                })]
+              }), /*#__PURE__*/jsxRuntime.jsx("button", {
+                onClick: function onClick() {
+                  return setSortBy('newest');
+                },
+                className: clsx('px-4 py-2.5 rounded-lg text-sm font-semibold transition-all', sortBy === 'newest' ? 'bg-primary-600 text-white shadow-md' : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 hover:border-primary-300'),
+                children: "New"
+              }), /*#__PURE__*/jsxRuntime.jsx("button", {
+                onClick: function onClick() {
+                  return setSortBy('best-rated');
+                },
+                className: clsx('px-4 py-2.5 rounded-lg text-sm font-semibold transition-all', sortBy === 'best-rated' ? 'bg-primary-600 text-white shadow-md' : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 hover:border-primary-300'),
+                children: "Best Rated"
+              }), /*#__PURE__*/jsxRuntime.jsx("button", {
+                onClick: function onClick() {
+                  return setSortBy('trending');
+                },
+                className: clsx('px-4 py-2.5 rounded-lg text-sm font-semibold transition-all', sortBy === 'trending' ? 'bg-primary-600 text-white shadow-md' : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 hover:border-primary-300'),
+                children: "Trending"
+              }), /*#__PURE__*/jsxRuntime.jsx("button", {
+                onClick: function onClick() {
+                  return setSortBy(sortBy === 'price-low' ? 'price-high' : 'price-low');
+                },
+                className: clsx('px-4 py-2.5 rounded-lg text-sm font-semibold transition-all', sortBy === 'price-low' || sortBy === 'price-high' ? 'bg-primary-600 text-white shadow-md' : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 hover:border-primary-300'),
+                children: "Price"
+              })]
+            })]
+          }), filteredProducts.length > 0 ? /*#__PURE__*/jsxRuntime.jsxs(jsxRuntime.Fragment, {
+            children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+              className: clsx('grid gap-4 sm:gap-6', gridColumnsClasses[columns] || gridColumnsClasses[4]),
+              children: displayedProducts.map(function (product, index) {
+                return renderProductCard(product, index);
+              })
+            }), hasMoreProducts && /*#__PURE__*/jsxRuntime.jsx("div", {
+              className: "mt-8 text-center",
+              children: /*#__PURE__*/jsxRuntime.jsxs("button", {
+                onClick: handleShowMore,
+                className: "px-8 py-3 bg-primary-600 hover:bg-primary-700 text-white font-semibold rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl",
+                children: ["Show More (", filteredProducts.length - productsToShow, " remaining)"]
+              })
+            })]
+          }) : /*#__PURE__*/jsxRuntime.jsxs("div", {
+            className: "text-center py-12 bg-white rounded-lg border border-gray-200",
+            children: [/*#__PURE__*/jsxRuntime.jsx("p", {
+              className: "text-gray-500 text-lg",
+              children: "No products found"
+            }), /*#__PURE__*/jsxRuntime.jsx("p", {
+              className: "text-gray-400 text-sm mt-2",
+              children: "Try adjusting your filters"
+            })]
+          })]
+        })]
+      })]
+    })
+  });
+};
+
 /**
  * Load hero section data from a JSON file or object
  * @param {string|Object} data - JSON data or path to JSON file
@@ -17370,6 +20271,7 @@ exports.PriceModern = PriceModern;
 exports.PricePremium = PricePremium;
 exports.ProductLayout = ProductLayout;
 exports.ProductModern = ProductModern;
+exports.ProductShop = ProductShop;
 exports.ProductStandard = ProductStandard;
 exports.SlideFlow = SlideFlow;
 exports.TestimonialCarousel = TestimonialCarousel;
