@@ -1,5 +1,5 @@
-import { useState, useEffect, useRef, useMemo } from 'react';
-import { jsx, jsxs, Fragment } from 'react/jsx-runtime';
+import require$$0, { useState, useEffect, useRef, useMemo } from 'react';
+import require$$1, { jsx, jsxs, Fragment } from 'react/jsx-runtime';
 
 function _arrayLikeToArray(r, a) {
   (null == a || a > r.length) && (a = r.length);
@@ -17295,6 +17295,9233 @@ var ProductModern = function ProductModern(_ref4) {
   });
 };
 
+var ProductSingleClassic = function ProductSingleClassic(_ref) {
+  var data = _ref.data,
+    className = _ref.className,
+    id = _ref.id;
+  // Safety check for data
+  if (!data || _typeof(data) !== 'object') {
+    console.error('ProductSingleClassic: data prop is required and must be an object');
+    return null;
+  }
+  var _useState = useState(0),
+    _useState2 = _slicedToArray(_useState, 2),
+    selectedImage = _useState2[0],
+    setSelectedImage = _useState2[1];
+  var _useState3 = useState('description'),
+    _useState4 = _slicedToArray(_useState3, 2),
+    activeTab = _useState4[0],
+    setActiveTab = _useState4[1];
+  var title = data.title,
+    subtitle = data.subtitle,
+    description = data.description,
+    price = data.price,
+    originalPrice = data.originalPrice,
+    image = data.image,
+    _data$images = data.images,
+    images = _data$images === void 0 ? [] : _data$images,
+    _data$features = data.features,
+    features = _data$features === void 0 ? [] : _data$features,
+    _data$specifications = data.specifications,
+    specifications = _data$specifications === void 0 ? [] : _data$specifications,
+    rating = data.rating,
+    badge = data.badge,
+    _data$inStock = data.inStock,
+    inStock = _data$inStock === void 0 ? true : _data$inStock,
+    _data$button = data.button,
+    button = _data$button === void 0 ? {
+      text: "Add to Cart",
+      variant: "primary"
+    } : _data$button,
+    _data$variant = data.variant,
+    variant = _data$variant === void 0 ? 'default' : _data$variant,
+    _data$currency = data.currency,
+    currency = _data$currency === void 0 ? '$' : _data$currency;
+
+  // Combine single image and images array
+  var allImages = image ? [image].concat(_toConsumableArray(images)) : images;
+
+  // Rating display
+  var renderRating = function renderRating(rating) {
+    if (!rating) return null;
+    var stars = [];
+    var fullStars = Math.floor(rating);
+    var hasHalfStar = rating % 1 !== 0;
+    for (var i = 0; i < fullStars; i++) {
+      stars.push(/*#__PURE__*/jsx("svg", {
+        className: "w-4 h-4 text-yellow-400 fill-current",
+        viewBox: "0 0 20 20",
+        children: /*#__PURE__*/jsx("path", {
+          d: "M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+        })
+      }, i));
+    }
+    if (hasHalfStar) {
+      stars.push(/*#__PURE__*/jsxs("svg", {
+        className: "w-4 h-4 text-yellow-400 fill-current",
+        viewBox: "0 0 20 20",
+        children: [/*#__PURE__*/jsx("defs", {
+          children: /*#__PURE__*/jsxs("linearGradient", {
+            id: "halfStar",
+            children: [/*#__PURE__*/jsx("stop", {
+              offset: "50%",
+              stopColor: "currentColor"
+            }), /*#__PURE__*/jsx("stop", {
+              offset: "50%",
+              stopColor: "transparent"
+            })]
+          })
+        }), /*#__PURE__*/jsx("path", {
+          fill: "url(#halfStar)",
+          d: "M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+        })]
+      }, "half"));
+    }
+    var emptyStars = 5 - Math.ceil(rating);
+    for (var _i = 0; _i < emptyStars; _i++) {
+      stars.push(/*#__PURE__*/jsx("svg", {
+        className: "w-4 h-4 text-gray-300 fill-current",
+        viewBox: "0 0 20 20",
+        children: /*#__PURE__*/jsx("path", {
+          d: "M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+        })
+      }, "empty-".concat(_i)));
+    }
+    return /*#__PURE__*/jsxs("div", {
+      className: "flex items-center space-x-1",
+      children: [stars, /*#__PURE__*/jsxs("span", {
+        className: "text-sm text-gray-600 ml-2",
+        children: ["(", rating, ")"]
+      })]
+    });
+  };
+
+  // Default variant - Standard product layout
+  if (variant === 'default') {
+    return /*#__PURE__*/jsx("section", {
+      id: id,
+      className: clsx("product-single-classic-default bg-white", className),
+      children: /*#__PURE__*/jsx("div", {
+        className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-16",
+        children: /*#__PURE__*/jsxs("div", {
+          className: "grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16",
+          children: [/*#__PURE__*/jsxs("div", {
+            className: "space-y-4",
+            children: [/*#__PURE__*/jsx("div", {
+              className: "aspect-square bg-gray-100 rounded-lg overflow-hidden",
+              children: allImages.length > 0 && /*#__PURE__*/jsx("img", {
+                src: allImages[selectedImage],
+                alt: title,
+                className: "w-full h-full object-cover"
+              })
+            }), allImages.length > 1 && /*#__PURE__*/jsx("div", {
+              className: "grid grid-cols-4 gap-4",
+              children: allImages.slice(0, 4).map(function (img, index) {
+                return /*#__PURE__*/jsx("button", {
+                  onClick: function onClick() {
+                    return setSelectedImage(index);
+                  },
+                  className: clsx("aspect-square bg-gray-100 rounded-lg overflow-hidden border-2 transition-colors", selectedImage === index ? "border-blue-500" : "border-transparent"),
+                  children: /*#__PURE__*/jsx("img", {
+                    src: img,
+                    alt: "".concat(title, " ").concat(index + 1),
+                    className: "w-full h-full object-cover"
+                  })
+                }, index);
+              })
+            })]
+          }), /*#__PURE__*/jsxs("div", {
+            className: "space-y-6",
+            children: [subtitle && /*#__PURE__*/jsx("p", {
+              className: "text-sm font-medium text-blue-600 uppercase tracking-wide",
+              children: subtitle
+            }), /*#__PURE__*/jsx("h1", {
+              className: "text-3xl lg:text-4xl font-bold text-gray-900",
+              children: title
+            }), rating && renderRating(rating), /*#__PURE__*/jsxs("div", {
+              className: "flex items-center space-x-4",
+              children: [/*#__PURE__*/jsxs("span", {
+                className: "text-3xl font-bold text-gray-900",
+                children: [currency, price]
+              }), originalPrice && /*#__PURE__*/jsxs("span", {
+                className: "text-xl text-gray-500 line-through",
+                children: [currency, originalPrice]
+              }), badge && /*#__PURE__*/jsx("span", {
+                className: "inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800",
+                children: badge
+              })]
+            }), /*#__PURE__*/jsx("div", {
+              className: "flex items-center space-x-2",
+              children: /*#__PURE__*/jsx("span", {
+                className: clsx("inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium", inStock ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"),
+                children: inStock ? "In Stock" : "Out of Stock"
+              })
+            }), /*#__PURE__*/jsx("div", {
+              className: "prose prose-gray max-w-none",
+              children: /*#__PURE__*/jsx("p", {
+                className: "text-gray-600",
+                children: description
+              })
+            }), /*#__PURE__*/jsx("button", {
+              className: clsx("w-full px-8 py-4 rounded-lg font-semibold text-white transition-colors", button.variant === 'secondary' ? "bg-gray-900 hover:bg-gray-800" : button.variant === 'outline' ? "bg-transparent border-2 border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white" : "bg-blue-600 hover:bg-blue-700"),
+              children: button.text
+            }), features.length > 0 && /*#__PURE__*/jsxs("div", {
+              className: "space-y-3",
+              children: [/*#__PURE__*/jsx("h3", {
+                className: "text-lg font-semibold text-gray-900",
+                children: "Features"
+              }), /*#__PURE__*/jsx("ul", {
+                className: "space-y-2",
+                children: features.map(function (feature, index) {
+                  return /*#__PURE__*/jsxs("li", {
+                    className: "flex items-center space-x-2",
+                    children: [/*#__PURE__*/jsx("svg", {
+                      className: "w-5 h-5 text-green-500",
+                      fill: "currentColor",
+                      viewBox: "0 0 20 20",
+                      children: /*#__PURE__*/jsx("path", {
+                        fillRule: "evenodd",
+                        d: "M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z",
+                        clipRule: "evenodd"
+                      })
+                    }), /*#__PURE__*/jsx("span", {
+                      className: "text-gray-700",
+                      children: feature
+                    })]
+                  }, index);
+                })
+              })]
+            })]
+          })]
+        })
+      })
+    });
+  }
+
+  // Centered variant - Centered layout with hero-style presentation
+  if (variant === 'centered') {
+    return /*#__PURE__*/jsx("section", {
+      id: id,
+      className: clsx("product-single-classic-centered bg-gray-50", className),
+      children: /*#__PURE__*/jsxs("div", {
+        className: "max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20",
+        children: [/*#__PURE__*/jsxs("div", {
+          className: "text-center mb-12",
+          children: [subtitle && /*#__PURE__*/jsx("p", {
+            className: "text-sm font-medium text-blue-600 uppercase tracking-wide mb-4",
+            children: subtitle
+          }), /*#__PURE__*/jsx("h1", {
+            className: "text-4xl lg:text-5xl font-bold text-gray-900 mb-6",
+            children: title
+          }), rating && /*#__PURE__*/jsx("div", {
+            className: "flex justify-center mb-6",
+            children: renderRating(rating)
+          })]
+        }), /*#__PURE__*/jsxs("div", {
+          className: "bg-white rounded-2xl shadow-xl overflow-hidden",
+          children: [/*#__PURE__*/jsxs("div", {
+            className: "aspect-video bg-gray-100 relative",
+            children: [allImages.length > 0 && /*#__PURE__*/jsx("img", {
+              src: allImages[selectedImage],
+              alt: title,
+              className: "w-full h-full object-cover"
+            }), badge && /*#__PURE__*/jsx("div", {
+              className: "absolute top-4 left-4",
+              children: /*#__PURE__*/jsx("span", {
+                className: "inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-red-500 text-white",
+                children: badge
+              })
+            })]
+          }), /*#__PURE__*/jsxs("div", {
+            className: "p-8 lg:p-12",
+            children: [/*#__PURE__*/jsxs("div", {
+              className: "text-center mb-8",
+              children: [/*#__PURE__*/jsxs("div", {
+                className: "flex items-center justify-center space-x-4 mb-4",
+                children: [/*#__PURE__*/jsxs("span", {
+                  className: "text-4xl font-bold text-gray-900",
+                  children: [currency, price]
+                }), originalPrice && /*#__PURE__*/jsxs("span", {
+                  className: "text-2xl text-gray-500 line-through",
+                  children: [currency, originalPrice]
+                })]
+              }), /*#__PURE__*/jsx("div", {
+                className: "flex justify-center mb-6",
+                children: /*#__PURE__*/jsx("span", {
+                  className: clsx("inline-flex items-center px-3 py-1 rounded-full text-sm font-medium", inStock ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"),
+                  children: inStock ? "In Stock" : "Out of Stock"
+                })
+              })]
+            }), /*#__PURE__*/jsx("div", {
+              className: "prose prose-gray max-w-none text-center mb-8",
+              children: /*#__PURE__*/jsx("p", {
+                className: "text-lg text-gray-600",
+                children: description
+              })
+            }), /*#__PURE__*/jsx("div", {
+              className: "text-center",
+              children: /*#__PURE__*/jsx("button", {
+                className: clsx("px-12 py-4 rounded-lg font-semibold text-white text-lg transition-colors", button.variant === 'secondary' ? "bg-gray-900 hover:bg-gray-800" : button.variant === 'outline' ? "bg-transparent border-2 border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white" : "bg-blue-600 hover:bg-blue-700"),
+                children: button.text
+              })
+            }), features.length > 0 && /*#__PURE__*/jsxs("div", {
+              className: "mt-12 pt-8 border-t border-gray-200",
+              children: [/*#__PURE__*/jsx("h3", {
+                className: "text-xl font-semibold text-gray-900 text-center mb-6",
+                children: "Features"
+              }), /*#__PURE__*/jsx("div", {
+                className: "grid grid-cols-1 md:grid-cols-2 gap-4",
+                children: features.map(function (feature, index) {
+                  return /*#__PURE__*/jsxs("div", {
+                    className: "flex items-center space-x-3",
+                    children: [/*#__PURE__*/jsx("svg", {
+                      className: "w-5 h-5 text-green-500 flex-shrink-0",
+                      fill: "currentColor",
+                      viewBox: "0 0 20 20",
+                      children: /*#__PURE__*/jsx("path", {
+                        fillRule: "evenodd",
+                        d: "M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z",
+                        clipRule: "evenodd"
+                      })
+                    }), /*#__PURE__*/jsx("span", {
+                      className: "text-gray-700",
+                      children: feature
+                    })]
+                  }, index);
+                })
+              })]
+            })]
+          })]
+        })]
+      })
+    });
+  }
+
+  // Split variant - Split screen layout
+  if (variant === 'split') {
+    return /*#__PURE__*/jsx("section", {
+      id: id,
+      className: clsx("product-single-classic-split min-h-screen", className),
+      children: /*#__PURE__*/jsxs("div", {
+        className: "grid grid-cols-1 lg:grid-cols-2 min-h-screen",
+        children: [/*#__PURE__*/jsxs("div", {
+          className: "relative bg-gray-900",
+          children: [allImages.length > 0 && /*#__PURE__*/jsx("img", {
+            src: allImages[selectedImage],
+            alt: title,
+            className: "w-full h-full object-cover"
+          }), badge && /*#__PURE__*/jsx("div", {
+            className: "absolute top-8 left-8",
+            children: /*#__PURE__*/jsx("span", {
+              className: "inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-white text-gray-900",
+              children: badge
+            })
+          }), allImages.length > 1 && /*#__PURE__*/jsx("div", {
+            className: "absolute bottom-8 left-8 right-8",
+            children: /*#__PURE__*/jsx("div", {
+              className: "flex space-x-2",
+              children: allImages.slice(0, 4).map(function (img, index) {
+                return /*#__PURE__*/jsx("button", {
+                  onClick: function onClick() {
+                    return setSelectedImage(index);
+                  },
+                  className: clsx("w-16 h-16 rounded-lg overflow-hidden border-2 transition-colors flex-shrink-0", selectedImage === index ? "border-white" : "border-white/30"),
+                  children: /*#__PURE__*/jsx("img", {
+                    src: img,
+                    alt: "".concat(title, " ").concat(index + 1),
+                    className: "w-full h-full object-cover"
+                  })
+                }, index);
+              })
+            })
+          })]
+        }), /*#__PURE__*/jsx("div", {
+          className: "flex items-center justify-center p-8 lg:p-16 bg-white",
+          children: /*#__PURE__*/jsxs("div", {
+            className: "max-w-lg w-full space-y-8",
+            children: [subtitle && /*#__PURE__*/jsx("p", {
+              className: "text-sm font-medium text-blue-600 uppercase tracking-wide",
+              children: subtitle
+            }), /*#__PURE__*/jsx("h1", {
+              className: "text-4xl lg:text-5xl font-bold text-gray-900",
+              children: title
+            }), rating && renderRating(rating), /*#__PURE__*/jsxs("div", {
+              className: "flex items-center space-x-4",
+              children: [/*#__PURE__*/jsxs("span", {
+                className: "text-4xl font-bold text-gray-900",
+                children: [currency, price]
+              }), originalPrice && /*#__PURE__*/jsxs("span", {
+                className: "text-2xl text-gray-500 line-through",
+                children: [currency, originalPrice]
+              })]
+            }), /*#__PURE__*/jsx("div", {
+              className: "flex items-center space-x-2 mb-6",
+              children: /*#__PURE__*/jsx("span", {
+                className: clsx("inline-flex items-center px-3 py-1 rounded-full text-sm font-medium", inStock ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"),
+                children: inStock ? "In Stock" : "Out of Stock"
+              })
+            }), /*#__PURE__*/jsx("div", {
+              className: "prose prose-gray max-w-none",
+              children: /*#__PURE__*/jsx("p", {
+                className: "text-lg text-gray-600",
+                children: description
+              })
+            }), /*#__PURE__*/jsx("button", {
+              className: clsx("w-full px-8 py-4 rounded-lg font-semibold text-white text-lg transition-colors", button.variant === 'secondary' ? "bg-gray-900 hover:bg-gray-800" : button.variant === 'outline' ? "bg-transparent border-2 border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white" : "bg-blue-600 hover:bg-blue-700"),
+              children: button.text
+            }), features.length > 0 && /*#__PURE__*/jsxs("div", {
+              className: "space-y-4",
+              children: [/*#__PURE__*/jsx("h3", {
+                className: "text-lg font-semibold text-gray-900",
+                children: "Key Features"
+              }), /*#__PURE__*/jsx("ul", {
+                className: "space-y-2",
+                children: features.map(function (feature, index) {
+                  return /*#__PURE__*/jsxs("li", {
+                    className: "flex items-center space-x-2",
+                    children: [/*#__PURE__*/jsx("svg", {
+                      className: "w-5 h-5 text-green-500 flex-shrink-0",
+                      fill: "currentColor",
+                      viewBox: "0 0 20 20",
+                      children: /*#__PURE__*/jsx("path", {
+                        fillRule: "evenodd",
+                        d: "M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z",
+                        clipRule: "evenodd"
+                      })
+                    }), /*#__PURE__*/jsx("span", {
+                      className: "text-gray-700",
+                      children: feature
+                    })]
+                  }, index);
+                })
+              })]
+            })]
+          })
+        })]
+      })
+    });
+  }
+
+  // Compact variant - Compact layout for smaller spaces
+  if (variant === 'compact') {
+    return /*#__PURE__*/jsx("section", {
+      id: id,
+      className: clsx("product-single-classic-compact bg-white border border-gray-200 rounded-lg overflow-hidden", className),
+      children: /*#__PURE__*/jsx("div", {
+        className: "p-6",
+        children: /*#__PURE__*/jsxs("div", {
+          className: "flex flex-col sm:flex-row gap-6",
+          children: [/*#__PURE__*/jsxs("div", {
+            className: "sm:w-1/3",
+            children: [/*#__PURE__*/jsx("div", {
+              className: "aspect-square bg-gray-100 rounded-lg overflow-hidden",
+              children: allImages.length > 0 && /*#__PURE__*/jsx("img", {
+                src: allImages[selectedImage],
+                alt: title,
+                className: "w-full h-full object-cover"
+              })
+            }), allImages.length > 1 && /*#__PURE__*/jsx("div", {
+              className: "flex space-x-2 mt-3",
+              children: allImages.slice(0, 3).map(function (img, index) {
+                return /*#__PURE__*/jsx("button", {
+                  onClick: function onClick() {
+                    return setSelectedImage(index);
+                  },
+                  className: clsx("w-12 h-12 rounded border-2 transition-colors flex-shrink-0", selectedImage === index ? "border-blue-500" : "border-gray-300"),
+                  children: /*#__PURE__*/jsx("img", {
+                    src: img,
+                    alt: "".concat(title, " ").concat(index + 1),
+                    className: "w-full h-full object-cover rounded"
+                  })
+                }, index);
+              })
+            })]
+          }), /*#__PURE__*/jsxs("div", {
+            className: "sm:w-2/3 space-y-4",
+            children: [subtitle && /*#__PURE__*/jsx("p", {
+              className: "text-xs font-medium text-blue-600 uppercase tracking-wide",
+              children: subtitle
+            }), /*#__PURE__*/jsx("h2", {
+              className: "text-xl font-bold text-gray-900",
+              children: title
+            }), rating && renderRating(rating), /*#__PURE__*/jsxs("div", {
+              className: "flex items-center space-x-3",
+              children: [/*#__PURE__*/jsxs("span", {
+                className: "text-2xl font-bold text-gray-900",
+                children: [currency, price]
+              }), originalPrice && /*#__PURE__*/jsxs("span", {
+                className: "text-lg text-gray-500 line-through",
+                children: [currency, originalPrice]
+              }), badge && /*#__PURE__*/jsx("span", {
+                className: "inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800",
+                children: badge
+              })]
+            }), /*#__PURE__*/jsx("div", {
+              className: "flex items-center space-x-2",
+              children: /*#__PURE__*/jsx("span", {
+                className: clsx("inline-flex items-center px-2 py-1 rounded-full text-xs font-medium", inStock ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"),
+                children: inStock ? "In Stock" : "Out of Stock"
+              })
+            }), /*#__PURE__*/jsx("p", {
+              className: "text-sm text-gray-600 line-clamp-3",
+              children: description
+            }), /*#__PURE__*/jsx("button", {
+              className: clsx("w-full px-6 py-3 rounded-lg font-semibold text-white text-sm transition-colors", button.variant === 'secondary' ? "bg-gray-900 hover:bg-gray-800" : button.variant === 'outline' ? "bg-transparent border border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white" : "bg-blue-600 hover:bg-blue-700"),
+              children: button.text
+            }), features.length > 0 && /*#__PURE__*/jsx("div", {
+              className: "pt-4 border-t border-gray-200",
+              children: /*#__PURE__*/jsx("ul", {
+                className: "space-y-1",
+                children: features.slice(0, 3).map(function (feature, index) {
+                  return /*#__PURE__*/jsxs("li", {
+                    className: "flex items-center space-x-2 text-sm",
+                    children: [/*#__PURE__*/jsx("svg", {
+                      className: "w-4 h-4 text-green-500 flex-shrink-0",
+                      fill: "currentColor",
+                      viewBox: "0 0 20 20",
+                      children: /*#__PURE__*/jsx("path", {
+                        fillRule: "evenodd",
+                        d: "M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z",
+                        clipRule: "evenodd"
+                      })
+                    }), /*#__PURE__*/jsx("span", {
+                      className: "text-gray-700",
+                      children: feature
+                    })]
+                  }, index);
+                })
+              })
+            })]
+          })]
+        })
+      })
+    });
+  }
+
+  // Detailed variant - Full detailed layout with tabs
+  if (variant === 'detailed') {
+    return /*#__PURE__*/jsx("section", {
+      id: id,
+      className: clsx("product-single-classic-detailed bg-white", className),
+      children: /*#__PURE__*/jsxs("div", {
+        className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-16",
+        children: [/*#__PURE__*/jsxs("div", {
+          className: "grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16",
+          children: [/*#__PURE__*/jsxs("div", {
+            className: "space-y-6",
+            children: [/*#__PURE__*/jsx("div", {
+              className: "aspect-square bg-gray-100 rounded-xl overflow-hidden",
+              children: allImages.length > 0 && /*#__PURE__*/jsx("img", {
+                src: allImages[selectedImage],
+                alt: title,
+                className: "w-full h-full object-cover"
+              })
+            }), allImages.length > 1 && /*#__PURE__*/jsx("div", {
+              className: "grid grid-cols-5 gap-4",
+              children: allImages.slice(0, 5).map(function (img, index) {
+                return /*#__PURE__*/jsx("button", {
+                  onClick: function onClick() {
+                    return setSelectedImage(index);
+                  },
+                  className: clsx("aspect-square bg-gray-100 rounded-lg overflow-hidden border-2 transition-colors", selectedImage === index ? "border-blue-500" : "border-transparent"),
+                  children: /*#__PURE__*/jsx("img", {
+                    src: img,
+                    alt: "".concat(title, " ").concat(index + 1),
+                    className: "w-full h-full object-cover"
+                  })
+                }, index);
+              })
+            })]
+          }), /*#__PURE__*/jsxs("div", {
+            className: "space-y-8",
+            children: [subtitle && /*#__PURE__*/jsx("p", {
+              className: "text-sm font-medium text-blue-600 uppercase tracking-wide",
+              children: subtitle
+            }), /*#__PURE__*/jsx("h1", {
+              className: "text-4xl lg:text-5xl font-bold text-gray-900",
+              children: title
+            }), rating && renderRating(rating), /*#__PURE__*/jsxs("div", {
+              className: "flex items-center space-x-6",
+              children: [/*#__PURE__*/jsxs("span", {
+                className: "text-5xl font-bold text-gray-900",
+                children: [currency, price]
+              }), originalPrice && /*#__PURE__*/jsxs("span", {
+                className: "text-3xl text-gray-500 line-through",
+                children: [currency, originalPrice]
+              }), badge && /*#__PURE__*/jsx("span", {
+                className: "inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-red-500 text-white",
+                children: badge
+              })]
+            }), /*#__PURE__*/jsx("div", {
+              className: "flex items-center space-x-3",
+              children: /*#__PURE__*/jsx("span", {
+                className: clsx("inline-flex items-center px-4 py-2 rounded-full text-sm font-medium", inStock ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"),
+                children: inStock ? "✓ In Stock" : "✗ Out of Stock"
+              })
+            }), /*#__PURE__*/jsx("div", {
+              className: "prose prose-gray max-w-none",
+              children: /*#__PURE__*/jsx("p", {
+                className: "text-xl text-gray-600 leading-relaxed",
+                children: description
+              })
+            }), /*#__PURE__*/jsx("button", {
+              className: clsx("w-full px-12 py-5 rounded-xl font-bold text-white text-xl transition-all transform hover:scale-105", button.variant === 'secondary' ? "bg-gray-900 hover:bg-gray-800 shadow-lg hover:shadow-xl" : button.variant === 'outline' ? "bg-transparent border-2 border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white shadow-lg hover:shadow-xl" : "bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 shadow-lg hover:shadow-xl"),
+              children: button.text
+            }), features.length > 0 && /*#__PURE__*/jsxs("div", {
+              className: "bg-gray-50 rounded-xl p-6",
+              children: [/*#__PURE__*/jsx("h3", {
+                className: "text-xl font-semibold text-gray-900 mb-4",
+                children: "Key Features"
+              }), /*#__PURE__*/jsx("ul", {
+                className: "space-y-3",
+                children: features.map(function (feature, index) {
+                  return /*#__PURE__*/jsxs("li", {
+                    className: "flex items-start space-x-3",
+                    children: [/*#__PURE__*/jsx("svg", {
+                      className: "w-6 h-6 text-green-500 flex-shrink-0 mt-0.5",
+                      fill: "currentColor",
+                      viewBox: "0 0 20 20",
+                      children: /*#__PURE__*/jsx("path", {
+                        fillRule: "evenodd",
+                        d: "M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z",
+                        clipRule: "evenodd"
+                      })
+                    }), /*#__PURE__*/jsx("span", {
+                      className: "text-gray-700 text-lg",
+                      children: feature
+                    })]
+                  }, index);
+                })
+              })]
+            })]
+          })]
+        }), /*#__PURE__*/jsxs("div", {
+          className: "border-t border-gray-200 pt-16",
+          children: [/*#__PURE__*/jsxs("div", {
+            className: "flex space-x-8 mb-8",
+            children: [/*#__PURE__*/jsx("button", {
+              onClick: function onClick() {
+                return setActiveTab('description');
+              },
+              className: clsx("px-6 py-3 rounded-lg font-semibold transition-colors", activeTab === 'description' ? "bg-blue-600 text-white" : "text-gray-600 hover:text-gray-900"),
+              children: "Description"
+            }), /*#__PURE__*/jsx("button", {
+              onClick: function onClick() {
+                return setActiveTab('specifications');
+              },
+              className: clsx("px-6 py-3 rounded-lg font-semibold transition-colors", activeTab === 'specifications' ? "bg-blue-600 text-white" : "text-gray-600 hover:text-gray-900"),
+              children: "Specifications"
+            }), /*#__PURE__*/jsx("button", {
+              onClick: function onClick() {
+                return setActiveTab('reviews');
+              },
+              className: clsx("px-6 py-3 rounded-lg font-semibold transition-colors", activeTab === 'reviews' ? "bg-blue-600 text-white" : "text-gray-600 hover:text-gray-900"),
+              children: "Reviews"
+            })]
+          }), /*#__PURE__*/jsxs("div", {
+            className: "bg-gray-50 rounded-xl p-8",
+            children: [activeTab === 'description' && /*#__PURE__*/jsxs("div", {
+              className: "prose prose-gray max-w-none",
+              children: [/*#__PURE__*/jsx("p", {
+                className: "text-lg text-gray-700 leading-relaxed",
+                children: description
+              }), features.length > 0 && /*#__PURE__*/jsxs("div", {
+                className: "mt-8",
+                children: [/*#__PURE__*/jsx("h3", {
+                  className: "text-2xl font-semibold text-gray-900 mb-4",
+                  children: "Product Features"
+                }), /*#__PURE__*/jsx("ul", {
+                  className: "space-y-2",
+                  children: features.map(function (feature, index) {
+                    return /*#__PURE__*/jsxs("li", {
+                      className: "flex items-center space-x-3",
+                      children: [/*#__PURE__*/jsx("svg", {
+                        className: "w-5 h-5 text-blue-600",
+                        fill: "currentColor",
+                        viewBox: "0 0 20 20",
+                        children: /*#__PURE__*/jsx("path", {
+                          fillRule: "evenodd",
+                          d: "M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z",
+                          clipRule: "evenodd"
+                        })
+                      }), /*#__PURE__*/jsx("span", {
+                        className: "text-gray-700",
+                        children: feature
+                      })]
+                    }, index);
+                  })
+                })]
+              })]
+            }), activeTab === 'specifications' && /*#__PURE__*/jsxs("div", {
+              children: [/*#__PURE__*/jsx("h3", {
+                className: "text-2xl font-semibold text-gray-900 mb-6",
+                children: "Technical Specifications"
+              }), specifications.length > 0 ? /*#__PURE__*/jsx("div", {
+                className: "grid grid-cols-1 md:grid-cols-2 gap-6",
+                children: specifications.map(function (spec, index) {
+                  return /*#__PURE__*/jsxs("div", {
+                    className: "flex justify-between py-3 border-b border-gray-200",
+                    children: [/*#__PURE__*/jsx("span", {
+                      className: "font-medium text-gray-900",
+                      children: spec.label
+                    }), /*#__PURE__*/jsx("span", {
+                      className: "text-gray-700",
+                      children: spec.value
+                    })]
+                  }, index);
+                })
+              }) : /*#__PURE__*/jsx("p", {
+                className: "text-gray-600",
+                children: "Specifications coming soon."
+              })]
+            }), activeTab === 'reviews' && /*#__PURE__*/jsxs("div", {
+              children: [/*#__PURE__*/jsx("h3", {
+                className: "text-2xl font-semibold text-gray-900 mb-6",
+                children: "Customer Reviews"
+              }), rating ? /*#__PURE__*/jsxs("div", {
+                className: "space-y-6",
+                children: [/*#__PURE__*/jsxs("div", {
+                  className: "flex items-center space-x-4",
+                  children: [renderRating(rating), /*#__PURE__*/jsx("span", {
+                    className: "text-lg text-gray-600",
+                    children: "Based on customer reviews"
+                  })]
+                }), /*#__PURE__*/jsx("p", {
+                  className: "text-gray-600",
+                  children: "Detailed reviews coming soon."
+                })]
+              }) : /*#__PURE__*/jsx("p", {
+                className: "text-gray-600",
+                children: "No reviews yet. Be the first to review this product!"
+              })]
+            })]
+          })]
+        })]
+      })
+    });
+  }
+  return null;
+};
+
+var ProductSingleModern = function ProductSingleModern(_ref) {
+  var data = _ref.data,
+    className = _ref.className,
+    id = _ref.id;
+  // Safety check for data
+  if (!data || _typeof(data) !== 'object') {
+    console.error('ProductSingleModern: data prop is required and must be an object');
+    return null;
+  }
+  var _useState = useState(0),
+    _useState2 = _slicedToArray(_useState, 2),
+    selectedImage = _useState2[0],
+    setSelectedImage = _useState2[1];
+  var _useState3 = useState(false),
+    _useState4 = _slicedToArray(_useState3, 2),
+    isHovered = _useState4[0],
+    setIsHovered = _useState4[1];
+  var _useState5 = useState(1),
+    _useState6 = _slicedToArray(_useState5, 2),
+    quantity = _useState6[0],
+    setQuantity = _useState6[1];
+  var title = data.title,
+    subtitle = data.subtitle,
+    description = data.description,
+    price = data.price,
+    originalPrice = data.originalPrice,
+    image = data.image,
+    _data$images = data.images,
+    images = _data$images === void 0 ? [] : _data$images,
+    _data$features = data.features,
+    features = _data$features === void 0 ? [] : _data$features;
+    data.specifications;
+    var rating = data.rating,
+    badge = data.badge,
+    _data$inStock = data.inStock,
+    inStock = _data$inStock === void 0 ? true : _data$inStock,
+    _data$button = data.button,
+    button = _data$button === void 0 ? {
+      text: "Add to Cart",
+      variant: "primary"
+    } : _data$button,
+    _data$variant = data.variant,
+    variant = _data$variant === void 0 ? 'glassmorphism' : _data$variant,
+    _data$currency = data.currency,
+    currency = _data$currency === void 0 ? '$' : _data$currency;
+
+  // Combine single image and images array
+  var allImages = image ? [image].concat(_toConsumableArray(images)) : images;
+
+  // Rating display
+  var renderRating = function renderRating(rating) {
+    if (!rating) return null;
+    var stars = [];
+    var fullStars = Math.floor(rating);
+    var hasHalfStar = rating % 1 !== 0;
+    for (var i = 0; i < fullStars; i++) {
+      stars.push(/*#__PURE__*/jsx("svg", {
+        className: "w-5 h-5 text-yellow-400 fill-current",
+        viewBox: "0 0 20 20",
+        children: /*#__PURE__*/jsx("path", {
+          d: "M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+        })
+      }, i));
+    }
+    if (hasHalfStar) {
+      stars.push(/*#__PURE__*/jsxs("svg", {
+        className: "w-5 h-5 text-yellow-400 fill-current",
+        viewBox: "0 0 20 20",
+        children: [/*#__PURE__*/jsx("defs", {
+          children: /*#__PURE__*/jsxs("linearGradient", {
+            id: "halfStar",
+            children: [/*#__PURE__*/jsx("stop", {
+              offset: "50%",
+              stopColor: "currentColor"
+            }), /*#__PURE__*/jsx("stop", {
+              offset: "50%",
+              stopColor: "transparent"
+            })]
+          })
+        }), /*#__PURE__*/jsx("path", {
+          fill: "url(#halfStar)",
+          d: "M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+        })]
+      }, "half"));
+    }
+    var emptyStars = 5 - Math.ceil(rating);
+    for (var _i = 0; _i < emptyStars; _i++) {
+      stars.push(/*#__PURE__*/jsx("svg", {
+        className: "w-5 h-5 text-gray-300 fill-current",
+        viewBox: "0 0 20 20",
+        children: /*#__PURE__*/jsx("path", {
+          d: "M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+        })
+      }, "empty-".concat(_i)));
+    }
+    return /*#__PURE__*/jsxs("div", {
+      className: "flex items-center space-x-2",
+      children: [stars, /*#__PURE__*/jsxs("span", {
+        className: "text-sm text-gray-600 ml-2",
+        children: ["(", rating, ")"]
+      })]
+    });
+  };
+
+  // Glassmorphism variant - Modern glass effect
+  if (variant === 'glassmorphism') {
+    return /*#__PURE__*/jsxs("section", {
+      id: id,
+      className: clsx("product-single-modern-glassmorphism relative min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50", className),
+      children: [/*#__PURE__*/jsxs("div", {
+        className: "absolute inset-0 opacity-30",
+        children: [/*#__PURE__*/jsx("div", {
+          className: "absolute inset-0 bg-gradient-to-r from-blue-400/20 to-purple-400/20"
+        }), /*#__PURE__*/jsxs("svg", {
+          className: "absolute inset-0 w-full h-full",
+          viewBox: "0 0 100 100",
+          preserveAspectRatio: "none",
+          children: [/*#__PURE__*/jsx("defs", {
+            children: /*#__PURE__*/jsx("pattern", {
+              id: "glassPattern",
+              x: "0",
+              y: "0",
+              width: "20",
+              height: "20",
+              patternUnits: "userSpaceOnUse",
+              children: /*#__PURE__*/jsx("circle", {
+                cx: "10",
+                cy: "10",
+                r: "1",
+                fill: "currentColor",
+                className: "text-blue-200",
+                opacity: "0.3"
+              })
+            })
+          }), /*#__PURE__*/jsx("rect", {
+            width: "100%",
+            height: "100%",
+            fill: "url(#glassPattern)"
+          })]
+        })]
+      }), /*#__PURE__*/jsx("div", {
+        className: "relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-24",
+        children: /*#__PURE__*/jsxs("div", {
+          className: "grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center",
+          children: [/*#__PURE__*/jsxs("div", {
+            className: "relative",
+            children: [/*#__PURE__*/jsxs("div", {
+              className: "relative",
+              children: [/*#__PURE__*/jsx("div", {
+                className: "aspect-square backdrop-blur-xl bg-white/20 rounded-2xl sm:rounded-3xl border border-white/30 shadow-2xl overflow-hidden",
+                children: allImages.length > 0 && /*#__PURE__*/jsx("img", {
+                  src: allImages[selectedImage],
+                  alt: title,
+                  className: "w-full h-full object-cover"
+                })
+              }), badge && /*#__PURE__*/jsx("div", {
+                className: "absolute -top-2 -right-2 sm:-top-4 sm:-right-4",
+                children: /*#__PURE__*/jsx("span", {
+                  className: "inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-bold bg-gradient-to-r from-pink-500 to-rose-500 text-white shadow-lg backdrop-blur-sm",
+                  children: badge
+                })
+              }), /*#__PURE__*/jsx("div", {
+                className: "absolute -bottom-3 -left-3 sm:-bottom-6 sm:-left-6 w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 backdrop-blur-xl bg-white/10 rounded-xl sm:rounded-2xl border border-white/20 shadow-lg flex items-center justify-center",
+                children: /*#__PURE__*/jsx("svg", {
+                  className: "w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-blue-600",
+                  fill: "currentColor",
+                  viewBox: "0 0 20 20",
+                  children: /*#__PURE__*/jsx("path", {
+                    fillRule: "evenodd",
+                    d: "M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z",
+                    clipRule: "evenodd"
+                  })
+                })
+              }), /*#__PURE__*/jsx("div", {
+                className: "absolute -top-3 -right-3 sm:-top-6 sm:-right-6 w-14 h-14 sm:w-16 sm:h-16 lg:w-20 lg:h-20 backdrop-blur-xl bg-white/10 rounded-xl sm:rounded-2xl border border-white/20 shadow-lg flex items-center justify-center",
+                children: /*#__PURE__*/jsx("svg", {
+                  className: "w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-purple-600",
+                  fill: "currentColor",
+                  viewBox: "0 0 20 20",
+                  children: /*#__PURE__*/jsx("path", {
+                    d: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                  })
+                })
+              })]
+            }), allImages.length > 1 && /*#__PURE__*/jsx("div", {
+              className: "flex justify-center space-x-2 sm:space-x-3 mt-6 sm:mt-8",
+              children: allImages.slice(0, 4).map(function (img, index) {
+                return /*#__PURE__*/jsx("button", {
+                  onClick: function onClick() {
+                    return setSelectedImage(index);
+                  },
+                  className: clsx("w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 backdrop-blur-xl rounded-lg sm:rounded-xl border-2 transition-all duration-300 overflow-hidden", selectedImage === index ? "border-white shadow-lg scale-110 bg-white/30" : "border-white/30 hover:border-white/50 bg-white/10"),
+                  children: /*#__PURE__*/jsx("img", {
+                    src: img,
+                    alt: "".concat(title, " ").concat(index + 1),
+                    className: "w-full h-full object-cover"
+                  })
+                }, index);
+              })
+            })]
+          }), /*#__PURE__*/jsxs("div", {
+            className: "space-y-4 sm:space-y-6 lg:space-y-8",
+            children: [subtitle && /*#__PURE__*/jsx("p", {
+              className: "text-xs sm:text-sm font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 uppercase tracking-wider",
+              children: subtitle
+            }), /*#__PURE__*/jsx("h1", {
+              className: "text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-600 leading-tight",
+              children: title
+            }), rating && /*#__PURE__*/jsx("div", {
+              className: "backdrop-blur-xl bg-white/10 rounded-2xl border border-white/20 p-4 inline-block",
+              children: renderRating(rating)
+            }), /*#__PURE__*/jsxs("div", {
+              className: "flex items-center space-x-3 sm:space-x-4 lg:space-x-6",
+              children: [/*#__PURE__*/jsxs("span", {
+                className: "text-4xl sm:text-5xl lg:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600",
+                children: [currency, price]
+              }), originalPrice && /*#__PURE__*/jsxs("span", {
+                className: "text-2xl sm:text-3xl text-gray-500/70 line-through",
+                children: [currency, originalPrice]
+              })]
+            }), /*#__PURE__*/jsx("div", {
+              className: "flex items-center",
+              children: /*#__PURE__*/jsxs("span", {
+                className: clsx("inline-flex items-center px-4 py-2 sm:px-6 sm:py-3 rounded-full text-xs sm:text-sm font-bold backdrop-blur-xl border", inStock ? "bg-green-500/20 text-green-700 border-green-300/30" : "bg-red-500/20 text-red-700 border-red-300/30"),
+                children: [/*#__PURE__*/jsx("svg", {
+                  className: "w-3 h-3 sm:w-4 sm:h-4 mr-1.5 sm:mr-2",
+                  fill: "currentColor",
+                  viewBox: "0 0 20 20",
+                  children: /*#__PURE__*/jsx("path", {
+                    fillRule: "evenodd",
+                    d: inStock ? "M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" : "M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z",
+                    clipRule: "evenodd"
+                  })
+                }), inStock ? "In Stock" : "Out of Stock"]
+              })
+            }), /*#__PURE__*/jsx("div", {
+              className: "backdrop-blur-xl bg-white/10 rounded-2xl border border-white/20 p-4 sm:p-6",
+              children: /*#__PURE__*/jsx("p", {
+                className: "text-base sm:text-lg text-gray-700 leading-relaxed",
+                children: description
+              })
+            }), /*#__PURE__*/jsxs("div", {
+              className: "flex flex-col sm:flex-row items-stretch sm:items-center space-y-4 sm:space-y-0 sm:space-x-4",
+              children: [/*#__PURE__*/jsxs("div", {
+                className: "backdrop-blur-xl bg-white/10 rounded-2xl border border-white/20 p-3 sm:p-4 flex items-center space-x-2 sm:space-x-3",
+                children: [/*#__PURE__*/jsx("button", {
+                  onClick: function onClick() {
+                    return setQuantity(Math.max(1, quantity - 1));
+                  },
+                  className: "w-10 h-10 sm:w-8 sm:h-8 rounded-lg bg-white/20 hover:bg-white/30 active:bg-white/40 flex items-center justify-center transition-colors touch-manipulation",
+                  children: /*#__PURE__*/jsx("svg", {
+                    className: "w-5 h-5 sm:w-4 sm:h-4 text-gray-700",
+                    fill: "none",
+                    stroke: "currentColor",
+                    viewBox: "0 0 24 24",
+                    children: /*#__PURE__*/jsx("path", {
+                      strokeLinecap: "round",
+                      strokeLinejoin: "round",
+                      strokeWidth: 2,
+                      d: "M20 12H4"
+                    })
+                  })
+                }), /*#__PURE__*/jsx("span", {
+                  className: "text-lg sm:text-xl font-bold text-gray-900 min-w-[2rem] text-center",
+                  children: quantity
+                }), /*#__PURE__*/jsx("button", {
+                  onClick: function onClick() {
+                    return setQuantity(quantity + 1);
+                  },
+                  className: "w-10 h-10 sm:w-8 sm:h-8 rounded-lg bg-white/20 hover:bg-white/30 active:bg-white/40 flex items-center justify-center transition-colors touch-manipulation",
+                  children: /*#__PURE__*/jsx("svg", {
+                    className: "w-5 h-5 sm:w-4 sm:h-4 text-gray-700",
+                    fill: "none",
+                    stroke: "currentColor",
+                    viewBox: "0 0 24 24",
+                    children: /*#__PURE__*/jsx("path", {
+                      strokeLinecap: "round",
+                      strokeLinejoin: "round",
+                      strokeWidth: 2,
+                      d: "M12 4v16m8-8H4"
+                    })
+                  })
+                })]
+              }), /*#__PURE__*/jsx("button", {
+                className: clsx("px-8 py-4 sm:px-12 sm:py-5 rounded-2xl font-bold text-white text-lg sm:text-xl transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-xl backdrop-blur-sm touch-manipulation", button.variant === 'secondary' ? "bg-gray-900/80 hover:bg-gray-800/80" : button.variant === 'outline' ? "bg-transparent border-2 border-white/30 text-white hover:bg-white/10" : "bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"),
+                children: button.text
+              })]
+            }), features.length > 0 && /*#__PURE__*/jsxs("div", {
+              className: "backdrop-blur-xl bg-white/10 rounded-2xl border border-white/20 p-4 sm:p-6",
+              children: [/*#__PURE__*/jsx("h3", {
+                className: "text-lg sm:text-xl font-bold text-gray-900 mb-3 sm:mb-4",
+                children: "Key Features"
+              }), /*#__PURE__*/jsx("ul", {
+                className: "space-y-2 sm:space-y-3",
+                children: features.map(function (feature, index) {
+                  return /*#__PURE__*/jsxs("li", {
+                    className: "flex items-center space-x-2 sm:space-x-3",
+                    children: [/*#__PURE__*/jsx("div", {
+                      className: "w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center flex-shrink-0",
+                      children: /*#__PURE__*/jsx("svg", {
+                        className: "w-2.5 h-2.5 sm:w-3 sm:h-3 text-white",
+                        fill: "currentColor",
+                        viewBox: "0 0 20 20",
+                        children: /*#__PURE__*/jsx("path", {
+                          fillRule: "evenodd",
+                          d: "M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z",
+                          clipRule: "evenodd"
+                        })
+                      })
+                    }), /*#__PURE__*/jsx("span", {
+                      className: "text-sm sm:text-base text-gray-700 font-medium",
+                      children: feature
+                    })]
+                  }, index);
+                })
+              })]
+            })]
+          })]
+        })
+      })]
+    });
+  }
+
+  // Gradient variant - Vibrant gradient backgrounds
+  if (variant === 'gradient') {
+    return /*#__PURE__*/jsxs("section", {
+      id: id,
+      className: clsx("product-single-modern-gradient relative min-h-screen overflow-hidden", className),
+      children: [/*#__PURE__*/jsxs("div", {
+        className: "absolute inset-0 bg-gradient-to-br from-pink-400 via-purple-500 to-indigo-600",
+        children: [/*#__PURE__*/jsx("div", {
+          className: "absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-white/10"
+        }), /*#__PURE__*/jsx("div", {
+          className: "absolute inset-0 bg-gradient-to-r from-blue-500/20 via-transparent to-pink-500/20 animate-pulse"
+        })]
+      }), /*#__PURE__*/jsx("div", {
+        className: "relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-24",
+        children: /*#__PURE__*/jsxs("div", {
+          className: "grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center",
+          children: [/*#__PURE__*/jsxs("div", {
+            className: "relative group",
+            children: [/*#__PURE__*/jsxs("div", {
+              className: "relative",
+              children: [/*#__PURE__*/jsx("div", {
+                className: "aspect-square bg-white/10 backdrop-blur-sm rounded-2xl sm:rounded-3xl border border-white/20 shadow-2xl overflow-hidden transform group-hover:scale-105 transition-transform duration-500",
+                children: allImages.length > 0 && /*#__PURE__*/jsx("img", {
+                  src: allImages[selectedImage],
+                  alt: title,
+                  className: "w-full h-full object-cover"
+                })
+              }), badge && /*#__PURE__*/jsx("div", {
+                className: "absolute -top-2 -right-2 sm:-top-4 sm:-right-4 animate-bounce",
+                children: /*#__PURE__*/jsxs("span", {
+                  className: "inline-flex items-center px-4 py-2 sm:px-6 sm:py-3 rounded-full text-xs sm:text-sm font-bold bg-white text-gray-900 shadow-xl",
+                  children: ["\uD83D\uDD25 ", badge]
+                })
+              }), /*#__PURE__*/jsx("div", {
+                className: "absolute inset-0 rounded-3xl bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-600 opacity-0 group-hover:opacity-20 transition-opacity duration-500 -m-1"
+              })]
+            }), allImages.length > 1 && /*#__PURE__*/jsx("div", {
+              className: "flex justify-center space-x-3 sm:space-x-4 mt-6 sm:mt-8",
+              children: allImages.slice(0, 4).map(function (img, index) {
+                return /*#__PURE__*/jsx("button", {
+                  onClick: function onClick() {
+                    return setSelectedImage(index);
+                  },
+                  className: clsx("w-16 h-16 sm:w-18 sm:h-18 lg:w-20 lg:h-20 rounded-2xl border-4 overflow-hidden transition-all duration-300 transform hover:scale-110 touch-manipulation", selectedImage === index ? "border-white shadow-2xl scale-110" : "border-white/30 hover:border-white/50"),
+                  children: /*#__PURE__*/jsx("img", {
+                    src: img,
+                    alt: "".concat(title, " ").concat(index + 1),
+                    className: "w-full h-full object-cover"
+                  })
+                }, index);
+              })
+            })]
+          }), /*#__PURE__*/jsxs("div", {
+            className: "space-y-4 sm:space-y-6 lg:space-y-8 text-white",
+            children: [subtitle && /*#__PURE__*/jsx("p", {
+              className: "text-sm sm:text-base lg:text-lg font-bold text-white/80 uppercase tracking-wider",
+              children: subtitle
+            }), /*#__PURE__*/jsx("h1", {
+              className: "text-3xl sm:text-4xl lg:text-5xl xl:text-7xl font-black text-white leading-tight",
+              children: title
+            }), rating && /*#__PURE__*/jsx("div", {
+              className: "bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20 p-4 inline-block",
+              children: renderRating(rating)
+            }), /*#__PURE__*/jsxs("div", {
+              className: "flex items-center space-x-4 sm:space-x-6 lg:space-x-8",
+              children: [/*#__PURE__*/jsxs("span", {
+                className: "text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-white",
+                children: [currency, price]
+              }), originalPrice && /*#__PURE__*/jsxs("span", {
+                className: "text-2xl sm:text-3xl lg:text-4xl text-white/60 line-through",
+                children: [currency, originalPrice]
+              })]
+            }), /*#__PURE__*/jsx("div", {
+              className: "flex items-center",
+              children: /*#__PURE__*/jsx("span", {
+                className: clsx("inline-flex items-center px-4 py-2 sm:px-6 sm:py-3 rounded-full text-xs sm:text-sm font-bold backdrop-blur-sm border", inStock ? "bg-green-500/20 text-green-100 border-green-300/30" : "bg-red-500/20 text-red-100 border-red-300/30"),
+                children: inStock ? "✓ Available Now" : "✗ Sold Out"
+              })
+            }), /*#__PURE__*/jsx("div", {
+              className: "bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20 p-4 sm:p-6",
+              children: /*#__PURE__*/jsx("p", {
+                className: "text-lg sm:text-xl text-white/90 leading-relaxed",
+                children: description
+              })
+            }), /*#__PURE__*/jsxs("div", {
+              className: "flex flex-col sm:flex-row items-stretch sm:items-center space-y-4 sm:space-y-0 sm:space-x-6",
+              children: [/*#__PURE__*/jsxs("div", {
+                className: "bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20 p-3 sm:p-4 flex items-center space-x-3 sm:space-x-4",
+                children: [/*#__PURE__*/jsx("button", {
+                  onClick: function onClick() {
+                    return setQuantity(Math.max(1, quantity - 1));
+                  },
+                  className: "w-12 h-12 sm:w-10 sm:h-10 rounded-xl bg-white/20 hover:bg-white/30 active:bg-white/40 flex items-center justify-center transition-colors touch-manipulation",
+                  children: /*#__PURE__*/jsx("svg", {
+                    className: "w-6 h-6 sm:w-5 sm:h-5 text-white",
+                    fill: "none",
+                    stroke: "currentColor",
+                    viewBox: "0 0 24 24",
+                    children: /*#__PURE__*/jsx("path", {
+                      strokeLinecap: "round",
+                      strokeLinejoin: "round",
+                      strokeWidth: 2,
+                      d: "M20 12H4"
+                    })
+                  })
+                }), /*#__PURE__*/jsx("span", {
+                  className: "text-xl sm:text-2xl font-bold text-white min-w-[3rem] text-center",
+                  children: quantity
+                }), /*#__PURE__*/jsx("button", {
+                  onClick: function onClick() {
+                    return setQuantity(quantity + 1);
+                  },
+                  className: "w-12 h-12 sm:w-10 sm:h-10 rounded-xl bg-white/20 hover:bg-white/30 active:bg-white/40 flex items-center justify-center transition-colors touch-manipulation",
+                  children: /*#__PURE__*/jsx("svg", {
+                    className: "w-6 h-6 sm:w-5 sm:h-5 text-white",
+                    fill: "none",
+                    stroke: "currentColor",
+                    viewBox: "0 0 24 24",
+                    children: /*#__PURE__*/jsx("path", {
+                      strokeLinecap: "round",
+                      strokeLinejoin: "round",
+                      strokeWidth: 2,
+                      d: "M12 4v16m8-8H4"
+                    })
+                  })
+                })]
+              }), /*#__PURE__*/jsx("button", {
+                className: "px-12 py-5 sm:px-16 sm:py-6 bg-white text-gray-900 rounded-2xl font-black text-xl sm:text-2xl transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-2xl hover:shadow-white/25 touch-manipulation",
+                children: button.text
+              })]
+            }), features.length > 0 && /*#__PURE__*/jsxs("div", {
+              className: "bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20 p-4 sm:p-6",
+              children: [/*#__PURE__*/jsx("h3", {
+                className: "text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6",
+                children: "Premium Features"
+              }), /*#__PURE__*/jsx("div", {
+                className: "grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4",
+                children: features.map(function (feature, index) {
+                  return /*#__PURE__*/jsxs("div", {
+                    className: "flex items-center space-x-2 sm:space-x-3",
+                    children: [/*#__PURE__*/jsx("div", {
+                      className: "w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 rounded-full bg-white flex items-center justify-center flex-shrink-0",
+                      children: /*#__PURE__*/jsx("svg", {
+                        className: "w-3 h-3 sm:w-3.5 sm:h-3.5 lg:w-4 lg:h-4 text-gray-900",
+                        fill: "currentColor",
+                        viewBox: "0 0 20 20",
+                        children: /*#__PURE__*/jsx("path", {
+                          fillRule: "evenodd",
+                          d: "M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z",
+                          clipRule: "evenodd"
+                        })
+                      })
+                    }), /*#__PURE__*/jsx("span", {
+                      className: "text-sm sm:text-base text-white/90 font-medium",
+                      children: feature
+                    })]
+                  }, index);
+                })
+              })]
+            })]
+          })]
+        })
+      })]
+    });
+  }
+
+  // Card variant - Elevated card design
+  if (variant === 'card') {
+    return /*#__PURE__*/jsx("section", {
+      id: id,
+      className: clsx("product-single-modern-card bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen py-8 sm:py-12 lg:py-16", className),
+      children: /*#__PURE__*/jsx("div", {
+        className: "max-w-6xl mx-auto px-4 sm:px-6 lg:px-8",
+        children: /*#__PURE__*/jsx("div", {
+          className: "bg-white rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden",
+          children: /*#__PURE__*/jsxs("div", {
+            className: "grid grid-cols-1 lg:grid-cols-2",
+            children: [/*#__PURE__*/jsxs("div", {
+              className: "relative bg-gradient-to-br from-gray-50 to-gray-100 p-4 sm:p-6 lg:p-8",
+              children: [/*#__PURE__*/jsx("div", {
+                className: "aspect-square bg-white rounded-2xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-500",
+                children: allImages.length > 0 && /*#__PURE__*/jsx("img", {
+                  src: allImages[selectedImage],
+                  alt: title,
+                  className: "w-full h-full object-cover"
+                })
+              }), badge && /*#__PURE__*/jsx("div", {
+                className: "absolute top-6 right-6 sm:top-8 sm:right-8 lg:top-12 lg:right-12",
+                children: /*#__PURE__*/jsx("span", {
+                  className: "inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg sm:rounded-xl text-xs sm:text-sm font-bold bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg",
+                  children: badge
+                })
+              }), allImages.length > 1 && /*#__PURE__*/jsx("div", {
+                className: "flex justify-center space-x-2 sm:space-x-3 mt-6 sm:mt-8",
+                children: allImages.slice(0, 4).map(function (img, index) {
+                  return /*#__PURE__*/jsx("button", {
+                    onClick: function onClick() {
+                      return setSelectedImage(index);
+                    },
+                    className: clsx("w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-lg sm:rounded-xl border-3 overflow-hidden transition-all duration-300 transform hover:scale-110 touch-manipulation", selectedImage === index ? "border-blue-500 shadow-lg scale-110" : "border-gray-200 hover:border-gray-300"),
+                    children: /*#__PURE__*/jsx("img", {
+                      src: img,
+                      alt: "".concat(title, " ").concat(index + 1),
+                      className: "w-full h-full object-cover"
+                    })
+                  }, index);
+                })
+              }), /*#__PURE__*/jsx("div", {
+                className: "absolute bottom-4 left-4 sm:bottom-6 sm:left-6 lg:bottom-8 lg:left-8 bg-white rounded-xl sm:rounded-2xl shadow-xl p-3 sm:p-4 transform hover:scale-110 transition-transform duration-300",
+                children: /*#__PURE__*/jsxs("div", {
+                  className: "text-center",
+                  children: [/*#__PURE__*/jsx("p", {
+                    className: "text-xs sm:text-sm text-gray-500 font-medium",
+                    children: "Price"
+                  }), /*#__PURE__*/jsxs("p", {
+                    className: "text-lg sm:text-xl lg:text-2xl font-black text-gray-900",
+                    children: [currency, price]
+                  }), originalPrice && /*#__PURE__*/jsxs("p", {
+                    className: "text-sm sm:text-base lg:text-lg text-gray-400 line-through",
+                    children: [currency, originalPrice]
+                  })]
+                })
+              })]
+            }), /*#__PURE__*/jsx("div", {
+              className: "p-6 sm:p-8 lg:p-12 xl:p-16 flex flex-col justify-center",
+              children: /*#__PURE__*/jsxs("div", {
+                className: "space-y-4 sm:space-y-6 lg:space-y-8",
+                children: [subtitle && /*#__PURE__*/jsx("p", {
+                  className: "text-xs sm:text-sm font-bold text-blue-600 uppercase tracking-wider",
+                  children: subtitle
+                }), /*#__PURE__*/jsx("h1", {
+                  className: "text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black text-gray-900 leading-tight",
+                  children: title
+                }), rating && renderRating(rating), /*#__PURE__*/jsx("div", {
+                  className: "flex items-center",
+                  children: /*#__PURE__*/jsx("span", {
+                    className: clsx("inline-flex items-center px-4 py-2 sm:px-6 sm:py-3 rounded-full text-xs sm:text-sm font-bold", inStock ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"),
+                    children: inStock ? "In Stock" : "Out of Stock"
+                  })
+                }), /*#__PURE__*/jsx("div", {
+                  className: "prose prose-gray max-w-none",
+                  children: /*#__PURE__*/jsx("p", {
+                    className: "text-base sm:text-lg lg:text-xl text-gray-700 leading-relaxed",
+                    children: description
+                  })
+                }), /*#__PURE__*/jsxs("div", {
+                  className: "flex flex-col sm:flex-row items-stretch sm:items-center space-y-4 sm:space-y-0 sm:space-x-6",
+                  children: [/*#__PURE__*/jsxs("div", {
+                    className: "bg-gray-50 rounded-xl sm:rounded-2xl p-3 sm:p-4 flex items-center space-x-3 sm:space-x-4",
+                    children: [/*#__PURE__*/jsx("button", {
+                      onClick: function onClick() {
+                        return setQuantity(Math.max(1, quantity - 1));
+                      },
+                      className: "w-12 h-12 sm:w-10 sm:h-10 rounded-xl bg-white hover:bg-gray-100 active:bg-gray-200 flex items-center justify-center transition-colors shadow-sm touch-manipulation",
+                      children: /*#__PURE__*/jsx("svg", {
+                        className: "w-6 h-6 sm:w-5 sm:h-5 text-gray-700",
+                        fill: "none",
+                        stroke: "currentColor",
+                        viewBox: "0 0 24 24",
+                        children: /*#__PURE__*/jsx("path", {
+                          strokeLinecap: "round",
+                          strokeLinejoin: "round",
+                          strokeWidth: 2,
+                          d: "M20 12H4"
+                        })
+                      })
+                    }), /*#__PURE__*/jsx("span", {
+                      className: "text-lg sm:text-xl font-bold text-gray-900 min-w-[2rem] text-center",
+                      children: quantity
+                    }), /*#__PURE__*/jsx("button", {
+                      onClick: function onClick() {
+                        return setQuantity(quantity + 1);
+                      },
+                      className: "w-12 h-12 sm:w-10 sm:h-10 rounded-xl bg-white hover:bg-gray-100 active:bg-gray-200 flex items-center justify-center transition-colors shadow-sm touch-manipulation",
+                      children: /*#__PURE__*/jsx("svg", {
+                        className: "w-6 h-6 sm:w-5 sm:h-5 text-gray-700",
+                        fill: "none",
+                        stroke: "currentColor",
+                        viewBox: "0 0 24 24",
+                        children: /*#__PURE__*/jsx("path", {
+                          strokeLinecap: "round",
+                          strokeLinejoin: "round",
+                          strokeWidth: 2,
+                          d: "M12 4v16m8-8H4"
+                        })
+                      })
+                    })]
+                  }), /*#__PURE__*/jsx("button", {
+                    className: clsx("px-8 py-4 sm:px-12 sm:py-5 rounded-2xl font-bold text-white text-lg sm:text-xl transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-xl touch-manipulation", button.variant === 'secondary' ? "bg-gray-900 hover:bg-gray-800" : button.variant === 'outline' ? "bg-transparent border-2 border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white" : "bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"),
+                    children: button.text
+                  })]
+                }), features.length > 0 && /*#__PURE__*/jsxs("div", {
+                  className: "bg-gray-50 rounded-xl sm:rounded-2xl p-4 sm:p-6",
+                  children: [/*#__PURE__*/jsx("h3", {
+                    className: "text-lg sm:text-xl font-bold text-gray-900 mb-4 sm:mb-6",
+                    children: "Key Features"
+                  }), /*#__PURE__*/jsx("ul", {
+                    className: "space-y-3 sm:space-y-4",
+                    children: features.map(function (feature, index) {
+                      return /*#__PURE__*/jsxs("li", {
+                        className: "flex items-start space-x-3 sm:space-x-4",
+                        children: [/*#__PURE__*/jsx("div", {
+                          className: "w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center flex-shrink-0 mt-0.5",
+                          children: /*#__PURE__*/jsx("svg", {
+                            className: "w-3 h-3 sm:w-3.5 sm:h-3.5 lg:w-4 lg:h-4 text-white",
+                            fill: "currentColor",
+                            viewBox: "0 0 20 20",
+                            children: /*#__PURE__*/jsx("path", {
+                              fillRule: "evenodd",
+                              d: "M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z",
+                              clipRule: "evenodd"
+                            })
+                          })
+                        }), /*#__PURE__*/jsx("span", {
+                          className: "text-sm sm:text-base lg:text-lg text-gray-700 font-medium",
+                          children: feature
+                        })]
+                      }, index);
+                    })
+                  })]
+                })]
+              })
+            })]
+          })
+        })
+      })
+    });
+  }
+
+  // Floating variant - Floating elements design
+  if (variant === 'floating') {
+    return /*#__PURE__*/jsxs("section", {
+      id: id,
+      className: clsx("product-single-modern-floating relative min-h-screen bg-gradient-to-br from-indigo-50 via-white to-cyan-50 overflow-hidden", className),
+      children: [/*#__PURE__*/jsxs("div", {
+        className: "absolute inset-0 overflow-hidden",
+        children: [/*#__PURE__*/jsx("div", {
+          className: "absolute top-10 left-5 sm:top-20 sm:left-10 w-16 h-16 sm:w-24 sm:h-24 lg:w-32 lg:h-32 bg-blue-200 rounded-full opacity-20 animate-bounce"
+        }), /*#__PURE__*/jsx("div", {
+          className: "absolute top-20 right-10 sm:top-40 sm:right-20 w-12 h-12 sm:w-18 sm:h-18 lg:w-24 lg:h-24 bg-purple-200 rounded-full opacity-20 animate-bounce",
+          style: {
+            animationDelay: '1s'
+          }
+        }), /*#__PURE__*/jsx("div", {
+          className: "absolute bottom-16 left-10 sm:bottom-32 sm:left-20 w-20 h-20 sm:w-30 sm:h-30 lg:w-40 lg:h-40 bg-pink-200 rounded-full opacity-20 animate-bounce",
+          style: {
+            animationDelay: '2s'
+          }
+        }), /*#__PURE__*/jsx("div", {
+          className: "absolute bottom-10 right-5 sm:bottom-20 sm:right-10 w-14 h-14 sm:w-20 sm:h-20 lg:w-28 lg:h-28 bg-green-200 rounded-full opacity-20 animate-bounce",
+          style: {
+            animationDelay: '0.5s'
+          }
+        })]
+      }), /*#__PURE__*/jsx("div", {
+        className: "relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-24",
+        children: /*#__PURE__*/jsxs("div", {
+          className: "grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center",
+          children: [/*#__PURE__*/jsxs("div", {
+            className: "relative",
+            children: [/*#__PURE__*/jsxs("div", {
+              className: "relative",
+              children: [/*#__PURE__*/jsx("div", {
+                className: "aspect-square bg-white rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden transform hover:rotate-1 transition-transform duration-500 relative z-10",
+                children: allImages.length > 0 && /*#__PURE__*/jsx("img", {
+                  src: allImages[selectedImage],
+                  alt: title,
+                  className: "w-full h-full object-cover"
+                })
+              }), badge && /*#__PURE__*/jsx("div", {
+                className: "absolute -top-3 -right-3 sm:-top-6 sm:-right-6 z-20 animate-pulse",
+                children: /*#__PURE__*/jsx("span", {
+                  className: "inline-flex items-center px-4 py-2 sm:px-6 sm:py-3 rounded-xl sm:rounded-2xl text-xs sm:text-sm font-bold bg-gradient-to-r from-orange-400 to-red-500 text-white shadow-2xl transform rotate-12",
+                  children: badge
+                })
+              }), /*#__PURE__*/jsx("div", {
+                className: "absolute -bottom-4 -left-4 sm:-bottom-8 sm:-left-8 bg-white rounded-xl sm:rounded-2xl shadow-2xl p-3 sm:p-4 lg:p-6 transform -rotate-6 z-20",
+                children: /*#__PURE__*/jsxs("div", {
+                  className: "text-center",
+                  children: [/*#__PURE__*/jsx("p", {
+                    className: "text-xs sm:text-sm text-gray-500 font-bold",
+                    children: "Starting at"
+                  }), /*#__PURE__*/jsxs("p", {
+                    className: "text-xl sm:text-2xl lg:text-3xl font-black text-gray-900",
+                    children: [currency, price]
+                  }), originalPrice && /*#__PURE__*/jsxs("p", {
+                    className: "text-sm sm:text-base lg:text-xl text-gray-400 line-through",
+                    children: [currency, originalPrice]
+                  })]
+                })
+              }), rating && /*#__PURE__*/jsx("div", {
+                className: "absolute top-4 -left-4 sm:top-8 sm:-left-8 bg-white rounded-xl sm:rounded-2xl shadow-2xl p-2 sm:p-3 lg:p-4 transform rotate-6 z-20",
+                children: renderRating(rating)
+              })]
+            }), allImages.length > 1 && /*#__PURE__*/jsx("div", {
+              className: "flex justify-center space-x-3 sm:space-x-4 mt-8 sm:mt-12",
+              children: allImages.slice(0, 4).map(function (img, index) {
+                return /*#__PURE__*/jsx("button", {
+                  onClick: function onClick() {
+                    return setSelectedImage(index);
+                  },
+                  className: clsx("w-16 h-16 sm:w-18 sm:h-18 lg:w-20 lg:h-20 rounded-2xl border-4 overflow-hidden transition-all duration-300 transform hover:scale-125 hover:rotate-3 touch-manipulation", selectedImage === index ? "border-blue-500 shadow-2xl scale-125 rotate-3" : "border-white shadow-lg hover:border-gray-300"),
+                  children: /*#__PURE__*/jsx("img", {
+                    src: img,
+                    alt: "".concat(title, " ").concat(index + 1),
+                    className: "w-full h-full object-cover"
+                  })
+                }, index);
+              })
+            })]
+          }), /*#__PURE__*/jsxs("div", {
+            className: "space-y-4 sm:space-y-6 lg:space-y-8 relative z-10",
+            children: [subtitle && /*#__PURE__*/jsx("div", {
+              className: "inline-block bg-white rounded-xl sm:rounded-2xl shadow-lg px-4 py-2 sm:px-6 sm:py-3 transform -rotate-2",
+              children: /*#__PURE__*/jsx("p", {
+                className: "text-xs sm:text-sm font-bold text-blue-600 uppercase tracking-wider",
+                children: subtitle
+              })
+            }), /*#__PURE__*/jsx("h1", {
+              className: "text-3xl sm:text-4xl lg:text-5xl xl:text-7xl font-black text-gray-900 leading-tight transform rotate-1",
+              children: title
+            }), /*#__PURE__*/jsx("div", {
+              className: "flex items-center",
+              children: /*#__PURE__*/jsx("div", {
+                className: clsx("inline-flex items-center px-6 py-3 sm:px-8 sm:py-4 rounded-xl sm:rounded-2xl text-xs sm:text-sm font-bold transform rotate-3 shadow-lg", inStock ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"),
+                children: inStock ? "✓ Available" : "✗ Unavailable"
+              })
+            }), /*#__PURE__*/jsx("div", {
+              className: "bg-white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-white/50 p-4 sm:p-6 lg:p-8 shadow-lg transform -rotate-1",
+              children: /*#__PURE__*/jsx("p", {
+                className: "text-base sm:text-lg lg:text-xl text-gray-700 leading-relaxed",
+                children: description
+              })
+            }), /*#__PURE__*/jsxs("div", {
+              className: "flex flex-col sm:flex-row items-stretch sm:items-center space-y-4 sm:space-y-0 sm:space-x-6",
+              children: [/*#__PURE__*/jsx("div", {
+                className: "bg-white rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-6 transform rotate-2",
+                children: /*#__PURE__*/jsxs("div", {
+                  className: "flex items-center space-x-3 sm:space-x-4",
+                  children: [/*#__PURE__*/jsx("button", {
+                    onClick: function onClick() {
+                      return setQuantity(Math.max(1, quantity - 1));
+                    },
+                    className: "w-14 h-14 sm:w-12 sm:h-12 rounded-xl bg-gray-100 hover:bg-gray-200 active:bg-gray-300 flex items-center justify-center transition-colors touch-manipulation",
+                    children: /*#__PURE__*/jsx("svg", {
+                      className: "w-7 h-7 sm:w-6 sm:h-6 text-gray-700",
+                      fill: "none",
+                      stroke: "currentColor",
+                      viewBox: "0 0 24 24",
+                      children: /*#__PURE__*/jsx("path", {
+                        strokeLinecap: "round",
+                        strokeLinejoin: "round",
+                        strokeWidth: 2,
+                        d: "M20 12H4"
+                      })
+                    })
+                  }), /*#__PURE__*/jsx("span", {
+                    className: "text-xl sm:text-2xl font-black text-gray-900 min-w-[3rem] text-center",
+                    children: quantity
+                  }), /*#__PURE__*/jsx("button", {
+                    onClick: function onClick() {
+                      return setQuantity(quantity + 1);
+                    },
+                    className: "w-14 h-14 sm:w-12 sm:h-12 rounded-xl bg-gray-100 hover:bg-gray-200 active:bg-gray-300 flex items-center justify-center transition-colors touch-manipulation",
+                    children: /*#__PURE__*/jsx("svg", {
+                      className: "w-7 h-7 sm:w-6 sm:h-6 text-gray-700",
+                      fill: "none",
+                      stroke: "currentColor",
+                      viewBox: "0 0 24 24",
+                      children: /*#__PURE__*/jsx("path", {
+                        strokeLinecap: "round",
+                        strokeLinejoin: "round",
+                        strokeWidth: 2,
+                        d: "M12 4v16m8-8H4"
+                      })
+                    })
+                  })]
+                })
+              }), /*#__PURE__*/jsx("button", {
+                className: "px-12 py-5 sm:px-16 sm:py-6 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-2xl font-black text-xl sm:text-2xl transition-all duration-300 transform hover:scale-110 active:scale-95 shadow-2xl hover:rotate-1 touch-manipulation",
+                children: button.text
+              })]
+            }), features.length > 0 && /*#__PURE__*/jsxs("div", {
+              className: "bg-white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-white/50 p-4 sm:p-6 shadow-lg transform rotate-1",
+              children: [/*#__PURE__*/jsx("h3", {
+                className: "text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6",
+                children: "Amazing Features"
+              }), /*#__PURE__*/jsx("div", {
+                className: "grid grid-cols-1 gap-3 sm:gap-4",
+                children: features.map(function (feature, index) {
+                  return /*#__PURE__*/jsxs("div", {
+                    className: "flex items-center space-x-3 sm:space-x-4 bg-gray-50 rounded-lg sm:rounded-xl p-3 sm:p-4",
+                    children: [/*#__PURE__*/jsx("div", {
+                      className: "w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center flex-shrink-0",
+                      children: /*#__PURE__*/jsx("svg", {
+                        className: "w-4 h-4 sm:w-4.5 sm:h-4.5 lg:w-5 lg:h-5 text-white",
+                        fill: "currentColor",
+                        viewBox: "0 0 20 20",
+                        children: /*#__PURE__*/jsx("path", {
+                          fillRule: "evenodd",
+                          d: "M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z",
+                          clipRule: "evenodd"
+                        })
+                      })
+                    }), /*#__PURE__*/jsx("span", {
+                      className: "text-sm sm:text-base lg:text-lg text-gray-700 font-semibold",
+                      children: feature
+                    })]
+                  }, index);
+                })
+              })]
+            })]
+          })]
+        })
+      })]
+    });
+  }
+
+  // Interactive variant - Interactive elements and animations
+  if (variant === 'interactive') {
+    return /*#__PURE__*/jsxs("section", {
+      id: id,
+      className: clsx("product-single-modern-interactive relative min-h-screen bg-gray-900 text-white overflow-hidden", className),
+      onMouseEnter: function onMouseEnter() {
+        return setIsHovered(true);
+      },
+      onMouseLeave: function onMouseLeave() {
+        return setIsHovered(false);
+      },
+      children: [/*#__PURE__*/jsxs("div", {
+        className: "absolute inset-0",
+        children: [/*#__PURE__*/jsx("div", {
+          className: clsx("absolute inset-0 bg-gradient-to-br from-blue-900 via-purple-900 to-pink-900 transition-opacity duration-1000", isHovered ? "opacity-80" : "opacity-60")
+        }), /*#__PURE__*/jsx("div", {
+          className: "absolute inset-0 bg-gradient-to-r from-cyan-500/20 via-transparent to-yellow-500/20 animate-pulse"
+        })]
+      }), /*#__PURE__*/jsxs("div", {
+        className: "absolute inset-0 overflow-hidden",
+        children: [/*#__PURE__*/jsx("div", {
+          className: "absolute top-1/4 left-1/4 w-2 h-2 bg-white rounded-full opacity-60 animate-ping"
+        }), /*#__PURE__*/jsx("div", {
+          className: "absolute top-1/3 right-1/3 w-1 h-1 bg-blue-400 rounded-full opacity-80 animate-ping",
+          style: {
+            animationDelay: '1s'
+          }
+        }), /*#__PURE__*/jsx("div", {
+          className: "absolute bottom-1/4 left-1/3 w-3 h-3 bg-purple-400 rounded-full opacity-40 animate-ping",
+          style: {
+            animationDelay: '2s'
+          }
+        }), /*#__PURE__*/jsx("div", {
+          className: "absolute bottom-1/3 right-1/4 w-1.5 h-1.5 bg-pink-400 rounded-full opacity-70 animate-ping",
+          style: {
+            animationDelay: '0.5s'
+          }
+        })]
+      }), /*#__PURE__*/jsx("div", {
+        className: "relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-24",
+        children: /*#__PURE__*/jsxs("div", {
+          className: "grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center",
+          children: [/*#__PURE__*/jsxs("div", {
+            className: "relative group",
+            children: [/*#__PURE__*/jsxs("div", {
+              className: "relative",
+              children: [/*#__PURE__*/jsxs("div", {
+                className: clsx("aspect-square bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl sm:rounded-3xl border border-gray-700 overflow-hidden transform transition-all duration-700 shadow-2xl", isHovered ? "scale-105 rotate-1 shadow-blue-500/25" : "scale-100 rotate-0"),
+                children: [allImages.length > 0 && /*#__PURE__*/jsx("img", {
+                  src: allImages[selectedImage],
+                  alt: title,
+                  className: "w-full h-full object-cover transition-all duration-700",
+                  style: {
+                    filter: isHovered ? 'brightness(1.1) contrast(1.1)' : 'brightness(1) contrast(1)'
+                  }
+                }), /*#__PURE__*/jsx("div", {
+                  className: clsx("absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent transition-opacity duration-500", isHovered ? "opacity-100" : "opacity-0")
+                })]
+              }), badge && /*#__PURE__*/jsx("div", {
+                className: clsx("absolute -top-2 -right-2 sm:-top-4 sm:-right-4 transition-all duration-500", isHovered ? "scale-110 animate-pulse" : "scale-100"),
+                children: /*#__PURE__*/jsxs("span", {
+                  className: "inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-bold bg-gradient-to-r from-yellow-400 to-orange-500 text-black shadow-2xl",
+                  children: ["\u26A1 ", badge]
+                })
+              }), /*#__PURE__*/jsx("div", {
+                className: clsx("absolute bottom-3 left-3 sm:bottom-6 sm:left-6 bg-black/80 backdrop-blur-sm rounded-xl sm:rounded-2xl p-3 sm:p-4 transition-all duration-500 transform", isHovered ? "scale-110 translate-y-0" : "scale-100 translate-y-2"),
+                children: /*#__PURE__*/jsxs("div", {
+                  className: "text-center",
+                  children: [/*#__PURE__*/jsx("p", {
+                    className: "text-xs text-gray-400 font-medium uppercase tracking-wider",
+                    children: "Price"
+                  }), /*#__PURE__*/jsxs("p", {
+                    className: "text-lg sm:text-xl lg:text-2xl font-black text-white",
+                    children: [currency, price]
+                  }), originalPrice && /*#__PURE__*/jsxs("p", {
+                    className: "text-sm sm:text-base lg:text-lg text-gray-400 line-through",
+                    children: [currency, originalPrice]
+                  })]
+                })
+              })]
+            }), allImages.length > 1 && /*#__PURE__*/jsx("div", {
+              className: "flex justify-center space-x-3 sm:space-x-4 mt-6 sm:mt-8",
+              children: allImages.slice(0, 4).map(function (img, index) {
+                return /*#__PURE__*/jsx("button", {
+                  onClick: function onClick() {
+                    return setSelectedImage(index);
+                  },
+                  className: clsx("w-16 h-16 sm:w-18 sm:h-18 lg:w-20 lg:h-20 rounded-2xl border-4 overflow-hidden transition-all duration-300 transform touch-manipulation", selectedImage === index ? "border-blue-400 shadow-2xl scale-125 shadow-blue-400/50" : "border-gray-600 hover:border-gray-500 hover:scale-110"),
+                  children: /*#__PURE__*/jsx("img", {
+                    src: img,
+                    alt: "".concat(title, " ").concat(index + 1),
+                    className: "w-full h-full object-cover"
+                  })
+                }, index);
+              })
+            })]
+          }), /*#__PURE__*/jsxs("div", {
+            className: "space-y-4 sm:space-y-6 lg:space-y-8",
+            children: [subtitle && /*#__PURE__*/jsx("p", {
+              className: clsx("text-sm sm:text-base lg:text-lg font-bold text-blue-400 uppercase tracking-wider transition-all duration-500", isHovered ? "text-blue-300" : "text-blue-400"),
+              children: subtitle
+            }), /*#__PURE__*/jsx("h1", {
+              className: clsx("text-3xl sm:text-4xl lg:text-5xl xl:text-7xl font-black leading-tight transition-all duration-700", isHovered ? "text-white transform scale-105" : "text-gray-100"),
+              children: title
+            }), rating && /*#__PURE__*/jsx("div", {
+              className: clsx("bg-black/50 backdrop-blur-sm rounded-2xl border border-gray-700 p-4 inline-block transition-all duration-500", isHovered ? "border-blue-400/50 bg-blue-900/20" : "border-gray-700 bg-black/50"),
+              children: renderRating(rating)
+            }), /*#__PURE__*/jsxs("div", {
+              className: "flex items-center space-x-3 sm:space-x-4 lg:space-x-6",
+              children: [/*#__PURE__*/jsxs("span", {
+                className: clsx("text-4xl sm:text-5xl lg:text-6xl font-black transition-all duration-500", isHovered ? "text-white" : "text-gray-200"),
+                children: [currency, price]
+              }), originalPrice && /*#__PURE__*/jsxs("span", {
+                className: "text-2xl sm:text-3xl text-gray-500 line-through",
+                children: [currency, originalPrice]
+              })]
+            }), /*#__PURE__*/jsx("div", {
+              className: "flex items-center",
+              children: /*#__PURE__*/jsx("span", {
+                className: clsx("inline-flex items-center px-4 py-2 sm:px-6 sm:py-3 rounded-full text-xs sm:text-sm font-bold transition-all duration-300", inStock ? "bg-green-500/20 text-green-400 border border-green-400/30" : "bg-red-500/20 text-red-400 border border-red-400/30", isHovered ? "scale-105" : "scale-100"),
+                children: inStock ? "● Live" : "● Offline"
+              })
+            }), /*#__PURE__*/jsx("div", {
+              className: clsx("bg-black/50 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-gray-700 p-4 sm:p-6 transition-all duration-500", isHovered ? "border-blue-400/50 bg-blue-900/10" : "border-gray-700 bg-black/50"),
+              children: /*#__PURE__*/jsx("p", {
+                className: "text-base sm:text-lg lg:text-xl text-gray-300 leading-relaxed",
+                children: description
+              })
+            }), /*#__PURE__*/jsxs("div", {
+              className: "flex flex-col sm:flex-row items-stretch sm:items-center space-y-4 sm:space-y-0 sm:space-x-6",
+              children: [/*#__PURE__*/jsxs("div", {
+                className: clsx("bg-black/50 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-gray-700 p-3 sm:p-4 flex items-center space-x-3 sm:space-x-4 transition-all duration-500", isHovered ? "border-blue-400/50 bg-blue-900/20" : "border-gray-700 bg-black/50"),
+                children: [/*#__PURE__*/jsx("button", {
+                  onClick: function onClick() {
+                    return setQuantity(Math.max(1, quantity - 1));
+                  },
+                  className: "w-12 h-12 sm:w-10 sm:h-10 rounded-xl bg-gray-800 hover:bg-gray-700 active:bg-gray-600 flex items-center justify-center transition-colors touch-manipulation",
+                  children: /*#__PURE__*/jsx("svg", {
+                    className: "w-6 h-6 sm:w-5 sm:h-5 text-white",
+                    fill: "none",
+                    stroke: "currentColor",
+                    viewBox: "0 0 24 24",
+                    children: /*#__PURE__*/jsx("path", {
+                      strokeLinecap: "round",
+                      strokeLinejoin: "round",
+                      strokeWidth: 2,
+                      d: "M20 12H4"
+                    })
+                  })
+                }), /*#__PURE__*/jsx("span", {
+                  className: "text-lg sm:text-xl font-bold text-white min-w-[2rem] text-center",
+                  children: quantity
+                }), /*#__PURE__*/jsx("button", {
+                  onClick: function onClick() {
+                    return setQuantity(quantity + 1);
+                  },
+                  className: "w-12 h-12 sm:w-10 sm:h-10 rounded-xl bg-gray-800 hover:bg-gray-700 active:bg-gray-600 flex items-center justify-center transition-colors touch-manipulation",
+                  children: /*#__PURE__*/jsx("svg", {
+                    className: "w-6 h-6 sm:w-5 sm:h-5 text-white",
+                    fill: "none",
+                    stroke: "currentColor",
+                    viewBox: "0 0 24 24",
+                    children: /*#__PURE__*/jsx("path", {
+                      strokeLinecap: "round",
+                      strokeLinejoin: "round",
+                      strokeWidth: 2,
+                      d: "M12 4v16m8-8H4"
+                    })
+                  })
+                })]
+              }), /*#__PURE__*/jsx("button", {
+                className: clsx("px-8 py-4 sm:px-12 sm:py-5 rounded-2xl font-bold text-white text-lg sm:text-xl transition-all duration-500 transform shadow-2xl touch-manipulation", isHovered ? "scale-110 bg-gradient-to-r from-blue-500 to-purple-600 shadow-blue-500/50" : "scale-100 bg-gradient-to-r from-blue-600 to-purple-700 shadow-blue-600/30"),
+                children: button.text
+              })]
+            }), features.length > 0 && /*#__PURE__*/jsxs("div", {
+              className: clsx("bg-black/50 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-gray-700 p-4 sm:p-6 transition-all duration-500", isHovered ? "border-blue-400/50 bg-blue-900/10" : "border-gray-700 bg-black/50"),
+              children: [/*#__PURE__*/jsx("h3", {
+                className: "text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6",
+                children: "Core Features"
+              }), /*#__PURE__*/jsx("div", {
+                className: "grid grid-cols-1 gap-3 sm:gap-4",
+                children: features.map(function (feature, index) {
+                  return /*#__PURE__*/jsxs("div", {
+                    className: "flex items-center space-x-3 sm:space-x-4",
+                    children: [/*#__PURE__*/jsx("div", {
+                      className: clsx("w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-300", isHovered ? "bg-blue-500 scale-110" : "bg-gray-700 scale-100"),
+                      children: /*#__PURE__*/jsx("svg", {
+                        className: "w-3 h-3 sm:w-3.5 sm:h-3.5 lg:w-4 lg:h-4 text-white",
+                        fill: "currentColor",
+                        viewBox: "0 0 20 20",
+                        children: /*#__PURE__*/jsx("path", {
+                          fillRule: "evenodd",
+                          d: "M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z",
+                          clipRule: "evenodd"
+                        })
+                      })
+                    }), /*#__PURE__*/jsx("span", {
+                      className: "text-sm sm:text-base text-gray-300 font-medium",
+                      children: feature
+                    })]
+                  }, index);
+                })
+              })]
+            })]
+          })]
+        })
+      })]
+    });
+  }
+  return null;
+};
+
+var ProductSingleMinimal = function ProductSingleMinimal(_ref) {
+  var data = _ref.data,
+    className = _ref.className,
+    id = _ref.id;
+  // Safety check for data
+  if (!data || _typeof(data) !== 'object') {
+    console.error('ProductSingleMinimal: data prop is required and must be an object');
+    return null;
+  }
+  var _useState = useState(0),
+    _useState2 = _slicedToArray(_useState, 2),
+    selectedImage = _useState2[0],
+    setSelectedImage = _useState2[1];
+  var _useState3 = useState('description'),
+    _useState4 = _slicedToArray(_useState3, 2);
+    _useState4[0];
+    _useState4[1];
+  var _useState5 = useState(false),
+    _useState6 = _slicedToArray(_useState5, 2);
+    _useState6[0];
+    _useState6[1];
+  var title = data.title,
+    subtitle = data.subtitle,
+    description = data.description,
+    price = data.price,
+    originalPrice = data.originalPrice,
+    image = data.image,
+    _data$images = data.images,
+    images = _data$images === void 0 ? [] : _data$images,
+    _data$features = data.features,
+    features = _data$features === void 0 ? [] : _data$features,
+    _data$specifications = data.specifications,
+    specifications = _data$specifications === void 0 ? [] : _data$specifications,
+    rating = data.rating,
+    badge = data.badge,
+    _data$inStock = data.inStock,
+    inStock = _data$inStock === void 0 ? true : _data$inStock,
+    _data$button = data.button,
+    button = _data$button === void 0 ? {
+      text: "Add to Cart"} : _data$button,
+    _data$variant = data.variant,
+    variant = _data$variant === void 0 ? 'clean' : _data$variant,
+    _data$currency = data.currency,
+    currency = _data$currency === void 0 ? '$' : _data$currency;
+
+  // Combine single image and images array
+  var allImages = image ? [image].concat(_toConsumableArray(images)) : images;
+
+  // Rating display
+  var renderRating = function renderRating(rating) {
+    if (!rating) return null;
+    var stars = [];
+    var fullStars = Math.floor(rating);
+    var hasHalfStar = rating % 1 !== 0;
+    for (var i = 0; i < fullStars; i++) {
+      stars.push(/*#__PURE__*/jsx("svg", {
+        className: "w-4 h-4 text-gray-600 fill-current",
+        viewBox: "0 0 20 20",
+        children: /*#__PURE__*/jsx("path", {
+          d: "M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+        })
+      }, i));
+    }
+    if (hasHalfStar) {
+      stars.push(/*#__PURE__*/jsxs("svg", {
+        className: "w-4 h-4 text-gray-600 fill-current",
+        viewBox: "0 0 20 20",
+        children: [/*#__PURE__*/jsx("defs", {
+          children: /*#__PURE__*/jsxs("linearGradient", {
+            id: "halfStar",
+            children: [/*#__PURE__*/jsx("stop", {
+              offset: "50%",
+              stopColor: "currentColor"
+            }), /*#__PURE__*/jsx("stop", {
+              offset: "50%",
+              stopColor: "transparent"
+            })]
+          })
+        }), /*#__PURE__*/jsx("path", {
+          fill: "url(#halfStar)",
+          d: "M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+        })]
+      }, "half"));
+    }
+    var emptyStars = 5 - Math.ceil(rating);
+    for (var _i = 0; _i < emptyStars; _i++) {
+      stars.push(/*#__PURE__*/jsx("svg", {
+        className: "w-4 h-4 text-gray-300 fill-current",
+        viewBox: "0 0 20 20",
+        children: /*#__PURE__*/jsx("path", {
+          d: "M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+        })
+      }, "empty-".concat(_i)));
+    }
+    return /*#__PURE__*/jsxs("div", {
+      className: "flex items-center space-x-1",
+      children: [stars, /*#__PURE__*/jsxs("span", {
+        className: "text-sm text-gray-500 ml-2",
+        children: ["(", rating, ")"]
+      })]
+    });
+  };
+
+  // Clean variant - Minimalist clean design
+  if (variant === 'clean') {
+    return /*#__PURE__*/jsx("section", {
+      id: id,
+      className: clsx("product-single-minimal-clean bg-white", className),
+      children: /*#__PURE__*/jsx("div", {
+        className: "max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24",
+        children: /*#__PURE__*/jsxs("div", {
+          className: "grid grid-cols-1 lg:grid-cols-2 gap-16",
+          children: [/*#__PURE__*/jsxs("div", {
+            className: "space-y-6",
+            children: [/*#__PURE__*/jsx("div", {
+              className: "aspect-square bg-gray-50 rounded-lg overflow-hidden",
+              children: allImages.length > 0 && /*#__PURE__*/jsx("img", {
+                src: allImages[selectedImage],
+                alt: title,
+                className: "w-full h-full object-cover"
+              })
+            }), allImages.length > 1 && /*#__PURE__*/jsx("div", {
+              className: "grid grid-cols-4 gap-4",
+              children: allImages.slice(0, 4).map(function (img, index) {
+                return /*#__PURE__*/jsx("button", {
+                  onClick: function onClick() {
+                    return setSelectedImage(index);
+                  },
+                  className: clsx("aspect-square bg-gray-50 rounded-lg overflow-hidden border-2 transition-colors", selectedImage === index ? "border-gray-900" : "border-transparent"),
+                  children: /*#__PURE__*/jsx("img", {
+                    src: img,
+                    alt: "".concat(title, " ").concat(index + 1),
+                    className: "w-full h-full object-cover"
+                  })
+                }, index);
+              })
+            })]
+          }), /*#__PURE__*/jsxs("div", {
+            className: "space-y-8",
+            children: [subtitle && /*#__PURE__*/jsx("p", {
+              className: "text-sm text-gray-500 uppercase tracking-wider font-medium",
+              children: subtitle
+            }), /*#__PURE__*/jsx("h1", {
+              className: "text-4xl font-light text-gray-900 leading-tight",
+              children: title
+            }), rating && renderRating(rating), /*#__PURE__*/jsxs("div", {
+              className: "flex items-baseline space-x-4",
+              children: [/*#__PURE__*/jsxs("span", {
+                className: "text-3xl font-light text-gray-900",
+                children: [currency, price]
+              }), originalPrice && /*#__PURE__*/jsxs("span", {
+                className: "text-xl text-gray-400 line-through",
+                children: [currency, originalPrice]
+              }), badge && /*#__PURE__*/jsx("span", {
+                className: "text-sm font-medium text-gray-600 uppercase tracking-wider",
+                children: badge
+              })]
+            }), /*#__PURE__*/jsx("div", {
+              className: "flex items-center space-x-2",
+              children: /*#__PURE__*/jsx("span", {
+                className: clsx("text-sm font-medium uppercase tracking-wider", inStock ? "text-gray-600" : "text-red-600"),
+                children: inStock ? "In Stock" : "Out of Stock"
+              })
+            }), /*#__PURE__*/jsx("p", {
+              className: "text-gray-600 leading-relaxed text-lg",
+              children: description
+            }), /*#__PURE__*/jsx("div", {
+              className: "pt-8",
+              children: /*#__PURE__*/jsx("button", {
+                className: "w-full py-4 px-8 border border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white transition-colors font-medium text-lg",
+                children: button.text
+              })
+            }), features.length > 0 && /*#__PURE__*/jsxs("div", {
+              className: "pt-8 space-y-4",
+              children: [/*#__PURE__*/jsx("h3", {
+                className: "text-lg font-medium text-gray-900",
+                children: "Features"
+              }), /*#__PURE__*/jsx("ul", {
+                className: "space-y-2",
+                children: features.map(function (feature, index) {
+                  return /*#__PURE__*/jsxs("li", {
+                    className: "flex items-center space-x-3 text-gray-600",
+                    children: [/*#__PURE__*/jsx("span", {
+                      className: "text-gray-400",
+                      children: "\u2014"
+                    }), /*#__PURE__*/jsx("span", {
+                      children: feature
+                    })]
+                  }, index);
+                })
+              })]
+            })]
+          })]
+        })
+      })
+    });
+  }
+
+  // Focused variant - Focused on product with centered layout
+  if (variant === 'focused') {
+    return /*#__PURE__*/jsx("section", {
+      id: id,
+      className: clsx("product-single-minimal-focused bg-gray-50", className),
+      children: /*#__PURE__*/jsx("div", {
+        className: "max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32",
+        children: /*#__PURE__*/jsxs("div", {
+          className: "text-center space-y-12",
+          children: [/*#__PURE__*/jsxs("div", {
+            className: "relative",
+            children: [/*#__PURE__*/jsx("div", {
+              className: "aspect-square bg-white rounded-2xl shadow-sm overflow-hidden mx-auto max-w-md",
+              children: allImages.length > 0 && /*#__PURE__*/jsx("img", {
+                src: allImages[selectedImage],
+                alt: title,
+                className: "w-full h-full object-cover"
+              })
+            }), badge && /*#__PURE__*/jsx("div", {
+              className: "absolute top-4 right-4",
+              children: /*#__PURE__*/jsx("span", {
+                className: "inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gray-900 text-white",
+                children: badge
+              })
+            })]
+          }), /*#__PURE__*/jsxs("div", {
+            className: "space-y-6",
+            children: [subtitle && /*#__PURE__*/jsx("p", {
+              className: "text-sm text-gray-500 uppercase tracking-wider font-medium",
+              children: subtitle
+            }), /*#__PURE__*/jsx("h1", {
+              className: "text-5xl font-light text-gray-900 leading-tight",
+              children: title
+            }), rating && /*#__PURE__*/jsx("div", {
+              className: "flex justify-center",
+              children: renderRating(rating)
+            }), /*#__PURE__*/jsxs("div", {
+              className: "flex items-baseline justify-center space-x-4",
+              children: [/*#__PURE__*/jsxs("span", {
+                className: "text-4xl font-light text-gray-900",
+                children: [currency, price]
+              }), originalPrice && /*#__PURE__*/jsxs("span", {
+                className: "text-2xl text-gray-400 line-through",
+                children: [currency, originalPrice]
+              })]
+            }), /*#__PURE__*/jsx("div", {
+              className: "flex justify-center",
+              children: /*#__PURE__*/jsx("span", {
+                className: clsx("text-sm font-medium uppercase tracking-wider", inStock ? "text-gray-600" : "text-red-600"),
+                children: inStock ? "Available" : "Unavailable"
+              })
+            }), /*#__PURE__*/jsx("div", {
+              className: "max-w-lg mx-auto",
+              children: /*#__PURE__*/jsx("p", {
+                className: "text-gray-600 leading-relaxed text-lg",
+                children: description
+              })
+            }), /*#__PURE__*/jsx("div", {
+              className: "pt-4",
+              children: /*#__PURE__*/jsx("button", {
+                className: "px-16 py-4 bg-gray-900 text-white hover:bg-gray-800 transition-colors font-medium text-lg",
+                children: button.text
+              })
+            }), features.length > 0 && /*#__PURE__*/jsxs("div", {
+              className: "pt-12 space-y-6",
+              children: [/*#__PURE__*/jsx("h3", {
+                className: "text-xl font-medium text-gray-900",
+                children: "Product Features"
+              }), /*#__PURE__*/jsx("div", {
+                className: "grid grid-cols-1 sm:grid-cols-2 gap-4",
+                children: features.map(function (feature, index) {
+                  return /*#__PURE__*/jsxs("div", {
+                    className: "flex items-center space-x-3 text-gray-600",
+                    children: [/*#__PURE__*/jsx("span", {
+                      className: "text-gray-400 text-lg",
+                      children: "\u2022"
+                    }), /*#__PURE__*/jsx("span", {
+                      className: "text-sm",
+                      children: feature
+                    })]
+                  }, index);
+                })
+              })]
+            })]
+          }), allImages.length > 1 && /*#__PURE__*/jsx("div", {
+            className: "pt-12",
+            children: /*#__PURE__*/jsx("div", {
+              className: "flex justify-center space-x-4",
+              children: allImages.slice(0, 5).map(function (img, index) {
+                return /*#__PURE__*/jsx("button", {
+                  onClick: function onClick() {
+                    return setSelectedImage(index);
+                  },
+                  className: clsx("w-16 h-16 rounded-lg overflow-hidden border-2 transition-colors", selectedImage === index ? "border-gray-900" : "border-gray-200"),
+                  children: /*#__PURE__*/jsx("img", {
+                    src: img,
+                    alt: "".concat(title, " ").concat(index + 1),
+                    className: "w-full h-full object-cover"
+                  })
+                }, index);
+              })
+            })
+          })]
+        })
+      })
+    });
+  }
+
+  // Overlay variant - Image with overlay information
+  if (variant === 'overlay') {
+    return /*#__PURE__*/jsxs("section", {
+      id: id,
+      className: clsx("product-single-minimal-overlay relative min-h-screen", className),
+      children: [/*#__PURE__*/jsxs("div", {
+        className: "absolute inset-0",
+        children: [allImages.length > 0 && /*#__PURE__*/jsx("img", {
+          src: allImages[selectedImage],
+          alt: title,
+          className: "w-full h-full object-cover"
+        }), /*#__PURE__*/jsx("div", {
+          className: "absolute inset-0 bg-black bg-opacity-40"
+        })]
+      }), /*#__PURE__*/jsx("div", {
+        className: "relative z-10 flex items-center justify-center min-h-screen",
+        children: /*#__PURE__*/jsx("div", {
+          className: "max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white",
+          children: /*#__PURE__*/jsxs("div", {
+            className: "space-y-8",
+            children: [subtitle && /*#__PURE__*/jsx("p", {
+              className: "text-sm uppercase tracking-wider font-medium text-white/80",
+              children: subtitle
+            }), /*#__PURE__*/jsx("h1", {
+              className: "text-6xl lg:text-7xl font-light leading-tight",
+              children: title
+            }), /*#__PURE__*/jsx("div", {
+              className: "flex justify-center",
+              children: /*#__PURE__*/jsx("div", {
+                className: "bg-white/10 backdrop-blur-sm rounded-lg px-8 py-4",
+                children: /*#__PURE__*/jsxs("div", {
+                  className: "flex items-center justify-center space-x-6",
+                  children: [/*#__PURE__*/jsxs("span", {
+                    className: "text-4xl font-light",
+                    children: [currency, price]
+                  }), originalPrice && /*#__PURE__*/jsxs("span", {
+                    className: "text-2xl text-white/60 line-through",
+                    children: [currency, originalPrice]
+                  }), badge && /*#__PURE__*/jsx("span", {
+                    className: "text-sm font-medium bg-white/20 px-3 py-1 rounded-full",
+                    children: badge
+                  })]
+                })
+              })
+            }), /*#__PURE__*/jsx("div", {
+              className: "max-w-2xl mx-auto",
+              children: /*#__PURE__*/jsx("p", {
+                className: "text-xl leading-relaxed text-white/90",
+                children: description
+              })
+            }), /*#__PURE__*/jsxs("div", {
+              className: "flex justify-center space-x-4",
+              children: [/*#__PURE__*/jsx("div", {
+                className: "bg-white/10 backdrop-blur-sm rounded-lg px-6 py-3",
+                children: /*#__PURE__*/jsx("span", {
+                  className: clsx("text-sm font-medium uppercase tracking-wider", inStock ? "text-white" : "text-red-300"),
+                  children: inStock ? "In Stock" : "Out of Stock"
+                })
+              }), /*#__PURE__*/jsx("button", {
+                className: "px-12 py-4 bg-white text-gray-900 hover:bg-gray-100 transition-colors font-medium text-lg",
+                children: button.text
+              })]
+            }), features.length > 0 && /*#__PURE__*/jsx("div", {
+              className: "pt-12",
+              children: /*#__PURE__*/jsx("div", {
+                className: "grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto",
+                children: features.slice(0, 3).map(function (feature, index) {
+                  return /*#__PURE__*/jsx("div", {
+                    className: "bg-white/10 backdrop-blur-sm rounded-lg p-6",
+                    children: /*#__PURE__*/jsxs("div", {
+                      className: "flex items-center space-x-3",
+                      children: [/*#__PURE__*/jsx("span", {
+                        className: "text-white/60",
+                        children: "\u2014"
+                      }), /*#__PURE__*/jsx("span", {
+                        className: "text-white text-sm",
+                        children: feature
+                      })]
+                    })
+                  }, index);
+                })
+              })
+            })]
+          })
+        })
+      }), allImages.length > 1 && /*#__PURE__*/jsx("div", {
+        className: "absolute bottom-8 left-1/2 transform -translate-x-1/2",
+        children: /*#__PURE__*/jsx("div", {
+          className: "flex space-x-4 bg-black/20 backdrop-blur-sm rounded-lg p-4",
+          children: allImages.slice(0, 5).map(function (img, index) {
+            return /*#__PURE__*/jsx("button", {
+              onClick: function onClick() {
+                return setSelectedImage(index);
+              },
+              className: clsx("w-12 h-12 rounded-lg overflow-hidden border-2 transition-colors", selectedImage === index ? "border-white" : "border-white/30"),
+              children: /*#__PURE__*/jsx("img", {
+                src: img,
+                alt: "".concat(title, " ").concat(index + 1),
+                className: "w-full h-full object-cover"
+              })
+            }, index);
+          })
+        })
+      })]
+    });
+  }
+
+  // Sidebar variant - Content in sidebar layout
+  if (variant === 'sidebar') {
+    return /*#__PURE__*/jsx("section", {
+      id: id,
+      className: clsx("product-single-minimal-sidebar bg-white", className),
+      children: /*#__PURE__*/jsx("div", {
+        className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
+        children: /*#__PURE__*/jsxs("div", {
+          className: "grid grid-cols-1 lg:grid-cols-3 gap-12",
+          children: [/*#__PURE__*/jsxs("div", {
+            className: "lg:col-span-2",
+            children: [/*#__PURE__*/jsx("div", {
+              className: "aspect-[4/3] bg-gray-50 rounded-lg overflow-hidden",
+              children: allImages.length > 0 && /*#__PURE__*/jsx("img", {
+                src: allImages[selectedImage],
+                alt: title,
+                className: "w-full h-full object-cover"
+              })
+            }), allImages.length > 1 && /*#__PURE__*/jsx("div", {
+              className: "flex space-x-4 mt-6 overflow-x-auto pb-2",
+              children: allImages.map(function (img, index) {
+                return /*#__PURE__*/jsx("button", {
+                  onClick: function onClick() {
+                    return setSelectedImage(index);
+                  },
+                  className: clsx("flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-colors", selectedImage === index ? "border-gray-900" : "border-gray-200"),
+                  children: /*#__PURE__*/jsx("img", {
+                    src: img,
+                    alt: "".concat(title, " ").concat(index + 1),
+                    className: "w-full h-full object-cover"
+                  })
+                }, index);
+              })
+            })]
+          }), /*#__PURE__*/jsxs("div", {
+            className: "space-y-8",
+            children: [subtitle && /*#__PURE__*/jsx("p", {
+              className: "text-sm text-gray-500 uppercase tracking-wider font-medium",
+              children: subtitle
+            }), /*#__PURE__*/jsx("h1", {
+              className: "text-3xl font-light text-gray-900 leading-tight",
+              children: title
+            }), rating && renderRating(rating), /*#__PURE__*/jsxs("div", {
+              className: "space-y-4",
+              children: [/*#__PURE__*/jsxs("div", {
+                className: "flex items-baseline space-x-3",
+                children: [/*#__PURE__*/jsxs("span", {
+                  className: "text-3xl font-light text-gray-900",
+                  children: [currency, price]
+                }), originalPrice && /*#__PURE__*/jsxs("span", {
+                  className: "text-xl text-gray-400 line-through",
+                  children: [currency, originalPrice]
+                })]
+              }), badge && /*#__PURE__*/jsx("span", {
+                className: "text-sm font-medium text-gray-600 uppercase tracking-wider",
+                children: badge
+              }), /*#__PURE__*/jsx("div", {
+                children: /*#__PURE__*/jsx("span", {
+                  className: clsx("text-sm font-medium uppercase tracking-wider", inStock ? "text-gray-600" : "text-red-600"),
+                  children: inStock ? "In Stock" : "Out of Stock"
+                })
+              })]
+            }), /*#__PURE__*/jsx("p", {
+              className: "text-gray-600 leading-relaxed",
+              children: description
+            }), /*#__PURE__*/jsx("button", {
+              className: "w-full py-4 px-6 border border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white transition-colors font-medium",
+              children: button.text
+            }), features.length > 0 && /*#__PURE__*/jsxs("div", {
+              className: "space-y-4",
+              children: [/*#__PURE__*/jsx("h3", {
+                className: "text-lg font-medium text-gray-900",
+                children: "Features"
+              }), /*#__PURE__*/jsx("ul", {
+                className: "space-y-3",
+                children: features.map(function (feature, index) {
+                  return /*#__PURE__*/jsxs("li", {
+                    className: "flex items-start space-x-2 text-gray-600",
+                    children: [/*#__PURE__*/jsx("span", {
+                      className: "text-gray-400 mt-1",
+                      children: "\u2022"
+                    }), /*#__PURE__*/jsx("span", {
+                      className: "text-sm leading-relaxed",
+                      children: feature
+                    })]
+                  }, index);
+                })
+              })]
+            }), specifications.length > 0 && /*#__PURE__*/jsxs("div", {
+              className: "space-y-4 pt-6 border-t border-gray-200",
+              children: [/*#__PURE__*/jsx("h3", {
+                className: "text-lg font-medium text-gray-900",
+                children: "Specifications"
+              }), /*#__PURE__*/jsx("div", {
+                className: "space-y-2",
+                children: specifications.slice(0, 4).map(function (spec, index) {
+                  return /*#__PURE__*/jsxs("div", {
+                    className: "flex justify-between text-sm",
+                    children: [/*#__PURE__*/jsx("span", {
+                      className: "text-gray-600",
+                      children: spec.label
+                    }), /*#__PURE__*/jsx("span", {
+                      className: "text-gray-900 font-medium",
+                      children: spec.value
+                    })]
+                  }, index);
+                })
+              })]
+            })]
+          })]
+        })
+      })
+    });
+  }
+
+  // Gallery variant - Full gallery experience
+  if (variant === 'gallery') {
+    return /*#__PURE__*/jsxs("section", {
+      id: id,
+      className: clsx("product-single-minimal-gallery bg-white", className),
+      children: [/*#__PURE__*/jsxs("div", {
+        className: "relative",
+        children: [/*#__PURE__*/jsx("div", {
+          className: "aspect-[16/9] bg-gray-50 overflow-hidden",
+          children: allImages.length > 0 && /*#__PURE__*/jsx("img", {
+            src: allImages[selectedImage],
+            alt: title,
+            className: "w-full h-full object-cover"
+          })
+        }), /*#__PURE__*/jsx("div", {
+          className: "absolute inset-0 flex items-end",
+          children: /*#__PURE__*/jsx("div", {
+            className: "w-full bg-gradient-to-t from-black/60 via-transparent to-transparent p-8 lg:p-16",
+            children: /*#__PURE__*/jsx("div", {
+              className: "max-w-4xl mx-auto",
+              children: /*#__PURE__*/jsxs("div", {
+                className: "text-white space-y-4",
+                children: [subtitle && /*#__PURE__*/jsx("p", {
+                  className: "text-sm uppercase tracking-wider font-medium text-white/80",
+                  children: subtitle
+                }), /*#__PURE__*/jsx("h1", {
+                  className: "text-5xl lg:text-6xl font-light leading-tight",
+                  children: title
+                }), /*#__PURE__*/jsxs("div", {
+                  className: "flex items-center space-x-6 pt-4",
+                  children: [/*#__PURE__*/jsxs("span", {
+                    className: "text-4xl font-light",
+                    children: [currency, price]
+                  }), originalPrice && /*#__PURE__*/jsxs("span", {
+                    className: "text-2xl text-white/60 line-through",
+                    children: [currency, originalPrice]
+                  }), badge && /*#__PURE__*/jsx("span", {
+                    className: "text-sm font-medium bg-white/20 px-3 py-1 rounded-full",
+                    children: badge
+                  })]
+                })]
+              })
+            })
+          })
+        })]
+      }), /*#__PURE__*/jsx("div", {
+        className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24",
+        children: /*#__PURE__*/jsxs("div", {
+          className: "grid grid-cols-1 lg:grid-cols-3 gap-16",
+          children: [/*#__PURE__*/jsxs("div", {
+            className: "lg:col-span-2 space-y-8",
+            children: [/*#__PURE__*/jsxs("div", {
+              className: "grid grid-cols-1 md:grid-cols-2 gap-8",
+              children: [/*#__PURE__*/jsxs("div", {
+                className: "space-y-6",
+                children: [/*#__PURE__*/jsx("h2", {
+                  className: "text-2xl font-light text-gray-900",
+                  children: "Product Details"
+                }), /*#__PURE__*/jsx("p", {
+                  className: "text-gray-600 leading-relaxed text-lg",
+                  children: description
+                }), /*#__PURE__*/jsxs("div", {
+                  className: "flex items-center space-x-4",
+                  children: [rating && renderRating(rating), /*#__PURE__*/jsx("span", {
+                    className: clsx("text-sm font-medium uppercase tracking-wider", inStock ? "text-gray-600" : "text-red-600"),
+                    children: inStock ? "Available" : "Sold Out"
+                  })]
+                })]
+              }), features.length > 0 && /*#__PURE__*/jsxs("div", {
+                className: "space-y-6",
+                children: [/*#__PURE__*/jsx("h3", {
+                  className: "text-xl font-medium text-gray-900",
+                  children: "Key Features"
+                }), /*#__PURE__*/jsx("ul", {
+                  className: "space-y-3",
+                  children: features.map(function (feature, index) {
+                    return /*#__PURE__*/jsxs("li", {
+                      className: "flex items-center space-x-3 text-gray-600",
+                      children: [/*#__PURE__*/jsx("span", {
+                        className: "text-gray-400",
+                        children: "\u2014"
+                      }), /*#__PURE__*/jsx("span", {
+                        children: feature
+                      })]
+                    }, index);
+                  })
+                })]
+              })]
+            }), allImages.length > 1 && /*#__PURE__*/jsxs("div", {
+              className: "pt-12",
+              children: [/*#__PURE__*/jsx("h3", {
+                className: "text-xl font-medium text-gray-900 mb-8",
+                children: "Product Gallery"
+              }), /*#__PURE__*/jsx("div", {
+                className: "grid grid-cols-2 md:grid-cols-3 gap-6",
+                children: allImages.map(function (img, index) {
+                  return /*#__PURE__*/jsx("button", {
+                    onClick: function onClick() {
+                      return setSelectedImage(index);
+                    },
+                    className: clsx("aspect-square bg-gray-50 rounded-lg overflow-hidden transition-all duration-300 transform hover:scale-105", selectedImage === index ? "ring-4 ring-gray-900" : ""),
+                    children: /*#__PURE__*/jsx("img", {
+                      src: img,
+                      alt: "".concat(title, " ").concat(index + 1),
+                      className: "w-full h-full object-cover"
+                    })
+                  }, index);
+                })
+              })]
+            }), specifications.length > 0 && /*#__PURE__*/jsxs("div", {
+              className: "pt-12 space-y-6",
+              children: [/*#__PURE__*/jsx("h3", {
+                className: "text-xl font-medium text-gray-900",
+                children: "Specifications"
+              }), /*#__PURE__*/jsx("div", {
+                className: "grid grid-cols-1 md:grid-cols-2 gap-4",
+                children: specifications.map(function (spec, index) {
+                  return /*#__PURE__*/jsxs("div", {
+                    className: "flex justify-between py-3 px-4 bg-gray-50 rounded-lg",
+                    children: [/*#__PURE__*/jsx("span", {
+                      className: "text-gray-600 font-medium",
+                      children: spec.label
+                    }), /*#__PURE__*/jsx("span", {
+                      className: "text-gray-900",
+                      children: spec.value
+                    })]
+                  }, index);
+                })
+              })]
+            })]
+          }), /*#__PURE__*/jsxs("div", {
+            className: "space-y-8",
+            children: [/*#__PURE__*/jsxs("div", {
+              className: "bg-gray-50 rounded-lg p-8 space-y-6",
+              children: [/*#__PURE__*/jsxs("div", {
+                className: "text-center",
+                children: [/*#__PURE__*/jsxs("div", {
+                  className: "text-3xl font-light text-gray-900 mb-2",
+                  children: [currency, price]
+                }), originalPrice && /*#__PURE__*/jsxs("div", {
+                  className: "text-xl text-gray-400 line-through",
+                  children: [currency, originalPrice]
+                })]
+              }), /*#__PURE__*/jsx("button", {
+                className: "w-full py-4 px-6 bg-gray-900 text-white hover:bg-gray-800 transition-colors font-medium text-lg",
+                children: button.text
+              }), /*#__PURE__*/jsx("div", {
+                className: "text-center",
+                children: /*#__PURE__*/jsx("span", {
+                  className: "text-sm text-gray-500",
+                  children: "Free shipping on orders over $100"
+                })
+              })]
+            }), /*#__PURE__*/jsxs("div", {
+              className: "space-y-4 text-sm text-gray-600",
+              children: [/*#__PURE__*/jsxs("div", {
+                className: "flex items-center space-x-2",
+                children: [/*#__PURE__*/jsx("svg", {
+                  className: "w-4 h-4 text-green-500",
+                  fill: "currentColor",
+                  viewBox: "0 0 20 20",
+                  children: /*#__PURE__*/jsx("path", {
+                    fillRule: "evenodd",
+                    d: "M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z",
+                    clipRule: "evenodd"
+                  })
+                }), /*#__PURE__*/jsx("span", {
+                  children: "30-day return policy"
+                })]
+              }), /*#__PURE__*/jsxs("div", {
+                className: "flex items-center space-x-2",
+                children: [/*#__PURE__*/jsx("svg", {
+                  className: "w-4 h-4 text-green-500",
+                  fill: "currentColor",
+                  viewBox: "0 0 20 20",
+                  children: /*#__PURE__*/jsx("path", {
+                    fillRule: "evenodd",
+                    d: "M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z",
+                    clipRule: "evenodd"
+                  })
+                }), /*#__PURE__*/jsx("span", {
+                  children: "2-year warranty"
+                })]
+              }), /*#__PURE__*/jsxs("div", {
+                className: "flex items-center space-x-2",
+                children: [/*#__PURE__*/jsx("svg", {
+                  className: "w-4 h-4 text-green-500",
+                  fill: "currentColor",
+                  viewBox: "0 0 20 20",
+                  children: /*#__PURE__*/jsx("path", {
+                    fillRule: "evenodd",
+                    d: "M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z",
+                    clipRule: "evenodd"
+                  })
+                }), /*#__PURE__*/jsx("span", {
+                  children: "Secure checkout"
+                })]
+              })]
+            })]
+          })]
+        })
+      })]
+    });
+  }
+  return null;
+};
+
+var ProductHero = function ProductHero(_ref) {
+  var data = _ref.data,
+    className = _ref.className,
+    id = _ref.id;
+  // Safety check for data
+  if (!data || _typeof(data) !== 'object') {
+    console.error('ProductHero: data prop is required and must be an object');
+    return null;
+  }
+  var _useState = useState(0),
+    _useState2 = _slicedToArray(_useState, 2),
+    selectedImage = _useState2[0],
+    setSelectedImage = _useState2[1];
+  var title = data.title,
+    subtitle = data.subtitle,
+    description = data.description,
+    price = data.price,
+    originalPrice = data.originalPrice,
+    image = data.image,
+    _data$images = data.images,
+    images = _data$images === void 0 ? [] : _data$images,
+    rating = data.rating,
+    badge = data.badge,
+    _data$inStock = data.inStock,
+    inStock = _data$inStock === void 0 ? true : _data$inStock,
+    _data$variant = data.variant,
+    variant = _data$variant === void 0 ? 'default' : _data$variant,
+    _data$currency = data.currency,
+    currency = _data$currency === void 0 ? '$' : _data$currency;
+
+  // Combine single image and images array
+  var allImages = image ? [image].concat(_toConsumableArray(images)) : images;
+
+  // Rating display
+  var renderRating = function renderRating(rating) {
+    if (!rating) return null;
+    var stars = [];
+    var fullStars = Math.floor(rating);
+    var hasHalfStar = rating % 1 !== 0;
+    for (var i = 0; i < fullStars; i++) {
+      stars.push(/*#__PURE__*/jsx("svg", {
+        className: "w-4 h-4 text-yellow-400 fill-current",
+        viewBox: "0 0 20 20",
+        children: /*#__PURE__*/jsx("path", {
+          d: "M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+        })
+      }, i));
+    }
+    if (hasHalfStar) {
+      stars.push(/*#__PURE__*/jsxs("svg", {
+        className: "w-4 h-4 text-yellow-400 fill-current",
+        viewBox: "0 0 20 20",
+        children: [/*#__PURE__*/jsx("defs", {
+          children: /*#__PURE__*/jsxs("linearGradient", {
+            id: "halfStar",
+            children: [/*#__PURE__*/jsx("stop", {
+              offset: "50%",
+              stopColor: "currentColor"
+            }), /*#__PURE__*/jsx("stop", {
+              offset: "50%",
+              stopColor: "transparent"
+            })]
+          })
+        }), /*#__PURE__*/jsx("path", {
+          fill: "url(#halfStar)",
+          d: "M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+        })]
+      }, "half"));
+    }
+    var emptyStars = 5 - Math.ceil(rating);
+    for (var _i = 0; _i < emptyStars; _i++) {
+      stars.push(/*#__PURE__*/jsx("svg", {
+        className: "w-4 h-4 text-gray-300 fill-current",
+        viewBox: "0 0 20 20",
+        children: /*#__PURE__*/jsx("path", {
+          d: "M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+        })
+      }, "empty-".concat(_i)));
+    }
+    return /*#__PURE__*/jsxs("div", {
+      className: "flex items-center space-x-1",
+      children: [stars, /*#__PURE__*/jsxs("span", {
+        className: "text-sm text-gray-600 ml-2",
+        children: ["(", rating, ")"]
+      })]
+    });
+  };
+
+  // Default variant - Standard hero layout
+  if (variant === 'default') {
+    return /*#__PURE__*/jsx("section", {
+      id: id,
+      className: clsx("product-hero-default bg-white", className),
+      children: /*#__PURE__*/jsx("div", {
+        className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-16",
+        children: /*#__PURE__*/jsxs("div", {
+          className: "grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16",
+          children: [/*#__PURE__*/jsxs("div", {
+            className: "space-y-4",
+            children: [/*#__PURE__*/jsx("div", {
+              className: "aspect-square bg-gray-100 rounded-lg overflow-hidden",
+              children: allImages.length > 0 && /*#__PURE__*/jsx("img", {
+                src: allImages[selectedImage],
+                alt: title,
+                className: "w-full h-full object-cover"
+              })
+            }), allImages.length > 1 && /*#__PURE__*/jsx("div", {
+              className: "grid grid-cols-4 gap-4",
+              children: allImages.slice(0, 4).map(function (img, index) {
+                return /*#__PURE__*/jsx("button", {
+                  onClick: function onClick() {
+                    return setSelectedImage(index);
+                  },
+                  className: clsx("aspect-square bg-gray-100 rounded-lg overflow-hidden border-2 transition-colors", selectedImage === index ? "border-blue-500" : "border-transparent"),
+                  children: /*#__PURE__*/jsx("img", {
+                    src: img,
+                    alt: "".concat(title, " ").concat(index + 1),
+                    className: "w-full h-full object-cover"
+                  })
+                }, index);
+              })
+            })]
+          }), /*#__PURE__*/jsxs("div", {
+            className: "space-y-6",
+            children: [subtitle && /*#__PURE__*/jsx("p", {
+              className: "text-sm font-medium text-blue-600 uppercase tracking-wide",
+              children: subtitle
+            }), /*#__PURE__*/jsx("h1", {
+              className: "text-3xl lg:text-4xl font-bold text-gray-900",
+              children: title
+            }), rating && renderRating(rating), /*#__PURE__*/jsxs("div", {
+              className: "flex items-center space-x-4",
+              children: [/*#__PURE__*/jsxs("span", {
+                className: "text-3xl font-bold text-gray-900",
+                children: [currency, price]
+              }), originalPrice && /*#__PURE__*/jsxs("span", {
+                className: "text-xl text-gray-500 line-through",
+                children: [currency, originalPrice]
+              }), badge && /*#__PURE__*/jsx("span", {
+                className: "inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800",
+                children: badge
+              })]
+            }), /*#__PURE__*/jsx("div", {
+              className: "flex items-center space-x-2",
+              children: /*#__PURE__*/jsx("span", {
+                className: clsx("inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium", inStock ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"),
+                children: inStock ? "In Stock" : "Out of Stock"
+              })
+            }), description && /*#__PURE__*/jsx("div", {
+              className: "prose prose-gray max-w-none",
+              children: /*#__PURE__*/jsx("p", {
+                className: "text-gray-600",
+                children: description
+              })
+            })]
+          })]
+        })
+      })
+    });
+  }
+
+  // Overlay variant - Image with overlay information
+  if (variant === 'overlay') {
+    return /*#__PURE__*/jsxs("section", {
+      id: id,
+      className: clsx("product-hero-overlay relative min-h-screen", className),
+      children: [/*#__PURE__*/jsxs("div", {
+        className: "absolute inset-0",
+        children: [allImages.length > 0 && /*#__PURE__*/jsx("img", {
+          src: allImages[selectedImage],
+          alt: title,
+          className: "w-full h-full object-cover"
+        }), /*#__PURE__*/jsx("div", {
+          className: "absolute inset-0 bg-black bg-opacity-40"
+        })]
+      }), /*#__PURE__*/jsx("div", {
+        className: "relative z-10 flex items-center justify-center min-h-screen",
+        children: /*#__PURE__*/jsx("div", {
+          className: "max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white",
+          children: /*#__PURE__*/jsxs("div", {
+            className: "space-y-8",
+            children: [subtitle && /*#__PURE__*/jsx("p", {
+              className: "text-sm uppercase tracking-wider font-medium text-white/80",
+              children: subtitle
+            }), /*#__PURE__*/jsx("h1", {
+              className: "text-6xl lg:text-7xl font-light leading-tight",
+              children: title
+            }), /*#__PURE__*/jsx("div", {
+              className: "flex justify-center",
+              children: /*#__PURE__*/jsx("div", {
+                className: "bg-white/10 backdrop-blur-sm rounded-lg px-8 py-4",
+                children: /*#__PURE__*/jsxs("div", {
+                  className: "flex items-center justify-center space-x-6",
+                  children: [/*#__PURE__*/jsxs("span", {
+                    className: "text-4xl font-light",
+                    children: [currency, price]
+                  }), originalPrice && /*#__PURE__*/jsxs("span", {
+                    className: "text-2xl text-white/60 line-through",
+                    children: [currency, originalPrice]
+                  }), badge && /*#__PURE__*/jsx("span", {
+                    className: "text-sm font-medium bg-white/20 px-3 py-1 rounded-full",
+                    children: badge
+                  })]
+                })
+              })
+            }), description && /*#__PURE__*/jsx("div", {
+              className: "max-w-2xl mx-auto",
+              children: /*#__PURE__*/jsx("p", {
+                className: "text-xl leading-relaxed text-white/90",
+                children: description
+              })
+            }), rating && /*#__PURE__*/jsx("div", {
+              className: "flex justify-center",
+              children: renderRating(rating)
+            }), /*#__PURE__*/jsx("div", {
+              className: "flex justify-center",
+              children: /*#__PURE__*/jsx("span", {
+                className: clsx("inline-flex items-center px-6 py-3 rounded-full text-sm font-medium backdrop-blur-sm border", inStock ? "bg-green-500/20 text-green-100 border-green-300/30" : "bg-red-500/20 text-red-100 border-red-300/30"),
+                children: inStock ? "Available Now" : "Currently Unavailable"
+              })
+            })]
+          })
+        })
+      }), allImages.length > 1 && /*#__PURE__*/jsx("div", {
+        className: "absolute bottom-8 left-1/2 transform -translate-x-1/2",
+        children: /*#__PURE__*/jsx("div", {
+          className: "flex space-x-4 bg-black/20 backdrop-blur-sm rounded-lg p-4",
+          children: allImages.slice(0, 5).map(function (img, index) {
+            return /*#__PURE__*/jsx("button", {
+              onClick: function onClick() {
+                return setSelectedImage(index);
+              },
+              className: clsx("w-12 h-12 rounded-lg overflow-hidden border-2 transition-colors", selectedImage === index ? "border-white" : "border-white/30"),
+              children: /*#__PURE__*/jsx("img", {
+                src: img,
+                alt: "".concat(title, " ").concat(index + 1),
+                className: "w-full h-full object-cover"
+              })
+            }, index);
+          })
+        })
+      })]
+    });
+  }
+
+  // Minimal variant - Clean minimal design
+  if (variant === 'minimal') {
+    return /*#__PURE__*/jsx("section", {
+      id: id,
+      className: clsx("product-hero-minimal bg-white", className),
+      children: /*#__PURE__*/jsx("div", {
+        className: "max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24",
+        children: /*#__PURE__*/jsxs("div", {
+          className: "grid grid-cols-1 lg:grid-cols-2 gap-16",
+          children: [/*#__PURE__*/jsx("div", {
+            children: /*#__PURE__*/jsx("div", {
+              className: "aspect-square bg-gray-50 rounded-lg overflow-hidden",
+              children: allImages.length > 0 && /*#__PURE__*/jsx("img", {
+                src: allImages[selectedImage],
+                alt: title,
+                className: "w-full h-full object-cover"
+              })
+            })
+          }), /*#__PURE__*/jsxs("div", {
+            className: "flex flex-col justify-center space-y-6",
+            children: [subtitle && /*#__PURE__*/jsx("p", {
+              className: "text-sm text-gray-500 uppercase tracking-wider font-medium",
+              children: subtitle
+            }), /*#__PURE__*/jsx("h1", {
+              className: "text-4xl lg:text-5xl font-light text-gray-900 leading-tight",
+              children: title
+            }), /*#__PURE__*/jsxs("div", {
+              className: "flex items-baseline space-x-4",
+              children: [/*#__PURE__*/jsxs("span", {
+                className: "text-3xl font-light text-gray-900",
+                children: [currency, price]
+              }), originalPrice && /*#__PURE__*/jsxs("span", {
+                className: "text-xl text-gray-400 line-through",
+                children: [currency, originalPrice]
+              }), badge && /*#__PURE__*/jsx("span", {
+                className: "text-sm font-medium text-gray-600 uppercase tracking-wider",
+                children: badge
+              })]
+            }), rating && renderRating(rating), /*#__PURE__*/jsx("div", {
+              children: /*#__PURE__*/jsx("span", {
+                className: clsx("text-sm font-medium uppercase tracking-wider", inStock ? "text-gray-600" : "text-red-600"),
+                children: inStock ? "In Stock" : "Out of Stock"
+              })
+            }), description && /*#__PURE__*/jsx("p", {
+              className: "text-gray-600 leading-relaxed text-lg",
+              children: description
+            })]
+          })]
+        })
+      })
+    });
+  }
+
+  // Centered variant - Centered layout with hero-style presentation
+  if (variant === 'centered') {
+    return /*#__PURE__*/jsx("section", {
+      id: id,
+      className: clsx("product-hero-centered bg-gray-50", className),
+      children: /*#__PURE__*/jsx("div", {
+        className: "max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32",
+        children: /*#__PURE__*/jsxs("div", {
+          className: "text-center space-y-12",
+          children: [/*#__PURE__*/jsxs("div", {
+            className: "relative",
+            children: [/*#__PURE__*/jsx("div", {
+              className: "aspect-square bg-white rounded-2xl shadow-sm overflow-hidden mx-auto max-w-md",
+              children: allImages.length > 0 && /*#__PURE__*/jsx("img", {
+                src: allImages[selectedImage],
+                alt: title,
+                className: "w-full h-full object-cover"
+              })
+            }), badge && /*#__PURE__*/jsx("div", {
+              className: "absolute top-4 right-4",
+              children: /*#__PURE__*/jsx("span", {
+                className: "inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gray-900 text-white",
+                children: badge
+              })
+            })]
+          }), /*#__PURE__*/jsxs("div", {
+            className: "space-y-6",
+            children: [subtitle && /*#__PURE__*/jsx("p", {
+              className: "text-sm text-gray-500 uppercase tracking-wide mb-4",
+              children: subtitle
+            }), /*#__PURE__*/jsx("h1", {
+              className: "text-5xl font-light text-gray-900 leading-tight",
+              children: title
+            }), rating && /*#__PURE__*/jsx("div", {
+              className: "flex justify-center",
+              children: renderRating(rating)
+            }), /*#__PURE__*/jsxs("div", {
+              className: "flex items-baseline justify-center space-x-4",
+              children: [/*#__PURE__*/jsxs("span", {
+                className: "text-4xl font-light text-gray-900",
+                children: [currency, price]
+              }), originalPrice && /*#__PURE__*/jsxs("span", {
+                className: "text-2xl text-gray-400 line-through",
+                children: [currency, originalPrice]
+              })]
+            }), /*#__PURE__*/jsx("div", {
+              className: "flex justify-center",
+              children: /*#__PURE__*/jsx("span", {
+                className: clsx("text-sm font-medium uppercase tracking-wider", inStock ? "text-gray-600" : "text-red-600"),
+                children: inStock ? "Available" : "Sold Out"
+              })
+            }), description && /*#__PURE__*/jsx("div", {
+              className: "max-w-lg mx-auto",
+              children: /*#__PURE__*/jsx("p", {
+                className: "text-gray-600 leading-relaxed text-lg",
+                children: description
+              })
+            })]
+          }), allImages.length > 1 && /*#__PURE__*/jsx("div", {
+            className: "pt-12",
+            children: /*#__PURE__*/jsx("div", {
+              className: "flex justify-center space-x-4",
+              children: allImages.slice(0, 5).map(function (img, index) {
+                return /*#__PURE__*/jsx("button", {
+                  onClick: function onClick() {
+                    return setSelectedImage(index);
+                  },
+                  className: clsx("w-16 h-16 rounded-lg overflow-hidden border-2 transition-colors", selectedImage === index ? "border-gray-900" : "border-gray-200"),
+                  children: /*#__PURE__*/jsx("img", {
+                    src: img,
+                    alt: "".concat(title, " ").concat(index + 1),
+                    className: "w-full h-full object-cover"
+                  })
+                }, index);
+              })
+            })
+          })]
+        })
+      })
+    });
+  }
+  return null;
+};
+
+var ProductGallery = function ProductGallery(_ref) {
+  var data = _ref.data,
+    className = _ref.className,
+    id = _ref.id;
+  // Safety check for data
+  if (!data || _typeof(data) !== 'object') {
+    console.error('ProductGallery: data prop is required and must be an object');
+    return null;
+  }
+  var _useState = useState(0),
+    _useState2 = _slicedToArray(_useState, 2),
+    selectedImage = _useState2[0],
+    setSelectedImage = _useState2[1];
+  var _useState3 = useState(false),
+    _useState4 = _slicedToArray(_useState3, 2),
+    isFullscreen = _useState4[0],
+    setIsFullscreen = _useState4[1];
+  var _data$images = data.images,
+    images = _data$images === void 0 ? [] : _data$images,
+    _data$title = data.title,
+    title = _data$title === void 0 ? 'Product' : _data$title,
+    _data$variant = data.variant,
+    variant = _data$variant === void 0 ? 'default' : _data$variant,
+    _data$showThumbnails = data.showThumbnails,
+    showThumbnails = _data$showThumbnails === void 0 ? true : _data$showThumbnails,
+    _data$allowFullscreen = data.allowFullscreen,
+    allowFullscreen = _data$allowFullscreen === void 0 ? false : _data$allowFullscreen;
+
+  // Ensure images is an array
+  var allImages = Array.isArray(images) ? images : [images];
+  if (allImages.length === 0) {
+    return null;
+  }
+
+  // Default variant - Standard gallery with thumbnails
+  if (variant === 'default') {
+    return /*#__PURE__*/jsxs("section", {
+      id: id,
+      className: clsx("product-gallery-default", className),
+      children: [/*#__PURE__*/jsxs("div", {
+        className: "space-y-4",
+        children: [/*#__PURE__*/jsxs("div", {
+          className: "aspect-square bg-gray-100 rounded-lg overflow-hidden",
+          children: [/*#__PURE__*/jsx("img", {
+            src: allImages[selectedImage],
+            alt: "".concat(title, " - Image ").concat(selectedImage + 1),
+            className: "w-full h-full object-cover"
+          }), allowFullscreen && /*#__PURE__*/jsx("button", {
+            onClick: function onClick() {
+              return setIsFullscreen(true);
+            },
+            className: "absolute top-4 right-4 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-colors",
+            "aria-label": "View fullscreen",
+            children: /*#__PURE__*/jsx("svg", {
+              className: "w-4 h-4",
+              fill: "none",
+              stroke: "currentColor",
+              viewBox: "0 0 24 24",
+              children: /*#__PURE__*/jsx("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
+              })
+            })
+          })]
+        }), showThumbnails && allImages.length > 1 && /*#__PURE__*/jsx("div", {
+          className: "grid grid-cols-4 gap-4",
+          children: allImages.slice(0, 4).map(function (img, index) {
+            return /*#__PURE__*/jsx("button", {
+              onClick: function onClick() {
+                return setSelectedImage(index);
+              },
+              className: clsx("aspect-square bg-gray-100 rounded-lg overflow-hidden border-2 transition-colors", selectedImage === index ? "border-blue-500" : "border-transparent hover:border-gray-300"),
+              children: /*#__PURE__*/jsx("img", {
+                src: img,
+                alt: "".concat(title, " thumbnail ").concat(index + 1),
+                className: "w-full h-full object-cover"
+              })
+            }, index);
+          })
+        })]
+      }), isFullscreen && /*#__PURE__*/jsxs("div", {
+        className: "fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4",
+        children: [/*#__PURE__*/jsx("button", {
+          onClick: function onClick() {
+            return setIsFullscreen(false);
+          },
+          className: "absolute top-4 right-4 text-white hover:text-gray-300 transition-colors",
+          "aria-label": "Close fullscreen",
+          children: /*#__PURE__*/jsx("svg", {
+            className: "w-8 h-8",
+            fill: "none",
+            stroke: "currentColor",
+            viewBox: "0 0 24 24",
+            children: /*#__PURE__*/jsx("path", {
+              strokeLinecap: "round",
+              strokeLinejoin: "round",
+              strokeWidth: 2,
+              d: "M6 18L18 6M6 6l12 12"
+            })
+          })
+        }), /*#__PURE__*/jsxs("div", {
+          className: "max-w-4xl max-h-full relative",
+          children: [/*#__PURE__*/jsx("img", {
+            src: allImages[selectedImage],
+            alt: "".concat(title, " - Fullscreen"),
+            className: "max-w-full max-h-full object-contain"
+          }), allImages.length > 1 && /*#__PURE__*/jsxs(Fragment, {
+            children: [/*#__PURE__*/jsx("button", {
+              onClick: function onClick() {
+                return setSelectedImage((selectedImage - 1 + allImages.length) % allImages.length);
+              },
+              className: "absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition-colors",
+              "aria-label": "Previous image",
+              children: /*#__PURE__*/jsx("svg", {
+                className: "w-5 h-5",
+                fill: "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                children: /*#__PURE__*/jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2,
+                  d: "M15 19l-7-7 7-7"
+                })
+              })
+            }), /*#__PURE__*/jsx("button", {
+              onClick: function onClick() {
+                return setSelectedImage((selectedImage + 1) % allImages.length);
+              },
+              className: "absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition-colors",
+              "aria-label": "Next image",
+              children: /*#__PURE__*/jsx("svg", {
+                className: "w-5 h-5",
+                fill: "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                children: /*#__PURE__*/jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2,
+                  d: "M9 5l7 7-7 7"
+                })
+              })
+            })]
+          }), allImages.length > 1 && /*#__PURE__*/jsx("div", {
+            className: "absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 bg-black/50 rounded-lg p-2",
+            children: allImages.map(function (img, index) {
+              return /*#__PURE__*/jsx("button", {
+                onClick: function onClick() {
+                  return setSelectedImage(index);
+                },
+                className: clsx("w-12 h-12 rounded overflow-hidden border-2 transition-colors", selectedImage === index ? "border-white" : "border-transparent"),
+                children: /*#__PURE__*/jsx("img", {
+                  src: img,
+                  alt: "".concat(title, " thumbnail ").concat(index + 1),
+                  className: "w-full h-full object-cover"
+                })
+              }, index);
+            })
+          })]
+        })]
+      })]
+    });
+  }
+
+  // Grid variant - Grid layout for multiple images
+  if (variant === 'grid') {
+    return /*#__PURE__*/jsxs("section", {
+      id: id,
+      className: clsx("product-gallery-grid", className),
+      children: [/*#__PURE__*/jsx("div", {
+        className: "grid grid-cols-2 md:grid-cols-3 gap-4",
+        children: allImages.map(function (img, index) {
+          return /*#__PURE__*/jsx("button", {
+            onClick: function onClick() {
+              return setSelectedImage(index);
+            },
+            className: clsx("aspect-square bg-gray-100 rounded-lg overflow-hidden transition-all duration-300 hover:scale-105", selectedImage === index ? "ring-4 ring-blue-500" : ""),
+            children: /*#__PURE__*/jsx("img", {
+              src: img,
+              alt: "".concat(title, " - Image ").concat(index + 1),
+              className: "w-full h-full object-cover"
+            })
+          }, index);
+        })
+      }), isFullscreen && /*#__PURE__*/jsxs("div", {
+        className: "fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4",
+        children: [/*#__PURE__*/jsx("button", {
+          onClick: function onClick() {
+            return setIsFullscreen(false);
+          },
+          className: "absolute top-4 right-4 text-white hover:text-gray-300 transition-colors",
+          "aria-label": "Close fullscreen",
+          children: /*#__PURE__*/jsx("svg", {
+            className: "w-8 h-8",
+            fill: "none",
+            stroke: "currentColor",
+            viewBox: "0 0 24 24",
+            children: /*#__PURE__*/jsx("path", {
+              strokeLinecap: "round",
+              strokeLinejoin: "round",
+              strokeWidth: 2,
+              d: "M6 18L18 6M6 6l12 12"
+            })
+          })
+        }), /*#__PURE__*/jsx("div", {
+          className: "max-w-4xl max-h-full",
+          children: /*#__PURE__*/jsx("img", {
+            src: allImages[selectedImage],
+            alt: "".concat(title, " - Fullscreen"),
+            className: "max-w-full max-h-full object-contain"
+          })
+        })]
+      })]
+    });
+  }
+
+  // Carousel variant - Horizontal scrolling carousel
+  if (variant === 'carousel') {
+    return /*#__PURE__*/jsx("section", {
+      id: id,
+      className: clsx("product-gallery-carousel", className),
+      children: /*#__PURE__*/jsxs("div", {
+        className: "relative",
+        children: [/*#__PURE__*/jsx("div", {
+          className: "aspect-square bg-gray-100 rounded-lg overflow-hidden mb-4",
+          children: /*#__PURE__*/jsx("img", {
+            src: allImages[selectedImage],
+            alt: "".concat(title, " - Image ").concat(selectedImage + 1),
+            className: "w-full h-full object-cover"
+          })
+        }), allImages.length > 1 && /*#__PURE__*/jsxs("div", {
+          className: "flex items-center justify-center space-x-4",
+          children: [/*#__PURE__*/jsx("button", {
+            onClick: function onClick() {
+              return setSelectedImage((selectedImage - 1 + allImages.length) % allImages.length);
+            },
+            className: "bg-white border border-gray-200 hover:bg-gray-50 p-2 rounded-full transition-colors",
+            "aria-label": "Previous image",
+            children: /*#__PURE__*/jsx("svg", {
+              className: "w-4 h-4",
+              fill: "none",
+              stroke: "currentColor",
+              viewBox: "0 0 24 24",
+              children: /*#__PURE__*/jsx("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M15 19l-7-7 7-7"
+              })
+            })
+          }), /*#__PURE__*/jsx("div", {
+            className: "flex space-x-2",
+            children: allImages.map(function (_, index) {
+              return /*#__PURE__*/jsx("button", {
+                onClick: function onClick() {
+                  return setSelectedImage(index);
+                },
+                className: clsx("w-2 h-2 rounded-full transition-colors", selectedImage === index ? "bg-blue-500" : "bg-gray-300"),
+                "aria-label": "Go to image ".concat(index + 1)
+              }, index);
+            })
+          }), /*#__PURE__*/jsx("button", {
+            onClick: function onClick() {
+              return setSelectedImage((selectedImage + 1) % allImages.length);
+            },
+            className: "bg-white border border-gray-200 hover:bg-gray-50 p-2 rounded-full transition-colors",
+            "aria-label": "Next image",
+            children: /*#__PURE__*/jsx("svg", {
+              className: "w-4 h-4",
+              fill: "none",
+              stroke: "currentColor",
+              viewBox: "0 0 24 24",
+              children: /*#__PURE__*/jsx("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M9 5l7 7-7 7"
+              })
+            })
+          })]
+        })]
+      })
+    });
+  }
+
+  // Minimal variant - Clean minimal design
+  if (variant === 'minimal') {
+    return /*#__PURE__*/jsxs("section", {
+      id: id,
+      className: clsx("product-gallery-minimal", className),
+      children: [/*#__PURE__*/jsx("div", {
+        className: "aspect-square bg-gray-50 rounded-lg overflow-hidden",
+        children: /*#__PURE__*/jsx("img", {
+          src: allImages[selectedImage],
+          alt: "".concat(title, " - Image ").concat(selectedImage + 1),
+          className: "w-full h-full object-cover"
+        })
+      }), allImages.length > 1 && /*#__PURE__*/jsx("div", {
+        className: "flex justify-center space-x-2 mt-4",
+        children: allImages.map(function (_, index) {
+          return /*#__PURE__*/jsx("button", {
+            onClick: function onClick() {
+              return setSelectedImage(index);
+            },
+            className: clsx("w-2 h-2 rounded-full transition-colors", selectedImage === index ? "bg-gray-900" : "bg-gray-300"),
+            "aria-label": "Go to image ".concat(index + 1)
+          }, index);
+        })
+      })]
+    });
+  }
+
+  // Fullscreen variant - Full width/height gallery
+  if (variant === 'fullscreen') {
+    return /*#__PURE__*/jsxs("section", {
+      id: id,
+      className: clsx("product-gallery-fullscreen relative min-h-screen", className),
+      children: [/*#__PURE__*/jsxs("div", {
+        className: "absolute inset-0",
+        children: [/*#__PURE__*/jsx("img", {
+          src: allImages[selectedImage],
+          alt: "".concat(title, " - Fullscreen"),
+          className: "w-full h-full object-cover"
+        }), /*#__PURE__*/jsx("div", {
+          className: "absolute inset-0 bg-black bg-opacity-30"
+        })]
+      }), /*#__PURE__*/jsx("div", {
+        className: "relative z-10 flex items-center justify-center min-h-screen p-8",
+        children: /*#__PURE__*/jsxs("div", {
+          className: "text-white text-center",
+          children: [/*#__PURE__*/jsx("h2", {
+            className: "text-4xl font-bold mb-4",
+            children: title
+          }), /*#__PURE__*/jsxs("p", {
+            className: "text-lg opacity-90",
+            children: ["Image ", selectedImage + 1, " of ", allImages.length]
+          })]
+        })
+      }), allImages.length > 1 && /*#__PURE__*/jsxs(Fragment, {
+        children: [/*#__PURE__*/jsx("button", {
+          onClick: function onClick() {
+            return setSelectedImage((selectedImage - 1 + allImages.length) % allImages.length);
+          },
+          className: "absolute left-8 top-1/2 transform -translate-y-1/2 bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white p-4 rounded-full transition-colors",
+          "aria-label": "Previous image",
+          children: /*#__PURE__*/jsx("svg", {
+            className: "w-6 h-6",
+            fill: "none",
+            stroke: "currentColor",
+            viewBox: "0 0 24 24",
+            children: /*#__PURE__*/jsx("path", {
+              strokeLinecap: "round",
+              strokeLinejoin: "round",
+              strokeWidth: 2,
+              d: "M15 19l-7-7 7-7"
+            })
+          })
+        }), /*#__PURE__*/jsx("button", {
+          onClick: function onClick() {
+            return setSelectedImage((selectedImage + 1) % allImages.length);
+          },
+          className: "absolute right-8 top-1/2 transform -translate-y-1/2 bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white p-4 rounded-full transition-colors",
+          "aria-label": "Next image",
+          children: /*#__PURE__*/jsx("svg", {
+            className: "w-6 h-6",
+            fill: "none",
+            stroke: "currentColor",
+            viewBox: "0 0 24 24",
+            children: /*#__PURE__*/jsx("path", {
+              strokeLinecap: "round",
+              strokeLinejoin: "round",
+              strokeWidth: 2,
+              d: "M9 5l7 7-7 7"
+            })
+          })
+        })]
+      }), allImages.length > 1 && /*#__PURE__*/jsx("div", {
+        className: "absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2 bg-black/20 backdrop-blur-sm rounded-lg p-2",
+        children: allImages.map(function (img, index) {
+          return /*#__PURE__*/jsx("button", {
+            onClick: function onClick() {
+              return setSelectedImage(index);
+            },
+            className: clsx("w-12 h-12 rounded overflow-hidden border-2 transition-colors", selectedImage === index ? "border-white" : "border-transparent"),
+            children: /*#__PURE__*/jsx("img", {
+              src: img,
+              alt: "".concat(title, " thumbnail ").concat(index + 1),
+              className: "w-full h-full object-cover"
+            })
+          }, index);
+        })
+      })]
+    });
+  }
+  return null;
+};
+
+var ProductInfo = function ProductInfo(_ref) {
+  var data = _ref.data,
+    className = _ref.className,
+    id = _ref.id;
+  // Safety check for data
+  if (!data || _typeof(data) !== 'object') {
+    console.error('ProductInfo: data prop is required and must be an object');
+    return null;
+  }
+  var title = data.title,
+    subtitle = data.subtitle,
+    sku = data.sku,
+    brand = data.brand,
+    price = data.price,
+    originalPrice = data.originalPrice,
+    rating = data.rating,
+    reviewCount = data.reviewCount,
+    badge = data.badge,
+    _data$inStock = data.inStock,
+    inStock = _data$inStock === void 0 ? true : _data$inStock,
+    availability = data.availability,
+    _data$tags = data.tags,
+    tags = _data$tags === void 0 ? [] : _data$tags,
+    _data$variant = data.variant,
+    variant = _data$variant === void 0 ? 'default' : _data$variant,
+    _data$currency = data.currency,
+    currency = _data$currency === void 0 ? '$' : _data$currency;
+
+  // Rating display
+  var renderRating = function renderRating(rating) {
+    if (!rating) return null;
+    var stars = [];
+    var fullStars = Math.floor(rating);
+    var hasHalfStar = rating % 1 !== 0;
+    for (var i = 0; i < fullStars; i++) {
+      stars.push(/*#__PURE__*/jsx("svg", {
+        className: "w-4 h-4 text-yellow-400 fill-current",
+        viewBox: "0 0 20 20",
+        children: /*#__PURE__*/jsx("path", {
+          d: "M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+        })
+      }, i));
+    }
+    if (hasHalfStar) {
+      stars.push(/*#__PURE__*/jsxs("svg", {
+        className: "w-4 h-4 text-yellow-400 fill-current",
+        viewBox: "0 0 20 20",
+        children: [/*#__PURE__*/jsx("defs", {
+          children: /*#__PURE__*/jsxs("linearGradient", {
+            id: "halfStar",
+            children: [/*#__PURE__*/jsx("stop", {
+              offset: "50%",
+              stopColor: "currentColor"
+            }), /*#__PURE__*/jsx("stop", {
+              offset: "50%",
+              stopColor: "transparent"
+            })]
+          })
+        }), /*#__PURE__*/jsx("path", {
+          fill: "url(#halfStar)",
+          d: "M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+        })]
+      }, "half"));
+    }
+    var emptyStars = 5 - Math.ceil(rating);
+    for (var _i = 0; _i < emptyStars; _i++) {
+      stars.push(/*#__PURE__*/jsx("svg", {
+        className: "w-4 h-4 text-gray-300 fill-current",
+        viewBox: "0 0 20 20",
+        children: /*#__PURE__*/jsx("path", {
+          d: "M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+        })
+      }, "empty-".concat(_i)));
+    }
+    return /*#__PURE__*/jsxs("div", {
+      className: "flex items-center space-x-2",
+      children: [/*#__PURE__*/jsx("div", {
+        className: "flex items-center space-x-1",
+        children: stars
+      }), rating && /*#__PURE__*/jsxs("span", {
+        className: "text-sm text-gray-600",
+        children: ["(", rating, ")"]
+      }), reviewCount && /*#__PURE__*/jsxs("span", {
+        className: "text-sm text-gray-500",
+        children: ["\u2022 ", reviewCount, " reviews"]
+      })]
+    });
+  };
+
+  // Default variant - Standard product information layout
+  if (variant === 'default') {
+    return /*#__PURE__*/jsx("section", {
+      id: id,
+      className: clsx("product-info-default", className),
+      children: /*#__PURE__*/jsxs("div", {
+        className: "space-y-4",
+        children: [(brand || subtitle) && /*#__PURE__*/jsxs("div", {
+          className: "flex items-center space-x-4",
+          children: [brand && /*#__PURE__*/jsx("span", {
+            className: "text-sm font-medium text-blue-600 uppercase tracking-wide",
+            children: brand
+          }), subtitle && /*#__PURE__*/jsx("span", {
+            className: "text-sm text-gray-500 uppercase tracking-wide",
+            children: subtitle
+          })]
+        }), /*#__PURE__*/jsx("h1", {
+          className: "text-3xl lg:text-4xl font-bold text-gray-900 leading-tight",
+          children: title
+        }), sku && /*#__PURE__*/jsxs("p", {
+          className: "text-sm text-gray-500",
+          children: ["SKU: ", sku]
+        }), (rating || reviewCount) && /*#__PURE__*/jsx("div", {
+          className: "flex items-center space-x-4",
+          children: renderRating(rating)
+        }), /*#__PURE__*/jsxs("div", {
+          className: "flex items-center space-x-4",
+          children: [/*#__PURE__*/jsxs("span", {
+            className: "text-3xl font-bold text-gray-900",
+            children: [currency, price]
+          }), originalPrice && /*#__PURE__*/jsxs("span", {
+            className: "text-xl text-gray-500 line-through",
+            children: [currency, originalPrice]
+          }), originalPrice && price && /*#__PURE__*/jsxs("span", {
+            className: "text-sm font-medium text-green-600",
+            children: ["Save ", currency, (originalPrice - price).toFixed(2)]
+          })]
+        }), /*#__PURE__*/jsxs("div", {
+          className: "flex items-center space-x-4",
+          children: [/*#__PURE__*/jsx("div", {
+            className: "flex items-center space-x-2",
+            children: /*#__PURE__*/jsxs("span", {
+              className: clsx("inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium", inStock ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"),
+              children: [/*#__PURE__*/jsx("svg", {
+                className: clsx("w-3 h-3 mr-1", inStock ? "text-green-600" : "text-red-600"),
+                fill: "currentColor",
+                viewBox: "0 0 20 20",
+                children: /*#__PURE__*/jsx("path", {
+                  fillRule: "evenodd",
+                  d: inStock ? "M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" : "M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z",
+                  clipRule: "evenodd"
+                })
+              }), inStock ? "In Stock" : "Out of Stock"]
+            })
+          }), availability && /*#__PURE__*/jsx("span", {
+            className: "text-sm text-gray-600",
+            children: availability
+          }), badge && /*#__PURE__*/jsx("span", {
+            className: "inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800",
+            children: badge
+          })]
+        }), tags.length > 0 && /*#__PURE__*/jsx("div", {
+          className: "flex flex-wrap gap-2",
+          children: tags.map(function (tag, index) {
+            return /*#__PURE__*/jsx("span", {
+              className: "inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800",
+              children: tag
+            }, index);
+          })
+        })]
+      })
+    });
+  }
+
+  // Minimal variant - Clean minimal design
+  if (variant === 'minimal') {
+    return /*#__PURE__*/jsx("section", {
+      id: id,
+      className: clsx("product-info-minimal", className),
+      children: /*#__PURE__*/jsxs("div", {
+        className: "space-y-3",
+        children: [brand && /*#__PURE__*/jsx("p", {
+          className: "text-sm text-gray-500 uppercase tracking-wider font-medium",
+          children: brand
+        }), /*#__PURE__*/jsx("h1", {
+          className: "text-3xl font-light text-gray-900 leading-tight",
+          children: title
+        }), subtitle && /*#__PURE__*/jsx("p", {
+          className: "text-sm text-gray-600",
+          children: subtitle
+        }), /*#__PURE__*/jsxs("div", {
+          className: "flex items-baseline space-x-3",
+          children: [/*#__PURE__*/jsxs("span", {
+            className: "text-2xl font-light text-gray-900",
+            children: [currency, price]
+          }), originalPrice && /*#__PURE__*/jsxs("span", {
+            className: "text-lg text-gray-400 line-through",
+            children: [currency, originalPrice]
+          })]
+        }), rating && /*#__PURE__*/jsx("div", {
+          children: renderRating(rating)
+        }), /*#__PURE__*/jsxs("div", {
+          className: "flex items-center space-x-2",
+          children: [/*#__PURE__*/jsx("span", {
+            className: clsx("text-sm font-medium uppercase tracking-wider", inStock ? "text-gray-600" : "text-red-600"),
+            children: inStock ? "Available" : "Sold Out"
+          }), badge && /*#__PURE__*/jsxs("span", {
+            className: "text-sm font-medium text-gray-600 uppercase tracking-wider",
+            children: ["\u2022 ", badge]
+          })]
+        })]
+      })
+    });
+  }
+
+  // Card variant - Card-style layout
+  if (variant === 'card') {
+    return /*#__PURE__*/jsx("section", {
+      id: id,
+      className: clsx("product-info-card bg-white rounded-lg shadow-sm border border-gray-200 p-6", className),
+      children: /*#__PURE__*/jsxs("div", {
+        className: "space-y-4",
+        children: [/*#__PURE__*/jsxs("div", {
+          className: "flex items-start justify-between",
+          children: [/*#__PURE__*/jsxs("div", {
+            className: "flex-1",
+            children: [brand && /*#__PURE__*/jsx("p", {
+              className: "text-xs text-blue-600 uppercase tracking-wide font-medium mb-1",
+              children: brand
+            }), /*#__PURE__*/jsx("h2", {
+              className: "text-xl font-semibold text-gray-900 leading-tight",
+              children: title
+            }), subtitle && /*#__PURE__*/jsx("p", {
+              className: "text-sm text-gray-600 mt-1",
+              children: subtitle
+            })]
+          }), badge && /*#__PURE__*/jsx("span", {
+            className: "inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-red-100 text-red-800 ml-4",
+            children: badge
+          })]
+        }), /*#__PURE__*/jsxs("div", {
+          className: "flex items-center justify-between",
+          children: [/*#__PURE__*/jsxs("div", {
+            className: "flex items-baseline space-x-2",
+            children: [/*#__PURE__*/jsxs("span", {
+              className: "text-2xl font-bold text-gray-900",
+              children: [currency, price]
+            }), originalPrice && /*#__PURE__*/jsxs("span", {
+              className: "text-lg text-gray-500 line-through",
+              children: [currency, originalPrice]
+            })]
+          }), rating && /*#__PURE__*/jsxs("div", {
+            className: "flex items-center space-x-1",
+            children: [/*#__PURE__*/jsx("svg", {
+              className: "w-4 h-4 text-yellow-400 fill-current",
+              viewBox: "0 0 20 20",
+              children: /*#__PURE__*/jsx("path", {
+                d: "M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+              })
+            }), /*#__PURE__*/jsx("span", {
+              className: "text-sm text-gray-600",
+              children: rating
+            }), reviewCount && /*#__PURE__*/jsxs("span", {
+              className: "text-sm text-gray-500",
+              children: ["(", reviewCount, ")"]
+            })]
+          })]
+        }), /*#__PURE__*/jsxs("div", {
+          className: "flex items-center space-x-2",
+          children: [/*#__PURE__*/jsx("span", {
+            className: clsx("inline-flex items-center px-2 py-1 rounded-full text-xs font-medium", inStock ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"),
+            children: inStock ? "✓ In Stock" : "✗ Out of Stock"
+          }), availability && /*#__PURE__*/jsx("span", {
+            className: "text-xs text-gray-600",
+            children: availability
+          })]
+        }), (sku || tags.length > 0) && /*#__PURE__*/jsxs("div", {
+          className: "flex items-center justify-between pt-2 border-t border-gray-100",
+          children: [sku && /*#__PURE__*/jsxs("span", {
+            className: "text-xs text-gray-500",
+            children: ["SKU: ", sku]
+          }), tags.length > 0 && /*#__PURE__*/jsx("div", {
+            className: "flex flex-wrap gap-1",
+            children: tags.slice(0, 3).map(function (tag, index) {
+              return /*#__PURE__*/jsx("span", {
+                className: "inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-gray-100 text-gray-700",
+                children: tag
+              }, index);
+            })
+          })]
+        })]
+      })
+    });
+  }
+
+  // Compact variant - Space-efficient layout
+  if (variant === 'compact') {
+    return /*#__PURE__*/jsx("section", {
+      id: id,
+      className: clsx("product-info-compact", className),
+      children: /*#__PURE__*/jsxs("div", {
+        className: "flex items-center justify-between",
+        children: [/*#__PURE__*/jsxs("div", {
+          className: "flex-1 min-w-0",
+          children: [/*#__PURE__*/jsx("h3", {
+            className: "text-lg font-semibold text-gray-900 truncate",
+            children: title
+          }), brand && /*#__PURE__*/jsxs("p", {
+            className: "text-sm text-gray-600 truncate",
+            children: ["by ", brand]
+          })]
+        }), /*#__PURE__*/jsxs("div", {
+          className: "flex items-center space-x-4 ml-4",
+          children: [/*#__PURE__*/jsxs("div", {
+            className: "text-right",
+            children: [/*#__PURE__*/jsxs("div", {
+              className: "flex items-baseline space-x-2",
+              children: [/*#__PURE__*/jsxs("span", {
+                className: "text-xl font-bold text-gray-900",
+                children: [currency, price]
+              }), originalPrice && /*#__PURE__*/jsxs("span", {
+                className: "text-sm text-gray-500 line-through",
+                children: [currency, originalPrice]
+              })]
+            }), rating && /*#__PURE__*/jsxs("div", {
+              className: "flex items-center justify-end space-x-1 mt-1",
+              children: [/*#__PURE__*/jsx("svg", {
+                className: "w-3 h-3 text-yellow-400 fill-current",
+                viewBox: "0 0 20 20",
+                children: /*#__PURE__*/jsx("path", {
+                  d: "M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                })
+              }), /*#__PURE__*/jsx("span", {
+                className: "text-xs text-gray-600",
+                children: rating
+              })]
+            })]
+          }), /*#__PURE__*/jsxs("div", {
+            className: "flex items-center space-x-2",
+            children: [/*#__PURE__*/jsx("span", {
+              className: clsx("inline-flex items-center px-2 py-1 rounded-full text-xs font-medium", inStock ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"),
+              children: inStock ? "In Stock" : "Out"
+            }), badge && /*#__PURE__*/jsx("span", {
+              className: "inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800",
+              children: badge
+            })]
+          })]
+        })]
+      })
+    });
+  }
+  return null;
+};
+
+var ProductActions = function ProductActions(_ref) {
+  var data = _ref.data,
+    className = _ref.className,
+    id = _ref.id;
+  // Safety check for data
+  if (!data || _typeof(data) !== 'object') {
+    console.error('ProductActions: data prop is required and must be an object');
+    return null;
+  }
+  var _useState = useState(1),
+    _useState2 = _slicedToArray(_useState, 2),
+    quantity = _useState2[0],
+    setQuantity = _useState2[1];
+  var _useState3 = useState(false),
+    _useState4 = _slicedToArray(_useState3, 2),
+    isWishlisted = _useState4[0],
+    setIsWishlisted = _useState4[1];
+  var _data$buttons = data.buttons,
+    buttons = _data$buttons === void 0 ? [{
+      text: "Add to Cart",
+      href: "#",
+      variant: "primary",
+      type: "cart"
+    }, {
+      text: "Buy Now",
+      href: "#",
+      variant: "secondary",
+      type: "purchase"
+    }] : _data$buttons,
+    _data$showQuantity = data.showQuantity,
+    showQuantity = _data$showQuantity === void 0 ? true : _data$showQuantity,
+    _data$minQuantity = data.minQuantity,
+    minQuantity = _data$minQuantity === void 0 ? 1 : _data$minQuantity,
+    _data$maxQuantity = data.maxQuantity,
+    maxQuantity = _data$maxQuantity === void 0 ? 99 : _data$maxQuantity,
+    _data$inStock = data.inStock,
+    inStock = _data$inStock === void 0 ? true : _data$inStock,
+    _data$variant = data.variant,
+    variant = _data$variant === void 0 ? 'default' : _data$variant;
+  var handleQuantityChange = function handleQuantityChange(newQuantity) {
+    var clampedQuantity = Math.max(minQuantity, Math.min(maxQuantity, newQuantity));
+    setQuantity(clampedQuantity);
+  };
+  var handleButtonClick = function handleButtonClick(button, event) {
+    if (button.onClick) {
+      button.onClick(event, {
+        quantity: quantity,
+        inStock: inStock
+      });
+    }
+  };
+
+  // Default variant - Standard layout with quantity and buttons
+  if (variant === 'default') {
+    return /*#__PURE__*/jsx("section", {
+      id: id,
+      className: clsx("product-actions-default", className),
+      children: /*#__PURE__*/jsxs("div", {
+        className: "space-y-6",
+        children: [/*#__PURE__*/jsxs("div", {
+          className: "flex items-center justify-between",
+          children: [showQuantity && /*#__PURE__*/jsxs("div", {
+            className: "flex items-center space-x-4",
+            children: [/*#__PURE__*/jsx("label", {
+              htmlFor: "quantity",
+              className: "text-sm font-medium text-gray-700",
+              children: "Quantity:"
+            }), /*#__PURE__*/jsxs("div", {
+              className: "flex items-center border border-gray-300 rounded-md",
+              children: [/*#__PURE__*/jsx("button", {
+                type: "button",
+                onClick: function onClick() {
+                  return handleQuantityChange(quantity - 1);
+                },
+                disabled: quantity <= minQuantity,
+                className: "p-2 text-gray-600 hover:text-gray-800 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed",
+                "aria-label": "Decrease quantity",
+                children: /*#__PURE__*/jsx("svg", {
+                  className: "w-4 h-4",
+                  fill: "none",
+                  stroke: "currentColor",
+                  viewBox: "0 0 24 24",
+                  children: /*#__PURE__*/jsx("path", {
+                    strokeLinecap: "round",
+                    strokeLinejoin: "round",
+                    strokeWidth: 2,
+                    d: "M20 12H4"
+                  })
+                })
+              }), /*#__PURE__*/jsx("input", {
+                id: "quantity",
+                type: "number",
+                min: minQuantity,
+                max: maxQuantity,
+                value: quantity,
+                onChange: function onChange(e) {
+                  return handleQuantityChange(parseInt(e.target.value) || minQuantity);
+                },
+                className: "w-16 text-center border-0 focus:ring-0 text-sm font-medium",
+                "aria-label": "Quantity"
+              }), /*#__PURE__*/jsx("button", {
+                type: "button",
+                onClick: function onClick() {
+                  return handleQuantityChange(quantity + 1);
+                },
+                disabled: quantity >= maxQuantity,
+                className: "p-2 text-gray-600 hover:text-gray-800 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed",
+                "aria-label": "Increase quantity",
+                children: /*#__PURE__*/jsx("svg", {
+                  className: "w-4 h-4",
+                  fill: "none",
+                  stroke: "currentColor",
+                  viewBox: "0 0 24 24",
+                  children: /*#__PURE__*/jsx("path", {
+                    strokeLinecap: "round",
+                    strokeLinejoin: "round",
+                    strokeWidth: 2,
+                    d: "M12 4v16m8-8H4"
+                  })
+                })
+              })]
+            })]
+          }), /*#__PURE__*/jsx("button", {
+            type: "button",
+            onClick: function onClick() {
+              return setIsWishlisted(!isWishlisted);
+            },
+            className: clsx("p-3 rounded-full border-2 transition-all duration-200", isWishlisted ? "border-red-200 bg-red-50 text-red-600" : "border-gray-200 text-gray-400 hover:border-gray-300 hover:text-gray-600"),
+            "aria-label": isWishlisted ? "Remove from wishlist" : "Add to wishlist",
+            children: /*#__PURE__*/jsx("svg", {
+              className: "w-5 h-5",
+              fill: isWishlisted ? "currentColor" : "none",
+              stroke: "currentColor",
+              viewBox: "0 0 24 24",
+              children: /*#__PURE__*/jsx("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+              })
+            })
+          })]
+        }), /*#__PURE__*/jsx("div", {
+          className: "space-y-3",
+          children: buttons.map(function (button, index) {
+            return /*#__PURE__*/jsxs("button", {
+              type: "button",
+              onClick: function onClick(e) {
+                return handleButtonClick(button, e);
+              },
+              disabled: !inStock,
+              className: clsx("w-full py-4 px-6 rounded-lg font-semibold text-sm transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none", button.variant === 'primary' && "bg-blue-600 hover:bg-blue-700 text-white focus:ring-blue-500 shadow-lg hover:shadow-xl", button.variant === 'secondary' && "bg-gray-900 hover:bg-gray-800 text-white focus:ring-gray-500 shadow-lg hover:shadow-xl", button.variant === 'outline' && "bg-transparent border-2 border-gray-300 text-gray-700 hover:border-gray-400 hover:bg-gray-50 focus:ring-gray-500", button.variant === 'success' && "bg-green-600 hover:bg-green-700 text-white focus:ring-green-500 shadow-lg hover:shadow-xl", button.variant === 'danger' && "bg-red-600 hover:bg-red-700 text-white focus:ring-red-500 shadow-lg hover:shadow-xl"),
+              children: [button.icon && /*#__PURE__*/jsx("span", {
+                className: "mr-2",
+                children: typeof button.icon === 'string' ? button.icon : button.icon
+              }), button.text]
+            }, index);
+          })
+        }), /*#__PURE__*/jsxs("div", {
+          className: "flex items-center justify-center space-x-6 pt-4 border-t border-gray-200",
+          children: [/*#__PURE__*/jsxs("button", {
+            type: "button",
+            className: "flex items-center space-x-2 text-sm text-gray-600 hover:text-gray-800 transition-colors",
+            "aria-label": "Share product",
+            children: [/*#__PURE__*/jsx("svg", {
+              className: "w-4 h-4",
+              fill: "none",
+              stroke: "currentColor",
+              viewBox: "0 0 24 24",
+              children: /*#__PURE__*/jsx("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z"
+              })
+            }), /*#__PURE__*/jsx("span", {
+              children: "Share"
+            })]
+          }), /*#__PURE__*/jsxs("button", {
+            type: "button",
+            className: "flex items-center space-x-2 text-sm text-gray-600 hover:text-gray-800 transition-colors",
+            "aria-label": "Compare product",
+            children: [/*#__PURE__*/jsx("svg", {
+              className: "w-4 h-4",
+              fill: "none",
+              stroke: "currentColor",
+              viewBox: "0 0 24 24",
+              children: /*#__PURE__*/jsx("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+              })
+            }), /*#__PURE__*/jsx("span", {
+              children: "Compare"
+            })]
+          }), /*#__PURE__*/jsxs("button", {
+            type: "button",
+            className: "flex items-center space-x-2 text-sm text-gray-600 hover:text-gray-800 transition-colors",
+            "aria-label": "Ask a question",
+            children: [/*#__PURE__*/jsx("svg", {
+              className: "w-4 h-4",
+              fill: "none",
+              stroke: "currentColor",
+              viewBox: "0 0 24 24",
+              children: /*#__PURE__*/jsx("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              })
+            }), /*#__PURE__*/jsx("span", {
+              children: "Ask"
+            })]
+          })]
+        })]
+      })
+    });
+  }
+
+  // Minimal variant - Clean minimal design
+  if (variant === 'minimal') {
+    var _buttons$;
+    return /*#__PURE__*/jsx("section", {
+      id: id,
+      className: clsx("product-actions-minimal", className),
+      children: /*#__PURE__*/jsxs("div", {
+        className: "flex items-center space-x-4",
+        children: [showQuantity && /*#__PURE__*/jsxs("div", {
+          className: "flex items-center border border-gray-200 rounded",
+          children: [/*#__PURE__*/jsx("button", {
+            type: "button",
+            onClick: function onClick() {
+              return handleQuantityChange(quantity - 1);
+            },
+            disabled: quantity <= minQuantity,
+            className: "px-3 py-2 text-gray-600 hover:text-gray-800 disabled:opacity-50 disabled:cursor-not-allowed",
+            children: "\u2212"
+          }), /*#__PURE__*/jsx("span", {
+            className: "px-3 py-2 text-sm font-medium min-w-[2rem] text-center",
+            children: quantity
+          }), /*#__PURE__*/jsx("button", {
+            type: "button",
+            onClick: function onClick() {
+              return handleQuantityChange(quantity + 1);
+            },
+            disabled: quantity >= maxQuantity,
+            className: "px-3 py-2 text-gray-600 hover:text-gray-800 disabled:opacity-50 disabled:cursor-not-allowed",
+            children: "+"
+          })]
+        }), /*#__PURE__*/jsx("button", {
+          type: "button",
+          onClick: function onClick() {
+            return setIsWishlisted(!isWishlisted);
+          },
+          className: clsx("p-2 rounded transition-colors", isWishlisted ? "text-red-600" : "text-gray-400 hover:text-gray-600"),
+          children: /*#__PURE__*/jsx("svg", {
+            className: "w-5 h-5",
+            fill: isWishlisted ? "currentColor" : "none",
+            stroke: "currentColor",
+            viewBox: "0 0 24 24",
+            children: /*#__PURE__*/jsx("path", {
+              strokeLinecap: "round",
+              strokeLinejoin: "round",
+              strokeWidth: 2,
+              d: "M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+            })
+          })
+        }), /*#__PURE__*/jsx("button", {
+          type: "button",
+          onClick: function onClick(e) {
+            return handleButtonClick(buttons[0] || {}, e);
+          },
+          disabled: !inStock,
+          className: "flex-1 py-3 px-6 bg-gray-900 text-white rounded font-medium hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed",
+          children: ((_buttons$ = buttons[0]) === null || _buttons$ === void 0 ? void 0 : _buttons$.text) || "Add to Cart"
+        })]
+      })
+    });
+  }
+
+  // Stacked variant - Vertical button layout
+  if (variant === 'stacked') {
+    var _buttons$2;
+    return /*#__PURE__*/jsx("section", {
+      id: id,
+      className: clsx("product-actions-stacked", className),
+      children: /*#__PURE__*/jsxs("div", {
+        className: "space-y-4",
+        children: [/*#__PURE__*/jsxs("div", {
+          className: "flex items-center justify-between",
+          children: [showQuantity && /*#__PURE__*/jsxs("div", {
+            className: "flex items-center space-x-3",
+            children: [/*#__PURE__*/jsx("span", {
+              className: "text-sm text-gray-600",
+              children: "Qty:"
+            }), /*#__PURE__*/jsx("select", {
+              value: quantity,
+              onChange: function onChange(e) {
+                return handleQuantityChange(parseInt(e.target.value));
+              },
+              className: "border border-gray-300 rounded px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500",
+              children: Array.from({
+                length: Math.min(10, maxQuantity - minQuantity + 1)
+              }, function (_, i) {
+                return /*#__PURE__*/jsx("option", {
+                  value: i + minQuantity,
+                  children: i + minQuantity
+                }, i + minQuantity);
+              })
+            })]
+          }), /*#__PURE__*/jsxs("button", {
+            type: "button",
+            onClick: function onClick() {
+              return setIsWishlisted(!isWishlisted);
+            },
+            className: clsx("flex items-center space-x-2 px-4 py-2 rounded-lg border transition-colors", isWishlisted ? "border-red-200 bg-red-50 text-red-600" : "border-gray-200 text-gray-600 hover:border-gray-300 hover:bg-gray-50"),
+            children: [/*#__PURE__*/jsx("svg", {
+              className: "w-4 h-4",
+              fill: isWishlisted ? "currentColor" : "none",
+              stroke: "currentColor",
+              viewBox: "0 0 24 24",
+              children: /*#__PURE__*/jsx("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+              })
+            }), /*#__PURE__*/jsx("span", {
+              className: "text-sm font-medium",
+              children: isWishlisted ? "Wishlisted" : "Add to Wishlist"
+            })]
+          })]
+        }), /*#__PURE__*/jsx("button", {
+          type: "button",
+          onClick: function onClick(e) {
+            return handleButtonClick(buttons[0] || {}, e);
+          },
+          disabled: !inStock,
+          className: "w-full py-4 px-6 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed",
+          children: ((_buttons$2 = buttons[0]) === null || _buttons$2 === void 0 ? void 0 : _buttons$2.text) || "Add to Cart"
+        }), /*#__PURE__*/jsxs("div", {
+          className: "grid grid-cols-2 gap-3",
+          children: [buttons.slice(1).map(function (button, index) {
+            return /*#__PURE__*/jsx("button", {
+              type: "button",
+              onClick: function onClick(e) {
+                return handleButtonClick(button, e);
+              },
+              className: clsx("py-3 px-4 rounded-lg font-medium transition-colors", button.variant === 'secondary' && "bg-gray-100 text-gray-800 hover:bg-gray-200", button.variant === 'outline' && "border border-gray-300 text-gray-700 hover:bg-gray-50"),
+              children: button.text
+            }, index);
+          }), /*#__PURE__*/jsx("button", {
+            type: "button",
+            className: "py-3 px-4 bg-gray-100 text-gray-800 rounded-lg font-medium hover:bg-gray-200 transition-colors",
+            children: "Share"
+          })]
+        })]
+      })
+    });
+  }
+
+  // Inline variant - Horizontal button layout
+  if (variant === 'inline') {
+    return /*#__PURE__*/jsx("section", {
+      id: id,
+      className: clsx("product-actions-inline", className),
+      children: /*#__PURE__*/jsxs("div", {
+        className: "flex items-center space-x-4",
+        children: [showQuantity && /*#__PURE__*/jsxs("div", {
+          className: "flex items-center space-x-2",
+          children: [/*#__PURE__*/jsx("span", {
+            className: "text-sm text-gray-600",
+            children: "Qty:"
+          }), /*#__PURE__*/jsxs("div", {
+            className: "flex items-center border border-gray-300 rounded",
+            children: [/*#__PURE__*/jsx("button", {
+              type: "button",
+              onClick: function onClick() {
+                return handleQuantityChange(quantity - 1);
+              },
+              disabled: quantity <= minQuantity,
+              className: "px-2 py-1 text-gray-600 hover:text-gray-800 disabled:opacity-50",
+              children: "\u2212"
+            }), /*#__PURE__*/jsx("span", {
+              className: "px-3 py-1 text-sm font-medium min-w-[2rem] text-center",
+              children: quantity
+            }), /*#__PURE__*/jsx("button", {
+              type: "button",
+              onClick: function onClick() {
+                return handleQuantityChange(quantity + 1);
+              },
+              disabled: quantity >= maxQuantity,
+              className: "px-2 py-1 text-gray-600 hover:text-gray-800 disabled:opacity-50",
+              children: "+"
+            })]
+          })]
+        }), buttons.map(function (button, index) {
+          return /*#__PURE__*/jsx("button", {
+            type: "button",
+            onClick: function onClick(e) {
+              return handleButtonClick(button, e);
+            },
+            disabled: !inStock,
+            className: clsx("px-6 py-3 rounded-lg font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed", button.variant === 'primary' && "bg-blue-600 text-white hover:bg-blue-700", button.variant === 'secondary' && "bg-gray-800 text-white hover:bg-gray-900", button.variant === 'outline' && "border-2 border-gray-300 text-gray-700 hover:bg-gray-50"),
+            children: button.text
+          }, index);
+        }), /*#__PURE__*/jsx("button", {
+          type: "button",
+          onClick: function onClick() {
+            return setIsWishlisted(!isWishlisted);
+          },
+          className: clsx("p-3 rounded-lg transition-colors", isWishlisted ? "text-red-600 bg-red-50" : "text-gray-400 hover:text-gray-600 hover:bg-gray-50"),
+          children: /*#__PURE__*/jsx("svg", {
+            className: "w-5 h-5",
+            fill: isWishlisted ? "currentColor" : "none",
+            stroke: "currentColor",
+            viewBox: "0 0 24 24",
+            children: /*#__PURE__*/jsx("path", {
+              strokeLinecap: "round",
+              strokeLinejoin: "round",
+              strokeWidth: 2,
+              d: "M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+            })
+          })
+        })]
+      })
+    });
+  }
+  return null;
+};
+
+var ProductDescription = function ProductDescription(_ref) {
+  var _ref$data = _ref.data,
+    data = _ref$data === void 0 ? {} : _ref$data,
+    onButtonClick = _ref.onButtonClick,
+    _ref$loading = _ref.loading,
+    loading = _ref$loading === void 0 ? false : _ref$loading,
+    className = _ref.className;
+  var _data$variant = data.variant,
+    variant = _data$variant === void 0 ? 'default' : _data$variant,
+    _data$title = data.title,
+    title = _data$title === void 0 ? 'Product Title' : _data$title,
+    subtitle = data.subtitle,
+    _data$description = data.description,
+    description = _data$description === void 0 ? 'Product description goes here. This is a detailed description of the product features and benefits.' : _data$description,
+    _data$buttonText = data.buttonText,
+    buttonText = _data$buttonText === void 0 ? 'Learn More' : _data$buttonText,
+    _data$buttonVariant = data.buttonVariant,
+    buttonVariant = _data$buttonVariant === void 0 ? 'primary' : _data$buttonVariant;
+  var _useState = useState(!loading),
+    _useState2 = _slicedToArray(_useState, 2),
+    showContent = _useState2[0],
+    setShowContent = _useState2[1];
+  useEffect(function () {
+    if (loading) {
+      setShowContent(false);
+      var timer = setTimeout(function () {
+        setShowContent(true);
+      }, 2000);
+      return function () {
+        return clearTimeout(timer);
+      };
+    } else {
+      setShowContent(true);
+    }
+  }, [loading]);
+  var handleButtonClick = function handleButtonClick() {
+    if (onButtonClick) {
+      onButtonClick();
+    }
+  };
+
+  // Container classes
+  var containerClasses = {
+    "default": 'w-full',
+    modern: 'w-full',
+    minimal: 'w-full',
+    compact: 'w-full',
+    icon: 'w-full',
+    dark: 'w-full',
+    'dark-gray': 'w-full'
+  };
+
+  // Title classes
+  var titleClasses = {
+    "default": clsx('text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4', 'text-gray-900'),
+    modern: clsx('text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4 sm:mb-5', 'text-gray-900 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent'),
+    minimal: clsx('text-xl sm:text-2xl font-semibold mb-2 sm:mb-3', 'text-gray-900'),
+    compact: clsx('text-lg sm:text-xl font-bold mb-2', 'text-gray-900'),
+    icon: clsx('text-2xl sm:text-3xl font-bold mb-3 sm:mb-4', 'text-gray-900'),
+    dark: clsx('text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4', 'text-white'),
+    'dark-gray': clsx('text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4', 'text-gray-100')
+  };
+
+  // Subtitle classes
+  var subtitleClasses = {
+    "default": clsx('text-sm sm:text-base font-medium mb-2 sm:mb-3', 'text-primary-600'),
+    modern: clsx('text-base sm:text-lg font-semibold mb-3 sm:mb-4', 'text-primary-600 uppercase tracking-wide'),
+    minimal: clsx('text-xs sm:text-sm font-medium mb-1 sm:mb-2', 'text-primary-600'),
+    compact: clsx('text-xs sm:text-sm font-medium mb-1.5', 'text-primary-600'),
+    icon: clsx('text-sm sm:text-base font-medium mb-2 sm:mb-3', 'text-primary-600'),
+    dark: clsx('text-sm sm:text-base font-medium mb-2 sm:mb-3', 'text-primary-400'),
+    'dark-gray': clsx('text-sm sm:text-base font-medium mb-2 sm:mb-3', 'text-gray-400')
+  };
+
+  // Description classes
+  var descriptionClasses = {
+    "default": clsx('text-sm sm:text-base text-gray-600 mb-4 sm:mb-6', 'leading-relaxed'),
+    modern: clsx('text-base sm:text-lg text-gray-700 mb-6 sm:mb-8', 'leading-relaxed'),
+    minimal: clsx('text-sm text-gray-600 mb-3 sm:mb-4', 'leading-relaxed'),
+    compact: clsx('text-xs sm:text-sm text-gray-600 mb-3', 'leading-relaxed'),
+    icon: clsx('text-sm sm:text-base text-gray-600 mb-4 sm:mb-6', 'leading-relaxed'),
+    dark: clsx('text-sm sm:text-base text-gray-300 mb-4 sm:mb-6', 'leading-relaxed'),
+    'dark-gray': clsx('text-sm sm:text-base text-gray-400 mb-4 sm:mb-6', 'leading-relaxed')
+  };
+
+  // Button classes
+  var getButtonClasses = function getButtonClasses(btnVariant) {
+    var _variantClasses$btnVa;
+    var baseClasses = {
+      "default": clsx('px-4 sm:px-6 py-2 sm:py-2.5 text-sm sm:text-base rounded-lg', 'font-medium transition-all duration-200', 'flex items-center justify-center gap-2'),
+      modern: clsx('px-6 sm:px-8 py-3 sm:py-3.5 text-base sm:text-lg rounded-xl', 'font-semibold transition-all duration-300 shadow-md', 'flex items-center justify-center gap-2'),
+      minimal: clsx('px-3 sm:px-4 py-1.5 sm:py-2 text-sm border-b-2', 'font-medium transition-all duration-200', 'flex items-center justify-center gap-2 bg-transparent'),
+      compact: clsx('px-3 sm:px-4 py-1.5 text-xs sm:text-sm rounded-md', 'font-medium transition-all duration-200', 'flex items-center justify-center gap-1.5'),
+      icon: clsx('p-2 sm:p-2.5 rounded-lg', 'transition-all duration-300 shadow-md', 'flex items-center justify-center'),
+      dark: clsx('px-4 sm:px-6 py-2 sm:py-2.5 text-sm sm:text-base rounded-lg', 'font-medium transition-all duration-200', 'flex items-center justify-center gap-2'),
+      'dark-gray': clsx('px-4 sm:px-6 py-2 sm:py-2.5 text-sm sm:text-base rounded-lg', 'font-medium transition-all duration-200', 'flex items-center justify-center gap-2')
+    };
+    var variantClasses = {
+      primary: {
+        "default": 'bg-primary-600 hover:bg-primary-700 text-white',
+        modern: 'bg-primary-600 hover:bg-primary-700 text-white hover:shadow-lg',
+        minimal: 'border-primary-600 text-primary-600 hover:border-primary-700 hover:text-primary-700',
+        compact: 'bg-primary-600 hover:bg-primary-700 text-white',
+        icon: 'bg-primary-500 hover:bg-primary-600 text-white hover:shadow-lg',
+        dark: 'bg-primary-500 hover:bg-primary-600 text-white',
+        'dark-gray': 'bg-gray-500 hover:bg-gray-600 text-white'
+      },
+      secondary: {
+        "default": 'bg-gray-200 hover:bg-gray-300 text-gray-900',
+        modern: 'bg-gray-200 hover:bg-gray-300 text-gray-900 hover:shadow-lg',
+        minimal: 'border-gray-600 text-gray-600 hover:border-gray-700 hover:text-gray-700',
+        compact: 'bg-gray-200 hover:bg-gray-300 text-gray-900',
+        icon: 'bg-gray-500 hover:bg-gray-600 text-white hover:shadow-lg',
+        dark: 'bg-gray-700 hover:bg-gray-600 text-white',
+        'dark-gray': 'bg-gray-800 hover:bg-gray-700 text-white'
+      },
+      outline: {
+        "default": 'border-2 border-primary-600 text-primary-600 hover:bg-primary-50',
+        modern: 'border-2 border-primary-600 text-primary-600 hover:bg-primary-50 hover:shadow-lg',
+        minimal: 'border-b-2 border-primary-600 text-primary-600 hover:border-primary-700 hover:text-primary-700',
+        compact: 'border border-primary-600 text-primary-600 hover:bg-primary-50',
+        icon: 'border-2 border-primary-500 text-primary-500 hover:bg-primary-50 hover:shadow-lg',
+        dark: 'border-2 border-primary-400 text-primary-400 hover:bg-primary-900',
+        'dark-gray': 'border-2 border-gray-400 text-gray-400 hover:bg-gray-900'
+      }
+    };
+    return clsx(baseClasses[variant] || baseClasses["default"], ((_variantClasses$btnVa = variantClasses[btnVariant]) === null || _variantClasses$btnVa === void 0 ? void 0 : _variantClasses$btnVa[variant]) || variantClasses.primary[variant] || variantClasses.primary["default"]);
+  };
+  var SkeletonLoader = function SkeletonLoader() {
+    var isDark = variant === 'dark' || variant === 'dark-gray';
+    var skeletonBg = isDark ? 'bg-gray-700' : 'bg-gray-200';
+    return /*#__PURE__*/jsxs("div", {
+      className: clsx(containerClasses[variant] || containerClasses["default"], className),
+      children: [subtitle && /*#__PURE__*/jsx("div", {
+        className: clsx('h-4 w-24 mb-3 rounded product-skeleton', skeletonBg)
+      }), /*#__PURE__*/jsx("div", {
+        className: clsx('h-8 sm:h-10 w-3/4 mb-4 rounded product-skeleton', skeletonBg)
+      }), /*#__PURE__*/jsx("div", {
+        className: clsx('h-4 w-full mb-2 rounded product-skeleton', skeletonBg)
+      }), /*#__PURE__*/jsx("div", {
+        className: clsx('h-4 w-5/6 mb-4 rounded product-skeleton', skeletonBg)
+      }), /*#__PURE__*/jsx("div", {
+        className: clsx('h-10 sm:h-12 w-32 rounded product-skeleton', skeletonBg)
+      })]
+    });
+  };
+  if (!showContent) {
+    return /*#__PURE__*/jsx(SkeletonLoader, {});
+  }
+  var ArrowIcon = function ArrowIcon() {
+    return /*#__PURE__*/jsx("svg", {
+      className: "w-4 h-4 sm:w-5 sm:h-5",
+      fill: "none",
+      stroke: "currentColor",
+      viewBox: "0 0 24 24",
+      children: /*#__PURE__*/jsx("path", {
+        strokeLinecap: "round",
+        strokeLinejoin: "round",
+        strokeWidth: 2,
+        d: "M13 7l5 5m0 0l-5 5m5-5H6"
+      })
+    });
+  };
+  return /*#__PURE__*/jsxs("div", {
+    className: clsx(containerClasses[variant] || containerClasses["default"], className),
+    children: [subtitle && /*#__PURE__*/jsx("p", {
+      className: subtitleClasses[variant] || subtitleClasses["default"],
+      children: subtitle
+    }), /*#__PURE__*/jsx("h2", {
+      className: titleClasses[variant] || titleClasses["default"],
+      children: title
+    }), description && /*#__PURE__*/jsx("p", {
+      className: descriptionClasses[variant] || descriptionClasses["default"],
+      children: description
+    }), buttonText && /*#__PURE__*/jsx("button", {
+      type: "button",
+      onClick: handleButtonClick,
+      className: getButtonClasses(buttonVariant),
+      children: variant === 'icon' ? /*#__PURE__*/jsx(ArrowIcon, {}) : /*#__PURE__*/jsxs(Fragment, {
+        children: [/*#__PURE__*/jsx("span", {
+          children: buttonText
+        }), variant !== 'minimal' && variant !== 'compact' && /*#__PURE__*/jsx("span", {
+          className: "flex-shrink-0",
+          children: /*#__PURE__*/jsx(ArrowIcon, {})
+        })]
+      })
+    })]
+  });
+};
+
+var ProductSingleDescription = function ProductSingleDescription(_ref) {
+  var data = _ref.data,
+    className = _ref.className,
+    id = _ref.id;
+  // Safety check for data
+  if (!data || _typeof(data) !== 'object') {
+    console.error('ProductDescription: data prop is required and must be an object');
+    return null;
+  }
+  var description = data.description,
+    shortDescription = data.shortDescription,
+    _data$highlights = data.highlights,
+    highlights = _data$highlights === void 0 ? [] : _data$highlights,
+    _data$bulletPoints = data.bulletPoints,
+    bulletPoints = _data$bulletPoints === void 0 ? [] : _data$bulletPoints,
+    material = data.material,
+    careInstructions = data.careInstructions,
+    warranty = data.warranty,
+    _data$variant = data.variant,
+    variant = _data$variant === void 0 ? 'default' : _data$variant,
+    _data$expandable = data.expandable,
+    expandable = _data$expandable === void 0 ? true : _data$expandable;
+
+  // Default variant - Standard description layout
+  if (variant === 'default') {
+    return /*#__PURE__*/jsx("section", {
+      id: id,
+      className: clsx("product-description-default", className),
+      children: /*#__PURE__*/jsxs("div", {
+        className: "space-y-8",
+        children: [shortDescription && /*#__PURE__*/jsx("div", {
+          className: "text-lg text-gray-700 leading-relaxed font-medium",
+          children: shortDescription
+        }), description && /*#__PURE__*/jsx("div", {
+          className: "prose prose-gray max-w-none",
+          children: /*#__PURE__*/jsx("p", {
+            className: "text-gray-700 leading-relaxed text-base",
+            children: description
+          })
+        }), highlights.length > 0 && /*#__PURE__*/jsxs("div", {
+          className: "bg-blue-50 rounded-lg p-6",
+          children: [/*#__PURE__*/jsx("h3", {
+            className: "text-lg font-semibold text-gray-900 mb-4",
+            children: "Highlights"
+          }), /*#__PURE__*/jsx("ul", {
+            className: "space-y-3",
+            children: highlights.map(function (highlight, index) {
+              return /*#__PURE__*/jsxs("li", {
+                className: "flex items-start space-x-3",
+                children: [/*#__PURE__*/jsx("svg", {
+                  className: "w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0",
+                  fill: "currentColor",
+                  viewBox: "0 0 20 20",
+                  children: /*#__PURE__*/jsx("path", {
+                    fillRule: "evenodd",
+                    d: "M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z",
+                    clipRule: "evenodd"
+                  })
+                }), /*#__PURE__*/jsx("span", {
+                  className: "text-gray-700",
+                  children: highlight
+                })]
+              }, index);
+            })
+          })]
+        }), bulletPoints.length > 0 && /*#__PURE__*/jsx("div", {
+          className: "space-y-3",
+          children: bulletPoints.map(function (point, index) {
+            return /*#__PURE__*/jsxs("div", {
+              className: "flex items-start space-x-3",
+              children: [/*#__PURE__*/jsx("span", {
+                className: "text-gray-400 mt-1",
+                children: "\u2022"
+              }), /*#__PURE__*/jsx("span", {
+                className: "text-gray-700",
+                children: point
+              })]
+            }, index);
+          })
+        }), (material || careInstructions || warranty) && /*#__PURE__*/jsxs("div", {
+          className: "border-t border-gray-200 pt-8 space-y-6",
+          children: [material && /*#__PURE__*/jsxs("div", {
+            children: [/*#__PURE__*/jsx("h4", {
+              className: "text-sm font-semibold text-gray-900 uppercase tracking-wide mb-2",
+              children: "Material"
+            }), /*#__PURE__*/jsx("p", {
+              className: "text-gray-700",
+              children: material
+            })]
+          }), careInstructions && /*#__PURE__*/jsxs("div", {
+            children: [/*#__PURE__*/jsx("h4", {
+              className: "text-sm font-semibold text-gray-900 uppercase tracking-wide mb-2",
+              children: "Care Instructions"
+            }), /*#__PURE__*/jsx("p", {
+              className: "text-gray-700",
+              children: careInstructions
+            })]
+          }), warranty && /*#__PURE__*/jsxs("div", {
+            children: [/*#__PURE__*/jsx("h4", {
+              className: "text-sm font-semibold text-gray-900 uppercase tracking-wide mb-2",
+              children: "Warranty"
+            }), /*#__PURE__*/jsx("p", {
+              className: "text-gray-700",
+              children: warranty
+            })]
+          })]
+        })]
+      })
+    });
+  }
+
+  // Minimal variant - Clean minimal design
+  if (variant === 'minimal') {
+    return /*#__PURE__*/jsx("section", {
+      id: id,
+      className: clsx("product-description-minimal", className),
+      children: /*#__PURE__*/jsxs("div", {
+        className: "space-y-6",
+        children: [(description || shortDescription) && /*#__PURE__*/jsx("p", {
+          className: "text-gray-700 leading-relaxed text-lg",
+          children: shortDescription || description
+        }), bulletPoints.length > 0 && /*#__PURE__*/jsx("div", {
+          className: "space-y-2",
+          children: bulletPoints.map(function (point, index) {
+            return /*#__PURE__*/jsxs("div", {
+              className: "flex items-center space-x-3",
+              children: [/*#__PURE__*/jsx("span", {
+                className: "w-1.5 h-1.5 bg-gray-400 rounded-full flex-shrink-0"
+              }), /*#__PURE__*/jsx("span", {
+                className: "text-gray-600 text-sm",
+                children: point
+              })]
+            }, index);
+          })
+        })]
+      })
+    });
+  }
+
+  // Card variant - Card-based layout
+  if (variant === 'card') {
+    return /*#__PURE__*/jsx("section", {
+      id: id,
+      className: clsx("product-description-card bg-white rounded-lg shadow-sm border border-gray-200", className),
+      children: /*#__PURE__*/jsxs("div", {
+        className: "p-6 space-y-6",
+        children: [/*#__PURE__*/jsxs("div", {
+          className: "flex items-center space-x-2",
+          children: [/*#__PURE__*/jsx("svg", {
+            className: "w-5 h-5 text-gray-600",
+            fill: "none",
+            stroke: "currentColor",
+            viewBox: "0 0 24 24",
+            children: /*#__PURE__*/jsx("path", {
+              strokeLinecap: "round",
+              strokeLinejoin: "round",
+              strokeWidth: 2,
+              d: "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+            })
+          }), /*#__PURE__*/jsx("h3", {
+            className: "text-lg font-semibold text-gray-900",
+            children: "Description"
+          })]
+        }), shortDescription && /*#__PURE__*/jsx("p", {
+          className: "text-gray-700 font-medium",
+          children: shortDescription
+        }), description && /*#__PURE__*/jsx("p", {
+          className: "text-gray-600 leading-relaxed",
+          children: description
+        }), highlights.length > 0 && /*#__PURE__*/jsxs("div", {
+          className: "bg-gray-50 rounded-lg p-4",
+          children: [/*#__PURE__*/jsx("h4", {
+            className: "text-sm font-semibold text-gray-900 mb-3",
+            children: "Key Features"
+          }), /*#__PURE__*/jsx("ul", {
+            className: "space-y-2",
+            children: highlights.map(function (highlight, index) {
+              return /*#__PURE__*/jsxs("li", {
+                className: "flex items-center space-x-2 text-sm",
+                children: [/*#__PURE__*/jsx("svg", {
+                  className: "w-4 h-4 text-green-600 flex-shrink-0",
+                  fill: "currentColor",
+                  viewBox: "0 0 20 20",
+                  children: /*#__PURE__*/jsx("path", {
+                    fillRule: "evenodd",
+                    d: "M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z",
+                    clipRule: "evenodd"
+                  })
+                }), /*#__PURE__*/jsx("span", {
+                  className: "text-gray-700",
+                  children: highlight
+                })]
+              }, index);
+            })
+          })]
+        })]
+      })
+    });
+  }
+
+  // Accordion variant - Collapsible sections
+  if (variant === 'accordion') {
+    return /*#__PURE__*/jsx("section", {
+      id: id,
+      className: clsx("product-description-accordion", className),
+      children: /*#__PURE__*/jsxs("div", {
+        className: "space-y-4",
+        children: [(description || shortDescription) && /*#__PURE__*/jsxs("details", {
+          className: "bg-white border border-gray-200 rounded-lg",
+          open: !expandable,
+          children: [/*#__PURE__*/jsxs("summary", {
+            className: "px-6 py-4 cursor-pointer hover:bg-gray-50 transition-colors flex items-center justify-between",
+            children: [/*#__PURE__*/jsx("h3", {
+              className: "text-lg font-semibold text-gray-900",
+              children: "Description"
+            }), /*#__PURE__*/jsx("svg", {
+              className: "w-5 h-5 text-gray-500 transition-transform duration-200 details-open:rotate-180",
+              fill: "none",
+              stroke: "currentColor",
+              viewBox: "0 0 24 24",
+              children: /*#__PURE__*/jsx("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M19 9l-7 7-7-7"
+              })
+            })]
+          }), /*#__PURE__*/jsx("div", {
+            className: "px-6 pb-6",
+            children: /*#__PURE__*/jsx("p", {
+              className: "text-gray-700 leading-relaxed",
+              children: shortDescription || description
+            })
+          })]
+        }), highlights.length > 0 && /*#__PURE__*/jsxs("details", {
+          className: "bg-white border border-gray-200 rounded-lg",
+          open: !expandable,
+          children: [/*#__PURE__*/jsxs("summary", {
+            className: "px-6 py-4 cursor-pointer hover:bg-gray-50 transition-colors flex items-center justify-between",
+            children: [/*#__PURE__*/jsx("h3", {
+              className: "text-lg font-semibold text-gray-900",
+              children: "Features"
+            }), /*#__PURE__*/jsx("svg", {
+              className: "w-5 h-5 text-gray-500 transition-transform duration-200 details-open:rotate-180",
+              fill: "none",
+              stroke: "currentColor",
+              viewBox: "0 0 24 24",
+              children: /*#__PURE__*/jsx("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M19 9l-7 7-7-7"
+              })
+            })]
+          }), /*#__PURE__*/jsx("div", {
+            className: "px-6 pb-6",
+            children: /*#__PURE__*/jsx("ul", {
+              className: "space-y-3",
+              children: highlights.map(function (highlight, index) {
+                return /*#__PURE__*/jsxs("li", {
+                  className: "flex items-start space-x-3",
+                  children: [/*#__PURE__*/jsx("svg", {
+                    className: "w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0",
+                    fill: "currentColor",
+                    viewBox: "0 0 20 20",
+                    children: /*#__PURE__*/jsx("path", {
+                      fillRule: "evenodd",
+                      d: "M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z",
+                      clipRule: "evenodd"
+                    })
+                  }), /*#__PURE__*/jsx("span", {
+                    className: "text-gray-700",
+                    children: highlight
+                  })]
+                }, index);
+              })
+            })
+          })]
+        }), (material || careInstructions || warranty) && /*#__PURE__*/jsxs("details", {
+          className: "bg-white border border-gray-200 rounded-lg",
+          children: [/*#__PURE__*/jsxs("summary", {
+            className: "px-6 py-4 cursor-pointer hover:bg-gray-50 transition-colors flex items-center justify-between",
+            children: [/*#__PURE__*/jsx("h3", {
+              className: "text-lg font-semibold text-gray-900",
+              children: "Details & Care"
+            }), /*#__PURE__*/jsx("svg", {
+              className: "w-5 h-5 text-gray-500 transition-transform duration-200 details-open:rotate-180",
+              fill: "none",
+              stroke: "currentColor",
+              viewBox: "0 0 24 24",
+              children: /*#__PURE__*/jsx("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M19 9l-7 7-7-7"
+              })
+            })]
+          }), /*#__PURE__*/jsxs("div", {
+            className: "px-6 pb-6 space-y-4",
+            children: [material && /*#__PURE__*/jsxs("div", {
+              children: [/*#__PURE__*/jsx("h4", {
+                className: "text-sm font-semibold text-gray-900 uppercase tracking-wide mb-1",
+                children: "Material"
+              }), /*#__PURE__*/jsx("p", {
+                className: "text-gray-700 text-sm",
+                children: material
+              })]
+            }), careInstructions && /*#__PURE__*/jsxs("div", {
+              children: [/*#__PURE__*/jsx("h4", {
+                className: "text-sm font-semibold text-gray-900 uppercase tracking-wide mb-1",
+                children: "Care Instructions"
+              }), /*#__PURE__*/jsx("p", {
+                className: "text-gray-700 text-sm",
+                children: careInstructions
+              })]
+            }), warranty && /*#__PURE__*/jsxs("div", {
+              children: [/*#__PURE__*/jsx("h4", {
+                className: "text-sm font-semibold text-gray-900 uppercase tracking-wide mb-1",
+                children: "Warranty"
+              }), /*#__PURE__*/jsx("p", {
+                className: "text-gray-700 text-sm",
+                children: warranty
+              })]
+            })]
+          })]
+        })]
+      })
+    });
+  }
+  return null;
+};
+
+var ProductFeatures = function ProductFeatures(_ref) {
+  var data = _ref.data,
+    className = _ref.className,
+    id = _ref.id;
+  // Safety check for data
+  if (!data || _typeof(data) !== 'object') {
+    console.error('ProductFeatures: data prop is required and must be an object');
+    return null;
+  }
+  var _data$title = data.title,
+    title = _data$title === void 0 ? 'Features' : _data$title,
+    _data$features = data.features,
+    features = _data$features === void 0 ? [] : _data$features,
+    _data$variant = data.variant,
+    variant = _data$variant === void 0 ? 'default' : _data$variant,
+    _data$columns = data.columns,
+    columns = _data$columns === void 0 ? 2 : _data$columns;
+  if (features.length === 0) {
+    return null;
+  }
+
+  // Default variant - Standard feature list
+  if (variant === 'default') {
+    return /*#__PURE__*/jsx("section", {
+      id: id,
+      className: clsx("product-features-default", className),
+      children: /*#__PURE__*/jsxs("div", {
+        className: "space-y-6",
+        children: [/*#__PURE__*/jsx("h3", {
+          className: "text-2xl font-bold text-gray-900",
+          children: title
+        }), /*#__PURE__*/jsx("div", {
+          className: "grid grid-cols-1 md:grid-cols-2 gap-6",
+          children: features.map(function (feature, index) {
+            return /*#__PURE__*/jsxs("div", {
+              className: "flex items-start space-x-4",
+              children: [/*#__PURE__*/jsx("div", {
+                className: "flex-shrink-0",
+                children: feature.icon ? /*#__PURE__*/jsx("div", {
+                  className: "w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center",
+                  children: typeof feature.icon === 'string' ? /*#__PURE__*/jsx("span", {
+                    className: "text-blue-600 text-lg",
+                    children: feature.icon
+                  }) : feature.icon
+                }) : /*#__PURE__*/jsx("div", {
+                  className: "w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center",
+                  children: /*#__PURE__*/jsx("svg", {
+                    className: "w-4 h-4 text-green-600",
+                    fill: "currentColor",
+                    viewBox: "0 0 20 20",
+                    children: /*#__PURE__*/jsx("path", {
+                      fillRule: "evenodd",
+                      d: "M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z",
+                      clipRule: "evenodd"
+                    })
+                  })
+                })
+              }), /*#__PURE__*/jsxs("div", {
+                className: "flex-1",
+                children: [/*#__PURE__*/jsx("h4", {
+                  className: "text-lg font-semibold text-gray-900 mb-2",
+                  children: feature.title
+                }), /*#__PURE__*/jsx("p", {
+                  className: "text-gray-600 leading-relaxed",
+                  children: feature.description
+                })]
+              })]
+            }, index);
+          })
+        })]
+      })
+    });
+  }
+
+  // Grid variant - Grid layout for features
+  if (variant === 'grid') {
+    return /*#__PURE__*/jsx("section", {
+      id: id,
+      className: clsx("product-features-grid", className),
+      children: /*#__PURE__*/jsxs("div", {
+        className: "space-y-8",
+        children: [/*#__PURE__*/jsx("h3", {
+          className: "text-2xl font-bold text-gray-900 text-center",
+          children: title
+        }), /*#__PURE__*/jsx("div", {
+          className: clsx("grid gap-6", columns === 1 && "grid-cols-1", columns === 2 && "grid-cols-1 md:grid-cols-2", columns === 3 && "grid-cols-1 md:grid-cols-2 lg:grid-cols-3", columns === 4 && "grid-cols-1 md:grid-cols-2 lg:grid-cols-4"),
+          children: features.map(function (feature, index) {
+            return /*#__PURE__*/jsx("div", {
+              className: "bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow",
+              children: /*#__PURE__*/jsxs("div", {
+                className: "text-center space-y-4",
+                children: [feature.icon && /*#__PURE__*/jsx("div", {
+                  className: "w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mx-auto",
+                  children: typeof feature.icon === 'string' ? /*#__PURE__*/jsx("span", {
+                    className: "text-blue-600 text-2xl",
+                    children: feature.icon
+                  }) : feature.icon
+                }), /*#__PURE__*/jsx("h4", {
+                  className: "text-lg font-semibold text-gray-900",
+                  children: feature.title
+                }), /*#__PURE__*/jsx("p", {
+                  className: "text-gray-600 text-sm leading-relaxed",
+                  children: feature.description
+                })]
+              })
+            }, index);
+          })
+        })]
+      })
+    });
+  }
+
+  // Minimal variant - Clean minimal design
+  if (variant === 'minimal') {
+    return /*#__PURE__*/jsx("section", {
+      id: id,
+      className: clsx("product-features-minimal", className),
+      children: /*#__PURE__*/jsxs("div", {
+        className: "space-y-4",
+        children: [/*#__PURE__*/jsx("h3", {
+          className: "text-xl font-semibold text-gray-900",
+          children: title
+        }), /*#__PURE__*/jsx("div", {
+          className: "space-y-3",
+          children: features.map(function (feature, index) {
+            return /*#__PURE__*/jsxs("div", {
+              className: "flex items-center space-x-3",
+              children: [/*#__PURE__*/jsx("span", {
+                className: "w-1 h-1 bg-gray-400 rounded-full flex-shrink-0"
+              }), /*#__PURE__*/jsx("span", {
+                className: "text-gray-700",
+                children: feature.title
+              }), feature.description && /*#__PURE__*/jsxs("span", {
+                className: "text-gray-500 text-sm",
+                children: ["\u2014 ", feature.description]
+              })]
+            }, index);
+          })
+        })]
+      })
+    });
+  }
+
+  // Icons variant - Icon-focused layout
+  if (variant === 'icons') {
+    return /*#__PURE__*/jsx("section", {
+      id: id,
+      className: clsx("product-features-icons", className),
+      children: /*#__PURE__*/jsxs("div", {
+        className: "space-y-8",
+        children: [/*#__PURE__*/jsx("h3", {
+          className: "text-2xl font-bold text-gray-900 text-center",
+          children: title
+        }), /*#__PURE__*/jsx("div", {
+          className: "flex flex-wrap justify-center gap-8",
+          children: features.map(function (feature, index) {
+            return /*#__PURE__*/jsxs("div", {
+              className: "text-center space-y-3 max-w-xs",
+              children: [feature.icon && /*#__PURE__*/jsx("div", {
+                className: "w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto shadow-lg",
+                children: typeof feature.icon === 'string' ? /*#__PURE__*/jsx("span", {
+                  className: "text-white text-2xl",
+                  children: feature.icon
+                }) : /*#__PURE__*/jsx("div", {
+                  className: "text-white",
+                  children: feature.icon
+                })
+              }), /*#__PURE__*/jsx("h4", {
+                className: "text-lg font-semibold text-gray-900",
+                children: feature.title
+              }), feature.description && /*#__PURE__*/jsx("p", {
+                className: "text-gray-600 text-sm leading-relaxed",
+                children: feature.description
+              })]
+            }, index);
+          })
+        })]
+      })
+    });
+  }
+  return null;
+};
+
+var ProductSpecifications = function ProductSpecifications(_ref) {
+  var data = _ref.data,
+    className = _ref.className,
+    id = _ref.id;
+  // Safety check for data
+  if (!data || _typeof(data) !== 'object') {
+    console.error('ProductSpecifications: data prop is required and must be an object');
+    return null;
+  }
+  var _data$title = data.title,
+    title = _data$title === void 0 ? 'Specifications' : _data$title,
+    _data$specifications = data.specifications,
+    specifications = _data$specifications === void 0 ? [] : _data$specifications,
+    _data$variant = data.variant,
+    variant = _data$variant === void 0 ? 'default' : _data$variant;
+    data.collapsible;
+  if (specifications.length === 0) {
+    return null;
+  }
+
+  // Default variant - Simple key-value list
+  if (variant === 'default') {
+    return /*#__PURE__*/jsx("section", {
+      id: id,
+      className: clsx("product-specifications-default", className),
+      children: /*#__PURE__*/jsxs("div", {
+        className: "space-y-6",
+        children: [/*#__PURE__*/jsx("h3", {
+          className: "text-2xl font-bold text-gray-900",
+          children: title
+        }), /*#__PURE__*/jsx("div", {
+          className: "space-y-4",
+          children: specifications.map(function (spec, index) {
+            return /*#__PURE__*/jsxs("div", {
+              className: "flex justify-between py-3 border-b border-gray-200",
+              children: [/*#__PURE__*/jsx("span", {
+                className: "font-medium text-gray-900",
+                children: spec.label
+              }), /*#__PURE__*/jsx("span", {
+                className: "text-gray-700",
+                children: spec.value
+              })]
+            }, index);
+          })
+        })]
+      })
+    });
+  }
+
+  // Table variant - Table layout
+  if (variant === 'table') {
+    return /*#__PURE__*/jsx("section", {
+      id: id,
+      className: clsx("product-specifications-table", className),
+      children: /*#__PURE__*/jsxs("div", {
+        className: "space-y-6",
+        children: [/*#__PURE__*/jsx("h3", {
+          className: "text-2xl font-bold text-gray-900",
+          children: title
+        }), /*#__PURE__*/jsx("div", {
+          className: "bg-white border border-gray-200 rounded-lg overflow-hidden",
+          children: /*#__PURE__*/jsx("table", {
+            className: "w-full",
+            children: /*#__PURE__*/jsx("tbody", {
+              children: specifications.map(function (spec, index) {
+                return /*#__PURE__*/jsxs("tr", {
+                  className: index % 2 === 0 ? "bg-gray-50" : "bg-white",
+                  children: [/*#__PURE__*/jsx("td", {
+                    className: "px-6 py-4 font-medium text-gray-900 border-r border-gray-200",
+                    children: spec.label
+                  }), /*#__PURE__*/jsx("td", {
+                    className: "px-6 py-4 text-gray-700",
+                    children: spec.value
+                  })]
+                }, index);
+              })
+            })
+          })
+        })]
+      })
+    });
+  }
+
+  // Card variant - Card-based layout
+  if (variant === 'card') {
+    return /*#__PURE__*/jsx("section", {
+      id: id,
+      className: clsx("product-specifications-card bg-white rounded-lg shadow-sm border border-gray-200", className),
+      children: /*#__PURE__*/jsxs("div", {
+        className: "p-6",
+        children: [/*#__PURE__*/jsxs("div", {
+          className: "flex items-center space-x-2 mb-6",
+          children: [/*#__PURE__*/jsx("svg", {
+            className: "w-5 h-5 text-gray-600",
+            fill: "none",
+            stroke: "currentColor",
+            viewBox: "0 0 24 24",
+            children: /*#__PURE__*/jsx("path", {
+              strokeLinecap: "round",
+              strokeLinejoin: "round",
+              strokeWidth: 2,
+              d: "M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+            })
+          }), /*#__PURE__*/jsx("h3", {
+            className: "text-xl font-semibold text-gray-900",
+            children: title
+          })]
+        }), /*#__PURE__*/jsx("div", {
+          className: "grid grid-cols-1 md:grid-cols-2 gap-4",
+          children: specifications.map(function (spec, index) {
+            return /*#__PURE__*/jsxs("div", {
+              className: "bg-gray-50 rounded-lg p-4",
+              children: [/*#__PURE__*/jsx("div", {
+                className: "text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1",
+                children: spec.label
+              }), /*#__PURE__*/jsx("div", {
+                className: "text-gray-900 font-medium",
+                children: spec.value
+              })]
+            }, index);
+          })
+        })]
+      })
+    });
+  }
+
+  // Minimal variant - Clean minimal design
+  if (variant === 'minimal') {
+    return /*#__PURE__*/jsx("section", {
+      id: id,
+      className: clsx("product-specifications-minimal", className),
+      children: /*#__PURE__*/jsx("div", {
+        className: "space-y-3",
+        children: specifications.map(function (spec, index) {
+          return /*#__PURE__*/jsxs("div", {
+            className: "flex items-center space-x-3 text-sm",
+            children: [/*#__PURE__*/jsxs("span", {
+              className: "text-gray-500 font-medium min-w-[120px]",
+              children: [spec.label, ":"]
+            }), /*#__PURE__*/jsx("span", {
+              className: "text-gray-900",
+              children: spec.value
+            })]
+          }, index);
+        })
+      })
+    });
+  }
+  return null;
+};
+
+var ProductReviews = function ProductReviews(_ref) {
+  var data = _ref.data,
+    className = _ref.className,
+    id = _ref.id;
+  // Safety check for data
+  if (!data || _typeof(data) !== 'object') {
+    console.error('ProductReviews: data prop is required and must be an object');
+    return null;
+  }
+  var _useState = useState(false),
+    _useState2 = _slicedToArray(_useState, 2),
+    showAllReviews = _useState2[0],
+    setShowAllReviews = _useState2[1];
+  var _useState3 = useState('newest'),
+    _useState4 = _slicedToArray(_useState3, 2),
+    sortBy = _useState4[0],
+    setSortBy = _useState4[1];
+  var _data$title = data.title,
+    title = _data$title === void 0 ? 'Customer Reviews' : _data$title,
+    _data$averageRating = data.averageRating,
+    averageRating = _data$averageRating === void 0 ? 0 : _data$averageRating,
+    _data$totalReviews = data.totalReviews,
+    totalReviews = _data$totalReviews === void 0 ? 0 : _data$totalReviews,
+    _data$reviews = data.reviews,
+    reviews = _data$reviews === void 0 ? [] : _data$reviews,
+    _data$showRatingBreak = data.showRatingBreakdown,
+    showRatingBreakdown = _data$showRatingBreak === void 0 ? true : _data$showRatingBreak,
+    _data$allowNewReview = data.allowNewReview,
+    allowNewReview = _data$allowNewReview === void 0 ? false : _data$allowNewReview,
+    _data$variant = data.variant,
+    variant = _data$variant === void 0 ? 'default' : _data$variant;
+
+  // Rating display function
+  var renderRating = function renderRating(rating) {
+    var size = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'sm';
+    var stars = [];
+    var fullStars = Math.floor(rating);
+    var hasHalfStar = rating % 1 !== 0;
+    for (var i = 0; i < fullStars; i++) {
+      stars.push(/*#__PURE__*/jsx("svg", {
+        className: clsx("text-yellow-400 fill-current", size === 'sm' && "w-4 h-4", size === 'md' && "w-5 h-5", size === 'lg' && "w-6 h-6"),
+        viewBox: "0 0 20 20",
+        children: /*#__PURE__*/jsx("path", {
+          d: "M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+        })
+      }, i));
+    }
+    if (hasHalfStar) {
+      stars.push(/*#__PURE__*/jsxs("svg", {
+        className: clsx("text-yellow-400 fill-current", size === 'sm' && "w-4 h-4", size === 'md' && "w-5 h-5", size === 'lg' && "w-6 h-6"),
+        viewBox: "0 0 20 20",
+        children: [/*#__PURE__*/jsx("defs", {
+          children: /*#__PURE__*/jsxs("linearGradient", {
+            id: "halfStar",
+            children: [/*#__PURE__*/jsx("stop", {
+              offset: "50%",
+              stopColor: "currentColor"
+            }), /*#__PURE__*/jsx("stop", {
+              offset: "50%",
+              stopColor: "transparent"
+            })]
+          })
+        }), /*#__PURE__*/jsx("path", {
+          fill: "url(#halfStar)",
+          d: "M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+        })]
+      }, "half"));
+    }
+    var emptyStars = 5 - Math.ceil(rating);
+    for (var _i = 0; _i < emptyStars; _i++) {
+      stars.push(/*#__PURE__*/jsx("svg", {
+        className: clsx("text-gray-300 fill-current", size === 'sm' && "w-4 h-4", size === 'md' && "w-5 h-5", size === 'lg' && "w-6 h-6"),
+        viewBox: "0 0 20 20",
+        children: /*#__PURE__*/jsx("path", {
+          d: "M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+        })
+      }, "empty-".concat(_i)));
+    }
+    return /*#__PURE__*/jsx("div", {
+      className: "flex items-center space-x-1",
+      children: stars
+    });
+  };
+
+  // Format date
+  var formatDate = function formatDate(dateString) {
+    var date = new Date(dateString);
+    return date.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+  };
+
+  // Sort reviews
+  var sortedReviews = _toConsumableArray(reviews).sort(function (a, b) {
+    switch (sortBy) {
+      case 'newest':
+        return new Date(b.date) - new Date(a.date);
+      case 'oldest':
+        return new Date(a.date) - new Date(b.date);
+      case 'highest':
+        return b.rating - a.rating;
+      case 'lowest':
+        return a.rating - b.rating;
+      default:
+        return 0;
+    }
+  });
+  var displayedReviews = showAllReviews ? sortedReviews : sortedReviews.slice(0, 3);
+
+  // Default variant - Comprehensive review layout
+  if (variant === 'default') {
+    return /*#__PURE__*/jsx("section", {
+      id: id,
+      className: clsx("product-reviews-default", className),
+      children: /*#__PURE__*/jsxs("div", {
+        className: "space-y-8",
+        children: [/*#__PURE__*/jsxs("div", {
+          className: "flex items-center justify-between",
+          children: [/*#__PURE__*/jsx("h3", {
+            className: "text-2xl font-bold text-gray-900",
+            children: title
+          }), allowNewReview && /*#__PURE__*/jsx("button", {
+            className: "px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium",
+            children: "Write a Review"
+          })]
+        }), /*#__PURE__*/jsx("div", {
+          className: "bg-gray-50 rounded-lg p-6",
+          children: /*#__PURE__*/jsxs("div", {
+            className: "flex items-center space-x-8",
+            children: [/*#__PURE__*/jsxs("div", {
+              className: "text-center",
+              children: [/*#__PURE__*/jsx("div", {
+                className: "text-4xl font-bold text-gray-900",
+                children: averageRating.toFixed(1)
+              }), /*#__PURE__*/jsx("div", {
+                className: "flex items-center justify-center mt-2",
+                children: renderRating(averageRating, 'md')
+              }), /*#__PURE__*/jsxs("div", {
+                className: "text-sm text-gray-600 mt-1",
+                children: [totalReviews, " reviews"]
+              })]
+            }), showRatingBreakdown && /*#__PURE__*/jsx("div", {
+              className: "flex-1 space-y-2",
+              children: [5, 4, 3, 2, 1].map(function (rating) {
+                return /*#__PURE__*/jsxs("div", {
+                  className: "flex items-center space-x-3",
+                  children: [/*#__PURE__*/jsxs("span", {
+                    className: "text-sm text-gray-600 w-8",
+                    children: [rating, "\u2605"]
+                  }), /*#__PURE__*/jsx("div", {
+                    className: "flex-1 bg-gray-200 rounded-full h-2",
+                    children: /*#__PURE__*/jsx("div", {
+                      className: "bg-yellow-400 h-2 rounded-full",
+                      style: {
+                        width: "".concat(totalReviews > 0 ? reviews.filter(function (r) {
+                          return r.rating === rating;
+                        }).length / totalReviews * 100 : 0, "%")
+                      }
+                    })
+                  }), /*#__PURE__*/jsx("span", {
+                    className: "text-sm text-gray-600 w-8",
+                    children: reviews.filter(function (r) {
+                      return r.rating === rating;
+                    }).length
+                  })]
+                }, rating);
+              })
+            })]
+          })
+        }), reviews.length > 1 && /*#__PURE__*/jsx("div", {
+          className: "flex items-center justify-between",
+          children: /*#__PURE__*/jsxs("div", {
+            className: "flex items-center space-x-4",
+            children: [/*#__PURE__*/jsx("span", {
+              className: "text-sm text-gray-600",
+              children: "Sort by:"
+            }), /*#__PURE__*/jsxs("select", {
+              value: sortBy,
+              onChange: function onChange(e) {
+                return setSortBy(e.target.value);
+              },
+              className: "border border-gray-300 rounded px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500",
+              children: [/*#__PURE__*/jsx("option", {
+                value: "newest",
+                children: "Newest"
+              }), /*#__PURE__*/jsx("option", {
+                value: "oldest",
+                children: "Oldest"
+              }), /*#__PURE__*/jsx("option", {
+                value: "highest",
+                children: "Highest Rating"
+              }), /*#__PURE__*/jsx("option", {
+                value: "lowest",
+                children: "Lowest Rating"
+              })]
+            })]
+          })
+        }), /*#__PURE__*/jsx("div", {
+          className: "space-y-6",
+          children: displayedReviews.map(function (review, index) {
+            return /*#__PURE__*/jsxs("div", {
+              className: "bg-white border border-gray-200 rounded-lg p-6",
+              children: [/*#__PURE__*/jsxs("div", {
+                className: "flex items-start justify-between mb-4",
+                children: [/*#__PURE__*/jsxs("div", {
+                  className: "flex items-center space-x-4",
+                  children: [/*#__PURE__*/jsx("div", {
+                    className: "w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center",
+                    children: /*#__PURE__*/jsx("span", {
+                      className: "text-gray-700 font-medium text-sm",
+                      children: review.author.charAt(0).toUpperCase()
+                    })
+                  }), /*#__PURE__*/jsxs("div", {
+                    children: [/*#__PURE__*/jsx("div", {
+                      className: "font-medium text-gray-900",
+                      children: review.author
+                    }), /*#__PURE__*/jsx("div", {
+                      className: "text-sm text-gray-500",
+                      children: formatDate(review.date)
+                    })]
+                  })]
+                }), /*#__PURE__*/jsxs("div", {
+                  className: "flex items-center space-x-2",
+                  children: [renderRating(review.rating), /*#__PURE__*/jsxs("span", {
+                    className: "text-sm text-gray-600",
+                    children: ["(", review.rating, ")"]
+                  })]
+                })]
+              }), review.title && /*#__PURE__*/jsx("h4", {
+                className: "font-semibold text-gray-900 mb-2",
+                children: review.title
+              }), /*#__PURE__*/jsx("p", {
+                className: "text-gray-700 leading-relaxed mb-4",
+                children: review.comment
+              }), review.verified && /*#__PURE__*/jsxs("div", {
+                className: "flex items-center space-x-2 text-sm text-green-600",
+                children: [/*#__PURE__*/jsx("svg", {
+                  className: "w-4 h-4",
+                  fill: "currentColor",
+                  viewBox: "0 0 20 20",
+                  children: /*#__PURE__*/jsx("path", {
+                    fillRule: "evenodd",
+                    d: "M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z",
+                    clipRule: "evenodd"
+                  })
+                }), /*#__PURE__*/jsx("span", {
+                  children: "Verified Purchase"
+                })]
+              })]
+            }, index);
+          })
+        }), reviews.length > 3 && /*#__PURE__*/jsx("div", {
+          className: "text-center",
+          children: /*#__PURE__*/jsx("button", {
+            onClick: function onClick() {
+              return setShowAllReviews(!showAllReviews);
+            },
+            className: "px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors",
+            children: showAllReviews ? 'Show Less' : "Show All ".concat(reviews.length, " Reviews")
+          })
+        })]
+      })
+    });
+  }
+
+  // Compact variant - Condensed review layout
+  if (variant === 'compact') {
+    return /*#__PURE__*/jsx("section", {
+      id: id,
+      className: clsx("product-reviews-compact", className),
+      children: /*#__PURE__*/jsxs("div", {
+        className: "space-y-6",
+        children: [/*#__PURE__*/jsxs("div", {
+          className: "flex items-center justify-between",
+          children: [/*#__PURE__*/jsx("h3", {
+            className: "text-xl font-semibold text-gray-900",
+            children: title
+          }), /*#__PURE__*/jsxs("div", {
+            className: "flex items-center space-x-2",
+            children: [renderRating(averageRating), /*#__PURE__*/jsxs("span", {
+              className: "text-sm text-gray-600",
+              children: ["(", totalReviews, ")"]
+            })]
+          })]
+        }), /*#__PURE__*/jsx("div", {
+          className: "space-y-4",
+          children: displayedReviews.map(function (review, index) {
+            return /*#__PURE__*/jsxs("div", {
+              className: "border-b border-gray-200 pb-4",
+              children: [/*#__PURE__*/jsxs("div", {
+                className: "flex items-center justify-between mb-2",
+                children: [/*#__PURE__*/jsxs("div", {
+                  className: "flex items-center space-x-2",
+                  children: [/*#__PURE__*/jsx("span", {
+                    className: "font-medium text-gray-900 text-sm",
+                    children: review.author
+                  }), renderRating(review.rating)]
+                }), /*#__PURE__*/jsx("span", {
+                  className: "text-xs text-gray-500",
+                  children: formatDate(review.date)
+                })]
+              }), /*#__PURE__*/jsx("p", {
+                className: "text-gray-700 text-sm leading-relaxed",
+                children: review.comment
+              })]
+            }, index);
+          })
+        })]
+      })
+    });
+  }
+
+  // Minimal variant - Simple rating display
+  if (variant === 'minimal') {
+    return /*#__PURE__*/jsx("section", {
+      id: id,
+      className: clsx("product-reviews-minimal", className),
+      children: /*#__PURE__*/jsxs("div", {
+        className: "flex items-center space-x-4",
+        children: [/*#__PURE__*/jsxs("div", {
+          className: "flex items-center space-x-2",
+          children: [renderRating(averageRating), /*#__PURE__*/jsxs("span", {
+            className: "text-sm text-gray-600",
+            children: ["(", totalReviews, " reviews)"]
+          })]
+        }), allowNewReview && /*#__PURE__*/jsx("button", {
+          className: "text-sm text-blue-600 hover:text-blue-800 underline",
+          children: "Write a review"
+        })]
+      })
+    });
+  }
+  return null;
+};
+
+var ProductRelated = function ProductRelated(_ref) {
+  var data = _ref.data,
+    className = _ref.className,
+    id = _ref.id;
+  // Safety check for data
+  if (!data || _typeof(data) !== 'object') {
+    console.error('ProductRelated: data prop is required and must be an object');
+    return null;
+  }
+  var _data$title = data.title,
+    title = _data$title === void 0 ? 'Related Products' : _data$title,
+    _data$products = data.products,
+    products = _data$products === void 0 ? [] : _data$products,
+    _data$variant = data.variant,
+    variant = _data$variant === void 0 ? 'default' : _data$variant,
+    _data$columns = data.columns,
+    columns = _data$columns === void 0 ? 4 : _data$columns,
+    _data$showPrice = data.showPrice,
+    showPrice = _data$showPrice === void 0 ? true : _data$showPrice,
+    _data$showRating = data.showRating,
+    showRating = _data$showRating === void 0 ? true : _data$showRating;
+  if (products.length === 0) {
+    return null;
+  }
+
+  // Rating display function
+  var renderRating = function renderRating(rating) {
+    if (!rating) return null;
+    var stars = [];
+    var fullStars = Math.floor(rating);
+    for (var i = 0; i < fullStars; i++) {
+      stars.push(/*#__PURE__*/jsx("svg", {
+        className: "w-3 h-3 text-yellow-400 fill-current",
+        viewBox: "0 0 20 20",
+        children: /*#__PURE__*/jsx("path", {
+          d: "M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+        })
+      }, i));
+    }
+    return /*#__PURE__*/jsxs("div", {
+      className: "flex items-center space-x-1",
+      children: [stars, /*#__PURE__*/jsxs("span", {
+        className: "text-xs text-gray-600 ml-1",
+        children: ["(", rating, ")"]
+      })]
+    });
+  };
+
+  // Product card component
+  var ProductCard = function ProductCard(_ref2) {
+    var product = _ref2.product;
+      _ref2.index;
+    return /*#__PURE__*/jsxs("div", {
+      className: "bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow group",
+      children: [/*#__PURE__*/jsxs("div", {
+        className: "aspect-square bg-gray-100 relative overflow-hidden",
+        children: [/*#__PURE__*/jsx("img", {
+          src: product.image,
+          alt: product.title,
+          className: "w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+        }), product.badge && /*#__PURE__*/jsx("div", {
+          className: "absolute top-2 left-2",
+          children: /*#__PURE__*/jsx("span", {
+            className: "inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-red-500 text-white",
+            children: product.badge
+          })
+        })]
+      }), /*#__PURE__*/jsxs("div", {
+        className: "p-4",
+        children: [/*#__PURE__*/jsx("h4", {
+          className: "font-medium text-gray-900 mb-2 line-clamp-2 group-hover:text-blue-600 transition-colors",
+          children: product.title
+        }), showRating && product.rating && /*#__PURE__*/jsx("div", {
+          className: "mb-2",
+          children: renderRating(product.rating)
+        }), showPrice && /*#__PURE__*/jsxs("div", {
+          className: "flex items-center space-x-2",
+          children: [/*#__PURE__*/jsxs("span", {
+            className: "font-semibold text-gray-900",
+            children: ["$", product.price]
+          }), product.originalPrice && /*#__PURE__*/jsxs("span", {
+            className: "text-sm text-gray-500 line-through",
+            children: ["$", product.originalPrice]
+          })]
+        })]
+      })]
+    });
+  };
+
+  // Default variant - Grid layout
+  if (variant === 'default') {
+    return /*#__PURE__*/jsx("section", {
+      id: id,
+      className: clsx("product-related-default", className),
+      children: /*#__PURE__*/jsxs("div", {
+        className: "space-y-8",
+        children: [/*#__PURE__*/jsx("h3", {
+          className: "text-2xl font-bold text-gray-900",
+          children: title
+        }), /*#__PURE__*/jsx("div", {
+          className: clsx("grid gap-6", columns === 2 && "grid-cols-1 md:grid-cols-2", columns === 3 && "grid-cols-1 md:grid-cols-2 lg:grid-cols-3", columns === 4 && "grid-cols-1 md:grid-cols-2 lg:grid-cols-4", columns === 5 && "grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5"),
+          children: products.map(function (product, index) {
+            return /*#__PURE__*/jsx(ProductCard, {
+              product: product,
+              index: index
+            }, index);
+          })
+        })]
+      })
+    });
+  }
+
+  // Grid variant - Alternative grid styling
+  if (variant === 'grid') {
+    return /*#__PURE__*/jsx("section", {
+      id: id,
+      className: clsx("product-related-grid", className),
+      children: /*#__PURE__*/jsxs("div", {
+        className: "space-y-8",
+        children: [/*#__PURE__*/jsx("h3", {
+          className: "text-2xl font-bold text-gray-900 text-center",
+          children: title
+        }), /*#__PURE__*/jsx("div", {
+          className: clsx("grid gap-8", columns === 2 && "grid-cols-1 md:grid-cols-2", columns === 3 && "grid-cols-1 md:grid-cols-2 lg:grid-cols-3", columns === 4 && "grid-cols-1 md:grid-cols-2 lg:grid-cols-4"),
+          children: products.map(function (product, index) {
+            return /*#__PURE__*/jsxs("div", {
+              className: "bg-gradient-to-br from-white to-gray-50 rounded-xl p-6 shadow-sm border border-gray-200 hover:shadow-lg transition-shadow",
+              children: [/*#__PURE__*/jsx("div", {
+                className: "aspect-square bg-gray-100 rounded-lg overflow-hidden mb-4",
+                children: /*#__PURE__*/jsx("img", {
+                  src: product.image,
+                  alt: product.title,
+                  className: "w-full h-full object-cover"
+                })
+              }), /*#__PURE__*/jsx("h4", {
+                className: "font-semibold text-gray-900 mb-2 text-center",
+                children: product.title
+              }), showPrice && /*#__PURE__*/jsxs("div", {
+                className: "text-center",
+                children: [/*#__PURE__*/jsxs("span", {
+                  className: "font-bold text-gray-900",
+                  children: ["$", product.price]
+                }), product.originalPrice && /*#__PURE__*/jsxs("span", {
+                  className: "text-sm text-gray-500 line-through ml-2",
+                  children: ["$", product.originalPrice]
+                })]
+              }), showRating && product.rating && /*#__PURE__*/jsx("div", {
+                className: "flex justify-center mt-2",
+                children: renderRating(product.rating)
+              })]
+            }, index);
+          })
+        })]
+      })
+    });
+  }
+
+  // Carousel variant - Horizontal scrolling
+  if (variant === 'carousel') {
+    return /*#__PURE__*/jsx("section", {
+      id: id,
+      className: clsx("product-related-carousel", className),
+      children: /*#__PURE__*/jsxs("div", {
+        className: "space-y-6",
+        children: [/*#__PURE__*/jsx("h3", {
+          className: "text-2xl font-bold text-gray-900",
+          children: title
+        }), /*#__PURE__*/jsxs("div", {
+          className: "relative",
+          children: [/*#__PURE__*/jsx("div", {
+            className: "flex space-x-6 overflow-x-auto pb-4 scrollbar-hide",
+            children: products.map(function (product, index) {
+              return /*#__PURE__*/jsx("div", {
+                className: "flex-shrink-0 w-64",
+                children: /*#__PURE__*/jsx(ProductCard, {
+                  product: product,
+                  index: index
+                })
+              }, index);
+            })
+          }), /*#__PURE__*/jsx("div", {
+            className: "flex justify-center space-x-2 mt-4",
+            children: Array.from({
+              length: Math.ceil(products.length / 3)
+            }, function (_, i) {
+              return /*#__PURE__*/jsx("div", {
+                className: "w-2 h-2 bg-gray-300 rounded-full"
+              }, i);
+            })
+          })]
+        })]
+      })
+    });
+  }
+
+  // Minimal variant - Compact layout
+  if (variant === 'minimal') {
+    return /*#__PURE__*/jsx("section", {
+      id: id,
+      className: clsx("product-related-minimal", className),
+      children: /*#__PURE__*/jsxs("div", {
+        className: "space-y-6",
+        children: [/*#__PURE__*/jsx("h3", {
+          className: "text-xl font-semibold text-gray-900",
+          children: title
+        }), /*#__PURE__*/jsx("div", {
+          className: "grid grid-cols-2 md:grid-cols-4 gap-4",
+          children: products.slice(0, 4).map(function (product, index) {
+            return /*#__PURE__*/jsxs("div", {
+              className: "text-center space-y-2",
+              children: [/*#__PURE__*/jsx("div", {
+                className: "aspect-square bg-gray-100 rounded overflow-hidden",
+                children: /*#__PURE__*/jsx("img", {
+                  src: product.image,
+                  alt: product.title,
+                  className: "w-full h-full object-cover"
+                })
+              }), /*#__PURE__*/jsx("h4", {
+                className: "text-sm font-medium text-gray-900 truncate",
+                children: product.title
+              }), showPrice && /*#__PURE__*/jsxs("p", {
+                className: "text-sm font-semibold text-gray-900",
+                children: ["$", product.price]
+              })]
+            }, index);
+          })
+        })]
+      })
+    });
+  }
+  return null;
+};
+
+function getDefaultExportFromCjs (x) {
+	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
+}
+
+var link$1 = {exports: {}};
+
+var _interop_require_wildcard$1 = {};
+
+function _getRequireWildcardCache(nodeInterop) {
+    if (typeof WeakMap !== "function") return null;
+
+    var cacheBabelInterop = new WeakMap();
+    var cacheNodeInterop = new WeakMap();
+
+    return (_getRequireWildcardCache = function(nodeInterop) {
+        return nodeInterop ? cacheNodeInterop : cacheBabelInterop;
+    })(nodeInterop);
+}
+function _interop_require_wildcard(obj, nodeInterop) {
+    if (!nodeInterop && obj && obj.__esModule) return obj;
+    if (obj === null || typeof obj !== "object" && typeof obj !== "function") return { default: obj };
+
+    var cache = _getRequireWildcardCache(nodeInterop);
+
+    if (cache && cache.has(obj)) return cache.get(obj);
+
+    var newObj = { __proto__: null };
+    var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;
+
+    for (var key in obj) {
+        if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) {
+            var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;
+            if (desc && (desc.get || desc.set)) Object.defineProperty(newObj, key, desc);
+            else newObj[key] = obj[key];
+        }
+    }
+
+    newObj.default = obj;
+
+    if (cache) cache.set(obj, newObj);
+
+    return newObj;
+}
+_interop_require_wildcard$1._ = _interop_require_wildcard;
+
+var resolveHref = {exports: {}};
+
+var querystring = {};
+
+var hasRequiredQuerystring;
+
+function requireQuerystring () {
+	if (hasRequiredQuerystring) return querystring;
+	hasRequiredQuerystring = 1;
+	(function (exports$1) {
+		Object.defineProperty(exports$1, "__esModule", {
+		    value: true
+		});
+		function _export(target, all) {
+		    for(var name in all)Object.defineProperty(target, name, {
+		        enumerable: true,
+		        get: all[name]
+		    });
+		}
+		_export(exports$1, {
+		    assign: function() {
+		        return assign;
+		    },
+		    searchParamsToUrlQuery: function() {
+		        return searchParamsToUrlQuery;
+		    },
+		    urlQueryToSearchParams: function() {
+		        return urlQueryToSearchParams;
+		    }
+		});
+		function searchParamsToUrlQuery(searchParams) {
+		    const query = {};
+		    for (const [key, value] of searchParams.entries()){
+		        const existing = query[key];
+		        if (typeof existing === 'undefined') {
+		            query[key] = value;
+		        } else if (Array.isArray(existing)) {
+		            existing.push(value);
+		        } else {
+		            query[key] = [
+		                existing,
+		                value
+		            ];
+		        }
+		    }
+		    return query;
+		}
+		function stringifyUrlQueryParam(param) {
+		    if (typeof param === 'string') {
+		        return param;
+		    }
+		    if (typeof param === 'number' && !isNaN(param) || typeof param === 'boolean') {
+		        return String(param);
+		    } else {
+		        return '';
+		    }
+		}
+		function urlQueryToSearchParams(query) {
+		    const searchParams = new URLSearchParams();
+		    for (const [key, value] of Object.entries(query)){
+		        if (Array.isArray(value)) {
+		            for (const item of value){
+		                searchParams.append(key, stringifyUrlQueryParam(item));
+		            }
+		        } else {
+		            searchParams.set(key, stringifyUrlQueryParam(value));
+		        }
+		    }
+		    return searchParams;
+		}
+		function assign(target) {
+		    for(var _len = arguments.length, searchParamsList = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++){
+		        searchParamsList[_key - 1] = arguments[_key];
+		    }
+		    for (const searchParams of searchParamsList){
+		        for (const key of searchParams.keys()){
+		            target.delete(key);
+		        }
+		        for (const [key, value] of searchParams.entries()){
+		            target.append(key, value);
+		        }
+		    }
+		    return target;
+		}
+
+		
+	} (querystring));
+	return querystring;
+}
+
+var formatUrl = {};
+
+var hasRequiredFormatUrl;
+
+function requireFormatUrl () {
+	if (hasRequiredFormatUrl) return formatUrl;
+	hasRequiredFormatUrl = 1;
+	(function (exports$1) {
+		Object.defineProperty(exports$1, "__esModule", {
+		    value: true
+		});
+		function _export(target, all) {
+		    for(var name in all)Object.defineProperty(target, name, {
+		        enumerable: true,
+		        get: all[name]
+		    });
+		}
+		_export(exports$1, {
+		    formatUrl: function() {
+		        return formatUrl;
+		    },
+		    formatWithValidation: function() {
+		        return formatWithValidation;
+		    },
+		    urlObjectKeys: function() {
+		        return urlObjectKeys;
+		    }
+		});
+		const _interop_require_wildcard = _interop_require_wildcard$1;
+		const _querystring = /*#__PURE__*/ _interop_require_wildcard._(requireQuerystring());
+		const slashedProtocols = /https?|ftp|gopher|file/;
+		function formatUrl(urlObj) {
+		    let { auth, hostname } = urlObj;
+		    let protocol = urlObj.protocol || '';
+		    let pathname = urlObj.pathname || '';
+		    let hash = urlObj.hash || '';
+		    let query = urlObj.query || '';
+		    let host = false;
+		    auth = auth ? encodeURIComponent(auth).replace(/%3A/i, ':') + '@' : '';
+		    if (urlObj.host) {
+		        host = auth + urlObj.host;
+		    } else if (hostname) {
+		        host = auth + (~hostname.indexOf(':') ? "[" + hostname + "]" : hostname);
+		        if (urlObj.port) {
+		            host += ':' + urlObj.port;
+		        }
+		    }
+		    if (query && typeof query === 'object') {
+		        query = String(_querystring.urlQueryToSearchParams(query));
+		    }
+		    let search = urlObj.search || query && "?" + query || '';
+		    if (protocol && !protocol.endsWith(':')) protocol += ':';
+		    if (urlObj.slashes || (!protocol || slashedProtocols.test(protocol)) && host !== false) {
+		        host = '//' + (host || '');
+		        if (pathname && pathname[0] !== '/') pathname = '/' + pathname;
+		    } else if (!host) {
+		        host = '';
+		    }
+		    if (hash && hash[0] !== '#') hash = '#' + hash;
+		    if (search && search[0] !== '?') search = '?' + search;
+		    pathname = pathname.replace(/[?#]/g, encodeURIComponent);
+		    search = search.replace('#', '%23');
+		    return "" + protocol + host + pathname + search + hash;
+		}
+		const urlObjectKeys = [
+		    'auth',
+		    'hash',
+		    'host',
+		    'hostname',
+		    'href',
+		    'path',
+		    'pathname',
+		    'port',
+		    'protocol',
+		    'query',
+		    'search',
+		    'slashes'
+		];
+		function formatWithValidation(url) {
+		    if (process.env.NODE_ENV === 'development') {
+		        if (url !== null && typeof url === 'object') {
+		            Object.keys(url).forEach((key)=>{
+		                if (!urlObjectKeys.includes(key)) {
+		                    console.warn("Unknown key passed via urlObject into url.format: " + key);
+		                }
+		            });
+		        }
+		    }
+		    return formatUrl(url);
+		}
+
+		
+	} (formatUrl));
+	return formatUrl;
+}
+
+var omit = {};
+
+var hasRequiredOmit;
+
+function requireOmit () {
+	if (hasRequiredOmit) return omit;
+	hasRequiredOmit = 1;
+	(function (exports$1) {
+		Object.defineProperty(exports$1, "__esModule", {
+		    value: true
+		});
+		Object.defineProperty(exports$1, "omit", {
+		    enumerable: true,
+		    get: function() {
+		        return omit;
+		    }
+		});
+		function omit(object, keys) {
+		    const omitted = {};
+		    Object.keys(object).forEach((key)=>{
+		        if (!keys.includes(key)) {
+		            omitted[key] = object[key];
+		        }
+		    });
+		    return omitted;
+		}
+
+		
+	} (omit));
+	return omit;
+}
+
+var utils$1 = {};
+
+var hasRequiredUtils$1;
+
+function requireUtils$1 () {
+	if (hasRequiredUtils$1) return utils$1;
+	hasRequiredUtils$1 = 1;
+	(function (exports$1) {
+		Object.defineProperty(exports$1, "__esModule", {
+		    value: true
+		});
+		function _export(target, all) {
+		    for(var name in all)Object.defineProperty(target, name, {
+		        enumerable: true,
+		        get: all[name]
+		    });
+		}
+		_export(exports$1, {
+		    DecodeError: function() {
+		        return DecodeError;
+		    },
+		    MiddlewareNotFoundError: function() {
+		        return MiddlewareNotFoundError;
+		    },
+		    MissingStaticPage: function() {
+		        return MissingStaticPage;
+		    },
+		    NormalizeError: function() {
+		        return NormalizeError;
+		    },
+		    PageNotFoundError: function() {
+		        return PageNotFoundError;
+		    },
+		    SP: function() {
+		        return SP;
+		    },
+		    ST: function() {
+		        return ST;
+		    },
+		    WEB_VITALS: function() {
+		        return WEB_VITALS;
+		    },
+		    execOnce: function() {
+		        return execOnce;
+		    },
+		    getDisplayName: function() {
+		        return getDisplayName;
+		    },
+		    getLocationOrigin: function() {
+		        return getLocationOrigin;
+		    },
+		    getURL: function() {
+		        return getURL;
+		    },
+		    isAbsoluteUrl: function() {
+		        return isAbsoluteUrl;
+		    },
+		    isResSent: function() {
+		        return isResSent;
+		    },
+		    loadGetInitialProps: function() {
+		        return loadGetInitialProps;
+		    },
+		    normalizeRepeatedSlashes: function() {
+		        return normalizeRepeatedSlashes;
+		    },
+		    stringifyError: function() {
+		        return stringifyError;
+		    }
+		});
+		const WEB_VITALS = [
+		    'CLS',
+		    'FCP',
+		    'FID',
+		    'INP',
+		    'LCP',
+		    'TTFB'
+		];
+		function execOnce(fn) {
+		    let used = false;
+		    let result;
+		    return function() {
+		        for(var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++){
+		            args[_key] = arguments[_key];
+		        }
+		        if (!used) {
+		            used = true;
+		            result = fn(...args);
+		        }
+		        return result;
+		    };
+		}
+		// Scheme: https://tools.ietf.org/html/rfc3986#section-3.1
+		// Absolute URL: https://tools.ietf.org/html/rfc3986#section-4.3
+		const ABSOLUTE_URL_REGEX = /^[a-zA-Z][a-zA-Z\d+\-.]*?:/;
+		const isAbsoluteUrl = (url)=>ABSOLUTE_URL_REGEX.test(url);
+		function getLocationOrigin() {
+		    const { protocol, hostname, port } = window.location;
+		    return protocol + "//" + hostname + (port ? ':' + port : '');
+		}
+		function getURL() {
+		    const { href } = window.location;
+		    const origin = getLocationOrigin();
+		    return href.substring(origin.length);
+		}
+		function getDisplayName(Component) {
+		    return typeof Component === 'string' ? Component : Component.displayName || Component.name || 'Unknown';
+		}
+		function isResSent(res) {
+		    return res.finished || res.headersSent;
+		}
+		function normalizeRepeatedSlashes(url) {
+		    const urlParts = url.split('?');
+		    const urlNoQuery = urlParts[0];
+		    return urlNoQuery// first we replace any non-encoded backslashes with forward
+		    // then normalize repeated forward slashes
+		    .replace(/\\/g, '/').replace(/\/\/+/g, '/') + (urlParts[1] ? "?" + urlParts.slice(1).join('?') : '');
+		}
+		async function loadGetInitialProps(App, ctx) {
+		    if (process.env.NODE_ENV !== 'production') {
+		        var _App_prototype;
+		        if ((_App_prototype = App.prototype) == null ? void 0 : _App_prototype.getInitialProps) {
+		            const message = '"' + getDisplayName(App) + '.getInitialProps()" is defined as an instance method - visit https://nextjs.org/docs/messages/get-initial-props-as-an-instance-method for more information.';
+		            throw Object.defineProperty(new Error(message), "__NEXT_ERROR_CODE", {
+		                value: "E394",
+		                enumerable: false,
+		                configurable: true
+		            });
+		        }
+		    }
+		    // when called from _app `ctx` is nested in `ctx`
+		    const res = ctx.res || ctx.ctx && ctx.ctx.res;
+		    if (!App.getInitialProps) {
+		        if (ctx.ctx && ctx.Component) {
+		            // @ts-ignore pageProps default
+		            return {
+		                pageProps: await loadGetInitialProps(ctx.Component, ctx.ctx)
+		            };
+		        }
+		        return {};
+		    }
+		    const props = await App.getInitialProps(ctx);
+		    if (res && isResSent(res)) {
+		        return props;
+		    }
+		    if (!props) {
+		        const message = '"' + getDisplayName(App) + '.getInitialProps()" should resolve to an object. But found "' + props + '" instead.';
+		        throw Object.defineProperty(new Error(message), "__NEXT_ERROR_CODE", {
+		            value: "E394",
+		            enumerable: false,
+		            configurable: true
+		        });
+		    }
+		    if (process.env.NODE_ENV !== 'production') {
+		        if (Object.keys(props).length === 0 && !ctx.ctx) {
+		            console.warn("" + getDisplayName(App) + " returned an empty object from `getInitialProps`. This de-optimizes and prevents automatic static optimization. https://nextjs.org/docs/messages/empty-object-getInitialProps");
+		        }
+		    }
+		    return props;
+		}
+		const SP = typeof performance !== 'undefined';
+		const ST = SP && [
+		    'mark',
+		    'measure',
+		    'getEntriesByName'
+		].every((method)=>typeof performance[method] === 'function');
+		class DecodeError extends Error {
+		}
+		class NormalizeError extends Error {
+		}
+		class PageNotFoundError extends Error {
+		    constructor(page){
+		        super();
+		        this.code = 'ENOENT';
+		        this.name = 'PageNotFoundError';
+		        this.message = "Cannot find module for page: " + page;
+		    }
+		}
+		class MissingStaticPage extends Error {
+		    constructor(page, message){
+		        super();
+		        this.message = "Failed to load static file for page: " + page + " " + message;
+		    }
+		}
+		class MiddlewareNotFoundError extends Error {
+		    constructor(){
+		        super();
+		        this.code = 'ENOENT';
+		        this.message = "Cannot find the middleware module";
+		    }
+		}
+		function stringifyError(error) {
+		    return JSON.stringify({
+		        message: error.message,
+		        stack: error.stack
+		    });
+		}
+
+		
+	} (utils$1));
+	return utils$1;
+}
+
+var normalizeTrailingSlash = {exports: {}};
+
+var removeTrailingSlash = {};
+
+/**
+ * Removes the trailing slash for a given route or page path. Preserves the
+ * root page. Examples:
+ *   - `/foo/bar/` -> `/foo/bar`
+ *   - `/foo/bar` -> `/foo/bar`
+ *   - `/` -> `/`
+ */
+
+var hasRequiredRemoveTrailingSlash;
+
+function requireRemoveTrailingSlash () {
+	if (hasRequiredRemoveTrailingSlash) return removeTrailingSlash;
+	hasRequiredRemoveTrailingSlash = 1;
+	(function (exports$1) {
+		Object.defineProperty(exports$1, "__esModule", {
+		    value: true
+		});
+		Object.defineProperty(exports$1, "removeTrailingSlash", {
+		    enumerable: true,
+		    get: function() {
+		        return removeTrailingSlash;
+		    }
+		});
+		function removeTrailingSlash(route) {
+		    return route.replace(/\/$/, '') || '/';
+		}
+
+		
+	} (removeTrailingSlash));
+	return removeTrailingSlash;
+}
+
+var parsePath = {};
+
+/**
+ * Given a path this function will find the pathname, query and hash and return
+ * them. This is useful to parse full paths on the client side.
+ * @param path A path to parse e.g. /foo/bar?id=1#hash
+ */
+
+var hasRequiredParsePath;
+
+function requireParsePath () {
+	if (hasRequiredParsePath) return parsePath;
+	hasRequiredParsePath = 1;
+	(function (exports$1) {
+		Object.defineProperty(exports$1, "__esModule", {
+		    value: true
+		});
+		Object.defineProperty(exports$1, "parsePath", {
+		    enumerable: true,
+		    get: function() {
+		        return parsePath;
+		    }
+		});
+		function parsePath(path) {
+		    const hashIndex = path.indexOf('#');
+		    const queryIndex = path.indexOf('?');
+		    const hasQuery = queryIndex > -1 && (hashIndex < 0 || queryIndex < hashIndex);
+		    if (hasQuery || hashIndex > -1) {
+		        return {
+		            pathname: path.substring(0, hasQuery ? queryIndex : hashIndex),
+		            query: hasQuery ? path.substring(queryIndex, hashIndex > -1 ? hashIndex : undefined) : '',
+		            hash: hashIndex > -1 ? path.slice(hashIndex) : ''
+		        };
+		    }
+		    return {
+		        pathname: path,
+		        query: '',
+		        hash: ''
+		    };
+		}
+
+		
+	} (parsePath));
+	return parsePath;
+}
+
+var hasRequiredNormalizeTrailingSlash;
+
+function requireNormalizeTrailingSlash () {
+	if (hasRequiredNormalizeTrailingSlash) return normalizeTrailingSlash.exports;
+	hasRequiredNormalizeTrailingSlash = 1;
+	(function (module, exports$1) {
+		Object.defineProperty(exports$1, "__esModule", {
+		    value: true
+		});
+		Object.defineProperty(exports$1, "normalizePathTrailingSlash", {
+		    enumerable: true,
+		    get: function() {
+		        return normalizePathTrailingSlash;
+		    }
+		});
+		const _removetrailingslash = requireRemoveTrailingSlash();
+		const _parsepath = requireParsePath();
+		const normalizePathTrailingSlash = (path)=>{
+		    if (!path.startsWith('/') || process.env.__NEXT_MANUAL_TRAILING_SLASH) {
+		        return path;
+		    }
+		    const { pathname, query, hash } = (0, _parsepath.parsePath)(path);
+		    if (process.env.__NEXT_TRAILING_SLASH) {
+		        if (/\.[^/]+\/?$/.test(pathname)) {
+		            return "" + (0, _removetrailingslash.removeTrailingSlash)(pathname) + query + hash;
+		        } else if (pathname.endsWith('/')) {
+		            return "" + pathname + query + hash;
+		        } else {
+		            return pathname + "/" + query + hash;
+		        }
+		    }
+		    return "" + (0, _removetrailingslash.removeTrailingSlash)(pathname) + query + hash;
+		};
+
+		if ((typeof exports$1.default === 'function' || (typeof exports$1.default === 'object' && exports$1.default !== null)) && typeof exports$1.default.__esModule === 'undefined') {
+		  Object.defineProperty(exports$1.default, '__esModule', { value: true });
+		  Object.assign(exports$1.default, exports$1);
+		  module.exports = exports$1.default;
+		}
+
+		
+	} (normalizeTrailingSlash, normalizeTrailingSlash.exports));
+	return normalizeTrailingSlash.exports;
+}
+
+var isLocalUrl = {};
+
+var hasBasePath = {exports: {}};
+
+var pathHasPrefix = {};
+
+var hasRequiredPathHasPrefix;
+
+function requirePathHasPrefix () {
+	if (hasRequiredPathHasPrefix) return pathHasPrefix;
+	hasRequiredPathHasPrefix = 1;
+	(function (exports$1) {
+		Object.defineProperty(exports$1, "__esModule", {
+		    value: true
+		});
+		Object.defineProperty(exports$1, "pathHasPrefix", {
+		    enumerable: true,
+		    get: function() {
+		        return pathHasPrefix;
+		    }
+		});
+		const _parsepath = requireParsePath();
+		function pathHasPrefix(path, prefix) {
+		    if (typeof path !== 'string') {
+		        return false;
+		    }
+		    const { pathname } = (0, _parsepath.parsePath)(path);
+		    return pathname === prefix || pathname.startsWith(prefix + '/');
+		}
+
+		
+	} (pathHasPrefix));
+	return pathHasPrefix;
+}
+
+var hasRequiredHasBasePath;
+
+function requireHasBasePath () {
+	if (hasRequiredHasBasePath) return hasBasePath.exports;
+	hasRequiredHasBasePath = 1;
+	(function (module, exports$1) {
+		Object.defineProperty(exports$1, "__esModule", {
+		    value: true
+		});
+		Object.defineProperty(exports$1, "hasBasePath", {
+		    enumerable: true,
+		    get: function() {
+		        return hasBasePath;
+		    }
+		});
+		const _pathhasprefix = requirePathHasPrefix();
+		const basePath = process.env.__NEXT_ROUTER_BASEPATH || '';
+		function hasBasePath(path) {
+		    return (0, _pathhasprefix.pathHasPrefix)(path, basePath);
+		}
+
+		if ((typeof exports$1.default === 'function' || (typeof exports$1.default === 'object' && exports$1.default !== null)) && typeof exports$1.default.__esModule === 'undefined') {
+		  Object.defineProperty(exports$1.default, '__esModule', { value: true });
+		  Object.assign(exports$1.default, exports$1);
+		  module.exports = exports$1.default;
+		}
+
+		
+	} (hasBasePath, hasBasePath.exports));
+	return hasBasePath.exports;
+}
+
+var hasRequiredIsLocalUrl;
+
+function requireIsLocalUrl () {
+	if (hasRequiredIsLocalUrl) return isLocalUrl;
+	hasRequiredIsLocalUrl = 1;
+	(function (exports$1) {
+		Object.defineProperty(exports$1, "__esModule", {
+		    value: true
+		});
+		Object.defineProperty(exports$1, "isLocalURL", {
+		    enumerable: true,
+		    get: function() {
+		        return isLocalURL;
+		    }
+		});
+		const _utils = requireUtils$1();
+		const _hasbasepath = requireHasBasePath();
+		function isLocalURL(url) {
+		    // prevent a hydration mismatch on href for url with anchor refs
+		    if (!(0, _utils.isAbsoluteUrl)(url)) return true;
+		    try {
+		        // absolute urls can be local if they are on the same origin
+		        const locationOrigin = (0, _utils.getLocationOrigin)();
+		        const resolved = new URL(url, locationOrigin);
+		        return resolved.origin === locationOrigin && (0, _hasbasepath.hasBasePath)(resolved.pathname);
+		    } catch (_) {
+		        return false;
+		    }
+		}
+
+		
+	} (isLocalUrl));
+	return isLocalUrl;
+}
+
+var utils = {};
+
+var sortedRoutes = {};
+
+var hasRequiredSortedRoutes;
+
+function requireSortedRoutes () {
+	if (hasRequiredSortedRoutes) return sortedRoutes;
+	hasRequiredSortedRoutes = 1;
+	(function (exports$1) {
+		Object.defineProperty(exports$1, "__esModule", {
+		    value: true
+		});
+		function _export(target, all) {
+		    for(var name in all)Object.defineProperty(target, name, {
+		        enumerable: true,
+		        get: all[name]
+		    });
+		}
+		_export(exports$1, {
+		    getSortedRouteObjects: function() {
+		        return getSortedRouteObjects;
+		    },
+		    getSortedRoutes: function() {
+		        return getSortedRoutes;
+		    }
+		});
+		class UrlNode {
+		    insert(urlPath) {
+		        this._insert(urlPath.split('/').filter(Boolean), [], false);
+		    }
+		    smoosh() {
+		        return this._smoosh();
+		    }
+		    _smoosh(prefix) {
+		        if (prefix === void 0) prefix = '/';
+		        const childrenPaths = [
+		            ...this.children.keys()
+		        ].sort();
+		        if (this.slugName !== null) {
+		            childrenPaths.splice(childrenPaths.indexOf('[]'), 1);
+		        }
+		        if (this.restSlugName !== null) {
+		            childrenPaths.splice(childrenPaths.indexOf('[...]'), 1);
+		        }
+		        if (this.optionalRestSlugName !== null) {
+		            childrenPaths.splice(childrenPaths.indexOf('[[...]]'), 1);
+		        }
+		        const routes = childrenPaths.map((c)=>this.children.get(c)._smoosh("" + prefix + c + "/")).reduce((prev, curr)=>[
+		                ...prev,
+		                ...curr
+		            ], []);
+		        if (this.slugName !== null) {
+		            routes.push(...this.children.get('[]')._smoosh(prefix + "[" + this.slugName + "]/"));
+		        }
+		        if (!this.placeholder) {
+		            const r = prefix === '/' ? '/' : prefix.slice(0, -1);
+		            if (this.optionalRestSlugName != null) {
+		                throw Object.defineProperty(new Error('You cannot define a route with the same specificity as a optional catch-all route ("' + r + '" and "' + r + "[[..." + this.optionalRestSlugName + ']]").'), "__NEXT_ERROR_CODE", {
+		                    value: "E458",
+		                    enumerable: false,
+		                    configurable: true
+		                });
+		            }
+		            routes.unshift(r);
+		        }
+		        if (this.restSlugName !== null) {
+		            routes.push(...this.children.get('[...]')._smoosh(prefix + "[..." + this.restSlugName + "]/"));
+		        }
+		        if (this.optionalRestSlugName !== null) {
+		            routes.push(...this.children.get('[[...]]')._smoosh(prefix + "[[..." + this.optionalRestSlugName + "]]/"));
+		        }
+		        return routes;
+		    }
+		    _insert(urlPaths, slugNames, isCatchAll) {
+		        if (urlPaths.length === 0) {
+		            this.placeholder = false;
+		            return;
+		        }
+		        if (isCatchAll) {
+		            throw Object.defineProperty(new Error("Catch-all must be the last part of the URL."), "__NEXT_ERROR_CODE", {
+		                value: "E392",
+		                enumerable: false,
+		                configurable: true
+		            });
+		        }
+		        // The next segment in the urlPaths list
+		        let nextSegment = urlPaths[0];
+		        // Check if the segment matches `[something]`
+		        if (nextSegment.startsWith('[') && nextSegment.endsWith(']')) {
+		            // Strip `[` and `]`, leaving only `something`
+		            let segmentName = nextSegment.slice(1, -1);
+		            let isOptional = false;
+		            if (segmentName.startsWith('[') && segmentName.endsWith(']')) {
+		                // Strip optional `[` and `]`, leaving only `something`
+		                segmentName = segmentName.slice(1, -1);
+		                isOptional = true;
+		            }
+		            if (segmentName.startsWith('…')) {
+		                throw Object.defineProperty(new Error("Detected a three-dot character ('…') at ('" + segmentName + "'). Did you mean ('...')?"), "__NEXT_ERROR_CODE", {
+		                    value: "E147",
+		                    enumerable: false,
+		                    configurable: true
+		                });
+		            }
+		            if (segmentName.startsWith('...')) {
+		                // Strip `...`, leaving only `something`
+		                segmentName = segmentName.substring(3);
+		                isCatchAll = true;
+		            }
+		            if (segmentName.startsWith('[') || segmentName.endsWith(']')) {
+		                throw Object.defineProperty(new Error("Segment names may not start or end with extra brackets ('" + segmentName + "')."), "__NEXT_ERROR_CODE", {
+		                    value: "E421",
+		                    enumerable: false,
+		                    configurable: true
+		                });
+		            }
+		            if (segmentName.startsWith('.')) {
+		                throw Object.defineProperty(new Error("Segment names may not start with erroneous periods ('" + segmentName + "')."), "__NEXT_ERROR_CODE", {
+		                    value: "E288",
+		                    enumerable: false,
+		                    configurable: true
+		                });
+		            }
+		            function handleSlug(previousSlug, nextSlug) {
+		                if (previousSlug !== null) {
+		                    // If the specific segment already has a slug but the slug is not `something`
+		                    // This prevents collisions like:
+		                    // pages/[post]/index.js
+		                    // pages/[id]/index.js
+		                    // Because currently multiple dynamic params on the same segment level are not supported
+		                    if (previousSlug !== nextSlug) {
+		                        // TODO: This error seems to be confusing for users, needs an error link, the description can be based on above comment.
+		                        throw Object.defineProperty(new Error("You cannot use different slug names for the same dynamic path ('" + previousSlug + "' !== '" + nextSlug + "')."), "__NEXT_ERROR_CODE", {
+		                            value: "E337",
+		                            enumerable: false,
+		                            configurable: true
+		                        });
+		                    }
+		                }
+		                slugNames.forEach((slug)=>{
+		                    if (slug === nextSlug) {
+		                        throw Object.defineProperty(new Error('You cannot have the same slug name "' + nextSlug + '" repeat within a single dynamic path'), "__NEXT_ERROR_CODE", {
+		                            value: "E247",
+		                            enumerable: false,
+		                            configurable: true
+		                        });
+		                    }
+		                    if (slug.replace(/\W/g, '') === nextSegment.replace(/\W/g, '')) {
+		                        throw Object.defineProperty(new Error('You cannot have the slug names "' + slug + '" and "' + nextSlug + '" differ only by non-word symbols within a single dynamic path'), "__NEXT_ERROR_CODE", {
+		                            value: "E499",
+		                            enumerable: false,
+		                            configurable: true
+		                        });
+		                    }
+		                });
+		                slugNames.push(nextSlug);
+		            }
+		            if (isCatchAll) {
+		                if (isOptional) {
+		                    if (this.restSlugName != null) {
+		                        throw Object.defineProperty(new Error('You cannot use both an required and optional catch-all route at the same level ("[...' + this.restSlugName + ']" and "' + urlPaths[0] + '" ).'), "__NEXT_ERROR_CODE", {
+		                            value: "E299",
+		                            enumerable: false,
+		                            configurable: true
+		                        });
+		                    }
+		                    handleSlug(this.optionalRestSlugName, segmentName);
+		                    // slugName is kept as it can only be one particular slugName
+		                    this.optionalRestSlugName = segmentName;
+		                    // nextSegment is overwritten to [[...]] so that it can later be sorted specifically
+		                    nextSegment = '[[...]]';
+		                } else {
+		                    if (this.optionalRestSlugName != null) {
+		                        throw Object.defineProperty(new Error('You cannot use both an optional and required catch-all route at the same level ("[[...' + this.optionalRestSlugName + ']]" and "' + urlPaths[0] + '").'), "__NEXT_ERROR_CODE", {
+		                            value: "E300",
+		                            enumerable: false,
+		                            configurable: true
+		                        });
+		                    }
+		                    handleSlug(this.restSlugName, segmentName);
+		                    // slugName is kept as it can only be one particular slugName
+		                    this.restSlugName = segmentName;
+		                    // nextSegment is overwritten to [...] so that it can later be sorted specifically
+		                    nextSegment = '[...]';
+		                }
+		            } else {
+		                if (isOptional) {
+		                    throw Object.defineProperty(new Error('Optional route parameters are not yet supported ("' + urlPaths[0] + '").'), "__NEXT_ERROR_CODE", {
+		                        value: "E435",
+		                        enumerable: false,
+		                        configurable: true
+		                    });
+		                }
+		                handleSlug(this.slugName, segmentName);
+		                // slugName is kept as it can only be one particular slugName
+		                this.slugName = segmentName;
+		                // nextSegment is overwritten to [] so that it can later be sorted specifically
+		                nextSegment = '[]';
+		            }
+		        }
+		        // If this UrlNode doesn't have the nextSegment yet we create a new child UrlNode
+		        if (!this.children.has(nextSegment)) {
+		            this.children.set(nextSegment, new UrlNode());
+		        }
+		        this.children.get(nextSegment)._insert(urlPaths.slice(1), slugNames, isCatchAll);
+		    }
+		    constructor(){
+		        this.placeholder = true;
+		        this.children = new Map();
+		        this.slugName = null;
+		        this.restSlugName = null;
+		        this.optionalRestSlugName = null;
+		    }
+		}
+		function getSortedRoutes(normalizedPages) {
+		    // First the UrlNode is created, and every UrlNode can have only 1 dynamic segment
+		    // Eg you can't have pages/[post]/abc.js and pages/[hello]/something-else.js
+		    // Only 1 dynamic segment per nesting level
+		    // So in the case that is test/integration/dynamic-routing it'll be this:
+		    // pages/[post]/comments.js
+		    // pages/blog/[post]/comment/[id].js
+		    // Both are fine because `pages/[post]` and `pages/blog` are on the same level
+		    // So in this case `UrlNode` created here has `this.slugName === 'post'`
+		    // And since your PR passed through `slugName` as an array basically it'd including it in too many possibilities
+		    // Instead what has to be passed through is the upwards path's dynamic names
+		    const root = new UrlNode();
+		    // Here the `root` gets injected multiple paths, and insert will break them up into sublevels
+		    normalizedPages.forEach((pagePath)=>root.insert(pagePath));
+		    // Smoosh will then sort those sublevels up to the point where you get the correct route definition priority
+		    return root.smoosh();
+		}
+		function getSortedRouteObjects(objects, getter) {
+		    // We're assuming here that all the pathnames are unique, that way we can
+		    // sort the list and use the index as the key.
+		    const indexes = {};
+		    const pathnames = [];
+		    for(let i = 0; i < objects.length; i++){
+		        const pathname = getter(objects[i]);
+		        indexes[pathname] = i;
+		        pathnames[i] = pathname;
+		    }
+		    // Sort the pathnames.
+		    const sorted = getSortedRoutes(pathnames);
+		    // Map the sorted pathnames back to the original objects using the new sorted
+		    // index.
+		    return sorted.map((pathname)=>objects[indexes[pathname]]);
+		}
+
+		
+	} (sortedRoutes));
+	return sortedRoutes;
+}
+
+var isDynamic = {};
+
+var interceptionRoutes = {};
+
+var appPaths = {};
+
+var ensureLeadingSlash = {};
+
+/**
+ * For a given page path, this function ensures that there is a leading slash.
+ * If there is not a leading slash, one is added, otherwise it is noop.
+ */
+
+var hasRequiredEnsureLeadingSlash;
+
+function requireEnsureLeadingSlash () {
+	if (hasRequiredEnsureLeadingSlash) return ensureLeadingSlash;
+	hasRequiredEnsureLeadingSlash = 1;
+	(function (exports$1) {
+		Object.defineProperty(exports$1, "__esModule", {
+		    value: true
+		});
+		Object.defineProperty(exports$1, "ensureLeadingSlash", {
+		    enumerable: true,
+		    get: function() {
+		        return ensureLeadingSlash;
+		    }
+		});
+		function ensureLeadingSlash(path) {
+		    return path.startsWith('/') ? path : "/" + path;
+		}
+
+		
+	} (ensureLeadingSlash));
+	return ensureLeadingSlash;
+}
+
+var segment = {};
+
+var hasRequiredSegment;
+
+function requireSegment () {
+	if (hasRequiredSegment) return segment;
+	hasRequiredSegment = 1;
+	(function (exports$1) {
+		Object.defineProperty(exports$1, "__esModule", {
+		    value: true
+		});
+		function _export(target, all) {
+		    for(var name in all)Object.defineProperty(target, name, {
+		        enumerable: true,
+		        get: all[name]
+		    });
+		}
+		_export(exports$1, {
+		    DEFAULT_SEGMENT_KEY: function() {
+		        return DEFAULT_SEGMENT_KEY;
+		    },
+		    PAGE_SEGMENT_KEY: function() {
+		        return PAGE_SEGMENT_KEY;
+		    },
+		    addSearchParamsIfPageSegment: function() {
+		        return addSearchParamsIfPageSegment;
+		    },
+		    isGroupSegment: function() {
+		        return isGroupSegment;
+		    },
+		    isParallelRouteSegment: function() {
+		        return isParallelRouteSegment;
+		    }
+		});
+		function isGroupSegment(segment) {
+		    // Use array[0] for performant purpose
+		    return segment[0] === '(' && segment.endsWith(')');
+		}
+		function isParallelRouteSegment(segment) {
+		    return segment.startsWith('@') && segment !== '@children';
+		}
+		function addSearchParamsIfPageSegment(segment, searchParams) {
+		    const isPageSegment = segment.includes(PAGE_SEGMENT_KEY);
+		    if (isPageSegment) {
+		        const stringifiedQuery = JSON.stringify(searchParams);
+		        return stringifiedQuery !== '{}' ? PAGE_SEGMENT_KEY + '?' + stringifiedQuery : PAGE_SEGMENT_KEY;
+		    }
+		    return segment;
+		}
+		const PAGE_SEGMENT_KEY = '__PAGE__';
+		const DEFAULT_SEGMENT_KEY = '__DEFAULT__';
+
+		
+	} (segment));
+	return segment;
+}
+
+var hasRequiredAppPaths;
+
+function requireAppPaths () {
+	if (hasRequiredAppPaths) return appPaths;
+	hasRequiredAppPaths = 1;
+	(function (exports$1) {
+		Object.defineProperty(exports$1, "__esModule", {
+		    value: true
+		});
+		function _export(target, all) {
+		    for(var name in all)Object.defineProperty(target, name, {
+		        enumerable: true,
+		        get: all[name]
+		    });
+		}
+		_export(exports$1, {
+		    normalizeAppPath: function() {
+		        return normalizeAppPath;
+		    },
+		    normalizeRscURL: function() {
+		        return normalizeRscURL;
+		    }
+		});
+		const _ensureleadingslash = requireEnsureLeadingSlash();
+		const _segment = requireSegment();
+		function normalizeAppPath(route) {
+		    return (0, _ensureleadingslash.ensureLeadingSlash)(route.split('/').reduce((pathname, segment, index, segments)=>{
+		        // Empty segments are ignored.
+		        if (!segment) {
+		            return pathname;
+		        }
+		        // Groups are ignored.
+		        if ((0, _segment.isGroupSegment)(segment)) {
+		            return pathname;
+		        }
+		        // Parallel segments are ignored.
+		        if (segment[0] === '@') {
+		            return pathname;
+		        }
+		        // The last segment (if it's a leaf) should be ignored.
+		        if ((segment === 'page' || segment === 'route') && index === segments.length - 1) {
+		            return pathname;
+		        }
+		        return pathname + "/" + segment;
+		    }, ''));
+		}
+		function normalizeRscURL(url) {
+		    return url.replace(/\.rsc($|\?)/, // $1 ensures `?` is preserved
+		    '$1');
+		}
+
+		
+	} (appPaths));
+	return appPaths;
+}
+
+var hasRequiredInterceptionRoutes;
+
+function requireInterceptionRoutes () {
+	if (hasRequiredInterceptionRoutes) return interceptionRoutes;
+	hasRequiredInterceptionRoutes = 1;
+	(function (exports$1) {
+		Object.defineProperty(exports$1, "__esModule", {
+		    value: true
+		});
+		function _export(target, all) {
+		    for(var name in all)Object.defineProperty(target, name, {
+		        enumerable: true,
+		        get: all[name]
+		    });
+		}
+		_export(exports$1, {
+		    INTERCEPTION_ROUTE_MARKERS: function() {
+		        return INTERCEPTION_ROUTE_MARKERS;
+		    },
+		    extractInterceptionRouteInformation: function() {
+		        return extractInterceptionRouteInformation;
+		    },
+		    isInterceptionRouteAppPath: function() {
+		        return isInterceptionRouteAppPath;
+		    }
+		});
+		const _apppaths = requireAppPaths();
+		const INTERCEPTION_ROUTE_MARKERS = [
+		    '(..)(..)',
+		    '(.)',
+		    '(..)',
+		    '(...)'
+		];
+		function isInterceptionRouteAppPath(path) {
+		    // TODO-APP: add more serious validation
+		    return path.split('/').find((segment)=>INTERCEPTION_ROUTE_MARKERS.find((m)=>segment.startsWith(m))) !== undefined;
+		}
+		function extractInterceptionRouteInformation(path) {
+		    let interceptingRoute, marker, interceptedRoute;
+		    for (const segment of path.split('/')){
+		        marker = INTERCEPTION_ROUTE_MARKERS.find((m)=>segment.startsWith(m));
+		        if (marker) {
+		            [interceptingRoute, interceptedRoute] = path.split(marker, 2);
+		            break;
+		        }
+		    }
+		    if (!interceptingRoute || !marker || !interceptedRoute) {
+		        throw Object.defineProperty(new Error("Invalid interception route: " + path + ". Must be in the format /<intercepting route>/(..|...|..)(..)/<intercepted route>"), "__NEXT_ERROR_CODE", {
+		            value: "E269",
+		            enumerable: false,
+		            configurable: true
+		        });
+		    }
+		    interceptingRoute = (0, _apppaths.normalizeAppPath)(interceptingRoute) // normalize the path, e.g. /(blog)/feed -> /feed
+		    ;
+		    switch(marker){
+		        case '(.)':
+		            // (.) indicates that we should match with sibling routes, so we just need to append the intercepted route to the intercepting route
+		            if (interceptingRoute === '/') {
+		                interceptedRoute = "/" + interceptedRoute;
+		            } else {
+		                interceptedRoute = interceptingRoute + '/' + interceptedRoute;
+		            }
+		            break;
+		        case '(..)':
+		            // (..) indicates that we should match at one level up, so we need to remove the last segment of the intercepting route
+		            if (interceptingRoute === '/') {
+		                throw Object.defineProperty(new Error("Invalid interception route: " + path + ". Cannot use (..) marker at the root level, use (.) instead."), "__NEXT_ERROR_CODE", {
+		                    value: "E207",
+		                    enumerable: false,
+		                    configurable: true
+		                });
+		            }
+		            interceptedRoute = interceptingRoute.split('/').slice(0, -1).concat(interceptedRoute).join('/');
+		            break;
+		        case '(...)':
+		            // (...) will match the route segment in the root directory, so we need to use the root directory to prepend the intercepted route
+		            interceptedRoute = '/' + interceptedRoute;
+		            break;
+		        case '(..)(..)':
+		            // (..)(..) indicates that we should match at two levels up, so we need to remove the last two segments of the intercepting route
+		            const splitInterceptingRoute = interceptingRoute.split('/');
+		            if (splitInterceptingRoute.length <= 2) {
+		                throw Object.defineProperty(new Error("Invalid interception route: " + path + ". Cannot use (..)(..) marker at the root level or one level up."), "__NEXT_ERROR_CODE", {
+		                    value: "E486",
+		                    enumerable: false,
+		                    configurable: true
+		                });
+		            }
+		            interceptedRoute = splitInterceptingRoute.slice(0, -2).concat(interceptedRoute).join('/');
+		            break;
+		        default:
+		            throw Object.defineProperty(new Error('Invariant: unexpected marker'), "__NEXT_ERROR_CODE", {
+		                value: "E112",
+		                enumerable: false,
+		                configurable: true
+		            });
+		    }
+		    return {
+		        interceptingRoute,
+		        interceptedRoute
+		    };
+		}
+
+		
+	} (interceptionRoutes));
+	return interceptionRoutes;
+}
+
+var hasRequiredIsDynamic;
+
+function requireIsDynamic () {
+	if (hasRequiredIsDynamic) return isDynamic;
+	hasRequiredIsDynamic = 1;
+	(function (exports$1) {
+		Object.defineProperty(exports$1, "__esModule", {
+		    value: true
+		});
+		Object.defineProperty(exports$1, "isDynamicRoute", {
+		    enumerable: true,
+		    get: function() {
+		        return isDynamicRoute;
+		    }
+		});
+		const _interceptionroutes = requireInterceptionRoutes();
+		// Identify /.*[param].*/ in route string
+		const TEST_ROUTE = /\/[^/]*\[[^/]+\][^/]*(?=\/|$)/;
+		// Identify /[param]/ in route string
+		const TEST_STRICT_ROUTE = /\/\[[^/]+\](?=\/|$)/;
+		function isDynamicRoute(route, strict) {
+		    if (strict === void 0) strict = true;
+		    if ((0, _interceptionroutes.isInterceptionRouteAppPath)(route)) {
+		        route = (0, _interceptionroutes.extractInterceptionRouteInformation)(route).interceptedRoute;
+		    }
+		    if (strict) {
+		        return TEST_STRICT_ROUTE.test(route);
+		    }
+		    return TEST_ROUTE.test(route);
+		}
+
+		
+	} (isDynamic));
+	return isDynamic;
+}
+
+var hasRequiredUtils;
+
+function requireUtils () {
+	if (hasRequiredUtils) return utils;
+	hasRequiredUtils = 1;
+	(function (exports$1) {
+		Object.defineProperty(exports$1, "__esModule", {
+		    value: true
+		});
+		function _export(target, all) {
+		    for(var name in all)Object.defineProperty(target, name, {
+		        enumerable: true,
+		        get: all[name]
+		    });
+		}
+		_export(exports$1, {
+		    getSortedRouteObjects: function() {
+		        return _sortedroutes.getSortedRouteObjects;
+		    },
+		    getSortedRoutes: function() {
+		        return _sortedroutes.getSortedRoutes;
+		    },
+		    isDynamicRoute: function() {
+		        return _isdynamic.isDynamicRoute;
+		    }
+		});
+		const _sortedroutes = requireSortedRoutes();
+		const _isdynamic = requireIsDynamic();
+
+		
+	} (utils));
+	return utils;
+}
+
+var interpolateAs = {};
+
+var routeMatcher = {};
+
+var routeMatchUtils = {};
+
+var pathToRegexp = {exports: {}};
+
+var hasRequiredPathToRegexp;
+
+function requirePathToRegexp () {
+	if (hasRequiredPathToRegexp) return pathToRegexp.exports;
+	hasRequiredPathToRegexp = 1;
+	(()=>{if(typeof __nccwpck_require__!=="undefined")__nccwpck_require__.ab=__dirname+"/";var e={};(()=>{var n=e;Object.defineProperty(n,"__esModule",{value:true});n.pathToRegexp=n.tokensToRegexp=n.regexpToFunction=n.match=n.tokensToFunction=n.compile=n.parse=void 0;function lexer(e){var n=[];var r=0;while(r<e.length){var t=e[r];if(t==="*"||t==="+"||t==="?"){n.push({type:"MODIFIER",index:r,value:e[r++]});continue}if(t==="\\"){n.push({type:"ESCAPED_CHAR",index:r++,value:e[r++]});continue}if(t==="{"){n.push({type:"OPEN",index:r,value:e[r++]});continue}if(t==="}"){n.push({type:"CLOSE",index:r,value:e[r++]});continue}if(t===":"){var a="";var i=r+1;while(i<e.length){var o=e.charCodeAt(i);if(o>=48&&o<=57||o>=65&&o<=90||o>=97&&o<=122||o===95){a+=e[i++];continue}break}if(!a)throw new TypeError("Missing parameter name at ".concat(r));n.push({type:"NAME",index:r,value:a});r=i;continue}if(t==="("){var c=1;var f="";var i=r+1;if(e[i]==="?"){throw new TypeError('Pattern cannot start with "?" at '.concat(i))}while(i<e.length){if(e[i]==="\\"){f+=e[i++]+e[i++];continue}if(e[i]===")"){c--;if(c===0){i++;break}}else if(e[i]==="("){c++;if(e[i+1]!=="?"){throw new TypeError("Capturing groups are not allowed at ".concat(i))}}f+=e[i++];}if(c)throw new TypeError("Unbalanced pattern at ".concat(r));if(!f)throw new TypeError("Missing pattern at ".concat(r));n.push({type:"PATTERN",index:r,value:f});r=i;continue}n.push({type:"CHAR",index:r,value:e[r++]});}n.push({type:"END",index:r,value:""});return n}function parse(e,n){if(n===void 0){n={};}var r=lexer(e);var t=n.prefixes,a=t===void 0?"./":t,i=n.delimiter,o=i===void 0?"/#?":i;var c=[];var f=0;var u=0;var p="";var tryConsume=function(e){if(u<r.length&&r[u].type===e)return r[u++].value};var mustConsume=function(e){var n=tryConsume(e);if(n!==undefined)return n;var t=r[u],a=t.type,i=t.index;throw new TypeError("Unexpected ".concat(a," at ").concat(i,", expected ").concat(e))};var consumeText=function(){var e="";var n;while(n=tryConsume("CHAR")||tryConsume("ESCAPED_CHAR")){e+=n;}return e};var isSafe=function(e){for(var n=0,r=o;n<r.length;n++){var t=r[n];if(e.indexOf(t)>-1)return true}return false};var safePattern=function(e){var n=c[c.length-1];var r=e||(n&&typeof n==="string"?n:"");if(n&&!r){throw new TypeError('Must have text between two parameters, missing text after "'.concat(n.name,'"'))}if(!r||isSafe(r))return "[^".concat(escapeString(o),"]+?");return "(?:(?!".concat(escapeString(r),")[^").concat(escapeString(o),"])+?")};while(u<r.length){var v=tryConsume("CHAR");var s=tryConsume("NAME");var d=tryConsume("PATTERN");if(s||d){var g=v||"";if(a.indexOf(g)===-1){p+=g;g="";}if(p){c.push(p);p="";}c.push({name:s||f++,prefix:g,suffix:"",pattern:d||safePattern(g),modifier:tryConsume("MODIFIER")||""});continue}var x=v||tryConsume("ESCAPED_CHAR");if(x){p+=x;continue}if(p){c.push(p);p="";}var h=tryConsume("OPEN");if(h){var g=consumeText();var l=tryConsume("NAME")||"";var m=tryConsume("PATTERN")||"";var T=consumeText();mustConsume("CLOSE");c.push({name:l||(m?f++:""),pattern:l&&!m?safePattern(g):m,prefix:g,suffix:T,modifier:tryConsume("MODIFIER")||""});continue}mustConsume("END");}return c}n.parse=parse;function compile(e,n){return tokensToFunction(parse(e,n),n)}n.compile=compile;function tokensToFunction(e,n){if(n===void 0){n={};}var r=flags(n);var t=n.encode,a=t===void 0?function(e){return e}:t,i=n.validate,o=i===void 0?true:i;var c=e.map((function(e){if(typeof e==="object"){return new RegExp("^(?:".concat(e.pattern,")$"),r)}}));return function(n){var r="";for(var t=0;t<e.length;t++){var i=e[t];if(typeof i==="string"){r+=i;continue}var f=n?n[i.name]:undefined;var u=i.modifier==="?"||i.modifier==="*";var p=i.modifier==="*"||i.modifier==="+";if(Array.isArray(f)){if(!p){throw new TypeError('Expected "'.concat(i.name,'" to not repeat, but got an array'))}if(f.length===0){if(u)continue;throw new TypeError('Expected "'.concat(i.name,'" to not be empty'))}for(var v=0;v<f.length;v++){var s=a(f[v],i);if(o&&!c[t].test(s)){throw new TypeError('Expected all "'.concat(i.name,'" to match "').concat(i.pattern,'", but got "').concat(s,'"'))}r+=i.prefix+s+i.suffix;}continue}if(typeof f==="string"||typeof f==="number"){var s=a(String(f),i);if(o&&!c[t].test(s)){throw new TypeError('Expected "'.concat(i.name,'" to match "').concat(i.pattern,'", but got "').concat(s,'"'))}r+=i.prefix+s+i.suffix;continue}if(u)continue;var d=p?"an array":"a string";throw new TypeError('Expected "'.concat(i.name,'" to be ').concat(d))}return r}}n.tokensToFunction=tokensToFunction;function match(e,n){var r=[];var t=pathToRegexp(e,r,n);return regexpToFunction(t,r,n)}n.match=match;function regexpToFunction(e,n,r){if(r===void 0){r={};}var t=r.decode,a=t===void 0?function(e){return e}:t;return function(r){var t=e.exec(r);if(!t)return false;var i=t[0],o=t.index;var c=Object.create(null);var _loop_1=function(e){if(t[e]===undefined)return "continue";var r=n[e-1];if(r.modifier==="*"||r.modifier==="+"){c[r.name]=t[e].split(r.prefix+r.suffix).map((function(e){return a(e,r)}));}else {c[r.name]=a(t[e],r);}};for(var f=1;f<t.length;f++){_loop_1(f);}return {path:i,index:o,params:c}}}n.regexpToFunction=regexpToFunction;function escapeString(e){return e.replace(/([.+*?=^!:${}()[\]|/\\])/g,"\\$1")}function flags(e){return e&&e.sensitive?"":"i"}function regexpToRegexp(e,n){if(!n)return e;var r=/\((?:\?<(.*?)>)?(?!\?)/g;var t=0;var a=r.exec(e.source);while(a){n.push({name:a[1]||t++,prefix:"",suffix:"",modifier:"",pattern:""});a=r.exec(e.source);}return e}function arrayToRegexp(e,n,r){var t=e.map((function(e){return pathToRegexp(e,n,r).source}));return new RegExp("(?:".concat(t.join("|"),")"),flags(r))}function stringToRegexp(e,n,r){return tokensToRegexp(parse(e,r),n,r)}function tokensToRegexp(e,n,r){if(r===void 0){r={};}var t=r.strict,a=t===void 0?false:t,i=r.start,o=i===void 0?true:i,c=r.end,f=c===void 0?true:c,u=r.encode,p=u===void 0?function(e){return e}:u,v=r.delimiter,s=v===void 0?"/#?":v,d=r.endsWith,g=d===void 0?"":d;var x="[".concat(escapeString(g),"]|$");var h="[".concat(escapeString(s),"]");var l=o?"^":"";for(var m=0,T=e;m<T.length;m++){var E=T[m];if(typeof E==="string"){l+=escapeString(p(E));}else {var w=escapeString(p(E.prefix));var y=escapeString(p(E.suffix));if(E.pattern){if(n)n.push(E);if(w||y){if(E.modifier==="+"||E.modifier==="*"){var R=E.modifier==="*"?"?":"";l+="(?:".concat(w,"((?:").concat(E.pattern,")(?:").concat(y).concat(w,"(?:").concat(E.pattern,"))*)").concat(y,")").concat(R);}else {l+="(?:".concat(w,"(").concat(E.pattern,")").concat(y,")").concat(E.modifier);}}else {if(E.modifier==="+"||E.modifier==="*"){throw new TypeError('Can not repeat "'.concat(E.name,'" without a prefix and suffix'))}l+="(".concat(E.pattern,")").concat(E.modifier);}}else {l+="(?:".concat(w).concat(y,")").concat(E.modifier);}}}if(f){if(!a)l+="".concat(h,"?");l+=!r.endsWith?"$":"(?=".concat(x,")");}else {var A=e[e.length-1];var _=typeof A==="string"?h.indexOf(A[A.length-1])>-1:A===undefined;if(!a){l+="(?:".concat(h,"(?=").concat(x,"))?");}if(!_){l+="(?=".concat(h,"|").concat(x,")");}}return new RegExp(l,flags(r))}n.tokensToRegexp=tokensToRegexp;function pathToRegexp(e,n,r){if(e instanceof RegExp)return regexpToRegexp(e,n);if(Array.isArray(e))return arrayToRegexp(e,n,r);return stringToRegexp(e,n,r)}n.pathToRegexp=pathToRegexp;})();pathToRegexp.exports=e;})();
+	return pathToRegexp.exports;
+}
+
+var routePatternNormalizer = {};
+
+var hasRequiredRoutePatternNormalizer;
+
+function requireRoutePatternNormalizer () {
+	if (hasRequiredRoutePatternNormalizer) return routePatternNormalizer;
+	hasRequiredRoutePatternNormalizer = 1;
+	(function (exports$1) {
+		Object.defineProperty(exports$1, "__esModule", {
+		    value: true
+		});
+		function _export(target, all) {
+		    for(var name in all)Object.defineProperty(target, name, {
+		        enumerable: true,
+		        get: all[name]
+		    });
+		}
+		_export(exports$1, {
+		    hasAdjacentParameterIssues: function() {
+		        return hasAdjacentParameterIssues;
+		    },
+		    normalizeAdjacentParameters: function() {
+		        return normalizeAdjacentParameters;
+		    },
+		    normalizeTokensForRegexp: function() {
+		        return normalizeTokensForRegexp;
+		    },
+		    stripParameterSeparators: function() {
+		        return stripParameterSeparators;
+		    }
+		});
+		/**
+		 * Route pattern normalization utilities for path-to-regexp compatibility.
+		 *
+		 * path-to-regexp 6.3.0+ introduced stricter validation that rejects certain
+		 * patterns commonly used in Next.js interception routes. This module provides
+		 * normalization functions to make Next.js route patterns compatible with the
+		 * updated library while preserving all functionality.
+		 */ /**
+		 * Internal separator used to normalize adjacent parameter patterns.
+		 * This unique marker is inserted between adjacent parameters and stripped out
+		 * during parameter extraction to avoid conflicts with real URL content.
+		 */ const PARAM_SEPARATOR = '_NEXTSEP_';
+		function hasAdjacentParameterIssues(route) {
+		    if (typeof route !== 'string') return false;
+		    // Check for interception route markers followed immediately by parameters
+		    // Pattern: /(.):param, /(..):param, /(...):param, /(.)(.):param etc.
+		    // These patterns cause "Must have text between two parameters" errors
+		    if (/\/\(\.{1,3}\):[^/\s]+/.test(route)) {
+		        return true;
+		    }
+		    // Check for basic adjacent parameters without separators
+		    // Pattern: :param1:param2 (but not :param* or other URL patterns)
+		    if (/:[a-zA-Z_][a-zA-Z0-9_]*:[a-zA-Z_][a-zA-Z0-9_]*/.test(route)) {
+		        return true;
+		    }
+		    return false;
+		}
+		function normalizeAdjacentParameters(route) {
+		    let normalized = route;
+		    // Handle interception route patterns: (.):param -> (.)_NEXTSEP_:param
+		    normalized = normalized.replace(/(\([^)]*\)):([^/\s]+)/g, `$1${PARAM_SEPARATOR}:$2`);
+		    // Handle other adjacent parameter patterns: :param1:param2 -> :param1_NEXTSEP_:param2
+		    normalized = normalized.replace(/:([^:/\s)]+)(?=:)/g, `:$1${PARAM_SEPARATOR}`);
+		    return normalized;
+		}
+		function normalizeTokensForRegexp(tokens) {
+		    return tokens.map((token)=>{
+		        // Token union type: Token = string | TokenObject
+		        // Literal path segments are strings, parameters/wildcards are objects
+		        if (typeof token === 'object' && token !== null && // Not all token objects have 'modifier' property (e.g., simple text tokens)
+		        'modifier' in token && // Only repeating modifiers (* or +) cause the validation error
+		        // Other modifiers like '?' (optional) are fine
+		        (token.modifier === '*' || token.modifier === '+') && // Token objects can have different shapes depending on route pattern
+		        'prefix' in token && 'suffix' in token && // Both prefix and suffix must be empty strings
+		        // This is what causes the validation error in path-to-regexp
+		        token.prefix === '' && token.suffix === '') {
+		            // Add minimal prefix to satisfy path-to-regexp validation
+		            // We use '/' as it's the most common path delimiter and won't break route matching
+		            // The prefix gets used in regex generation but doesn't affect parameter extraction
+		            return {
+		                ...token,
+		                prefix: '/'
+		            };
+		        }
+		        return token;
+		    });
+		}
+		function stripParameterSeparators(params) {
+		    const cleaned = {};
+		    for (const [key, value] of Object.entries(params)){
+		        if (typeof value === 'string') {
+		            // Remove the separator if it appears at the start of parameter values
+		            cleaned[key] = value.replace(new RegExp(`^${PARAM_SEPARATOR}`), '');
+		        } else if (Array.isArray(value)) {
+		            // Handle array parameters (from repeated route segments)
+		            cleaned[key] = value.map((item)=>typeof item === 'string' ? item.replace(new RegExp(`^${PARAM_SEPARATOR}`), '') : item);
+		        } else {
+		            cleaned[key] = value;
+		        }
+		    }
+		    return cleaned;
+		}
+
+		
+	} (routePatternNormalizer));
+	return routePatternNormalizer;
+}
+
+/**
+ * Client-safe utilities for route matching that don't import server-side
+ * utilities to avoid bundling issues with Turbopack
+ */
+
+var hasRequiredRouteMatchUtils;
+
+function requireRouteMatchUtils () {
+	if (hasRequiredRouteMatchUtils) return routeMatchUtils;
+	hasRequiredRouteMatchUtils = 1;
+	(function (exports$1) {
+		Object.defineProperty(exports$1, "__esModule", {
+		    value: true
+		});
+		function _export(target, all) {
+		    for(var name in all)Object.defineProperty(target, name, {
+		        enumerable: true,
+		        get: all[name]
+		    });
+		}
+		_export(exports$1, {
+		    safeCompile: function() {
+		        return safeCompile;
+		    },
+		    safePathToRegexp: function() {
+		        return safePathToRegexp;
+		    },
+		    safeRegexpToFunction: function() {
+		        return safeRegexpToFunction;
+		    },
+		    safeRouteMatcher: function() {
+		        return safeRouteMatcher;
+		    }
+		});
+		const _pathtoregexp = requirePathToRegexp();
+		const _routepatternnormalizer = requireRoutePatternNormalizer();
+		function safePathToRegexp(route, keys, options) {
+		    if (typeof route !== 'string') {
+		        return (0, _pathtoregexp.pathToRegexp)(route, keys, options);
+		    }
+		    // Check if normalization is needed and cache the result
+		    const needsNormalization = (0, _routepatternnormalizer.hasAdjacentParameterIssues)(route);
+		    const routeToUse = needsNormalization ? (0, _routepatternnormalizer.normalizeAdjacentParameters)(route) : route;
+		    try {
+		        return (0, _pathtoregexp.pathToRegexp)(routeToUse, keys, options);
+		    } catch (error) {
+		        // Only try normalization if we haven't already normalized
+		        if (!needsNormalization) {
+		            try {
+		                const normalizedRoute = (0, _routepatternnormalizer.normalizeAdjacentParameters)(route);
+		                return (0, _pathtoregexp.pathToRegexp)(normalizedRoute, keys, options);
+		            } catch (retryError) {
+		                // If that doesn't work, fall back to original error
+		                throw error;
+		            }
+		        }
+		        throw error;
+		    }
+		}
+		function safeCompile(route, options) {
+		    // Check if normalization is needed and cache the result
+		    const needsNormalization = (0, _routepatternnormalizer.hasAdjacentParameterIssues)(route);
+		    const routeToUse = needsNormalization ? (0, _routepatternnormalizer.normalizeAdjacentParameters)(route) : route;
+		    try {
+		        return (0, _pathtoregexp.compile)(routeToUse, options);
+		    } catch (error) {
+		        // Only try normalization if we haven't already normalized
+		        if (!needsNormalization) {
+		            try {
+		                const normalizedRoute = (0, _routepatternnormalizer.normalizeAdjacentParameters)(route);
+		                return (0, _pathtoregexp.compile)(normalizedRoute, options);
+		            } catch (retryError) {
+		                // If that doesn't work, fall back to original error
+		                throw error;
+		            }
+		        }
+		        throw error;
+		    }
+		}
+		function safeRegexpToFunction(regexp, keys) {
+		    const originalMatcher = (0, _pathtoregexp.regexpToFunction)(regexp, keys || []);
+		    return (pathname)=>{
+		        const result = originalMatcher(pathname);
+		        if (!result) return false;
+		        // Clean parameters before returning
+		        return {
+		            ...result,
+		            params: (0, _routepatternnormalizer.stripParameterSeparators)(result.params)
+		        };
+		    };
+		}
+		function safeRouteMatcher(matcherFn) {
+		    return (pathname)=>{
+		        const result = matcherFn(pathname);
+		        if (!result) return false;
+		        // Clean parameters before returning
+		        return (0, _routepatternnormalizer.stripParameterSeparators)(result);
+		    };
+		}
+
+		
+	} (routeMatchUtils));
+	return routeMatchUtils;
+}
+
+var hasRequiredRouteMatcher;
+
+function requireRouteMatcher () {
+	if (hasRequiredRouteMatcher) return routeMatcher;
+	hasRequiredRouteMatcher = 1;
+	(function (exports$1) {
+		Object.defineProperty(exports$1, "__esModule", {
+		    value: true
+		});
+		Object.defineProperty(exports$1, "getRouteMatcher", {
+		    enumerable: true,
+		    get: function() {
+		        return getRouteMatcher;
+		    }
+		});
+		const _utils = requireUtils$1();
+		const _routematchutils = requireRouteMatchUtils();
+		function getRouteMatcher(param) {
+		    let { re, groups } = param;
+		    const rawMatcher = (pathname)=>{
+		        const routeMatch = re.exec(pathname);
+		        if (!routeMatch) return false;
+		        const decode = (param)=>{
+		            try {
+		                return decodeURIComponent(param);
+		            } catch (e) {
+		                throw Object.defineProperty(new _utils.DecodeError('failed to decode param'), "__NEXT_ERROR_CODE", {
+		                    value: "E528",
+		                    enumerable: false,
+		                    configurable: true
+		                });
+		            }
+		        };
+		        const params = {};
+		        for (const [key, group] of Object.entries(groups)){
+		            const match = routeMatch[group.pos];
+		            if (match !== undefined) {
+		                if (group.repeat) {
+		                    params[key] = match.split('/').map((entry)=>decode(entry));
+		                } else {
+		                    params[key] = decode(match);
+		                }
+		            }
+		        }
+		        return params;
+		    };
+		    // Wrap with safe matcher to handle parameter cleaning
+		    return (0, _routematchutils.safeRouteMatcher)(rawMatcher);
+		}
+
+		
+	} (routeMatcher));
+	return routeMatcher;
+}
+
+var routeRegex = {};
+
+var constants = {};
+
+var hasRequiredConstants;
+
+function requireConstants () {
+	if (hasRequiredConstants) return constants;
+	hasRequiredConstants = 1;
+	(function (exports$1) {
+		Object.defineProperty(exports$1, "__esModule", {
+		    value: true
+		});
+		function _export(target, all) {
+		    for(var name in all)Object.defineProperty(target, name, {
+		        enumerable: true,
+		        get: all[name]
+		    });
+		}
+		_export(exports$1, {
+		    ACTION_SUFFIX: function() {
+		        return ACTION_SUFFIX;
+		    },
+		    APP_DIR_ALIAS: function() {
+		        return APP_DIR_ALIAS;
+		    },
+		    CACHE_ONE_YEAR: function() {
+		        return CACHE_ONE_YEAR;
+		    },
+		    DOT_NEXT_ALIAS: function() {
+		        return DOT_NEXT_ALIAS;
+		    },
+		    ESLINT_DEFAULT_DIRS: function() {
+		        return ESLINT_DEFAULT_DIRS;
+		    },
+		    GSP_NO_RETURNED_VALUE: function() {
+		        return GSP_NO_RETURNED_VALUE;
+		    },
+		    GSSP_COMPONENT_MEMBER_ERROR: function() {
+		        return GSSP_COMPONENT_MEMBER_ERROR;
+		    },
+		    GSSP_NO_RETURNED_VALUE: function() {
+		        return GSSP_NO_RETURNED_VALUE;
+		    },
+		    HTML_CONTENT_TYPE_HEADER: function() {
+		        return HTML_CONTENT_TYPE_HEADER;
+		    },
+		    INFINITE_CACHE: function() {
+		        return INFINITE_CACHE;
+		    },
+		    INSTRUMENTATION_HOOK_FILENAME: function() {
+		        return INSTRUMENTATION_HOOK_FILENAME;
+		    },
+		    JSON_CONTENT_TYPE_HEADER: function() {
+		        return JSON_CONTENT_TYPE_HEADER;
+		    },
+		    MATCHED_PATH_HEADER: function() {
+		        return MATCHED_PATH_HEADER;
+		    },
+		    MIDDLEWARE_FILENAME: function() {
+		        return MIDDLEWARE_FILENAME;
+		    },
+		    MIDDLEWARE_LOCATION_REGEXP: function() {
+		        return MIDDLEWARE_LOCATION_REGEXP;
+		    },
+		    NEXT_BODY_SUFFIX: function() {
+		        return NEXT_BODY_SUFFIX;
+		    },
+		    NEXT_CACHE_IMPLICIT_TAG_ID: function() {
+		        return NEXT_CACHE_IMPLICIT_TAG_ID;
+		    },
+		    NEXT_CACHE_REVALIDATED_TAGS_HEADER: function() {
+		        return NEXT_CACHE_REVALIDATED_TAGS_HEADER;
+		    },
+		    NEXT_CACHE_REVALIDATE_TAG_TOKEN_HEADER: function() {
+		        return NEXT_CACHE_REVALIDATE_TAG_TOKEN_HEADER;
+		    },
+		    NEXT_CACHE_SOFT_TAG_MAX_LENGTH: function() {
+		        return NEXT_CACHE_SOFT_TAG_MAX_LENGTH;
+		    },
+		    NEXT_CACHE_TAGS_HEADER: function() {
+		        return NEXT_CACHE_TAGS_HEADER;
+		    },
+		    NEXT_CACHE_TAG_MAX_ITEMS: function() {
+		        return NEXT_CACHE_TAG_MAX_ITEMS;
+		    },
+		    NEXT_CACHE_TAG_MAX_LENGTH: function() {
+		        return NEXT_CACHE_TAG_MAX_LENGTH;
+		    },
+		    NEXT_DATA_SUFFIX: function() {
+		        return NEXT_DATA_SUFFIX;
+		    },
+		    NEXT_INTERCEPTION_MARKER_PREFIX: function() {
+		        return NEXT_INTERCEPTION_MARKER_PREFIX;
+		    },
+		    NEXT_META_SUFFIX: function() {
+		        return NEXT_META_SUFFIX;
+		    },
+		    NEXT_QUERY_PARAM_PREFIX: function() {
+		        return NEXT_QUERY_PARAM_PREFIX;
+		    },
+		    NEXT_RESUME_HEADER: function() {
+		        return NEXT_RESUME_HEADER;
+		    },
+		    NON_STANDARD_NODE_ENV: function() {
+		        return NON_STANDARD_NODE_ENV;
+		    },
+		    PAGES_DIR_ALIAS: function() {
+		        return PAGES_DIR_ALIAS;
+		    },
+		    PRERENDER_REVALIDATE_HEADER: function() {
+		        return PRERENDER_REVALIDATE_HEADER;
+		    },
+		    PRERENDER_REVALIDATE_ONLY_GENERATED_HEADER: function() {
+		        return PRERENDER_REVALIDATE_ONLY_GENERATED_HEADER;
+		    },
+		    PUBLIC_DIR_MIDDLEWARE_CONFLICT: function() {
+		        return PUBLIC_DIR_MIDDLEWARE_CONFLICT;
+		    },
+		    ROOT_DIR_ALIAS: function() {
+		        return ROOT_DIR_ALIAS;
+		    },
+		    RSC_ACTION_CLIENT_WRAPPER_ALIAS: function() {
+		        return RSC_ACTION_CLIENT_WRAPPER_ALIAS;
+		    },
+		    RSC_ACTION_ENCRYPTION_ALIAS: function() {
+		        return RSC_ACTION_ENCRYPTION_ALIAS;
+		    },
+		    RSC_ACTION_PROXY_ALIAS: function() {
+		        return RSC_ACTION_PROXY_ALIAS;
+		    },
+		    RSC_ACTION_VALIDATE_ALIAS: function() {
+		        return RSC_ACTION_VALIDATE_ALIAS;
+		    },
+		    RSC_CACHE_WRAPPER_ALIAS: function() {
+		        return RSC_CACHE_WRAPPER_ALIAS;
+		    },
+		    RSC_DYNAMIC_IMPORT_WRAPPER_ALIAS: function() {
+		        return RSC_DYNAMIC_IMPORT_WRAPPER_ALIAS;
+		    },
+		    RSC_MOD_REF_PROXY_ALIAS: function() {
+		        return RSC_MOD_REF_PROXY_ALIAS;
+		    },
+		    RSC_PREFETCH_SUFFIX: function() {
+		        return RSC_PREFETCH_SUFFIX;
+		    },
+		    RSC_SEGMENTS_DIR_SUFFIX: function() {
+		        return RSC_SEGMENTS_DIR_SUFFIX;
+		    },
+		    RSC_SEGMENT_SUFFIX: function() {
+		        return RSC_SEGMENT_SUFFIX;
+		    },
+		    RSC_SUFFIX: function() {
+		        return RSC_SUFFIX;
+		    },
+		    SERVER_PROPS_EXPORT_ERROR: function() {
+		        return SERVER_PROPS_EXPORT_ERROR;
+		    },
+		    SERVER_PROPS_GET_INIT_PROPS_CONFLICT: function() {
+		        return SERVER_PROPS_GET_INIT_PROPS_CONFLICT;
+		    },
+		    SERVER_PROPS_SSG_CONFLICT: function() {
+		        return SERVER_PROPS_SSG_CONFLICT;
+		    },
+		    SERVER_RUNTIME: function() {
+		        return SERVER_RUNTIME;
+		    },
+		    SSG_FALLBACK_EXPORT_ERROR: function() {
+		        return SSG_FALLBACK_EXPORT_ERROR;
+		    },
+		    SSG_GET_INITIAL_PROPS_CONFLICT: function() {
+		        return SSG_GET_INITIAL_PROPS_CONFLICT;
+		    },
+		    STATIC_STATUS_PAGE_GET_INITIAL_PROPS_ERROR: function() {
+		        return STATIC_STATUS_PAGE_GET_INITIAL_PROPS_ERROR;
+		    },
+		    TEXT_PLAIN_CONTENT_TYPE_HEADER: function() {
+		        return TEXT_PLAIN_CONTENT_TYPE_HEADER;
+		    },
+		    UNSTABLE_REVALIDATE_RENAME_ERROR: function() {
+		        return UNSTABLE_REVALIDATE_RENAME_ERROR;
+		    },
+		    WEBPACK_LAYERS: function() {
+		        return WEBPACK_LAYERS;
+		    },
+		    WEBPACK_RESOURCE_QUERIES: function() {
+		        return WEBPACK_RESOURCE_QUERIES;
+		    }
+		});
+		const TEXT_PLAIN_CONTENT_TYPE_HEADER = 'text/plain';
+		const HTML_CONTENT_TYPE_HEADER = 'text/html; charset=utf-8';
+		const JSON_CONTENT_TYPE_HEADER = 'application/json; charset=utf-8';
+		const NEXT_QUERY_PARAM_PREFIX = 'nxtP';
+		const NEXT_INTERCEPTION_MARKER_PREFIX = 'nxtI';
+		const MATCHED_PATH_HEADER = 'x-matched-path';
+		const PRERENDER_REVALIDATE_HEADER = 'x-prerender-revalidate';
+		const PRERENDER_REVALIDATE_ONLY_GENERATED_HEADER = 'x-prerender-revalidate-if-generated';
+		const RSC_PREFETCH_SUFFIX = '.prefetch.rsc';
+		const RSC_SEGMENTS_DIR_SUFFIX = '.segments';
+		const RSC_SEGMENT_SUFFIX = '.segment.rsc';
+		const RSC_SUFFIX = '.rsc';
+		const ACTION_SUFFIX = '.action';
+		const NEXT_DATA_SUFFIX = '.json';
+		const NEXT_META_SUFFIX = '.meta';
+		const NEXT_BODY_SUFFIX = '.body';
+		const NEXT_CACHE_TAGS_HEADER = 'x-next-cache-tags';
+		const NEXT_CACHE_REVALIDATED_TAGS_HEADER = 'x-next-revalidated-tags';
+		const NEXT_CACHE_REVALIDATE_TAG_TOKEN_HEADER = 'x-next-revalidate-tag-token';
+		const NEXT_RESUME_HEADER = 'next-resume';
+		const NEXT_CACHE_TAG_MAX_ITEMS = 128;
+		const NEXT_CACHE_TAG_MAX_LENGTH = 256;
+		const NEXT_CACHE_SOFT_TAG_MAX_LENGTH = 1024;
+		const NEXT_CACHE_IMPLICIT_TAG_ID = '_N_T_';
+		const CACHE_ONE_YEAR = 31536000;
+		const INFINITE_CACHE = 0xfffffffe;
+		const MIDDLEWARE_FILENAME = 'middleware';
+		const MIDDLEWARE_LOCATION_REGEXP = `(?:src/)?${MIDDLEWARE_FILENAME}`;
+		const INSTRUMENTATION_HOOK_FILENAME = 'instrumentation';
+		const PAGES_DIR_ALIAS = 'private-next-pages';
+		const DOT_NEXT_ALIAS = 'private-dot-next';
+		const ROOT_DIR_ALIAS = 'private-next-root-dir';
+		const APP_DIR_ALIAS = 'private-next-app-dir';
+		const RSC_MOD_REF_PROXY_ALIAS = 'private-next-rsc-mod-ref-proxy';
+		const RSC_ACTION_VALIDATE_ALIAS = 'private-next-rsc-action-validate';
+		const RSC_ACTION_PROXY_ALIAS = 'private-next-rsc-server-reference';
+		const RSC_CACHE_WRAPPER_ALIAS = 'private-next-rsc-cache-wrapper';
+		const RSC_DYNAMIC_IMPORT_WRAPPER_ALIAS = 'private-next-rsc-track-dynamic-import';
+		const RSC_ACTION_ENCRYPTION_ALIAS = 'private-next-rsc-action-encryption';
+		const RSC_ACTION_CLIENT_WRAPPER_ALIAS = 'private-next-rsc-action-client-wrapper';
+		const PUBLIC_DIR_MIDDLEWARE_CONFLICT = `You can not have a '_next' folder inside of your public folder. This conflicts with the internal '/_next' route. https://nextjs.org/docs/messages/public-next-folder-conflict`;
+		const SSG_GET_INITIAL_PROPS_CONFLICT = `You can not use getInitialProps with getStaticProps. To use SSG, please remove your getInitialProps`;
+		const SERVER_PROPS_GET_INIT_PROPS_CONFLICT = `You can not use getInitialProps with getServerSideProps. Please remove getInitialProps.`;
+		const SERVER_PROPS_SSG_CONFLICT = `You can not use getStaticProps or getStaticPaths with getServerSideProps. To use SSG, please remove getServerSideProps`;
+		const STATIC_STATUS_PAGE_GET_INITIAL_PROPS_ERROR = `can not have getInitialProps/getServerSideProps, https://nextjs.org/docs/messages/404-get-initial-props`;
+		const SERVER_PROPS_EXPORT_ERROR = `pages with \`getServerSideProps\` can not be exported. See more info here: https://nextjs.org/docs/messages/gssp-export`;
+		const GSP_NO_RETURNED_VALUE = 'Your `getStaticProps` function did not return an object. Did you forget to add a `return`?';
+		const GSSP_NO_RETURNED_VALUE = 'Your `getServerSideProps` function did not return an object. Did you forget to add a `return`?';
+		const UNSTABLE_REVALIDATE_RENAME_ERROR = 'The `unstable_revalidate` property is available for general use.\n' + 'Please use `revalidate` instead.';
+		const GSSP_COMPONENT_MEMBER_ERROR = `can not be attached to a page's component and must be exported from the page. See more info here: https://nextjs.org/docs/messages/gssp-component-member`;
+		const NON_STANDARD_NODE_ENV = `You are using a non-standard "NODE_ENV" value in your environment. This creates inconsistencies in the project and is strongly advised against. Read more: https://nextjs.org/docs/messages/non-standard-node-env`;
+		const SSG_FALLBACK_EXPORT_ERROR = `Pages with \`fallback\` enabled in \`getStaticPaths\` can not be exported. See more info here: https://nextjs.org/docs/messages/ssg-fallback-true-export`;
+		const ESLINT_DEFAULT_DIRS = [
+		    'app',
+		    'pages',
+		    'components',
+		    'lib',
+		    'src'
+		];
+		const SERVER_RUNTIME = {
+		    edge: 'edge',
+		    experimentalEdge: 'experimental-edge',
+		    nodejs: 'nodejs'
+		};
+		/**
+		 * The names of the webpack layers. These layers are the primitives for the
+		 * webpack chunks.
+		 */ const WEBPACK_LAYERS_NAMES = {
+		    /**
+		   * The layer for the shared code between the client and server bundles.
+		   */ shared: 'shared',
+		    /**
+		   * The layer for server-only runtime and picking up `react-server` export conditions.
+		   * Including app router RSC pages and app router custom routes and metadata routes.
+		   */ reactServerComponents: 'rsc',
+		    /**
+		   * Server Side Rendering layer for app (ssr).
+		   */ serverSideRendering: 'ssr',
+		    /**
+		   * The browser client bundle layer for actions.
+		   */ actionBrowser: 'action-browser',
+		    /**
+		   * The Node.js bundle layer for the API routes.
+		   */ apiNode: 'api-node',
+		    /**
+		   * The Edge Lite bundle layer for the API routes.
+		   */ apiEdge: 'api-edge',
+		    /**
+		   * The layer for the middleware code.
+		   */ middleware: 'middleware',
+		    /**
+		   * The layer for the instrumentation hooks.
+		   */ instrument: 'instrument',
+		    /**
+		   * The layer for assets on the edge.
+		   */ edgeAsset: 'edge-asset',
+		    /**
+		   * The browser client bundle layer for App directory.
+		   */ appPagesBrowser: 'app-pages-browser',
+		    /**
+		   * The browser client bundle layer for Pages directory.
+		   */ pagesDirBrowser: 'pages-dir-browser',
+		    /**
+		   * The Edge Lite bundle layer for Pages directory.
+		   */ pagesDirEdge: 'pages-dir-edge',
+		    /**
+		   * The Node.js bundle layer for Pages directory.
+		   */ pagesDirNode: 'pages-dir-node'
+		};
+		const WEBPACK_LAYERS = {
+		    ...WEBPACK_LAYERS_NAMES,
+		    GROUP: {
+		        builtinReact: [
+		            WEBPACK_LAYERS_NAMES.reactServerComponents,
+		            WEBPACK_LAYERS_NAMES.actionBrowser
+		        ],
+		        serverOnly: [
+		            WEBPACK_LAYERS_NAMES.reactServerComponents,
+		            WEBPACK_LAYERS_NAMES.actionBrowser,
+		            WEBPACK_LAYERS_NAMES.instrument,
+		            WEBPACK_LAYERS_NAMES.middleware
+		        ],
+		        neutralTarget: [
+		            // pages api
+		            WEBPACK_LAYERS_NAMES.apiNode,
+		            WEBPACK_LAYERS_NAMES.apiEdge
+		        ],
+		        clientOnly: [
+		            WEBPACK_LAYERS_NAMES.serverSideRendering,
+		            WEBPACK_LAYERS_NAMES.appPagesBrowser
+		        ],
+		        bundled: [
+		            WEBPACK_LAYERS_NAMES.reactServerComponents,
+		            WEBPACK_LAYERS_NAMES.actionBrowser,
+		            WEBPACK_LAYERS_NAMES.serverSideRendering,
+		            WEBPACK_LAYERS_NAMES.appPagesBrowser,
+		            WEBPACK_LAYERS_NAMES.shared,
+		            WEBPACK_LAYERS_NAMES.instrument,
+		            WEBPACK_LAYERS_NAMES.middleware
+		        ],
+		        appPages: [
+		            // app router pages and layouts
+		            WEBPACK_LAYERS_NAMES.reactServerComponents,
+		            WEBPACK_LAYERS_NAMES.serverSideRendering,
+		            WEBPACK_LAYERS_NAMES.appPagesBrowser,
+		            WEBPACK_LAYERS_NAMES.actionBrowser
+		        ]
+		    }
+		};
+		const WEBPACK_RESOURCE_QUERIES = {
+		    edgeSSREntry: '__next_edge_ssr_entry__',
+		    metadata: '__next_metadata__',
+		    metadataRoute: '__next_metadata_route__',
+		    metadataImageMeta: '__next_metadata_image_meta__'
+		};
+
+		
+	} (constants));
+	return constants;
+}
+
+var escapeRegexp = {};
+
+var hasRequiredEscapeRegexp;
+
+function requireEscapeRegexp () {
+	if (hasRequiredEscapeRegexp) return escapeRegexp;
+	hasRequiredEscapeRegexp = 1;
+	(function (exports$1) {
+		Object.defineProperty(exports$1, "__esModule", {
+		    value: true
+		});
+		Object.defineProperty(exports$1, "escapeStringRegexp", {
+		    enumerable: true,
+		    get: function() {
+		        return escapeStringRegexp;
+		    }
+		});
+		const reHasRegExp = /[|\\{}()[\]^$+*?.-]/;
+		const reReplaceRegExp = /[|\\{}()[\]^$+*?.-]/g;
+		function escapeStringRegexp(str) {
+		    // see also: https://github.com/lodash/lodash/blob/2da024c3b4f9947a48517639de7560457cd4ec6c/escapeRegExp.js#L23
+		    if (reHasRegExp.test(str)) {
+		        return str.replace(reReplaceRegExp, '\\$&');
+		    }
+		    return str;
+		}
+
+		
+	} (escapeRegexp));
+	return escapeRegexp;
+}
+
+var getDynamicParam = {};
+
+var hasRequiredGetDynamicParam;
+
+function requireGetDynamicParam () {
+	if (hasRequiredGetDynamicParam) return getDynamicParam;
+	hasRequiredGetDynamicParam = 1;
+	(function (exports$1) {
+		Object.defineProperty(exports$1, "__esModule", {
+		    value: true
+		});
+		function _export(target, all) {
+		    for(var name in all)Object.defineProperty(target, name, {
+		        enumerable: true,
+		        get: all[name]
+		    });
+		}
+		_export(exports$1, {
+		    PARAMETER_PATTERN: function() {
+		        return PARAMETER_PATTERN;
+		    },
+		    getDynamicParam: function() {
+		        return getDynamicParam;
+		    },
+		    parseMatchedParameter: function() {
+		        return parseMatchedParameter;
+		    },
+		    parseParameter: function() {
+		        return parseParameter;
+		    }
+		});
+		function getDynamicParam(params, segmentKey, dynamicParamType, pagePath, fallbackRouteParams) {
+		    let value = params[segmentKey];
+		    if (fallbackRouteParams && fallbackRouteParams.has(segmentKey)) {
+		        value = fallbackRouteParams.get(segmentKey);
+		    } else if (Array.isArray(value)) {
+		        value = value.map((i)=>encodeURIComponent(i));
+		    } else if (typeof value === 'string') {
+		        value = encodeURIComponent(value);
+		    }
+		    if (!value) {
+		        const isCatchall = dynamicParamType === 'c';
+		        const isOptionalCatchall = dynamicParamType === 'oc';
+		        if (isCatchall || isOptionalCatchall) {
+		            // handle the case where an optional catchall does not have a value,
+		            // e.g. `/dashboard/[[...slug]]` when requesting `/dashboard`
+		            if (isOptionalCatchall) {
+		                return {
+		                    param: segmentKey,
+		                    value: null,
+		                    type: dynamicParamType,
+		                    treeSegment: [
+		                        segmentKey,
+		                        '',
+		                        dynamicParamType
+		                    ]
+		                };
+		            }
+		            // handle the case where a catchall or optional catchall does not have a value,
+		            // e.g. `/foo/bar/hello` and `@slot/[...catchall]` or `@slot/[[...catchall]]` is matched
+		            value = pagePath.split('/')// remove the first empty string
+		            .slice(1)// replace any dynamic params with the actual values
+		            .flatMap((pathSegment)=>{
+		                const param = parseParameter(pathSegment);
+		                var _params_param_key;
+		                // if the segment matches a param, return the param value
+		                // otherwise, it's a static segment, so just return that
+		                return (_params_param_key = params[param.key]) != null ? _params_param_key : param.key;
+		            });
+		            return {
+		                param: segmentKey,
+		                value,
+		                type: dynamicParamType,
+		                // This value always has to be a string.
+		                treeSegment: [
+		                    segmentKey,
+		                    value.join('/'),
+		                    dynamicParamType
+		                ]
+		            };
+		        }
+		    }
+		    return {
+		        param: segmentKey,
+		        // The value that is passed to user code.
+		        value: value,
+		        // The value that is rendered in the router tree.
+		        treeSegment: [
+		            segmentKey,
+		            Array.isArray(value) ? value.join('/') : value,
+		            dynamicParamType
+		        ],
+		        type: dynamicParamType
+		    };
+		}
+		const PARAMETER_PATTERN = /^([^[]*)\[((?:\[[^\]]*\])|[^\]]+)\](.*)$/;
+		function parseParameter(param) {
+		    const match = param.match(PARAMETER_PATTERN);
+		    if (!match) {
+		        return parseMatchedParameter(param);
+		    }
+		    return parseMatchedParameter(match[2]);
+		}
+		function parseMatchedParameter(param) {
+		    const optional = param.startsWith('[') && param.endsWith(']');
+		    if (optional) {
+		        param = param.slice(1, -1);
+		    }
+		    const repeat = param.startsWith('...');
+		    if (repeat) {
+		        param = param.slice(3);
+		    }
+		    return {
+		        key: param,
+		        repeat,
+		        optional
+		    };
+		}
+
+		
+	} (getDynamicParam));
+	return getDynamicParam;
+}
+
+var hasRequiredRouteRegex;
+
+function requireRouteRegex () {
+	if (hasRequiredRouteRegex) return routeRegex;
+	hasRequiredRouteRegex = 1;
+	(function (exports$1) {
+		Object.defineProperty(exports$1, "__esModule", {
+		    value: true
+		});
+		function _export(target, all) {
+		    for(var name in all)Object.defineProperty(target, name, {
+		        enumerable: true,
+		        get: all[name]
+		    });
+		}
+		_export(exports$1, {
+		    getNamedMiddlewareRegex: function() {
+		        return getNamedMiddlewareRegex;
+		    },
+		    getNamedRouteRegex: function() {
+		        return getNamedRouteRegex;
+		    },
+		    getRouteRegex: function() {
+		        return getRouteRegex;
+		    }
+		});
+		const _constants = requireConstants();
+		const _interceptionroutes = requireInterceptionRoutes();
+		const _escaperegexp = requireEscapeRegexp();
+		const _removetrailingslash = requireRemoveTrailingSlash();
+		const _getdynamicparam = requireGetDynamicParam();
+		function getParametrizedRoute(route, includeSuffix, includePrefix) {
+		    const groups = {};
+		    let groupIndex = 1;
+		    const segments = [];
+		    for (const segment of (0, _removetrailingslash.removeTrailingSlash)(route).slice(1).split('/')){
+		        const markerMatch = _interceptionroutes.INTERCEPTION_ROUTE_MARKERS.find((m)=>segment.startsWith(m));
+		        const paramMatches = segment.match(_getdynamicparam.PARAMETER_PATTERN) // Check for parameters
+		        ;
+		        if (markerMatch && paramMatches && paramMatches[2]) {
+		            const { key, optional, repeat } = (0, _getdynamicparam.parseMatchedParameter)(paramMatches[2]);
+		            groups[key] = {
+		                pos: groupIndex++,
+		                repeat,
+		                optional
+		            };
+		            segments.push("/" + (0, _escaperegexp.escapeStringRegexp)(markerMatch) + "([^/]+?)");
+		        } else if (paramMatches && paramMatches[2]) {
+		            const { key, repeat, optional } = (0, _getdynamicparam.parseMatchedParameter)(paramMatches[2]);
+		            groups[key] = {
+		                pos: groupIndex++,
+		                repeat,
+		                optional
+		            };
+		            if (includePrefix && paramMatches[1]) {
+		                segments.push("/" + (0, _escaperegexp.escapeStringRegexp)(paramMatches[1]));
+		            }
+		            let s = repeat ? optional ? '(?:/(.+?))?' : '/(.+?)' : '/([^/]+?)';
+		            // Remove the leading slash if includePrefix already added it.
+		            if (includePrefix && paramMatches[1]) {
+		                s = s.substring(1);
+		            }
+		            segments.push(s);
+		        } else {
+		            segments.push("/" + (0, _escaperegexp.escapeStringRegexp)(segment));
+		        }
+		        // If there's a suffix, add it to the segments if it's enabled.
+		        if (includeSuffix && paramMatches && paramMatches[3]) {
+		            segments.push((0, _escaperegexp.escapeStringRegexp)(paramMatches[3]));
+		        }
+		    }
+		    return {
+		        parameterizedRoute: segments.join(''),
+		        groups
+		    };
+		}
+		function getRouteRegex(normalizedRoute, param) {
+		    let { includeSuffix = false, includePrefix = false, excludeOptionalTrailingSlash = false } = param === void 0 ? {} : param;
+		    const { parameterizedRoute, groups } = getParametrizedRoute(normalizedRoute, includeSuffix, includePrefix);
+		    let re = parameterizedRoute;
+		    if (!excludeOptionalTrailingSlash) {
+		        re += '(?:/)?';
+		    }
+		    return {
+		        re: new RegExp("^" + re + "$"),
+		        groups: groups
+		    };
+		}
+		/**
+		 * Builds a function to generate a minimal routeKey using only a-z and minimal
+		 * number of characters.
+		 */ function buildGetSafeRouteKey() {
+		    let i = 0;
+		    return ()=>{
+		        let routeKey = '';
+		        let j = ++i;
+		        while(j > 0){
+		            routeKey += String.fromCharCode(97 + (j - 1) % 26);
+		            j = Math.floor((j - 1) / 26);
+		        }
+		        return routeKey;
+		    };
+		}
+		function getSafeKeyFromSegment(param) {
+		    let { interceptionMarker, getSafeRouteKey, segment, routeKeys, keyPrefix, backreferenceDuplicateKeys } = param;
+		    const { key, optional, repeat } = (0, _getdynamicparam.parseMatchedParameter)(segment);
+		    // replace any non-word characters since they can break
+		    // the named regex
+		    let cleanedKey = key.replace(/\W/g, '');
+		    if (keyPrefix) {
+		        cleanedKey = "" + keyPrefix + cleanedKey;
+		    }
+		    let invalidKey = false;
+		    // check if the key is still invalid and fallback to using a known
+		    // safe key
+		    if (cleanedKey.length === 0 || cleanedKey.length > 30) {
+		        invalidKey = true;
+		    }
+		    if (!isNaN(parseInt(cleanedKey.slice(0, 1)))) {
+		        invalidKey = true;
+		    }
+		    if (invalidKey) {
+		        cleanedKey = getSafeRouteKey();
+		    }
+		    const duplicateKey = cleanedKey in routeKeys;
+		    if (keyPrefix) {
+		        routeKeys[cleanedKey] = "" + keyPrefix + key;
+		    } else {
+		        routeKeys[cleanedKey] = key;
+		    }
+		    // if the segment has an interception marker, make sure that's part of the regex pattern
+		    // this is to ensure that the route with the interception marker doesn't incorrectly match
+		    // the non-intercepted route (ie /app/(.)[username] should not match /app/[username])
+		    const interceptionPrefix = interceptionMarker ? (0, _escaperegexp.escapeStringRegexp)(interceptionMarker) : '';
+		    let pattern;
+		    if (duplicateKey && backreferenceDuplicateKeys) {
+		        // Use a backreference to the key to ensure that the key is the same value
+		        // in each of the placeholders.
+		        pattern = "\\k<" + cleanedKey + ">";
+		    } else if (repeat) {
+		        pattern = "(?<" + cleanedKey + ">.+?)";
+		    } else {
+		        pattern = "(?<" + cleanedKey + ">[^/]+?)";
+		    }
+		    return optional ? "(?:/" + interceptionPrefix + pattern + ")?" : "/" + interceptionPrefix + pattern;
+		}
+		function getNamedParametrizedRoute(route, prefixRouteKeys, includeSuffix, includePrefix, backreferenceDuplicateKeys) {
+		    const getSafeRouteKey = buildGetSafeRouteKey();
+		    const routeKeys = {};
+		    const segments = [];
+		    for (const segment of (0, _removetrailingslash.removeTrailingSlash)(route).slice(1).split('/')){
+		        const hasInterceptionMarker = _interceptionroutes.INTERCEPTION_ROUTE_MARKERS.some((m)=>segment.startsWith(m));
+		        const paramMatches = segment.match(_getdynamicparam.PARAMETER_PATTERN) // Check for parameters
+		        ;
+		        if (hasInterceptionMarker && paramMatches && paramMatches[2]) {
+		            // If there's an interception marker, add it to the segments.
+		            segments.push(getSafeKeyFromSegment({
+		                getSafeRouteKey,
+		                interceptionMarker: paramMatches[1],
+		                segment: paramMatches[2],
+		                routeKeys,
+		                keyPrefix: prefixRouteKeys ? _constants.NEXT_INTERCEPTION_MARKER_PREFIX : undefined,
+		                backreferenceDuplicateKeys
+		            }));
+		        } else if (paramMatches && paramMatches[2]) {
+		            // If there's a prefix, add it to the segments if it's enabled.
+		            if (includePrefix && paramMatches[1]) {
+		                segments.push("/" + (0, _escaperegexp.escapeStringRegexp)(paramMatches[1]));
+		            }
+		            let s = getSafeKeyFromSegment({
+		                getSafeRouteKey,
+		                segment: paramMatches[2],
+		                routeKeys,
+		                keyPrefix: prefixRouteKeys ? _constants.NEXT_QUERY_PARAM_PREFIX : undefined,
+		                backreferenceDuplicateKeys
+		            });
+		            // Remove the leading slash if includePrefix already added it.
+		            if (includePrefix && paramMatches[1]) {
+		                s = s.substring(1);
+		            }
+		            segments.push(s);
+		        } else {
+		            segments.push("/" + (0, _escaperegexp.escapeStringRegexp)(segment));
+		        }
+		        // If there's a suffix, add it to the segments if it's enabled.
+		        if (includeSuffix && paramMatches && paramMatches[3]) {
+		            segments.push((0, _escaperegexp.escapeStringRegexp)(paramMatches[3]));
+		        }
+		    }
+		    return {
+		        namedParameterizedRoute: segments.join(''),
+		        routeKeys
+		    };
+		}
+		function getNamedRouteRegex(normalizedRoute, options) {
+		    var _options_includeSuffix, _options_includePrefix, _options_backreferenceDuplicateKeys;
+		    const result = getNamedParametrizedRoute(normalizedRoute, options.prefixRouteKeys, (_options_includeSuffix = options.includeSuffix) != null ? _options_includeSuffix : false, (_options_includePrefix = options.includePrefix) != null ? _options_includePrefix : false, (_options_backreferenceDuplicateKeys = options.backreferenceDuplicateKeys) != null ? _options_backreferenceDuplicateKeys : false);
+		    let namedRegex = result.namedParameterizedRoute;
+		    if (!options.excludeOptionalTrailingSlash) {
+		        namedRegex += '(?:/)?';
+		    }
+		    return {
+		        ...getRouteRegex(normalizedRoute, options),
+		        namedRegex: "^" + namedRegex + "$",
+		        routeKeys: result.routeKeys
+		    };
+		}
+		function getNamedMiddlewareRegex(normalizedRoute, options) {
+		    const { parameterizedRoute } = getParametrizedRoute(normalizedRoute, false, false);
+		    const { catchAll = true } = options;
+		    if (parameterizedRoute === '/') {
+		        let catchAllRegex = catchAll ? '.*' : '';
+		        return {
+		            namedRegex: "^/" + catchAllRegex + "$"
+		        };
+		    }
+		    const { namedParameterizedRoute } = getNamedParametrizedRoute(normalizedRoute, false, false, false, false);
+		    let catchAllGroupedRegex = catchAll ? '(?:(/.*)?)' : '';
+		    return {
+		        namedRegex: "^" + namedParameterizedRoute + catchAllGroupedRegex + "$"
+		    };
+		}
+
+		
+	} (routeRegex));
+	return routeRegex;
+}
+
+var hasRequiredInterpolateAs;
+
+function requireInterpolateAs () {
+	if (hasRequiredInterpolateAs) return interpolateAs;
+	hasRequiredInterpolateAs = 1;
+	(function (exports$1) {
+		Object.defineProperty(exports$1, "__esModule", {
+		    value: true
+		});
+		Object.defineProperty(exports$1, "interpolateAs", {
+		    enumerable: true,
+		    get: function() {
+		        return interpolateAs;
+		    }
+		});
+		const _routematcher = requireRouteMatcher();
+		const _routeregex = requireRouteRegex();
+		function interpolateAs(route, asPathname, query) {
+		    let interpolatedRoute = '';
+		    const dynamicRegex = (0, _routeregex.getRouteRegex)(route);
+		    const dynamicGroups = dynamicRegex.groups;
+		    const dynamicMatches = // Try to match the dynamic route against the asPath
+		    (asPathname !== route ? (0, _routematcher.getRouteMatcher)(dynamicRegex)(asPathname) : '') || // Fall back to reading the values from the href
+		    // TODO: should this take priority; also need to change in the router.
+		    query;
+		    interpolatedRoute = route;
+		    const params = Object.keys(dynamicGroups);
+		    if (!params.every((param)=>{
+		        let value = dynamicMatches[param] || '';
+		        const { repeat, optional } = dynamicGroups[param];
+		        // support single-level catch-all
+		        // TODO: more robust handling for user-error (passing `/`)
+		        let replaced = "[" + (repeat ? '...' : '') + param + "]";
+		        if (optional) {
+		            replaced = (!value ? '/' : '') + "[" + replaced + "]";
+		        }
+		        if (repeat && !Array.isArray(value)) value = [
+		            value
+		        ];
+		        return (optional || param in dynamicMatches) && // Interpolate group into data URL if present
+		        (interpolatedRoute = interpolatedRoute.replace(replaced, repeat ? value.map(// these values should be fully encoded instead of just
+		        // path delimiter escaped since they are being inserted
+		        // into the URL and we expect URL encoded segments
+		        // when parsing dynamic route params
+		        (segment)=>encodeURIComponent(segment)).join('/') : encodeURIComponent(value)) || '/');
+		    })) {
+		        interpolatedRoute = '' // did not satisfy all requirements
+		        ;
+		    // n.b. We ignore this error because we handle warning for this case in
+		    // development in the `<Link>` component directly.
+		    }
+		    return {
+		        params,
+		        result: interpolatedRoute
+		    };
+		}
+
+		
+	} (interpolateAs));
+	return interpolateAs;
+}
+
+var hasRequiredResolveHref;
+
+function requireResolveHref () {
+	if (hasRequiredResolveHref) return resolveHref.exports;
+	hasRequiredResolveHref = 1;
+	(function (module, exports$1) {
+		Object.defineProperty(exports$1, "__esModule", {
+		    value: true
+		});
+		Object.defineProperty(exports$1, "resolveHref", {
+		    enumerable: true,
+		    get: function() {
+		        return resolveHref;
+		    }
+		});
+		const _querystring = requireQuerystring();
+		const _formaturl = requireFormatUrl();
+		const _omit = requireOmit();
+		const _utils = requireUtils$1();
+		const _normalizetrailingslash = requireNormalizeTrailingSlash();
+		const _islocalurl = requireIsLocalUrl();
+		const _utils1 = requireUtils();
+		const _interpolateas = requireInterpolateAs();
+		const _routeregex = requireRouteRegex();
+		const _routematcher = requireRouteMatcher();
+		function resolveHref(router, href, resolveAs) {
+		    // we use a dummy base url for relative urls
+		    let base;
+		    let urlAsString = typeof href === 'string' ? href : (0, _formaturl.formatWithValidation)(href);
+		    // repeated slashes and backslashes in the URL are considered
+		    // invalid and will never match a Next.js page/file
+		    // https://www.rfc-editor.org/rfc/rfc3986.html#section-3.1
+		    const urlProtoMatch = urlAsString.match(/^[a-z][a-z0-9+.-]*:\/\//i);
+		    const urlAsStringNoProto = urlProtoMatch ? urlAsString.slice(urlProtoMatch[0].length) : urlAsString;
+		    const urlParts = urlAsStringNoProto.split('?', 1);
+		    if ((urlParts[0] || '').match(/(\/\/|\\)/)) {
+		        console.error("Invalid href '" + urlAsString + "' passed to next/router in page: '" + router.pathname + "'. Repeated forward-slashes (//) or backslashes \\ are not valid in the href.");
+		        const normalizedUrl = (0, _utils.normalizeRepeatedSlashes)(urlAsStringNoProto);
+		        urlAsString = (urlProtoMatch ? urlProtoMatch[0] : '') + normalizedUrl;
+		    }
+		    // Return because it cannot be routed by the Next.js router
+		    if (!(0, _islocalurl.isLocalURL)(urlAsString)) {
+		        return resolveAs ? [
+		            urlAsString
+		        ] : urlAsString;
+		    }
+		    try {
+		        let baseBase = urlAsString.startsWith('#') ? router.asPath : router.pathname;
+		        // If the provided href is only a query string, it is safer to use the asPath
+		        // considering rewrites.
+		        if (urlAsString.startsWith('?')) {
+		            baseBase = router.asPath;
+		            // However, if is a dynamic route, we need to use the pathname to preserve the
+		            // query interpolation and rewrites (router.pathname will look like "/[slug]").
+		            if ((0, _utils1.isDynamicRoute)(router.pathname)) {
+		                baseBase = router.pathname;
+		                const routeRegex = (0, _routeregex.getRouteRegex)(router.pathname);
+		                const match = (0, _routematcher.getRouteMatcher)(routeRegex)(router.asPath);
+		                // For dynamic routes, if asPath doesn't match the pathname regex, it is a rewritten path.
+		                // In this case, should use asPath to preserve the current URL.
+		                if (!match) {
+		                    baseBase = router.asPath;
+		                }
+		            // Note: There is an edge case where the pathname is dynamic, and also a rewrite path to the same segment.
+		            // E.g. in "/[slug]" path, rewrite "/foo" -> "/bar"
+		            // In this case, it will be treated as a non-rewritten path and possibly interpolate the query string.
+		            // E.g., "/any?slug=foo" will become the content of "/foo", not rewritten as "/bar"
+		            // This is currently a trade-off of not resolving rewrite paths on every Router/Link call,
+		            // but using a lighter route regex pattern check.
+		            }
+		        }
+		        base = new URL(baseBase, 'http://n');
+		    } catch (_) {
+		        // fallback to / for invalid asPath values e.g. //
+		        base = new URL('/', 'http://n');
+		    }
+		    try {
+		        const finalUrl = new URL(urlAsString, base);
+		        finalUrl.pathname = (0, _normalizetrailingslash.normalizePathTrailingSlash)(finalUrl.pathname);
+		        let interpolatedAs = '';
+		        if ((0, _utils1.isDynamicRoute)(finalUrl.pathname) && finalUrl.searchParams && resolveAs) {
+		            const query = (0, _querystring.searchParamsToUrlQuery)(finalUrl.searchParams);
+		            const { result, params } = (0, _interpolateas.interpolateAs)(finalUrl.pathname, finalUrl.pathname, query);
+		            if (result) {
+		                interpolatedAs = (0, _formaturl.formatWithValidation)({
+		                    pathname: result,
+		                    hash: finalUrl.hash,
+		                    query: (0, _omit.omit)(query, params)
+		                });
+		            }
+		        }
+		        // if the origin didn't change, it means we received a relative href
+		        const resolvedHref = finalUrl.origin === base.origin ? finalUrl.href.slice(finalUrl.origin.length) : finalUrl.href;
+		        return resolveAs ? [
+		            resolvedHref,
+		            interpolatedAs || resolvedHref
+		        ] : resolvedHref;
+		    } catch (_) {
+		        return resolveAs ? [
+		            urlAsString
+		        ] : urlAsString;
+		    }
+		}
+
+		if ((typeof exports$1.default === 'function' || (typeof exports$1.default === 'object' && exports$1.default !== null)) && typeof exports$1.default.__esModule === 'undefined') {
+		  Object.defineProperty(exports$1.default, '__esModule', { value: true });
+		  Object.assign(exports$1.default, exports$1);
+		  module.exports = exports$1.default;
+		}
+
+		
+	} (resolveHref, resolveHref.exports));
+	return resolveHref.exports;
+}
+
+var addLocale$1 = {exports: {}};
+
+var addLocale = {};
+
+var addPathPrefix = {};
+
+var hasRequiredAddPathPrefix;
+
+function requireAddPathPrefix () {
+	if (hasRequiredAddPathPrefix) return addPathPrefix;
+	hasRequiredAddPathPrefix = 1;
+	(function (exports$1) {
+		Object.defineProperty(exports$1, "__esModule", {
+		    value: true
+		});
+		Object.defineProperty(exports$1, "addPathPrefix", {
+		    enumerable: true,
+		    get: function() {
+		        return addPathPrefix;
+		    }
+		});
+		const _parsepath = requireParsePath();
+		function addPathPrefix(path, prefix) {
+		    if (!path.startsWith('/') || !prefix) {
+		        return path;
+		    }
+		    const { pathname, query, hash } = (0, _parsepath.parsePath)(path);
+		    return "" + prefix + pathname + query + hash;
+		}
+
+		
+	} (addPathPrefix));
+	return addPathPrefix;
+}
+
+var hasRequiredAddLocale$1;
+
+function requireAddLocale$1 () {
+	if (hasRequiredAddLocale$1) return addLocale;
+	hasRequiredAddLocale$1 = 1;
+	(function (exports$1) {
+		Object.defineProperty(exports$1, "__esModule", {
+		    value: true
+		});
+		Object.defineProperty(exports$1, "addLocale", {
+		    enumerable: true,
+		    get: function() {
+		        return addLocale;
+		    }
+		});
+		const _addpathprefix = requireAddPathPrefix();
+		const _pathhasprefix = requirePathHasPrefix();
+		function addLocale(path, locale, defaultLocale, ignorePrefix) {
+		    // If no locale was given or the locale is the default locale, we don't need
+		    // to prefix the path.
+		    if (!locale || locale === defaultLocale) return path;
+		    const lower = path.toLowerCase();
+		    // If the path is an API path or the path already has the locale prefix, we
+		    // don't need to prefix the path.
+		    if (!ignorePrefix) {
+		        if ((0, _pathhasprefix.pathHasPrefix)(lower, '/api')) return path;
+		        if ((0, _pathhasprefix.pathHasPrefix)(lower, "/" + locale.toLowerCase())) return path;
+		    }
+		    // Add the locale prefix to the path.
+		    return (0, _addpathprefix.addPathPrefix)(path, "/" + locale);
+		}
+
+		
+	} (addLocale));
+	return addLocale;
+}
+
+var hasRequiredAddLocale;
+
+function requireAddLocale () {
+	if (hasRequiredAddLocale) return addLocale$1.exports;
+	hasRequiredAddLocale = 1;
+	(function (module, exports$1) {
+		Object.defineProperty(exports$1, "__esModule", {
+		    value: true
+		});
+		Object.defineProperty(exports$1, "addLocale", {
+		    enumerable: true,
+		    get: function() {
+		        return addLocale;
+		    }
+		});
+		const _normalizetrailingslash = requireNormalizeTrailingSlash();
+		const addLocale = function(path) {
+		    for(var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++){
+		        args[_key - 1] = arguments[_key];
+		    }
+		    if (process.env.__NEXT_I18N_SUPPORT) {
+		        return (0, _normalizetrailingslash.normalizePathTrailingSlash)(requireAddLocale$1().addLocale(path, ...args));
+		    }
+		    return path;
+		};
+
+		if ((typeof exports$1.default === 'function' || (typeof exports$1.default === 'object' && exports$1.default !== null)) && typeof exports$1.default.__esModule === 'undefined') {
+		  Object.defineProperty(exports$1.default, '__esModule', { value: true });
+		  Object.assign(exports$1.default, exports$1);
+		  module.exports = exports$1.default;
+		}
+
+		
+	} (addLocale$1, addLocale$1.exports));
+	return addLocale$1.exports;
+}
+
+var routerContext_sharedRuntime = {};
+
+var _interop_require_default = {};
+
+var hasRequired_interop_require_default;
+
+function require_interop_require_default () {
+	if (hasRequired_interop_require_default) return _interop_require_default;
+	hasRequired_interop_require_default = 1;
+
+	function _interop_require_default$1(obj) {
+	    return obj && obj.__esModule ? obj : { default: obj };
+	}
+	_interop_require_default._ = _interop_require_default$1;
+	return _interop_require_default;
+}
+
+var hasRequiredRouterContext_sharedRuntime;
+
+function requireRouterContext_sharedRuntime () {
+	if (hasRequiredRouterContext_sharedRuntime) return routerContext_sharedRuntime;
+	hasRequiredRouterContext_sharedRuntime = 1;
+	(function (exports$1) {
+		Object.defineProperty(exports$1, "__esModule", {
+		    value: true
+		});
+		Object.defineProperty(exports$1, "RouterContext", {
+		    enumerable: true,
+		    get: function() {
+		        return RouterContext;
+		    }
+		});
+		const _interop_require_default = require_interop_require_default();
+		const _react = /*#__PURE__*/ _interop_require_default._(require$$0);
+		const RouterContext = _react.default.createContext(null);
+		if (process.env.NODE_ENV !== 'production') {
+		    RouterContext.displayName = 'RouterContext';
+		}
+
+		
+	} (routerContext_sharedRuntime));
+	return routerContext_sharedRuntime;
+}
+
+var useIntersection = {exports: {}};
+
+var requestIdleCallback = {exports: {}};
+
+var hasRequiredRequestIdleCallback;
+
+function requireRequestIdleCallback () {
+	if (hasRequiredRequestIdleCallback) return requestIdleCallback.exports;
+	hasRequiredRequestIdleCallback = 1;
+	(function (module, exports$1) {
+		Object.defineProperty(exports$1, "__esModule", {
+		    value: true
+		});
+		function _export(target, all) {
+		    for(var name in all)Object.defineProperty(target, name, {
+		        enumerable: true,
+		        get: all[name]
+		    });
+		}
+		_export(exports$1, {
+		    cancelIdleCallback: function() {
+		        return cancelIdleCallback;
+		    },
+		    requestIdleCallback: function() {
+		        return requestIdleCallback;
+		    }
+		});
+		const requestIdleCallback = typeof self !== 'undefined' && self.requestIdleCallback && self.requestIdleCallback.bind(window) || function(cb) {
+		    let start = Date.now();
+		    return self.setTimeout(function() {
+		        cb({
+		            didTimeout: false,
+		            timeRemaining: function() {
+		                return Math.max(0, 50 - (Date.now() - start));
+		            }
+		        });
+		    }, 1);
+		};
+		const cancelIdleCallback = typeof self !== 'undefined' && self.cancelIdleCallback && self.cancelIdleCallback.bind(window) || function(id) {
+		    return clearTimeout(id);
+		};
+
+		if ((typeof exports$1.default === 'function' || (typeof exports$1.default === 'object' && exports$1.default !== null)) && typeof exports$1.default.__esModule === 'undefined') {
+		  Object.defineProperty(exports$1.default, '__esModule', { value: true });
+		  Object.assign(exports$1.default, exports$1);
+		  module.exports = exports$1.default;
+		}
+
+		
+	} (requestIdleCallback, requestIdleCallback.exports));
+	return requestIdleCallback.exports;
+}
+
+var hasRequiredUseIntersection;
+
+function requireUseIntersection () {
+	if (hasRequiredUseIntersection) return useIntersection.exports;
+	hasRequiredUseIntersection = 1;
+	(function (module, exports$1) {
+		Object.defineProperty(exports$1, "__esModule", {
+		    value: true
+		});
+		Object.defineProperty(exports$1, "useIntersection", {
+		    enumerable: true,
+		    get: function() {
+		        return useIntersection;
+		    }
+		});
+		const _react = require$$0;
+		const _requestidlecallback = requireRequestIdleCallback();
+		const hasIntersectionObserver = typeof IntersectionObserver === 'function';
+		const observers = new Map();
+		const idList = [];
+		function createObserver(options) {
+		    const id = {
+		        root: options.root || null,
+		        margin: options.rootMargin || ''
+		    };
+		    const existing = idList.find((obj)=>obj.root === id.root && obj.margin === id.margin);
+		    let instance;
+		    if (existing) {
+		        instance = observers.get(existing);
+		        if (instance) {
+		            return instance;
+		        }
+		    }
+		    const elements = new Map();
+		    const observer = new IntersectionObserver((entries)=>{
+		        entries.forEach((entry)=>{
+		            const callback = elements.get(entry.target);
+		            const isVisible = entry.isIntersecting || entry.intersectionRatio > 0;
+		            if (callback && isVisible) {
+		                callback(isVisible);
+		            }
+		        });
+		    }, options);
+		    instance = {
+		        id,
+		        observer,
+		        elements
+		    };
+		    idList.push(id);
+		    observers.set(id, instance);
+		    return instance;
+		}
+		function observe(element, callback, options) {
+		    const { id, observer, elements } = createObserver(options);
+		    elements.set(element, callback);
+		    observer.observe(element);
+		    return function unobserve() {
+		        elements.delete(element);
+		        observer.unobserve(element);
+		        // Destroy observer when there's nothing left to watch:
+		        if (elements.size === 0) {
+		            observer.disconnect();
+		            observers.delete(id);
+		            const index = idList.findIndex((obj)=>obj.root === id.root && obj.margin === id.margin);
+		            if (index > -1) {
+		                idList.splice(index, 1);
+		            }
+		        }
+		    };
+		}
+		function useIntersection(param) {
+		    let { rootRef, rootMargin, disabled } = param;
+		    const isDisabled = disabled || !hasIntersectionObserver;
+		    const [visible, setVisible] = (0, _react.useState)(false);
+		    const elementRef = (0, _react.useRef)(null);
+		    const setElement = (0, _react.useCallback)((element)=>{
+		        elementRef.current = element;
+		    }, []);
+		    (0, _react.useEffect)(()=>{
+		        if (hasIntersectionObserver) {
+		            if (isDisabled || visible) return;
+		            const element = elementRef.current;
+		            if (element && element.tagName) {
+		                const unobserve = observe(element, (isVisible)=>isVisible && setVisible(isVisible), {
+		                    root: rootRef == null ? void 0 : rootRef.current,
+		                    rootMargin
+		                });
+		                return unobserve;
+		            }
+		        } else {
+		            if (!visible) {
+		                const idleCallback = (0, _requestidlecallback.requestIdleCallback)(()=>setVisible(true));
+		                return ()=>(0, _requestidlecallback.cancelIdleCallback)(idleCallback);
+		            }
+		        }
+		    // eslint-disable-next-line react-hooks/exhaustive-deps
+		    }, [
+		        isDisabled,
+		        rootMargin,
+		        rootRef,
+		        visible,
+		        elementRef.current
+		    ]);
+		    const resetVisible = (0, _react.useCallback)(()=>{
+		        setVisible(false);
+		    }, []);
+		    return [
+		        setElement,
+		        visible,
+		        resetVisible
+		    ];
+		}
+
+		if ((typeof exports$1.default === 'function' || (typeof exports$1.default === 'object' && exports$1.default !== null)) && typeof exports$1.default.__esModule === 'undefined') {
+		  Object.defineProperty(exports$1.default, '__esModule', { value: true });
+		  Object.assign(exports$1.default, exports$1);
+		  module.exports = exports$1.default;
+		}
+
+		
+	} (useIntersection, useIntersection.exports));
+	return useIntersection.exports;
+}
+
+var getDomainLocale = {exports: {}};
+
+var normalizeLocalePath$1 = {exports: {}};
+
+var normalizeLocalePath = {};
+
+var hasRequiredNormalizeLocalePath$1;
+
+function requireNormalizeLocalePath$1 () {
+	if (hasRequiredNormalizeLocalePath$1) return normalizeLocalePath;
+	hasRequiredNormalizeLocalePath$1 = 1;
+	(function (exports$1) {
+		Object.defineProperty(exports$1, "__esModule", {
+		    value: true
+		});
+		Object.defineProperty(exports$1, "normalizeLocalePath", {
+		    enumerable: true,
+		    get: function() {
+		        return normalizeLocalePath;
+		    }
+		});
+		/**
+		 * A cache of lowercased locales for each list of locales. This is stored as a
+		 * WeakMap so if the locales are garbage collected, the cache entry will be
+		 * removed as well.
+		 */ const cache = new WeakMap();
+		function normalizeLocalePath(pathname, locales) {
+		    // If locales is undefined, return the pathname as is.
+		    if (!locales) return {
+		        pathname
+		    };
+		    // Get the cached lowercased locales or create a new cache entry.
+		    let lowercasedLocales = cache.get(locales);
+		    if (!lowercasedLocales) {
+		        lowercasedLocales = locales.map((locale)=>locale.toLowerCase());
+		        cache.set(locales, lowercasedLocales);
+		    }
+		    let detectedLocale;
+		    // The first segment will be empty, because it has a leading `/`. If
+		    // there is no further segment, there is no locale (or it's the default).
+		    const segments = pathname.split('/', 2);
+		    // If there's no second segment (ie, the pathname is just `/`), there's no
+		    // locale.
+		    if (!segments[1]) return {
+		        pathname
+		    };
+		    // The second segment will contain the locale part if any.
+		    const segment = segments[1].toLowerCase();
+		    // See if the segment matches one of the locales. If it doesn't, there is
+		    // no locale (or it's the default).
+		    const index = lowercasedLocales.indexOf(segment);
+		    if (index < 0) return {
+		        pathname
+		    };
+		    // Return the case-sensitive locale.
+		    detectedLocale = locales[index];
+		    // Remove the `/${locale}` part of the pathname.
+		    pathname = pathname.slice(detectedLocale.length + 1) || '/';
+		    return {
+		        pathname,
+		        detectedLocale
+		    };
+		}
+
+		
+	} (normalizeLocalePath));
+	return normalizeLocalePath;
+}
+
+var hasRequiredNormalizeLocalePath;
+
+function requireNormalizeLocalePath () {
+	if (hasRequiredNormalizeLocalePath) return normalizeLocalePath$1.exports;
+	hasRequiredNormalizeLocalePath = 1;
+	(function (module, exports$1) {
+		Object.defineProperty(exports$1, "__esModule", {
+		    value: true
+		});
+		Object.defineProperty(exports$1, "normalizeLocalePath", {
+		    enumerable: true,
+		    get: function() {
+		        return normalizeLocalePath;
+		    }
+		});
+		const normalizeLocalePath = (pathname, locales)=>{
+		    if (process.env.__NEXT_I18N_SUPPORT) {
+		        return requireNormalizeLocalePath$1().normalizeLocalePath(pathname, locales);
+		    }
+		    return {
+		        pathname,
+		        detectedLocale: undefined
+		    };
+		};
+
+		if ((typeof exports$1.default === 'function' || (typeof exports$1.default === 'object' && exports$1.default !== null)) && typeof exports$1.default.__esModule === 'undefined') {
+		  Object.defineProperty(exports$1.default, '__esModule', { value: true });
+		  Object.assign(exports$1.default, exports$1);
+		  module.exports = exports$1.default;
+		}
+
+		
+	} (normalizeLocalePath$1, normalizeLocalePath$1.exports));
+	return normalizeLocalePath$1.exports;
+}
+
+var detectDomainLocale$1 = {exports: {}};
+
+var detectDomainLocale = {};
+
+var hasRequiredDetectDomainLocale$1;
+
+function requireDetectDomainLocale$1 () {
+	if (hasRequiredDetectDomainLocale$1) return detectDomainLocale;
+	hasRequiredDetectDomainLocale$1 = 1;
+	(function (exports$1) {
+		Object.defineProperty(exports$1, "__esModule", {
+		    value: true
+		});
+		Object.defineProperty(exports$1, "detectDomainLocale", {
+		    enumerable: true,
+		    get: function() {
+		        return detectDomainLocale;
+		    }
+		});
+		function detectDomainLocale(domainItems, hostname, detectedLocale) {
+		    if (!domainItems) return;
+		    if (detectedLocale) {
+		        detectedLocale = detectedLocale.toLowerCase();
+		    }
+		    for (const item of domainItems){
+		        var _item_domain, _item_locales;
+		        // remove port if present
+		        const domainHostname = (_item_domain = item.domain) == null ? void 0 : _item_domain.split(':', 1)[0].toLowerCase();
+		        if (hostname === domainHostname || detectedLocale === item.defaultLocale.toLowerCase() || ((_item_locales = item.locales) == null ? void 0 : _item_locales.some((locale)=>locale.toLowerCase() === detectedLocale))) {
+		            return item;
+		        }
+		    }
+		}
+
+		
+	} (detectDomainLocale));
+	return detectDomainLocale;
+}
+
+var hasRequiredDetectDomainLocale;
+
+function requireDetectDomainLocale () {
+	if (hasRequiredDetectDomainLocale) return detectDomainLocale$1.exports;
+	hasRequiredDetectDomainLocale = 1;
+	(function (module, exports$1) {
+		Object.defineProperty(exports$1, "__esModule", {
+		    value: true
+		});
+		Object.defineProperty(exports$1, "detectDomainLocale", {
+		    enumerable: true,
+		    get: function() {
+		        return detectDomainLocale;
+		    }
+		});
+		const detectDomainLocale = function() {
+		    for(var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++){
+		        args[_key] = arguments[_key];
+		    }
+		    if (process.env.__NEXT_I18N_SUPPORT) {
+		        return requireDetectDomainLocale$1().detectDomainLocale(...args);
+		    }
+		};
+
+		if ((typeof exports$1.default === 'function' || (typeof exports$1.default === 'object' && exports$1.default !== null)) && typeof exports$1.default.__esModule === 'undefined') {
+		  Object.defineProperty(exports$1.default, '__esModule', { value: true });
+		  Object.assign(exports$1.default, exports$1);
+		  module.exports = exports$1.default;
+		}
+
+		
+	} (detectDomainLocale$1, detectDomainLocale$1.exports));
+	return detectDomainLocale$1.exports;
+}
+
+var hasRequiredGetDomainLocale;
+
+function requireGetDomainLocale () {
+	if (hasRequiredGetDomainLocale) return getDomainLocale.exports;
+	hasRequiredGetDomainLocale = 1;
+	(function (module, exports$1) {
+		Object.defineProperty(exports$1, "__esModule", {
+		    value: true
+		});
+		Object.defineProperty(exports$1, "getDomainLocale", {
+		    enumerable: true,
+		    get: function() {
+		        return getDomainLocale;
+		    }
+		});
+		const _normalizetrailingslash = requireNormalizeTrailingSlash();
+		const basePath = process.env.__NEXT_ROUTER_BASEPATH || '';
+		function getDomainLocale(path, locale, locales, domainLocales) {
+		    if (process.env.__NEXT_I18N_SUPPORT) {
+		        const normalizeLocalePath = requireNormalizeLocalePath().normalizeLocalePath;
+		        const detectDomainLocale = requireDetectDomainLocale().detectDomainLocale;
+		        const target = locale || normalizeLocalePath(path, locales).detectedLocale;
+		        const domain = detectDomainLocale(domainLocales, undefined, target);
+		        if (domain) {
+		            const proto = "http" + (domain.http ? '' : 's') + "://";
+		            const finalLocale = target === domain.defaultLocale ? '' : "/" + target;
+		            return "" + proto + domain.domain + (0, _normalizetrailingslash.normalizePathTrailingSlash)("" + basePath + finalLocale + path);
+		        }
+		        return false;
+		    } else {
+		        return false;
+		    }
+		}
+
+		if ((typeof exports$1.default === 'function' || (typeof exports$1.default === 'object' && exports$1.default !== null)) && typeof exports$1.default.__esModule === 'undefined') {
+		  Object.defineProperty(exports$1.default, '__esModule', { value: true });
+		  Object.assign(exports$1.default, exports$1);
+		  module.exports = exports$1.default;
+		}
+
+		
+	} (getDomainLocale, getDomainLocale.exports));
+	return getDomainLocale.exports;
+}
+
+var addBasePath = {exports: {}};
+
+var hasRequiredAddBasePath;
+
+function requireAddBasePath () {
+	if (hasRequiredAddBasePath) return addBasePath.exports;
+	hasRequiredAddBasePath = 1;
+	(function (module, exports$1) {
+		Object.defineProperty(exports$1, "__esModule", {
+		    value: true
+		});
+		Object.defineProperty(exports$1, "addBasePath", {
+		    enumerable: true,
+		    get: function() {
+		        return addBasePath;
+		    }
+		});
+		const _addpathprefix = requireAddPathPrefix();
+		const _normalizetrailingslash = requireNormalizeTrailingSlash();
+		const basePath = process.env.__NEXT_ROUTER_BASEPATH || '';
+		function addBasePath(path, required) {
+		    return (0, _normalizetrailingslash.normalizePathTrailingSlash)(process.env.__NEXT_MANUAL_CLIENT_BASE_PATH && !required ? path : (0, _addpathprefix.addPathPrefix)(path, basePath));
+		}
+
+		if ((typeof exports$1.default === 'function' || (typeof exports$1.default === 'object' && exports$1.default !== null)) && typeof exports$1.default.__esModule === 'undefined') {
+		  Object.defineProperty(exports$1.default, '__esModule', { value: true });
+		  Object.assign(exports$1.default, exports$1);
+		  module.exports = exports$1.default;
+		}
+
+		
+	} (addBasePath, addBasePath.exports));
+	return addBasePath.exports;
+}
+
+var useMergedRef = {exports: {}};
+
+var hasRequiredUseMergedRef;
+
+function requireUseMergedRef () {
+	if (hasRequiredUseMergedRef) return useMergedRef.exports;
+	hasRequiredUseMergedRef = 1;
+	(function (module, exports$1) {
+		Object.defineProperty(exports$1, "__esModule", {
+		    value: true
+		});
+		Object.defineProperty(exports$1, "useMergedRef", {
+		    enumerable: true,
+		    get: function() {
+		        return useMergedRef;
+		    }
+		});
+		const _react = require$$0;
+		function useMergedRef(refA, refB) {
+		    const cleanupA = (0, _react.useRef)(null);
+		    const cleanupB = (0, _react.useRef)(null);
+		    // NOTE: In theory, we could skip the wrapping if only one of the refs is non-null.
+		    // (this happens often if the user doesn't pass a ref to Link/Form/Image)
+		    // But this can cause us to leak a cleanup-ref into user code (e.g. via `<Link legacyBehavior>`),
+		    // and the user might pass that ref into ref-merging library that doesn't support cleanup refs
+		    // (because it hasn't been updated for React 19)
+		    // which can then cause things to blow up, because a cleanup-returning ref gets called with `null`.
+		    // So in practice, it's safer to be defensive and always wrap the ref, even on React 19.
+		    return (0, _react.useCallback)((current)=>{
+		        if (current === null) {
+		            const cleanupFnA = cleanupA.current;
+		            if (cleanupFnA) {
+		                cleanupA.current = null;
+		                cleanupFnA();
+		            }
+		            const cleanupFnB = cleanupB.current;
+		            if (cleanupFnB) {
+		                cleanupB.current = null;
+		                cleanupFnB();
+		            }
+		        } else {
+		            if (refA) {
+		                cleanupA.current = applyRef(refA, current);
+		            }
+		            if (refB) {
+		                cleanupB.current = applyRef(refB, current);
+		            }
+		        }
+		    }, [
+		        refA,
+		        refB
+		    ]);
+		}
+		function applyRef(refA, current) {
+		    if (typeof refA === 'function') {
+		        const cleanup = refA(current);
+		        if (typeof cleanup === 'function') {
+		            return cleanup;
+		        } else {
+		            return ()=>refA(null);
+		        }
+		    } else {
+		        refA.current = current;
+		        return ()=>{
+		            refA.current = null;
+		        };
+		    }
+		}
+
+		if ((typeof exports$1.default === 'function' || (typeof exports$1.default === 'object' && exports$1.default !== null)) && typeof exports$1.default.__esModule === 'undefined') {
+		  Object.defineProperty(exports$1.default, '__esModule', { value: true });
+		  Object.assign(exports$1.default, exports$1);
+		  module.exports = exports$1.default;
+		}
+
+		
+	} (useMergedRef, useMergedRef.exports));
+	return useMergedRef.exports;
+}
+
+var errorOnce = {};
+
+var hasRequiredErrorOnce;
+
+function requireErrorOnce () {
+	if (hasRequiredErrorOnce) return errorOnce;
+	hasRequiredErrorOnce = 1;
+	(function (exports$1) {
+		Object.defineProperty(exports$1, "__esModule", {
+		    value: true
+		});
+		Object.defineProperty(exports$1, "errorOnce", {
+		    enumerable: true,
+		    get: function() {
+		        return errorOnce;
+		    }
+		});
+		let errorOnce = (_)=>{};
+		if (process.env.NODE_ENV !== 'production') {
+		    const errors = new Set();
+		    errorOnce = (msg)=>{
+		        if (!errors.has(msg)) {
+		            console.error(msg);
+		        }
+		        errors.add(msg);
+		    };
+		}
+
+		
+	} (errorOnce));
+	return errorOnce;
+}
+
+(function (module, exports$1) {
+	'use client';
+	Object.defineProperty(exports$1, "__esModule", {
+	    value: true
+	});
+	function _export(target, all) {
+	    for(var name in all)Object.defineProperty(target, name, {
+	        enumerable: true,
+	        get: all[name]
+	    });
+	}
+	_export(exports$1, {
+	    default: function() {
+	        return _default;
+	    },
+	    useLinkStatus: function() {
+	        return useLinkStatus;
+	    }
+	});
+	const _interop_require_wildcard = _interop_require_wildcard$1;
+	const _jsxruntime = require$$1;
+	const _react = /*#__PURE__*/ _interop_require_wildcard._(require$$0);
+	const _resolvehref = requireResolveHref();
+	const _islocalurl = requireIsLocalUrl();
+	const _formaturl = requireFormatUrl();
+	const _utils = requireUtils$1();
+	const _addlocale = requireAddLocale();
+	const _routercontextsharedruntime = requireRouterContext_sharedRuntime();
+	const _useintersection = requireUseIntersection();
+	const _getdomainlocale = requireGetDomainLocale();
+	const _addbasepath = requireAddBasePath();
+	const _usemergedref = requireUseMergedRef();
+	const _erroronce = requireErrorOnce();
+	const prefetched = new Set();
+	function prefetch(router, href, as, options) {
+	    if (typeof window === 'undefined') {
+	        return;
+	    }
+	    if (!(0, _islocalurl.isLocalURL)(href)) {
+	        return;
+	    }
+	    // We should only dedupe requests when experimental.optimisticClientCache is
+	    // disabled.
+	    if (!options.bypassPrefetchedCheck) {
+	        const locale = // Let the link's locale prop override the default router locale.
+	        typeof options.locale !== 'undefined' ? options.locale : 'locale' in router ? router.locale : undefined;
+	        const prefetchedKey = href + '%' + as + '%' + locale;
+	        // If we've already fetched the key, then don't prefetch it again!
+	        if (prefetched.has(prefetchedKey)) {
+	            return;
+	        }
+	        // Mark this URL as prefetched.
+	        prefetched.add(prefetchedKey);
+	    }
+	    // Prefetch the JSON page if asked (only in the client)
+	    // We need to handle a prefetch error here since we may be
+	    // loading with priority which can reject but we don't
+	    // want to force navigation since this is only a prefetch
+	    router.prefetch(href, as, options).catch((err)=>{
+	        if (process.env.NODE_ENV !== 'production') {
+	            // rethrow to show invalid URL errors
+	            throw err;
+	        }
+	    });
+	}
+	function isModifiedEvent(event) {
+	    const eventTarget = event.currentTarget;
+	    const target = eventTarget.getAttribute('target');
+	    return target && target !== '_self' || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || // triggers resource download
+	    event.nativeEvent && event.nativeEvent.which === 2;
+	}
+	function linkClicked(e, router, href, as, replace, shallow, scroll, locale, onNavigate) {
+	    const { nodeName } = e.currentTarget;
+	    // anchors inside an svg have a lowercase nodeName
+	    const isAnchorNodeName = nodeName.toUpperCase() === 'A';
+	    if (isAnchorNodeName && isModifiedEvent(e) || e.currentTarget.hasAttribute('download')) {
+	        // ignore click for browser’s default behavior
+	        return;
+	    }
+	    if (!(0, _islocalurl.isLocalURL)(href)) {
+	        if (replace) {
+	            // browser default behavior does not replace the history state
+	            // so we need to do it manually
+	            e.preventDefault();
+	            location.replace(href);
+	        }
+	        // ignore click for browser’s default behavior
+	        return;
+	    }
+	    e.preventDefault();
+	    const navigate = ()=>{
+	        if (onNavigate) {
+	            let isDefaultPrevented = false;
+	            onNavigate({
+	                preventDefault: ()=>{
+	                    isDefaultPrevented = true;
+	                }
+	            });
+	            if (isDefaultPrevented) {
+	                return;
+	            }
+	        }
+	        // If the router is an NextRouter instance it will have `beforePopState`
+	        const routerScroll = scroll != null ? scroll : true;
+	        if ('beforePopState' in router) {
+	            router[replace ? 'replace' : 'push'](href, as, {
+	                shallow,
+	                locale,
+	                scroll: routerScroll
+	            });
+	        } else {
+	            router[replace ? 'replace' : 'push'](as || href, {
+	                scroll: routerScroll
+	            });
+	        }
+	    };
+	    navigate();
+	}
+	function formatStringOrUrl(urlObjOrString) {
+	    if (typeof urlObjOrString === 'string') {
+	        return urlObjOrString;
+	    }
+	    return (0, _formaturl.formatUrl)(urlObjOrString);
+	}
+	/**
+	 * A React component that extends the HTML `<a>` element to provide [prefetching](https://nextjs.org/docs/app/building-your-application/routing/linking-and-navigating#2-prefetching)
+	 * and client-side navigation between routes.
+	 *
+	 * It is the primary way to navigate between routes in Next.js.
+	 *
+	 * Read more: [Next.js docs: `<Link>`](https://nextjs.org/docs/app/api-reference/components/link)
+	 */ const Link = /*#__PURE__*/ _react.default.forwardRef(function LinkComponent(props, forwardedRef) {
+	    let children;
+	    const { href: hrefProp, as: asProp, children: childrenProp, prefetch: prefetchProp = null, passHref, replace, shallow, scroll, locale, onClick, onNavigate, onMouseEnter: onMouseEnterProp, onTouchStart: onTouchStartProp, legacyBehavior = false, ...restProps } = props;
+	    children = childrenProp;
+	    if (legacyBehavior && (typeof children === 'string' || typeof children === 'number')) {
+	        children = /*#__PURE__*/ (0, _jsxruntime.jsx)("a", {
+	            children: children
+	        });
+	    }
+	    const router = _react.default.useContext(_routercontextsharedruntime.RouterContext);
+	    const prefetchEnabled = prefetchProp !== false;
+	    if (process.env.NODE_ENV !== 'production') {
+	        function createPropError(args) {
+	            return Object.defineProperty(new Error("Failed prop type: The prop `" + args.key + "` expects a " + args.expected + " in `<Link>`, but got `" + args.actual + "` instead." + (typeof window !== 'undefined' ? "\nOpen your browser's console to view the Component stack trace." : '')), "__NEXT_ERROR_CODE", {
+	                value: "E319",
+	                enumerable: false,
+	                configurable: true
+	            });
+	        }
+	        // TypeScript trick for type-guarding:
+	        const requiredPropsGuard = {
+	            href: true
+	        };
+	        const requiredProps = Object.keys(requiredPropsGuard);
+	        requiredProps.forEach((key)=>{
+	            if (key === 'href') {
+	                if (props[key] == null || typeof props[key] !== 'string' && typeof props[key] !== 'object') {
+	                    throw createPropError({
+	                        key,
+	                        expected: '`string` or `object`',
+	                        actual: props[key] === null ? 'null' : typeof props[key]
+	                    });
+	                }
+	            }
+	        });
+	        // TypeScript trick for type-guarding:
+	        const optionalPropsGuard = {
+	            as: true,
+	            replace: true,
+	            scroll: true,
+	            shallow: true,
+	            passHref: true,
+	            prefetch: true,
+	            locale: true,
+	            onClick: true,
+	            onMouseEnter: true,
+	            onTouchStart: true,
+	            legacyBehavior: true,
+	            onNavigate: true
+	        };
+	        const optionalProps = Object.keys(optionalPropsGuard);
+	        optionalProps.forEach((key)=>{
+	            const valType = typeof props[key];
+	            if (key === 'as') {
+	                if (props[key] && valType !== 'string' && valType !== 'object') {
+	                    throw createPropError({
+	                        key,
+	                        expected: '`string` or `object`',
+	                        actual: valType
+	                    });
+	                }
+	            } else if (key === 'locale') {
+	                if (props[key] && valType !== 'string') {
+	                    throw createPropError({
+	                        key,
+	                        expected: '`string`',
+	                        actual: valType
+	                    });
+	                }
+	            } else if (key === 'onClick' || key === 'onMouseEnter' || key === 'onTouchStart' || key === 'onNavigate') {
+	                if (props[key] && valType !== 'function') {
+	                    throw createPropError({
+	                        key,
+	                        expected: '`function`',
+	                        actual: valType
+	                    });
+	                }
+	            } else if (key === 'replace' || key === 'scroll' || key === 'shallow' || key === 'passHref' || key === 'legacyBehavior') {
+	                if (props[key] != null && valType !== 'boolean') {
+	                    throw createPropError({
+	                        key,
+	                        expected: '`boolean`',
+	                        actual: valType
+	                    });
+	                }
+	            } else if (key === 'prefetch') {
+	                if (props[key] != null && valType !== 'boolean' && props[key] !== 'auto') {
+	                    throw createPropError({
+	                        key,
+	                        expected: '`boolean | "auto"`',
+	                        actual: valType
+	                    });
+	                }
+	            } else ;
+	        });
+	    }
+	    const { href, as } = _react.default.useMemo(()=>{
+	        if (!router) {
+	            const resolvedHref = formatStringOrUrl(hrefProp);
+	            return {
+	                href: resolvedHref,
+	                as: asProp ? formatStringOrUrl(asProp) : resolvedHref
+	            };
+	        }
+	        const [resolvedHref, resolvedAs] = (0, _resolvehref.resolveHref)(router, hrefProp, true);
+	        return {
+	            href: resolvedHref,
+	            as: asProp ? (0, _resolvehref.resolveHref)(router, asProp) : resolvedAs || resolvedHref
+	        };
+	    }, [
+	        router,
+	        hrefProp,
+	        asProp
+	    ]);
+	    const previousHref = _react.default.useRef(href);
+	    const previousAs = _react.default.useRef(as);
+	    // This will return the first child, if multiple are provided it will throw an error
+	    let child;
+	    if (legacyBehavior) {
+	        if (process.env.NODE_ENV === 'development') {
+	            if (onClick) {
+	                console.warn('"onClick" was passed to <Link> with `href` of `' + hrefProp + '` but "legacyBehavior" was set. The legacy behavior requires onClick be set on the child of next/link');
+	            }
+	            if (onMouseEnterProp) {
+	                console.warn('"onMouseEnter" was passed to <Link> with `href` of `' + hrefProp + '` but "legacyBehavior" was set. The legacy behavior requires onMouseEnter be set on the child of next/link');
+	            }
+	            try {
+	                child = _react.default.Children.only(children);
+	            } catch (err) {
+	                if (!children) {
+	                    throw Object.defineProperty(new Error("No children were passed to <Link> with `href` of `" + hrefProp + "` but one child is required https://nextjs.org/docs/messages/link-no-children"), "__NEXT_ERROR_CODE", {
+	                        value: "E320",
+	                        enumerable: false,
+	                        configurable: true
+	                    });
+	                }
+	                throw Object.defineProperty(new Error("Multiple children were passed to <Link> with `href` of `" + hrefProp + "` but only one child is supported https://nextjs.org/docs/messages/link-multiple-children" + (typeof window !== 'undefined' ? " \nOpen your browser's console to view the Component stack trace." : '')), "__NEXT_ERROR_CODE", {
+	                    value: "E266",
+	                    enumerable: false,
+	                    configurable: true
+	                });
+	            }
+	        } else {
+	            child = _react.default.Children.only(children);
+	        }
+	    } else {
+	        if (process.env.NODE_ENV === 'development') {
+	            if ((children == null ? void 0 : children.type) === 'a') {
+	                throw Object.defineProperty(new Error('Invalid <Link> with <a> child. Please remove <a> or use <Link legacyBehavior>.\nLearn more: https://nextjs.org/docs/messages/invalid-new-link-with-extra-anchor'), "__NEXT_ERROR_CODE", {
+	                    value: "E209",
+	                    enumerable: false,
+	                    configurable: true
+	                });
+	            }
+	        }
+	    }
+	    const childRef = legacyBehavior ? child && typeof child === 'object' && child.ref : forwardedRef;
+	    const [setIntersectionRef, isVisible, resetVisible] = (0, _useintersection.useIntersection)({
+	        rootMargin: '200px'
+	    });
+	    const setIntersectionWithResetRef = _react.default.useCallback((el)=>{
+	        // Before the link getting observed, check if visible state need to be reset
+	        if (previousAs.current !== as || previousHref.current !== href) {
+	            resetVisible();
+	            previousAs.current = as;
+	            previousHref.current = href;
+	        }
+	        setIntersectionRef(el);
+	    }, [
+	        as,
+	        href,
+	        resetVisible,
+	        setIntersectionRef
+	    ]);
+	    const setRef = (0, _usemergedref.useMergedRef)(setIntersectionWithResetRef, childRef);
+	    // Prefetch the URL if we haven't already and it's visible.
+	    _react.default.useEffect(()=>{
+	        // in dev, we only prefetch on hover to avoid wasting resources as the prefetch will trigger compiling the page.
+	        if (process.env.NODE_ENV !== 'production') {
+	            return;
+	        }
+	        if (!router) {
+	            return;
+	        }
+	        // If we don't need to prefetch the URL, don't do prefetch.
+	        if (!isVisible || !prefetchEnabled) {
+	            return;
+	        }
+	        // Prefetch the URL.
+	        prefetch(router, href, as, {
+	            locale
+	        });
+	    }, [
+	        as,
+	        href,
+	        isVisible,
+	        locale,
+	        prefetchEnabled,
+	        router == null ? void 0 : router.locale,
+	        router
+	    ]);
+	    const childProps = {
+	        ref: setRef,
+	        onClick (e) {
+	            if (process.env.NODE_ENV !== 'production') {
+	                if (!e) {
+	                    throw Object.defineProperty(new Error('Component rendered inside next/link has to pass click event to "onClick" prop.'), "__NEXT_ERROR_CODE", {
+	                        value: "E312",
+	                        enumerable: false,
+	                        configurable: true
+	                    });
+	                }
+	            }
+	            if (!legacyBehavior && typeof onClick === 'function') {
+	                onClick(e);
+	            }
+	            if (legacyBehavior && child.props && typeof child.props.onClick === 'function') {
+	                child.props.onClick(e);
+	            }
+	            if (!router) {
+	                return;
+	            }
+	            if (e.defaultPrevented) {
+	                return;
+	            }
+	            linkClicked(e, router, href, as, replace, shallow, scroll, locale, onNavigate);
+	        },
+	        onMouseEnter (e) {
+	            if (!legacyBehavior && typeof onMouseEnterProp === 'function') {
+	                onMouseEnterProp(e);
+	            }
+	            if (legacyBehavior && child.props && typeof child.props.onMouseEnter === 'function') {
+	                child.props.onMouseEnter(e);
+	            }
+	            if (!router) {
+	                return;
+	            }
+	            prefetch(router, href, as, {
+	                locale,
+	                priority: true,
+	                // @see {https://github.com/vercel/next.js/discussions/40268?sort=top#discussioncomment-3572642}
+	                bypassPrefetchedCheck: true
+	            });
+	        },
+	        onTouchStart: process.env.__NEXT_LINK_NO_TOUCH_START ? undefined : function onTouchStart(e) {
+	            if (!legacyBehavior && typeof onTouchStartProp === 'function') {
+	                onTouchStartProp(e);
+	            }
+	            if (legacyBehavior && child.props && typeof child.props.onTouchStart === 'function') {
+	                child.props.onTouchStart(e);
+	            }
+	            if (!router) {
+	                return;
+	            }
+	            prefetch(router, href, as, {
+	                locale,
+	                priority: true,
+	                // @see {https://github.com/vercel/next.js/discussions/40268?sort=top#discussioncomment-3572642}
+	                bypassPrefetchedCheck: true
+	            });
+	        }
+	    };
+	    // If child is an <a> tag and doesn't have a href attribute, or if the 'passHref' property is
+	    // defined, we specify the current 'href', so that repetition is not needed by the user.
+	    // If the url is absolute, we can bypass the logic to prepend the domain and locale.
+	    if ((0, _utils.isAbsoluteUrl)(as)) {
+	        childProps.href = as;
+	    } else if (!legacyBehavior || passHref || child.type === 'a' && !('href' in child.props)) {
+	        const curLocale = typeof locale !== 'undefined' ? locale : router == null ? void 0 : router.locale;
+	        // we only render domain locales if we are currently on a domain locale
+	        // so that locale links are still visitable in development/preview envs
+	        const localeDomain = (router == null ? void 0 : router.isLocaleDomain) && (0, _getdomainlocale.getDomainLocale)(as, curLocale, router == null ? void 0 : router.locales, router == null ? void 0 : router.domainLocales);
+	        childProps.href = localeDomain || (0, _addbasepath.addBasePath)((0, _addlocale.addLocale)(as, curLocale, router == null ? void 0 : router.defaultLocale));
+	    }
+	    if (legacyBehavior) {
+	        if (process.env.NODE_ENV === 'development') {
+	            (0, _erroronce.errorOnce)('`legacyBehavior` is deprecated and will be removed in a future ' + 'release. A codemod is available to upgrade your components:\n\n' + 'npx @next/codemod@latest new-link .\n\n' + 'Learn more: https://nextjs.org/docs/app/building-your-application/upgrading/codemods#remove-a-tags-from-link-components');
+	        }
+	        return /*#__PURE__*/ _react.default.cloneElement(child, childProps);
+	    }
+	    return /*#__PURE__*/ (0, _jsxruntime.jsx)("a", {
+	        ...restProps,
+	        ...childProps,
+	        children: children
+	    });
+	});
+	const LinkStatusContext = /*#__PURE__*/ (0, _react.createContext)({
+	    // We do not support link status in the Pages Router, so we always return false
+	    pending: false
+	});
+	const useLinkStatus = ()=>{
+	    // This behaviour is like React's useFormStatus. When the component is not under
+	    // a <form> tag, it will get the default value, instead of throwing an error.
+	    return (0, _react.useContext)(LinkStatusContext);
+	};
+	const _default = Link;
+
+	if ((typeof exports$1.default === 'function' || (typeof exports$1.default === 'object' && exports$1.default !== null)) && typeof exports$1.default.__esModule === 'undefined') {
+	  Object.defineProperty(exports$1.default, '__esModule', { value: true });
+	  Object.assign(exports$1.default, exports$1);
+	  module.exports = exports$1.default;
+	}
+
+	
+} (link$1, link$1.exports));
+
+var linkExports = link$1.exports;
+
+var link = linkExports;
+
+var Link = /*@__PURE__*/getDefaultExportFromCjs(link);
+
+var ProductBreadcrumbs = function ProductBreadcrumbs(_ref) {
+  var data = _ref.data,
+    className = _ref.className,
+    id = _ref.id;
+  // Safety check for data
+  if (!data || _typeof(data) !== 'object') {
+    console.error('ProductBreadcrumbs: data prop is required and must be an object');
+    return null;
+  }
+  var _data$items = data.items,
+    items = _data$items === void 0 ? [] : _data$items,
+    _data$separator = data.separator,
+    separator = _data$separator === void 0 ? '/' : _data$separator,
+    _data$showHome = data.showHome,
+    showHome = _data$showHome === void 0 ? true : _data$showHome,
+    _data$variant = data.variant,
+    variant = _data$variant === void 0 ? 'default' : _data$variant;
+
+  // Add home if not present and showHome is true
+  var allItems = showHome && items.length > 0 && items[0].label !== 'Home' ? [{
+    label: 'Home',
+    href: '/'
+  }].concat(_toConsumableArray(items)) : items;
+  if (allItems.length === 0) {
+    return null;
+  }
+
+  // Default variant - Standard breadcrumb navigation
+  if (variant === 'default') {
+    return /*#__PURE__*/jsx("nav", {
+      id: id,
+      className: clsx("product-breadcrumbs-default", className),
+      "aria-label": "Breadcrumb",
+      children: /*#__PURE__*/jsx("ol", {
+        className: "flex items-center space-x-2 text-sm text-gray-500",
+        children: allItems.map(function (item, index) {
+          var isLast = index === allItems.length - 1;
+          var isFirst = index === 0;
+          return /*#__PURE__*/jsxs("li", {
+            className: "flex items-center",
+            children: [!isFirst && /*#__PURE__*/jsx("span", {
+              className: "mx-2 text-gray-400",
+              "aria-hidden": "true",
+              children: separator
+            }), isLast ? /*#__PURE__*/jsx("span", {
+              className: "text-gray-900 font-medium",
+              "aria-current": "page",
+              children: item.label
+            }) : /*#__PURE__*/jsx(Link, {
+              href: item.href,
+              className: "hover:text-gray-700 transition-colors",
+              children: item.label
+            })]
+          }, index);
+        })
+      })
+    });
+  }
+
+  // Minimal variant - Clean minimal design
+  if (variant === 'minimal') {
+    return /*#__PURE__*/jsx("nav", {
+      id: id,
+      className: clsx("product-breadcrumbs-minimal", className),
+      "aria-label": "Breadcrumb",
+      children: /*#__PURE__*/jsx("ol", {
+        className: "flex items-center space-x-1 text-xs text-gray-500",
+        children: allItems.map(function (item, index) {
+          var isLast = index === allItems.length - 1;
+          return /*#__PURE__*/jsxs("li", {
+            className: "flex items-center",
+            children: [index > 0 && /*#__PURE__*/jsx("span", {
+              className: "mx-1 text-gray-300",
+              "aria-hidden": "true",
+              children: separator
+            }), isLast ? /*#__PURE__*/jsx("span", {
+              className: "text-gray-700 font-medium",
+              children: item.label
+            }) : /*#__PURE__*/jsx(Link, {
+              href: item.href,
+              className: "hover:text-gray-600 transition-colors",
+              children: item.label
+            })]
+          }, index);
+        })
+      })
+    });
+  }
+
+  // Pills variant - Pill-style navigation
+  if (variant === 'pills') {
+    return /*#__PURE__*/jsx("nav", {
+      id: id,
+      className: clsx("product-breadcrumbs-pills", className),
+      "aria-label": "Breadcrumb",
+      children: /*#__PURE__*/jsx("ol", {
+        className: "flex items-center space-x-2",
+        children: allItems.map(function (item, index) {
+          var isLast = index === allItems.length - 1;
+          return /*#__PURE__*/jsxs("li", {
+            className: "flex items-center",
+            children: [index > 0 && /*#__PURE__*/jsx("svg", {
+              className: "w-4 h-4 text-gray-400 mx-1",
+              fill: "currentColor",
+              viewBox: "0 0 20 20",
+              "aria-hidden": "true",
+              children: /*#__PURE__*/jsx("path", {
+                fillRule: "evenodd",
+                d: "M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z",
+                clipRule: "evenodd"
+              })
+            }), isLast ? /*#__PURE__*/jsx("span", {
+              className: "inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gray-900 text-white",
+              "aria-current": "page",
+              children: item.label
+            }) : /*#__PURE__*/jsx(Link, {
+              href: item.href,
+              className: "inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors",
+              children: item.label
+            })]
+          }, index);
+        })
+      })
+    });
+  }
+  return null;
+};
+
 var ProductSidebar = function ProductSidebar(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
@@ -20882,196 +30109,6 @@ var ProductShare = function ProductShare(_ref) {
   });
 };
 
-var ProductDescription = function ProductDescription(_ref) {
-  var _ref$data = _ref.data,
-    data = _ref$data === void 0 ? {} : _ref$data,
-    onButtonClick = _ref.onButtonClick,
-    _ref$loading = _ref.loading,
-    loading = _ref$loading === void 0 ? false : _ref$loading,
-    className = _ref.className;
-  var _data$variant = data.variant,
-    variant = _data$variant === void 0 ? 'default' : _data$variant,
-    _data$title = data.title,
-    title = _data$title === void 0 ? 'Product Title' : _data$title,
-    subtitle = data.subtitle,
-    _data$description = data.description,
-    description = _data$description === void 0 ? 'Product description goes here. This is a detailed description of the product features and benefits.' : _data$description,
-    _data$buttonText = data.buttonText,
-    buttonText = _data$buttonText === void 0 ? 'Learn More' : _data$buttonText,
-    _data$buttonVariant = data.buttonVariant,
-    buttonVariant = _data$buttonVariant === void 0 ? 'primary' : _data$buttonVariant;
-  var _useState = useState(!loading),
-    _useState2 = _slicedToArray(_useState, 2),
-    showContent = _useState2[0],
-    setShowContent = _useState2[1];
-  useEffect(function () {
-    if (loading) {
-      setShowContent(false);
-      var timer = setTimeout(function () {
-        setShowContent(true);
-      }, 2000);
-      return function () {
-        return clearTimeout(timer);
-      };
-    } else {
-      setShowContent(true);
-    }
-  }, [loading]);
-  var handleButtonClick = function handleButtonClick() {
-    if (onButtonClick) {
-      onButtonClick();
-    }
-  };
-
-  // Container classes
-  var containerClasses = {
-    "default": 'w-full',
-    modern: 'w-full',
-    minimal: 'w-full',
-    compact: 'w-full',
-    icon: 'w-full',
-    dark: 'w-full',
-    'dark-gray': 'w-full'
-  };
-
-  // Title classes
-  var titleClasses = {
-    "default": clsx('text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4', 'text-gray-900'),
-    modern: clsx('text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4 sm:mb-5', 'text-gray-900 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent'),
-    minimal: clsx('text-xl sm:text-2xl font-semibold mb-2 sm:mb-3', 'text-gray-900'),
-    compact: clsx('text-lg sm:text-xl font-bold mb-2', 'text-gray-900'),
-    icon: clsx('text-2xl sm:text-3xl font-bold mb-3 sm:mb-4', 'text-gray-900'),
-    dark: clsx('text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4', 'text-white'),
-    'dark-gray': clsx('text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4', 'text-gray-100')
-  };
-
-  // Subtitle classes
-  var subtitleClasses = {
-    "default": clsx('text-sm sm:text-base font-medium mb-2 sm:mb-3', 'text-primary-600'),
-    modern: clsx('text-base sm:text-lg font-semibold mb-3 sm:mb-4', 'text-primary-600 uppercase tracking-wide'),
-    minimal: clsx('text-xs sm:text-sm font-medium mb-1 sm:mb-2', 'text-primary-600'),
-    compact: clsx('text-xs sm:text-sm font-medium mb-1.5', 'text-primary-600'),
-    icon: clsx('text-sm sm:text-base font-medium mb-2 sm:mb-3', 'text-primary-600'),
-    dark: clsx('text-sm sm:text-base font-medium mb-2 sm:mb-3', 'text-primary-400'),
-    'dark-gray': clsx('text-sm sm:text-base font-medium mb-2 sm:mb-3', 'text-gray-400')
-  };
-
-  // Description classes
-  var descriptionClasses = {
-    "default": clsx('text-sm sm:text-base text-gray-600 mb-4 sm:mb-6', 'leading-relaxed'),
-    modern: clsx('text-base sm:text-lg text-gray-700 mb-6 sm:mb-8', 'leading-relaxed'),
-    minimal: clsx('text-sm text-gray-600 mb-3 sm:mb-4', 'leading-relaxed'),
-    compact: clsx('text-xs sm:text-sm text-gray-600 mb-3', 'leading-relaxed'),
-    icon: clsx('text-sm sm:text-base text-gray-600 mb-4 sm:mb-6', 'leading-relaxed'),
-    dark: clsx('text-sm sm:text-base text-gray-300 mb-4 sm:mb-6', 'leading-relaxed'),
-    'dark-gray': clsx('text-sm sm:text-base text-gray-400 mb-4 sm:mb-6', 'leading-relaxed')
-  };
-
-  // Button classes
-  var getButtonClasses = function getButtonClasses(btnVariant) {
-    var _variantClasses$btnVa;
-    var baseClasses = {
-      "default": clsx('px-4 sm:px-6 py-2 sm:py-2.5 text-sm sm:text-base rounded-lg', 'font-medium transition-all duration-200', 'flex items-center justify-center gap-2'),
-      modern: clsx('px-6 sm:px-8 py-3 sm:py-3.5 text-base sm:text-lg rounded-xl', 'font-semibold transition-all duration-300 shadow-md', 'flex items-center justify-center gap-2'),
-      minimal: clsx('px-3 sm:px-4 py-1.5 sm:py-2 text-sm border-b-2', 'font-medium transition-all duration-200', 'flex items-center justify-center gap-2 bg-transparent'),
-      compact: clsx('px-3 sm:px-4 py-1.5 text-xs sm:text-sm rounded-md', 'font-medium transition-all duration-200', 'flex items-center justify-center gap-1.5'),
-      icon: clsx('p-2 sm:p-2.5 rounded-lg', 'transition-all duration-300 shadow-md', 'flex items-center justify-center'),
-      dark: clsx('px-4 sm:px-6 py-2 sm:py-2.5 text-sm sm:text-base rounded-lg', 'font-medium transition-all duration-200', 'flex items-center justify-center gap-2'),
-      'dark-gray': clsx('px-4 sm:px-6 py-2 sm:py-2.5 text-sm sm:text-base rounded-lg', 'font-medium transition-all duration-200', 'flex items-center justify-center gap-2')
-    };
-    var variantClasses = {
-      primary: {
-        "default": 'bg-primary-600 hover:bg-primary-700 text-white',
-        modern: 'bg-primary-600 hover:bg-primary-700 text-white hover:shadow-lg',
-        minimal: 'border-primary-600 text-primary-600 hover:border-primary-700 hover:text-primary-700',
-        compact: 'bg-primary-600 hover:bg-primary-700 text-white',
-        icon: 'bg-primary-500 hover:bg-primary-600 text-white hover:shadow-lg',
-        dark: 'bg-primary-500 hover:bg-primary-600 text-white',
-        'dark-gray': 'bg-gray-500 hover:bg-gray-600 text-white'
-      },
-      secondary: {
-        "default": 'bg-gray-200 hover:bg-gray-300 text-gray-900',
-        modern: 'bg-gray-200 hover:bg-gray-300 text-gray-900 hover:shadow-lg',
-        minimal: 'border-gray-600 text-gray-600 hover:border-gray-700 hover:text-gray-700',
-        compact: 'bg-gray-200 hover:bg-gray-300 text-gray-900',
-        icon: 'bg-gray-500 hover:bg-gray-600 text-white hover:shadow-lg',
-        dark: 'bg-gray-700 hover:bg-gray-600 text-white',
-        'dark-gray': 'bg-gray-800 hover:bg-gray-700 text-white'
-      },
-      outline: {
-        "default": 'border-2 border-primary-600 text-primary-600 hover:bg-primary-50',
-        modern: 'border-2 border-primary-600 text-primary-600 hover:bg-primary-50 hover:shadow-lg',
-        minimal: 'border-b-2 border-primary-600 text-primary-600 hover:border-primary-700 hover:text-primary-700',
-        compact: 'border border-primary-600 text-primary-600 hover:bg-primary-50',
-        icon: 'border-2 border-primary-500 text-primary-500 hover:bg-primary-50 hover:shadow-lg',
-        dark: 'border-2 border-primary-400 text-primary-400 hover:bg-primary-900',
-        'dark-gray': 'border-2 border-gray-400 text-gray-400 hover:bg-gray-900'
-      }
-    };
-    return clsx(baseClasses[variant] || baseClasses["default"], ((_variantClasses$btnVa = variantClasses[btnVariant]) === null || _variantClasses$btnVa === void 0 ? void 0 : _variantClasses$btnVa[variant]) || variantClasses.primary[variant] || variantClasses.primary["default"]);
-  };
-  var SkeletonLoader = function SkeletonLoader() {
-    var isDark = variant === 'dark' || variant === 'dark-gray';
-    var skeletonBg = isDark ? 'bg-gray-700' : 'bg-gray-200';
-    return /*#__PURE__*/jsxs("div", {
-      className: clsx(containerClasses[variant] || containerClasses["default"], className),
-      children: [subtitle && /*#__PURE__*/jsx("div", {
-        className: clsx('h-4 w-24 mb-3 rounded product-skeleton', skeletonBg)
-      }), /*#__PURE__*/jsx("div", {
-        className: clsx('h-8 sm:h-10 w-3/4 mb-4 rounded product-skeleton', skeletonBg)
-      }), /*#__PURE__*/jsx("div", {
-        className: clsx('h-4 w-full mb-2 rounded product-skeleton', skeletonBg)
-      }), /*#__PURE__*/jsx("div", {
-        className: clsx('h-4 w-5/6 mb-4 rounded product-skeleton', skeletonBg)
-      }), /*#__PURE__*/jsx("div", {
-        className: clsx('h-10 sm:h-12 w-32 rounded product-skeleton', skeletonBg)
-      })]
-    });
-  };
-  if (!showContent) {
-    return /*#__PURE__*/jsx(SkeletonLoader, {});
-  }
-  var ArrowIcon = function ArrowIcon() {
-    return /*#__PURE__*/jsx("svg", {
-      className: "w-4 h-4 sm:w-5 sm:h-5",
-      fill: "none",
-      stroke: "currentColor",
-      viewBox: "0 0 24 24",
-      children: /*#__PURE__*/jsx("path", {
-        strokeLinecap: "round",
-        strokeLinejoin: "round",
-        strokeWidth: 2,
-        d: "M13 7l5 5m0 0l-5 5m5-5H6"
-      })
-    });
-  };
-  return /*#__PURE__*/jsxs("div", {
-    className: clsx(containerClasses[variant] || containerClasses["default"], className),
-    children: [subtitle && /*#__PURE__*/jsx("p", {
-      className: subtitleClasses[variant] || subtitleClasses["default"],
-      children: subtitle
-    }), /*#__PURE__*/jsx("h2", {
-      className: titleClasses[variant] || titleClasses["default"],
-      children: title
-    }), description && /*#__PURE__*/jsx("p", {
-      className: descriptionClasses[variant] || descriptionClasses["default"],
-      children: description
-    }), buttonText && /*#__PURE__*/jsx("button", {
-      type: "button",
-      onClick: handleButtonClick,
-      className: getButtonClasses(buttonVariant),
-      children: variant === 'icon' ? /*#__PURE__*/jsx(ArrowIcon, {}) : /*#__PURE__*/jsxs(Fragment, {
-        children: [/*#__PURE__*/jsx("span", {
-          children: buttonText
-        }), variant !== 'minimal' && variant !== 'compact' && /*#__PURE__*/jsx("span", {
-          className: "flex-shrink-0",
-          children: /*#__PURE__*/jsx(ArrowIcon, {})
-        })]
-      })
-    })]
-  });
-};
-
 var CategoryGrid = function CategoryGrid(_ref) {
   var data = _ref.data,
     className = _ref.className,
@@ -22444,5 +31481,5 @@ var loadHeroDataSync = function loadHeroDataSync(data) {
   return data;
 };
 
-export { BlogAuthor, BlogCard, BlogComments, BlogGrid, BlogNavigation, BlogShare, BlogSingle, CategoryGrid, CategoryMasonry, CategoryShowcase, FaqHub, FaqModern, FaqVisual, FeatureDeck, FeatureModern, FeaturePrime, FooterLayout, HeaderLayout, HeaderPremium, HeaderStandard, HeroGlass, HeroGradient, HeroPrime, PriceBoard, PriceModern, PricePremium, ProductBadge, ProductBreadcrumb, ProductCompare, ProductDescription, ProductFilter, ProductLayout, ProductModern, ProductPagination, ProductQuantity, ProductQuickView, ProductRating, ProductSearch, ProductShare, ProductShop, ProductSidebar, ProductSkeleton, ProductSort, ProductStandard, ProductToggle, ProductWishlist, SlideFlow, TestimonialCarousel, TestimonialTimeline, TrustBlock, loadHeroData, loadHeroDataSync };
+export { BlogAuthor, BlogCard, BlogComments, BlogGrid, BlogNavigation, BlogShare, BlogSingle, CategoryGrid, CategoryMasonry, CategoryShowcase, FaqHub, FaqModern, FaqVisual, FeatureDeck, FeatureModern, FeaturePrime, FooterLayout, HeaderLayout, HeaderPremium, HeaderStandard, HeroGlass, HeroGradient, HeroPrime, PriceBoard, PriceModern, PricePremium, ProductActions, ProductBadge, ProductBreadcrumb, ProductBreadcrumbs, ProductCompare, ProductDescription, ProductFeatures, ProductFilter, ProductGallery, ProductHero, ProductInfo, ProductLayout, ProductModern, ProductPagination, ProductQuantity, ProductQuickView, ProductRating, ProductRelated, ProductReviews, ProductSearch, ProductShare, ProductShop, ProductSidebar, ProductSingleClassic, ProductSingleDescription, ProductSingleMinimal, ProductSingleModern, ProductSkeleton, ProductSort, ProductSpecifications, ProductStandard, ProductToggle, ProductWishlist, SlideFlow, TestimonialCarousel, TestimonialTimeline, TrustBlock, loadHeroData, loadHeroDataSync };
 //# sourceMappingURL=index.esm.js.map
