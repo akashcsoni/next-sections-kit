@@ -19497,8 +19497,8 @@ var ProductFilter = function ProductFilter(_ref) {
     minimal: clsx('w-full sm:w-auto px-3 sm:px-4 py-2 text-sm', 'bg-transparent border-b-2 border-gray-300 rounded-none', 'flex items-center justify-between gap-2', 'hover:border-primary-500 transition-all duration-200', 'focus:outline-none focus:border-primary-500'),
     compact: clsx('w-full sm:w-auto px-2 sm:px-3 py-1.5 text-xs sm:text-sm', 'bg-white border border-gray-300 rounded-md', 'flex items-center justify-between gap-1.5', 'hover:bg-gray-50 transition-all duration-200', 'focus:outline-none focus:ring-1 focus:ring-primary-500'),
     icon: clsx('p-2 sm:p-2.5 rounded-lg', 'bg-primary-500 hover:bg-primary-600 text-white', 'shadow-md hover:shadow-lg transition-all duration-300', 'focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2'),
-    dark: clsx('w-full sm:w-auto px-3 sm:px-4 py-2 sm:py-2.5 text-sm sm:text-base', 'bg-gray-800 border border-gray-600 rounded-lg text-white', 'flex items-center justify-between gap-2', 'hover:bg-gray-700 transition-all duration-200', 'focus:outline-none focus:ring-2 focus:ring-primary-400'),
-    'dark-gray': clsx('w-full sm:w-auto px-3 sm:px-4 py-2 sm:py-2.5 text-sm sm:text-base', 'bg-gray-900 border border-gray-700 rounded-lg text-gray-100', 'flex items-center justify-between gap-2', 'hover:bg-gray-800 transition-all duration-200', 'focus:outline-none focus:ring-2 focus:ring-gray-500')
+    dark: clsx('w-full sm:w-auto px-3 sm:px-4 py-2 sm:py-2.5 text-sm sm:text-base', 'bg-gray-800 border border-gray-600 rounded-lg text-white', 'flex items-center justify-between gap-2', 'hover:bg-primary-700 transition-all duration-200', 'focus:outline-none focus:ring-2 focus:ring-primary-400'),
+    'dark-gray': clsx('w-full sm:w-auto px-3 sm:px-4 py-2 sm:py-2.5 text-sm sm:text-base', 'bg-gray-900 border border-gray-700 rounded-lg text-white', 'flex items-center justify-between gap-2', 'hover:bg-gray-800 transition-all duration-200', 'focus:outline-none focus:ring-2 focus:ring-gray-500')
   };
 
   // Dropdown classes
@@ -19577,18 +19577,19 @@ var ProductFilter = function ProductFilter(_ref) {
       }), /*#__PURE__*/jsxs("div", {
         className: dropdownClasses[variant] || dropdownClasses["default"],
         children: [selectedFilters.length > 0 && /*#__PURE__*/jsx("div", {
-          className: "p-2 border-b border-gray-200",
+          className: clsx('p-2 border-b', variant === 'dark' || variant === 'dark-gray' ? 'border-gray-600' : 'border-gray-200'),
           children: /*#__PURE__*/jsx("button", {
             onClick: handleClear,
-            className: "text-xs text-primary-600 hover:text-primary-700",
+            className: clsx('text-xs', variant === 'dark' || variant === 'dark-gray' ? 'text-white hover:text-gray-200' : 'text-primary-600 hover:text-primary-700'),
             children: "Clear all"
           })
         }), /*#__PURE__*/jsx("div", {
           className: "p-2",
           children: filters.map(function (filter, index) {
             var isSelected = selectedFilters.includes(filter);
+            var isDark = variant === 'dark' || variant === 'dark-gray';
             return /*#__PURE__*/jsxs("label", {
-              className: clsx('flex items-center gap-2 p-2 rounded cursor-pointer hover:bg-gray-50', isSelected && 'bg-primary-50'),
+              className: clsx('flex items-center gap-2 p-2 rounded cursor-pointer', isDark ? 'hover:bg-primary-700' : 'hover:bg-gray-50', isSelected && (isDark ? 'bg-gray-700' : 'bg-primary-50')),
               children: [/*#__PURE__*/jsx("input", {
                 type: multiple ? 'checkbox' : 'radio',
                 checked: isSelected,
@@ -19597,7 +19598,7 @@ var ProductFilter = function ProductFilter(_ref) {
                 },
                 className: "w-4 h-4 text-primary-600"
               }), /*#__PURE__*/jsx("span", {
-                className: "text-sm",
+                className: clsx('text-sm', isDark && 'text-white'),
                 children: filter
               })]
             }, index);
@@ -19696,8 +19697,8 @@ var ProductSort = function ProductSort(_ref) {
     minimal: clsx('w-full sm:w-auto px-3 sm:px-4 py-2 text-sm', 'bg-transparent border-b-2 border-gray-300 rounded-none', 'flex items-center justify-between gap-2', 'hover:border-primary-500 transition-all duration-200', ''),
     compact: clsx('w-full sm:w-auto px-2 sm:px-3 py-1.5 text-xs sm:text-sm', 'bg-white border border-gray-300 rounded-md', 'flex items-center justify-between gap-1.5', 'hover:bg-gray-50 transition-all duration-200', ''),
     icon: clsx('p-2 sm:p-2.5 rounded-lg', 'bg-primary-500 hover:bg-primary-600 text-white', 'shadow-md hover:shadow-lg transition-all duration-300', ''),
-    dark: clsx('w-full sm:w-auto px-3 sm:px-4 py-2 sm:py-2.5 text-sm sm:text-base', 'bg-gray-800 border border-gray-600 rounded-lg text-white', 'flex items-center justify-between gap-2', 'hover:bg-gray-700 transition-all duration-200', ''),
-    'dark-gray': clsx('w-full sm:w-auto px-3 sm:px-4 py-2 sm:py-2.5 text-sm sm:text-base', 'bg-gray-900 border border-gray-700 rounded-lg text-gray-100', 'flex items-center justify-between gap-2', 'hover:bg-gray-800 transition-all duration-200', '')
+    dark: clsx('w-full sm:w-auto px-3 sm:px-4 py-2 sm:py-2.5 text-sm sm:text-base', 'bg-gray-800 border border-gray-600 rounded-lg text-white', 'flex items-center justify-between gap-2', 'hover:bg-primary-700 transition-all duration-200', ''),
+    'dark-gray': clsx('w-full sm:w-auto px-3 sm:px-4 py-2 sm:py-2.5 text-sm sm:text-base', 'bg-gray-900 border border-gray-700 rounded-lg text-white', 'flex items-center justify-between gap-2', 'hover:bg-gray-800 transition-all duration-200', '')
   };
 
   // Dropdown classes
@@ -19778,11 +19779,12 @@ var ProductSort = function ProductSort(_ref) {
         children: /*#__PURE__*/jsx("div", {
           className: "p-2",
           children: options.map(function (option) {
+            var isDark = variant === 'dark' || variant === 'dark-gray';
             return /*#__PURE__*/jsx("button", {
               onClick: function onClick() {
                 return handleSortChange(option.value);
               },
-              className: clsx('w-full text-left px-3 py-2 rounded text-sm transition-colors', selectedSort === option.value ? 'bg-primary-50 text-primary-700 font-medium' : 'hover:bg-gray-50'),
+              className: clsx('w-full text-left px-3 py-2 rounded text-sm transition-colors', selectedSort === option.value ? isDark ? 'bg-gray-700 text-white font-medium' : 'bg-primary-50 text-primary-700 font-medium' : isDark ? 'hover:bg-gray-700 text-white' : 'hover:bg-gray-50'),
               children: option.label
             }, option.value);
           })
@@ -20261,7 +20263,8 @@ var ProductBreadcrumb = function ProductBreadcrumb(_ref) {
     compact: 'flex items-center gap-0.5 sm:gap-1 text-xs',
     icon: 'flex items-center gap-1 sm:gap-2 text-sm',
     dark: 'flex items-center gap-1 sm:gap-2 text-sm',
-    'dark-gray': 'flex items-center gap-1 sm:gap-2 text-sm'
+    'dark-gray': 'flex items-center gap-1 sm:gap-2 text-sm',
+    'icon-dark': 'flex items-center gap-1 sm:gap-2 text-sm'
   };
   var itemClasses = {
     "default": clsx('text-gray-600 hover:text-gray-900 transition-colors', 'active:text-gray-900 font-medium'),
@@ -20270,10 +20273,11 @@ var ProductBreadcrumb = function ProductBreadcrumb(_ref) {
     compact: clsx('text-gray-500 hover:text-gray-700 transition-colors text-xs', 'active:text-gray-900'),
     icon: clsx('text-gray-600 hover:text-primary-600 transition-colors', 'active:text-gray-900'),
     dark: clsx('text-gray-400 hover:text-gray-200 transition-colors', 'active:text-white font-medium'),
-    'dark-gray': clsx('text-gray-500 hover:text-gray-300 transition-colors', 'active:text-gray-100')
+    'dark-gray': clsx('text-gray-500 hover:text-gray-300 transition-colors', 'active:text-gray-100'),
+    'icon-dark': clsx('text-gray-400 hover:text-gray-200 transition-colors', 'active:text-white font-medium')
   };
   var SkeletonLoader = function SkeletonLoader() {
-    var isDark = variant === 'dark' || variant === 'dark-gray';
+    var isDark = variant === 'dark' || variant === 'dark-gray' || variant === 'icon-dark';
     var skeletonBg = isDark ? 'bg-gray-700' : 'bg-gray-200';
     return /*#__PURE__*/jsx("div", {
       className: clsx(containerClasses[variant] || containerClasses["default"], className),
@@ -20296,7 +20300,7 @@ var ProductBreadcrumb = function ProductBreadcrumb(_ref) {
   }
   var ChevronIcon = function ChevronIcon() {
     return /*#__PURE__*/jsx("svg", {
-      className: "w-4 h-4",
+      className: clsx("w-4 h-4", (variant === 'dark' || variant === 'dark-gray' || variant === 'icon-dark') && "text-gray-500"),
       fill: "none",
       stroke: "currentColor",
       viewBox: "0 0 24 24",
@@ -20310,7 +20314,7 @@ var ProductBreadcrumb = function ProductBreadcrumb(_ref) {
   };
   var HomeIcon = function HomeIcon() {
     return /*#__PURE__*/jsx("svg", {
-      className: "w-4 h-4",
+      className: clsx("w-4 h-4", (variant === 'dark' || variant === 'dark-gray' || variant === 'icon-dark') && "text-gray-500"),
       fill: "none",
       stroke: "currentColor",
       viewBox: "0 0 24 24",
@@ -20330,7 +20334,7 @@ var ProductBreadcrumb = function ProductBreadcrumb(_ref) {
       var isActive = item.active || isLast;
       return /*#__PURE__*/jsxs("div", {
         className: "flex items-center gap-1 sm:gap-2",
-        children: [index === 0 && variant === 'icon' && /*#__PURE__*/jsx(HomeIcon, {}), item.href && !isActive ? /*#__PURE__*/jsx("a", {
+        children: [index === 0 && (variant === 'icon' || variant === 'icon-dark') && /*#__PURE__*/jsx(HomeIcon, {}), item.href && !isActive ? /*#__PURE__*/jsx("a", {
           href: item.href,
           onClick: function onClick(e) {
             if (onItemClick) {
@@ -20949,7 +20953,7 @@ var ProductDescription = function ProductDescription(_ref) {
     compact: clsx('text-xs sm:text-sm font-medium mb-1.5', 'text-primary-600'),
     icon: clsx('text-sm sm:text-base font-medium mb-2 sm:mb-3', 'text-primary-600'),
     dark: clsx('text-sm sm:text-base font-medium mb-2 sm:mb-3', 'text-primary-400'),
-    'dark-gray': clsx('text-sm sm:text-base font-medium mb-2 sm:mb-3', 'text-primary-400')
+    'dark-gray': clsx('text-sm sm:text-base font-medium mb-2 sm:mb-3', 'text-gray-400')
   };
 
   // Description classes
@@ -20983,7 +20987,7 @@ var ProductDescription = function ProductDescription(_ref) {
         compact: 'bg-primary-600 hover:bg-primary-700 text-white',
         icon: 'bg-primary-500 hover:bg-primary-600 text-white hover:shadow-lg',
         dark: 'bg-primary-500 hover:bg-primary-600 text-white',
-        'dark-gray': 'bg-primary-500 hover:bg-primary-600 text-white'
+        'dark-gray': 'bg-gray-500 hover:bg-gray-600 text-white'
       },
       secondary: {
         "default": 'bg-gray-200 hover:bg-gray-300 text-gray-900',
@@ -21001,7 +21005,7 @@ var ProductDescription = function ProductDescription(_ref) {
         compact: 'border border-primary-600 text-primary-600 hover:bg-primary-50',
         icon: 'border-2 border-primary-500 text-primary-500 hover:bg-primary-50 hover:shadow-lg',
         dark: 'border-2 border-primary-400 text-primary-400 hover:bg-primary-900',
-        'dark-gray': 'border-2 border-primary-400 text-primary-400 hover:bg-primary-900'
+        'dark-gray': 'border-2 border-gray-400 text-gray-400 hover:bg-gray-900'
       }
     };
     return clsx(baseClasses[variant] || baseClasses["default"], ((_variantClasses$btnVa = variantClasses[btnVariant]) === null || _variantClasses$btnVa === void 0 ? void 0 : _variantClasses$btnVa[variant]) || variantClasses.primary[variant] || variantClasses.primary["default"]);
@@ -21242,6 +21246,10 @@ var CategoryGrid = function CategoryGrid(_ref) {
           var isFeatured = variant === 'featured' && index === 0;
           var gradient = getGradientForIndex(index);
           var featuredGradient = getFeaturedGradient(index);
+          // If a heroImage is provided, show a big image block inside the card
+          // and hide the small avatar beside the title.
+          var hasHeroImage = !!item.heroImage;
+          var showSmallMedia = !hasHeroImage;
 
           // Card classes based on variant
           var getCardClasses = function getCardClasses() {
@@ -21255,7 +21263,7 @@ var CategoryGrid = function CategoryGrid(_ref) {
               return clsx('relative overflow-hidden rounded-2xl', 'transition-all duration-300 category-card hover:category-card-hover', 'bg-gradient-to-br', "bg-gradient-to-br ".concat(gradient), 'shadow-xl hover:shadow-2xl', 'border border-white/20');
             }
             if (variant === 'featured' && isFeatured) {
-              return clsx('relative overflow-hidden rounded-3xl', 'transition-all duration-300 category-card hover:category-card-hover', 'bg-gradient-to-br', "bg-gradient-to-br ".concat(featuredGradient), 'shadow-2xl hover:shadow-3xl', 'border border-white/30', 'sm:col-span-2 lg:col-span-2 lg:row-span-2');
+              return clsx('relative overflow-hidden rounded-3xl', 'transition-all duration-300 category-card hover:category-card-hover', 'bg-gradient-to-br', "bg-gradient-to-br ".concat(featuredGradient), 'shadow-2xl hover:shadow-3xl', 'border border-white/30', 'sm:col-span-2 lg:col-span-2');
             }
             // Default variant
             return clsx('relative overflow-hidden rounded-2xl border', 'transition-all duration-300 category-card hover:category-card-hover', isDark ? 'bg-gray-900/70 border-gray-800 hover:bg-gray-900 hover:border-gray-700' : 'bg-white border-gray-100 hover:bg-white hover:border-gray-200', 'shadow-[0_18px_45px_rgba(15,23,42,0.08)]');
@@ -21293,18 +21301,25 @@ var CategoryGrid = function CategoryGrid(_ref) {
               className: "absolute inset-0 bg-black/10 pointer-events-none"
             }), /*#__PURE__*/jsxs("div", {
               className: clsx('relative flex flex-col', getCardPadding(), variant === 'compact' ? 'gap-3' : 'gap-5'),
-              children: [/*#__PURE__*/jsxs("div", {
+              children: [hasHeroImage && /*#__PURE__*/jsx("div", {
+                className: "mb-4 sm:mb-5 rounded-2xl overflow-hidden h-40 sm:h-52 lg:h-64",
+                children: /*#__PURE__*/jsx("img", {
+                  src: item.heroImage,
+                  alt: item.title || 'Category image',
+                  className: "w-full h-full object-cover"
+                })
+              }), /*#__PURE__*/jsxs("div", {
                 className: clsx('flex items-center justify-between gap-4', variant === 'compact' && 'flex-wrap'),
                 children: [/*#__PURE__*/jsxs("div", {
                   className: "flex items-center gap-3",
-                  children: [item.icon && /*#__PURE__*/jsx("div", {
-                    className: clsx('inline-flex items-center justify-center rounded-xl', variant === 'compact' ? 'h-8 w-8' : 'h-10 w-10', 'category-icon', variant === 'gradient' || variant === 'featured' && isFeatured ? 'bg-white/20 backdrop-blur-sm border border-white/30 text-white' : variant === 'minimal' ? isDark ? 'bg-transparent border border-gray-700 text-gray-100' : 'bg-transparent border border-gray-200 text-gray-900' : isDark ? 'bg-gray-900 border border-gray-700 text-gray-100' : 'bg-slate-50 border border-slate-200 text-slate-900'),
-                    children: typeof item.icon === 'string' ? /*#__PURE__*/jsx("span", {
-                      className: variant === 'compact' ? 'text-base' : 'text-lg',
-                      children: item.icon
-                    }) : /*#__PURE__*/jsx("span", {
-                      className: variant === 'compact' ? 'w-4 h-4' : 'w-5 h-5',
-                      children: item.icon
+                  children: [showSmallMedia && (item.icon || item.image) && /*#__PURE__*/jsx("div", {
+                    className: clsx('inline-flex items-center justify-center overflow-hidden',
+                    // Make the featured card image noticeably bigger
+                    variant === 'featured' && isFeatured ? 'h-16 w-16 sm:h-20 sm:w-20 rounded-2xl' : variant === 'compact' ? 'h-8 w-8 rounded-lg' : 'h-10 w-10 rounded-xl', 'category-icon', variant === 'gradient' || variant === 'featured' && isFeatured ? 'bg-white/20 backdrop-blur-sm border border-white/30' : variant === 'minimal' ? isDark ? 'bg-transparent border border-gray-700' : 'bg-transparent border border-gray-200' : isDark ? 'bg-gray-900 border border-gray-700' : 'bg-slate-50 border border-slate-200'),
+                    children: /*#__PURE__*/jsx("img", {
+                      src: item.image || item.icon,
+                      alt: item.title || 'Category image',
+                      className: "w-full h-full object-cover"
                     })
                   }), /*#__PURE__*/jsxs("div", {
                     children: [/*#__PURE__*/jsx("h3", {
@@ -21419,11 +21434,10 @@ var CategoryShowcase = function CategoryShowcase(_ref) {
     _data$layout = data.layout,
     layout = _data$layout === void 0 ? 'overlay' : _data$layout,
     variant = data.variant,
-    mediaUrl = data.mediaUrl,
     badge = data.badge,
     dataClassName = data.className;
   var isDark = theme === 'dark';
-  var limitedItems = items.slice(0, 6);
+  var limitedItems = items;
 
   // Determine effective variant (backwards compatible with layout prop)
   var effectiveVariant = variant && variant !== 'overlay' && variant !== 'stacked' ? variant : layout; // 'overlay' | 'stacked'
@@ -21448,7 +21462,7 @@ var CategoryShowcase = function CategoryShowcase(_ref) {
               className: "mx-auto h-3 sm:h-4 w-56 sm:w-64 md:w-72 max-w-full rounded category-skeleton"
             })]
           }), /*#__PURE__*/jsx("div", {
-            className: "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 md:gap-5 lg:gap-6",
+            className: "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-5 lg:gap-6",
             children: Array.from({
               length: skeletonCount
             }).map(function (_, index) {
@@ -21486,7 +21500,7 @@ var CategoryShowcase = function CategoryShowcase(_ref) {
               className: "mx-auto h-3 sm:h-4 w-56 sm:w-64 md:w-72 max-w-full rounded category-skeleton"
             })]
           }), /*#__PURE__*/jsx("div", {
-            className: "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5",
+            className: "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-5",
             children: Array.from({
               length: _skeletonCount
             }).map(function (_, index) {
@@ -21570,9 +21584,9 @@ var CategoryShowcase = function CategoryShowcase(_ref) {
     return /*#__PURE__*/jsx("section", {
       id: id,
       className: clsx('w-full py-10 sm:py-14 md:py-18 lg:py-22 xl:py-24 px-3 sm:px-4 md:px-6 lg:px-8', isDark ? 'bg-gray-950' : 'bg-slate-50', 'category-section', className, dataClassName),
-      children: /*#__PURE__*/jsxs("div", {
+      children: /*#__PURE__*/jsx("div", {
         className: "max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-6 sm:gap-8 md:gap-10 lg:gap-14 items-center",
-        children: [/*#__PURE__*/jsxs("div", {
+        children: /*#__PURE__*/jsxs("div", {
           className: "space-y-4 sm:space-y-5",
           children: [/*#__PURE__*/jsxs("div", {
             className: "space-y-2 sm:space-y-3",
@@ -21591,21 +21605,16 @@ var CategoryShowcase = function CategoryShowcase(_ref) {
               })]
             })]
           }), /*#__PURE__*/jsx("div", {
-            className: "grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 pt-3 sm:pt-4",
+            className: "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 pt-4 sm:pt-6",
             children: Array.from({
               length: skeletonChips
             }).map(function (_, index) {
               return /*#__PURE__*/jsx("div", {
-                className: clsx('category-card-skeleton h-14 sm:h-16 rounded-lg sm:rounded-xl border', isDark ? 'bg-gray-900/80 border-gray-800' : 'bg-white border-gray-100')
+                className: clsx('category-card-skeleton rounded-lg sm:rounded-xl border p-4 sm:p-6', isDark ? 'bg-gray-900/80 border-gray-800' : 'bg-white border-gray-200')
               }, index);
             })
           })]
-        }), /*#__PURE__*/jsx("div", {
-          className: clsx('relative w-full h-56 sm:h-64 md:h-72 lg:h-80 xl:h-96 rounded-2xl sm:rounded-3xl overflow-hidden', isDark ? 'bg-gray-900' : 'bg-gray-200'),
-          children: /*#__PURE__*/jsx("div", {
-            className: "category-skeleton absolute inset-0"
-          })
-        })]
+        })
       })
     });
   }
@@ -21630,81 +21639,35 @@ var CategoryShowcase = function CategoryShowcase(_ref) {
       className: clsx('max-w-xl text-xs sm:text-sm md:text-base lg:text-lg leading-relaxed', isDark ? 'text-gray-400' : 'text-gray-600'),
       children: description
     }), /*#__PURE__*/jsx("div", {
-      className: "grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 pt-3 sm:pt-4",
+      className: "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 pt-4 sm:pt-6",
       children: limitedItems.map(function (item, index) {
         return /*#__PURE__*/jsx("div", {
-          className: clsx('group relative rounded-xl sm:rounded-2xl border px-3 py-3.5 sm:px-4 sm:py-4 md:px-5', 'transition-all duration-300 category-chip touch-manipulation active:scale-[0.98]', isDark ? 'bg-gray-900/60 border-gray-800 hover:border-gray-700 hover:bg-gray-900' : 'bg-white border-gray-100 hover:border-gray-200 hover:bg-slate-50'),
+          className: clsx('group relative rounded-lg sm:rounded-xl border p-4 sm:p-6', 'transition-all duration-200 category-chip touch-manipulation active:scale-[0.98]', 'hover:shadow-lg focus-within:ring-2 focus-within:ring-primary-500/50', isDark ? 'bg-gray-900/80 border-gray-800 hover:border-gray-700 hover:bg-gray-900' : 'bg-white border-gray-200 hover:border-gray-300 hover:bg-gray-50'),
           children: /*#__PURE__*/jsxs("div", {
-            className: "flex items-center gap-2.5 sm:gap-3",
-            children: [item.icon && /*#__PURE__*/jsx("div", {
-              className: clsx('inline-flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-lg sm:rounded-xl flex-shrink-0', isDark ? 'bg-gray-950 border border-gray-800 text-gray-100' : 'bg-slate-50 border border-slate-200 text-slate-900'),
-              children: typeof item.icon === 'string' ? /*#__PURE__*/jsx("span", {
-                className: "text-base sm:text-lg",
-                children: item.icon
-              }) : /*#__PURE__*/jsx("span", {
-                className: "w-3.5 h-3.5 sm:w-4 sm:h-4",
-                children: item.icon
+            className: "flex flex-col items-center gap-3 sm:gap-4",
+            children: [(item.icon || item.image) && /*#__PURE__*/jsx("div", {
+              className: clsx('relative flex-shrink-0 rounded-lg sm:rounded-xl overflow-hidden', 'w-20 h-20 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36', isDark ? 'bg-gray-800 border border-gray-700' : 'bg-gray-100 border border-gray-200'),
+              children: /*#__PURE__*/jsx("img", {
+                src: item.image || item.icon,
+                alt: item.title || 'Category image',
+                className: "w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
               })
             }), /*#__PURE__*/jsxs("div", {
-              className: "flex-1 min-w-0",
-              children: [/*#__PURE__*/jsxs("div", {
-                className: "flex items-center justify-between gap-1.5 sm:gap-2",
-                children: [/*#__PURE__*/jsx("p", {
-                  className: clsx('text-xs sm:text-sm font-semibold truncate leading-tight', isDark ? 'text-white' : 'text-gray-900'),
-                  children: item.title
-                }), item.count != null && /*#__PURE__*/jsxs("span", {
-                  className: clsx('text-[10px] sm:text-[11px] font-medium whitespace-nowrap flex-shrink-0', isDark ? 'text-gray-400' : 'text-gray-500'),
-                  children: [item.count, " items"]
-                })]
+              className: "flex flex-col items-center gap-2 text-center min-w-0",
+              children: [/*#__PURE__*/jsx("h3", {
+                className: clsx('text-sm sm:text-lg md:text-xl font-bold leading-tight line-clamp-2', isDark ? 'text-white' : 'text-gray-900'),
+                children: item.title
+              }), item.count != null && /*#__PURE__*/jsxs("span", {
+                className: clsx('text-xs sm:text-sm font-medium px-3 py-1 rounded-full', isDark ? 'bg-gray-800 text-gray-300' : 'bg-gray-100 text-gray-600'),
+                children: [item.count, " items"]
               }), item.subtitle && /*#__PURE__*/jsx("p", {
-                className: clsx('mt-0.5 sm:mt-1 text-[10px] sm:text-xs truncate', isDark ? 'text-gray-400' : 'text-gray-600'),
+                className: clsx('text-xs sm:text-sm leading-tight line-clamp-2 opacity-75', isDark ? 'text-gray-400' : 'text-gray-600'),
                 children: item.subtitle
               })]
             })]
           })
         }, item.id || item.slug || item.title || index);
       })
-    })]
-  });
-  var media = /*#__PURE__*/jsxs("div", {
-    className: "relative w-full h-56 sm:h-64 md:h-72 lg:h-80 xl:h-96",
-    children: [/*#__PURE__*/jsxs("div", {
-      className: clsx('absolute inset-0 rounded-2xl sm:rounded-3xl overflow-hidden border', 'category-media', isDark ? 'bg-gradient-to-br from-gray-900 via-black to-gray-900 border-gray-800' : 'bg-gradient-to-br from-slate-100 via-white to-slate-100 border-slate-200'),
-      children: [mediaUrl && /*#__PURE__*/jsx("div", {
-        className: "absolute inset-0",
-        children: /*#__PURE__*/jsx("img", {
-          src: mediaUrl,
-          alt: title || 'Category media',
-          className: "w-full h-full object-cover object-center opacity-90"
-        })
-      }), /*#__PURE__*/jsx("div", {
-        className: clsx('absolute inset-0', isDark ? 'bg-gradient-to-t from-black/70 via-black/40 to-transparent' : 'bg-gradient-to-t from-black/40 via-black/20 to-transparent')
-      }), /*#__PURE__*/jsx("div", {
-        className: "absolute inset-0 flex flex-col justify-end p-4 sm:p-6 md:p-8 gap-3 sm:gap-4",
-        children: /*#__PURE__*/jsxs("div", {
-          className: "flex flex-wrap items-center justify-between gap-2 sm:gap-3 text-[10px] sm:text-xs md:text-sm",
-          children: [/*#__PURE__*/jsxs("div", {
-            className: clsx('inline-flex items-center gap-1.5 sm:gap-2 rounded-full px-2.5 py-0.5 sm:px-3 sm:py-1 border backdrop-blur', isDark ? 'bg-black/40 border-white/15 text-gray-100' : 'bg-white/80 border-white/40 text-gray-900'),
-            children: [/*#__PURE__*/jsx("span", {
-              className: "w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-emerald-400"
-            }), /*#__PURE__*/jsx("span", {
-              className: "whitespace-nowrap",
-              children: "Curated categories"
-            })]
-          }), /*#__PURE__*/jsxs("div", {
-            className: clsx('inline-flex items-center gap-1.5 sm:gap-2 rounded-full px-2.5 py-0.5 sm:px-3 sm:py-1 border', isDark ? 'bg-black/40 border-white/15 text-gray-100' : 'bg-white/80 border-white/40 text-gray-900'),
-            children: [/*#__PURE__*/jsx("span", {
-              className: "font-semibold whitespace-nowrap",
-              children: limitedItems.length
-            }), /*#__PURE__*/jsx("span", {
-              className: "opacity-80 whitespace-nowrap",
-              children: "featured verticals"
-            })]
-          })]
-        })
-      })]
-    }), /*#__PURE__*/jsx("div", {
-      className: clsx('pointer-events-none absolute -inset-x-6 -bottom-6 h-20', 'bg-gradient-to-t from-black/40 via-black/10 to-transparent', isDark ? '' : 'opacity-40')
     })]
   });
 
@@ -21733,14 +21696,12 @@ var CategoryShowcase = function CategoryShowcase(_ref) {
             return /*#__PURE__*/jsxs("button", {
               type: "button",
               className: clsx('group relative flex flex-col items-center text-center rounded-xl sm:rounded-2xl border', 'transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2', 'touch-manipulation active:scale-[0.98]', isDark ? 'bg-gray-900/60 border-gray-800 hover:border-primary-500 hover:bg-gray-900 focus-visible:ring-offset-gray-950' : 'bg-white border-gray-200 hover:border-primary-500 hover:bg-primary-50/40 focus-visible:ring-offset-white', 'px-4 py-5 sm:px-5 sm:py-6 md:px-6 md:py-8'),
-              children: [item.icon && /*#__PURE__*/jsx("div", {
-                className: clsx('mb-3 sm:mb-4 h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 rounded-xl sm:rounded-2xl flex items-center justify-center', 'transition-transform duration-200 group-hover:scale-105 group-hover:shadow-lg', isDark ? 'bg-gray-800 border border-gray-700 text-gray-100' : 'bg-primary-50 border border-primary-100 text-primary-600'),
-                children: typeof item.icon === 'string' ? /*#__PURE__*/jsx("span", {
-                  className: "text-2xl sm:text-3xl",
-                  children: item.icon
-                }) : /*#__PURE__*/jsx("span", {
-                  className: "w-8 h-8 sm:w-10 sm:h-10",
-                  children: item.icon
+              children: [(item.icon || item.image) && /*#__PURE__*/jsx("div", {
+                className: clsx('mb-3 sm:mb-4 h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 rounded-xl sm:rounded-2xl flex items-center justify-center overflow-hidden', 'transition-transform duration-200 group-hover:scale-105 group-hover:shadow-lg', isDark ? 'bg-gray-800 border border-gray-700' : 'bg-primary-50 border border-primary-100'),
+                children: /*#__PURE__*/jsx("img", {
+                  src: item.image || item.icon,
+                  alt: item.title || 'Category image',
+                  className: "w-full h-full object-cover"
                 })
               }), /*#__PURE__*/jsxs("div", {
                 className: "space-y-1",
@@ -21794,14 +21755,12 @@ var CategoryShowcase = function CategoryShowcase(_ref) {
               className: clsx('relative flex flex-col justify-between rounded-xl sm:rounded-2xl border bg-white', 'px-3 py-3.5 sm:px-4 sm:py-4 md:px-5 md:py-5', 'transition-all duration-200 touch-manipulation active:scale-[0.98]', isDark ? 'bg-gray-900/70 border-gray-800 hover:border-primary-500' : 'bg-white border-gray-200 hover:border-primary-500 hover:shadow-md'),
               children: [/*#__PURE__*/jsxs("div", {
                 className: "flex items-start gap-3",
-                children: [item.icon && /*#__PURE__*/jsx("div", {
-                  className: clsx('mt-1 h-7 w-7 sm:h-8 sm:w-8 rounded-full flex items-center justify-center flex-shrink-0', isDark ? 'bg-gray-800 text-gray-100' : 'bg-primary-50 text-primary-600'),
-                  children: typeof item.icon === 'string' ? /*#__PURE__*/jsx("span", {
-                    className: "text-base sm:text-lg",
-                    children: item.icon
-                  }) : /*#__PURE__*/jsx("span", {
-                    className: "w-3.5 h-3.5 sm:w-4 sm:h-4",
-                    children: item.icon
+                children: [(item.icon || item.image) && /*#__PURE__*/jsx("div", {
+                  className: clsx('mt-1 h-7 w-7 sm:h-8 sm:w-8 rounded-full flex items-center justify-center flex-shrink-0 overflow-hidden', isDark ? 'bg-gray-800' : 'bg-primary-50'),
+                  children: /*#__PURE__*/jsx("img", {
+                    src: item.image || item.icon,
+                    alt: item.title || 'Category image',
+                    className: "w-full h-full object-cover rounded-full"
                   })
                 }), /*#__PURE__*/jsxs("div", {
                   className: "flex-1 min-w-0",
@@ -21864,13 +21823,13 @@ var CategoryShowcase = function CategoryShowcase(_ref) {
                 className: clsx('relative rounded-full p-[2px] sm:p-[3px] mb-2 sm:mb-3 md:mb-4', 'bg-gradient-to-br from-rose-500 via-rose-400 to-rose-600'),
                 children: /*#__PURE__*/jsx("div", {
                   className: "rounded-full bg-neutral-900 p-1 sm:p-1.5",
-                  children: item.image ? /*#__PURE__*/jsx("img", {
-                    src: item.image,
+                  children: item.image || item.icon ? /*#__PURE__*/jsx("img", {
+                    src: item.image || item.icon,
                     alt: item.title,
                     className: clsx('h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 rounded-full object-cover object-center', 'group-hover:scale-[1.03] transition-transform duration-200')
                   }) : /*#__PURE__*/jsx("div", {
                     className: clsx('h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 rounded-full flex items-center justify-center text-xl sm:text-2xl md:text-3xl', isDark ? 'bg-neutral-800 text-white' : 'bg-white text-neutral-900'),
-                    children: item.icon || ((_item$title = item.title) === null || _item$title === void 0 ? void 0 : _item$title[0])
+                    children: (_item$title = item.title) === null || _item$title === void 0 ? void 0 : _item$title[0]
                   })
                 })
               }), /*#__PURE__*/jsx("p", {
@@ -21894,11 +21853,11 @@ var CategoryShowcase = function CategoryShowcase(_ref) {
     children: /*#__PURE__*/jsx("div", {
       className: "max-w-7xl mx-auto w-full",
       children: /*#__PURE__*/jsx("div", {
-        className: clsx('grid gap-6 sm:gap-8 md:gap-10 lg:gap-14 items-center', 'lg:grid-cols-2', layout === 'stacked' && 'lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)]'),
-        children: layout === 'overlay' ? /*#__PURE__*/jsxs(Fragment, {
-          children: [content, media]
-        }) : /*#__PURE__*/jsxs(Fragment, {
-          children: [media, content]
+        className: clsx(layout === 'stacked' && 'lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)]'),
+        children: layout === 'overlay' ? /*#__PURE__*/jsx(Fragment, {
+          children: content
+        }) : /*#__PURE__*/jsx(Fragment, {
+          children: content
         })
       })
     })
@@ -21943,11 +21902,10 @@ var CategoryMasonry = function CategoryMasonry(_ref) {
     dataClassName = data.className;
   var isDark = theme === 'dark';
   var baseGap = density === 'compact' ? 'gap-2.5 sm:gap-3 md:gap-4' : 'gap-3 sm:gap-4 md:gap-5 lg:gap-6';
-  var padding = density === 'compact' ? 'px-2.5 py-2 sm:px-3 sm:py-2.5 md:px-3.5 md:py-3' : 'px-3 py-2.5 sm:px-3.5 sm:py-3 md:px-4 md:py-3.5 lg:px-5 lg:py-4';
 
   // Skeleton
   if (showLoader) {
-    var skeletonGridClass = variant === 'gradient' || variant === 'border' || variant === 'minimal' || variant === 'card' ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3' : 'grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 auto-rows-[70px] sm:auto-rows-[80px] md:auto-rows-[96px] lg:auto-rows-[110px] xl:auto-rows-[128px]';
+    var skeletonGridClass = variant === 'gradient' || variant === 'border' || variant === 'minimal' || variant === 'card' ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3' : 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3';
     return /*#__PURE__*/jsx("section", {
       id: id,
       className: clsx('w-full py-8 sm:py-12 md:py-16 lg:py-18 px-3 sm:px-4 md:px-6 lg:px-8', isDark ? 'bg-gray-950' : 'bg-white', 'category-section', className, dataClassName),
@@ -21977,82 +21935,210 @@ var CategoryMasonry = function CategoryMasonry(_ref) {
     console.warn('CategoryMasonry: items array is empty');
     return null;
   }
-  var getSpanClass = function getSpanClass(index) {
-    var pattern = ['col-span-1 row-span-1 sm:col-span-2 sm:row-span-2', 'col-span-1 row-span-1', 'col-span-1 row-span-1', 'col-span-2 row-span-1 sm:col-span-1 sm:row-span-1 md:col-span-1', 'col-span-1 row-span-2 sm:col-span-1 sm:row-span-2', 'col-span-1 row-span-1', 'col-span-2 row-span-1 sm:col-span-1 sm:row-span-1', 'col-span-1 row-span-1'];
-    return pattern[index % pattern.length];
-  };
 
   // Border variant - Cards with prominent borders
+  // const renderBorderVariant = () => (
+  //   <div
+  //     className={clsx(
+  //       'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3',
+  //       baseGap
+  //     )}
+  //   >
+  //     {items.map((item, index) => {
+  //       return (
+  //         <button
+  //           key={item.id || item.slug || item.title || index}
+  //           type="button"
+  //           className={clsx(
+  //             'relative overflow-hidden rounded-lg sm:rounded-xl md:rounded-2xl',
+  //             'border-2',
+  //             isDark
+  //               ? 'bg-gray-900/50 border-gray-700 hover:border-gray-600 hover:bg-gray-900/70 active:bg-gray-900/80'
+  //               : 'bg-white border-gray-300 hover:border-gray-400 hover:bg-gray-50 active:bg-gray-100',
+  //             'p-3.5 sm:p-4 md:p-5 lg:p-6',
+  //             'min-h-[120px] sm:min-h-[140px] md:min-h-[160px] lg:min-h-[180px]',
+  //             'flex flex-col justify-between items-start',
+  //             'text-left transition-all duration-300',
+  //             'hover:shadow-lg active:scale-[0.98]',
+  //             'touch-manipulation',
+  //             'focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500/80 focus-visible:ring-offset-2',
+  //             'group'
+  //           )}
+  //         >
+  //           <div className="w-full flex flex-col gap-2.5 sm:gap-3 md:gap-4 h-full">
+  //             <div className="flex items-center justify-between w-full gap-2">
+  //               <h3 className={clsx(
+  //                 'text-sm sm:text-base md:text-lg lg:text-xl font-semibold',
+  //                 'leading-tight',
+  //                 isDark ? 'text-white' : 'text-gray-900'
+  //               )}>
+  //                 {item.title}
+  //               </h3>
+  //               {(item.icon || item.image) && (
+  //                 <div className={clsx(
+  //                   'opacity-60 group-hover:opacity-100 transition-opacity flex-shrink-0 rounded-lg overflow-hidden',
+  //                   'w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 lg:w-10 lg:h-10'
+  //                 )}>
+  //                   <img
+  //                     src={item.image || item.icon}
+  //                     alt={item.title || 'Category image'}
+  //                     className="w-full h-full object-cover"
+  //                   />
+  //                 </div>
+  //               )}
+  //             </div>
+  //             {item.description ? (
+  //               <p className={clsx(
+  //                 'text-[11px] sm:text-xs md:text-sm leading-relaxed flex-1 line-clamp-3 sm:line-clamp-none',
+  //                 isDark ? 'text-gray-400' : 'text-gray-600'
+  //               )}>
+  //                 {item.description}
+  //               </p>
+  //             ) : (
+  //               <p className={clsx(
+  //                 'text-[11px] sm:text-xs md:text-sm leading-relaxed flex-1 italic line-clamp-2',
+  //                 isDark ? 'text-gray-500' : 'text-gray-500'
+  //               )}>
+  //                 Explore our {item.title.toLowerCase()} collection
+  //               </p>
+  //             )}
+  //           </div>
+  //         </button>
+  //       );
+  //     })}
+  //   </div>
+  // );
   var renderBorderVariant = function renderBorderVariant() {
     return /*#__PURE__*/jsx("div", {
-      className: clsx('grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3', baseGap),
+      className: clsx('grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3', baseGap),
       children: items.map(function (item, index) {
-        return /*#__PURE__*/jsx("button", {
+        return /*#__PURE__*/jsxs("button", {
           type: "button",
-          className: clsx('relative overflow-hidden rounded-lg sm:rounded-xl md:rounded-2xl', 'border-2', isDark ? 'bg-gray-900/50 border-gray-700 hover:border-gray-600 hover:bg-gray-900/70 active:bg-gray-900/80' : 'bg-white border-gray-300 hover:border-gray-400 hover:bg-gray-50 active:bg-gray-100', 'p-3.5 sm:p-4 md:p-5 lg:p-6', 'min-h-[120px] sm:min-h-[140px] md:min-h-[160px] lg:min-h-[180px]', 'flex flex-col justify-between items-start', 'text-left transition-all duration-300', 'hover:shadow-lg active:scale-[0.98]', 'touch-manipulation', 'focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500/80 focus-visible:ring-offset-2', 'group'),
-          children: /*#__PURE__*/jsxs("div", {
-            className: "w-full flex flex-col gap-2.5 sm:gap-3 md:gap-4 h-full",
-            children: [/*#__PURE__*/jsxs("div", {
-              className: "flex items-center justify-between w-full gap-2",
-              children: [/*#__PURE__*/jsx("h3", {
-                className: clsx('text-sm sm:text-base md:text-lg lg:text-xl font-semibold', 'leading-tight', isDark ? 'text-white' : 'text-gray-900'),
-                children: item.title
-              }), item.icon && /*#__PURE__*/jsx("div", {
-                className: clsx('opacity-60 group-hover:opacity-100 transition-opacity flex-shrink-0', isDark ? 'text-gray-400' : 'text-gray-600'),
-                children: typeof item.icon === 'string' ? /*#__PURE__*/jsx("span", {
-                  className: "text-xl sm:text-2xl md:text-3xl lg:text-4xl",
-                  children: item.icon
-                }) : /*#__PURE__*/jsx("div", {
-                  className: "w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 lg:w-10 lg:h-10",
-                  children: item.icon
-                })
-              })]
+          className: clsx('relative overflow-hidden rounded-lg sm:rounded-xl md:rounded-2xl', 'border-2', isDark ? 'bg-gray-900/50 border-gray-700 hover:border-gray-600 hover:bg-gray-900/70' : 'bg-white border-gray-300 hover:border-gray-400 hover:bg-gray-50', 'p-4 sm:p-5', 'min-h-[140px]', 'flex items-center gap-4', 'text-left transition-all duration-300', 'hover:shadow-lg active:scale-[0.98]', 'focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500/80 focus-visible:ring-offset-2', 'group'),
+          children: [(item.image || item.icon) && /*#__PURE__*/jsx("div", {
+            className: "flex-shrink-0 w-32 h-32 rounded-xl overflow-hidden bg-gray-100 dark:bg-gray-800",
+            children: /*#__PURE__*/jsx("img", {
+              src: item.image || item.icon,
+              alt: item.title || 'Category image',
+              className: "w-full h-full object-cover"
+            })
+          }), /*#__PURE__*/jsxs("div", {
+            className: "flex flex-col justify-center flex-1 gap-2",
+            children: [/*#__PURE__*/jsx("h3", {
+              className: clsx('text-base sm:text-lg font-semibold leading-tight', isDark ? 'text-white' : 'text-gray-900'),
+              children: item.title
             }), item.description ? /*#__PURE__*/jsx("p", {
-              className: clsx('text-[11px] sm:text-xs md:text-sm leading-relaxed flex-1 line-clamp-3 sm:line-clamp-none', isDark ? 'text-gray-400' : 'text-gray-600'),
+              className: clsx('text-sm leading-relaxed line-clamp-3', isDark ? 'text-gray-400' : 'text-gray-600'),
               children: item.description
             }) : /*#__PURE__*/jsxs("p", {
-              className: clsx('text-[11px] sm:text-xs md:text-sm leading-relaxed flex-1 italic line-clamp-2', isDark ? 'text-gray-500' : 'text-gray-500'),
+              className: clsx('text-sm italic', isDark ? 'text-gray-500' : 'text-gray-500'),
               children: ["Explore our ", item.title.toLowerCase(), " collection"]
             })]
-          })
+          })]
         }, item.id || item.slug || item.title || index);
       })
     });
   };
 
   // Minimal variant - Clean, minimal styling
+  // const renderMinimalVariant = () => (
+  //   <div
+  //     className={clsx(
+  //       'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3',
+  //       baseGap
+  //     )}
+  //   >
+  //     {items.map((item, index) => {
+  //       return (
+  //         <button
+  //           key={item.id || item.slug || item.title || index}
+  //           type="button"
+  //           className={clsx(
+  //             'relative overflow-hidden rounded-lg sm:rounded-xl',
+  //             'border',
+  //             isDark
+  //               ? 'bg-transparent border-gray-800/50 hover:border-gray-700 hover:bg-gray-900/30 active:bg-gray-900/40'
+  //               : 'bg-transparent border-gray-200/50 hover:border-gray-300 hover:bg-gray-50/50 active:bg-gray-100/50',
+  //             'p-3.5 sm:p-4 md:p-5 lg:p-6',
+  //             'min-h-[120px] sm:min-h-[140px] md:min-h-[160px] lg:min-h-[180px]',
+  //             'flex flex-col justify-between items-start',
+  //             'text-left transition-all duration-200',
+  //             'touch-manipulation active:scale-[0.98]',
+  //             'focus:outline-none focus-visible:ring-1 focus-visible:ring-primary-500/50 focus-visible:ring-offset-1',
+  //             'group'
+  //           )}
+  //         >
+  //           <div className="w-full flex flex-col gap-2.5 sm:gap-3 md:gap-4 h-full">
+  //             <div className="flex items-center justify-between w-full gap-2">
+  //               <h3 className={clsx(
+  //                 'text-sm sm:text-base md:text-lg lg:text-xl font-medium',
+  //                 'leading-tight',
+  //                 isDark ? 'text-gray-200' : 'text-gray-900'
+  //               )}>
+  //                 {item.title}
+  //               </h3>
+  //               {(item.icon || item.image) && (
+  //                 <div className={clsx(
+  //                   'opacity-40 group-hover:opacity-60 transition-opacity flex-shrink-0 rounded-lg overflow-hidden',
+  //                   'w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-8 lg:h-8'
+  //                 )}>
+  //                   <img
+  //                     src={item.image || item.icon}
+  //                     alt={item.title || 'Category image'}
+  //                     className="w-full h-full object-cover"
+  //                   />
+  //                 </div>
+  //               )}
+  //             </div>
+  //             {item.description ? (
+  //               <p className={clsx(
+  //                 'text-[11px] sm:text-xs md:text-sm leading-relaxed flex-1 line-clamp-3 sm:line-clamp-none',
+  //                 isDark ? 'text-gray-500' : 'text-gray-600'
+  //               )}>
+  //                 {item.description}
+  //               </p>
+  //             ) : (
+  //               <p className={clsx(
+  //                 'text-[11px] sm:text-xs md:text-sm leading-relaxed flex-1 italic line-clamp-2',
+  //                 isDark ? 'text-gray-600' : 'text-gray-400'
+  //               )}>
+  //                 Explore our {item.title.toLowerCase()} collection
+  //               </p>
+  //             )}
+  //           </div>
+  //         </button>
+  //       );
+  //     })}
+  //   </div>
+  // );
+
   var renderMinimalVariant = function renderMinimalVariant() {
     return /*#__PURE__*/jsx("div", {
-      className: clsx('grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3', baseGap),
+      className: clsx('grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3', baseGap),
       children: items.map(function (item, index) {
-        return /*#__PURE__*/jsx("button", {
+        return /*#__PURE__*/jsxs("button", {
           type: "button",
-          className: clsx('relative overflow-hidden rounded-lg sm:rounded-xl', 'border', isDark ? 'bg-transparent border-gray-800/50 hover:border-gray-700 hover:bg-gray-900/30 active:bg-gray-900/40' : 'bg-transparent border-gray-200/50 hover:border-gray-300 hover:bg-gray-50/50 active:bg-gray-100/50', 'p-3.5 sm:p-4 md:p-5 lg:p-6', 'min-h-[120px] sm:min-h-[140px] md:min-h-[160px] lg:min-h-[180px]', 'flex flex-col justify-between items-start', 'text-left transition-all duration-200', 'touch-manipulation active:scale-[0.98]', 'focus:outline-none focus-visible:ring-1 focus-visible:ring-primary-500/50 focus-visible:ring-offset-1', 'group'),
-          children: /*#__PURE__*/jsxs("div", {
-            className: "w-full flex flex-col gap-2.5 sm:gap-3 md:gap-4 h-full",
-            children: [/*#__PURE__*/jsxs("div", {
-              className: "flex items-center justify-between w-full gap-2",
-              children: [/*#__PURE__*/jsx("h3", {
-                className: clsx('text-sm sm:text-base md:text-lg lg:text-xl font-medium', 'leading-tight', isDark ? 'text-gray-200' : 'text-gray-900'),
-                children: item.title
-              }), item.icon && /*#__PURE__*/jsx("div", {
-                className: clsx('opacity-40 group-hover:opacity-60 transition-opacity flex-shrink-0', isDark ? 'text-gray-500' : 'text-gray-400'),
-                children: typeof item.icon === 'string' ? /*#__PURE__*/jsx("span", {
-                  className: "text-lg sm:text-xl md:text-2xl lg:text-3xl",
-                  children: item.icon
-                }) : /*#__PURE__*/jsx("div", {
-                  className: "w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-8 lg:h-8",
-                  children: item.icon
-                })
-              })]
+          className: clsx('relative overflow-hidden rounded-lg sm:rounded-xl', 'border', isDark ? 'bg-transparent border-gray-800/50 hover:border-gray-700 hover:bg-gray-900/30' : 'bg-transparent border-gray-200/50 hover:border-gray-300 hover:bg-gray-50/50', 'p-4 sm:p-5', 'min-h-[140px]', 'flex items-center gap-4', 'text-left transition-all duration-200', 'active:scale-[0.98]', 'focus:outline-none focus-visible:ring-1 focus-visible:ring-primary-500/50 focus-visible:ring-offset-1', 'group'),
+          children: [(item.image || item.icon) && /*#__PURE__*/jsx("div", {
+            className: "flex-shrink-0 w-32 h-32 rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-800",
+            children: /*#__PURE__*/jsx("img", {
+              src: item.image || item.icon,
+              alt: item.title || 'Category image',
+              className: "w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+            })
+          }), /*#__PURE__*/jsxs("div", {
+            className: "flex flex-col justify-center flex-1 gap-2",
+            children: [/*#__PURE__*/jsx("h3", {
+              className: clsx('text-base sm:text-lg font-medium leading-tight', isDark ? 'text-gray-200' : 'text-gray-900'),
+              children: item.title
             }), item.description ? /*#__PURE__*/jsx("p", {
-              className: clsx('text-[11px] sm:text-xs md:text-sm leading-relaxed flex-1 line-clamp-3 sm:line-clamp-none', isDark ? 'text-gray-500' : 'text-gray-600'),
+              className: clsx('text-sm leading-relaxed line-clamp-3', isDark ? 'text-gray-500' : 'text-gray-600'),
               children: item.description
             }) : /*#__PURE__*/jsxs("p", {
-              className: clsx('text-[11px] sm:text-xs md:text-sm leading-relaxed flex-1 italic line-clamp-2', isDark ? 'text-gray-600' : 'text-gray-400'),
+              className: clsx('text-sm italic', isDark ? 'text-gray-600' : 'text-gray-400'),
               children: ["Explore our ", item.title.toLowerCase(), " collection"]
             })]
-          })
+          })]
         }, item.id || item.slug || item.title || index);
       })
     });
@@ -22061,80 +22147,201 @@ var CategoryMasonry = function CategoryMasonry(_ref) {
   // Card variant - Traditional card design with shadows
   var renderCardVariant = function renderCardVariant() {
     return /*#__PURE__*/jsx("div", {
-      className: clsx('grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3', baseGap),
+      className: clsx('grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3', baseGap),
       children: items.map(function (item, index) {
-        return /*#__PURE__*/jsx("button", {
+        return /*#__PURE__*/jsxs("button", {
           type: "button",
-          className: clsx('relative overflow-hidden rounded-lg sm:rounded-xl md:rounded-2xl', 'border', 'shadow-sm hover:shadow-md active:shadow-sm', isDark ? 'bg-gray-900/80 border-gray-800 hover:border-gray-700 hover:bg-gray-900 active:bg-gray-900/90' : 'bg-white border-gray-200 hover:border-gray-300 hover:bg-gray-50 active:bg-gray-100', 'p-4 sm:p-5 md:p-6 lg:p-7', 'min-h-[140px] sm:min-h-[160px] md:min-h-[180px] lg:min-h-[200px]', 'flex flex-col justify-between items-start', 'text-left transition-all duration-300', 'touch-manipulation active:scale-[0.98]', 'focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500/80 focus-visible:ring-offset-2', 'group'),
-          children: /*#__PURE__*/jsxs("div", {
-            className: "w-full flex flex-col gap-3 sm:gap-4 md:gap-5 h-full",
-            children: [/*#__PURE__*/jsxs("div", {
-              className: "flex items-start justify-between w-full gap-2 sm:gap-3",
-              children: [/*#__PURE__*/jsx("h3", {
-                className: clsx('text-base sm:text-lg md:text-xl lg:text-2xl font-semibold', 'leading-tight', isDark ? 'text-white' : 'text-gray-900', 'flex-1'),
-                children: item.title
-              }), item.icon && /*#__PURE__*/jsx("div", {
-                className: clsx('flex-shrink-0 opacity-70 group-hover:opacity-100 transition-opacity', isDark ? 'text-gray-300' : 'text-gray-700'),
-                children: typeof item.icon === 'string' ? /*#__PURE__*/jsx("span", {
-                  className: "text-xl sm:text-2xl md:text-3xl lg:text-4xl",
-                  children: item.icon
-                }) : /*#__PURE__*/jsx("div", {
-                  className: "w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12",
-                  children: item.icon
-                })
-              })]
+          className: clsx('relative overflow-hidden rounded-xl md:rounded-2xl', 'border shadow-sm hover:shadow-md', isDark ? 'bg-gray-900/80 border-gray-800 hover:border-gray-700' : 'bg-white border-gray-200 hover:border-gray-300', 'p-4 sm:p-5', 'min-h-[140px]', 'flex items-center gap-4', 'text-left transition-all duration-300', 'active:scale-[0.98]', 'focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500/80 focus-visible:ring-offset-2', 'group'),
+          children: [(item.image || item.icon) && /*#__PURE__*/jsx("div", {
+            className: "flex-shrink-0 w-32 h-32 rounded-lg overflow-hidden bg-slate-100",
+            children: /*#__PURE__*/jsx("img", {
+              src: item.image || item.icon,
+              alt: item.title || 'Category image',
+              className: "w-full h-full object-cover"
+            })
+          }), /*#__PURE__*/jsxs("div", {
+            className: "flex flex-col justify-center flex-1 gap-2",
+            children: [/*#__PURE__*/jsx("h3", {
+              className: clsx('text-base sm:text-lg font-semibold leading-tight', isDark ? 'text-white' : 'text-gray-900'),
+              children: item.title
             }), item.description ? /*#__PURE__*/jsx("p", {
-              className: clsx('text-xs sm:text-sm md:text-base leading-relaxed flex-1 line-clamp-3 sm:line-clamp-4 md:line-clamp-none', isDark ? 'text-gray-400' : 'text-gray-600'),
+              className: clsx('text-sm leading-relaxed line-clamp-3', isDark ? 'text-gray-400' : 'text-gray-600'),
               children: item.description
             }) : /*#__PURE__*/jsxs("p", {
-              className: clsx('text-xs sm:text-sm md:text-base leading-relaxed flex-1 italic line-clamp-2', isDark ? 'text-gray-500' : 'text-gray-500'),
+              className: clsx('text-sm italic', isDark ? 'text-gray-500' : 'text-gray-500'),
               children: ["Explore our ", item.title.toLowerCase(), " collection"]
             })]
-          })
+          })]
+        }, item.id || item.slug || item.title || index);
+      })
+    });
+  };
+  var renderGradientVariant = function renderGradientVariant() {
+    return /*#__PURE__*/jsx("div", {
+      className: clsx('grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3', baseGap),
+      children: items.map(function (item, index) {
+        return /*#__PURE__*/jsxs("button", {
+          type: "button",
+          className: clsx('relative overflow-hidden rounded-xl sm:rounded-2xl md:rounded-3xl', 'bg-gradient-to-r from-primary-500 to-primary-400', 'p-4 sm:p-5 md:p-6', 'min-h-[140px] sm:min-h-[160px] md:min-h-[180px]', 'flex items-center gap-4', 'text-left transition-all duration-300', 'hover:scale-[1.02] hover:shadow-2xl active:scale-[0.98]', 'touch-manipulation', 'focus:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2', 'group'),
+          children: [(item.image || item.icon) && /*#__PURE__*/jsx("div", {
+            className: "flex-shrink-0 w-32 h-32 rounded-xl overflow-hidden bg-white/10",
+            children: /*#__PURE__*/jsx("img", {
+              src: item.image || item.icon,
+              alt: item.title || 'Category image',
+              className: "w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity"
+            })
+          }), /*#__PURE__*/jsxs("div", {
+            className: "flex flex-col justify-center flex-1 gap-2 sm:gap-3",
+            children: [/*#__PURE__*/jsx("h3", {
+              className: "text-white text-base sm:text-lg md:text-xl font-semibold leading-tight",
+              children: item.title
+            }), /*#__PURE__*/jsx("div", {
+              className: "w-10 h-px bg-white/40"
+            }), item.description ? /*#__PURE__*/jsx("p", {
+              className: "text-white/80 text-sm leading-relaxed line-clamp-3",
+              children: item.description
+            }) : /*#__PURE__*/jsxs("p", {
+              className: "text-white/60 text-sm italic line-clamp-2",
+              children: ["Explore our ", item.title.toLowerCase(), " collection"]
+            })]
+          })]
         }, item.id || item.slug || item.title || index);
       })
     });
   };
 
+  // const renderCardVariant = () => (
+  //   <div
+  //     className={clsx(
+  //       'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3',
+  //       baseGap
+  //     )}
+  //   >
+  //     {items.map((item, index) => {
+  //       return (
+  //         <button
+  //           key={item.id || item.slug || item.title || index}
+  //           type="button"
+  //           className={clsx(
+  //             'relative overflow-hidden rounded-lg sm:rounded-xl md:rounded-2xl',
+  //             'border',
+  //             'shadow-sm hover:shadow-md active:shadow-sm',
+  //             isDark
+  //               ? 'bg-gray-900/80 border-gray-800 hover:border-gray-700 hover:bg-gray-900 active:bg-gray-900/90'
+  //               : 'bg-white border-gray-200 hover:border-gray-300 hover:bg-gray-50 active:bg-gray-100',
+  //             'p-4 sm:p-5 md:p-6 lg:p-7',
+  //             'min-h-[140px] sm:min-h-[160px] md:min-h-[180px] lg:min-h-[200px]',
+  //             'flex flex-col justify-between items-start',
+  //             'text-left transition-all duration-300',
+  //             'touch-manipulation active:scale-[0.98]',
+  //             'focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500/80 focus-visible:ring-offset-2',
+  //             'group'
+  //           )}
+  //         >
+  //           <div className="w-full flex flex-col gap-3 sm:gap-4 md:gap-5 h-full">
+  //             <div className="flex items-start justify-between w-full gap-2 sm:gap-3">
+  //               <h3 className={clsx(
+  //                 'text-base sm:text-lg md:text-xl lg:text-2xl font-semibold',
+  //                 'leading-tight',
+  //                 isDark ? 'text-white' : 'text-gray-900',
+  //                 'flex-1'
+  //               )}>
+  //                 {item.title}
+  //               </h3>
+  //               {(item.icon || item.image) && (
+  //                 <div className={clsx(
+  //                   'flex-shrink-0 opacity-70 group-hover:opacity-100 transition-opacity rounded-lg overflow-hidden',
+  //                   'w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12'
+  //                 )}>
+  //                   <img
+  //                     src={item.image || item.icon}
+  //                     alt={item.title || 'Category image'}
+  //                     className="w-full h-full object-cover"
+  //                   />
+  //                 </div>
+  //               )}
+  //             </div>
+  //             {item.description ? (
+  //               <p className={clsx(
+  //                 'text-xs sm:text-sm md:text-base leading-relaxed flex-1 line-clamp-3 sm:line-clamp-4 md:line-clamp-none',
+  //                 isDark ? 'text-gray-400' : 'text-gray-600'
+  //               )}>
+  //                 {item.description}
+  //               </p>
+  //             ) : (
+  //               <p className={clsx(
+  //                 'text-xs sm:text-sm md:text-base leading-relaxed flex-1 italic line-clamp-2',
+  //                 isDark ? 'text-gray-500' : 'text-gray-500'
+  //               )}>
+  //                 Explore our {item.title.toLowerCase()} collection
+  //               </p>
+  //             )}
+  //           </div>
+  //         </button>
+  //       );
+  //     })}
+  //   </div>
+  // );
+
   // Gradient variant - Colorful cards with gradients
-  var renderGradientVariant = function renderGradientVariant() {
-    return /*#__PURE__*/jsx("div", {
-      className: clsx('grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3', baseGap),
-      children: items.map(function (item, index) {
-        return /*#__PURE__*/jsx("button", {
-          type: "button",
-          className: clsx('relative overflow-hidden rounded-xl sm:rounded-2xl md:rounded-3xl', 'bg-gradient-to-r from-primary-500 to-primary-400', 'p-3.5 sm:p-4 md:p-5 lg:p-6 xl:p-8', 'min-h-[120px] sm:min-h-[140px] md:min-h-[160px] lg:min-h-[180px] xl:min-h-[200px]', 'flex flex-col justify-between items-start', 'text-left transition-all duration-300', 'hover:scale-[1.02] hover:shadow-2xl active:scale-[0.98]', 'touch-manipulation', 'focus:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2', 'group'),
-          children: /*#__PURE__*/jsxs("div", {
-            className: "w-full flex flex-col gap-2.5 sm:gap-3 md:gap-4 h-full",
-            children: [/*#__PURE__*/jsxs("div", {
-              className: "flex items-center justify-between w-full gap-2",
-              children: [/*#__PURE__*/jsx("h3", {
-                className: "text-white text-sm sm:text-base md:text-lg lg:text-xl font-semibold leading-tight",
-                children: item.title
-              }), item.icon && /*#__PURE__*/jsx("div", {
-                className: "opacity-30 group-hover:opacity-50 transition-opacity flex-shrink-0",
-                children: typeof item.icon === 'string' ? /*#__PURE__*/jsx("span", {
-                  className: "text-xl sm:text-2xl md:text-3xl lg:text-4xl",
-                  children: item.icon
-                }) : /*#__PURE__*/jsx("div", {
-                  className: "w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 text-white",
-                  children: item.icon
-                })
-              })]
-            }), /*#__PURE__*/jsx("div", {
-              className: "w-full h-px bg-white/30"
-            }), item.description ? /*#__PURE__*/jsx("p", {
-              className: "text-white/80 text-[11px] sm:text-xs md:text-sm leading-relaxed flex-1 line-clamp-3 sm:line-clamp-none",
-              children: item.description
-            }) : /*#__PURE__*/jsxs("p", {
-              className: "text-white/60 text-[11px] sm:text-xs md:text-sm leading-relaxed flex-1 italic line-clamp-2",
-              children: ["Explore our ", item.title.toLowerCase(), " collection"]
-            })]
-          })
-        }, item.id || item.slug || item.title || index);
-      })
-    });
-  };
+
+  // const renderGradientVariant = () => (
+  //   <div
+  //     className={clsx(
+  //       'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3',
+  //       baseGap
+  //     )}
+  //   >
+  //     {items.map((item, index) => {
+  //       return (
+  //         <button
+  //           key={item.id || item.slug || item.title || index}
+  //           type="button"
+  //           className={clsx(
+  //             'relative overflow-hidden rounded-xl sm:rounded-2xl md:rounded-3xl',
+  //             'bg-gradient-to-r from-primary-500 to-primary-400',
+  //             'p-3.5 sm:p-4 md:p-5 lg:p-6 xl:p-8',
+  //             'min-h-[120px] sm:min-h-[140px] md:min-h-[160px] lg:min-h-[180px] xl:min-h-[200px]',
+  //             'flex flex-col justify-between items-start',
+  //             'text-left transition-all duration-300',
+  //             'hover:scale-[1.02] hover:shadow-2xl active:scale-[0.98]',
+  //             'touch-manipulation',
+  //             'focus:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2',
+  //             'group'
+  //           )}
+  //         >
+  //           <div className="w-full flex flex-col gap-2.5 sm:gap-3 md:gap-4 h-full">
+  //             <div className="flex items-center justify-between w-full gap-2">
+  //               <h3 className="text-white text-sm sm:text-base md:text-lg lg:text-xl font-semibold leading-tight">
+  //                 {item.title}
+  //               </h3>
+  //               {(item.icon || item.image) && (
+  //                 <div className="opacity-30 group-hover:opacity-50 transition-opacity flex-shrink-0 rounded-lg overflow-hidden w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 lg:w-10 lg:h-10">
+  //                   <img
+  //                     src={item.image || item.icon}
+  //                     alt={item.title || 'Category image'}
+  //                     className="w-full h-full object-cover"
+  //                   />
+  //                 </div>
+  //               )}
+  //             </div>
+  //             <div className="w-full h-px bg-white/30" />
+  //             {item.description ? (
+  //               <p className="text-white/80 text-[11px] sm:text-xs md:text-sm leading-relaxed flex-1 line-clamp-3 sm:line-clamp-none">
+  //                 {item.description}
+  //               </p>
+  //             ) : (
+  //               <p className="text-white/60 text-[11px] sm:text-xs md:text-sm leading-relaxed flex-1 italic line-clamp-2">
+  //                 Explore our {item.title.toLowerCase()} collection
+  //               </p>
+  //             )}
+  //           </div>
+  //         </button>
+  //       );
+  //     })}
+  //   </div>
+  // );
+
   return /*#__PURE__*/jsx("section", {
     id: id,
     className: clsx('w-full py-8 sm:py-12 md:py-16 lg:py-18 px-3 sm:px-4 md:px-6 lg:px-8', variant === 'gradient' ? 'bg-white' : variant === 'border' ? isDark ? 'bg-gray-950' : 'bg-white' : variant === 'minimal' ? isDark ? 'bg-black' : 'bg-white' : variant === 'card' ? isDark ? 'bg-gray-950' : 'bg-gray-50' : isDark ? 'bg-gradient-to-b from-gray-950 via-black to-gray-950' : 'bg-gradient-to-b from-slate-50 via-white to-slate-50', 'category-section', className, dataClassName),
@@ -22150,40 +22357,35 @@ var CategoryMasonry = function CategoryMasonry(_ref) {
           children: title
         })]
       }), variant === 'gradient' && renderGradientVariant(), variant === 'border' && renderBorderVariant(), variant === 'minimal' && renderMinimalVariant(), variant === 'card' && renderCardVariant(), variant === 'default' && /*#__PURE__*/jsx("div", {
-        className: clsx('grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4', 'auto-rows-[70px] sm:auto-rows-[80px] md:auto-rows-[96px] lg:auto-rows-[110px] xl:auto-rows-[128px]', baseGap),
+        className: clsx('grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3', baseGap),
         children: items.map(function (item, index) {
           return /*#__PURE__*/jsxs("button", {
             type: "button",
-            className: clsx('relative overflow-hidden rounded-lg sm:rounded-xl md:rounded-2xl border text-left', 'transition-all duration-200 category-masonry-tile', 'touch-manipulation active:scale-[0.98]', getSpanClass(index), isDark ? 'bg-gray-900/70 border-gray-800 hover:border-gray-700 hover:bg-gray-900 active:bg-gray-900/80' : 'bg-white/90 border-slate-200 hover:border-slate-300 hover:bg-white active:bg-slate-50', padding, 'focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500/80 focus-visible:ring-offset-2', isDark ? 'focus-visible:ring-offset-black' : 'focus-visible:ring-offset-slate-50'),
-            children: [/*#__PURE__*/jsxs("div", {
-              className: "flex h-full flex-col justify-between gap-1.5 sm:gap-2",
-              children: [/*#__PURE__*/jsxs("div", {
-                className: "flex items-center gap-2 sm:gap-2.5",
-                children: [item.icon && /*#__PURE__*/jsx("div", {
-                  className: clsx('inline-flex h-6 w-6 sm:h-7 sm:w-7 items-center justify-center rounded-lg sm:rounded-xl flex-shrink-0', isDark ? 'bg-gray-950 border border-gray-800 text-gray-100' : 'bg-slate-50 border border-slate-200 text-slate-900'),
-                  children: typeof item.icon === 'string' ? /*#__PURE__*/jsx("span", {
-                    className: "text-[10px] sm:text-xs",
-                    children: item.icon
-                  }) : /*#__PURE__*/jsx("span", {
-                    className: "w-3 h-3 sm:w-3.5 sm:h-3.5",
-                    children: item.icon
-                  })
-                }), /*#__PURE__*/jsx("span", {
-                  className: clsx('truncate text-[10px] sm:text-xs md:text-sm font-medium leading-tight', isDark ? 'text-white' : 'text-gray-900'),
-                  children: item.title
-                })]
-              }), item.pill || item.count != null ? /*#__PURE__*/jsxs("div", {
-                className: "flex items-center justify-between text-[9px] sm:text-[10px] md:text-[11px] lg:text-xs",
-                children: [item.pill && /*#__PURE__*/jsxs("span", {
-                  className: clsx('inline-flex items-center gap-1 rounded-full px-2 py-0.5', isDark ? 'bg-gray-950 text-gray-300 border border-gray-800' : 'bg-slate-50 text-slate-700 border border-slate-200'),
-                  children: [/*#__PURE__*/jsx("span", {
-                    className: "w-1.5 h-1.5 rounded-full bg-primary-500"
-                  }), item.pill]
-                }), item.count != null && /*#__PURE__*/jsxs("span", {
-                  className: clsx('ml-auto font-medium', isDark ? 'text-gray-400' : 'text-gray-500'),
-                  children: [item.count, "+"]
-                })]
-              }) : null]
+            className: clsx('relative overflow-hidden rounded-lg sm:rounded-xl md:rounded-2xl border text-left', 'transition-all duration-200 category-masonry-tile', 'touch-manipulation active:scale-[0.98]', isDark ? 'bg-gray-900/70 border-gray-800 hover:border-gray-700 hover:bg-gray-900 active:bg-gray-900/80' : 'bg-white/90 border-slate-200 hover:border-slate-300 hover:bg-white active:bg-slate-50', 'p-4 sm:p-5', 'min-h-[140px]', 'flex items-center gap-4', 'focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500/80 focus-visible:ring-offset-2', isDark ? 'focus-visible:ring-offset-black' : 'focus-visible:ring-offset-slate-50', 'group'),
+            children: [(item.image || item.icon) && /*#__PURE__*/jsx("div", {
+              className: clsx('flex-shrink-0 rounded-lg overflow-hidden', density === 'compact' ? 'w-24 h-24 sm:w-28 sm:h-28' : 'w-32 h-32 sm:w-36 sm:h-36', isDark ? 'bg-gray-950 border border-gray-800' : 'bg-slate-50 border border-slate-200'),
+              children: /*#__PURE__*/jsx("img", {
+                src: item.image || item.icon,
+                alt: item.title || 'Category image',
+                className: "w-full h-full object-cover"
+              })
+            }), item.count != null && /*#__PURE__*/jsx("div", {
+              className: "absolute bottom-0 right-0 p-4",
+              children: /*#__PURE__*/jsxs("span", {
+                className: clsx('text-xs sm:text-sm font-medium', isDark ? 'text-gray-400' : 'text-gray-500'),
+                children: [item.count, "+ items"]
+              })
+            }), /*#__PURE__*/jsxs("div", {
+              className: "flex flex-col justify-center flex-1 gap-2 relative",
+              children: [/*#__PURE__*/jsx("h3", {
+                className: clsx(density === 'compact' ? 'text-lg sm:text-xl font-semibold' : 'text-xl sm:text-2xl font-semibold', 'leading-tight', isDark ? 'text-white' : 'text-gray-900'),
+                children: item.title
+              }), item.pill && /*#__PURE__*/jsxs("span", {
+                className: clsx('inline-flex items-center gap-1 rounded-full px-2 py-0.5 w-fit text-xs', isDark ? 'bg-gray-950 text-gray-300 border border-gray-800' : 'bg-slate-50 text-slate-700 border border-slate-200'),
+                children: [/*#__PURE__*/jsx("span", {
+                  className: "w-1.5 h-1.5 rounded-full bg-primary-500"
+                }), item.pill]
+              })]
             }), /*#__PURE__*/jsx("div", {
               className: clsx('pointer-events-none absolute inset-x-0 bottom-0 h-1', 'bg-gradient-to-r from-primary-500/0 via-primary-500/60 to-primary-500/0', 'opacity-0 group-hover:opacity-100 category-masonry-accent')
             })]
