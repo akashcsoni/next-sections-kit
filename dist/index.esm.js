@@ -35698,6 +35698,1677 @@ var AddToCartLayout = function AddToCartLayout(_ref5) {
   return null;
 };
 
+var CheckoutPeloton = function CheckoutPeloton(_ref) {
+  var _data$email, _data$email2, _data$protection$opti, _data$shipping, _data$shipping2, _data$shipping3, _data$shipping4, _data$shipping5, _data$shipping6, _data$shipping7, _data$shipping8, _data$shipping9, _data$shipping0, _data$shipping1, _data$shipping10, _data$shipping11, _data$payment, _data$payment2, _data$summary, _data$summary2, _data$summary3, _data$summary4, _data$summary5, _data$summary6, _data$summary7, _data$summary8, _data$trial$items;
+  var _ref$data = _ref.data,
+    data = _ref$data === void 0 ? {} : _ref$data,
+    className = _ref.className;
+  var _useState = useState(''),
+    _useState2 = _slicedToArray(_useState, 2),
+    email = _useState2[0],
+    setEmail = _useState2[1];
+  var cartItems = data.cartItems || [];
+  var subtotal = cartItems.reduce(function (acc, item) {
+    return acc + item.price;
+  }, 0);
+  return /*#__PURE__*/jsx("div", {
+    className: clsx("checkout-peloton bg-white min-h-screen font-sans text-gray-900", className),
+    children: /*#__PURE__*/jsx("div", {
+      className: "max-w-6xl mx-auto px-4 py-8 lg:py-12",
+      children: /*#__PURE__*/jsxs("div", {
+        className: "grid grid-cols-1 lg:grid-cols-12 gap-12",
+        children: [/*#__PURE__*/jsxs("div", {
+          className: "lg:col-span-7 space-y-10",
+          children: [/*#__PURE__*/jsxs("section", {
+            children: [/*#__PURE__*/jsx("h2", {
+              className: "text-sm font-bold tracking-widest mb-4 uppercase",
+              children: ((_data$email = data.email) === null || _data$email === void 0 ? void 0 : _data$email.label) || 'Email'
+            }), /*#__PURE__*/jsx("div", {
+              className: "relative",
+              children: /*#__PURE__*/jsx("input", {
+                type: "email",
+                placeholder: ((_data$email2 = data.email) === null || _data$email2 === void 0 ? void 0 : _data$email2.placeholder) || 'Email Address*',
+                className: "w-full border border-gray-300 px-4 py-3 focus:border-black transition-colors outline-none",
+                value: email,
+                onChange: function onChange(e) {
+                  return setEmail(e.target.value);
+                }
+              })
+            })]
+          }), data.protection && /*#__PURE__*/jsxs("section", {
+            children: [/*#__PURE__*/jsx("h2", {
+              className: "text-xs font-bold tracking-[0.15em] mb-4 uppercase",
+              children: data.protection.title
+            }), /*#__PURE__*/jsxs("div", {
+              className: "border border-gray-100 p-8 space-y-6",
+              children: [/*#__PURE__*/jsxs("p", {
+                className: "text-sm text-gray-700 leading-relaxed",
+                children: [data.protection.description, " ", /*#__PURE__*/jsx("a", {
+                  href: data.protection.learnMoreLink || '#',
+                  className: "text-gray-900 underline font-medium",
+                  children: data.protection.learnMoreText || 'Learn More'
+                })]
+              }), /*#__PURE__*/jsx("div", {
+                className: "space-y-5",
+                children: (_data$protection$opti = data.protection.options) === null || _data$protection$opti === void 0 ? void 0 : _data$protection$opti.map(function (option) {
+                  return /*#__PURE__*/jsxs("label", {
+                    className: "flex items-start cursor-pointer group",
+                    children: [/*#__PURE__*/jsxs("div", {
+                      className: "relative flex items-center justify-center mt-0.5",
+                      children: [/*#__PURE__*/jsx("input", {
+                        type: "checkbox",
+                        className: "peer appearance-none w-5 h-5 border border-gray-300 rounded-sm checked:bg-black checked:border-black transition-all"
+                      }), /*#__PURE__*/jsx("svg", {
+                        className: "absolute w-3.5 h-3.5 text-white opacity-0 peer-checked:opacity-100 transition-opacity",
+                        fill: "none",
+                        viewBox: "0 0 24 24",
+                        stroke: "currentColor",
+                        children: /*#__PURE__*/jsx("path", {
+                          strokeLinecap: "round",
+                          strokeLinejoin: "round",
+                          strokeWidth: 3.5,
+                          d: "M5 13l4 4L19 7"
+                        })
+                      })]
+                    }), /*#__PURE__*/jsx("span", {
+                      className: "ml-4 text-sm font-bold text-gray-800 leading-tight",
+                      children: option.label
+                    })]
+                  }, option.id);
+                })
+              }), /*#__PURE__*/jsxs("p", {
+                className: "text-[10px] text-gray-400 pt-2 leading-relaxed uppercase tracking-wide",
+                children: [data.protection.termsText, " ", /*#__PURE__*/jsx("a", {
+                  href: data.protection.termsLink || '#',
+                  className: "underline",
+                  children: data.protection.termsLinkText
+                }), "."]
+              })]
+            })]
+          }), /*#__PURE__*/jsxs("section", {
+            children: [/*#__PURE__*/jsx("h2", {
+              className: "text-sm font-bold tracking-widest mb-4 uppercase",
+              children: ((_data$shipping = data.shipping) === null || _data$shipping === void 0 ? void 0 : _data$shipping.title) || 'Shipping'
+            }), /*#__PURE__*/jsxs("div", {
+              className: "space-y-4",
+              children: [/*#__PURE__*/jsxs("div", {
+                className: "grid grid-cols-2 gap-4",
+                children: [/*#__PURE__*/jsx("input", {
+                  type: "text",
+                  placeholder: ((_data$shipping2 = data.shipping) === null || _data$shipping2 === void 0 || (_data$shipping2 = _data$shipping2.fields) === null || _data$shipping2 === void 0 ? void 0 : _data$shipping2.firstName) || 'First Name',
+                  className: "w-full border border-gray-300 px-4 py-3 focus:border-black outline-none transition-colors"
+                }), /*#__PURE__*/jsx("input", {
+                  type: "text",
+                  placeholder: ((_data$shipping3 = data.shipping) === null || _data$shipping3 === void 0 || (_data$shipping3 = _data$shipping3.fields) === null || _data$shipping3 === void 0 ? void 0 : _data$shipping3.lastName) || 'Last Name',
+                  className: "w-full border border-gray-300 px-4 py-3 focus:border-black outline-none transition-colors"
+                })]
+              }), /*#__PURE__*/jsxs("div", {
+                className: "relative",
+                children: [/*#__PURE__*/jsxs("span", {
+                  className: "absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm",
+                  children: [((_data$shipping4 = data.shipping) === null || _data$shipping4 === void 0 || (_data$shipping4 = _data$shipping4.fields) === null || _data$shipping4 === void 0 ? void 0 : _data$shipping4.phone) || 'Phone', " ", /*#__PURE__*/jsx("br", {}), " ", /*#__PURE__*/jsx("span", {
+                    className: "text-black font-medium",
+                    children: "+1"
+                  })]
+                }), /*#__PURE__*/jsx("input", {
+                  type: "tel",
+                  className: "w-full border border-gray-300 pl-20 pr-4 py-3 focus:border-black outline-none transition-colors"
+                })]
+              }), /*#__PURE__*/jsx("input", {
+                type: "text",
+                placeholder: ((_data$shipping5 = data.shipping) === null || _data$shipping5 === void 0 || (_data$shipping5 = _data$shipping5.fields) === null || _data$shipping5 === void 0 ? void 0 : _data$shipping5.address) || 'Address',
+                className: "w-full border border-gray-300 px-4 py-3 focus:border-black outline-none transition-colors"
+              }), /*#__PURE__*/jsx("input", {
+                type: "text",
+                placeholder: ((_data$shipping6 = data.shipping) === null || _data$shipping6 === void 0 || (_data$shipping6 = _data$shipping6.fields) === null || _data$shipping6 === void 0 ? void 0 : _data$shipping6.apt) || 'Apt, Suite',
+                className: "w-full border border-gray-300 px-4 py-3 focus:border-black outline-none transition-colors"
+              }), /*#__PURE__*/jsxs("div", {
+                className: "grid grid-cols-12 gap-4",
+                children: [/*#__PURE__*/jsx("div", {
+                  className: "col-span-4",
+                  children: /*#__PURE__*/jsx("input", {
+                    type: "text",
+                    placeholder: ((_data$shipping7 = data.shipping) === null || _data$shipping7 === void 0 || (_data$shipping7 = _data$shipping7.fields) === null || _data$shipping7 === void 0 ? void 0 : _data$shipping7.city) || 'City*',
+                    className: "w-full border border-gray-300 px-4 py-3 focus:border-black outline-none transition-colors"
+                  })
+                }), /*#__PURE__*/jsxs("div", {
+                  className: "col-span-4 relative",
+                  children: [/*#__PURE__*/jsxs("select", {
+                    className: "w-full appearance-none border border-gray-300 px-4 py-3 focus:border-black outline-none transition-colors bg-white",
+                    children: [/*#__PURE__*/jsx("option", {
+                      value: "",
+                      disabled: true,
+                      selected: true,
+                      children: ((_data$shipping8 = data.shipping) === null || _data$shipping8 === void 0 || (_data$shipping8 = _data$shipping8.fields) === null || _data$shipping8 === void 0 ? void 0 : _data$shipping8.state) || 'State*'
+                    }), /*#__PURE__*/jsx("option", {
+                      value: "NY",
+                      children: "New York"
+                    }), /*#__PURE__*/jsx("option", {
+                      value: "CA",
+                      children: "California"
+                    })]
+                  }), /*#__PURE__*/jsx("div", {
+                    className: "absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none",
+                    children: /*#__PURE__*/jsx("svg", {
+                      className: "w-4 h-4 text-gray-400",
+                      fill: "none",
+                      viewBox: "0 0 24 24",
+                      stroke: "currentColor",
+                      children: /*#__PURE__*/jsx("path", {
+                        strokeLinecap: "round",
+                        strokeLinejoin: "round",
+                        strokeWidth: 2,
+                        d: "M19 9l-7 7-7-7"
+                      })
+                    })
+                  })]
+                }), /*#__PURE__*/jsx("div", {
+                  className: "col-span-4",
+                  children: /*#__PURE__*/jsx("input", {
+                    type: "text",
+                    placeholder: ((_data$shipping9 = data.shipping) === null || _data$shipping9 === void 0 || (_data$shipping9 = _data$shipping9.fields) === null || _data$shipping9 === void 0 ? void 0 : _data$shipping9.zip) || 'ZIP Code*',
+                    className: "w-full border border-gray-300 px-4 py-3 focus:border-black outline-none transition-colors"
+                  })
+                })]
+              }), /*#__PURE__*/jsxs("div", {
+                className: "relative",
+                children: [/*#__PURE__*/jsx("div", {
+                  className: "absolute left-4 top-2 text-[10px] text-gray-500 uppercase tracking-widest font-bold",
+                  children: ((_data$shipping0 = data.shipping) === null || _data$shipping0 === void 0 || (_data$shipping0 = _data$shipping0.fields) === null || _data$shipping0 === void 0 ? void 0 : _data$shipping0.country) || 'Country'
+                }), /*#__PURE__*/jsx("select", {
+                  className: "w-full appearance-none border border-gray-300 px-4 pt-6 pb-2 focus:border-black outline-none transition-colors bg-white font-medium",
+                  children: /*#__PURE__*/jsx("option", {
+                    value: "US",
+                    children: "United States"
+                  })
+                }), /*#__PURE__*/jsx("div", {
+                  className: "absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none mt-2",
+                  children: /*#__PURE__*/jsx("svg", {
+                    className: "w-4 h-4 text-gray-400",
+                    fill: "none",
+                    viewBox: "0 0 24 24",
+                    stroke: "currentColor",
+                    children: /*#__PURE__*/jsx("path", {
+                      strokeLinecap: "round",
+                      strokeLinejoin: "round",
+                      strokeWidth: 2,
+                      d: "M19 9l-7 7-7-7"
+                    })
+                  })
+                })]
+              }), /*#__PURE__*/jsxs("div", {
+                className: "pt-2",
+                children: [/*#__PURE__*/jsxs("p", {
+                  className: "text-sm font-bold flex items-center",
+                  children: [((_data$shipping1 = data.shipping) === null || _data$shipping1 === void 0 || (_data$shipping1 = _data$shipping1.delivery) === null || _data$shipping1 === void 0 ? void 0 : _data$shipping1.label) || 'Order now, est. delivery by:', /*#__PURE__*/jsx("button", {
+                    className: "ml-1 text-gray-400 hover:text-black",
+                    children: /*#__PURE__*/jsx("svg", {
+                      className: "w-4 h-4",
+                      fill: "currentColor",
+                      viewBox: "0 0 20 20",
+                      children: /*#__PURE__*/jsx("path", {
+                        fillRule: "evenodd",
+                        d: "M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z",
+                        clipRule: "evenodd"
+                      })
+                    })
+                  })]
+                }), /*#__PURE__*/jsx("p", {
+                  className: "text-xs text-gray-500 mt-1",
+                  children: ((_data$shipping10 = data.shipping) === null || _data$shipping10 === void 0 || (_data$shipping10 = _data$shipping10.delivery) === null || _data$shipping10 === void 0 ? void 0 : _data$shipping10.estimateText) || 'Enter your ZIP code for an estimate.'
+                })]
+              }), /*#__PURE__*/jsxs("label", {
+                className: "flex items-center cursor-pointer group pt-4",
+                children: [/*#__PURE__*/jsxs("div", {
+                  className: "relative flex items-center justify-center",
+                  children: [/*#__PURE__*/jsx("input", {
+                    type: "checkbox",
+                    className: "peer appearance-none w-5 h-5 border border-gray-300 checked:bg-black checked:border-black transition-all"
+                  }), /*#__PURE__*/jsx("svg", {
+                    className: "absolute w-3 h-3 text-white opacity-0 peer-checked:opacity-100 transition-opacity",
+                    fill: "none",
+                    viewBox: "0 0 24 24",
+                    stroke: "currentColor",
+                    children: /*#__PURE__*/jsx("path", {
+                      strokeLinecap: "round",
+                      strokeLinejoin: "round",
+                      strokeWidth: 3,
+                      d: "M5 13l4 4L19 7"
+                    })
+                  })]
+                }), /*#__PURE__*/jsx("span", {
+                  className: "ml-3 text-sm font-medium",
+                  children: ((_data$shipping11 = data.shipping) === null || _data$shipping11 === void 0 ? void 0 : _data$shipping11.giftLabel) || 'This order is a gift'
+                })]
+              })]
+            })]
+          }), /*#__PURE__*/jsxs("section", {
+            children: [/*#__PURE__*/jsx("h2", {
+              className: "text-sm font-bold tracking-widest mb-4 uppercase",
+              children: ((_data$payment = data.payment) === null || _data$payment === void 0 ? void 0 : _data$payment.title) || 'Payment Method'
+            }), /*#__PURE__*/jsx("div", {
+              className: "space-y-3",
+              children: (_data$payment2 = data.payment) === null || _data$payment2 === void 0 || (_data$payment2 = _data$payment2.methods) === null || _data$payment2 === void 0 ? void 0 : _data$payment2.map(function (method) {
+                return /*#__PURE__*/jsxs("div", {
+                  className: "border border-gray-300 p-6 flex justify-between items-center cursor-pointer hover:border-black transition-colors",
+                  children: [/*#__PURE__*/jsxs("div", {
+                    children: [/*#__PURE__*/jsx("p", {
+                      className: "font-bold text-sm",
+                      children: method.title
+                    }), /*#__PURE__*/jsx("p", {
+                      className: "text-xs text-gray-500 mt-1",
+                      children: method.subtitle
+                    })]
+                  }), /*#__PURE__*/jsxs("div", {
+                    className: "flex space-x-2 items-center",
+                    children: [method.logos && method.logos.map(function (logo, lIdx) {
+                      return /*#__PURE__*/jsx("img", {
+                        src: logo.src,
+                        alt: logo.alt,
+                        className: "h-4"
+                      }, lIdx);
+                    }), method.logoSrc && /*#__PURE__*/jsx("img", {
+                      src: method.logoSrc,
+                      alt: method.logoAlt,
+                      className: "h-6"
+                    })]
+                  })]
+                }, method.id);
+              })
+            })]
+          })]
+        }), /*#__PURE__*/jsxs("div", {
+          className: "lg:col-span-5 space-y-8",
+          children: [/*#__PURE__*/jsxs("div", {
+            className: "bg-[#f5f7f9] p-8",
+            children: [/*#__PURE__*/jsx("h2", {
+              className: "text-sm font-bold tracking-widest mb-6 uppercase",
+              children: ((_data$summary = data.summary) === null || _data$summary === void 0 ? void 0 : _data$summary.title) || 'Cart Summary'
+            }), /*#__PURE__*/jsx("div", {
+              className: "space-y-6",
+              children: cartItems.map(function (item, idx) {
+                return /*#__PURE__*/jsxs("div", {
+                  className: "flex justify-between items-start text-sm",
+                  children: [/*#__PURE__*/jsxs("div", {
+                    className: "space-y-1",
+                    children: [/*#__PURE__*/jsxs("p", {
+                      className: "font-bold flex items-center",
+                      children: [/*#__PURE__*/jsx("span", {
+                        className: "mr-2",
+                        children: idx + 1
+                      }), " ", item.name, item.hasInfoIcon && /*#__PURE__*/jsx("button", {
+                        className: "ml-1 text-gray-400",
+                        children: /*#__PURE__*/jsx("svg", {
+                          className: "w-4 h-4",
+                          fill: "currentColor",
+                          viewBox: "0 0 20 20",
+                          children: /*#__PURE__*/jsx("path", {
+                            fillRule: "evenodd",
+                            d: "M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z",
+                            clipRule: "evenodd"
+                          })
+                        })
+                      })]
+                    }), item.details && item.details.map(function (detail, dIdx) {
+                      return /*#__PURE__*/jsx("p", {
+                        className: "text-gray-500 text-xs ml-4",
+                        children: detail
+                      }, dIdx);
+                    }), item.isSubscription && /*#__PURE__*/jsx("p", {
+                      className: "text-gray-500 text-[11px] ml-4 leading-relaxed max-w-[240px]",
+                      children: item.subscriptionDetail
+                    })]
+                  }), /*#__PURE__*/jsxs("p", {
+                    className: "font-bold",
+                    children: ["$", item.price.toLocaleString(undefined, {
+                      minimumFractionDigits: 2
+                    })]
+                  })]
+                }, idx);
+              })
+            }), /*#__PURE__*/jsxs("div", {
+              className: "mt-8 pt-8 border-t border-gray-200 space-y-4",
+              children: [/*#__PURE__*/jsxs("div", {
+                className: "flex justify-between text-sm",
+                children: [/*#__PURE__*/jsxs("p", {
+                  className: "text-gray-600",
+                  children: [((_data$summary2 = data.summary) === null || _data$summary2 === void 0 ? void 0 : _data$summary2.subtotalLabel) || 'Subtotal', " (", cartItems.length, "):"]
+                }), /*#__PURE__*/jsxs("p", {
+                  className: "font-bold",
+                  children: ["$", subtotal.toLocaleString(undefined, {
+                    minimumFractionDigits: 2
+                  })]
+                })]
+              }), /*#__PURE__*/jsxs("div", {
+                className: "flex justify-between text-sm",
+                children: [/*#__PURE__*/jsx("p", {
+                  className: "text-gray-600",
+                  children: ((_data$summary3 = data.summary) === null || _data$summary3 === void 0 ? void 0 : _data$summary3.deliveryLabel) || 'Est. delivery and setup'
+                }), /*#__PURE__*/jsx("p", {
+                  className: "font-bold",
+                  children: ((_data$summary4 = data.summary) === null || _data$summary4 === void 0 ? void 0 : _data$summary4.deliveryValue) || 'Included'
+                })]
+              }), /*#__PURE__*/jsxs("div", {
+                className: "flex justify-between text-sm",
+                children: [/*#__PURE__*/jsxs("p", {
+                  className: "text-gray-600 flex items-center",
+                  children: [((_data$summary5 = data.summary) === null || _data$summary5 === void 0 ? void 0 : _data$summary5.taxLabel) || 'Estimated Tax:', /*#__PURE__*/jsx("button", {
+                    className: "ml-1 text-gray-400",
+                    children: /*#__PURE__*/jsx("svg", {
+                      className: "w-4 h-4",
+                      fill: "currentColor",
+                      viewBox: "0 0 20 20",
+                      children: /*#__PURE__*/jsx("path", {
+                        fillRule: "evenodd",
+                        d: "M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z",
+                        clipRule: "evenodd"
+                      })
+                    })
+                  })]
+                }), /*#__PURE__*/jsx("p", {
+                  className: "font-bold",
+                  children: "--"
+                })]
+              }), /*#__PURE__*/jsx("button", {
+                className: "text-sm underline font-medium",
+                children: ((_data$summary6 = data.summary) === null || _data$summary6 === void 0 ? void 0 : _data$summary6.promoLabel) || 'Enter promo code'
+              })]
+            }), /*#__PURE__*/jsxs("div", {
+              className: "mt-8 pt-8 border-t border-gray-200",
+              children: [/*#__PURE__*/jsxs("div", {
+                className: "flex justify-between items-center",
+                children: [/*#__PURE__*/jsx("p", {
+                  className: "text-sm font-bold uppercase tracking-widest",
+                  children: ((_data$summary7 = data.summary) === null || _data$summary7 === void 0 ? void 0 : _data$summary7.totalLabel) || 'Estimated Total'
+                }), /*#__PURE__*/jsxs("p", {
+                  className: "text-xl font-bold",
+                  children: ["$", subtotal.toLocaleString(undefined, {
+                    minimumFractionDigits: 2
+                  })]
+                })]
+              }), ((_data$summary8 = data.summary) === null || _data$summary8 === void 0 ? void 0 : _data$summary8.financingText) && /*#__PURE__*/jsx("p", {
+                className: "text-xs text-gray-500 mt-4 leading-relaxed",
+                children: data.summary.financingText
+              })]
+            })]
+          }), data.trial && /*#__PURE__*/jsxs("div", {
+            className: "border border-gray-200 p-8 space-y-6",
+            children: [/*#__PURE__*/jsx("h2", {
+              className: "text-[11px] font-bold tracking-[0.2em] mb-4 uppercase",
+              children: data.trial.title
+            }), /*#__PURE__*/jsx("ul", {
+              className: "space-y-4",
+              children: (_data$trial$items = data.trial.items) === null || _data$trial$items === void 0 ? void 0 : _data$trial$items.map(function (text, i) {
+                return /*#__PURE__*/jsxs("li", {
+                  className: "flex items-start text-sm",
+                  children: [/*#__PURE__*/jsx("span", {
+                    className: "flex items-center justify-center w-6 h-6 border border-black rounded-full text-[10px] font-bold mr-4 shrink-0",
+                    children: i + 1
+                  }), /*#__PURE__*/jsx("span", {
+                    className: "text-gray-700 leading-tight pt-1",
+                    children: text
+                  })]
+                }, i);
+              })
+            }), /*#__PURE__*/jsxs("p", {
+              className: "text-[10px] text-gray-500 pt-2",
+              children: [data.trial.termsText, " ", /*#__PURE__*/jsx("a", {
+                href: data.trial.termsLink || '#',
+                className: "underline",
+                children: data.trial.termsLinkText
+              }), "."]
+            })]
+          })]
+        })]
+      })
+    })
+  });
+};
+
+var CheckoutMinimal = function CheckoutMinimal(_ref) {
+  var _data$email, _data$email2, _data$shipping, _data$shipping2, _data$shipping3, _data$shipping4, _data$shipping5, _data$shipping6, _data$shipping7, _data$payment, _data$payment2, _data$summary, _data$summary2, _data$summary3;
+  var _ref$data = _ref.data,
+    data = _ref$data === void 0 ? {} : _ref$data,
+    className = _ref.className;
+  var _useState = useState(''),
+    _useState2 = _slicedToArray(_useState, 2),
+    email = _useState2[0],
+    setEmail = _useState2[1];
+  var cartItems = data.cartItems || [];
+  var subtotal = cartItems.reduce(function (acc, item) {
+    return acc + item.price;
+  }, 0);
+  return /*#__PURE__*/jsx("div", {
+    className: clsx("checkout-minimal bg-white py-12 px-4 sm:px-6 lg:px-8", className),
+    children: /*#__PURE__*/jsx("div", {
+      className: "max-w-4xl mx-auto",
+      children: /*#__PURE__*/jsxs("div", {
+        className: "grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-10",
+        children: [/*#__PURE__*/jsxs("div", {
+          className: "space-y-8",
+          children: [/*#__PURE__*/jsxs("section", {
+            children: [/*#__PURE__*/jsx("h2", {
+              className: "text-xl font-semibold mb-4 border-b pb-2",
+              children: ((_data$email = data.email) === null || _data$email === void 0 ? void 0 : _data$email.label) || 'Contact'
+            }), /*#__PURE__*/jsx("input", {
+              type: "email",
+              placeholder: ((_data$email2 = data.email) === null || _data$email2 === void 0 ? void 0 : _data$email2.placeholder) || 'Email Address',
+              className: "w-full border-gray-300 rounded-md shadow-sm focus:ring-black focus:border-black py-3 px-4",
+              value: email,
+              onChange: function onChange(e) {
+                return setEmail(e.target.value);
+              }
+            })]
+          }), /*#__PURE__*/jsxs("section", {
+            children: [/*#__PURE__*/jsx("h2", {
+              className: "text-xl font-semibold mb-4 border-b pb-2",
+              children: ((_data$shipping = data.shipping) === null || _data$shipping === void 0 ? void 0 : _data$shipping.title) || 'Shipping'
+            }), /*#__PURE__*/jsxs("div", {
+              className: "grid grid-cols-2 gap-4",
+              children: [/*#__PURE__*/jsx("input", {
+                type: "text",
+                placeholder: ((_data$shipping2 = data.shipping) === null || _data$shipping2 === void 0 || (_data$shipping2 = _data$shipping2.fields) === null || _data$shipping2 === void 0 ? void 0 : _data$shipping2.firstName) || "First Name",
+                className: "border-gray-300 rounded-md py-3 px-4"
+              }), /*#__PURE__*/jsx("input", {
+                type: "text",
+                placeholder: ((_data$shipping3 = data.shipping) === null || _data$shipping3 === void 0 || (_data$shipping3 = _data$shipping3.fields) === null || _data$shipping3 === void 0 ? void 0 : _data$shipping3.lastName) || "Last Name",
+                className: "border-gray-300 rounded-md py-3 px-4"
+              })]
+            }), /*#__PURE__*/jsx("input", {
+              type: "text",
+              placeholder: ((_data$shipping4 = data.shipping) === null || _data$shipping4 === void 0 || (_data$shipping4 = _data$shipping4.fields) === null || _data$shipping4 === void 0 ? void 0 : _data$shipping4.address) || "Address",
+              className: "w-full mt-4 border-gray-300 rounded-md py-3 px-4"
+            }), /*#__PURE__*/jsxs("div", {
+              className: "grid grid-cols-3 gap-4 mt-4",
+              children: [/*#__PURE__*/jsx("input", {
+                type: "text",
+                placeholder: ((_data$shipping5 = data.shipping) === null || _data$shipping5 === void 0 || (_data$shipping5 = _data$shipping5.fields) === null || _data$shipping5 === void 0 ? void 0 : _data$shipping5.city) || "City",
+                className: "border-gray-300 rounded-md py-3 px-4"
+              }), /*#__PURE__*/jsx("input", {
+                type: "text",
+                placeholder: ((_data$shipping6 = data.shipping) === null || _data$shipping6 === void 0 || (_data$shipping6 = _data$shipping6.fields) === null || _data$shipping6 === void 0 ? void 0 : _data$shipping6.state) || "State",
+                className: "border-gray-300 rounded-md py-3 px-4"
+              }), /*#__PURE__*/jsx("input", {
+                type: "text",
+                placeholder: ((_data$shipping7 = data.shipping) === null || _data$shipping7 === void 0 || (_data$shipping7 = _data$shipping7.fields) === null || _data$shipping7 === void 0 ? void 0 : _data$shipping7.zip) || "ZIP",
+                className: "border-gray-300 rounded-md py-3 px-4"
+              })]
+            })]
+          }), /*#__PURE__*/jsxs("section", {
+            children: [/*#__PURE__*/jsx("h2", {
+              className: "text-xl font-semibold mb-4 border-b pb-2",
+              children: ((_data$payment = data.payment) === null || _data$payment === void 0 ? void 0 : _data$payment.title) || 'Payment'
+            }), /*#__PURE__*/jsx("div", {
+              className: "space-y-4",
+              children: (((_data$payment2 = data.payment) === null || _data$payment2 === void 0 ? void 0 : _data$payment2.methods) || [{
+                id: 'card',
+                title: 'Credit Card'
+              }, {
+                id: 'paypal',
+                title: 'PayPal'
+              }]).map(function (method, idx) {
+                return /*#__PURE__*/jsxs("label", {
+                  className: "flex items-center p-4 border rounded-md cursor-pointer hover:bg-gray-50 transition-colors",
+                  children: [/*#__PURE__*/jsx("input", {
+                    type: "radio",
+                    name: "payment",
+                    className: "text-black focus:ring-black",
+                    defaultChecked: idx === 0
+                  }), /*#__PURE__*/jsx("span", {
+                    className: "ml-3 font-medium",
+                    children: method.title
+                  })]
+                }, method.id);
+              })
+            })]
+          })]
+        }), /*#__PURE__*/jsxs("div", {
+          className: "bg-gray-50 p-6 rounded-lg self-start",
+          children: [/*#__PURE__*/jsx("h2", {
+            className: "text-xl font-semibold mb-6",
+            children: ((_data$summary = data.summary) === null || _data$summary === void 0 ? void 0 : _data$summary.title) || 'Order Summary'
+          }), /*#__PURE__*/jsxs("div", {
+            className: "space-y-4",
+            children: [cartItems.map(function (item, idx) {
+              return /*#__PURE__*/jsxs("div", {
+                className: "flex justify-between text-sm",
+                children: [/*#__PURE__*/jsxs("span", {
+                  className: "text-gray-600",
+                  children: [item.name, " x1"]
+                }), /*#__PURE__*/jsxs("span", {
+                  className: "font-medium",
+                  children: ["$", item.price.toFixed(2)]
+                })]
+              }, idx);
+            }), /*#__PURE__*/jsxs("div", {
+              className: "border-t pt-4 mt-4 flex justify-between font-bold text-lg",
+              children: [/*#__PURE__*/jsx("span", {
+                children: ((_data$summary2 = data.summary) === null || _data$summary2 === void 0 ? void 0 : _data$summary2.totalLabel) || 'Total'
+              }), /*#__PURE__*/jsxs("span", {
+                children: ["$", subtotal.toFixed(2)]
+              })]
+            })]
+          }), /*#__PURE__*/jsx("button", {
+            className: "w-full bg-black text-white py-4 rounded-md mt-8 font-semibold hover:bg-gray-800 transition-colors",
+            children: ((_data$summary3 = data.summary) === null || _data$summary3 === void 0 ? void 0 : _data$summary3.buttonText) || 'Place Order'
+          })]
+        })]
+      })
+    })
+  });
+};
+
+var CheckoutModern = function CheckoutModern(_ref) {
+  var _data$shipping, _data$email, _data$shipping2, _data$shipping3, _data$shipping4, _data$payment, _data$payment2, _data$summary, _data$summary2, _data$summary3, _data$summary4, _data$summary5, _data$summary6;
+  var _ref$data = _ref.data,
+    data = _ref$data === void 0 ? {} : _ref$data,
+    className = _ref.className;
+  var _useState = useState(''),
+    _useState2 = _slicedToArray(_useState, 2),
+    email = _useState2[0],
+    setEmail = _useState2[1];
+  var cartItems = data.cartItems || [];
+  var subtotal = cartItems.reduce(function (acc, item) {
+    return acc + item.price;
+  }, 0);
+  return /*#__PURE__*/jsx("div", {
+    className: clsx("checkout-modern min-h-screen bg-neutral-50 py-12 px-6", className),
+    children: /*#__PURE__*/jsxs("div", {
+      className: "max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-12",
+      children: [/*#__PURE__*/jsxs("div", {
+        className: "lg:col-span-2 space-y-12",
+        children: [/*#__PURE__*/jsxs("div", {
+          className: "flex items-center space-x-4 mb-8",
+          children: [/*#__PURE__*/jsx("div", {
+            className: "bg-black text-white w-10 h-10 rounded-full flex items-center justify-center font-bold",
+            children: "1"
+          }), /*#__PURE__*/jsx("h2", {
+            className: "text-2xl font-bold",
+            children: ((_data$shipping = data.shipping) === null || _data$shipping === void 0 ? void 0 : _data$shipping.title) || 'Contact & Shipping'
+          })]
+        }), /*#__PURE__*/jsxs("div", {
+          className: "bg-white p-8 rounded-2xl shadow-sm border border-neutral-100 space-y-6",
+          children: [/*#__PURE__*/jsx("input", {
+            type: "email",
+            placeholder: ((_data$email = data.email) === null || _data$email === void 0 ? void 0 : _data$email.placeholder) || "Email Address",
+            className: "w-full bg-neutral-50 border-transparent rounded-xl focus:ring-2 focus:ring-black focus:bg-white transition-all py-4 px-6",
+            value: email,
+            onChange: function onChange(e) {
+              return setEmail(e.target.value);
+            }
+          }), /*#__PURE__*/jsxs("div", {
+            className: "grid grid-cols-1 md:grid-cols-2 gap-6",
+            children: [/*#__PURE__*/jsx("input", {
+              type: "text",
+              placeholder: ((_data$shipping2 = data.shipping) === null || _data$shipping2 === void 0 || (_data$shipping2 = _data$shipping2.fields) === null || _data$shipping2 === void 0 ? void 0 : _data$shipping2.firstName) || "First Name",
+              className: "w-full bg-neutral-50 border-transparent rounded-xl focus:ring-2 focus:ring-black focus:bg-white py-4 px-6"
+            }), /*#__PURE__*/jsx("input", {
+              type: "text",
+              placeholder: ((_data$shipping3 = data.shipping) === null || _data$shipping3 === void 0 || (_data$shipping3 = _data$shipping3.fields) === null || _data$shipping3 === void 0 ? void 0 : _data$shipping3.lastName) || "Last Name",
+              className: "w-full bg-neutral-50 border-transparent rounded-xl focus:ring-2 focus:ring-black focus:bg-white py-4 px-6"
+            })]
+          }), /*#__PURE__*/jsx("input", {
+            type: "text",
+            placeholder: ((_data$shipping4 = data.shipping) === null || _data$shipping4 === void 0 || (_data$shipping4 = _data$shipping4.fields) === null || _data$shipping4 === void 0 ? void 0 : _data$shipping4.address) || "Complete Address",
+            className: "w-full bg-neutral-50 border-transparent rounded-xl focus:ring-2 focus:ring-black focus:bg-white py-4 px-6"
+          })]
+        }), /*#__PURE__*/jsxs("div", {
+          className: "flex items-center space-x-4 pt-4",
+          children: [/*#__PURE__*/jsx("div", {
+            className: "bg-black text-white w-10 h-10 rounded-full flex items-center justify-center font-bold",
+            children: "2"
+          }), /*#__PURE__*/jsx("h2", {
+            className: "text-2xl font-bold",
+            children: ((_data$payment = data.payment) === null || _data$payment === void 0 ? void 0 : _data$payment.title) || 'Payment Method'
+          })]
+        }), /*#__PURE__*/jsx("div", {
+          className: "bg-white p-8 rounded-2xl shadow-sm border border-neutral-100 grid grid-cols-1 md:grid-cols-2 gap-4",
+          children: (((_data$payment2 = data.payment) === null || _data$payment2 === void 0 ? void 0 : _data$payment2.methods) || [{
+            id: 'apple',
+            title: 'Apple Pay',
+            recommended: true
+          }, {
+            id: 'card',
+            title: 'Credit Card'
+          }]).map(function (method) {
+            return /*#__PURE__*/jsxs("button", {
+              className: clsx("flex items-center justify-between p-6 border-2 rounded-2xl transition-all", method.recommended ? "border-black bg-white shadow-md" : "border-transparent bg-neutral-50 hover:bg-neutral-100"),
+              children: [/*#__PURE__*/jsx("span", {
+                className: clsx("font-bold text-lg", !method.recommended && "text-neutral-500"),
+                children: method.title
+              }), method.recommended && /*#__PURE__*/jsx("span", {
+                className: "bg-black text-white px-3 py-1 rounded text-xs",
+                children: "Recommended"
+              })]
+            }, method.id);
+          })
+        })]
+      }), /*#__PURE__*/jsx("div", {
+        className: "lg:col-span-1",
+        children: /*#__PURE__*/jsxs("div", {
+          className: "bg-white p-8 rounded-3xl shadow-xl border border-neutral-100 sticky top-8",
+          children: [/*#__PURE__*/jsx("h3", {
+            className: "text-xl font-black mb-8 uppercase tracking-tighter",
+            children: ((_data$summary = data.summary) === null || _data$summary === void 0 ? void 0 : _data$summary.title) || 'Your Bag'
+          }), /*#__PURE__*/jsx("div", {
+            className: "space-y-6 mb-8 max-h-60 overflow-y-auto pr-2",
+            children: cartItems.map(function (item, idx) {
+              return /*#__PURE__*/jsxs("div", {
+                className: "flex items-center justify-between group",
+                children: [/*#__PURE__*/jsxs("div", {
+                  className: "flex items-center space-x-4",
+                  children: [/*#__PURE__*/jsx("div", {
+                    className: "w-12 h-12 bg-neutral-100 rounded-lg flex-shrink-0"
+                  }), /*#__PURE__*/jsxs("div", {
+                    children: [/*#__PURE__*/jsx("p", {
+                      className: "font-bold text-sm leading-tight",
+                      children: item.name
+                    }), /*#__PURE__*/jsx("p", {
+                      className: "text-xs text-neutral-400",
+                      children: "Qty 1"
+                    })]
+                  })]
+                }), /*#__PURE__*/jsxs("span", {
+                  className: "font-bold text-sm",
+                  children: ["$", item.price.toFixed(2)]
+                })]
+              }, idx);
+            })
+          }), /*#__PURE__*/jsxs("div", {
+            className: "space-y-4 border-t pt-8",
+            children: [/*#__PURE__*/jsxs("div", {
+              className: "flex justify-between text-neutral-500",
+              children: [/*#__PURE__*/jsx("span", {
+                children: ((_data$summary2 = data.summary) === null || _data$summary2 === void 0 ? void 0 : _data$summary2.subtotalLabel) || 'Subtotal'
+              }), /*#__PURE__*/jsxs("span", {
+                className: "font-bold text-black",
+                children: ["$", subtotal.toFixed(2)]
+              })]
+            }), /*#__PURE__*/jsxs("div", {
+              className: "flex justify-between text-neutral-500 text-sm",
+              children: [/*#__PURE__*/jsx("span", {
+                children: ((_data$summary3 = data.summary) === null || _data$summary3 === void 0 ? void 0 : _data$summary3.deliveryLabel) || 'Shipping'
+              }), /*#__PURE__*/jsx("span", {
+                className: "text-green-600 font-bold uppercase text-[10px] tracking-widest bg-green-50 px-2 py-0.5 rounded",
+                children: ((_data$summary4 = data.summary) === null || _data$summary4 === void 0 ? void 0 : _data$summary4.deliveryValue) || 'Free'
+              })]
+            }), /*#__PURE__*/jsxs("div", {
+              className: "flex justify-between text-2xl font-black pt-4 border-t border-neutral-50",
+              children: [/*#__PURE__*/jsx("span", {
+                children: ((_data$summary5 = data.summary) === null || _data$summary5 === void 0 ? void 0 : _data$summary5.totalLabel) || 'Total'
+              }), /*#__PURE__*/jsxs("span", {
+                children: ["$", subtotal.toFixed(2)]
+              })]
+            })]
+          }), /*#__PURE__*/jsx("button", {
+            className: "w-full bg-black text-white py-5 rounded-2xl mt-10 font-black text-lg hover:scale-[1.02] transition-transform active:scale-100",
+            children: ((_data$summary6 = data.summary) === null || _data$summary6 === void 0 ? void 0 : _data$summary6.buttonText) || 'Checkout Now'
+          })]
+        })
+      })]
+    })
+  });
+};
+
+var CheckoutCard = function CheckoutCard(_ref) {
+  var _data$email, _data$email2, _data$shipping, _data$shipping2, _data$shipping3, _data$shipping4, _data$shipping5, _data$shipping6, _data$shipping7, _data$payment, _data$payment2, _data$summary, _data$summary2, _data$summary3;
+  var _ref$data = _ref.data,
+    data = _ref$data === void 0 ? {} : _ref$data,
+    className = _ref.className;
+  var _useState = useState(''),
+    _useState2 = _slicedToArray(_useState, 2);
+    _useState2[0];
+    _useState2[1];
+  var cartItems = data.cartItems || [];
+  var subtotal = cartItems.reduce(function (acc, item) {
+    return acc + item.price;
+  }, 0);
+  return /*#__PURE__*/jsx("div", {
+    className: clsx("checkout-card bg-neutral-100 py-16 px-6 lg:px-12", className),
+    children: /*#__PURE__*/jsxs("div", {
+      className: "max-w-7xl mx-auto flex flex-col lg:flex-row gap-8 items-start",
+      children: [/*#__PURE__*/jsxs("div", {
+        className: "flex-grow space-y-6",
+        children: [/*#__PURE__*/jsxs("div", {
+          className: "bg-white rounded-3xl p-8 shadow-sm",
+          children: [/*#__PURE__*/jsx("h2", {
+            className: "text-2xl font-bold mb-8",
+            children: ((_data$email = data.email) === null || _data$email === void 0 ? void 0 : _data$email.label) || 'Personal Information'
+          }), /*#__PURE__*/jsxs("div", {
+            className: "grid grid-cols-1 md:grid-cols-2 gap-6",
+            children: [/*#__PURE__*/jsxs("div", {
+              className: "space-y-2",
+              children: [/*#__PURE__*/jsx("label", {
+                className: "text-xs font-bold text-neutral-400 uppercase ml-1",
+                children: "Email"
+              }), /*#__PURE__*/jsx("input", {
+                type: "email",
+                placeholder: ((_data$email2 = data.email) === null || _data$email2 === void 0 ? void 0 : _data$email2.placeholder) || "john@example.com",
+                className: "w-full border-neutral-200 rounded-2xl py-4 px-6 focus:border-blue-500 transition-colors"
+              })]
+            }), /*#__PURE__*/jsxs("div", {
+              className: "space-y-2",
+              children: [/*#__PURE__*/jsx("label", {
+                className: "text-xs font-bold text-neutral-400 uppercase ml-1",
+                children: "Phone"
+              }), /*#__PURE__*/jsx("input", {
+                type: "tel",
+                placeholder: ((_data$shipping = data.shipping) === null || _data$shipping === void 0 || (_data$shipping = _data$shipping.fields) === null || _data$shipping === void 0 ? void 0 : _data$shipping.phone) || "+1 (555) 000-0000",
+                className: "w-full border-neutral-200 rounded-2xl py-4 px-6 focus:border-blue-500 transition-colors"
+              })]
+            })]
+          })]
+        }), /*#__PURE__*/jsxs("div", {
+          className: "bg-white rounded-3xl p-8 shadow-sm",
+          children: [/*#__PURE__*/jsx("h2", {
+            className: "text-2xl font-bold mb-8",
+            children: ((_data$shipping2 = data.shipping) === null || _data$shipping2 === void 0 ? void 0 : _data$shipping2.title) || 'Shipping Address'
+          }), /*#__PURE__*/jsxs("div", {
+            className: "space-y-6",
+            children: [/*#__PURE__*/jsx("input", {
+              type: "text",
+              placeholder: ((_data$shipping3 = data.shipping) === null || _data$shipping3 === void 0 || (_data$shipping3 = _data$shipping3.fields) === null || _data$shipping3 === void 0 ? void 0 : _data$shipping3.firstName) || "Full Name",
+              className: "w-full border-neutral-200 rounded-2xl py-4 px-6 focus:border-blue-500 transition-colors"
+            }), /*#__PURE__*/jsx("input", {
+              type: "text",
+              placeholder: ((_data$shipping4 = data.shipping) === null || _data$shipping4 === void 0 || (_data$shipping4 = _data$shipping4.fields) === null || _data$shipping4 === void 0 ? void 0 : _data$shipping4.address) || "Street Address",
+              className: "w-full border-neutral-200 rounded-2xl py-4 px-6 focus:border-blue-500 transition-colors"
+            }), /*#__PURE__*/jsxs("div", {
+              className: "grid grid-cols-3 gap-6",
+              children: [/*#__PURE__*/jsx("input", {
+                type: "text",
+                placeholder: ((_data$shipping5 = data.shipping) === null || _data$shipping5 === void 0 || (_data$shipping5 = _data$shipping5.fields) === null || _data$shipping5 === void 0 ? void 0 : _data$shipping5.city) || "City",
+                className: "border-neutral-200 rounded-2xl py-4 px-6 focus:border-blue-500 transition-colors"
+              }), /*#__PURE__*/jsx("input", {
+                type: "text",
+                placeholder: ((_data$shipping6 = data.shipping) === null || _data$shipping6 === void 0 || (_data$shipping6 = _data$shipping6.fields) === null || _data$shipping6 === void 0 ? void 0 : _data$shipping6.state) || "State",
+                className: "border-neutral-200 rounded-2xl py-4 px-6 focus:border-blue-500 transition-colors"
+              }), /*#__PURE__*/jsx("input", {
+                type: "text",
+                placeholder: ((_data$shipping7 = data.shipping) === null || _data$shipping7 === void 0 || (_data$shipping7 = _data$shipping7.fields) === null || _data$shipping7 === void 0 ? void 0 : _data$shipping7.zip) || "ZIP",
+                className: "border-neutral-200 rounded-2xl py-4 px-6 focus:border-blue-500 transition-colors"
+              })]
+            })]
+          })]
+        })]
+      }), /*#__PURE__*/jsxs("div", {
+        className: "w-full lg:w-[400px] space-y-6",
+        children: [/*#__PURE__*/jsxs("div", {
+          className: "bg-white rounded-3xl p-8 shadow-sm",
+          children: [/*#__PURE__*/jsx("h2", {
+            className: "text-xl font-bold mb-6",
+            children: ((_data$payment = data.payment) === null || _data$payment === void 0 ? void 0 : _data$payment.title) || 'Payment'
+          }), /*#__PURE__*/jsx("div", {
+            className: "grid grid-cols-2 gap-4 mb-8",
+            children: (((_data$payment2 = data.payment) === null || _data$payment2 === void 0 ? void 0 : _data$payment2.methods) || [{
+              id: 'card',
+              title: 'Card',
+              active: true
+            }, {
+              id: 'paypal',
+              title: 'PayPal'
+            }]).map(function (method) {
+              return /*#__PURE__*/jsx("button", {
+                className: clsx("flex flex-col items-center justify-center p-4 border-2 rounded-2xl transition-all", method.active ? "border-blue-600 bg-blue-50 text-blue-600" : "border-transparent bg-neutral-50 text-neutral-400 hover:bg-neutral-100"),
+                children: /*#__PURE__*/jsx("span", {
+                  className: "font-bold",
+                  children: method.title
+                })
+              }, method.id);
+            })
+          }), /*#__PURE__*/jsxs("div", {
+            className: "space-y-4",
+            children: [/*#__PURE__*/jsx("input", {
+              type: "text",
+              placeholder: "Card Number",
+              className: "w-full border-neutral-200 rounded-2xl py-4 px-6"
+            }), /*#__PURE__*/jsxs("div", {
+              className: "grid grid-cols-2 gap-4",
+              children: [/*#__PURE__*/jsx("input", {
+                type: "text",
+                placeholder: "MM/YY",
+                className: "border-neutral-200 rounded-2xl py-4 px-6"
+              }), /*#__PURE__*/jsx("input", {
+                type: "text",
+                placeholder: "CVC",
+                className: "border-neutral-200 rounded-2xl py-4 px-6"
+              })]
+            })]
+          })]
+        }), /*#__PURE__*/jsxs("div", {
+          className: "bg-blue-600 text-white rounded-3xl p-8 shadow-xl",
+          children: [/*#__PURE__*/jsx("h2", {
+            className: "text-xl font-bold mb-6",
+            children: ((_data$summary = data.summary) === null || _data$summary === void 0 ? void 0 : _data$summary.title) || 'Order Total'
+          }), /*#__PURE__*/jsx("div", {
+            className: "space-y-3 mb-8 opacity-90",
+            children: cartItems.map(function (item, idx) {
+              return /*#__PURE__*/jsxs("div", {
+                className: "flex justify-between text-sm",
+                children: [/*#__PURE__*/jsx("span", {
+                  children: item.name
+                }), /*#__PURE__*/jsxs("span", {
+                  className: "font-bold",
+                  children: ["$", item.price.toFixed(2)]
+                })]
+              }, idx);
+            })
+          }), /*#__PURE__*/jsxs("div", {
+            className: "flex justify-between items-end border-t border-white/20 pt-6",
+            children: [/*#__PURE__*/jsx("span", {
+              className: "text-sm font-medium opacity-70",
+              children: ((_data$summary2 = data.summary) === null || _data$summary2 === void 0 ? void 0 : _data$summary2.totalLabel) || 'Payable Amount'
+            }), /*#__PURE__*/jsxs("span", {
+              className: "text-4xl font-black tracking-tighter",
+              children: ["$", subtotal.toFixed(2)]
+            })]
+          }), /*#__PURE__*/jsx("button", {
+            className: "w-full bg-white text-blue-600 py-5 rounded-2xl mt-10 font-bold text-lg hover:shadow-lg transition-all active:scale-95",
+            children: ((_data$summary3 = data.summary) === null || _data$summary3 === void 0 ? void 0 : _data$summary3.buttonText) || 'Complete Payment'
+          })]
+        })]
+      })]
+    })
+  });
+};
+
+var CheckoutFlow = function CheckoutFlow(_ref) {
+  var _data$email, _data$email2, _data$shipping, _data$shipping2, _data$shipping3, _data$shipping4, _data$shipping5, _data$payment, _data$summary, _data$summary2;
+  var _ref$data = _ref.data,
+    data = _ref$data === void 0 ? {} : _ref$data,
+    className = _ref.className;
+  var _useState = useState(1),
+    _useState2 = _slicedToArray(_useState, 2),
+    step = _useState2[0],
+    setStep = _useState2[1];
+  var cartItems = data.cartItems || [];
+  var subtotal = cartItems.reduce(function (acc, item) {
+    return acc + item.price;
+  }, 0);
+  var steps = data.steps || ['Details', 'Shipping', 'Payment'];
+  return /*#__PURE__*/jsx("div", {
+    className: clsx("checkout-flow min-h-screen bg-white py-12 px-6", className),
+    children: /*#__PURE__*/jsxs("div", {
+      className: "max-w-2xl mx-auto",
+      children: [/*#__PURE__*/jsxs("div", {
+        className: "flex justify-between mb-16 relative",
+        children: [/*#__PURE__*/jsx("div", {
+          className: "absolute top-1/2 left-0 w-full h-0.5 bg-neutral-100 -translate-y-1/2 -z-10"
+        }), steps.map(function (s, idx) {
+          return /*#__PURE__*/jsxs("div", {
+            className: "flex flex-col items-center",
+            children: [/*#__PURE__*/jsx("div", {
+              className: clsx("w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm transition-all duration-500", step > idx + 1 ? "bg-green-500 text-white" : step === idx + 1 ? "bg-black text-white scale-125" : "bg-white border-2 border-neutral-200 text-neutral-400"),
+              children: step > idx + 1 ? '✓' : idx + 1
+            }), /*#__PURE__*/jsx("span", {
+              className: clsx("text-xs mt-3 font-bold uppercase tracking-widest", step === idx + 1 ? "text-black" : "text-neutral-400"),
+              children: s
+            })]
+          }, idx);
+        })]
+      }), /*#__PURE__*/jsxs("div", {
+        className: "min-h-[400px]",
+        children: [step === 1 && /*#__PURE__*/jsxs("div", {
+          className: "space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500",
+          children: [/*#__PURE__*/jsx("h2", {
+            className: "text-3xl font-black",
+            children: ((_data$email = data.email) === null || _data$email === void 0 ? void 0 : _data$email.label) || 'Your Information'
+          }), /*#__PURE__*/jsxs("div", {
+            className: "space-y-4",
+            children: [/*#__PURE__*/jsx("input", {
+              type: "email",
+              placeholder: ((_data$email2 = data.email) === null || _data$email2 === void 0 ? void 0 : _data$email2.placeholder) || "Email",
+              className: "w-full border-b-2 border-neutral-100 py-4 focus:border-black transition-colors outline-none text-xl font-medium"
+            }), /*#__PURE__*/jsx("input", {
+              type: "tel",
+              placeholder: ((_data$shipping = data.shipping) === null || _data$shipping === void 0 || (_data$shipping = _data$shipping.fields) === null || _data$shipping === void 0 ? void 0 : _data$shipping.phone) || "Phone",
+              className: "w-full border-b-2 border-neutral-100 py-4 focus:border-black transition-colors outline-none text-xl font-medium"
+            })]
+          })]
+        }), step === 2 && /*#__PURE__*/jsxs("div", {
+          className: "space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500",
+          children: [/*#__PURE__*/jsx("h2", {
+            className: "text-3xl font-black",
+            children: ((_data$shipping2 = data.shipping) === null || _data$shipping2 === void 0 ? void 0 : _data$shipping2.title) || 'Shipping Address'
+          }), /*#__PURE__*/jsxs("div", {
+            className: "grid grid-cols-2 gap-8",
+            children: [/*#__PURE__*/jsx("input", {
+              type: "text",
+              placeholder: ((_data$shipping3 = data.shipping) === null || _data$shipping3 === void 0 || (_data$shipping3 = _data$shipping3.fields) === null || _data$shipping3 === void 0 ? void 0 : _data$shipping3.firstName) || "First Name",
+              className: "w-full border-b-2 border-neutral-100 py-4 focus:border-black outline-none text-xl"
+            }), /*#__PURE__*/jsx("input", {
+              type: "text",
+              placeholder: ((_data$shipping4 = data.shipping) === null || _data$shipping4 === void 0 || (_data$shipping4 = _data$shipping4.fields) === null || _data$shipping4 === void 0 ? void 0 : _data$shipping4.lastName) || "Last Name",
+              className: "w-full border-b-2 border-neutral-100 py-4 focus:border-black outline-none text-xl"
+            })]
+          }), /*#__PURE__*/jsx("input", {
+            type: "text",
+            placeholder: ((_data$shipping5 = data.shipping) === null || _data$shipping5 === void 0 || (_data$shipping5 = _data$shipping5.fields) === null || _data$shipping5 === void 0 ? void 0 : _data$shipping5.address) || "Address",
+            className: "w-full border-b-2 border-neutral-100 py-4 focus:border-black transition-colors outline-none text-xl"
+          })]
+        }), step === 3 && /*#__PURE__*/jsxs("div", {
+          className: "space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500",
+          children: [/*#__PURE__*/jsx("h2", {
+            className: "text-3xl font-black",
+            children: ((_data$payment = data.payment) === null || _data$payment === void 0 ? void 0 : _data$payment.title) || 'Payment Details'
+          }), /*#__PURE__*/jsxs("div", {
+            className: "bg-neutral-50 p-8 rounded-3xl space-y-4",
+            children: [/*#__PURE__*/jsxs("div", {
+              className: "flex justify-between items-center text-neutral-500 mb-4",
+              children: [/*#__PURE__*/jsx("span", {
+                children: ((_data$summary = data.summary) === null || _data$summary === void 0 ? void 0 : _data$summary.title) || 'Order Summary'
+              }), /*#__PURE__*/jsxs("span", {
+                className: "font-bold text-black",
+                children: ["$", subtotal.toFixed(2)]
+              })]
+            }), /*#__PURE__*/jsx("input", {
+              type: "text",
+              placeholder: "Card Number",
+              className: "w-full bg-white rounded-xl py-4 px-6 border border-neutral-100"
+            }), /*#__PURE__*/jsxs("div", {
+              className: "grid grid-cols-2 gap-4",
+              children: [/*#__PURE__*/jsx("input", {
+                type: "text",
+                placeholder: "MM/YY",
+                className: "w-full bg-white rounded-xl py-4 px-6 border border-neutral-100"
+              }), /*#__PURE__*/jsx("input", {
+                type: "text",
+                placeholder: "CVC",
+                className: "w-full bg-white rounded-xl py-4 px-6 border border-neutral-100"
+              })]
+            })]
+          })]
+        })]
+      }), /*#__PURE__*/jsxs("div", {
+        className: "flex justify-between mt-16 pt-8 border-t border-neutral-100",
+        children: [/*#__PURE__*/jsxs("button", {
+          disabled: step === 1,
+          onClick: function onClick() {
+            return setStep(function (s) {
+              return s - 1;
+            });
+          },
+          className: "text-neutral-400 font-bold hover:text-black transition-colors disabled:opacity-0",
+          children: ["\u2190 ", data.backText || 'Back']
+        }), /*#__PURE__*/jsx("button", {
+          onClick: function onClick() {
+            return step < 3 ? setStep(function (s) {
+              return s + 1;
+            }) : null;
+          },
+          className: "bg-black text-white px-12 py-4 rounded-full font-black text-lg hover:px-16 transition-all",
+          children: step === 3 ? ((_data$summary2 = data.summary) === null || _data$summary2 === void 0 ? void 0 : _data$summary2.buttonText) || 'Place Order' : data.nextText || 'Next Step →'
+        })]
+      })]
+    })
+  });
+};
+
+var CheckoutPremium = function CheckoutPremium(_ref) {
+  var _data$header, _data$header2, _data$email, _data$email2, _data$shipping, _data$shipping2, _data$shipping3, _data$shipping4, _data$summary, _data$summary2, _data$summary3, _data$summary4, _data$summary5, _data$footer;
+  var _ref$data = _ref.data,
+    data = _ref$data === void 0 ? {} : _ref$data,
+    className = _ref.className;
+  var _useState = useState(''),
+    _useState2 = _slicedToArray(_useState, 2);
+    _useState2[0];
+    _useState2[1];
+  var cartItems = data.cartItems || [];
+  var subtotal = cartItems.reduce(function (acc, item) {
+    return acc + item.price;
+  }, 0);
+  return /*#__PURE__*/jsx("div", {
+    className: clsx("checkout-premium min-h-screen bg-[#0a0a0a] text-white py-20 px-10", className),
+    children: /*#__PURE__*/jsxs("div", {
+      className: "max-w-7xl mx-auto flex flex-col lg:flex-row gap-20",
+      children: [/*#__PURE__*/jsxs("div", {
+        className: "flex-1 space-y-20",
+        children: [/*#__PURE__*/jsxs("header", {
+          className: "space-y-4",
+          children: [/*#__PURE__*/jsx("h1", {
+            className: "text-6xl font-serif italic tracking-tight",
+            children: ((_data$header = data.header) === null || _data$header === void 0 ? void 0 : _data$header.title) || 'Secure Checkout'
+          }), /*#__PURE__*/jsx("p", {
+            className: "text-neutral-500 max-w-md uppercase text-[10px] tracking-[0.3em] font-bold",
+            children: ((_data$header2 = data.header) === null || _data$header2 === void 0 ? void 0 : _data$header2.description) || 'Refined shopping experience for premium collections.'
+          })]
+        }), /*#__PURE__*/jsxs("div", {
+          className: "space-y-12",
+          children: [/*#__PURE__*/jsxs("section", {
+            className: "space-y-6",
+            children: [/*#__PURE__*/jsx("label", {
+              className: "text-[10px] uppercase tracking-widest text-neutral-600 font-bold block ml-1",
+              children: ((_data$email = data.email) === null || _data$email === void 0 ? void 0 : _data$email.label) || 'Account'
+            }), /*#__PURE__*/jsx("input", {
+              type: "email",
+              placeholder: ((_data$email2 = data.email) === null || _data$email2 === void 0 ? void 0 : _data$email2.placeholder) || "Your Email",
+              className: "w-full bg-transparent border-b border-neutral-800 py-6 text-2xl font-light focus:border-white transition-colors outline-none placeholder:text-neutral-200"
+            })]
+          }), /*#__PURE__*/jsxs("section", {
+            className: "space-y-6",
+            children: [/*#__PURE__*/jsx("label", {
+              className: "text-[10px] uppercase tracking-widest text-neutral-600 font-bold block ml-1",
+              children: ((_data$shipping = data.shipping) === null || _data$shipping === void 0 ? void 0 : _data$shipping.title) || 'Destination'
+            }), /*#__PURE__*/jsxs("div", {
+              className: "grid grid-cols-2 gap-10",
+              children: [/*#__PURE__*/jsx("input", {
+                type: "text",
+                placeholder: ((_data$shipping2 = data.shipping) === null || _data$shipping2 === void 0 || (_data$shipping2 = _data$shipping2.fields) === null || _data$shipping2 === void 0 ? void 0 : _data$shipping2.firstName) || "First Name",
+                className: "w-full bg-transparent border-b border-neutral-800 py-6 text-xl font-light focus:border-white transition-colors outline-none placeholder:text-neutral-200"
+              }), /*#__PURE__*/jsx("input", {
+                type: "text",
+                placeholder: ((_data$shipping3 = data.shipping) === null || _data$shipping3 === void 0 || (_data$shipping3 = _data$shipping3.fields) === null || _data$shipping3 === void 0 ? void 0 : _data$shipping3.lastName) || "Last Name",
+                className: "w-full bg-transparent border-b border-neutral-800 py-6 text-xl font-light focus:border-white transition-colors outline-none placeholder:text-neutral-200"
+              })]
+            }), /*#__PURE__*/jsx("input", {
+              type: "text",
+              placeholder: ((_data$shipping4 = data.shipping) === null || _data$shipping4 === void 0 || (_data$shipping4 = _data$shipping4.fields) === null || _data$shipping4 === void 0 ? void 0 : _data$shipping4.address) || "Shipping Address",
+              className: "w-full bg-transparent border-b border-neutral-800 py-6 text-xl font-light focus:border-white transition-colors outline-none placeholder:text-neutral-200"
+            })]
+          })]
+        })]
+      }), /*#__PURE__*/jsx("div", {
+        className: "w-full lg:w-[450px]",
+        children: /*#__PURE__*/jsxs("div", {
+          className: "bg-[#111111] p-12 border border-neutral-900 rounded-[40px] sticky top-20 shadow-2xl",
+          children: [/*#__PURE__*/jsx("h2", {
+            className: "text-sm font-bold uppercase tracking-[0.4em] text-neutral-600 mb-12",
+            children: ((_data$summary = data.summary) === null || _data$summary === void 0 ? void 0 : _data$summary.title) || 'Collection Summary'
+          }), /*#__PURE__*/jsx("div", {
+            className: "space-y-8 mb-16",
+            children: cartItems.map(function (item, idx) {
+              return /*#__PURE__*/jsxs("div", {
+                className: "flex justify-between items-end group",
+                children: [/*#__PURE__*/jsxs("div", {
+                  className: "space-y-2",
+                  children: [/*#__PURE__*/jsx("p", {
+                    className: "text-lg font-serif italic",
+                    children: item.name
+                  }), /*#__PURE__*/jsx("p", {
+                    className: "text-[10px] uppercase text-neutral-600 tracking-widest font-bold",
+                    children: "Qty 01"
+                  })]
+                }), /*#__PURE__*/jsxs("span", {
+                  className: "text-xl font-light",
+                  children: ["$", item.price.toFixed(2)]
+                })]
+              }, idx);
+            })
+          }), /*#__PURE__*/jsxs("div", {
+            className: "space-y-6 border-t border-neutral-900 pt-10",
+            children: [/*#__PURE__*/jsxs("div", {
+              className: "flex justify-between text-neutral-600",
+              children: [/*#__PURE__*/jsx("span", {
+                className: "text-xs uppercase tracking-widest",
+                children: ((_data$summary2 = data.summary) === null || _data$summary2 === void 0 ? void 0 : _data$summary2.deliveryLabel) || 'Complimentary Delivery'
+              }), /*#__PURE__*/jsx("span", {
+                className: "text-xs font-bold tracking-widest text-white",
+                children: ((_data$summary3 = data.summary) === null || _data$summary3 === void 0 ? void 0 : _data$summary3.deliveryValue) || 'INCLUDED'
+              })]
+            }), /*#__PURE__*/jsxs("div", {
+              className: "flex justify-between items-end pt-4",
+              children: [/*#__PURE__*/jsx("span", {
+                className: "text-xs uppercase tracking-widest text-neutral-500 mb-2",
+                children: ((_data$summary4 = data.summary) === null || _data$summary4 === void 0 ? void 0 : _data$summary4.totalLabel) || 'Total Amount'
+              }), /*#__PURE__*/jsxs("span", {
+                className: "text-5xl font-serif italic tracking-tighter",
+                children: ["$", subtotal.toFixed(2)]
+              })]
+            })]
+          }), /*#__PURE__*/jsx("button", {
+            className: "w-full bg-white text-black py-6 rounded-full mt-16 font-bold uppercase text-xs tracking-[0.3em] hover:bg-neutral-200 transition-colors",
+            children: ((_data$summary5 = data.summary) === null || _data$summary5 === void 0 ? void 0 : _data$summary5.buttonText) || 'Authorize Transaction'
+          }), /*#__PURE__*/jsx("p", {
+            className: "text-center text-[9px] text-neutral-700 uppercase tracking-widest mt-8 leading-loose",
+            children: ((_data$footer = data.footer) === null || _data$footer === void 0 ? void 0 : _data$footer.text) || /*#__PURE__*/jsxs(Fragment, {
+              children: ["By placing your order, you agree to our ", /*#__PURE__*/jsx("br", {}), " luxury experience terms and privacy policies."]
+            })
+          })]
+        })
+      })]
+    })
+  });
+};
+
+var CheckoutHeader = function CheckoutHeader(_ref) {
+  var _ref$data = _ref.data,
+    data = _ref$data === void 0 ? {} : _ref$data,
+    _ref$variant = _ref.variant,
+    variant = _ref$variant === void 0 ? 'standard' : _ref$variant,
+    className = _ref.className;
+  var title = data.title,
+    description = data.description;
+  if (!title && !description) return null;
+  var variants = {
+    standard: "mb-8",
+    centered: "mb-12 text-center",
+    boxed: "mb-8 p-8 bg-gray-50 border-l-4 border-black rounded-r-xl",
+    minimal: "mb-6 border-b border-gray-100 pb-4"
+  };
+  return /*#__PURE__*/jsxs("header", {
+    className: clsx("checkout-header", variants[variant] || variants.standard, className),
+    children: [title && /*#__PURE__*/jsx("h1", {
+      className: clsx("font-bold tracking-tight text-gray-900", variant === 'premium' ? "text-5xl font-serif italic" : "text-3xl sm:text-4xl"),
+      children: title
+    }), description && /*#__PURE__*/jsx("p", {
+      className: clsx("mt-2 text-gray-500", variant === 'premium' ? "text-xs uppercase tracking-[0.3em] font-bold opacity-60" : "text-sm"),
+      children: description
+    })]
+  });
+};
+
+var CheckoutEmailSection = function CheckoutEmailSection(_ref) {
+  var _ref$data = _ref.data,
+    data = _ref$data === void 0 ? {} : _ref$data,
+    value = _ref.value,
+    _onChange = _ref.onChange,
+    _ref$variant = _ref.variant,
+    variant = _ref$variant === void 0 ? 'standard' : _ref$variant,
+    className = _ref.className;
+  var label = data.label,
+    placeholder = data.placeholder;
+  var variants = {
+    standard: {
+      container: "space-y-4",
+      label: "text-sm font-bold tracking-widest uppercase text-gray-900",
+      input: "w-full border border-gray-300 px-4 py-3 focus:border-black transition-colors outline-none rounded-sm"
+    },
+    modern: {
+      container: "relative pt-4",
+      label: "text-xs font-black text-gray-400 uppercase tracking-tighter absolute -top-1 left-2 bg-white px-2 z-10",
+      input: "w-full border-2 border-gray-100 rounded-2xl px-6 py-4 focus:border-black focus:ring-0 transition-all text-lg font-medium"
+    },
+    floating: {
+      container: "group relative",
+      label: "hidden",
+      input: "w-full border-b-2 border-gray-100 py-4 text-2xl font-light focus:border-black transition-all outline-none placeholder:text-gray-200"
+    },
+    premium: {
+      container: "space-y-6",
+      label: "text-[10px] uppercase tracking-widest text-neutral-600 font-bold block ml-1",
+      input: "w-full bg-transparent border-b border-neutral-800 py-6 text-2xl font-light focus:border-white transition-colors outline-none placeholder:text-neutral-800 text-white"
+    }
+  };
+  var active = variants[variant] || variants.standard;
+  return /*#__PURE__*/jsxs("section", {
+    className: clsx("checkout-email-section", active.container, className),
+    children: [/*#__PURE__*/jsx("h2", {
+      className: active.label,
+      children: label || 'Email'
+    }), /*#__PURE__*/jsx("div", {
+      className: "relative",
+      children: /*#__PURE__*/jsx("input", {
+        type: "email",
+        placeholder: placeholder || 'Email Address*',
+        className: active.input,
+        value: value,
+        onChange: function onChange(e) {
+          return _onChange && _onChange(e.target.value);
+        }
+      })
+    })]
+  });
+};
+
+var CheckoutShippingSection = function CheckoutShippingSection(_ref) {
+  var _ref$data = _ref.data,
+    data = _ref$data === void 0 ? {} : _ref$data,
+    _ref$values = _ref.values,
+    values = _ref$values === void 0 ? {} : _ref$values,
+    onChange = _ref.onChange,
+    _ref$variant = _ref.variant,
+    variant = _ref$variant === void 0 ? 'standard' : _ref$variant,
+    className = _ref.className;
+  var title = data.title,
+    customFields = data.fields;
+  var defaultFields = [{
+    name: 'firstName',
+    type: 'text',
+    placeholder: 'First Name',
+    colSpan: 'col-span-6'
+  }, {
+    name: 'lastName',
+    type: 'text',
+    placeholder: 'Last Name',
+    colSpan: 'col-span-6'
+  }, {
+    name: 'phone',
+    type: 'tel',
+    placeholder: variant === 'standard' ? '' : 'Phone Number',
+    colSpan: 'col-span-12',
+    prefix: variant === 'standard' ? {
+      label: 'Phone',
+      value: '+1'
+    } : null
+  }, {
+    name: 'address',
+    type: 'text',
+    placeholder: 'Address',
+    colSpan: 'col-span-12'
+  }, {
+    name: 'apt',
+    type: 'text',
+    placeholder: 'Apt, Suite',
+    colSpan: 'col-span-12'
+  }, {
+    name: 'city',
+    type: 'text',
+    placeholder: 'City*',
+    colSpan: 'col-span-4'
+  }, {
+    name: 'state',
+    type: 'select',
+    placeholder: 'State*',
+    colSpan: 'col-span-4',
+    options: ['NY', 'CA', 'TX', 'FL']
+  }, {
+    name: 'zip',
+    type: 'text',
+    placeholder: 'ZIP*',
+    colSpan: 'col-span-4'
+  }];
+  var fields = customFields || defaultFields;
+  var isModern = variant === 'modern';
+  var isPremium = variant === 'premium';
+  var handleInputChange = function handleInputChange(field) {
+    return function (e) {
+      if (onChange) onChange(field, e.target.value);
+    };
+  };
+  var inputClass = clsx("w-full transition-all outline-none", variant === 'standard' && "border border-gray-300 px-4 py-3 focus:border-black rounded-sm", variant === 'modern' && "bg-gray-50 border-transparent rounded-xl px-6 py-4 focus:ring-2 focus:ring-black focus:bg-white", variant === 'compact' && "border-b-2 border-gray-100 py-3 text-lg font-medium focus:border-black", variant === 'premium' && "bg-transparent border-b border-neutral-800 py-6 text-xl font-light focus:border-white placeholder:text-neutral-200 text-white");
+  return /*#__PURE__*/jsxs("section", {
+    className: clsx("checkout-shipping-section", className),
+    children: [/*#__PURE__*/jsx("h2", {
+      className: clsx("mb-4 uppercase", variant === 'standard' && "text-sm font-bold tracking-widest text-gray-900", variant === 'modern' && "text-2xl font-black tracking-tight text-gray-900", variant === 'compact' && "text-xs font-black text-gray-400 tracking-[0.2em]", variant === 'premium' && "text-[10px] uppercase tracking-widest text-neutral-600 font-bold block ml-1"),
+      children: title || 'Shipping'
+    }), /*#__PURE__*/jsx("div", {
+      className: clsx("grid grid-cols-12 gap-x-4 gap-y-4", isModern && "gap-y-6", isPremium && "gap-y-0"),
+      children: fields.map(function (field, index) {
+        var _field$options;
+        return /*#__PURE__*/jsx("div", {
+          className: clsx(field.colSpan || "col-span-12", "relative"),
+          children: field.type === 'select' ? /*#__PURE__*/jsxs("div", {
+            className: "relative",
+            children: [/*#__PURE__*/jsxs("select", {
+              className: clsx(inputClass, "appearance-none bg-white", isPremium && "bg-transparent"),
+              value: values[field.name] || '',
+              onChange: handleInputChange(field.name),
+              children: [/*#__PURE__*/jsx("option", {
+                value: "",
+                disabled: true,
+                children: field.placeholder
+              }), (_field$options = field.options) === null || _field$options === void 0 ? void 0 : _field$options.map(function (opt) {
+                return /*#__PURE__*/jsx("option", {
+                  value: opt,
+                  children: opt
+                }, opt);
+              })]
+            }), /*#__PURE__*/jsx("div", {
+              className: "absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none",
+              children: /*#__PURE__*/jsx("svg", {
+                className: "w-4 h-4 text-gray-400",
+                fill: "none",
+                viewBox: "0 0 24 24",
+                stroke: "currentColor",
+                children: /*#__PURE__*/jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2,
+                  d: "M19 9l-7 7-7-7"
+                })
+              })
+            })]
+          }) : /*#__PURE__*/jsxs("div", {
+            className: "relative",
+            children: [field.prefix && /*#__PURE__*/jsxs("span", {
+              className: "absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-[10px] leading-tight",
+              children: [field.prefix.label, " ", /*#__PURE__*/jsx("br", {}), /*#__PURE__*/jsx("span", {
+                className: "text-black font-medium text-xs",
+                children: field.prefix.value
+              })]
+            }), /*#__PURE__*/jsx("input", {
+              type: field.type || 'text',
+              placeholder: field.placeholder,
+              className: clsx(inputClass, field.prefix && "pl-16"),
+              value: values[field.name] || '',
+              onChange: handleInputChange(field.name)
+            })]
+          })
+        }, field.name || index);
+      })
+    })]
+  });
+};
+
+var CheckoutPaymentSection = function CheckoutPaymentSection(_ref) {
+  var _ref$data = _ref.data,
+    data = _ref$data === void 0 ? {} : _ref$data,
+    selectedId = _ref.selectedId,
+    onSelect = _ref.onSelect,
+    _ref$variant = _ref.variant,
+    variant = _ref$variant === void 0 ? 'standard' : _ref$variant,
+    className = _ref.className;
+  var title = data.title,
+    _data$methods = data.methods,
+    methods = _data$methods === void 0 ? [] : _data$methods;
+  var containerClass = clsx("checkout-payment-section", variant === 'grid' ? "grid grid-cols-1 md:grid-cols-2 gap-4" : "space-y-3", variant === 'premium' && "space-y-6");
+  return /*#__PURE__*/jsxs("section", {
+    className: className,
+    children: [/*#__PURE__*/jsx("h2", {
+      className: clsx("mb-4 uppercase", variant === 'standard' && "text-sm font-bold tracking-widest text-gray-900", variant === 'modern' && "text-2xl font-black tracking-tight text-gray-900", variant === 'compact' && "text-xs font-black text-gray-400 tracking-[0.2em]", variant === 'premium' && "text-[10px] uppercase tracking-widest text-neutral-600 font-bold block ml-1"),
+      children: title || 'Payment Method'
+    }), /*#__PURE__*/jsx("div", {
+      className: containerClass,
+      children: methods.map(function (method) {
+        var isSelected = selectedId === method.id;
+        if (variant === 'compact') {
+          return /*#__PURE__*/jsxs("label", {
+            className: clsx("flex items-center p-4 border rounded-md cursor-pointer transition-colors", isSelected ? "bg-gray-50 border-black" : "hover:bg-gray-50 border-gray-200"),
+            children: [/*#__PURE__*/jsx("input", {
+              type: "radio",
+              name: "payment",
+              className: "text-black focus:ring-black",
+              checked: isSelected,
+              onChange: function onChange() {
+                return onSelect && onSelect(method.id);
+              }
+            }), /*#__PURE__*/jsx("span", {
+              className: "ml-3 font-medium",
+              children: method.title
+            })]
+          }, method.id);
+        }
+        return /*#__PURE__*/jsxs("div", {
+          onClick: function onClick() {
+            return onSelect && onSelect(method.id);
+          },
+          className: clsx("flex justify-between items-center cursor-pointer transition-all", variant === 'standard' && clsx("border p-6 rounded-sm", isSelected ? "border-black bg-gray-50" : "border-gray-300 hover:border-black"), variant === 'modern' && clsx("p-8 rounded-2xl border-2 shadow-sm transition-all", isSelected ? "border-black shadow-md" : "border-transparent bg-white hover:border-black hover:shadow-md"), variant === 'grid' && clsx("border-2 p-6 rounded-2xl flex-col items-start space-y-4 transition-all", isSelected ? "border-blue-600 bg-blue-50 shadow-inner" : "border-neutral-100 hover:border-blue-600 hover:bg-blue-50"), variant === 'premium' && clsx("border-b p-6 group transition-colors", isSelected ? "border-white bg-neutral-900" : "border-neutral-800 hover:border-white")),
+          children: [/*#__PURE__*/jsxs("div", {
+            children: [/*#__PURE__*/jsx("p", {
+              className: clsx("font-bold text-sm transition-colors", variant === 'premium' && clsx("text-xl font-light", isSelected ? "text-white" : "text-neutral-400 group-hover:text-white")),
+              children: method.title
+            }), /*#__PURE__*/jsx("p", {
+              className: "text-xs text-gray-500 mt-1",
+              children: method.subtitle
+            })]
+          }), /*#__PURE__*/jsxs("div", {
+            className: "flex space-x-2 items-center",
+            children: [method.logos && method.logos.map(function (logo, lIdx) {
+              return /*#__PURE__*/jsx("img", {
+                src: logo.src,
+                alt: logo.alt,
+                className: clsx("h-4 transition-opacity", variant === 'premium' && (isSelected ? "invert opacity-100" : "invert opacity-50 group-hover:opacity-100"))
+              }, lIdx);
+            }), method.logoSrc && /*#__PURE__*/jsx("img", {
+              src: method.logoSrc,
+              alt: method.logoAlt,
+              className: clsx(variant === 'grid' ? "h-8" : "h-6", "transition-opacity", variant === 'premium' && (isSelected ? "invert opacity-100" : "invert opacity-50 group-hover:opacity-100"))
+            })]
+          })]
+        }, method.id);
+      })
+    })]
+  });
+};
+
+var CheckoutOrderSummary = function CheckoutOrderSummary(_ref) {
+  var _ref$data = _ref.data,
+    data = _ref$data === void 0 ? {} : _ref$data,
+    _ref$variant = _ref.variant,
+    variant = _ref$variant === void 0 ? 'standard' : _ref$variant,
+    className = _ref.className;
+  var title = data.title,
+    _data$items = data.items,
+    items = _data$items === void 0 ? [] : _data$items,
+    subtotalLabel = data.subtotalLabel,
+    deliveryLabel = data.deliveryLabel,
+    deliveryValue = data.deliveryValue,
+    taxLabel = data.taxLabel,
+    promoLabel = data.promoLabel,
+    totalLabel = data.totalLabel,
+    financingText = data.financingText;
+  var subtotal = items.reduce(function (acc, item) {
+    return acc + item.price;
+  }, 0);
+  var variants = {
+    standard: "bg-[#f5f7f9] p-8",
+    card: "bg-white p-8 rounded-3xl shadow-xl border border-neutral-100",
+    premium: "bg-[#111111] text-white p-12 border border-neutral-900 rounded-[40px] shadow-2xl",
+    minimal: "bg-transparent p-0 border-t pt-8"
+  };
+  var isPremium = variant === 'premium';
+  return /*#__PURE__*/jsxs("div", {
+    className: clsx("checkout-order-summary rounded-sm transition-all", variants[variant] || variants.standard, className),
+    children: [/*#__PURE__*/jsx("h2", {
+      className: clsx("uppercase mb-6", isPremium ? "text-sm font-bold tracking-[0.4em] text-neutral-600" : "text-sm font-bold tracking-widest"),
+      children: title || 'Order Summary'
+    }), /*#__PURE__*/jsx("div", {
+      className: "space-y-6",
+      children: items.map(function (item, idx) {
+        return /*#__PURE__*/jsxs("div", {
+          className: "flex justify-between items-start text-sm",
+          children: [/*#__PURE__*/jsxs("div", {
+            className: "space-y-1",
+            children: [/*#__PURE__*/jsxs("p", {
+              className: clsx("font-bold flex items-center", isPremium && "font-serif italic text-lg"),
+              children: [/*#__PURE__*/jsx("span", {
+                className: clsx("mr-2", isPremium && "text-[10px] uppercase text-neutral-600 font-sans italic-none not-italic font-bold"),
+                children: idx + 1
+              }), " ", item.name, item.hasInfoIcon && !isPremium && /*#__PURE__*/jsx("button", {
+                className: "ml-1 text-gray-400",
+                children: /*#__PURE__*/jsx("svg", {
+                  className: "w-4 h-4",
+                  fill: "currentColor",
+                  viewBox: "0 0 20 20",
+                  children: /*#__PURE__*/jsx("path", {
+                    fillRule: "evenodd",
+                    d: "M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z",
+                    clipRule: "evenodd"
+                  })
+                })
+              })]
+            }), item.details && item.details.map(function (detail, dIdx) {
+              return /*#__PURE__*/jsx("p", {
+                className: clsx("text-xs ml-4", isPremium ? "text-neutral-600 uppercase tracking-widest font-bold" : "text-gray-500"),
+                children: detail
+              }, dIdx);
+            }), item.isSubscription && /*#__PURE__*/jsx("p", {
+              className: clsx("text-[11px] ml-4 leading-relaxed max-w-[240px]", isPremium ? "text-neutral-500" : "text-gray-500"),
+              children: item.subscriptionDetail
+            })]
+          }), /*#__PURE__*/jsxs("p", {
+            className: clsx("font-bold", isPremium && "text-xl font-light"),
+            children: ["$", item.price.toLocaleString(undefined, {
+              minimumFractionDigits: 2
+            })]
+          })]
+        }, idx);
+      })
+    }), /*#__PURE__*/jsxs("div", {
+      className: clsx("mt-8 pt-8 border-t space-y-4", isPremium ? "border-neutral-900" : "border-gray-200"),
+      children: [/*#__PURE__*/jsxs("div", {
+        className: "flex justify-between text-sm",
+        children: [/*#__PURE__*/jsxs("p", {
+          className: isPremium ? "text-neutral-600 uppercase tracking-widest text-xs" : "text-gray-600",
+          children: [subtotalLabel || 'Subtotal', " (", items.length, "):"]
+        }), /*#__PURE__*/jsxs("p", {
+          className: "font-bold",
+          children: ["$", subtotal.toLocaleString(undefined, {
+            minimumFractionDigits: 2
+          })]
+        })]
+      }), /*#__PURE__*/jsxs("div", {
+        className: "flex justify-between text-sm",
+        children: [/*#__PURE__*/jsx("p", {
+          className: isPremium ? "text-neutral-600 uppercase tracking-widest text-xs" : "text-gray-600",
+          children: deliveryLabel || 'Est. delivery'
+        }), /*#__PURE__*/jsx("p", {
+          className: clsx("font-bold", isPremium && "text-white"),
+          children: deliveryValue || 'Included'
+        })]
+      }), !isPremium && /*#__PURE__*/jsxs(Fragment, {
+        children: [/*#__PURE__*/jsxs("div", {
+          className: "flex justify-between text-sm",
+          children: [/*#__PURE__*/jsxs("p", {
+            className: "text-gray-600 flex items-center",
+            children: [taxLabel || 'Estimated Tax:', /*#__PURE__*/jsx("button", {
+              className: "ml-1 text-gray-400",
+              children: /*#__PURE__*/jsx("svg", {
+                className: "w-4 h-4",
+                fill: "currentColor",
+                viewBox: "0 0 20 20",
+                children: /*#__PURE__*/jsx("path", {
+                  fillRule: "evenodd",
+                  d: "M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z",
+                  clipRule: "evenodd"
+                })
+              })
+            })]
+          }), /*#__PURE__*/jsx("p", {
+            className: "font-bold",
+            children: "--"
+          })]
+        }), /*#__PURE__*/jsx("button", {
+          className: "text-sm underline font-medium",
+          children: promoLabel || 'Enter promo code'
+        })]
+      })]
+    }), /*#__PURE__*/jsxs("div", {
+      className: clsx("mt-8 pt-8 border-t", isPremium ? "border-neutral-900" : "border-gray-200"),
+      children: [/*#__PURE__*/jsxs("div", {
+        className: "flex justify-between items-center",
+        children: [/*#__PURE__*/jsx("p", {
+          className: clsx("text-sm font-bold uppercase tracking-widest", isPremium && "text-neutral-500 mb-2"),
+          children: totalLabel || 'Estimated Total'
+        }), /*#__PURE__*/jsxs("p", {
+          className: clsx("font-bold", isPremium ? "text-5xl font-serif italic tracking-tighter" : "text-xl"),
+          children: ["$", subtotal.toLocaleString(undefined, {
+            minimumFractionDigits: 2
+          })]
+        })]
+      }), financingText && /*#__PURE__*/jsx("p", {
+        className: clsx("text-xs mt-4 leading-relaxed", isPremium ? "text-neutral-700" : "text-gray-500"),
+        children: financingText
+      })]
+    })]
+  });
+};
+
+var CheckoutProtectionSection = function CheckoutProtectionSection(_ref) {
+  var _ref$data = _ref.data,
+    data = _ref$data === void 0 ? {} : _ref$data,
+    _ref$variant = _ref.variant,
+    variant = _ref$variant === void 0 ? 'standard' : _ref$variant,
+    className = _ref.className;
+  var title = data.title,
+    description = data.description,
+    learnMoreText = data.learnMoreText,
+    learnMoreLink = data.learnMoreLink,
+    _data$options = data.options,
+    options = _data$options === void 0 ? [] : _data$options,
+    termsText = data.termsText,
+    termsLinkText = data.termsLinkText,
+    termsLink = data.termsLink;
+  var isModern = variant === 'modern';
+  var isMinimal = variant === 'minimal';
+  var isPremium = variant === 'premium';
+  return /*#__PURE__*/jsxs("section", {
+    className: clsx("checkout-protection-section", className),
+    children: [/*#__PURE__*/jsx("h2", {
+      className: clsx("mb-4 uppercase", variant === 'standard' && "text-xs font-bold tracking-[0.15em] text-gray-900", variant === 'modern' && "text-2xl font-black tracking-tight text-gray-900", variant === 'minimal' && "text-xs font-black text-gray-400 tracking-[0.2em]", variant === 'premium' && "text-[10px] uppercase tracking-widest text-neutral-600 font-bold block ml-1"),
+      children: title
+    }), /*#__PURE__*/jsxs("div", {
+      className: clsx("transition-all rounded-sm", variant === 'standard' && "border border-gray-100 p-8 space-y-6", variant === 'modern' && "bg-white p-8 rounded-2xl shadow-sm border border-neutral-100 space-y-6", variant === 'minimal' && "space-y-4", variant === 'premium' && "border border-neutral-900 p-10 space-y-8 bg-[#111111] rounded-[30px]"),
+      children: [/*#__PURE__*/jsxs("p", {
+        className: clsx("text-sm leading-relaxed", isPremium ? "text-neutral-400 font-serif italic text-lg" : "text-gray-700"),
+        children: [description, " ", /*#__PURE__*/jsx("a", {
+          href: learnMoreLink || '#',
+          className: clsx("underline font-medium", isPremium ? "text-white" : "text-gray-900"),
+          children: learnMoreText || 'Learn More'
+        })]
+      }), /*#__PURE__*/jsx("div", {
+        className: clsx("space-y-5", isMinimal && "space-y-3", isPremium && "space-y-6"),
+        children: options.map(function (option) {
+          return /*#__PURE__*/jsxs("label", {
+            className: "flex items-start cursor-pointer group",
+            children: [/*#__PURE__*/jsxs("div", {
+              className: "relative flex items-center justify-center mt-0.5",
+              children: [/*#__PURE__*/jsx("input", {
+                type: "checkbox",
+                className: clsx("peer appearance-none w-5 h-5 border transition-all", isPremium ? "border-neutral-800 rounded-lg checked:bg-white checked:border-white" : "border-gray-300 rounded-sm checked:bg-black checked:border-black")
+              }), /*#__PURE__*/jsx("svg", {
+                className: clsx("absolute w-3.5 h-3.5 opacity-0 peer-checked:opacity-100 transition-opacity", isPremium ? "text-black" : "text-white"),
+                fill: "none",
+                viewBox: "0 0 24 24",
+                stroke: "currentColor",
+                children: /*#__PURE__*/jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 3.5,
+                  d: "M5 13l4 4L19 7"
+                })
+              })]
+            }), /*#__PURE__*/jsx("span", {
+              className: clsx("ml-4 leading-tight transition-colors group-hover:text-black", isModern ? "text-lg font-bold text-gray-800" : "text-sm font-bold text-gray-800", isMinimal && "text-sm font-medium text-gray-600", isPremium && "text-base font-light text-neutral-400 group-hover:text-white"),
+              children: option.label
+            })]
+          }, option.id);
+        })
+      }), termsText && /*#__PURE__*/jsxs("p", {
+        className: clsx("text-[10px] pt-2 leading-relaxed uppercase tracking-wide", isPremium ? "text-neutral-700" : "text-gray-400"),
+        children: [termsText, " ", /*#__PURE__*/jsx("a", {
+          href: termsLink || '#',
+          className: "underline",
+          children: termsLinkText
+        }), "."]
+      })]
+    })]
+  });
+};
+
+var CheckoutTrialSection = function CheckoutTrialSection(_ref) {
+  var _ref$data = _ref.data,
+    data = _ref$data === void 0 ? {} : _ref$data,
+    _ref$variant = _ref.variant,
+    variant = _ref$variant === void 0 ? 'standard' : _ref$variant,
+    className = _ref.className;
+  var title = data.title,
+    _data$items = data.items,
+    items = _data$items === void 0 ? [] : _data$items,
+    termsText = data.termsText,
+    termsLinkText = data.termsLinkText,
+    termsLink = data.termsLink;
+  var isPremium = variant === 'premium';
+  return /*#__PURE__*/jsxs("div", {
+    className: clsx("checkout-trial-section transition-all", variant === 'standard' && "border border-gray-200 p-8 space-y-6 rounded-sm", variant === 'minimal' && "space-y-4", variant === 'premium' && "bg-[#111111] text-white p-12 rounded-[40px] border border-neutral-900", className),
+    children: [/*#__PURE__*/jsx("h2", {
+      className: clsx("uppercase mb-4", variant === 'standard' && "text-[11px] font-bold tracking-[0.2em]", variant === 'minimal' && "text-xs font-black text-gray-400 tracking-[0.2em]", variant === 'premium' && "text-sm font-bold tracking-[0.4em] text-neutral-600 mb-8"),
+      children: title
+    }), /*#__PURE__*/jsx("ul", {
+      className: clsx("space-y-4", isPremium && "space-y-8"),
+      children: items.map(function (text, i) {
+        return /*#__PURE__*/jsxs("li", {
+          className: "flex items-start text-sm",
+          children: [/*#__PURE__*/jsx("span", {
+            className: clsx("flex items-center justify-center shrink-0 mr-4", variant === 'standard' && "w-6 h-6 border border-black rounded-full text-[10px] font-bold", variant === 'minimal' && "text-black font-black", variant === 'premium' && "w-8 h-8 bg-neutral-900 border border-neutral-800 rounded-xl text-[10px] font-bold text-neutral-400"),
+            children: variant === 'minimal' ? '→' : i + 1
+          }), /*#__PURE__*/jsx("span", {
+            className: clsx("leading-tight pt-1", variant === 'standard' && "text-gray-700", variant === 'minimal' && "text-gray-500", variant === 'premium' && "text-lg font-serif italic text-neutral-300"),
+            children: text
+          })]
+        }, i);
+      })
+    }), (termsText || termsLinkText) && /*#__PURE__*/jsxs("p", {
+      className: clsx("text-[10px] pt-2 leading-loose uppercase tracking-widest", isPremium ? "text-neutral-700 text-center mt-8" : "text-gray-500"),
+      children: [termsText, " ", /*#__PURE__*/jsx("a", {
+        href: termsLink || '#',
+        className: "underline",
+        children: termsLinkText
+      }), "."]
+    })]
+  });
+};
+
 /**
  * Load hero section data from a JSON file or object
  * @param {string|Object} data - JSON data or path to JSON file
@@ -35746,5 +37417,5 @@ var loadHeroDataSync = function loadHeroDataSync(data) {
   return data;
 };
 
-export { AddToCartLayout, AddToCartPage, AddToCartSection, BlogAuthor, BlogCard, BlogComments, BlogGrid, BlogNavigation, BlogShare, BlogSingle, CategoryGrid, CategoryMasonry, CategoryShowcase, FaqHub, FaqModern, FaqVisual, FeatureDeck, FeatureModern, FeaturePrime, FooterLayout, HeaderLayout, HeaderPremium, HeaderStandard, HeroGlass, HeroGradient, HeroPrime, PriceBoard, PriceModern, PricePremium, ProductActions, ProductBadge, ProductBreadcrumb, ProductBreadcrumbs, ProductCompare, ProductDescription, ProductFeatures, ProductFilter, ProductGallery, ProductHero, ProductInfo, ProductLayout, ProductModern, ProductPagination, ProductQuantity, ProductQuickView, ProductRating, ProductRelated, ProductReviews, ProductSearch, ProductShare, ProductShop, ProductSidebar, ProductSingleClassic, ProductSingleDescription, ProductSingleMinimal, ProductSingleModern, ProductSkeleton, ProductSort, ProductSpecifications, ProductStandard, ProductToggle, ProductWishlist, SlideFlow, TestimonialCarousel, TestimonialTimeline, TrustBlock, loadHeroData, loadHeroDataSync };
+export { AddToCartLayout, AddToCartPage, AddToCartSection, BlogAuthor, BlogCard, BlogComments, BlogGrid, BlogNavigation, BlogShare, BlogSingle, CategoryGrid, CategoryMasonry, CategoryShowcase, CheckoutCard, CheckoutEmailSection, CheckoutFlow, CheckoutHeader, CheckoutMinimal, CheckoutModern, CheckoutOrderSummary, CheckoutPaymentSection, CheckoutPeloton, CheckoutPremium, CheckoutProtectionSection, CheckoutShippingSection, CheckoutTrialSection, FaqHub, FaqModern, FaqVisual, FeatureDeck, FeatureModern, FeaturePrime, FooterLayout, HeaderLayout, HeaderPremium, HeaderStandard, HeroGlass, HeroGradient, HeroPrime, PriceBoard, PriceModern, PricePremium, ProductActions, ProductBadge, ProductBreadcrumb, ProductBreadcrumbs, ProductCompare, ProductDescription, ProductFeatures, ProductFilter, ProductGallery, ProductHero, ProductInfo, ProductLayout, ProductModern, ProductPagination, ProductQuantity, ProductQuickView, ProductRating, ProductRelated, ProductReviews, ProductSearch, ProductShare, ProductShop, ProductSidebar, ProductSingleClassic, ProductSingleDescription, ProductSingleMinimal, ProductSingleModern, ProductSkeleton, ProductSort, ProductSpecifications, ProductStandard, ProductToggle, ProductWishlist, SlideFlow, TestimonialCarousel, TestimonialTimeline, TrustBlock, loadHeroData, loadHeroDataSync };
 //# sourceMappingURL=index.esm.js.map
