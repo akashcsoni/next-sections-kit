@@ -101,6 +101,26 @@ function _objectSpread2(e) {
   }
   return e;
 }
+function _objectWithoutProperties(e, t) {
+  if (null == e) return {};
+  var o,
+    r,
+    i = _objectWithoutPropertiesLoose(e, t);
+  if (Object.getOwnPropertySymbols) {
+    var n = Object.getOwnPropertySymbols(e);
+    for (r = 0; r < n.length; r++) o = n[r], -1 === t.indexOf(o) && {}.propertyIsEnumerable.call(e, o) && (i[o] = e[o]);
+  }
+  return i;
+}
+function _objectWithoutPropertiesLoose(r, e) {
+  if (null == r) return {};
+  var t = {};
+  for (var n in r) if ({}.hasOwnProperty.call(r, n)) {
+    if (-1 !== e.indexOf(n)) continue;
+    t[n] = r[n];
+  }
+  return t;
+}
 function _regenerator() {
   /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE */
   var e,
@@ -31435,6 +31455,4251 @@ var CategoryMasonry = function CategoryMasonry(_ref) {
   });
 };
 
+var _excluded$2 = ["className"];
+var SkeletonLoader$2 = function SkeletonLoader(_ref) {
+  var className = _ref.className,
+    props = _objectWithoutProperties(_ref, _excluded$2);
+  return /*#__PURE__*/require$$1.jsx("div", _objectSpread2({
+    className: clsx("animate-pulse bg-gray-200 rounded", className)
+  }, props));
+};
+var SkeletonText$2 = function SkeletonText(_ref2) {
+  var _ref2$lines = _ref2.lines,
+    lines = _ref2$lines === void 0 ? 1 : _ref2$lines,
+    className = _ref2.className;
+  return /*#__PURE__*/require$$1.jsx("div", {
+    className: clsx("space-y-2", className),
+    children: Array.from({
+      length: lines
+    }).map(function (_, i) {
+      return /*#__PURE__*/require$$1.jsx(SkeletonLoader$2, {
+        className: clsx("h-4 bg-gray-200 rounded", i === lines - 1 && lines > 1 ? "w-3/4" : "w-full")
+      }, i);
+    })
+  });
+};
+var SkeletonButton$2 = function SkeletonButton(_ref3) {
+  var className = _ref3.className;
+  return /*#__PURE__*/require$$1.jsx(SkeletonLoader$2, {
+    className: clsx("h-12 w-full bg-gray-200 rounded-xl", className)
+  });
+};
+
+/**
+ * AddToCartSection Component
+ * @param {Object} props - Component props
+ * @param {Object} props.data - Add to cart configuration data
+ * @param {Array} props.data.buttons - Array of action buttons
+ * @param {boolean} [props.data.showQuantity=true] - Show quantity selector
+ * @param {number} [props.data.minQuantity=1] - Minimum quantity
+ * @param {number} [props.data.maxQuantity=99] - Maximum quantity
+ * @param {boolean} [props.data.inStock=true] - Stock availability
+ * @param {string} [props.data.variant='floating'] - Style variant: 'floating' | 'minimal' | 'premium' | 'compact' | 'animated'
+ * @param {Object} [props.data.content] - Dynamic content configuration
+ * @param {string} [props.data.content.title] - Section title
+ * @param {string} [props.data.content.subtitle] - Section subtitle
+ * @param {string} [props.data.content.quantityLabel] - Quantity selector label
+ * @param {string} [props.data.content.wishlistAdd] - Add to wishlist text
+ * @param {string} [props.data.content.wishlistRemove] - Remove from wishlist text
+ * @param {string} [props.data.content.shareLabel] - Share button text
+ * @param {string} [props.data.content.compareLabel] - Compare button text
+ * @param {Object} [props.data.content.icons] - Icon configurations
+ * @param {string} [props.data.content.icons.cart] - Cart icon SVG path
+ * @param {string} [props.data.content.icons.wishlist] - Wishlist icon SVG path
+ * @param {string} [props.data.content.icons.share] - Share icon SVG path
+ * @param {string} [props.data.content.icons.compare] - Compare icon SVG path
+ * @param {boolean} [props.loading=false] - Show skeleton loader
+ * @param {boolean} [props.autoLoad=false] - Auto-show skeleton for 2 seconds, then reveal content
+ * @param {string} [props.className] - Additional CSS classes
+ * @param {string} [props.id] - ID attribute for the section element
+ */
+var AddToCartSection = function AddToCartSection(_ref4) {
+  var data = _ref4.data,
+    _ref4$loading = _ref4.loading,
+    loading = _ref4$loading === void 0 ? false : _ref4$loading,
+    _ref4$autoLoad = _ref4.autoLoad,
+    autoLoad = _ref4$autoLoad === void 0 ? false : _ref4$autoLoad,
+    className = _ref4.className,
+    id = _ref4.id;
+  // Safety check for data
+  if (!data || _typeof(data) !== 'object') {
+    console.error('AddToCartSection: data prop is required and must be an object');
+    return null;
+  }
+  var _useState = require$$0.useState(1),
+    _useState2 = _slicedToArray(_useState, 2),
+    quantity = _useState2[0],
+    setQuantity = _useState2[1];
+  var _useState3 = require$$0.useState(false),
+    _useState4 = _slicedToArray(_useState3, 2),
+    isWishlisted = _useState4[0],
+    setIsWishlisted = _useState4[1];
+  var _useState5 = require$$0.useState(false),
+    _useState6 = _slicedToArray(_useState5, 2),
+    isAnimating = _useState6[0],
+    setIsAnimating = _useState6[1];
+  var _useState7 = require$$0.useState(autoLoad),
+    _useState8 = _slicedToArray(_useState7, 2),
+    isLoading = _useState8[0],
+    setIsLoading = _useState8[1];
+
+  // Auto-loading functionality - show skeleton for 2 seconds, then content
+  require$$0.useEffect(function () {
+    if (autoLoad) {
+      var timer = setTimeout(function () {
+        setIsLoading(false);
+      }, 2000);
+      return function () {
+        return clearTimeout(timer);
+      };
+    }
+  }, [autoLoad]);
+
+  // If autoLoad is true, override the loading prop
+  var showSkeleton = autoLoad ? isLoading : loading;
+  var _data$buttons = data.buttons,
+    buttons = _data$buttons === void 0 ? [{
+      text: "Add to Cart",
+      href: "#",
+      variant: "primary",
+      type: "cart"
+    }, {
+      text: "Buy Now",
+      href: "#",
+      variant: "secondary",
+      type: "purchase"
+    }] : _data$buttons,
+    _data$showQuantity = data.showQuantity,
+    showQuantity = _data$showQuantity === void 0 ? true : _data$showQuantity,
+    _data$minQuantity = data.minQuantity,
+    minQuantity = _data$minQuantity === void 0 ? 1 : _data$minQuantity,
+    _data$maxQuantity = data.maxQuantity,
+    maxQuantity = _data$maxQuantity === void 0 ? 99 : _data$maxQuantity,
+    _data$inStock = data.inStock,
+    inStock = _data$inStock === void 0 ? true : _data$inStock,
+    _data$variant = data.variant,
+    variant = _data$variant === void 0 ? 'floating' : _data$variant,
+    _data$content = data.content,
+    content = _data$content === void 0 ? {
+      title: 'Add to Your Cart',
+      subtitle: 'Choose your quantity and proceed',
+      quantityLabel: 'Quantity:',
+      wishlistAdd: 'Add to Wishlist',
+      wishlistRemove: 'Wishlisted',
+      shareLabel: 'Share',
+      compareLabel: 'Compare',
+      icons: {
+        cart: 'M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l-2.5 5m5-5V8m0 0V5a2 2 0 012-2h2a2 2 0 012 2v3',
+        wishlist: 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z',
+        share: 'M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z'}
+    } : _data$content;
+  var handleQuantityChange = function handleQuantityChange(newQuantity) {
+    var clampedQuantity = Math.max(minQuantity, Math.min(maxQuantity, newQuantity));
+    setQuantity(clampedQuantity);
+  };
+  var handleButtonClick = function handleButtonClick(button, event) {
+    if (button.onClick) {
+      button.onClick(event, {
+        quantity: quantity,
+        inStock: inStock
+      });
+    }
+    if (button.type === 'cart') {
+      setIsAnimating(true);
+      setTimeout(function () {
+        return setIsAnimating(false);
+      }, 1000);
+    }
+  };
+
+  // Skeleton Loaders
+  if (showSkeleton) {
+    // Floating variant skeleton
+    if (variant === 'floating') {
+      return /*#__PURE__*/require$$1.jsx("section", {
+        id: id,
+        className: clsx("add-to-cart-floating", className),
+        children: /*#__PURE__*/require$$1.jsx("div", {
+          className: "bg-white rounded-2xl shadow-2xl border border-gray-100 p-8 backdrop-blur-sm bg-white/95",
+          children: /*#__PURE__*/require$$1.jsxs("div", {
+            className: "space-y-6",
+            children: [/*#__PURE__*/require$$1.jsxs("div", {
+              className: "text-center",
+              children: [/*#__PURE__*/require$$1.jsx(SkeletonText$2, {
+                lines: 1,
+                className: "h-8 w-48 mx-auto mb-2"
+              }), /*#__PURE__*/require$$1.jsx(SkeletonText$2, {
+                lines: 1,
+                className: "h-5 w-64 mx-auto"
+              })]
+            }), /*#__PURE__*/require$$1.jsxs("div", {
+              className: "flex items-center justify-center space-x-6",
+              children: [/*#__PURE__*/require$$1.jsx(SkeletonText$2, {
+                lines: 1,
+                className: "h-5 w-20"
+              }), /*#__PURE__*/require$$1.jsxs("div", {
+                className: "flex items-center bg-gray-50 rounded-xl border-2 border-gray-200 overflow-hidden",
+                children: [/*#__PURE__*/require$$1.jsx(SkeletonLoader$2, {
+                  className: "w-12 h-12 bg-gray-200"
+                }), /*#__PURE__*/require$$1.jsx(SkeletonLoader$2, {
+                  className: "w-20 h-12 bg-gray-200"
+                }), /*#__PURE__*/require$$1.jsx(SkeletonLoader$2, {
+                  className: "w-12 h-12 bg-gray-200"
+                })]
+              })]
+            }), /*#__PURE__*/require$$1.jsxs("div", {
+              className: "space-y-4",
+              children: [/*#__PURE__*/require$$1.jsx(SkeletonButton$2, {}), /*#__PURE__*/require$$1.jsx(SkeletonButton$2, {})]
+            }), /*#__PURE__*/require$$1.jsxs("div", {
+              className: "flex items-center justify-center space-x-8 pt-4 border-t border-gray-200",
+              children: [/*#__PURE__*/require$$1.jsx(SkeletonLoader$2, {
+                className: "w-32 h-12 bg-gray-200 rounded-xl"
+              }), /*#__PURE__*/require$$1.jsx(SkeletonLoader$2, {
+                className: "w-32 h-12 bg-gray-200 rounded-xl"
+              })]
+            })]
+          })
+        })
+      });
+    }
+
+    // Minimal variant skeleton
+    if (variant === 'minimal') {
+      return /*#__PURE__*/require$$1.jsx("section", {
+        id: id,
+        className: clsx("add-to-cart-minimal", className),
+        children: /*#__PURE__*/require$$1.jsx("div", {
+          className: "bg-gray-50 p-6 rounded-lg border border-gray-200",
+          children: /*#__PURE__*/require$$1.jsxs("div", {
+            className: "flex flex-col sm:flex-row items-center justify-between gap-4",
+            children: [/*#__PURE__*/require$$1.jsxs("div", {
+              className: "flex items-center space-x-4",
+              children: [/*#__PURE__*/require$$1.jsx(SkeletonText$2, {
+                lines: 1,
+                className: "h-5 w-20"
+              }), /*#__PURE__*/require$$1.jsxs("div", {
+                className: "flex items-center bg-white rounded-md border border-gray-300 overflow-hidden",
+                children: [/*#__PURE__*/require$$1.jsx(SkeletonLoader$2, {
+                  className: "w-8 h-8 bg-gray-200"
+                }), /*#__PURE__*/require$$1.jsx(SkeletonLoader$2, {
+                  className: "w-12 h-8 bg-gray-200"
+                }), /*#__PURE__*/require$$1.jsx(SkeletonLoader$2, {
+                  className: "w-8 h-8 bg-gray-200"
+                })]
+              })]
+            }), /*#__PURE__*/require$$1.jsx(SkeletonLoader$2, {
+              className: "w-12 h-12 bg-gray-200 rounded-full"
+            }), /*#__PURE__*/require$$1.jsx(SkeletonButton$2, {
+              className: "flex-1 sm:flex-none w-full sm:w-48"
+            })]
+          })
+        })
+      });
+    }
+
+    // Premium variant skeleton
+    if (variant === 'premium') {
+      return /*#__PURE__*/require$$1.jsx("section", {
+        id: id,
+        className: clsx("add-to-cart-premium", className),
+        children: /*#__PURE__*/require$$1.jsx("div", {
+          className: "relative p-8 rounded-3xl border-2 border-primary-100 shadow-2xl overflow-hidden",
+          children: /*#__PURE__*/require$$1.jsxs("div", {
+            className: "relative space-y-8",
+            children: [/*#__PURE__*/require$$1.jsxs("div", {
+              className: "text-center",
+              children: [/*#__PURE__*/require$$1.jsx(SkeletonLoader$2, {
+                className: "w-16 h-16 bg-primary-100 rounded-full mx-auto mb-4"
+              }), /*#__PURE__*/require$$1.jsx(SkeletonText$2, {
+                lines: 1,
+                className: "h-8 w-48 mx-auto mb-2"
+              }), /*#__PURE__*/require$$1.jsx(SkeletonText$2, {
+                lines: 1,
+                className: "h-5 w-64 mx-auto"
+              })]
+            }), /*#__PURE__*/require$$1.jsx("div", {
+              className: "flex items-center justify-center",
+              children: /*#__PURE__*/require$$1.jsx("div", {
+                className: "bg-white rounded-2xl shadow-lg border border-gray-200 p-4",
+                children: /*#__PURE__*/require$$1.jsxs("div", {
+                  className: "flex items-center space-x-6",
+                  children: [/*#__PURE__*/require$$1.jsx(SkeletonText$2, {
+                    lines: 1,
+                    className: "h-6 w-24"
+                  }), /*#__PURE__*/require$$1.jsxs("div", {
+                    className: "flex items-center rounded-xl border-2 border-primary-200 overflow-hidden",
+                    children: [/*#__PURE__*/require$$1.jsx(SkeletonLoader$2, {
+                      className: "w-12 h-12 bg-gray-200"
+                    }), /*#__PURE__*/require$$1.jsx(SkeletonLoader$2, {
+                      className: "w-16 h-12 bg-gray-200"
+                    }), /*#__PURE__*/require$$1.jsx(SkeletonLoader$2, {
+                      className: "w-12 h-12 bg-gray-200"
+                    })]
+                  })]
+                })
+              })
+            }), /*#__PURE__*/require$$1.jsxs("div", {
+              className: "space-y-4",
+              children: [/*#__PURE__*/require$$1.jsx(SkeletonButton$2, {}), /*#__PURE__*/require$$1.jsx(SkeletonButton$2, {})]
+            }), /*#__PURE__*/require$$1.jsxs("div", {
+              className: "flex items-center justify-center space-x-6 pt-6 border-t border-primary-200",
+              children: [/*#__PURE__*/require$$1.jsx(SkeletonLoader$2, {
+                className: "w-32 h-12 bg-gray-200 rounded-xl"
+              }), /*#__PURE__*/require$$1.jsx(SkeletonLoader$2, {
+                className: "w-32 h-12 bg-gray-200 rounded-xl"
+              })]
+            })]
+          })
+        })
+      });
+    }
+
+    // Compact variant skeleton
+    if (variant === 'compact') {
+      return /*#__PURE__*/require$$1.jsx("section", {
+        id: id,
+        className: clsx("add-to-cart-compact", className),
+        children: /*#__PURE__*/require$$1.jsx("div", {
+          className: "bg-white border-2 border-gray-200 rounded-xl p-4 shadow-lg",
+          children: /*#__PURE__*/require$$1.jsxs("div", {
+            className: "flex flex-col space-y-4",
+            children: [/*#__PURE__*/require$$1.jsxs("div", {
+              className: "flex items-center justify-between",
+              children: [/*#__PURE__*/require$$1.jsxs("div", {
+                className: "flex items-center space-x-3",
+                children: [/*#__PURE__*/require$$1.jsx(SkeletonText$2, {
+                  lines: 1,
+                  className: "h-4 w-16"
+                }), /*#__PURE__*/require$$1.jsxs("div", {
+                  className: "flex items-center bg-gray-50 rounded-lg border border-gray-300 overflow-hidden",
+                  children: [/*#__PURE__*/require$$1.jsx(SkeletonLoader$2, {
+                    className: "w-8 h-8 bg-gray-200"
+                  }), /*#__PURE__*/require$$1.jsx(SkeletonLoader$2, {
+                    className: "w-8 h-8 bg-gray-200"
+                  }), /*#__PURE__*/require$$1.jsx(SkeletonLoader$2, {
+                    className: "w-8 h-8 bg-gray-200"
+                  })]
+                })]
+              }), /*#__PURE__*/require$$1.jsx(SkeletonLoader$2, {
+                className: "w-8 h-8 bg-gray-200 rounded-lg"
+              })]
+            }), /*#__PURE__*/require$$1.jsxs("div", {
+              className: "grid grid-cols-1 sm:grid-cols-2 gap-3",
+              children: [/*#__PURE__*/require$$1.jsx(SkeletonButton$2, {
+                className: "h-10"
+              }), /*#__PURE__*/require$$1.jsx(SkeletonButton$2, {
+                className: "h-10"
+              })]
+            }), /*#__PURE__*/require$$1.jsxs("div", {
+              className: "flex items-center justify-center space-x-4 pt-3 border-t border-gray-200",
+              children: [/*#__PURE__*/require$$1.jsx(SkeletonLoader$2, {
+                className: "w-16 h-8 bg-gray-200 rounded"
+              }), /*#__PURE__*/require$$1.jsx(SkeletonLoader$2, {
+                className: "w-16 h-8 bg-gray-200 rounded"
+              })]
+            })]
+          })
+        })
+      });
+    }
+
+    // Animated variant skeleton
+    if (variant === 'animated') {
+      return /*#__PURE__*/require$$1.jsx("section", {
+        id: id,
+        className: clsx("add-to-cart-animated", className),
+        children: /*#__PURE__*/require$$1.jsxs("div", {
+          className: "relative p-6 rounded-2xl border-2 border-primary-200 shadow-xl overflow-hidden",
+          children: [/*#__PURE__*/require$$1.jsxs("div", {
+            className: "absolute inset-0 overflow-hidden",
+            children: [/*#__PURE__*/require$$1.jsx(SkeletonLoader$2, {
+              className: "absolute -top-4 -right-4 w-24 h-24 bg-primary-200 rounded-full opacity-20"
+            }), /*#__PURE__*/require$$1.jsx(SkeletonLoader$2, {
+              className: "absolute -bottom-4 -left-4 w-16 h-16 bg-primary-300 rounded-full opacity-30"
+            }), /*#__PURE__*/require$$1.jsx(SkeletonLoader$2, {
+              className: "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-primary-400 rounded-full opacity-25"
+            })]
+          }), /*#__PURE__*/require$$1.jsxs("div", {
+            className: "relative space-y-6",
+            children: [/*#__PURE__*/require$$1.jsxs("div", {
+              className: "text-center",
+              children: [/*#__PURE__*/require$$1.jsx(SkeletonLoader$2, {
+                className: "w-12 h-12 bg-primary-100 rounded-full mx-auto mb-3"
+              }), /*#__PURE__*/require$$1.jsx(SkeletonText$2, {
+                lines: 1,
+                className: "h-6 w-40 mx-auto mb-1"
+              }), /*#__PURE__*/require$$1.jsx(SkeletonText$2, {
+                lines: 1,
+                className: "h-4 w-48 mx-auto"
+              })]
+            }), /*#__PURE__*/require$$1.jsx("div", {
+              className: "flex items-center justify-center",
+              children: /*#__PURE__*/require$$1.jsx("div", {
+                className: "bg-white rounded-xl shadow-md border border-gray-200 p-3",
+                children: /*#__PURE__*/require$$1.jsxs("div", {
+                  className: "flex items-center space-x-4",
+                  children: [/*#__PURE__*/require$$1.jsx(SkeletonText$2, {
+                    lines: 1,
+                    className: "h-5 w-20"
+                  }), /*#__PURE__*/require$$1.jsxs("div", {
+                    className: "flex items-center rounded-lg border border-primary-200 overflow-hidden",
+                    children: [/*#__PURE__*/require$$1.jsx(SkeletonLoader$2, {
+                      className: "w-10 h-8 bg-gray-200"
+                    }), /*#__PURE__*/require$$1.jsx(SkeletonLoader$2, {
+                      className: "w-12 h-8 bg-gray-200"
+                    }), /*#__PURE__*/require$$1.jsx(SkeletonLoader$2, {
+                      className: "w-10 h-8 bg-gray-200"
+                    })]
+                  })]
+                })
+              })
+            }), /*#__PURE__*/require$$1.jsxs("div", {
+              className: "space-y-3",
+              children: [/*#__PURE__*/require$$1.jsx(SkeletonButton$2, {}), /*#__PURE__*/require$$1.jsx(SkeletonButton$2, {})]
+            }), /*#__PURE__*/require$$1.jsxs("div", {
+              className: "flex items-center justify-center space-x-6 pt-4 border-t border-primary-200",
+              children: [/*#__PURE__*/require$$1.jsx(SkeletonLoader$2, {
+                className: "w-28 h-10 bg-gray-200 rounded-lg"
+              }), /*#__PURE__*/require$$1.jsx(SkeletonLoader$2, {
+                className: "w-28 h-10 bg-gray-200 rounded-lg"
+              })]
+            })]
+          })]
+        })
+      });
+    }
+    return null;
+  }
+
+  // Floating variant - Modern floating card design
+  if (variant === 'floating') {
+    return /*#__PURE__*/require$$1.jsx("section", {
+      id: id,
+      className: clsx("add-to-cart-floating", className),
+      children: /*#__PURE__*/require$$1.jsx("div", {
+        className: "bg-white rounded-xl sm:rounded-2xl shadow-2xl border border-gray-100 p-4 sm:p-6 lg:p-8 backdrop-blur-sm bg-white/95",
+        children: /*#__PURE__*/require$$1.jsxs("div", {
+          className: "space-y-4 sm:space-y-6",
+          children: [/*#__PURE__*/require$$1.jsxs("div", {
+            className: "text-center",
+            children: [/*#__PURE__*/require$$1.jsx("h3", {
+              className: "text-xl sm:text-2xl font-bold text-gray-900 mb-2",
+              children: content.title
+            }), /*#__PURE__*/require$$1.jsx("p", {
+              className: "text-gray-600 text-sm sm:text-base",
+              children: content.subtitle
+            })]
+          }), showQuantity && /*#__PURE__*/require$$1.jsxs("div", {
+            className: "flex items-center justify-center space-x-4 sm:space-x-6",
+            children: [/*#__PURE__*/require$$1.jsx("label", {
+              className: "text-sm font-semibold text-gray-700",
+              children: content.quantityLabel
+            }), /*#__PURE__*/require$$1.jsxs("div", {
+              className: "flex items-center bg-gray-50 rounded-xl border-2 border-gray-200 overflow-hidden",
+              children: [/*#__PURE__*/require$$1.jsx("button", {
+                type: "button",
+                onClick: function onClick() {
+                  return handleQuantityChange(quantity - 1);
+                },
+                disabled: quantity <= minQuantity,
+                className: "px-3 py-2 sm:px-4 sm:py-3 text-primary-600 hover:bg-primary-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-bold touch-manipulation",
+                "aria-label": "Decrease quantity",
+                children: /*#__PURE__*/require$$1.jsx("span", {
+                  className: "text-lg sm:text-xl",
+                  children: "\u2212"
+                })
+              }), /*#__PURE__*/require$$1.jsx("input", {
+                type: "number",
+                min: minQuantity,
+                max: maxQuantity,
+                value: quantity,
+                onChange: function onChange(e) {
+                  return handleQuantityChange(parseInt(e.target.value) || minQuantity);
+                },
+                className: "w-16 sm:w-20 text-center border-0 bg-transparent focus:ring-0 text-base sm:text-lg font-bold text-gray-900",
+                "aria-label": "Quantity"
+              }), /*#__PURE__*/require$$1.jsx("button", {
+                type: "button",
+                onClick: function onClick() {
+                  return handleQuantityChange(quantity + 1);
+                },
+                disabled: quantity >= maxQuantity,
+                className: "px-3 py-2 sm:px-4 sm:py-3 text-primary-600 hover:bg-primary-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-bold touch-manipulation",
+                "aria-label": "Increase quantity",
+                children: /*#__PURE__*/require$$1.jsx("span", {
+                  className: "text-lg sm:text-xl",
+                  children: "+"
+                })
+              })]
+            })]
+          }), /*#__PURE__*/require$$1.jsx("div", {
+            className: "space-y-3 sm:space-y-4",
+            children: buttons.map(function (button, index) {
+              return /*#__PURE__*/require$$1.jsxs("button", {
+                type: "button",
+                onClick: function onClick(e) {
+                  return handleButtonClick(button, e);
+                },
+                disabled: !inStock,
+                className: clsx("w-full py-3 px-6 sm:py-4 sm:px-8 rounded-xl font-bold text-base sm:text-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none relative overflow-hidden touch-manipulation", button.variant === 'primary' && "bg-primary-600 hover:bg-primary-700 text-white shadow-lg hover:shadow-xl", button.variant === 'secondary' && "bg-gray-900 text-white hover:bg-gray-800", button.variant === 'outline' && "bg-transparent border-3 border-primary-300 text-primary-700 hover:bg-primary-50", button.variant === 'success' && "bg-green-600 hover:bg-green-700 text-white shadow-lg hover:shadow-xl", button.variant === 'danger' && "bg-red-600 hover:bg-red-700 text-white shadow-lg hover:shadow-xl", isAnimating && button.type === 'cart' && "animate-pulse"),
+                children: [/*#__PURE__*/require$$1.jsxs("span", {
+                  className: "relative z-10 flex items-center justify-center space-x-2 sm:space-x-3",
+                  children: [button.icon && /*#__PURE__*/require$$1.jsx("span", {
+                    children: typeof button.icon === 'string' ? button.icon : button.icon
+                  }), /*#__PURE__*/require$$1.jsx("span", {
+                    children: button.text
+                  }), button.type === 'cart' && /*#__PURE__*/require$$1.jsx("svg", {
+                    className: "w-5 h-5 sm:w-6 sm:h-6",
+                    fill: "none",
+                    stroke: "currentColor",
+                    viewBox: "0 0 24 24",
+                    children: /*#__PURE__*/require$$1.jsx("path", {
+                      strokeLinecap: "round",
+                      strokeLinejoin: "round",
+                      strokeWidth: 2,
+                      d: content.icons.cart
+                    })
+                  })]
+                }), isAnimating && button.type === 'cart' && /*#__PURE__*/require$$1.jsx("div", {
+                  className: "absolute inset-0 opacity-75 animate-ping rounded-xl"
+                })]
+              }, index);
+            })
+          }), /*#__PURE__*/require$$1.jsxs("div", {
+            className: "flex flex-col sm:flex-row items-center justify-center space-y-3 sm:space-y-0 sm:space-x-6 lg:space-x-8 pt-4 border-t border-gray-200",
+            children: [/*#__PURE__*/require$$1.jsxs("button", {
+              type: "button",
+              onClick: function onClick() {
+                return setIsWishlisted(!isWishlisted);
+              },
+              className: clsx("flex items-center space-x-2 sm:space-x-3 px-4 py-2 sm:px-6 sm:py-3 rounded-xl transition-all duration-300 hover:scale-105 touch-manipulation w-full sm:w-auto", isWishlisted ? "bg-red-50 border-2 border-red-200 text-red-600 shadow-lg" : "bg-gray-50 border-2 border-gray-200 text-gray-600 hover:border-primary-300 hover:text-primary-600 hover:bg-primary-50"),
+              "aria-label": isWishlisted ? "Remove from wishlist" : "Add to wishlist",
+              children: [/*#__PURE__*/require$$1.jsx("svg", {
+                className: "w-5 h-5 sm:w-6 sm:h-6",
+                fill: isWishlisted ? "currentColor" : "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                children: /*#__PURE__*/require$$1.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2,
+                  d: content.icons.wishlist
+                })
+              }), /*#__PURE__*/require$$1.jsx("span", {
+                className: "font-semibold text-sm sm:text-base",
+                children: isWishlisted ? content.wishlistRemove : content.wishlistAdd
+              })]
+            }), /*#__PURE__*/require$$1.jsxs("button", {
+              type: "button",
+              className: "flex items-center space-x-2 sm:space-x-3 px-4 py-2 sm:px-6 sm:py-3 bg-gray-50 border-2 border-gray-200 text-gray-600 rounded-xl hover:border-primary-300 hover:text-primary-600 hover:bg-primary-50 transition-all duration-300 hover:scale-105 font-semibold touch-manipulation w-full sm:w-auto",
+              "aria-label": "Share product",
+              children: [/*#__PURE__*/require$$1.jsx("svg", {
+                className: "w-5 h-5 sm:w-6 sm:h-6",
+                fill: "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                children: /*#__PURE__*/require$$1.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2,
+                  d: content.icons.share
+                })
+              }), /*#__PURE__*/require$$1.jsx("span", {
+                className: "text-sm sm:text-base",
+                children: content.shareLabel
+              })]
+            })]
+          })]
+        })
+      })
+    });
+  }
+
+  // Minimal variant - Clean, minimal design
+  if (variant === 'minimal') {
+    var _buttons$;
+    return /*#__PURE__*/require$$1.jsx("section", {
+      id: id,
+      className: clsx("add-to-cart-minimal", className),
+      children: /*#__PURE__*/require$$1.jsx("div", {
+        className: "p-4 sm:p-6 rounded-lg border border-gray-200",
+        children: /*#__PURE__*/require$$1.jsxs("div", {
+          className: "flex flex-col space-y-4",
+          children: [/*#__PURE__*/require$$1.jsxs("div", {
+            className: "flex items-center justify-between",
+            children: [showQuantity && /*#__PURE__*/require$$1.jsxs("div", {
+              className: "flex items-center space-x-3",
+              children: [/*#__PURE__*/require$$1.jsxs("span", {
+                className: "text-sm font-medium text-gray-700",
+                children: [content.quantityLabel.replace(':', '').trim(), ":"]
+              }), /*#__PURE__*/require$$1.jsxs("div", {
+                className: "flex items-center bg-white rounded-md border border-gray-300 overflow-hidden",
+                children: [/*#__PURE__*/require$$1.jsx("button", {
+                  type: "button",
+                  onClick: function onClick() {
+                    return handleQuantityChange(quantity - 1);
+                  },
+                  disabled: quantity <= minQuantity,
+                  className: "px-3 py-2 text-gray-600 hover:text-primary-600 transition-colors disabled:opacity-50 touch-manipulation",
+                  children: "\u2212"
+                }), /*#__PURE__*/require$$1.jsx("span", {
+                  className: "px-4 py-2 text-sm font-semibold min-w-[3rem] text-center bg-gray-50",
+                  children: quantity
+                }), /*#__PURE__*/require$$1.jsx("button", {
+                  type: "button",
+                  onClick: function onClick() {
+                    return handleQuantityChange(quantity + 1);
+                  },
+                  disabled: quantity >= maxQuantity,
+                  className: "px-3 py-2 text-gray-600 hover:text-primary-600 transition-colors disabled:opacity-50 touch-manipulation",
+                  children: "+"
+                })]
+              })]
+            }), /*#__PURE__*/require$$1.jsx("button", {
+              type: "button",
+              onClick: function onClick() {
+                return setIsWishlisted(!isWishlisted);
+              },
+              className: clsx("p-3 rounded-full transition-all duration-200 hover:scale-110 touch-manipulation", isWishlisted ? "text-red-600 bg-red-50" : "text-gray-400 hover:text-primary-600 hover:bg-primary-50"),
+              children: /*#__PURE__*/require$$1.jsx("svg", {
+                className: "w-5 h-5",
+                fill: isWishlisted ? "currentColor" : "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                children: /*#__PURE__*/require$$1.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2,
+                  d: content.icons.wishlist
+                })
+              })
+            })]
+          }), /*#__PURE__*/require$$1.jsx("button", {
+            type: "button",
+            onClick: function onClick(e) {
+              return handleButtonClick(buttons[0] || {}, e);
+            },
+            disabled: !inStock,
+            className: "w-full px-6 sm:px-8 py-3 bg-primary-600 text-white rounded-lg font-semibold hover:bg-primary-700 transition-all duration-200 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed touch-manipulation",
+            children: ((_buttons$ = buttons[0]) === null || _buttons$ === void 0 ? void 0 : _buttons$.text) || "Add to Cart"
+          })]
+        })
+      })
+    });
+  }
+
+  // Premium variant - Luxury design with advanced features
+  if (variant === 'premium') {
+    return /*#__PURE__*/require$$1.jsx("section", {
+      id: id,
+      className: clsx("add-to-cart-premium", className),
+      children: /*#__PURE__*/require$$1.jsxs("div", {
+        className: "relative p-8 rounded-3xl border-2 border-primary-100 shadow-2xl overflow-hidden",
+        children: [/*#__PURE__*/require$$1.jsxs("div", {
+          className: "absolute inset-0 opacity-5",
+          children: [/*#__PURE__*/require$$1.jsx("div", {
+            className: "absolute top-0 right-0 w-32 h-32 bg-primary-200 rounded-full -translate-y-16 translate-x-16"
+          }), /*#__PURE__*/require$$1.jsx("div", {
+            className: "absolute bottom-0 left-0 w-24 h-24 bg-primary-300 rounded-full translate-y-12 -translate-x-12"
+          })]
+        }), /*#__PURE__*/require$$1.jsxs("div", {
+          className: "relative space-y-8",
+          children: [/*#__PURE__*/require$$1.jsxs("div", {
+            className: "text-center",
+            children: [/*#__PURE__*/require$$1.jsx("div", {
+              className: "inline-flex items-center justify-center w-16 h-16 bg-primary-100 rounded-full mb-4",
+              children: /*#__PURE__*/require$$1.jsx("svg", {
+                className: "w-8 h-8 text-primary-600",
+                fill: "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                children: /*#__PURE__*/require$$1.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2,
+                  d: "M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+                })
+              })
+            }), /*#__PURE__*/require$$1.jsx("h3", {
+              className: "text-2xl font-bold text-gray-900 mb-2",
+              children: content.title
+            }), /*#__PURE__*/require$$1.jsx("p", {
+              className: "text-gray-600",
+              children: content.subtitle
+            })]
+          }), showQuantity && /*#__PURE__*/require$$1.jsx("div", {
+            className: "flex items-center justify-center",
+            children: /*#__PURE__*/require$$1.jsx("div", {
+              className: "bg-white rounded-2xl shadow-lg border border-gray-200 p-4",
+              children: /*#__PURE__*/require$$1.jsxs("div", {
+                className: "flex items-center space-x-6",
+                children: [/*#__PURE__*/require$$1.jsx("span", {
+                  className: "text-sm font-bold text-gray-700 uppercase tracking-wide",
+                  children: content.quantityLabel.replace(':', '').trim()
+                }), /*#__PURE__*/require$$1.jsxs("div", {
+                  className: "flex items-center rounded-xl border-2 border-primary-200 overflow-hidden",
+                  children: [/*#__PURE__*/require$$1.jsx("button", {
+                    type: "button",
+                    onClick: function onClick() {
+                      return handleQuantityChange(quantity - 1);
+                    },
+                    disabled: quantity <= minQuantity,
+                    className: "px-4 py-3 text-primary-700 hover:bg-primary-200 transition-colors disabled:opacity-50 font-bold text-lg",
+                    children: "\u2212"
+                  }), /*#__PURE__*/require$$1.jsx("div", {
+                    className: "px-6 py-3 bg-white min-w-[4rem] text-center",
+                    children: /*#__PURE__*/require$$1.jsx("span", {
+                      className: "text-xl font-bold text-gray-900",
+                      children: quantity
+                    })
+                  }), /*#__PURE__*/require$$1.jsx("button", {
+                    type: "button",
+                    onClick: function onClick() {
+                      return handleQuantityChange(quantity + 1);
+                    },
+                    disabled: quantity >= maxQuantity,
+                    className: "px-4 py-3 text-primary-700 hover:bg-primary-200 transition-colors disabled:opacity-50 font-bold text-lg",
+                    children: "+"
+                  })]
+                })]
+              })
+            })
+          }), /*#__PURE__*/require$$1.jsx("div", {
+            className: "space-y-4",
+            children: buttons.map(function (button, index) {
+              return /*#__PURE__*/require$$1.jsxs("button", {
+                type: "button",
+                onClick: function onClick(e) {
+                  return handleButtonClick(button, e);
+                },
+                disabled: !inStock,
+                className: clsx("w-full py-5 px-8 rounded-2xl font-bold text-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed relative overflow-hidden group", button.variant === 'primary' && "bg-primary-600 hover:bg-primary-700 text-white shadow-2xl hover:shadow-3xl", button.variant === 'secondary' && "bg-gray-900 text-white hover:bg-gray-800 shadow-2xl hover:shadow-3xl", "relative"),
+                children: [/*#__PURE__*/require$$1.jsx("div", {
+                  className: "absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                }), /*#__PURE__*/require$$1.jsxs("span", {
+                  className: "relative z-10 flex items-center justify-center space-x-3",
+                  children: [button.icon && /*#__PURE__*/require$$1.jsx("span", {
+                    children: typeof button.icon === 'string' ? button.icon : button.icon
+                  }), /*#__PURE__*/require$$1.jsx("span", {
+                    children: button.text
+                  }), button.type === 'cart' && /*#__PURE__*/require$$1.jsx("svg", {
+                    className: "w-6 h-6",
+                    fill: "none",
+                    stroke: "currentColor",
+                    viewBox: "0 0 24 24",
+                    children: /*#__PURE__*/require$$1.jsx("path", {
+                      strokeLinecap: "round",
+                      strokeLinejoin: "round",
+                      strokeWidth: 2,
+                      d: "M12 6v6m0 0v6m0-6h6m-6 0H6"
+                    })
+                  })]
+                })]
+              }, index);
+            })
+          }), /*#__PURE__*/require$$1.jsxs("div", {
+            className: "flex items-center justify-center space-x-6 pt-6 border-t border-primary-200",
+            children: [/*#__PURE__*/require$$1.jsxs("button", {
+              type: "button",
+              onClick: function onClick() {
+                return setIsWishlisted(!isWishlisted);
+              },
+              className: clsx("flex items-center space-x-3 px-6 py-3 rounded-xl transition-all duration-300 hover:scale-105 border-2", isWishlisted ? "bg-red-50 border-red-300 text-red-600 shadow-lg" : "bg-white border-primary-200 text-primary-700 hover:border-primary-300 hover:bg-primary-50 shadow-md hover:shadow-lg"),
+              children: [/*#__PURE__*/require$$1.jsx("svg", {
+                className: "w-5 h-5",
+                fill: isWishlisted ? "currentColor" : "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                children: /*#__PURE__*/require$$1.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2,
+                  d: content.icons.wishlist
+                })
+              }), /*#__PURE__*/require$$1.jsx("span", {
+                className: "font-semibold",
+                children: isWishlisted ? content.wishlistRemove : content.wishlistAdd.replace('Add to ', '')
+              })]
+            }), /*#__PURE__*/require$$1.jsxs("button", {
+              type: "button",
+              className: "flex items-center space-x-3 px-6 py-3 bg-white border-2 border-primary-200 text-primary-700 rounded-xl hover:border-primary-300 hover:bg-primary-50 transition-all duration-300 hover:scale-105 shadow-md hover:shadow-lg font-semibold",
+              children: [/*#__PURE__*/require$$1.jsx("svg", {
+                className: "w-5 h-5",
+                fill: "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                children: /*#__PURE__*/require$$1.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2,
+                  d: content.icons.share
+                })
+              }), /*#__PURE__*/require$$1.jsx("span", {
+                children: content.shareLabel
+              })]
+            })]
+          })]
+        })]
+      })
+    });
+  }
+
+  // Compact variant - Space-efficient design
+  if (variant === 'compact') {
+    return /*#__PURE__*/require$$1.jsx("section", {
+      id: id,
+      className: clsx("add-to-cart-compact", className),
+      children: /*#__PURE__*/require$$1.jsx("div", {
+        className: "bg-white border-2 border-gray-200 rounded-xl p-3 sm:p-4 shadow-lg",
+        children: /*#__PURE__*/require$$1.jsxs("div", {
+          className: "flex flex-col space-y-3 sm:space-y-4",
+          children: [/*#__PURE__*/require$$1.jsxs("div", {
+            className: "flex items-center justify-between",
+            children: [showQuantity && /*#__PURE__*/require$$1.jsxs("div", {
+              className: "flex items-center space-x-2 sm:space-x-3",
+              children: [/*#__PURE__*/require$$1.jsxs("span", {
+                className: "text-xs sm:text-sm font-medium text-gray-700",
+                children: [content.quantityLabel.replace(':', '').trim(), ":"]
+              }), /*#__PURE__*/require$$1.jsxs("div", {
+                className: "flex items-center bg-gray-50 rounded-lg border border-gray-300 overflow-hidden",
+                children: [/*#__PURE__*/require$$1.jsx("button", {
+                  type: "button",
+                  onClick: function onClick() {
+                    return handleQuantityChange(quantity - 1);
+                  },
+                  disabled: quantity <= minQuantity,
+                  className: "px-2 sm:px-3 py-2 text-gray-600 hover:text-primary-600 hover:bg-primary-50 transition-colors disabled:opacity-50 touch-manipulation",
+                  children: /*#__PURE__*/require$$1.jsx("span", {
+                    className: "text-sm",
+                    children: "\u2212"
+                  })
+                }), /*#__PURE__*/require$$1.jsx("span", {
+                  className: "px-2 sm:px-3 py-2 text-xs sm:text-sm font-semibold min-w-[2rem] text-center",
+                  children: quantity
+                }), /*#__PURE__*/require$$1.jsx("button", {
+                  type: "button",
+                  onClick: function onClick() {
+                    return handleQuantityChange(quantity + 1);
+                  },
+                  disabled: quantity >= maxQuantity,
+                  className: "px-2 sm:px-3 py-2 text-gray-600 hover:text-primary-600 hover:bg-primary-50 transition-colors disabled:opacity-50 touch-manipulation",
+                  children: /*#__PURE__*/require$$1.jsx("span", {
+                    className: "text-sm",
+                    children: "+"
+                  })
+                })]
+              })]
+            }), /*#__PURE__*/require$$1.jsx("button", {
+              type: "button",
+              onClick: function onClick() {
+                return setIsWishlisted(!isWishlisted);
+              },
+              className: clsx("p-2 rounded-lg transition-all duration-200 hover:scale-110 touch-manipulation", isWishlisted ? "text-red-600 bg-red-50" : "text-gray-400 hover:text-primary-600 hover:bg-primary-50"),
+              children: /*#__PURE__*/require$$1.jsx("svg", {
+                className: "w-4 h-4 sm:w-5 sm:h-5",
+                fill: isWishlisted ? "currentColor" : "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                children: /*#__PURE__*/require$$1.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2,
+                  d: content.icons.wishlist
+                })
+              })
+            })]
+          }), /*#__PURE__*/require$$1.jsx("div", {
+            className: "grid grid-cols-1 gap-2 sm:gap-3",
+            children: buttons.map(function (button, index) {
+              return /*#__PURE__*/require$$1.jsx("button", {
+                type: "button",
+                onClick: function onClick(e) {
+                  return handleButtonClick(button, e);
+                },
+                disabled: !inStock,
+                className: clsx("py-2 px-3 sm:py-3 sm:px-4 rounded-lg font-semibold transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base touch-manipulation", button.variant === 'primary' && "bg-primary-600 hover:bg-primary-700 text-white focus:ring-primary-500 shadow-md hover:shadow-lg", button.variant === 'secondary' && "bg-gray-800 hover:bg-gray-900 text-white focus:ring-gray-500 shadow-md hover:shadow-lg", button.variant === 'outline' && "bg-transparent border-2 border-primary-300 text-primary-700 hover:bg-primary-50 focus:ring-primary-500"),
+                children: button.text
+              }, index);
+            })
+          }), /*#__PURE__*/require$$1.jsxs("div", {
+            className: "flex items-center justify-center space-x-3 sm:space-x-4 pt-3 border-t border-gray-200",
+            children: [/*#__PURE__*/require$$1.jsxs("button", {
+              className: "flex items-center space-x-1 sm:space-x-2 text-xs sm:text-sm text-gray-600 hover:text-primary-600 transition-colors touch-manipulation",
+              children: [/*#__PURE__*/require$$1.jsx("svg", {
+                className: "w-3 h-3 sm:w-4 sm:h-4",
+                fill: "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                children: /*#__PURE__*/require$$1.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2,
+                  d: "M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z"
+                })
+              }), /*#__PURE__*/require$$1.jsx("span", {
+                children: content.shareLabel
+              })]
+            }), /*#__PURE__*/require$$1.jsxs("button", {
+              className: "flex items-center space-x-1 sm:space-x-2 text-xs sm:text-sm text-gray-600 hover:text-primary-600 transition-colors touch-manipulation",
+              children: [/*#__PURE__*/require$$1.jsx("svg", {
+                className: "w-3 h-3 sm:w-4 sm:h-4",
+                fill: "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                children: /*#__PURE__*/require$$1.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2,
+                  d: "M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                })
+              }), /*#__PURE__*/require$$1.jsx("span", {
+                children: content.compareLabel
+              })]
+            })]
+          })]
+        })
+      })
+    });
+  }
+
+  // Animated variant - Interactive animations
+  if (variant === 'animated') {
+    return /*#__PURE__*/require$$1.jsx("section", {
+      id: id,
+      className: clsx("add-to-cart-animated", className),
+      children: /*#__PURE__*/require$$1.jsxs("div", {
+        className: "relative p-6 rounded-2xl border-2 border-primary-200 shadow-xl overflow-hidden",
+        children: [/*#__PURE__*/require$$1.jsxs("div", {
+          className: "absolute inset-0 overflow-hidden",
+          children: [/*#__PURE__*/require$$1.jsx("div", {
+            className: "absolute -top-4 -right-4 w-24 h-24 bg-primary-200 rounded-full opacity-20 animate-bounce",
+            style: {
+              animationDelay: '0s',
+              animationDuration: '3s'
+            }
+          }), /*#__PURE__*/require$$1.jsx("div", {
+            className: "absolute -bottom-4 -left-4 w-16 h-16 bg-primary-300 rounded-full opacity-30 animate-bounce",
+            style: {
+              animationDelay: '1s',
+              animationDuration: '4s'
+            }
+          }), /*#__PURE__*/require$$1.jsx("div", {
+            className: "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-primary-400 rounded-full opacity-25 animate-ping",
+            style: {
+              animationDelay: '2s'
+            }
+          })]
+        }), /*#__PURE__*/require$$1.jsxs("div", {
+          className: "relative space-y-6",
+          children: [/*#__PURE__*/require$$1.jsxs("div", {
+            className: "text-center animate-fade-in-up",
+            children: [/*#__PURE__*/require$$1.jsx("div", {
+              className: "inline-flex items-center justify-center w-12 h-12 bg-primary-100 rounded-full mb-3 animate-pulse",
+              children: /*#__PURE__*/require$$1.jsx("svg", {
+                className: "w-6 h-6 text-primary-600",
+                fill: "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                children: /*#__PURE__*/require$$1.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2,
+                  d: "M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+                })
+              })
+            }), /*#__PURE__*/require$$1.jsx("h3", {
+              className: "text-xl font-bold text-gray-900 mb-1",
+              children: content.title
+            }), /*#__PURE__*/require$$1.jsx("p", {
+              className: "text-gray-600 text-sm",
+              children: content.subtitle
+            })]
+          }), showQuantity && /*#__PURE__*/require$$1.jsx("div", {
+            className: "flex items-center justify-center animate-fade-in-up",
+            style: {
+              animationDelay: '0.2s'
+            },
+            children: /*#__PURE__*/require$$1.jsx("div", {
+              className: "bg-white rounded-xl shadow-md border border-gray-200 p-3",
+              children: /*#__PURE__*/require$$1.jsxs("div", {
+                className: "flex items-center space-x-4",
+                children: [/*#__PURE__*/require$$1.jsx("span", {
+                  className: "text-sm font-semibold text-gray-700",
+                  children: content.quantityLabel
+                }), /*#__PURE__*/require$$1.jsxs("div", {
+                  className: "flex items-center rounded-lg border border-primary-200 overflow-hidden",
+                  children: [/*#__PURE__*/require$$1.jsx("button", {
+                    type: "button",
+                    onClick: function onClick() {
+                      return handleQuantityChange(quantity - 1);
+                    },
+                    disabled: quantity <= minQuantity,
+                    className: "px-4 py-2 text-primary-700 hover:bg-primary-200 transition-all duration-200 hover:scale-110 disabled:opacity-50",
+                    children: "\u2212"
+                  }), /*#__PURE__*/require$$1.jsx("div", {
+                    className: "px-4 py-2 bg-white min-w-[3rem] text-center border-x border-primary-200",
+                    children: /*#__PURE__*/require$$1.jsx("span", {
+                      className: "font-bold text-gray-900 animate-pulse",
+                      style: {
+                        animationDuration: '2s'
+                      },
+                      children: quantity
+                    })
+                  }), /*#__PURE__*/require$$1.jsx("button", {
+                    type: "button",
+                    onClick: function onClick() {
+                      return handleQuantityChange(quantity + 1);
+                    },
+                    disabled: quantity >= maxQuantity,
+                    className: "px-4 py-2 text-primary-700 hover:bg-primary-200 transition-all duration-200 hover:scale-110 disabled:opacity-50",
+                    children: "+"
+                  })]
+                })]
+              })
+            })
+          }), /*#__PURE__*/require$$1.jsx("div", {
+            className: "space-y-3 animate-fade-in-up",
+            style: {
+              animationDelay: '0.4s'
+            },
+            children: buttons.map(function (button, index) {
+              return /*#__PURE__*/require$$1.jsxs("button", {
+                type: "button",
+                onClick: function onClick(e) {
+                  return handleButtonClick(button, e);
+                },
+                disabled: !inStock,
+                className: clsx("w-full py-4 px-6 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed relative overflow-hidden group", button.variant === 'primary' && "bg-primary-600 hover:bg-primary-700 text-white shadow-lg hover:shadow-xl", button.variant === 'secondary' && "bg-gray-900 text-white hover:bg-gray-800", button.variant === 'outline' && "bg-transparent border-2 border-primary-300 text-primary-700 hover:bg-primary-50", "shadow-lg hover:shadow-xl"),
+                style: {
+                  animationDelay: "".concat(0.6 + index * 0.1, "s")
+                },
+                children: [/*#__PURE__*/require$$1.jsx("div", {
+                  className: "absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                }), /*#__PURE__*/require$$1.jsxs("span", {
+                  className: "relative z-10 flex items-center justify-center space-x-3",
+                  children: [button.icon && /*#__PURE__*/require$$1.jsx("span", {
+                    children: typeof button.icon === 'string' ? button.icon : button.icon
+                  }), /*#__PURE__*/require$$1.jsx("span", {
+                    children: button.text
+                  }), button.type === 'cart' && isAnimating && /*#__PURE__*/require$$1.jsx("svg", {
+                    className: "w-5 h-5 animate-spin",
+                    fill: "none",
+                    stroke: "currentColor",
+                    viewBox: "0 0 24 24",
+                    children: /*#__PURE__*/require$$1.jsx("path", {
+                      strokeLinecap: "round",
+                      strokeLinejoin: "round",
+                      strokeWidth: 2,
+                      d: "M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                    })
+                  })]
+                })]
+              }, index);
+            })
+          }), /*#__PURE__*/require$$1.jsxs("div", {
+            className: "flex items-center justify-center space-x-6 pt-4 border-t border-primary-200 animate-fade-in-up",
+            style: {
+              animationDelay: '0.8s'
+            },
+            children: [/*#__PURE__*/require$$1.jsxs("button", {
+              type: "button",
+              onClick: function onClick() {
+                return setIsWishlisted(!isWishlisted);
+              },
+              className: clsx("flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-300 hover:scale-110 border", isWishlisted ? "bg-red-50 border-red-200 text-red-600 shadow-md" : "bg-white border-primary-200 text-primary-700 hover:border-primary-300 hover:bg-primary-50 shadow-sm hover:shadow-md"),
+              children: [/*#__PURE__*/require$$1.jsx("svg", {
+                className: clsx("w-5 h-5", isWishlisted && "animate-pulse"),
+                fill: isWishlisted ? "currentColor" : "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                children: /*#__PURE__*/require$$1.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2,
+                  d: content.icons.wishlist
+                })
+              }), /*#__PURE__*/require$$1.jsx("span", {
+                className: "font-medium",
+                children: isWishlisted ? content.wishlistRemove + '!' : content.wishlistAdd.replace('Add to ', '')
+              })]
+            }), /*#__PURE__*/require$$1.jsxs("button", {
+              type: "button",
+              className: "flex items-center space-x-2 px-4 py-2 bg-white border border-primary-200 text-primary-700 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-all duration-300 hover:scale-110 shadow-sm hover:shadow-md font-medium",
+              children: [/*#__PURE__*/require$$1.jsx("svg", {
+                className: "w-5 h-5",
+                fill: "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                children: /*#__PURE__*/require$$1.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2,
+                  d: "M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z"
+                })
+              }), /*#__PURE__*/require$$1.jsx("span", {
+                children: content.shareLabel
+              })]
+            })]
+          })]
+        })]
+      })
+    });
+  }
+  return null;
+};
+
+var _excluded$1 = ["className"];
+var SkeletonLoader$1 = function SkeletonLoader(_ref) {
+  var className = _ref.className,
+    props = _objectWithoutProperties(_ref, _excluded$1);
+  return /*#__PURE__*/require$$1.jsx("div", _objectSpread2({
+    className: clsx("animate-pulse bg-gray-200 rounded", className)
+  }, props));
+};
+var SkeletonText$1 = function SkeletonText(_ref2) {
+  var _ref2$lines = _ref2.lines,
+    lines = _ref2$lines === void 0 ? 1 : _ref2$lines,
+    className = _ref2.className;
+  return /*#__PURE__*/require$$1.jsx("div", {
+    className: clsx("space-y-2", className),
+    children: Array.from({
+      length: lines
+    }).map(function (_, i) {
+      return /*#__PURE__*/require$$1.jsx(SkeletonLoader$1, {
+        className: clsx("h-4 bg-gray-200 rounded", i === lines - 1 && lines > 1 ? "w-3/4" : "w-full")
+      }, i);
+    })
+  });
+};
+var SkeletonButton$1 = function SkeletonButton(_ref3) {
+  var className = _ref3.className;
+  return /*#__PURE__*/require$$1.jsx(SkeletonLoader$1, {
+    className: clsx("h-12 w-full bg-gray-200 rounded-lg", className)
+  });
+};
+var SkeletonImage$1 = function SkeletonImage(_ref4) {
+  var className = _ref4.className;
+  return /*#__PURE__*/require$$1.jsx(SkeletonLoader$1, {
+    className: clsx("bg-gray-200 rounded-lg", className)
+  });
+};
+
+/**
+ * AddToCartPage Component
+ * @param {Object} props - Component props
+ * @param {Object} props.data - Add to cart page configuration data
+ * @param {Array} props.data.items - Cart items array
+ * @param {Object} props.data.shipping - Shipping information
+ * @param {Object} props.data.totals - Price totals
+ * @param {Array} props.data.actions - Action buttons
+ * @param {string} [props.data.variant='classic'] - Style variant: 'classic' | 'modern' | 'split' | 'card' | 'interactive'
+ * @param {Object} [props.data.content] - Dynamic content configuration
+ * @param {string} [props.data.content.title] - Page title
+ * @param {string} [props.data.content.subtitle] - Page subtitle
+ * @param {Object} [props.data.content.selection] - Selection-related text
+ * @param {string} [props.data.content.selection.selectAll] - Select all button text
+ * @param {string} [props.data.content.selection.deselectAll] - Deselect all button text
+ * @param {string} [props.data.content.selection.selectedText] - Selected items text template
+ * @param {Object} [props.data.content.summary] - Order summary text
+ * @param {string} [props.data.content.summary.title] - Summary title
+ * @param {string} [props.data.content.summary.subtotal] - Subtotal label
+ * @param {string} [props.data.content.summary.shipping] - Shipping label
+ * @param {string} [props.data.content.summary.tax] - Tax label
+ * @param {string} [props.data.content.summary.total] - Total label
+ * @param {Object} [props.data.content.icons] - Icon configurations
+ * @param {string} [props.data.content.icons.cart] - Cart icon SVG path
+ * @param {string} [props.data.content.icons.remove] - Remove icon SVG path
+ * @param {boolean} [props.loading=false] - Show skeleton loader
+ * @param {boolean} [props.autoLoad=false] - Auto-show skeleton for 2 seconds, then reveal content
+ * @param {string} [props.className] - Additional CSS classes
+ * @param {string} [props.id] - ID attribute for the section element
+ */
+var AddToCartPage = function AddToCartPage(_ref5) {
+  var data = _ref5.data,
+    _ref5$loading = _ref5.loading,
+    loading = _ref5$loading === void 0 ? false : _ref5$loading,
+    _ref5$autoLoad = _ref5.autoLoad,
+    autoLoad = _ref5$autoLoad === void 0 ? false : _ref5$autoLoad,
+    className = _ref5.className,
+    id = _ref5.id;
+  // Safety check for data
+  if (!data || _typeof(data) !== 'object') {
+    console.error('AddToCartPage: data prop is required and must be an object');
+    return null;
+  }
+  var _useState = require$$0.useState({}),
+    _useState2 = _slicedToArray(_useState, 2),
+    quantities = _useState2[0],
+    setQuantities = _useState2[1];
+  var _useState3 = require$$0.useState(new Set()),
+    _useState4 = _slicedToArray(_useState3, 2),
+    selectedItems = _useState4[0],
+    setSelectedItems = _useState4[1];
+  var _useState5 = require$$0.useState(autoLoad),
+    _useState6 = _slicedToArray(_useState5, 2),
+    isLoading = _useState6[0],
+    setIsLoading = _useState6[1];
+
+  // Auto-loading functionality - show skeleton for 2 seconds, then content
+  require$$0.useEffect(function () {
+    if (autoLoad) {
+      var timer = setTimeout(function () {
+        setIsLoading(false);
+      }, 2000);
+      return function () {
+        return clearTimeout(timer);
+      };
+    }
+  }, [autoLoad]);
+
+  // If autoLoad is true, override the loading prop
+  var showSkeleton = autoLoad ? isLoading : loading;
+  var _data$items = data.items,
+    items = _data$items === void 0 ? [] : _data$items;
+    data.shipping;
+    var _data$totals = data.totals,
+    totals = _data$totals === void 0 ? {
+      subtotal: 0,
+      tax: 0,
+      shipping: 0,
+      total: 0
+    } : _data$totals,
+    _data$actions = data.actions,
+    actions = _data$actions === void 0 ? [{
+      text: "Continue Shopping",
+      href: "#",
+      variant: "secondary",
+      type: "continue"
+    }, {
+      text: "Checkout",
+      href: "#",
+      variant: "primary",
+      type: "checkout"
+    }] : _data$actions,
+    _data$variant = data.variant,
+    variant = _data$variant === void 0 ? 'classic' : _data$variant,
+    _data$content = data.content,
+    content = _data$content === void 0 ? {
+      title: 'Shopping Cart',
+      subtitle: "".concat(items.length, " item").concat(items.length !== 1 ? 's' : '', " in your cart"),
+      selection: {
+        selectAll: 'Select All',
+        deselectAll: 'Deselect All',
+        selectedText: '{selected} of {total} items selected',
+        removeSelected: 'Remove Selected',
+        removeItem: 'Remove'
+      },
+      summary: {
+        title: 'Order Summary',
+        subtotal: 'Subtotal',
+        shipping: 'Shipping',
+        tax: 'Tax',
+        total: 'Total'
+      },
+      icons: {
+        cart: 'M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z',
+        remove: 'M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16'
+      }
+    } : _data$content;
+  var handleQuantityChange = function handleQuantityChange(itemId, newQuantity) {
+    setQuantities(function (prev) {
+      return _objectSpread2(_objectSpread2({}, prev), {}, _defineProperty({}, itemId, Math.max(1, Math.min(99, newQuantity))));
+    });
+  };
+  var handleItemSelect = function handleItemSelect(itemId) {
+    setSelectedItems(function (prev) {
+      var newSet = new Set(prev);
+      if (newSet.has(itemId)) {
+        newSet["delete"](itemId);
+      } else {
+        newSet.add(itemId);
+      }
+      return newSet;
+    });
+  };
+  var handleSelectAll = function handleSelectAll() {
+    if (selectedItems.size === items.length) {
+      setSelectedItems(new Set());
+    } else {
+      setSelectedItems(new Set(items.map(function (item) {
+        return item.id;
+      })));
+    }
+  };
+  var getItemQuantity = function getItemQuantity(itemId) {
+    return quantities[itemId] || 1;
+  };
+  var getItemTotal = function getItemTotal(item) {
+    return (item.price * getItemQuantity(item.id)).toFixed(2);
+  };
+
+  // Skeleton Loaders
+  if (showSkeleton) {
+    // Classic variant skeleton
+    if (variant === 'classic') {
+      return /*#__PURE__*/require$$1.jsx("section", {
+        id: id,
+        className: clsx("add-to-cart-page-classic", className),
+        children: /*#__PURE__*/require$$1.jsx("div", {
+          className: "min-h-screen bg-gray-50",
+          children: /*#__PURE__*/require$$1.jsxs("div", {
+            className: "container mx-auto px-4 sm:px-6 lg:px-8 py-8",
+            children: [/*#__PURE__*/require$$1.jsxs("div", {
+              className: "mb-8",
+              children: [/*#__PURE__*/require$$1.jsx(SkeletonText$1, {
+                lines: 1,
+                className: "h-10 w-64 mb-2"
+              }), /*#__PURE__*/require$$1.jsx(SkeletonText$1, {
+                lines: 1,
+                className: "h-6 w-48"
+              })]
+            }), /*#__PURE__*/require$$1.jsxs("div", {
+              className: "grid grid-cols-1 lg:grid-cols-3 gap-8",
+              children: [/*#__PURE__*/require$$1.jsx("div", {
+                className: "lg:col-span-2",
+                children: /*#__PURE__*/require$$1.jsxs("div", {
+                  className: "bg-white rounded-lg shadow-sm border border-gray-200",
+                  children: [/*#__PURE__*/require$$1.jsx("div", {
+                    className: "px-6 py-4 border-b border-gray-200",
+                    children: /*#__PURE__*/require$$1.jsxs("div", {
+                      className: "flex items-center space-x-4",
+                      children: [/*#__PURE__*/require$$1.jsx(SkeletonLoader$1, {
+                        className: "w-4 h-4 bg-gray-200 rounded"
+                      }), /*#__PURE__*/require$$1.jsx(SkeletonText$1, {
+                        lines: 1,
+                        className: "h-6 w-32"
+                      })]
+                    })
+                  }), /*#__PURE__*/require$$1.jsx("div", {
+                    className: "divide-y divide-gray-200",
+                    children: Array.from({
+                      length: 3
+                    }).map(function (_, i) {
+                      return /*#__PURE__*/require$$1.jsx("div", {
+                        className: "p-6",
+                        children: /*#__PURE__*/require$$1.jsxs("div", {
+                          className: "flex items-center space-x-4",
+                          children: [/*#__PURE__*/require$$1.jsx(SkeletonLoader$1, {
+                            className: "w-4 h-4 bg-gray-200 rounded"
+                          }), /*#__PURE__*/require$$1.jsx(SkeletonImage$1, {
+                            className: "w-20 h-20"
+                          }), /*#__PURE__*/require$$1.jsxs("div", {
+                            className: "flex-1 min-w-0",
+                            children: [/*#__PURE__*/require$$1.jsx(SkeletonText$1, {
+                              lines: 2,
+                              className: "mb-2"
+                            }), /*#__PURE__*/require$$1.jsx(SkeletonLoader$1, {
+                              className: "w-16 h-6 bg-gray-200 rounded mb-2"
+                            })]
+                          }), /*#__PURE__*/require$$1.jsxs("div", {
+                            className: "flex items-center space-x-4",
+                            children: [/*#__PURE__*/require$$1.jsxs("div", {
+                              className: "flex items-center border border-gray-300 rounded-md",
+                              children: [/*#__PURE__*/require$$1.jsx(SkeletonLoader$1, {
+                                className: "w-8 h-10 bg-gray-200"
+                              }), /*#__PURE__*/require$$1.jsx(SkeletonLoader$1, {
+                                className: "w-12 h-10 bg-gray-200"
+                              }), /*#__PURE__*/require$$1.jsx(SkeletonLoader$1, {
+                                className: "w-8 h-10 bg-gray-200"
+                              })]
+                            }), /*#__PURE__*/require$$1.jsxs("div", {
+                              className: "text-right",
+                              children: [/*#__PURE__*/require$$1.jsx(SkeletonLoader$1, {
+                                className: "w-16 h-8 bg-gray-200 rounded mb-1"
+                              }), /*#__PURE__*/require$$1.jsx(SkeletonLoader$1, {
+                                className: "w-20 h-5 bg-gray-200 rounded"
+                              })]
+                            })]
+                          })]
+                        })
+                      }, i);
+                    })
+                  })]
+                })
+              }), /*#__PURE__*/require$$1.jsx("div", {
+                className: "lg:col-span-1",
+                children: /*#__PURE__*/require$$1.jsxs("div", {
+                  className: "bg-white rounded-lg shadow-sm border border-gray-200 p-6 sticky top-8",
+                  children: [/*#__PURE__*/require$$1.jsx(SkeletonText$1, {
+                    lines: 1,
+                    className: "h-8 w-40 mb-6"
+                  }), /*#__PURE__*/require$$1.jsx("div", {
+                    className: "space-y-4 mb-6",
+                    children: Array.from({
+                      length: 4
+                    }).map(function (_, i) {
+                      return /*#__PURE__*/require$$1.jsxs("div", {
+                        className: "flex justify-between",
+                        children: [/*#__PURE__*/require$$1.jsx(SkeletonLoader$1, {
+                          className: "w-20 h-5 bg-gray-200 rounded"
+                        }), /*#__PURE__*/require$$1.jsx(SkeletonLoader$1, {
+                          className: "w-16 h-5 bg-gray-200 rounded"
+                        })]
+                      }, i);
+                    })
+                  }), /*#__PURE__*/require$$1.jsxs("div", {
+                    className: "space-y-3",
+                    children: [/*#__PURE__*/require$$1.jsx(SkeletonButton$1, {}), /*#__PURE__*/require$$1.jsx(SkeletonButton$1, {})]
+                  })]
+                })
+              })]
+            })]
+          })
+        })
+      });
+    }
+
+    // Modern variant skeleton
+    if (variant === 'modern') {
+      return /*#__PURE__*/require$$1.jsx("section", {
+        id: id,
+        className: clsx("add-to-cart-page-modern", className),
+        children: /*#__PURE__*/require$$1.jsx("div", {
+          className: "min-h-screen",
+          children: /*#__PURE__*/require$$1.jsxs("div", {
+            className: "container mx-auto px-4 sm:px-6 lg:px-8 py-12",
+            children: [/*#__PURE__*/require$$1.jsxs("div", {
+              className: "text-center mb-12",
+              children: [/*#__PURE__*/require$$1.jsx(SkeletonLoader$1, {
+                className: "w-20 h-20 bg-primary-100 rounded-full mx-auto mb-6"
+              }), /*#__PURE__*/require$$1.jsx(SkeletonText$1, {
+                lines: 1,
+                className: "h-12 w-80 mb-4"
+              }), /*#__PURE__*/require$$1.jsx(SkeletonText$1, {
+                lines: 1,
+                className: "h-6 w-96"
+              })]
+            }), /*#__PURE__*/require$$1.jsx("div", {
+              className: "max-w-6xl mx-auto",
+              children: /*#__PURE__*/require$$1.jsxs("div", {
+                className: "grid grid-cols-1 lg:grid-cols-2 gap-12",
+                children: [/*#__PURE__*/require$$1.jsx("div", {
+                  className: "space-y-6",
+                  children: Array.from({
+                    length: 3
+                  }).map(function (_, i) {
+                    return /*#__PURE__*/require$$1.jsx("div", {
+                      className: "bg-white rounded-2xl shadow-xl border border-gray-100 p-6",
+                      children: /*#__PURE__*/require$$1.jsxs("div", {
+                        className: "flex items-center space-x-6",
+                        children: [/*#__PURE__*/require$$1.jsx(SkeletonLoader$1, {
+                          className: "w-5 h-5 bg-gray-200 rounded"
+                        }), /*#__PURE__*/require$$1.jsx(SkeletonImage$1, {
+                          className: "w-24 h-24"
+                        }), /*#__PURE__*/require$$1.jsxs("div", {
+                          className: "flex-1 min-w-0",
+                          children: [/*#__PURE__*/require$$1.jsx(SkeletonText$1, {
+                            lines: 2,
+                            className: "mb-3"
+                          }), /*#__PURE__*/require$$1.jsx(SkeletonLoader$1, {
+                            className: "w-20 h-8 bg-gray-200 rounded mb-2"
+                          })]
+                        }), /*#__PURE__*/require$$1.jsxs("div", {
+                          className: "flex flex-col items-end space-y-4",
+                          children: [/*#__PURE__*/require$$1.jsxs("div", {
+                            className: "flex items-center bg-primary-50 rounded-xl border-2 border-primary-200 overflow-hidden",
+                            children: [/*#__PURE__*/require$$1.jsx(SkeletonLoader$1, {
+                              className: "w-12 h-12 bg-gray-200"
+                            }), /*#__PURE__*/require$$1.jsx(SkeletonLoader$1, {
+                              className: "w-16 h-12 bg-gray-200"
+                            }), /*#__PURE__*/require$$1.jsx(SkeletonLoader$1, {
+                              className: "w-12 h-12 bg-gray-200"
+                            })]
+                          }), /*#__PURE__*/require$$1.jsxs("div", {
+                            className: "text-right",
+                            children: [/*#__PURE__*/require$$1.jsx(SkeletonLoader$1, {
+                              className: "w-20 h-8 bg-gray-200 rounded mb-1"
+                            }), /*#__PURE__*/require$$1.jsx(SkeletonLoader$1, {
+                              className: "w-24 h-5 bg-gray-200 rounded"
+                            })]
+                          })]
+                        })]
+                      })
+                    }, i);
+                  })
+                }), /*#__PURE__*/require$$1.jsx("div", {
+                  className: "lg:sticky lg:top-8",
+                  children: /*#__PURE__*/require$$1.jsxs("div", {
+                    className: "bg-white rounded-3xl shadow-2xl border-2 border-primary-100 p-8",
+                    children: [/*#__PURE__*/require$$1.jsxs("div", {
+                      className: "text-center mb-8",
+                      children: [/*#__PURE__*/require$$1.jsx(SkeletonText$1, {
+                        lines: 1,
+                        className: "h-10 w-48 mb-2"
+                      }), /*#__PURE__*/require$$1.jsx(SkeletonLoader$1, {
+                        className: "w-16 h-1 bg-primary-500 mx-auto rounded-full"
+                      })]
+                    }), /*#__PURE__*/require$$1.jsx("div", {
+                      className: "space-y-6 mb-8",
+                      children: Array.from({
+                        length: 4
+                      }).map(function (_, i) {
+                        return /*#__PURE__*/require$$1.jsxs("div", {
+                          className: "flex justify-between items-center py-3 border-b border-gray-100",
+                          children: [/*#__PURE__*/require$$1.jsx(SkeletonLoader$1, {
+                            className: "w-24 h-6 bg-gray-200 rounded"
+                          }), /*#__PURE__*/require$$1.jsx(SkeletonLoader$1, {
+                            className: "w-20 h-6 bg-gray-200 rounded"
+                          })]
+                        }, i);
+                      })
+                    }), /*#__PURE__*/require$$1.jsxs("div", {
+                      className: "space-y-4",
+                      children: [/*#__PURE__*/require$$1.jsx(SkeletonButton$1, {}), /*#__PURE__*/require$$1.jsx(SkeletonButton$1, {})]
+                    })]
+                  })
+                })]
+              })
+            })]
+          })
+        })
+      });
+    }
+
+    // Split variant skeleton
+    if (variant === 'split') {
+      return /*#__PURE__*/require$$1.jsx("section", {
+        id: id,
+        className: clsx("add-to-cart-page-split", className),
+        children: /*#__PURE__*/require$$1.jsxs("div", {
+          className: "min-h-screen flex",
+          children: [/*#__PURE__*/require$$1.jsx("div", {
+            className: "flex-1 bg-white",
+            children: /*#__PURE__*/require$$1.jsxs("div", {
+              className: "h-full flex flex-col",
+              children: [/*#__PURE__*/require$$1.jsx("div", {
+                className: "px-8 py-6 border-b border-gray-200",
+                children: /*#__PURE__*/require$$1.jsxs("div", {
+                  className: "flex items-center justify-between",
+                  children: [/*#__PURE__*/require$$1.jsxs("div", {
+                    children: [/*#__PURE__*/require$$1.jsx(SkeletonText$1, {
+                      lines: 1,
+                      className: "h-6 w-48"
+                    }), /*#__PURE__*/require$$1.jsx(SkeletonText$1, {
+                      lines: 1,
+                      className: "h-4 w-32 mt-1"
+                    })]
+                  }), /*#__PURE__*/require$$1.jsx(SkeletonButton$1, {
+                    className: "w-40 h-10"
+                  })]
+                })
+              }), /*#__PURE__*/require$$1.jsx("div", {
+                className: "flex-1 overflow-y-auto",
+                children: /*#__PURE__*/require$$1.jsx("div", {
+                  className: "p-8 space-y-6",
+                  children: Array.from({
+                    length: 4
+                  }).map(function (_, i) {
+                    return /*#__PURE__*/require$$1.jsx("div", {
+                      className: "bg-gray-50 rounded-xl p-6 border border-gray-200",
+                      children: /*#__PURE__*/require$$1.jsxs("div", {
+                        className: "flex items-center space-x-6",
+                        children: [/*#__PURE__*/require$$1.jsx(SkeletonLoader$1, {
+                          className: "w-5 h-5 bg-gray-200 rounded"
+                        }), /*#__PURE__*/require$$1.jsx(SkeletonImage$1, {
+                          className: "w-20 h-20"
+                        }), /*#__PURE__*/require$$1.jsxs("div", {
+                          className: "flex-1",
+                          children: [/*#__PURE__*/require$$1.jsx(SkeletonText$1, {
+                            lines: 2,
+                            className: "mb-3"
+                          }), /*#__PURE__*/require$$1.jsxs("div", {
+                            className: "flex items-center space-x-4",
+                            children: [/*#__PURE__*/require$$1.jsx(SkeletonLoader$1, {
+                              className: "w-16 h-6 bg-gray-200 rounded"
+                            }), /*#__PURE__*/require$$1.jsxs("div", {
+                              className: "flex items-center bg-white rounded-lg border border-gray-300 overflow-hidden",
+                              children: [/*#__PURE__*/require$$1.jsx(SkeletonLoader$1, {
+                                className: "w-8 h-8 bg-gray-200"
+                              }), /*#__PURE__*/require$$1.jsx(SkeletonLoader$1, {
+                                className: "w-12 h-8 bg-gray-200"
+                              }), /*#__PURE__*/require$$1.jsx(SkeletonLoader$1, {
+                                className: "w-8 h-8 bg-gray-200"
+                              })]
+                            })]
+                          })]
+                        }), /*#__PURE__*/require$$1.jsxs("div", {
+                          className: "text-right",
+                          children: [/*#__PURE__*/require$$1.jsx(SkeletonLoader$1, {
+                            className: "w-20 h-8 bg-gray-200 rounded mb-1"
+                          }), /*#__PURE__*/require$$1.jsx(SkeletonLoader$1, {
+                            className: "w-24 h-5 bg-gray-200 rounded"
+                          })]
+                        })]
+                      })
+                    }, i);
+                  })
+                })
+              })]
+            })
+          }), /*#__PURE__*/require$$1.jsx("div", {
+            className: "w-96 text-white",
+            children: /*#__PURE__*/require$$1.jsxs("div", {
+              className: "h-full flex flex-col",
+              children: [/*#__PURE__*/require$$1.jsxs("div", {
+                className: "p-8 border-b border-primary-500",
+                children: [/*#__PURE__*/require$$1.jsx(SkeletonText$1, {
+                  lines: 1,
+                  className: "h-6 w-40 mb-2"
+                }), /*#__PURE__*/require$$1.jsx(SkeletonText$1, {
+                  lines: 1,
+                  className: "h-4 w-32"
+                })]
+              }), /*#__PURE__*/require$$1.jsxs("div", {
+                className: "flex-1 p-8",
+                children: [/*#__PURE__*/require$$1.jsx("div", {
+                  className: "space-y-6 mb-8",
+                  children: Array.from({
+                    length: 4
+                  }).map(function (_, i) {
+                    return /*#__PURE__*/require$$1.jsxs("div", {
+                      className: "flex justify-between items-center",
+                      children: [/*#__PURE__*/require$$1.jsx(SkeletonLoader$1, {
+                        className: "w-20 h-5 bg-gray-300 rounded opacity-80"
+                      }), /*#__PURE__*/require$$1.jsx(SkeletonLoader$1, {
+                        className: "w-16 h-5 bg-gray-300 rounded opacity-80"
+                      })]
+                    }, i);
+                  })
+                }), /*#__PURE__*/require$$1.jsxs("div", {
+                  className: "space-y-4",
+                  children: [/*#__PURE__*/require$$1.jsx(SkeletonButton$1, {
+                    className: "bg-white/20"
+                  }), /*#__PURE__*/require$$1.jsx(SkeletonButton$1, {
+                    className: "bg-primary-500"
+                  })]
+                })]
+              })]
+            })
+          })]
+        })
+      });
+    }
+
+    // Card variant skeleton
+    if (variant === 'card') {
+      return /*#__PURE__*/require$$1.jsx("section", {
+        id: id,
+        className: clsx("add-to-cart-page-card", className),
+        children: /*#__PURE__*/require$$1.jsx("div", {
+          className: "min-h-screen",
+          children: /*#__PURE__*/require$$1.jsxs("div", {
+            className: "container mx-auto px-4 sm:px-6 lg:px-8 py-12",
+            children: [/*#__PURE__*/require$$1.jsxs("div", {
+              className: "text-center mb-12",
+              children: [/*#__PURE__*/require$$1.jsx(SkeletonText$1, {
+                lines: 1,
+                className: "h-12 w-80 mb-4"
+              }), /*#__PURE__*/require$$1.jsx(SkeletonText$1, {
+                lines: 1,
+                className: "h-6 w-96"
+              })]
+            }), /*#__PURE__*/require$$1.jsx("div", {
+              className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12",
+              children: Array.from({
+                length: 6
+              }).map(function (_, i) {
+                return /*#__PURE__*/require$$1.jsxs("div", {
+                  className: "bg-white rounded-2xl shadow-xl border-2 border-gray-100 overflow-hidden",
+                  children: [/*#__PURE__*/require$$1.jsx("div", {
+                    className: "p-4 border-b border-gray-100",
+                    children: /*#__PURE__*/require$$1.jsxs("div", {
+                      className: "flex items-center justify-between",
+                      children: [/*#__PURE__*/require$$1.jsx(SkeletonLoader$1, {
+                        className: "w-4 h-4 bg-gray-200 rounded"
+                      }), /*#__PURE__*/require$$1.jsx(SkeletonLoader$1, {
+                        className: "w-5 h-5 bg-gray-200 rounded"
+                      })]
+                    })
+                  }), /*#__PURE__*/require$$1.jsxs("div", {
+                    className: "p-6",
+                    children: [/*#__PURE__*/require$$1.jsx(SkeletonImage$1, {
+                      className: "w-full h-48 mb-6"
+                    }), /*#__PURE__*/require$$1.jsxs("div", {
+                      className: "text-center mb-6",
+                      children: [/*#__PURE__*/require$$1.jsx(SkeletonText$1, {
+                        lines: 2,
+                        className: "mb-4"
+                      }), /*#__PURE__*/require$$1.jsx(SkeletonLoader$1, {
+                        className: "w-20 h-8 bg-gray-200 rounded mb-4"
+                      })]
+                    }), /*#__PURE__*/require$$1.jsx("div", {
+                      className: "flex items-center justify-center mb-6",
+                      children: /*#__PURE__*/require$$1.jsxs("div", {
+                        className: "flex items-center bg-primary-50 rounded-xl border-2 border-primary-200 overflow-hidden",
+                        children: [/*#__PURE__*/require$$1.jsx(SkeletonLoader$1, {
+                          className: "w-10 h-10 bg-gray-200"
+                        }), /*#__PURE__*/require$$1.jsx(SkeletonLoader$1, {
+                          className: "w-12 h-10 bg-gray-200"
+                        }), /*#__PURE__*/require$$1.jsx(SkeletonLoader$1, {
+                          className: "w-10 h-10 bg-gray-200"
+                        })]
+                      })
+                    }), /*#__PURE__*/require$$1.jsx(SkeletonLoader$1, {
+                      className: "w-20 h-8 bg-gray-200 rounded mx-auto"
+                    })]
+                  })]
+                }, i);
+              })
+            }), /*#__PURE__*/require$$1.jsx("div", {
+              className: "max-w-md mx-auto",
+              children: /*#__PURE__*/require$$1.jsxs("div", {
+                className: "bg-white rounded-3xl shadow-2xl border-2 border-primary-100 p-8",
+                children: [/*#__PURE__*/require$$1.jsxs("div", {
+                  className: "text-center mb-8",
+                  children: [/*#__PURE__*/require$$1.jsx(SkeletonText$1, {
+                    lines: 1,
+                    className: "h-10 w-48 mb-2"
+                  }), /*#__PURE__*/require$$1.jsx(SkeletonLoader$1, {
+                    className: "w-16 h-1 bg-primary-500 mx-auto rounded-full"
+                  })]
+                }), /*#__PURE__*/require$$1.jsx("div", {
+                  className: "space-y-4 mb-8",
+                  children: Array.from({
+                    length: 4
+                  }).map(function (_, i) {
+                    return /*#__PURE__*/require$$1.jsxs("div", {
+                      className: "flex justify-between py-3 border-b border-gray-100",
+                      children: [/*#__PURE__*/require$$1.jsx(SkeletonLoader$1, {
+                        className: "w-20 h-5 bg-gray-200 rounded"
+                      }), /*#__PURE__*/require$$1.jsx(SkeletonLoader$1, {
+                        className: "w-16 h-5 bg-gray-200 rounded"
+                      })]
+                    }, i);
+                  })
+                }), /*#__PURE__*/require$$1.jsxs("div", {
+                  className: "space-y-4",
+                  children: [/*#__PURE__*/require$$1.jsx(SkeletonButton$1, {}), /*#__PURE__*/require$$1.jsx(SkeletonButton$1, {})]
+                })]
+              })
+            })]
+          })
+        })
+      });
+    }
+
+    // Interactive variant skeleton
+    if (variant === 'interactive') {
+      return /*#__PURE__*/require$$1.jsx("section", {
+        id: id,
+        className: clsx("add-to-cart-page-interactive", className),
+        children: /*#__PURE__*/require$$1.jsxs("div", {
+          className: "min-h-screen relative overflow-hidden",
+          children: [/*#__PURE__*/require$$1.jsxs("div", {
+            className: "absolute inset-0 overflow-hidden",
+            children: [/*#__PURE__*/require$$1.jsx(SkeletonLoader$1, {
+              className: "absolute -top-40 -right-40 w-80 h-80 bg-primary-200 rounded-full opacity-20"
+            }), /*#__PURE__*/require$$1.jsx(SkeletonLoader$1, {
+              className: "absolute -bottom-40 -left-40 w-96 h-96 bg-primary-300 rounded-full opacity-10"
+            }), /*#__PURE__*/require$$1.jsx(SkeletonLoader$1, {
+              className: "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-primary-400 rounded-full opacity-5"
+            })]
+          }), /*#__PURE__*/require$$1.jsxs("div", {
+            className: "relative container mx-auto px-4 sm:px-6 lg:px-8 py-12",
+            children: [/*#__PURE__*/require$$1.jsxs("div", {
+              className: "text-center mb-16",
+              children: [/*#__PURE__*/require$$1.jsx(SkeletonLoader$1, {
+                className: "w-24 h-24 bg-white rounded-full shadow-2xl mx-auto mb-6"
+              }), /*#__PURE__*/require$$1.jsx(SkeletonText$1, {
+                lines: 1,
+                className: "h-12 w-80 mb-4"
+              }), /*#__PURE__*/require$$1.jsx(SkeletonText$1, {
+                lines: 1,
+                className: "h-6 w-96"
+              })]
+            }), /*#__PURE__*/require$$1.jsx("div", {
+              className: "max-w-7xl mx-auto",
+              children: /*#__PURE__*/require$$1.jsxs("div", {
+                className: "grid grid-cols-1 xl:grid-cols-3 gap-8",
+                children: [/*#__PURE__*/require$$1.jsxs("div", {
+                  className: "xl:col-span-2 space-y-6",
+                  children: [/*#__PURE__*/require$$1.jsxs("div", {
+                    className: "bg-white rounded-2xl shadow-xl p-6 border-2 border-primary-100",
+                    children: [/*#__PURE__*/require$$1.jsxs("div", {
+                      className: "flex items-center justify-between mb-4",
+                      children: [/*#__PURE__*/require$$1.jsx(SkeletonText$1, {
+                        lines: 1,
+                        className: "h-6 w-24"
+                      }), /*#__PURE__*/require$$1.jsx(SkeletonButton$1, {
+                        className: "w-40 h-12"
+                      })]
+                    }), /*#__PURE__*/require$$1.jsx(SkeletonText$1, {
+                      lines: 1,
+                      className: "h-4 w-48"
+                    })]
+                  }), Array.from({
+                    length: 3
+                  }).map(function (_, i) {
+                    return /*#__PURE__*/require$$1.jsx("div", {
+                      className: "bg-white rounded-3xl shadow-2xl border-2 border-gray-100 overflow-hidden p-8",
+                      children: /*#__PURE__*/require$$1.jsxs("div", {
+                        className: "flex items-start space-x-6",
+                        children: [/*#__PURE__*/require$$1.jsx(SkeletonLoader$1, {
+                          className: "w-8 h-8 bg-gray-200 rounded-full"
+                        }), /*#__PURE__*/require$$1.jsx(SkeletonImage$1, {
+                          className: "w-32 h-32"
+                        }), /*#__PURE__*/require$$1.jsxs("div", {
+                          className: "flex-1",
+                          children: [/*#__PURE__*/require$$1.jsx(SkeletonText$1, {
+                            lines: 2,
+                            className: "mb-4"
+                          }), /*#__PURE__*/require$$1.jsxs("div", {
+                            className: "flex items-center space-x-6",
+                            children: [/*#__PURE__*/require$$1.jsx(SkeletonLoader$1, {
+                              className: "w-20 h-8 bg-gray-200 rounded"
+                            }), /*#__PURE__*/require$$1.jsxs("div", {
+                              className: "flex items-center bg-primary-50 rounded-2xl border-2 border-primary-200 overflow-hidden",
+                              children: [/*#__PURE__*/require$$1.jsx(SkeletonLoader$1, {
+                                className: "w-12 h-12 bg-gray-200"
+                              }), /*#__PURE__*/require$$1.jsx(SkeletonLoader$1, {
+                                className: "w-16 h-12 bg-gray-200"
+                              }), /*#__PURE__*/require$$1.jsx(SkeletonLoader$1, {
+                                className: "w-12 h-12 bg-gray-200"
+                              })]
+                            })]
+                          })]
+                        }), /*#__PURE__*/require$$1.jsxs("div", {
+                          className: "text-right",
+                          children: [/*#__PURE__*/require$$1.jsx(SkeletonLoader$1, {
+                            className: "w-24 h-10 bg-gray-200 rounded mb-4"
+                          }), /*#__PURE__*/require$$1.jsx(SkeletonLoader$1, {
+                            className: "w-32 h-8 bg-gray-200 rounded"
+                          })]
+                        })]
+                      })
+                    }, i);
+                  })]
+                }), /*#__PURE__*/require$$1.jsx("div", {
+                  className: "xl:col-span-1",
+                  children: /*#__PURE__*/require$$1.jsx("div", {
+                    className: "sticky top-8",
+                    children: /*#__PURE__*/require$$1.jsxs("div", {
+                      className: "bg-white rounded-3xl shadow-3xl border-2 border-primary-100 p-8",
+                      children: [/*#__PURE__*/require$$1.jsxs("div", {
+                        className: "text-center mb-8",
+                        children: [/*#__PURE__*/require$$1.jsx(SkeletonLoader$1, {
+                          className: "w-16 h-16 bg-primary-100 rounded-full mx-auto mb-4"
+                        }), /*#__PURE__*/require$$1.jsx(SkeletonText$1, {
+                          lines: 1,
+                          className: "h-8 w-48 mb-2"
+                        }), /*#__PURE__*/require$$1.jsx(SkeletonLoader$1, {
+                          className: "w-20 h-1 bg-primary-500 mx-auto rounded-full"
+                        })]
+                      }), /*#__PURE__*/require$$1.jsx("div", {
+                        className: "space-y-6 mb-8",
+                        children: Array.from({
+                          length: 4
+                        }).map(function (_, i) {
+                          return /*#__PURE__*/require$$1.jsx("div", {
+                            className: "bg-gray-50 rounded-2xl p-4",
+                            children: /*#__PURE__*/require$$1.jsxs("div", {
+                              className: "flex justify-between items-center",
+                              children: [/*#__PURE__*/require$$1.jsx(SkeletonLoader$1, {
+                                className: "w-20 h-5 bg-gray-200 rounded"
+                              }), /*#__PURE__*/require$$1.jsx(SkeletonLoader$1, {
+                                className: "w-16 h-5 bg-gray-200 rounded"
+                              })]
+                            })
+                          }, i);
+                        })
+                      }), /*#__PURE__*/require$$1.jsxs("div", {
+                        className: "space-y-4",
+                        children: [/*#__PURE__*/require$$1.jsx(SkeletonButton$1, {}), /*#__PURE__*/require$$1.jsx(SkeletonButton$1, {})]
+                      })]
+                    })
+                  })
+                })]
+              })
+            })]
+          })]
+        })
+      });
+    }
+    return null;
+  }
+
+  // Classic variant - Traditional cart page design
+  if (variant === 'classic') {
+    return /*#__PURE__*/require$$1.jsx("section", {
+      id: id,
+      className: clsx("add-to-cart-page-classic", className),
+      children: /*#__PURE__*/require$$1.jsx("div", {
+        className: "min-h-screen bg-gray-50",
+        children: /*#__PURE__*/require$$1.jsxs("div", {
+          className: "container mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-8",
+          children: [/*#__PURE__*/require$$1.jsxs("div", {
+            className: "mb-6 lg:mb-8",
+            children: [/*#__PURE__*/require$$1.jsx("h1", {
+              className: "text-2xl sm:text-3xl font-bold text-gray-900 mb-2",
+              children: content.title
+            }), /*#__PURE__*/require$$1.jsx("p", {
+              className: "text-gray-600 text-sm sm:text-base",
+              children: content.subtitle
+            })]
+          }), /*#__PURE__*/require$$1.jsxs("div", {
+            className: "grid grid-cols-1 xl:grid-cols-3 gap-6 lg:gap-8",
+            children: [/*#__PURE__*/require$$1.jsx("div", {
+              className: "xl:col-span-2",
+              children: /*#__PURE__*/require$$1.jsxs("div", {
+                className: "bg-white rounded-lg shadow-sm border border-gray-200",
+                children: [/*#__PURE__*/require$$1.jsx("div", {
+                  className: "px-4 sm:px-6 py-4 border-b border-gray-200",
+                  children: /*#__PURE__*/require$$1.jsxs("div", {
+                    className: "flex items-center justify-between",
+                    children: [/*#__PURE__*/require$$1.jsxs("div", {
+                      className: "flex items-center space-x-3 sm:space-x-4",
+                      children: [/*#__PURE__*/require$$1.jsx("input", {
+                        type: "checkbox",
+                        checked: selectedItems.size === items.length,
+                        onChange: handleSelectAll,
+                        className: "w-4 h-4 text-primary-600 border-gray-300 rounded focus:ring-primary-500 touch-manipulation"
+                      }), /*#__PURE__*/require$$1.jsxs("span", {
+                        className: "font-medium text-gray-900 text-sm sm:text-base",
+                        children: [content.selection.selectAll, " (", items.length, ")"]
+                      })]
+                    }), /*#__PURE__*/require$$1.jsx("button", {
+                      className: "text-xs sm:text-sm text-red-600 hover:text-red-800 font-medium touch-manipulation",
+                      children: content.selection.removeSelected
+                    })]
+                  })
+                }), /*#__PURE__*/require$$1.jsx("div", {
+                  className: "divide-y divide-gray-200",
+                  children: items.map(function (item) {
+                    return /*#__PURE__*/require$$1.jsx("div", {
+                      className: "p-4 sm:p-6",
+                      children: /*#__PURE__*/require$$1.jsxs("div", {
+                        className: "flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-4",
+                        children: [/*#__PURE__*/require$$1.jsxs("div", {
+                          className: "flex items-center space-x-3 sm:space-x-4 flex-shrink-0",
+                          children: [/*#__PURE__*/require$$1.jsx("input", {
+                            type: "checkbox",
+                            checked: selectedItems.has(item.id),
+                            onChange: function onChange() {
+                              return handleItemSelect(item.id);
+                            },
+                            className: "w-4 h-4 text-primary-600 border-gray-300 rounded focus:ring-primary-500 touch-manipulation"
+                          }), /*#__PURE__*/require$$1.jsx("div", {
+                            className: "flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 bg-gray-100 rounded-lg overflow-hidden",
+                            children: /*#__PURE__*/require$$1.jsx("img", {
+                              src: item.image,
+                              alt: item.name,
+                              className: "w-full h-full object-cover"
+                            })
+                          })]
+                        }), /*#__PURE__*/require$$1.jsxs("div", {
+                          className: "flex-1 min-w-0",
+                          children: [/*#__PURE__*/require$$1.jsx("h3", {
+                            className: "text-base sm:text-lg font-medium text-gray-900 truncate",
+                            children: item.name
+                          }), /*#__PURE__*/require$$1.jsx("p", {
+                            className: "text-xs sm:text-sm text-gray-600 mt-1",
+                            children: item.description
+                          }), /*#__PURE__*/require$$1.jsxs("div", {
+                            className: "flex items-center space-x-3 sm:space-x-4 mt-2",
+                            children: [/*#__PURE__*/require$$1.jsxs("span", {
+                              className: "text-base sm:text-lg font-bold text-primary-600",
+                              children: ["$", item.price]
+                            }), item.originalPrice && /*#__PURE__*/require$$1.jsxs("span", {
+                              className: "text-xs sm:text-sm text-gray-500 line-through",
+                              children: ["$", item.originalPrice]
+                            })]
+                          })]
+                        }), /*#__PURE__*/require$$1.jsxs("div", {
+                          className: "flex items-center justify-between sm:flex-col sm:items-end sm:space-y-2 w-full sm:w-auto",
+                          children: [/*#__PURE__*/require$$1.jsxs("div", {
+                            className: "flex items-center border border-gray-300 rounded-md",
+                            children: [/*#__PURE__*/require$$1.jsx("button", {
+                              type: "button",
+                              onClick: function onClick() {
+                                return handleQuantityChange(item.id, getItemQuantity(item.id) - 1);
+                              },
+                              className: "px-2 sm:px-3 py-2 text-gray-600 hover:text-gray-800 hover:bg-gray-50 touch-manipulation",
+                              children: /*#__PURE__*/require$$1.jsx("span", {
+                                className: "text-sm",
+                                children: "\u2212"
+                              })
+                            }), /*#__PURE__*/require$$1.jsx("span", {
+                              className: "px-3 sm:px-4 py-2 text-center min-w-[2.5rem] sm:min-w-[3rem] text-sm",
+                              children: getItemQuantity(item.id)
+                            }), /*#__PURE__*/require$$1.jsx("button", {
+                              type: "button",
+                              onClick: function onClick() {
+                                return handleQuantityChange(item.id, getItemQuantity(item.id) + 1);
+                              },
+                              className: "px-2 sm:px-3 py-2 text-gray-600 hover:text-gray-800 hover:bg-gray-50 touch-manipulation",
+                              children: /*#__PURE__*/require$$1.jsx("span", {
+                                className: "text-sm",
+                                children: "+"
+                              })
+                            })]
+                          }), /*#__PURE__*/require$$1.jsxs("div", {
+                            className: "text-left sm:text-right",
+                            children: [/*#__PURE__*/require$$1.jsxs("div", {
+                              className: "text-base sm:text-lg font-bold text-gray-900",
+                              children: ["$", getItemTotal(item)]
+                            }), /*#__PURE__*/require$$1.jsx("button", {
+                              className: "text-xs sm:text-sm text-red-600 hover:text-red-800 mt-1 touch-manipulation",
+                              children: content.selection.removeItem
+                            })]
+                          })]
+                        })]
+                      })
+                    }, item.id);
+                  })
+                })]
+              })
+            }), /*#__PURE__*/require$$1.jsx("div", {
+              className: "xl:col-span-1",
+              children: /*#__PURE__*/require$$1.jsxs("div", {
+                className: "bg-white rounded-lg shadow-sm border border-gray-200 p-4 sm:p-6 sticky top-6 lg:top-8",
+                children: [/*#__PURE__*/require$$1.jsx("h2", {
+                  className: "text-lg sm:text-xl font-bold text-gray-900 mb-4 lg:mb-6",
+                  children: content.summary.title
+                }), /*#__PURE__*/require$$1.jsxs("div", {
+                  className: "space-y-3 lg:space-y-4 mb-4 lg:mb-6",
+                  children: [/*#__PURE__*/require$$1.jsxs("div", {
+                    className: "flex justify-between",
+                    children: [/*#__PURE__*/require$$1.jsxs("span", {
+                      className: "text-gray-600 text-sm sm:text-base",
+                      children: [content.summary.subtotal, " (", selectedItems.size, " items)"]
+                    }), /*#__PURE__*/require$$1.jsxs("span", {
+                      className: "font-medium",
+                      children: ["$", totals.subtotal.toFixed(2)]
+                    })]
+                  }), /*#__PURE__*/require$$1.jsxs("div", {
+                    className: "flex justify-between",
+                    children: [/*#__PURE__*/require$$1.jsx("span", {
+                      className: "text-gray-600 text-sm sm:text-base",
+                      children: content.summary.shipping
+                    }), /*#__PURE__*/require$$1.jsxs("span", {
+                      className: "font-medium",
+                      children: ["$", totals.shipping.toFixed(2)]
+                    })]
+                  }), /*#__PURE__*/require$$1.jsxs("div", {
+                    className: "flex justify-between",
+                    children: [/*#__PURE__*/require$$1.jsx("span", {
+                      className: "text-gray-600 text-sm sm:text-base",
+                      children: content.summary.tax
+                    }), /*#__PURE__*/require$$1.jsxs("span", {
+                      className: "font-medium",
+                      children: ["$", totals.tax.toFixed(2)]
+                    })]
+                  }), /*#__PURE__*/require$$1.jsx("div", {
+                    className: "border-t border-gray-200 pt-3 lg:pt-4",
+                    children: /*#__PURE__*/require$$1.jsxs("div", {
+                      className: "flex justify-between text-lg sm:text-xl font-bold",
+                      children: [/*#__PURE__*/require$$1.jsx("span", {
+                        children: content.summary.total
+                      }), /*#__PURE__*/require$$1.jsxs("span", {
+                        className: "text-primary-600",
+                        children: ["$", totals.total.toFixed(2)]
+                      })]
+                    })
+                  })]
+                }), /*#__PURE__*/require$$1.jsx("div", {
+                  className: "space-y-3",
+                  children: actions.map(function (action, index) {
+                    return /*#__PURE__*/require$$1.jsx("button", {
+                      type: "button",
+                      className: clsx("w-full py-3 px-4 rounded-lg font-semibold transition-colors touch-manipulation text-sm sm:text-base", action.variant === 'primary' && "bg-primary-600 hover:bg-primary-700 text-white", action.variant === 'secondary' && "bg-gray-100 hover:bg-gray-200 text-gray-900"),
+                      children: action.text
+                    }, index);
+                  })
+                })]
+              })
+            })]
+          })]
+        })
+      })
+    });
+  }
+
+  // Modern variant - Sleek, contemporary design
+  if (variant === 'modern') {
+    return /*#__PURE__*/require$$1.jsx("section", {
+      id: id,
+      className: clsx("add-to-cart-page-modern", className),
+      children: /*#__PURE__*/require$$1.jsx("div", {
+        className: "min-h-screen",
+        children: /*#__PURE__*/require$$1.jsxs("div", {
+          className: "container mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12",
+          children: [/*#__PURE__*/require$$1.jsxs("div", {
+            className: "text-center mb-8 lg:mb-12",
+            children: [/*#__PURE__*/require$$1.jsx("div", {
+              className: "inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-primary-100 rounded-full mb-4 lg:mb-6",
+              children: /*#__PURE__*/require$$1.jsx("svg", {
+                className: "w-8 h-8 sm:w-10 sm:h-10 text-primary-600",
+                fill: "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                children: /*#__PURE__*/require$$1.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2,
+                  d: content.icons.cart
+                })
+              })
+            }), /*#__PURE__*/require$$1.jsx("h1", {
+              className: "text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 lg:mb-4",
+              children: content.title
+            }), /*#__PURE__*/require$$1.jsx("p", {
+              className: "text-lg sm:text-xl text-gray-600",
+              children: content.subtitle
+            })]
+          }), /*#__PURE__*/require$$1.jsx("div", {
+            className: "max-w-6xl mx-auto",
+            children: /*#__PURE__*/require$$1.jsxs("div", {
+              className: "grid grid-cols-1 xl:grid-cols-2 gap-8 lg:gap-12",
+              children: [/*#__PURE__*/require$$1.jsx("div", {
+                className: "space-y-4 lg:space-y-6",
+                children: items.map(function (item, index) {
+                  return /*#__PURE__*/require$$1.jsx("div", {
+                    className: "bg-white rounded-xl lg:rounded-2xl shadow-xl border border-gray-100 p-4 lg:p-6 hover:shadow-2xl transition-shadow duration-300",
+                    style: {
+                      animationDelay: "".concat(index * 0.1, "s")
+                    },
+                    children: /*#__PURE__*/require$$1.jsxs("div", {
+                      className: "flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-4 lg:space-x-6",
+                      children: [/*#__PURE__*/require$$1.jsxs("div", {
+                        className: "flex items-center space-x-3 sm:space-x-4 flex-shrink-0",
+                        children: [/*#__PURE__*/require$$1.jsx("input", {
+                          type: "checkbox",
+                          checked: selectedItems.has(item.id),
+                          onChange: function onChange() {
+                            return handleItemSelect(item.id);
+                          },
+                          className: "w-4 h-4 sm:w-5 sm:h-5 text-primary-600 border-2 border-gray-300 rounded focus:ring-primary-500 touch-manipulation"
+                        }), /*#__PURE__*/require$$1.jsx("div", {
+                          className: "flex-shrink-0 w-20 h-20 sm:w-24 sm:h-24 rounded-xl overflow-hidden",
+                          children: /*#__PURE__*/require$$1.jsx("img", {
+                            src: item.image,
+                            alt: item.name,
+                            className: "w-full h-full object-cover"
+                          })
+                        })]
+                      }), /*#__PURE__*/require$$1.jsxs("div", {
+                        className: "flex-1 min-w-0",
+                        children: [/*#__PURE__*/require$$1.jsx("h3", {
+                          className: "text-lg sm:text-xl font-bold text-gray-900 mb-1",
+                          children: item.name
+                        }), /*#__PURE__*/require$$1.jsx("p", {
+                          className: "text-gray-600 text-sm lg:text-base mb-2 lg:mb-3",
+                          children: item.description
+                        }), /*#__PURE__*/require$$1.jsxs("div", {
+                          className: "flex items-center space-x-3 lg:space-x-4",
+                          children: [/*#__PURE__*/require$$1.jsxs("span", {
+                            className: "text-xl sm:text-2xl font-bold text-primary-600",
+                            children: ["$", item.price]
+                          }), item.originalPrice && /*#__PURE__*/require$$1.jsxs("span", {
+                            className: "text-base sm:text-lg text-gray-500 line-through",
+                            children: ["$", item.originalPrice]
+                          })]
+                        })]
+                      }), /*#__PURE__*/require$$1.jsxs("div", {
+                        className: "flex flex-col items-end space-y-3 lg:space-y-4 w-full sm:w-auto",
+                        children: [/*#__PURE__*/require$$1.jsxs("div", {
+                          className: "flex items-center bg-primary-50 rounded-xl border-2 border-primary-200 overflow-hidden",
+                          children: [/*#__PURE__*/require$$1.jsx("button", {
+                            type: "button",
+                            onClick: function onClick() {
+                              return handleQuantityChange(item.id, getItemQuantity(item.id) - 1);
+                            },
+                            className: "px-3 lg:px-4 py-2 lg:py-3 text-primary-700 hover:bg-primary-100 transition-colors font-bold text-base lg:text-lg touch-manipulation",
+                            children: "\u2212"
+                          }), /*#__PURE__*/require$$1.jsx("span", {
+                            className: "px-4 lg:px-6 py-2 lg:py-3 bg-white font-bold text-base lg:text-lg min-w-[2.5rem] lg:min-w-[3rem] text-center",
+                            children: getItemQuantity(item.id)
+                          }), /*#__PURE__*/require$$1.jsx("button", {
+                            type: "button",
+                            onClick: function onClick() {
+                              return handleQuantityChange(item.id, getItemQuantity(item.id) + 1);
+                            },
+                            className: "px-3 lg:px-4 py-2 lg:py-3 text-primary-700 hover:bg-primary-100 transition-colors font-bold text-base lg:text-lg touch-manipulation",
+                            children: "+"
+                          })]
+                        }), /*#__PURE__*/require$$1.jsxs("div", {
+                          className: "text-right",
+                          children: [/*#__PURE__*/require$$1.jsxs("div", {
+                            className: "text-xl sm:text-2xl font-bold text-gray-900",
+                            children: ["$", getItemTotal(item)]
+                          }), /*#__PURE__*/require$$1.jsx("button", {
+                            className: "text-xs sm:text-sm text-red-600 hover:text-red-800 font-medium mt-1 touch-manipulation",
+                            children: content.selection.removeItem
+                          })]
+                        })]
+                      })]
+                    })
+                  }, item.id);
+                })
+              }), /*#__PURE__*/require$$1.jsx("div", {
+                className: "xl:sticky xl:top-8",
+                children: /*#__PURE__*/require$$1.jsxs("div", {
+                  className: "bg-white rounded-2xl lg:rounded-3xl shadow-2xl border-2 border-primary-100 p-6 lg:p-8",
+                  children: [/*#__PURE__*/require$$1.jsxs("div", {
+                    className: "text-center mb-6 lg:mb-8",
+                    children: [/*#__PURE__*/require$$1.jsx("h2", {
+                      className: "text-2xl sm:text-3xl font-bold text-gray-900 mb-2",
+                      children: content.summary.title
+                    }), /*#__PURE__*/require$$1.jsx("div", {
+                      className: "w-12 h-1 sm:w-16 sm:h-1 bg-primary-500 mx-auto rounded-full"
+                    })]
+                  }), /*#__PURE__*/require$$1.jsxs("div", {
+                    className: "space-y-4 lg:space-y-6 mb-6 lg:mb-8",
+                    children: [/*#__PURE__*/require$$1.jsxs("div", {
+                      className: "flex justify-between items-center py-2 lg:py-3 border-b border-gray-100",
+                      children: [/*#__PURE__*/require$$1.jsx("span", {
+                        className: "text-gray-600 font-medium text-sm lg:text-base",
+                        children: content.summary.subtotal
+                      }), /*#__PURE__*/require$$1.jsxs("span", {
+                        className: "text-lg lg:text-xl font-bold",
+                        children: ["$", totals.subtotal.toFixed(2)]
+                      })]
+                    }), /*#__PURE__*/require$$1.jsxs("div", {
+                      className: "flex justify-between items-center py-2 lg:py-3 border-b border-gray-100",
+                      children: [/*#__PURE__*/require$$1.jsx("span", {
+                        className: "text-gray-600 font-medium text-sm lg:text-base",
+                        children: content.summary.shipping
+                      }), /*#__PURE__*/require$$1.jsxs("span", {
+                        className: "text-lg lg:text-xl font-bold",
+                        children: ["$", totals.shipping.toFixed(2)]
+                      })]
+                    }), /*#__PURE__*/require$$1.jsxs("div", {
+                      className: "flex justify-between items-center py-2 lg:py-3 border-b border-gray-100",
+                      children: [/*#__PURE__*/require$$1.jsx("span", {
+                        className: "text-gray-600 font-medium text-sm lg:text-base",
+                        children: content.summary.tax
+                      }), /*#__PURE__*/require$$1.jsxs("span", {
+                        className: "text-lg lg:text-xl font-bold",
+                        children: ["$", totals.tax.toFixed(2)]
+                      })]
+                    }), /*#__PURE__*/require$$1.jsx("div", {
+                      className: "bg-primary-50 rounded-xl lg:rounded-2xl p-4 lg:p-6",
+                      children: /*#__PURE__*/require$$1.jsxs("div", {
+                        className: "flex justify-between items-center",
+                        children: [/*#__PURE__*/require$$1.jsx("span", {
+                          className: "text-xl sm:text-2xl font-bold text-gray-900",
+                          children: content.summary.total
+                        }), /*#__PURE__*/require$$1.jsxs("span", {
+                          className: "text-2xl sm:text-3xl font-bold text-primary-600",
+                          children: ["$", totals.total.toFixed(2)]
+                        })]
+                      })
+                    })]
+                  }), /*#__PURE__*/require$$1.jsx("div", {
+                    className: "space-y-3 lg:space-y-4",
+                    children: actions.map(function (action, index) {
+                      return /*#__PURE__*/require$$1.jsx("button", {
+                        type: "button",
+                        className: clsx("w-full py-3 lg:py-4 px-4 lg:px-6 rounded-xl lg:rounded-2xl font-bold text-base lg:text-lg transition-all duration-300 transform hover:scale-105 touch-manipulation", action.variant === 'primary' && "bg-primary-600 hover:bg-primary-700 text-white shadow-xl hover:shadow-2xl", action.variant === 'secondary' && "bg-gray-100 hover:bg-gray-200 text-gray-900 border-2 border-gray-300"),
+                        children: action.text
+                      }, index);
+                    })
+                  })]
+                })
+              })]
+            })
+          })]
+        })
+      })
+    });
+  }
+
+  // Split variant - Split screen design
+  if (variant === 'split') {
+    return /*#__PURE__*/require$$1.jsx("section", {
+      id: id,
+      className: clsx("add-to-cart-page-split", className),
+      children: /*#__PURE__*/require$$1.jsxs("div", {
+        className: "min-h-screen flex flex-col lg:flex-row",
+        children: [/*#__PURE__*/require$$1.jsx("div", {
+          className: "flex-1 bg-white order-2 lg:order-1",
+          children: /*#__PURE__*/require$$1.jsxs("div", {
+            className: "h-full flex flex-col",
+            children: [/*#__PURE__*/require$$1.jsx("div", {
+              className: "px-4 sm:px-6 lg:px-8 py-4 lg:py-6 border-b border-gray-200",
+              children: /*#__PURE__*/require$$1.jsxs("div", {
+                className: "flex flex-col sm:flex-row items-start sm:items-center justify-between space-y-3 sm:space-y-0",
+                children: [/*#__PURE__*/require$$1.jsxs("div", {
+                  children: [/*#__PURE__*/require$$1.jsx("h1", {
+                    className: "text-xl sm:text-2xl font-bold text-gray-900",
+                    children: content.title
+                  }), /*#__PURE__*/require$$1.jsx("p", {
+                    className: "text-gray-600 mt-1 text-sm sm:text-base",
+                    children: content.subtitle
+                  })]
+                }), /*#__PURE__*/require$$1.jsx("button", {
+                  onClick: handleSelectAll,
+                  className: "px-3 lg:px-4 py-2 bg-primary-50 text-primary-700 rounded-lg font-medium hover:bg-primary-100 transition-colors touch-manipulation text-sm lg:text-base",
+                  children: selectedItems.size === items.length ? content.selection.deselectAll : content.selection.selectAll
+                })]
+              })
+            }), /*#__PURE__*/require$$1.jsx("div", {
+              className: "flex-1 overflow-y-auto",
+              children: /*#__PURE__*/require$$1.jsx("div", {
+                className: "p-4 sm:p-6 lg:p-8 space-y-4 lg:space-y-6",
+                children: items.map(function (item) {
+                  return /*#__PURE__*/require$$1.jsx("div", {
+                    className: "bg-gray-50 rounded-lg lg:rounded-xl p-4 lg:p-6 border border-gray-200",
+                    children: /*#__PURE__*/require$$1.jsxs("div", {
+                      className: "flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-4 lg:space-x-6",
+                      children: [/*#__PURE__*/require$$1.jsxs("div", {
+                        className: "flex items-center space-x-3 flex-shrink-0",
+                        children: [/*#__PURE__*/require$$1.jsx("input", {
+                          type: "checkbox",
+                          checked: selectedItems.has(item.id),
+                          onChange: function onChange() {
+                            return handleItemSelect(item.id);
+                          },
+                          className: "w-4 h-4 sm:w-5 sm:h-5 text-primary-600 border-2 border-gray-300 rounded focus:ring-primary-500 touch-manipulation"
+                        }), /*#__PURE__*/require$$1.jsx("div", {
+                          className: "flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-lg overflow-hidden border border-gray-200",
+                          children: /*#__PURE__*/require$$1.jsx("img", {
+                            src: item.image,
+                            alt: item.name,
+                            className: "w-full h-full object-cover"
+                          })
+                        })]
+                      }), /*#__PURE__*/require$$1.jsxs("div", {
+                        className: "flex-1",
+                        children: [/*#__PURE__*/require$$1.jsx("h3", {
+                          className: "text-base lg:text-lg font-bold text-gray-900 mb-1",
+                          children: item.name
+                        }), /*#__PURE__*/require$$1.jsx("p", {
+                          className: "text-gray-600 text-xs sm:text-sm mb-2 lg:mb-3",
+                          children: item.description
+                        }), /*#__PURE__*/require$$1.jsxs("div", {
+                          className: "flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-4",
+                          children: [/*#__PURE__*/require$$1.jsxs("span", {
+                            className: "text-lg sm:text-xl font-bold text-primary-600",
+                            children: ["$", item.price]
+                          }), /*#__PURE__*/require$$1.jsxs("div", {
+                            className: "flex items-center bg-white rounded-lg border border-gray-300 overflow-hidden",
+                            children: [/*#__PURE__*/require$$1.jsx("button", {
+                              type: "button",
+                              onClick: function onClick() {
+                                return handleQuantityChange(item.id, getItemQuantity(item.id) - 1);
+                              },
+                              className: "px-2 sm:px-3 py-2 text-gray-600 hover:text-primary-600 hover:bg-primary-50 transition-colors touch-manipulation",
+                              children: /*#__PURE__*/require$$1.jsx("span", {
+                                className: "text-sm",
+                                children: "\u2212"
+                              })
+                            }), /*#__PURE__*/require$$1.jsx("span", {
+                              className: "px-3 sm:px-4 py-2 font-semibold min-w-[2.5rem] sm:min-w-[3rem] text-center text-sm",
+                              children: getItemQuantity(item.id)
+                            }), /*#__PURE__*/require$$1.jsx("button", {
+                              type: "button",
+                              onClick: function onClick() {
+                                return handleQuantityChange(item.id, getItemQuantity(item.id) + 1);
+                              },
+                              className: "px-2 sm:px-3 py-2 text-gray-600 hover:text-primary-600 hover:bg-primary-50 transition-colors touch-manipulation",
+                              children: /*#__PURE__*/require$$1.jsx("span", {
+                                className: "text-sm",
+                                children: "+"
+                              })
+                            })]
+                          })]
+                        })]
+                      }), /*#__PURE__*/require$$1.jsxs("div", {
+                        className: "text-right w-full sm:w-auto",
+                        children: [/*#__PURE__*/require$$1.jsxs("div", {
+                          className: "text-xl sm:text-2xl font-bold text-gray-900",
+                          children: ["$", getItemTotal(item)]
+                        }), /*#__PURE__*/require$$1.jsx("button", {
+                          className: "text-xs sm:text-sm text-red-600 hover:text-red-800 mt-1 touch-manipulation",
+                          children: content.selection.removeItem
+                        })]
+                      })]
+                    })
+                  }, item.id);
+                })
+              })
+            })]
+          })
+        }), /*#__PURE__*/require$$1.jsx("div", {
+          className: "w-full sm:w-80 lg:w-96 text-white order-1 lg:order-2",
+          children: /*#__PURE__*/require$$1.jsxs("div", {
+            className: "h-full flex flex-col",
+            children: [/*#__PURE__*/require$$1.jsxs("div", {
+              className: "p-4 sm:p-6 lg:p-8 bg-gray-50",
+              children: [/*#__PURE__*/require$$1.jsx("h2", {
+                className: "text-xl sm:text-2xl font-bold mb-2 text-gray-900",
+                children: content.summary.title
+              }), /*#__PURE__*/require$$1.jsx("p", {
+                className: "text-gray-600 text-sm sm:text-base",
+                children: content.subtitle
+              })]
+            }), /*#__PURE__*/require$$1.jsxs("div", {
+              className: "flex-1 p-4 sm:p-6 lg:p-8 bg-gray-50",
+              children: [/*#__PURE__*/require$$1.jsxs("div", {
+                className: "space-y-4 lg:space-y-6 mb-6 lg:mb-8",
+                children: [/*#__PURE__*/require$$1.jsxs("div", {
+                  className: "flex justify-between items-center",
+                  children: [/*#__PURE__*/require$$1.jsx("span", {
+                    className: "text-gray-600 text-sm sm:text-base",
+                    children: content.summary.subtotal
+                  }), /*#__PURE__*/require$$1.jsxs("span", {
+                    className: "text-lg sm:text-xl font-bold text-gray-900",
+                    children: ["$", totals.subtotal.toFixed(2)]
+                  })]
+                }), /*#__PURE__*/require$$1.jsxs("div", {
+                  className: "flex justify-between items-center",
+                  children: [/*#__PURE__*/require$$1.jsx("span", {
+                    className: "text-gray-600 text-sm sm:text-base",
+                    children: content.summary.shipping
+                  }), /*#__PURE__*/require$$1.jsxs("span", {
+                    className: "text-lg sm:text-xl font-bold text-gray-900",
+                    children: ["$", totals.shipping.toFixed(2)]
+                  })]
+                }), /*#__PURE__*/require$$1.jsxs("div", {
+                  className: "flex justify-between items-center",
+                  children: [/*#__PURE__*/require$$1.jsx("span", {
+                    className: "text-gray-600 text-sm sm:text-base",
+                    children: content.summary.tax
+                  }), /*#__PURE__*/require$$1.jsxs("span", {
+                    className: "text-lg sm:text-xl font-bold text-gray-900",
+                    children: ["$", totals.tax.toFixed(2)]
+                  })]
+                }), /*#__PURE__*/require$$1.jsx("div", {
+                  className: "border-t border-primary-500 pt-4 lg:pt-6",
+                  children: /*#__PURE__*/require$$1.jsxs("div", {
+                    className: "flex justify-between items-center",
+                    children: [/*#__PURE__*/require$$1.jsx("span", {
+                      className: "text-xl sm:text-2xl font-bold text-gray-600",
+                      children: content.summary.total
+                    }), /*#__PURE__*/require$$1.jsxs("span", {
+                      className: "text-2xl sm:text-3xl font-bold text-gray-900",
+                      children: ["$", totals.total.toFixed(2)]
+                    })]
+                  })
+                })]
+              }), /*#__PURE__*/require$$1.jsx("div", {
+                className: "space-y-3 lg:space-y-4",
+                children: actions.map(function (action, index) {
+                  return /*#__PURE__*/require$$1.jsx("button", {
+                    type: "button",
+                    className: clsx("w-full py-3 lg:py-4 px-4 lg:px-6 rounded-xl font-bold transition-all duration-300 touch-manipulation text-sm sm:text-base", action.variant === 'primary' && "bg-white text-primary-700 hover:bg-gray-100 shadow-lg", action.variant === 'secondary' && "bg-primary-500 text-white hover:bg-primary-400"),
+                    children: action.text
+                  }, index);
+                })
+              })]
+            })]
+          })
+        })]
+      })
+    });
+  }
+
+  // Card variant - Card-based layout
+  if (variant === 'card') {
+    return /*#__PURE__*/require$$1.jsx("section", {
+      id: id,
+      className: clsx("add-to-cart-page-card", className),
+      children: /*#__PURE__*/require$$1.jsx("div", {
+        className: "min-h-screen",
+        children: /*#__PURE__*/require$$1.jsxs("div", {
+          className: "container mx-auto px-4 sm:px-6 lg:px-8 py-12",
+          children: [/*#__PURE__*/require$$1.jsxs("div", {
+            className: "text-center mb-12",
+            children: [/*#__PURE__*/require$$1.jsx("h1", {
+              className: "text-4xl font-bold text-gray-900 mb-4",
+              children: content.title
+            }), /*#__PURE__*/require$$1.jsx("p", {
+              className: "text-xl text-gray-600",
+              children: content.subtitle
+            })]
+          }), /*#__PURE__*/require$$1.jsx("div", {
+            className: "grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-8 lg:mb-12",
+            children: items.map(function (item, index) {
+              return /*#__PURE__*/require$$1.jsxs("div", {
+                className: "bg-white rounded-2xl shadow-xl border-2 border-gray-100 overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2",
+                style: {
+                  animationDelay: "".concat(index * 0.1, "s")
+                },
+                children: [/*#__PURE__*/require$$1.jsx("div", {
+                  className: "p-4 border-b border-gray-100",
+                  children: /*#__PURE__*/require$$1.jsxs("div", {
+                    className: "flex items-center justify-between",
+                    children: [/*#__PURE__*/require$$1.jsx("input", {
+                      type: "checkbox",
+                      checked: selectedItems.has(item.id),
+                      onChange: function onChange() {
+                        return handleItemSelect(item.id);
+                      },
+                      className: "w-5 h-5 text-primary-600 border-2 border-gray-300 rounded focus:ring-primary-500"
+                    }), /*#__PURE__*/require$$1.jsx("button", {
+                      className: "text-red-600 hover:text-red-800",
+                      children: /*#__PURE__*/require$$1.jsx("svg", {
+                        className: "w-5 h-5",
+                        fill: "none",
+                        stroke: "currentColor",
+                        viewBox: "0 0 24 24",
+                        children: /*#__PURE__*/require$$1.jsx("path", {
+                          strokeLinecap: "round",
+                          strokeLinejoin: "round",
+                          strokeWidth: 2,
+                          d: content.icons.remove
+                        })
+                      })
+                    })]
+                  })
+                }), /*#__PURE__*/require$$1.jsxs("div", {
+                  className: "p-6",
+                  children: [/*#__PURE__*/require$$1.jsx("div", {
+                    className: "w-full h-48 bg-gray-100 rounded-xl overflow-hidden mb-6",
+                    children: /*#__PURE__*/require$$1.jsx("img", {
+                      src: item.image,
+                      alt: item.name,
+                      className: "w-full h-full object-cover"
+                    })
+                  }), /*#__PURE__*/require$$1.jsxs("div", {
+                    className: "text-center mb-6",
+                    children: [/*#__PURE__*/require$$1.jsx("h3", {
+                      className: "text-xl font-bold text-gray-900 mb-2",
+                      children: item.name
+                    }), /*#__PURE__*/require$$1.jsx("p", {
+                      className: "text-gray-600 text-sm mb-4",
+                      children: item.description
+                    }), /*#__PURE__*/require$$1.jsxs("div", {
+                      className: "flex items-center justify-center space-x-2 mb-4",
+                      children: [/*#__PURE__*/require$$1.jsxs("span", {
+                        className: "text-2xl font-bold text-primary-600",
+                        children: ["$", item.price]
+                      }), item.originalPrice && /*#__PURE__*/require$$1.jsxs("span", {
+                        className: "text-lg text-gray-500 line-through",
+                        children: ["$", item.originalPrice]
+                      })]
+                    })]
+                  }), /*#__PURE__*/require$$1.jsx("div", {
+                    className: "flex items-center justify-center mb-6",
+                    children: /*#__PURE__*/require$$1.jsxs("div", {
+                      className: "flex items-center bg-primary-50 rounded-xl border-2 border-primary-200 overflow-hidden",
+                      children: [/*#__PURE__*/require$$1.jsx("button", {
+                        type: "button",
+                        onClick: function onClick() {
+                          return handleQuantityChange(item.id, getItemQuantity(item.id) - 1);
+                        },
+                        className: "px-4 py-3 text-primary-700 hover:bg-primary-100 transition-colors font-bold",
+                        children: "\u2212"
+                      }), /*#__PURE__*/require$$1.jsx("span", {
+                        className: "px-6 py-3 bg-white font-bold text-lg min-w-[3rem] text-center",
+                        children: getItemQuantity(item.id)
+                      }), /*#__PURE__*/require$$1.jsx("button", {
+                        type: "button",
+                        onClick: function onClick() {
+                          return handleQuantityChange(item.id, getItemQuantity(item.id) + 1);
+                        },
+                        className: "px-4 py-3 text-primary-700 hover:bg-primary-100 transition-colors font-bold",
+                        children: "+"
+                      })]
+                    })
+                  }), /*#__PURE__*/require$$1.jsx("div", {
+                    className: "text-center",
+                    children: /*#__PURE__*/require$$1.jsxs("div", {
+                      className: "text-2xl font-bold text-gray-900",
+                      children: ["$", getItemTotal(item)]
+                    })
+                  })]
+                })]
+              }, item.id);
+            })
+          }), /*#__PURE__*/require$$1.jsx("div", {
+            className: "max-w-md mx-auto",
+            children: /*#__PURE__*/require$$1.jsxs("div", {
+              className: "bg-white rounded-3xl shadow-2xl border-2 border-primary-100 p-8",
+              children: [/*#__PURE__*/require$$1.jsxs("div", {
+                className: "text-center mb-8",
+                children: [/*#__PURE__*/require$$1.jsx("h2", {
+                  className: "text-3xl font-bold text-gray-900 mb-2",
+                  children: content.summary.title
+                }), /*#__PURE__*/require$$1.jsx("div", {
+                  className: "w-16 h-1 bg-primary-500 mx-auto rounded-full"
+                })]
+              }), /*#__PURE__*/require$$1.jsxs("div", {
+                className: "space-y-4 mb-8",
+                children: [/*#__PURE__*/require$$1.jsxs("div", {
+                  className: "flex justify-between py-3 border-b border-gray-100",
+                  children: [/*#__PURE__*/require$$1.jsx("span", {
+                    className: "font-medium",
+                    children: content.summary.subtotal
+                  }), /*#__PURE__*/require$$1.jsxs("span", {
+                    className: "font-bold",
+                    children: ["$", totals.subtotal.toFixed(2)]
+                  })]
+                }), /*#__PURE__*/require$$1.jsxs("div", {
+                  className: "flex justify-between py-3 border-b border-gray-100",
+                  children: [/*#__PURE__*/require$$1.jsx("span", {
+                    className: "font-medium",
+                    children: content.summary.shipping
+                  }), /*#__PURE__*/require$$1.jsxs("span", {
+                    className: "font-bold",
+                    children: ["$", totals.shipping.toFixed(2)]
+                  })]
+                }), /*#__PURE__*/require$$1.jsxs("div", {
+                  className: "flex justify-between py-3 border-b border-gray-100",
+                  children: [/*#__PURE__*/require$$1.jsx("span", {
+                    className: "font-medium",
+                    children: content.summary.tax
+                  }), /*#__PURE__*/require$$1.jsxs("span", {
+                    className: "font-bold",
+                    children: ["$", totals.tax.toFixed(2)]
+                  })]
+                }), /*#__PURE__*/require$$1.jsx("div", {
+                  className: "bg-primary-50 rounded-2xl p-4",
+                  children: /*#__PURE__*/require$$1.jsxs("div", {
+                    className: "flex justify-between",
+                    children: [/*#__PURE__*/require$$1.jsx("span", {
+                      className: "text-xl font-bold",
+                      children: content.summary.total
+                    }), /*#__PURE__*/require$$1.jsxs("span", {
+                      className: "text-2xl font-bold text-primary-600",
+                      children: ["$", totals.total.toFixed(2)]
+                    })]
+                  })
+                })]
+              }), /*#__PURE__*/require$$1.jsx("div", {
+                className: "space-y-4",
+                children: actions.map(function (action, index) {
+                  return /*#__PURE__*/require$$1.jsx("button", {
+                    type: "button",
+                    className: clsx("w-full py-4 px-6 rounded-2xl font-bold text-lg transition-all duration-300 transform hover:scale-105", action.variant === 'primary' && "bg-primary-600 hover:bg-primary-700 text-white shadow-xl hover:shadow-2xl", action.variant === 'secondary' && "bg-gray-100 hover:bg-gray-200 text-gray-900 border-2 border-gray-300"),
+                    children: action.text
+                  }, index);
+                })
+              })]
+            })
+          })]
+        })
+      })
+    });
+  }
+
+  // Interactive variant - Highly interactive design
+  if (variant === 'interactive') {
+    return /*#__PURE__*/require$$1.jsx("section", {
+      id: id,
+      className: clsx("add-to-cart-page-interactive", className),
+      children: /*#__PURE__*/require$$1.jsxs("div", {
+        className: "min-h-screen relative overflow-hidden",
+        children: [/*#__PURE__*/require$$1.jsxs("div", {
+          className: "absolute inset-0 overflow-hidden",
+          children: [/*#__PURE__*/require$$1.jsx("div", {
+            className: "absolute -top-20 -right-20 sm:-top-40 sm:-right-40 w-40 h-40 sm:w-80 sm:h-80 bg-primary-200 rounded-full opacity-20 animate-pulse"
+          }), /*#__PURE__*/require$$1.jsx("div", {
+            className: "absolute -bottom-20 -left-20 sm:-bottom-40 sm:-left-40 w-48 h-48 sm:w-96 sm:h-96 bg-primary-300 rounded-full opacity-10 animate-pulse",
+            style: {
+              animationDelay: '2s'
+            }
+          }), /*#__PURE__*/require$$1.jsx("div", {
+            className: "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 sm:w-64 sm:h-64 bg-primary-400 rounded-full opacity-5 animate-ping",
+            style: {
+              animationDelay: '1s'
+            }
+          })]
+        }), /*#__PURE__*/require$$1.jsxs("div", {
+          className: "relative container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12",
+          children: [/*#__PURE__*/require$$1.jsxs("div", {
+            className: "text-center mb-8 sm:mb-12 lg:mb-16",
+            children: [/*#__PURE__*/require$$1.jsx("div", {
+              className: "inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-white rounded-full shadow-2xl mb-4 sm:mb-6 animate-bounce",
+              children: /*#__PURE__*/require$$1.jsx("svg", {
+                className: "w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 text-primary-600",
+                fill: "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                children: /*#__PURE__*/require$$1.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2,
+                  d: content.icons.cart
+                })
+              })
+            }), /*#__PURE__*/require$$1.jsx("h1", {
+              className: "text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-3 sm:mb-4 animate-fade-in-up",
+              children: content.title
+            }), /*#__PURE__*/require$$1.jsx("p", {
+              className: "text-base sm:text-lg lg:text-xl xl:text-2xl text-gray-600 animate-fade-in-up",
+              style: {
+                animationDelay: '0.2s'
+              },
+              children: content.subtitle
+            })]
+          }), /*#__PURE__*/require$$1.jsx("div", {
+            className: "max-w-7xl mx-auto",
+            children: /*#__PURE__*/require$$1.jsxs("div", {
+              className: "grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8",
+              children: [/*#__PURE__*/require$$1.jsxs("div", {
+                className: "lg:col-span-2 space-y-4 sm:space-y-6 order-2 lg:order-1",
+                children: [/*#__PURE__*/require$$1.jsxs("div", {
+                  className: "bg-white rounded-xl lg:rounded-2xl shadow-xl p-4 sm:p-6 border-2 border-primary-100",
+                  children: [/*#__PURE__*/require$$1.jsxs("div", {
+                    className: "flex flex-col sm:flex-row items-start sm:items-center justify-between mb-3 sm:mb-4 space-y-3 sm:space-y-0",
+                    children: [/*#__PURE__*/require$$1.jsx("h2", {
+                      className: "text-lg sm:text-xl lg:text-2xl font-bold text-gray-900",
+                      children: "Your Items"
+                    }), /*#__PURE__*/require$$1.jsx("button", {
+                      onClick: handleSelectAll,
+                      className: "px-4 py-2 sm:px-6 sm:py-3 bg-primary-50 text-primary-700 rounded-xl font-semibold hover:bg-primary-100 transition-all duration-300 hover:scale-105 touch-manipulation text-sm sm:text-base",
+                      children: selectedItems.size === items.length ? content.selection.deselectAll : content.selection.selectAll
+                    })]
+                  }), /*#__PURE__*/require$$1.jsx("p", {
+                    className: "text-gray-600 text-sm sm:text-base",
+                    children: content.selection.selectedText.replace('{selected}', selectedItems.size).replace('{total}', items.length)
+                  })]
+                }), items.map(function (item, index) {
+                  return /*#__PURE__*/require$$1.jsx("div", {
+                    className: clsx("bg-white rounded-2xl lg:rounded-3xl shadow-2xl border-2 border-gray-100 overflow-hidden transition-all duration-500 transform hover:scale-105 hover:shadow-3xl animate-fade-in-up cursor-pointer", selectedItems.has(item.id) && "ring-4 ring-primary-300 shadow-primary-200"),
+                    style: {
+                      animationDelay: "".concat(0.3 + index * 0.1, "s")
+                    },
+                    onClick: function onClick() {
+                      return handleItemSelect(item.id);
+                    },
+                    children: /*#__PURE__*/require$$1.jsx("div", {
+                      className: "p-4 sm:p-6 lg:p-8",
+                      children: /*#__PURE__*/require$$1.jsxs("div", {
+                        className: "flex flex-col lg:flex-row items-start space-y-4 lg:space-y-0 lg:space-x-6",
+                        children: [/*#__PURE__*/require$$1.jsxs("div", {
+                          className: "flex items-center space-x-4 lg:flex-col lg:items-start lg:space-x-0 lg:space-y-4",
+                          children: [/*#__PURE__*/require$$1.jsx("div", {
+                            className: "flex-shrink-0",
+                            children: /*#__PURE__*/require$$1.jsx("div", {
+                              className: clsx("w-6 h-6 sm:w-8 sm:h-8 rounded-full border-4 flex items-center justify-center transition-all duration-300 touch-manipulation", selectedItems.has(item.id) ? "bg-primary-600 border-primary-600" : "bg-white border-gray-300 hover:border-primary-400"),
+                              children: selectedItems.has(item.id) && /*#__PURE__*/require$$1.jsx("svg", {
+                                className: "w-3 h-3 sm:w-4 sm:h-4 text-white animate-fade-in",
+                                fill: "none",
+                                stroke: "currentColor",
+                                viewBox: "0 0 24 24",
+                                children: /*#__PURE__*/require$$1.jsx("path", {
+                                  strokeLinecap: "round",
+                                  strokeLinejoin: "round",
+                                  strokeWidth: 2,
+                                  d: "M5 13l4 4L19 7"
+                                })
+                              })
+                            })
+                          }), /*#__PURE__*/require$$1.jsx("div", {
+                            className: "flex-shrink-0 w-20 h-20 sm:w-24 sm:h-24 lg:w-32 lg:h-32 rounded-xl lg:rounded-2xl overflow-hidden",
+                            children: /*#__PURE__*/require$$1.jsx("img", {
+                              src: item.image,
+                              alt: item.name,
+                              className: "w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                            })
+                          })]
+                        }), /*#__PURE__*/require$$1.jsxs("div", {
+                          className: "flex-1 min-w-0",
+                          children: [/*#__PURE__*/require$$1.jsx("h3", {
+                            className: "text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-2 hover:text-primary-600 transition-colors cursor-pointer",
+                            children: item.name
+                          }), /*#__PURE__*/require$$1.jsx("p", {
+                            className: "text-gray-600 mb-3 lg:mb-4 text-sm sm:text-base",
+                            children: item.description
+                          }), /*#__PURE__*/require$$1.jsxs("div", {
+                            className: "flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-4 lg:space-x-6",
+                            children: [/*#__PURE__*/require$$1.jsxs("div", {
+                              className: "flex items-center space-x-2 sm:space-x-3",
+                              children: [/*#__PURE__*/require$$1.jsxs("span", {
+                                className: "text-xl sm:text-2xl lg:text-3xl font-bold text-primary-600",
+                                children: ["$", item.price]
+                              }), item.originalPrice && /*#__PURE__*/require$$1.jsxs("span", {
+                                className: "text-base sm:text-lg lg:text-xl text-gray-500 line-through",
+                                children: ["$", item.originalPrice]
+                              })]
+                            }), /*#__PURE__*/require$$1.jsxs("div", {
+                              className: "flex items-center bg-primary-50 rounded-xl lg:rounded-2xl border-2 border-primary-200 overflow-hidden",
+                              children: [/*#__PURE__*/require$$1.jsx("button", {
+                                type: "button",
+                                onClick: function onClick(e) {
+                                  e.stopPropagation();
+                                  handleQuantityChange(item.id, getItemQuantity(item.id) - 1);
+                                },
+                                className: "px-3 py-2 lg:px-4 lg:py-3 text-primary-700 hover:bg-primary-100 transition-all duration-200 hover:scale-110 font-bold text-lg lg:text-xl touch-manipulation",
+                                children: "\u2212"
+                              }), /*#__PURE__*/require$$1.jsx("div", {
+                                className: "px-4 lg:px-6 py-2 lg:py-3 bg-white min-w-[3rem] lg:min-w-[4rem] text-center",
+                                children: /*#__PURE__*/require$$1.jsx("span", {
+                                  className: "text-lg lg:text-2xl font-bold text-gray-900 animate-pulse",
+                                  style: {
+                                    animationDuration: '2s'
+                                  },
+                                  children: getItemQuantity(item.id)
+                                })
+                              }), /*#__PURE__*/require$$1.jsx("button", {
+                                type: "button",
+                                onClick: function onClick(e) {
+                                  e.stopPropagation();
+                                  handleQuantityChange(item.id, getItemQuantity(item.id) + 1);
+                                },
+                                className: "px-3 py-2 lg:px-4 lg:py-3 text-primary-700 hover:bg-primary-100 transition-all duration-200 hover:scale-110 font-bold text-lg lg:text-xl touch-manipulation",
+                                children: "+"
+                              })]
+                            })]
+                          })]
+                        }), /*#__PURE__*/require$$1.jsxs("div", {
+                          className: "flex flex-col sm:flex-row items-start sm:items-end justify-between sm:justify-end w-full sm:w-auto space-y-2 sm:space-y-0 sm:space-x-4",
+                          children: [/*#__PURE__*/require$$1.jsxs("div", {
+                            className: "text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900",
+                            children: ["$", getItemTotal(item)]
+                          }), /*#__PURE__*/require$$1.jsxs("button", {
+                            onClick: function onClick(e) {
+                              return e.stopPropagation();
+                            },
+                            className: "inline-flex items-center space-x-2 px-3 py-2 lg:px-4 lg:py-2 bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition-all duration-200 hover:scale-105 touch-manipulation text-sm lg:text-base",
+                            children: [/*#__PURE__*/require$$1.jsx("svg", {
+                              className: "w-3 h-3 lg:w-4 lg:h-4",
+                              fill: "none",
+                              stroke: "currentColor",
+                              viewBox: "0 0 24 24",
+                              children: /*#__PURE__*/require$$1.jsx("path", {
+                                strokeLinecap: "round",
+                                strokeLinejoin: "round",
+                                strokeWidth: 2,
+                                d: content.icons.remove
+                              })
+                            }), /*#__PURE__*/require$$1.jsx("span", {
+                              className: "font-medium",
+                              children: content.selection.removeItem
+                            })]
+                          })]
+                        })]
+                      })
+                    })
+                  }, item.id);
+                })]
+              }), /*#__PURE__*/require$$1.jsx("div", {
+                className: "lg:col-span-1 order-1 lg:order-2",
+                children: /*#__PURE__*/require$$1.jsx("div", {
+                  className: "sticky top-6 lg:top-8",
+                  children: /*#__PURE__*/require$$1.jsxs("div", {
+                    className: "bg-white rounded-2xl lg:rounded-3xl shadow-3xl border-2 border-primary-100 p-4 sm:p-6 lg:p-8 animate-fade-in-up",
+                    style: {
+                      animationDelay: '0.8s'
+                    },
+                    children: [/*#__PURE__*/require$$1.jsxs("div", {
+                      className: "text-center mb-6 lg:mb-8",
+                      children: [/*#__PURE__*/require$$1.jsx("div", {
+                        className: "inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 bg-primary-100 rounded-full mb-3 lg:mb-4",
+                        children: /*#__PURE__*/require$$1.jsx("svg", {
+                          className: "w-6 h-6 sm:w-8 sm:h-8 text-primary-600",
+                          fill: "none",
+                          stroke: "currentColor",
+                          viewBox: "0 0 24 24",
+                          children: /*#__PURE__*/require$$1.jsx("path", {
+                            strokeLinecap: "round",
+                            strokeLinejoin: "round",
+                            strokeWidth: 2,
+                            d: "M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"
+                          })
+                        })
+                      }), /*#__PURE__*/require$$1.jsx("h2", {
+                        className: "text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-2",
+                        children: content.summary.title
+                      }), /*#__PURE__*/require$$1.jsx("div", {
+                        className: "w-16 h-1 sm:w-20 sm:h-1 bg-primary-500 mx-auto rounded-full"
+                      })]
+                    }), /*#__PURE__*/require$$1.jsxs("div", {
+                      className: "space-y-4 lg:space-y-6 mb-6 lg:mb-8",
+                      children: [/*#__PURE__*/require$$1.jsx("div", {
+                        className: "bg-gray-50 rounded-xl lg:rounded-2xl p-3 lg:p-4 hover:bg-primary-50 transition-colors duration-300",
+                        children: /*#__PURE__*/require$$1.jsxs("div", {
+                          className: "flex justify-between items-center",
+                          children: [/*#__PURE__*/require$$1.jsx("span", {
+                            className: "text-gray-700 font-medium text-sm lg:text-base",
+                            children: content.summary.subtotal
+                          }), /*#__PURE__*/require$$1.jsxs("span", {
+                            className: "text-lg lg:text-xl font-bold text-gray-900",
+                            children: ["$", totals.subtotal.toFixed(2)]
+                          })]
+                        })
+                      }), /*#__PURE__*/require$$1.jsx("div", {
+                        className: "bg-gray-50 rounded-xl lg:rounded-2xl p-3 lg:p-4 hover:bg-primary-50 transition-colors duration-300",
+                        children: /*#__PURE__*/require$$1.jsxs("div", {
+                          className: "flex justify-between items-center",
+                          children: [/*#__PURE__*/require$$1.jsx("span", {
+                            className: "text-gray-700 font-medium text-sm lg:text-base",
+                            children: content.summary.shipping
+                          }), /*#__PURE__*/require$$1.jsxs("span", {
+                            className: "text-lg lg:text-xl font-bold text-gray-900",
+                            children: ["$", totals.shipping.toFixed(2)]
+                          })]
+                        })
+                      }), /*#__PURE__*/require$$1.jsx("div", {
+                        className: "bg-gray-50 rounded-xl lg:rounded-2xl p-3 lg:p-4 hover:bg-primary-50 transition-colors duration-300",
+                        children: /*#__PURE__*/require$$1.jsxs("div", {
+                          className: "flex justify-between items-center",
+                          children: [/*#__PURE__*/require$$1.jsx("span", {
+                            className: "text-gray-700 font-medium text-sm lg:text-base",
+                            children: content.summary.tax
+                          }), /*#__PURE__*/require$$1.jsxs("span", {
+                            className: "text-lg lg:text-xl font-bold text-gray-900",
+                            children: ["$", totals.tax.toFixed(2)]
+                          })]
+                        })
+                      }), /*#__PURE__*/require$$1.jsx("div", {
+                        className: "bg-primary-600 rounded-2xl lg:rounded-3xl p-4 lg:p-6 text-white",
+                        children: /*#__PURE__*/require$$1.jsxs("div", {
+                          className: "flex flex-col sm:flex-row sm:justify-between sm:items-center space-y-2 sm:space-y-0",
+                          children: [/*#__PURE__*/require$$1.jsx("span", {
+                            className: "text-lg sm:text-xl lg:text-2xl font-bold",
+                            children: content.summary.total
+                          }), /*#__PURE__*/require$$1.jsxs("span", {
+                            className: "text-2xl sm:text-3xl lg:text-4xl font-bold",
+                            children: ["$", totals.total.toFixed(2)]
+                          })]
+                        })
+                      })]
+                    }), /*#__PURE__*/require$$1.jsx("div", {
+                      className: "space-y-3 lg:space-y-4",
+                      children: actions.map(function (action, index) {
+                        return /*#__PURE__*/require$$1.jsxs("button", {
+                          type: "button",
+                          className: clsx("w-full py-3 lg:py-5 px-6 lg:px-8 rounded-xl lg:rounded-2xl font-bold text-base lg:text-lg transition-all duration-300 transform hover:scale-105 relative overflow-hidden group touch-manipulation", action.variant === 'primary' && "bg-primary-600 hover:bg-primary-700 text-white shadow-2xl hover:shadow-3xl", action.variant === 'secondary' && "bg-gray-100 hover:bg-gray-200 text-gray-900 border-2 border-gray-300"),
+                          children: [/*#__PURE__*/require$$1.jsx("div", {
+                            className: "absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                          }), /*#__PURE__*/require$$1.jsx("span", {
+                            className: "relative z-10",
+                            children: action.text
+                          })]
+                        }, index);
+                      })
+                    })]
+                  })
+                })
+              })]
+            })
+          })]
+        })]
+      })
+    });
+  }
+  return null;
+};
+
+var _excluded = ["className"];
+var SkeletonLoader = function SkeletonLoader(_ref) {
+  var className = _ref.className,
+    props = _objectWithoutProperties(_ref, _excluded);
+  return /*#__PURE__*/require$$1.jsx("div", _objectSpread2({
+    className: clsx("animate-pulse bg-gray-200 rounded", className)
+  }, props));
+};
+var SkeletonText = function SkeletonText(_ref2) {
+  var _ref2$lines = _ref2.lines,
+    lines = _ref2$lines === void 0 ? 1 : _ref2$lines,
+    className = _ref2.className;
+  return /*#__PURE__*/require$$1.jsx("div", {
+    className: clsx("space-y-2", className),
+    children: Array.from({
+      length: lines
+    }).map(function (_, i) {
+      return /*#__PURE__*/require$$1.jsx(SkeletonLoader, {
+        className: clsx("h-4 bg-gray-200 rounded", i === lines - 1 && lines > 1 ? "w-3/4" : "w-full")
+      }, i);
+    })
+  });
+};
+var SkeletonButton = function SkeletonButton(_ref3) {
+  var className = _ref3.className;
+  return /*#__PURE__*/require$$1.jsx(SkeletonLoader, {
+    className: clsx("h-12 w-full bg-gray-200 rounded-xl", className)
+  });
+};
+var SkeletonImage = function SkeletonImage(_ref4) {
+  var className = _ref4.className;
+  return /*#__PURE__*/require$$1.jsx(SkeletonLoader, {
+    className: clsx("bg-gray-200 rounded-xl", className)
+  });
+};
+
+/**
+ * AddToCartLayout Component
+ * @param {Object} props - Component props
+ * @param {Object} props.data - Layout configuration data
+ * @param {string} [props.data.layout='section'] - Layout type: 'section' | 'page' | 'combined' | 'sidebar' | 'modal'
+ * @param {Object} props.data.sectionData - Data for AddToCartSection
+ * @param {Object} props.data.pageData - Data for AddToCartPage
+ * @param {Object} [props.data.drawerData] - Dynamic product data for drawer/modal variants
+ * @param {Object} [props.data.productData] - Dynamic product information for combined/sidebar layouts
+ * @param {string} [props.data.productData.name] - Product name
+ * @param {string} [props.data.productData.title] - Page title (for combined layout)
+ * @param {string} [props.data.productData.subtitle] - Page subtitle (for combined layout)
+ * @param {string} [props.data.productData.description] - Product description
+ * @param {string} [props.data.productData.image] - Product image URL
+ * @param {Array} [props.data.productData.features] - Array of product feature strings
+ * @param {Array} [props.data.productData.specifications] - Array of specification objects with label/value
+ * @param {Array} [props.data.productData.highlights] - Array of highlight objects with title/description/icon
+ * @param {boolean} [props.loading=false] - Show skeleton loader
+ * @param {boolean} [props.autoLoad=false] - Auto-show skeleton for 2 seconds, then reveal content
+ * @param {string} [props.className] - Additional CSS classes
+ * @param {string} [props.id] - ID attribute for the section element
+ */
+var AddToCartLayout = function AddToCartLayout(_ref5) {
+  var _pageData$items, _pageData$items2, _pageData$items3, _pageData$items4;
+  var data = _ref5.data,
+    _ref5$loading = _ref5.loading,
+    loading = _ref5$loading === void 0 ? false : _ref5$loading,
+    _ref5$autoLoad = _ref5.autoLoad,
+    autoLoad = _ref5$autoLoad === void 0 ? false : _ref5$autoLoad,
+    className = _ref5.className,
+    id = _ref5.id;
+  // Safety check for data
+  if (!data || _typeof(data) !== 'object') {
+    console.error('AddToCartLayout: data prop is required and must be an object');
+    return null;
+  }
+  var _useState = require$$0.useState(false),
+    _useState2 = _slicedToArray(_useState, 2),
+    isModalOpen = _useState2[0],
+    setIsModalOpen = _useState2[1];
+  var _useState3 = require$$0.useState('section'),
+    _useState4 = _slicedToArray(_useState3, 2),
+    currentView = _useState4[0],
+    setCurrentView = _useState4[1]; // 'section' or 'page'
+  var _useState5 = require$$0.useState(1),
+    _useState6 = _slicedToArray(_useState5, 2),
+    quantity = _useState6[0],
+    setQuantity = _useState6[1];
+  var _useState7 = require$$0.useState(autoLoad),
+    _useState8 = _slicedToArray(_useState7, 2),
+    isLoading = _useState8[0],
+    setIsLoading = _useState8[1];
+
+  // Auto-loading functionality - show skeleton for 2 seconds, then content
+  require$$0.useEffect(function () {
+    if (autoLoad) {
+      var timer = setTimeout(function () {
+        setIsLoading(false);
+      }, 2000);
+      return function () {
+        return clearTimeout(timer);
+      };
+    }
+  }, [autoLoad]);
+
+  // If autoLoad is true, override the loading prop
+  var showSkeleton = autoLoad ? isLoading : loading;
+
+  // Handle escape key to close modal
+  var handleKeyDown = function handleKeyDown(event) {
+    if (event.key === 'Escape' && isModalOpen) {
+      setIsModalOpen(false);
+    }
+  };
+
+  // Add/remove event listener for escape key
+  require$$0.useEffect(function () {
+    if (isModalOpen) {
+      document.addEventListener('keydown', handleKeyDown);
+      return function () {
+        return document.removeEventListener('keydown', handleKeyDown);
+      };
+    }
+  }, [isModalOpen]);
+  var _data$layout = data.layout,
+    layout = _data$layout === void 0 ? 'section' : _data$layout,
+    _data$sectionData = data.sectionData,
+    sectionData = _data$sectionData === void 0 ? {} : _data$sectionData,
+    _data$pageData = data.pageData,
+    pageData = _data$pageData === void 0 ? {} : _data$pageData,
+    _data$modalTrigger = data.modalTrigger,
+    modalTrigger = _data$modalTrigger === void 0 ? null : _data$modalTrigger,
+    _data$drawerData = data.drawerData,
+    drawerData = _data$drawerData === void 0 ? {} : _data$drawerData,
+    _data$productData = data.productData,
+    productData = _data$productData === void 0 ? {} : _data$productData;
+
+  // Extract product data from drawerData or fallback to sectionData/pageData
+  var fallbackProductData = drawerData.product || {
+    name: sectionData.productName || ((_pageData$items = pageData.items) === null || _pageData$items === void 0 || (_pageData$items = _pageData$items[0]) === null || _pageData$items === void 0 ? void 0 : _pageData$items.name) || 'Product Name',
+    price: sectionData.price || ((_pageData$items2 = pageData.items) === null || _pageData$items2 === void 0 || (_pageData$items2 = _pageData$items2[0]) === null || _pageData$items2 === void 0 ? void 0 : _pageData$items2.price) || 0,
+    image: sectionData.image || ((_pageData$items3 = pageData.items) === null || _pageData$items3 === void 0 || (_pageData$items3 = _pageData$items3[0]) === null || _pageData$items3 === void 0 ? void 0 : _pageData$items3.image) || null,
+    originalPrice: sectionData.originalPrice || ((_pageData$items4 = pageData.items) === null || _pageData$items4 === void 0 || (_pageData$items4 = _pageData$items4[0]) === null || _pageData$items4 === void 0 ? void 0 : _pageData$items4.originalPrice) || null
+  };
+
+  // Merge fallback data with explicit productData, giving priority to explicit data
+  var mergedProductData = _objectSpread2(_objectSpread2({}, fallbackProductData), productData);
+  var handleQuantityChange = function handleQuantityChange(change) {
+    setQuantity(function (prev) {
+      return Math.max(1, prev + change);
+    });
+  };
+  var subtotal = mergedProductData.price * quantity;
+  var shipping = drawerData.shipping || 0;
+  var total = subtotal + shipping;
+
+  // Skeleton Layouts
+  if (showSkeleton) {
+    // Section Layout Skeleton
+    if (layout === 'section') {
+      return /*#__PURE__*/require$$1.jsx("section", {
+        id: id,
+        className: clsx("add-to-cart-layout-section", className),
+        children: /*#__PURE__*/require$$1.jsx("div", {
+          className: "bg-white rounded-2xl shadow-2xl border border-gray-100 p-8 backdrop-blur-sm bg-white/95",
+          children: /*#__PURE__*/require$$1.jsxs("div", {
+            className: "space-y-6",
+            children: [/*#__PURE__*/require$$1.jsxs("div", {
+              className: "text-center",
+              children: [/*#__PURE__*/require$$1.jsx(SkeletonText, {
+                lines: 1,
+                className: "h-8 w-48 mx-auto mb-2"
+              }), /*#__PURE__*/require$$1.jsx(SkeletonText, {
+                lines: 1,
+                className: "h-5 w-64 mx-auto"
+              })]
+            }), /*#__PURE__*/require$$1.jsxs("div", {
+              className: "flex items-center justify-center space-x-6",
+              children: [/*#__PURE__*/require$$1.jsx(SkeletonText, {
+                lines: 1,
+                className: "h-5 w-20"
+              }), /*#__PURE__*/require$$1.jsxs("div", {
+                className: "flex items-center bg-gray-50 rounded-xl border-2 border-gray-200 overflow-hidden",
+                children: [/*#__PURE__*/require$$1.jsx(SkeletonLoader, {
+                  className: "w-12 h-12 bg-gray-200"
+                }), /*#__PURE__*/require$$1.jsx(SkeletonLoader, {
+                  className: "w-20 h-12 bg-gray-200"
+                }), /*#__PURE__*/require$$1.jsx(SkeletonLoader, {
+                  className: "w-12 h-12 bg-gray-200"
+                })]
+              })]
+            }), /*#__PURE__*/require$$1.jsxs("div", {
+              className: "space-y-4",
+              children: [/*#__PURE__*/require$$1.jsx(SkeletonButton, {}), /*#__PURE__*/require$$1.jsx(SkeletonButton, {})]
+            }), /*#__PURE__*/require$$1.jsxs("div", {
+              className: "flex items-center justify-center space-x-8 pt-4 border-t border-gray-200",
+              children: [/*#__PURE__*/require$$1.jsx(SkeletonLoader, {
+                className: "w-32 h-12 bg-gray-200 rounded-xl"
+              }), /*#__PURE__*/require$$1.jsx(SkeletonLoader, {
+                className: "w-32 h-12 bg-gray-200 rounded-xl"
+              })]
+            })]
+          })
+        })
+      });
+    }
+
+    // Page Layout Skeleton
+    if (layout === 'page') {
+      return /*#__PURE__*/require$$1.jsx("section", {
+        id: id,
+        className: clsx("add-to-cart-layout-page", className),
+        children: /*#__PURE__*/require$$1.jsx("div", {
+          className: "min-h-screen bg-gray-50",
+          children: /*#__PURE__*/require$$1.jsxs("div", {
+            className: "container mx-auto px-4 sm:px-6 lg:px-8 py-8",
+            children: [/*#__PURE__*/require$$1.jsxs("div", {
+              className: "mb-8",
+              children: [/*#__PURE__*/require$$1.jsx(SkeletonText, {
+                lines: 1,
+                className: "h-10 w-64 mb-2"
+              }), /*#__PURE__*/require$$1.jsx(SkeletonText, {
+                lines: 1,
+                className: "h-6 w-48"
+              })]
+            }), /*#__PURE__*/require$$1.jsxs("div", {
+              className: "grid grid-cols-1 lg:grid-cols-3 gap-8",
+              children: [/*#__PURE__*/require$$1.jsx("div", {
+                className: "lg:col-span-2",
+                children: /*#__PURE__*/require$$1.jsxs("div", {
+                  className: "bg-white rounded-lg shadow-sm border border-gray-200",
+                  children: [/*#__PURE__*/require$$1.jsx("div", {
+                    className: "px-6 py-4 border-b border-gray-200",
+                    children: /*#__PURE__*/require$$1.jsx(SkeletonLoader, {
+                      className: "w-32 h-6 bg-gray-200 rounded"
+                    })
+                  }), /*#__PURE__*/require$$1.jsx("div", {
+                    className: "divide-y divide-gray-200",
+                    children: Array.from({
+                      length: 3
+                    }).map(function (_, i) {
+                      return /*#__PURE__*/require$$1.jsx("div", {
+                        className: "p-6",
+                        children: /*#__PURE__*/require$$1.jsxs("div", {
+                          className: "flex items-center space-x-4",
+                          children: [/*#__PURE__*/require$$1.jsx(SkeletonLoader, {
+                            className: "w-4 h-4 bg-gray-200 rounded"
+                          }), /*#__PURE__*/require$$1.jsx(SkeletonImage, {
+                            className: "w-20 h-20"
+                          }), /*#__PURE__*/require$$1.jsxs("div", {
+                            className: "flex-1 min-w-0",
+                            children: [/*#__PURE__*/require$$1.jsx(SkeletonText, {
+                              lines: 2,
+                              className: "mb-2"
+                            }), /*#__PURE__*/require$$1.jsx(SkeletonLoader, {
+                              className: "w-16 h-6 bg-gray-200 rounded mb-2"
+                            })]
+                          }), /*#__PURE__*/require$$1.jsxs("div", {
+                            className: "flex items-center space-x-4",
+                            children: [/*#__PURE__*/require$$1.jsxs("div", {
+                              className: "flex items-center border border-gray-300 rounded-md",
+                              children: [/*#__PURE__*/require$$1.jsx(SkeletonLoader, {
+                                className: "w-8 h-10 bg-gray-200"
+                              }), /*#__PURE__*/require$$1.jsx(SkeletonLoader, {
+                                className: "w-12 h-10 bg-gray-200"
+                              }), /*#__PURE__*/require$$1.jsx(SkeletonLoader, {
+                                className: "w-8 h-10 bg-gray-200"
+                              })]
+                            }), /*#__PURE__*/require$$1.jsxs("div", {
+                              className: "text-right",
+                              children: [/*#__PURE__*/require$$1.jsx(SkeletonLoader, {
+                                className: "w-16 h-8 bg-gray-200 rounded mb-1"
+                              }), /*#__PURE__*/require$$1.jsx(SkeletonLoader, {
+                                className: "w-20 h-5 bg-gray-200 rounded"
+                              })]
+                            })]
+                          })]
+                        })
+                      }, i);
+                    })
+                  })]
+                })
+              }), /*#__PURE__*/require$$1.jsx("div", {
+                className: "lg:col-span-1",
+                children: /*#__PURE__*/require$$1.jsxs("div", {
+                  className: "bg-white rounded-lg shadow-sm border border-gray-200 p-6 sticky top-8",
+                  children: [/*#__PURE__*/require$$1.jsx(SkeletonText, {
+                    lines: 1,
+                    className: "h-8 w-40 mb-6"
+                  }), /*#__PURE__*/require$$1.jsx("div", {
+                    className: "space-y-4 mb-6",
+                    children: Array.from({
+                      length: 4
+                    }).map(function (_, i) {
+                      return /*#__PURE__*/require$$1.jsxs("div", {
+                        className: "flex justify-between",
+                        children: [/*#__PURE__*/require$$1.jsx(SkeletonLoader, {
+                          className: "w-20 h-5 bg-gray-200 rounded"
+                        }), /*#__PURE__*/require$$1.jsx(SkeletonLoader, {
+                          className: "w-16 h-5 bg-gray-200 rounded"
+                        })]
+                      }, i);
+                    })
+                  }), /*#__PURE__*/require$$1.jsxs("div", {
+                    className: "space-y-3",
+                    children: [/*#__PURE__*/require$$1.jsx(SkeletonButton, {}), /*#__PURE__*/require$$1.jsx(SkeletonButton, {})]
+                  })]
+                })
+              })]
+            })]
+          })
+        })
+      });
+    }
+
+    // Combined Layout Skeleton
+    if (layout === 'combined') {
+      return /*#__PURE__*/require$$1.jsx("section", {
+        id: id,
+        className: clsx("add-to-cart-layout-combined", className),
+        children: /*#__PURE__*/require$$1.jsx("div", {
+          className: "min-h-screen",
+          children: /*#__PURE__*/require$$1.jsxs("div", {
+            className: "container mx-auto px-4 sm:px-6 lg:px-8 py-12",
+            children: [/*#__PURE__*/require$$1.jsxs("div", {
+              className: "text-center mb-12",
+              children: [/*#__PURE__*/require$$1.jsx(SkeletonText, {
+                lines: 1,
+                className: "h-12 w-80 mb-4"
+              }), /*#__PURE__*/require$$1.jsx(SkeletonText, {
+                lines: 1,
+                className: "h-6 w-96"
+              })]
+            }), /*#__PURE__*/require$$1.jsxs("div", {
+              className: "grid grid-cols-1 xl:grid-cols-2 gap-12 items-start",
+              children: [/*#__PURE__*/require$$1.jsxs("div", {
+                className: "space-y-8",
+                children: [/*#__PURE__*/require$$1.jsx("div", {
+                  className: "bg-white rounded-3xl shadow-2xl p-8",
+                  children: /*#__PURE__*/require$$1.jsx(SkeletonImage, {
+                    className: "w-full h-96"
+                  })
+                }), /*#__PURE__*/require$$1.jsxs("div", {
+                  className: "grid grid-cols-2 gap-6",
+                  children: [/*#__PURE__*/require$$1.jsxs("div", {
+                    className: "bg-white rounded-2xl shadow-lg p-6 text-center",
+                    children: [/*#__PURE__*/require$$1.jsx(SkeletonLoader, {
+                      className: "w-12 h-12 mx-auto mb-3 rounded-full"
+                    }), /*#__PURE__*/require$$1.jsx(SkeletonText, {
+                      lines: 2
+                    })]
+                  }), /*#__PURE__*/require$$1.jsxs("div", {
+                    className: "bg-white rounded-2xl shadow-lg p-6 text-center",
+                    children: [/*#__PURE__*/require$$1.jsx(SkeletonLoader, {
+                      className: "w-12 h-12 mx-auto mb-3 rounded-full"
+                    }), /*#__PURE__*/require$$1.jsx(SkeletonText, {
+                      lines: 2
+                    })]
+                  })]
+                })]
+              }), /*#__PURE__*/require$$1.jsxs("div", {
+                className: "xl:sticky xl:top-8",
+                children: [/*#__PURE__*/require$$1.jsx("div", {
+                  className: "bg-white rounded-2xl shadow-2xl border border-gray-100 p-8 backdrop-blur-sm bg-white/95",
+                  children: /*#__PURE__*/require$$1.jsxs("div", {
+                    className: "space-y-6",
+                    children: [/*#__PURE__*/require$$1.jsxs("div", {
+                      className: "text-center",
+                      children: [/*#__PURE__*/require$$1.jsx(SkeletonText, {
+                        lines: 1,
+                        className: "h-8 w-48 mb-2"
+                      }), /*#__PURE__*/require$$1.jsx(SkeletonText, {
+                        lines: 1,
+                        className: "h-5 w-64"
+                      })]
+                    }), /*#__PURE__*/require$$1.jsxs("div", {
+                      className: "flex items-center justify-center space-x-6",
+                      children: [/*#__PURE__*/require$$1.jsx(SkeletonText, {
+                        lines: 1,
+                        className: "h-5 w-20"
+                      }), /*#__PURE__*/require$$1.jsxs("div", {
+                        className: "flex items-center bg-gray-50 rounded-xl border-2 border-gray-200 overflow-hidden",
+                        children: [/*#__PURE__*/require$$1.jsx(SkeletonLoader, {
+                          className: "w-12 h-12 bg-gray-200"
+                        }), /*#__PURE__*/require$$1.jsx(SkeletonLoader, {
+                          className: "w-20 h-12 bg-gray-200"
+                        }), /*#__PURE__*/require$$1.jsx(SkeletonLoader, {
+                          className: "w-12 h-12 bg-gray-200"
+                        })]
+                      })]
+                    }), /*#__PURE__*/require$$1.jsxs("div", {
+                      className: "space-y-4",
+                      children: [/*#__PURE__*/require$$1.jsx(SkeletonButton, {}), /*#__PURE__*/require$$1.jsx(SkeletonButton, {})]
+                    }), /*#__PURE__*/require$$1.jsxs("div", {
+                      className: "flex items-center justify-center space-x-8 pt-4 border-t border-gray-200",
+                      children: [/*#__PURE__*/require$$1.jsx(SkeletonLoader, {
+                        className: "w-32 h-12 bg-gray-200 rounded-xl"
+                      }), /*#__PURE__*/require$$1.jsx(SkeletonLoader, {
+                        className: "w-32 h-12 bg-gray-200 rounded-xl"
+                      })]
+                    })]
+                  })
+                }), /*#__PURE__*/require$$1.jsxs("div", {
+                  className: "mt-8 bg-white rounded-2xl shadow-xl p-6",
+                  children: [/*#__PURE__*/require$$1.jsx(SkeletonLoader, {
+                    className: "w-32 h-6 bg-gray-200 rounded mb-4"
+                  }), /*#__PURE__*/require$$1.jsxs("div", {
+                    className: "text-center py-8",
+                    children: [/*#__PURE__*/require$$1.jsx(SkeletonLoader, {
+                      className: "w-16 h-16 bg-gray-200 rounded-full mx-auto mb-4"
+                    }), /*#__PURE__*/require$$1.jsx(SkeletonText, {
+                      lines: 2,
+                      className: "text-center"
+                    })]
+                  })]
+                })]
+              })]
+            })]
+          })
+        })
+      });
+    }
+
+    // Sidebar Layout Skeleton
+    if (layout === 'sidebar') {
+      return /*#__PURE__*/require$$1.jsx("section", {
+        id: id,
+        className: clsx("add-to-cart-layout-sidebar", className),
+        children: /*#__PURE__*/require$$1.jsx("div", {
+          className: "min-h-screen bg-gray-50",
+          children: /*#__PURE__*/require$$1.jsx("div", {
+            className: "container mx-auto px-4 sm:px-6 lg:px-8",
+            children: /*#__PURE__*/require$$1.jsxs("div", {
+              className: "flex flex-col lg:flex-row gap-8 py-12",
+              children: [/*#__PURE__*/require$$1.jsx("div", {
+                className: "flex-1",
+                children: /*#__PURE__*/require$$1.jsxs("div", {
+                  className: "bg-white rounded-2xl shadow-xl p-8 mb-8",
+                  children: [/*#__PURE__*/require$$1.jsx(SkeletonText, {
+                    lines: 1,
+                    className: "h-10 w-64 mb-6"
+                  }), /*#__PURE__*/require$$1.jsxs("div", {
+                    className: "grid grid-cols-1 lg:grid-cols-2 gap-8",
+                    children: [/*#__PURE__*/require$$1.jsxs("div", {
+                      className: "space-y-6",
+                      children: [/*#__PURE__*/require$$1.jsx(SkeletonImage, {
+                        className: "w-full h-64"
+                      }), /*#__PURE__*/require$$1.jsxs("div", {
+                        className: "space-y-4",
+                        children: [/*#__PURE__*/require$$1.jsx(SkeletonText, {
+                          lines: 1,
+                          className: "h-6 w-32"
+                        }), /*#__PURE__*/require$$1.jsx(SkeletonText, {
+                          lines: 4
+                        })]
+                      })]
+                    }), /*#__PURE__*/require$$1.jsxs("div", {
+                      className: "space-y-6",
+                      children: [/*#__PURE__*/require$$1.jsx(SkeletonText, {
+                        lines: 1,
+                        className: "h-6 w-40"
+                      }), /*#__PURE__*/require$$1.jsx(SkeletonText, {
+                        lines: 6
+                      }), /*#__PURE__*/require$$1.jsx(SkeletonText, {
+                        lines: 1,
+                        className: "h-6 w-36"
+                      }), /*#__PURE__*/require$$1.jsx("div", {
+                        className: "grid grid-cols-2 gap-4",
+                        children: Array.from({
+                          length: 4
+                        }).map(function (_, i) {
+                          return /*#__PURE__*/require$$1.jsx(SkeletonLoader, {
+                            className: "h-16 bg-gray-200 rounded-lg"
+                          }, i);
+                        })
+                      })]
+                    })]
+                  })]
+                })
+              }), /*#__PURE__*/require$$1.jsx("div", {
+                className: "lg:w-96",
+                children: /*#__PURE__*/require$$1.jsxs("div", {
+                  className: "sticky top-8",
+                  children: [/*#__PURE__*/require$$1.jsx("div", {
+                    className: "bg-white rounded-2xl shadow-2xl border border-gray-100 p-8 backdrop-blur-sm bg-white/95",
+                    children: /*#__PURE__*/require$$1.jsxs("div", {
+                      className: "space-y-6",
+                      children: [/*#__PURE__*/require$$1.jsxs("div", {
+                        className: "text-center",
+                        children: [/*#__PURE__*/require$$1.jsx(SkeletonText, {
+                          lines: 1,
+                          className: "h-8 w-48 mb-2"
+                        }), /*#__PURE__*/require$$1.jsx(SkeletonText, {
+                          lines: 1,
+                          className: "h-5 w-64"
+                        })]
+                      }), /*#__PURE__*/require$$1.jsxs("div", {
+                        className: "flex items-center justify-center space-x-6",
+                        children: [/*#__PURE__*/require$$1.jsx(SkeletonText, {
+                          lines: 1,
+                          className: "h-5 w-20"
+                        }), /*#__PURE__*/require$$1.jsxs("div", {
+                          className: "flex items-center bg-gray-50 rounded-xl border-2 border-gray-200 overflow-hidden",
+                          children: [/*#__PURE__*/require$$1.jsx(SkeletonLoader, {
+                            className: "w-12 h-12 bg-gray-200"
+                          }), /*#__PURE__*/require$$1.jsx(SkeletonLoader, {
+                            className: "w-20 h-12 bg-gray-200"
+                          }), /*#__PURE__*/require$$1.jsx(SkeletonLoader, {
+                            className: "w-12 h-12 bg-gray-200"
+                          })]
+                        })]
+                      }), /*#__PURE__*/require$$1.jsxs("div", {
+                        className: "space-y-4",
+                        children: [/*#__PURE__*/require$$1.jsx(SkeletonButton, {}), /*#__PURE__*/require$$1.jsx(SkeletonButton, {})]
+                      }), /*#__PURE__*/require$$1.jsxs("div", {
+                        className: "flex items-center justify-center space-x-8 pt-4 border-t border-gray-200",
+                        children: [/*#__PURE__*/require$$1.jsx(SkeletonLoader, {
+                          className: "w-32 h-12 bg-gray-200 rounded-xl"
+                        }), /*#__PURE__*/require$$1.jsx(SkeletonLoader, {
+                          className: "w-32 h-12 bg-gray-200 rounded-xl"
+                        })]
+                      })]
+                    })
+                  }), /*#__PURE__*/require$$1.jsxs("div", {
+                    className: "mt-6 bg-white rounded-2xl shadow-xl p-6",
+                    children: [/*#__PURE__*/require$$1.jsx(SkeletonLoader, {
+                      className: "w-32 h-6 bg-gray-200 rounded mb-4"
+                    }), /*#__PURE__*/require$$1.jsxs("div", {
+                      className: "text-center py-6",
+                      children: [/*#__PURE__*/require$$1.jsx(SkeletonLoader, {
+                        className: "w-12 h-12 bg-gray-200 rounded-full mx-auto mb-3"
+                      }), /*#__PURE__*/require$$1.jsx(SkeletonText, {
+                        lines: 1,
+                        className: "text-center h-4 w-32"
+                      })]
+                    })]
+                  })]
+                })
+              })]
+            })
+          })
+        })
+      });
+    }
+
+    // Modal Layout Skeleton
+    if (layout === 'modal') {
+      return /*#__PURE__*/require$$1.jsxs("section", {
+        id: id,
+        className: clsx("add-to-cart-layout-modal", className),
+        children: [/*#__PURE__*/require$$1.jsx("div", {
+          className: "text-center py-12",
+          children: /*#__PURE__*/require$$1.jsx(SkeletonButton, {
+            className: "w-64 h-16"
+          })
+        }), /*#__PURE__*/require$$1.jsx("div", {
+          className: "fixed inset-0 z-50 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center",
+          children: /*#__PURE__*/require$$1.jsxs("div", {
+            className: "w-full max-w-md bg-white shadow-xl rounded-lg",
+            children: [/*#__PURE__*/require$$1.jsxs("div", {
+              className: "flex items-center justify-between p-4 border-b border-gray-200",
+              children: [/*#__PURE__*/require$$1.jsx(SkeletonText, {
+                lines: 1,
+                className: "h-6 w-32"
+              }), /*#__PURE__*/require$$1.jsx(SkeletonLoader, {
+                className: "w-5 h-5 bg-gray-200 rounded"
+              })]
+            }), /*#__PURE__*/require$$1.jsxs("div", {
+              className: "flex-1 overflow-y-auto",
+              children: [/*#__PURE__*/require$$1.jsx("div", {
+                className: "p-4 border-b border-gray-200",
+                children: /*#__PURE__*/require$$1.jsxs("div", {
+                  className: "flex items-center space-x-3",
+                  children: [/*#__PURE__*/require$$1.jsx(SkeletonImage, {
+                    className: "w-16 h-16"
+                  }), /*#__PURE__*/require$$1.jsx("div", {
+                    className: "flex-1",
+                    children: /*#__PURE__*/require$$1.jsx(SkeletonText, {
+                      lines: 2
+                    })
+                  }), /*#__PURE__*/require$$1.jsx(SkeletonLoader, {
+                    className: "w-4 h-4 bg-gray-200 rounded"
+                  })]
+                })
+              }), /*#__PURE__*/require$$1.jsx("div", {
+                className: "p-4 border-b border-gray-200",
+                children: /*#__PURE__*/require$$1.jsxs("div", {
+                  className: "flex items-center justify-between",
+                  children: [/*#__PURE__*/require$$1.jsx(SkeletonText, {
+                    lines: 1,
+                    className: "h-5 w-16"
+                  }), /*#__PURE__*/require$$1.jsxs("div", {
+                    className: "flex items-center space-x-2",
+                    children: [/*#__PURE__*/require$$1.jsx(SkeletonLoader, {
+                      className: "w-8 h-8 bg-gray-200 rounded"
+                    }), /*#__PURE__*/require$$1.jsx(SkeletonLoader, {
+                      className: "w-8 h-8 bg-gray-200 rounded"
+                    }), /*#__PURE__*/require$$1.jsx(SkeletonLoader, {
+                      className: "w-8 h-8 bg-gray-200 rounded"
+                    })]
+                  })]
+                })
+              }), /*#__PURE__*/require$$1.jsx("div", {
+                className: "p-4 border-b border-gray-200",
+                children: /*#__PURE__*/require$$1.jsx("div", {
+                  className: "space-y-2",
+                  children: Array.from({
+                    length: 3
+                  }).map(function (_, i) {
+                    return /*#__PURE__*/require$$1.jsxs("div", {
+                      className: "flex justify-between",
+                      children: [/*#__PURE__*/require$$1.jsx(SkeletonLoader, {
+                        className: "w-16 h-4 bg-gray-200 rounded"
+                      }), /*#__PURE__*/require$$1.jsx(SkeletonLoader, {
+                        className: "w-12 h-4 bg-gray-200 rounded"
+                      })]
+                    }, i);
+                  })
+                })
+              }), /*#__PURE__*/require$$1.jsxs("div", {
+                className: "p-4 space-y-3",
+                children: [/*#__PURE__*/require$$1.jsx(SkeletonButton, {}), /*#__PURE__*/require$$1.jsx(SkeletonButton, {}), /*#__PURE__*/require$$1.jsx(SkeletonButton, {})]
+              })]
+            })]
+          })
+        })]
+      });
+    }
+    return null;
+  }
+
+  // Section Layout - Just the add to cart section
+  if (layout === 'section') {
+    return /*#__PURE__*/require$$1.jsx("section", {
+      id: id,
+      className: clsx("add-to-cart-layout-section", className),
+      children: /*#__PURE__*/require$$1.jsx(AddToCartSection, {
+        data: _objectSpread2(_objectSpread2({}, sectionData), {}, {
+          productName: mergedProductData.name,
+          price: mergedProductData.price,
+          image: mergedProductData.image,
+          originalPrice: mergedProductData.originalPrice
+        }),
+        loading: loading
+      })
+    });
+  }
+
+  // Page Layout - Full cart page
+  if (layout === 'page') {
+    return /*#__PURE__*/require$$1.jsx("section", {
+      id: id,
+      className: clsx("add-to-cart-layout-page", className),
+      children: /*#__PURE__*/require$$1.jsx(AddToCartPage, {
+        data: pageData,
+        loading: loading
+      })
+    });
+  }
+
+  // Combined Layout - Section and page together
+  if (layout === 'combined') {
+    return /*#__PURE__*/require$$1.jsx("section", {
+      id: id,
+      className: clsx("add-to-cart-layout-combined", className),
+      children: /*#__PURE__*/require$$1.jsx("div", {
+        className: "min-h-screen",
+        children: /*#__PURE__*/require$$1.jsxs("div", {
+          className: "container mx-auto px-4 sm:px-6 lg:px-8 py-12",
+          children: [/*#__PURE__*/require$$1.jsxs("div", {
+            className: "text-center mb-8 lg:mb-12",
+            children: [/*#__PURE__*/require$$1.jsx("h1", {
+              className: "text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 lg:mb-4",
+              children: mergedProductData.title || 'Product Details'
+            }), /*#__PURE__*/require$$1.jsx("p", {
+              className: "text-lg sm:text-xl text-gray-600",
+              children: mergedProductData.subtitle || 'Add this amazing product to your cart'
+            })]
+          }), /*#__PURE__*/require$$1.jsxs("div", {
+            className: "grid grid-cols-1 xl:grid-cols-2 gap-6 lg:gap-12 items-start",
+            children: [/*#__PURE__*/require$$1.jsxs("div", {
+              className: "space-y-6 lg:space-y-8 order-2 xl:order-1",
+              children: [/*#__PURE__*/require$$1.jsx("div", {
+                className: "bg-white rounded-2xl lg:rounded-3xl shadow-xl lg:shadow-2xl p-4 sm:p-6 lg:p-8",
+                children: /*#__PURE__*/require$$1.jsx("div", {
+                  className: "w-full h-64 sm:h-80 lg:h-96  rounded-xl lg:rounded-2xl flex items-center justify-center overflow-hidden",
+                  children: mergedProductData.image ? /*#__PURE__*/require$$1.jsx("img", {
+                    src: mergedProductData.image,
+                    alt: mergedProductData.name || 'Product Image',
+                    className: "w-full h-full object-cover rounded-xl lg:rounded-2xl"
+                  }) : /*#__PURE__*/require$$1.jsxs("div", {
+                    className: "text-center",
+                    children: [/*#__PURE__*/require$$1.jsx("svg", {
+                      className: "w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 text-primary-600 mx-auto mb-3 lg:mb-4",
+                      fill: "none",
+                      stroke: "currentColor",
+                      viewBox: "0 0 24 24",
+                      children: /*#__PURE__*/require$$1.jsx("path", {
+                        strokeLinecap: "round",
+                        strokeLinejoin: "round",
+                        strokeWidth: 2,
+                        d: "M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
+                      })
+                    }), /*#__PURE__*/require$$1.jsx("p", {
+                      className: "text-primary-700 font-semibold text-sm lg:text-base",
+                      children: mergedProductData.name || 'Product Image'
+                    })]
+                  })
+                })
+              }), /*#__PURE__*/require$$1.jsxs("div", {
+                className: "grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6",
+                children: [(mergedProductData.highlights || []).slice(0, 2).map(function (highlight, index) {
+                  return /*#__PURE__*/require$$1.jsxs("div", {
+                    className: "bg-white rounded-xl lg:rounded-2xl shadow-lg p-4 lg:p-6 text-center",
+                    children: [/*#__PURE__*/require$$1.jsx("svg", {
+                      className: "w-8 h-8 lg:w-12 lg:h-12 mx-auto mb-2 lg:mb-3 ".concat(highlight.iconColor || 'text-green-600'),
+                      fill: "none",
+                      stroke: "currentColor",
+                      viewBox: "0 0 24 24",
+                      children: /*#__PURE__*/require$$1.jsx("path", {
+                        strokeLinecap: "round",
+                        strokeLinejoin: "round",
+                        strokeWidth: 2,
+                        d: highlight.icon || "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                      })
+                    }), /*#__PURE__*/require$$1.jsx("h3", {
+                      className: "font-bold text-gray-900 mb-1 text-sm lg:text-base",
+                      children: highlight.title
+                    }), /*#__PURE__*/require$$1.jsx("p", {
+                      className: "text-xs lg:text-sm text-gray-600",
+                      children: highlight.description
+                    })]
+                  }, index);
+                }), (mergedProductData.highlights || []).length === 0 && /*#__PURE__*/require$$1.jsxs(require$$1.Fragment, {
+                  children: [/*#__PURE__*/require$$1.jsxs("div", {
+                    className: "bg-white rounded-xl lg:rounded-2xl shadow-lg p-4 lg:p-6 text-center",
+                    children: [/*#__PURE__*/require$$1.jsx("svg", {
+                      className: "w-8 h-8 lg:w-12 lg:h-12 text-green-600 mx-auto mb-2 lg:mb-3",
+                      fill: "none",
+                      stroke: "currentColor",
+                      viewBox: "0 0 24 24",
+                      children: /*#__PURE__*/require$$1.jsx("path", {
+                        strokeLinecap: "round",
+                        strokeLinejoin: "round",
+                        strokeWidth: 2,
+                        d: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                      })
+                    }), /*#__PURE__*/require$$1.jsx("h3", {
+                      className: "font-bold text-gray-900 mb-1 text-sm lg:text-base",
+                      children: "Quality Assured"
+                    }), /*#__PURE__*/require$$1.jsx("p", {
+                      className: "text-xs lg:text-sm text-gray-600",
+                      children: "Premium quality guaranteed"
+                    })]
+                  }), /*#__PURE__*/require$$1.jsxs("div", {
+                    className: "bg-white rounded-xl lg:rounded-2xl shadow-lg p-4 lg:p-6 text-center",
+                    children: [/*#__PURE__*/require$$1.jsx("svg", {
+                      className: "w-8 h-8 lg:w-12 lg:h-12 text-blue-600 mx-auto mb-2 lg:mb-3",
+                      fill: "none",
+                      stroke: "currentColor",
+                      viewBox: "0 0 24 24",
+                      children: /*#__PURE__*/require$$1.jsx("path", {
+                        strokeLinecap: "round",
+                        strokeLinejoin: "round",
+                        strokeWidth: 2,
+                        d: "M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
+                      })
+                    }), /*#__PURE__*/require$$1.jsx("h3", {
+                      className: "font-bold text-gray-900 mb-1 text-sm lg:text-base",
+                      children: "Fast Shipping"
+                    }), /*#__PURE__*/require$$1.jsx("p", {
+                      className: "text-xs lg:text-sm text-gray-600",
+                      children: "Delivered in 2-3 days"
+                    })]
+                  })]
+                })]
+              })]
+            }), /*#__PURE__*/require$$1.jsxs("div", {
+              className: "xl:sticky xl:top-8 order-1 xl:order-2",
+              children: [/*#__PURE__*/require$$1.jsx(AddToCartSection, {
+                data: _objectSpread2(_objectSpread2({}, sectionData), {}, {
+                  productName: mergedProductData.name,
+                  price: mergedProductData.price,
+                  image: mergedProductData.image,
+                  originalPrice: mergedProductData.originalPrice
+                }),
+                loading: loading
+              }), /*#__PURE__*/require$$1.jsxs("div", {
+                className: "mt-6 lg:mt-8 bg-white rounded-xl lg:rounded-2xl shadow-xl p-4 lg:p-6",
+                children: [/*#__PURE__*/require$$1.jsxs("div", {
+                  className: "flex items-center justify-between mb-4",
+                  children: [/*#__PURE__*/require$$1.jsx("h3", {
+                    className: "text-base lg:text-lg font-bold text-gray-900",
+                    children: "Cart Preview"
+                  }), /*#__PURE__*/require$$1.jsx("button", {
+                    onClick: function onClick() {
+                      return setCurrentView('page');
+                    },
+                    className: "text-primary-600 hover:text-primary-700 font-semibold text-xs lg:text-sm",
+                    children: "View Full Cart \u2192"
+                  })]
+                }), /*#__PURE__*/require$$1.jsxs("div", {
+                  className: "text-center py-6 lg:py-8",
+                  children: [/*#__PURE__*/require$$1.jsx("svg", {
+                    className: "w-12 h-12 lg:w-16 lg:h-16 text-gray-400 mx-auto mb-3 lg:mb-4",
+                    fill: "none",
+                    stroke: "currentColor",
+                    viewBox: "0 0 24 24",
+                    children: /*#__PURE__*/require$$1.jsx("path", {
+                      strokeLinecap: "round",
+                      strokeLinejoin: "round",
+                      strokeWidth: 2,
+                      d: "M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+                    })
+                  }), /*#__PURE__*/require$$1.jsx("p", {
+                    className: "text-gray-600 text-sm lg:text-base",
+                    children: "Your cart is empty"
+                  }), /*#__PURE__*/require$$1.jsx("p", {
+                    className: "text-xs lg:text-sm text-gray-500 mt-1",
+                    children: "Add items to see them here"
+                  })]
+                })]
+              })]
+            })]
+          }), /*#__PURE__*/require$$1.jsx("div", {
+            className: "text-center mt-8 lg:mt-12",
+            children: /*#__PURE__*/require$$1.jsxs("div", {
+              className: "inline-flex bg-gray-100 rounded-xl p-1",
+              children: [/*#__PURE__*/require$$1.jsx("button", {
+                onClick: function onClick() {
+                  return setCurrentView('section');
+                },
+                className: clsx("px-4 py-2 sm:px-6 sm:py-3 rounded-lg font-semibold transition-all duration-300 text-sm sm:text-base", currentView === 'section' ? "bg-white text-gray-900 shadow-lg" : "text-gray-600 hover:text-gray-900"),
+                children: "Product View"
+              }), /*#__PURE__*/require$$1.jsx("button", {
+                onClick: function onClick() {
+                  return setCurrentView('page');
+                },
+                className: clsx("px-4 py-2 sm:px-6 sm:py-3 rounded-lg font-semibold transition-all duration-300 text-sm sm:text-base", currentView === 'page' ? "bg-white text-gray-900 shadow-lg" : "text-gray-600 hover:text-gray-900"),
+                children: "Cart View"
+              })]
+            })
+          }), currentView === 'page' && /*#__PURE__*/require$$1.jsx("div", {
+            className: "mt-12",
+            children: /*#__PURE__*/require$$1.jsx(AddToCartPage, {
+              data: pageData,
+              loading: loading
+            })
+          })]
+        })
+      })
+    });
+  }
+
+  // Sidebar Layout - Section in a sidebar with main content
+  if (layout === 'sidebar') {
+    return /*#__PURE__*/require$$1.jsx("section", {
+      id: id,
+      className: clsx("add-to-cart-layout-sidebar", className),
+      children: /*#__PURE__*/require$$1.jsx("div", {
+        className: "min-h-screen bg-gray-50",
+        children: /*#__PURE__*/require$$1.jsxs("div", {
+          className: "container mx-auto px-4 sm:px-6 lg:px-8",
+          children: [/*#__PURE__*/require$$1.jsxs("div", {
+            className: "flex flex-col xl:flex-row gap-6 lg:gap-8 py-8 lg:py-12",
+            children: [/*#__PURE__*/require$$1.jsx("div", {
+              className: "flex-1 order-2 xl:order-1",
+              children: /*#__PURE__*/require$$1.jsxs("div", {
+                className: "bg-white rounded-xl lg:rounded-2xl shadow-xl p-4 sm:p-6 lg:p-8 mb-6 lg:mb-8",
+                children: [/*#__PURE__*/require$$1.jsx("h1", {
+                  className: "text-2xl sm:text-3xl font-bold text-gray-900 mb-4 lg:mb-6",
+                  children: mergedProductData.name || 'Amazing Product'
+                }), /*#__PURE__*/require$$1.jsxs("div", {
+                  className: "grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8",
+                  children: [/*#__PURE__*/require$$1.jsxs("div", {
+                    className: "space-y-4 lg:space-y-6",
+                    children: [/*#__PURE__*/require$$1.jsx("div", {
+                      className: "w-full h-48 sm:h-56 lg:h-64 rounded-lg lg:rounded-xl flex items-center justify-center overflow-hidden",
+                      children: mergedProductData.image ? /*#__PURE__*/require$$1.jsx("img", {
+                        src: mergedProductData.image,
+                        alt: mergedProductData.name || 'Product Image',
+                        className: "w-full h-full object-cover rounded-lg lg:rounded-xl"
+                      }) : /*#__PURE__*/require$$1.jsx("svg", {
+                        className: "w-12 h-12 sm:w-16 sm:h-16 text-primary-600",
+                        fill: "none",
+                        stroke: "currentColor",
+                        viewBox: "0 0 24 24",
+                        children: /*#__PURE__*/require$$1.jsx("path", {
+                          strokeLinecap: "round",
+                          strokeLinejoin: "round",
+                          strokeWidth: 2,
+                          d: "M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
+                        })
+                      })
+                    }), /*#__PURE__*/require$$1.jsxs("div", {
+                      className: "space-y-3 lg:space-y-4",
+                      children: [/*#__PURE__*/require$$1.jsx("h3", {
+                        className: "text-lg lg:text-xl font-bold text-gray-900",
+                        children: "Product Features"
+                      }), /*#__PURE__*/require$$1.jsxs("ul", {
+                        className: "space-y-2",
+                        children: [(mergedProductData.features || []).map(function (feature, index) {
+                          return /*#__PURE__*/require$$1.jsxs("li", {
+                            className: "flex items-center space-x-2 lg:space-x-3",
+                            children: [/*#__PURE__*/require$$1.jsx("svg", {
+                              className: "w-4 h-4 lg:w-5 lg:h-5 text-green-600 flex-shrink-0",
+                              fill: "none",
+                              stroke: "currentColor",
+                              viewBox: "0 0 24 24",
+                              children: /*#__PURE__*/require$$1.jsx("path", {
+                                strokeLinecap: "round",
+                                strokeLinejoin: "round",
+                                strokeWidth: 2,
+                                d: "M5 13l4 4L19 7"
+                              })
+                            }), /*#__PURE__*/require$$1.jsx("span", {
+                              className: "text-gray-700 text-sm lg:text-base",
+                              children: feature
+                            })]
+                          }, index);
+                        }), (mergedProductData.features || []).length === 0 && /*#__PURE__*/require$$1.jsxs(require$$1.Fragment, {
+                          children: [/*#__PURE__*/require$$1.jsxs("li", {
+                            className: "flex items-center space-x-2 lg:space-x-3",
+                            children: [/*#__PURE__*/require$$1.jsx("svg", {
+                              className: "w-4 h-4 lg:w-5 lg:h-5 text-green-600 flex-shrink-0",
+                              fill: "none",
+                              stroke: "currentColor",
+                              viewBox: "0 0 24 24",
+                              children: /*#__PURE__*/require$$1.jsx("path", {
+                                strokeLinecap: "round",
+                                strokeLinejoin: "round",
+                                strokeWidth: 2,
+                                d: "M5 13l4 4L19 7"
+                              })
+                            }), /*#__PURE__*/require$$1.jsx("span", {
+                              className: "text-gray-700 text-sm lg:text-base",
+                              children: "Premium quality materials"
+                            })]
+                          }), /*#__PURE__*/require$$1.jsxs("li", {
+                            className: "flex items-center space-x-2 lg:space-x-3",
+                            children: [/*#__PURE__*/require$$1.jsx("svg", {
+                              className: "w-4 h-4 lg:w-5 lg:h-5 text-green-600 flex-shrink-0",
+                              fill: "none",
+                              stroke: "currentColor",
+                              viewBox: "0 0 24 24",
+                              children: /*#__PURE__*/require$$1.jsx("path", {
+                                strokeLinecap: "round",
+                                strokeLinejoin: "round",
+                                strokeWidth: 2,
+                                d: "M5 13l4 4L19 7"
+                              })
+                            }), /*#__PURE__*/require$$1.jsx("span", {
+                              className: "text-gray-700 text-sm lg:text-base",
+                              children: "Fast and free shipping"
+                            })]
+                          }), /*#__PURE__*/require$$1.jsxs("li", {
+                            className: "flex items-center space-x-2 lg:space-x-3",
+                            children: [/*#__PURE__*/require$$1.jsx("svg", {
+                              className: "w-4 h-4 lg:w-5 lg:h-5 text-green-600 flex-shrink-0",
+                              fill: "none",
+                              stroke: "currentColor",
+                              viewBox: "0 0 24 24",
+                              children: /*#__PURE__*/require$$1.jsx("path", {
+                                strokeLinecap: "round",
+                                strokeLinejoin: "round",
+                                strokeWidth: 2,
+                                d: "M5 13l4 4L19 7"
+                              })
+                            }), /*#__PURE__*/require$$1.jsx("span", {
+                              className: "text-gray-700 text-sm lg:text-base",
+                              children: "30-day money back guarantee"
+                            })]
+                          })]
+                        })]
+                      })]
+                    })]
+                  }), /*#__PURE__*/require$$1.jsxs("div", {
+                    className: "space-y-4 lg:space-y-6",
+                    children: [/*#__PURE__*/require$$1.jsxs("div", {
+                      children: [/*#__PURE__*/require$$1.jsx("h3", {
+                        className: "text-lg lg:text-xl font-bold text-gray-900 mb-3 lg:mb-4",
+                        children: "Description"
+                      }), /*#__PURE__*/require$$1.jsx("p", {
+                        className: "text-gray-600 leading-relaxed text-sm lg:text-base",
+                        children: mergedProductData.description || 'This amazing product combines cutting-edge technology with elegant design. Experience the perfect blend of functionality and style that will elevate your everyday life. Crafted with premium materials and attention to detail.'
+                      })]
+                    }), /*#__PURE__*/require$$1.jsxs("div", {
+                      children: [/*#__PURE__*/require$$1.jsx("h3", {
+                        className: "text-lg lg:text-xl font-bold text-gray-900 mb-3 lg:mb-4",
+                        children: "Specifications"
+                      }), /*#__PURE__*/require$$1.jsxs("div", {
+                        className: "grid grid-cols-1 sm:grid-cols-2 gap-3 lg:gap-4",
+                        children: [(mergedProductData.specifications || []).map(function (spec, index) {
+                          return /*#__PURE__*/require$$1.jsxs("div", {
+                            className: "bg-gray-50 rounded-lg p-3",
+                            children: [/*#__PURE__*/require$$1.jsx("div", {
+                              className: "text-xs lg:text-sm text-gray-600",
+                              children: spec.label
+                            }), /*#__PURE__*/require$$1.jsx("div", {
+                              className: "font-semibold text-gray-900 text-sm lg:text-base",
+                              children: spec.value
+                            })]
+                          }, index);
+                        }), (mergedProductData.specifications || []).length === 0 && /*#__PURE__*/require$$1.jsxs(require$$1.Fragment, {
+                          children: [/*#__PURE__*/require$$1.jsxs("div", {
+                            className: "bg-gray-50 rounded-lg p-3",
+                            children: [/*#__PURE__*/require$$1.jsx("div", {
+                              className: "text-xs lg:text-sm text-gray-600",
+                              children: "Weight"
+                            }), /*#__PURE__*/require$$1.jsx("div", {
+                              className: "font-semibold text-gray-900 text-sm lg:text-base",
+                              children: "2.5 lbs"
+                            })]
+                          }), /*#__PURE__*/require$$1.jsxs("div", {
+                            className: "bg-gray-50 rounded-lg p-3",
+                            children: [/*#__PURE__*/require$$1.jsx("div", {
+                              className: "text-xs lg:text-sm text-gray-600",
+                              children: "Dimensions"
+                            }), /*#__PURE__*/require$$1.jsx("div", {
+                              className: "font-semibold text-gray-900 text-sm lg:text-base",
+                              children: "12\" x 8\" x 3\""
+                            })]
+                          }), /*#__PURE__*/require$$1.jsxs("div", {
+                            className: "bg-gray-50 rounded-lg p-3",
+                            children: [/*#__PURE__*/require$$1.jsx("div", {
+                              className: "text-xs lg:text-sm text-gray-600",
+                              children: "Material"
+                            }), /*#__PURE__*/require$$1.jsx("div", {
+                              className: "font-semibold text-gray-900 text-sm lg:text-base",
+                              children: "Premium"
+                            })]
+                          }), /*#__PURE__*/require$$1.jsxs("div", {
+                            className: "bg-gray-50 rounded-lg p-3",
+                            children: [/*#__PURE__*/require$$1.jsx("div", {
+                              className: "text-xs lg:text-sm text-gray-600",
+                              children: "Warranty"
+                            }), /*#__PURE__*/require$$1.jsx("div", {
+                              className: "font-semibold text-gray-900 text-sm lg:text-base",
+                              children: "2 Years"
+                            })]
+                          })]
+                        })]
+                      })]
+                    })]
+                  })]
+                })]
+              })
+            }), /*#__PURE__*/require$$1.jsx("div", {
+              className: "xl:w-96 order-1 xl:order-2",
+              children: /*#__PURE__*/require$$1.jsxs("div", {
+                className: "sticky top-6 lg:top-8",
+                children: [/*#__PURE__*/require$$1.jsx(AddToCartSection, {
+                  data: _objectSpread2(_objectSpread2({}, sectionData), {}, {
+                    productName: mergedProductData.name,
+                    price: mergedProductData.price,
+                    image: mergedProductData.image,
+                    originalPrice: mergedProductData.originalPrice
+                  }),
+                  loading: loading
+                }), /*#__PURE__*/require$$1.jsxs("div", {
+                  className: "mt-4 lg:mt-6 bg-white rounded-xl lg:rounded-2xl shadow-xl p-4 lg:p-6",
+                  children: [/*#__PURE__*/require$$1.jsxs("div", {
+                    className: "flex items-center justify-between mb-4",
+                    children: [/*#__PURE__*/require$$1.jsx("h3", {
+                      className: "font-bold text-gray-900 text-sm lg:text-base",
+                      children: "Quick Cart Access"
+                    }), /*#__PURE__*/require$$1.jsx("button", {
+                      onClick: function onClick() {
+                        return setCurrentView('page');
+                      },
+                      className: "text-primary-600 hover:text-primary-700 font-semibold text-xs lg:text-sm",
+                      children: "View Cart \u2192"
+                    })]
+                  }), /*#__PURE__*/require$$1.jsxs("div", {
+                    className: "text-center py-4 lg:py-6",
+                    children: [/*#__PURE__*/require$$1.jsx("svg", {
+                      className: "w-10 h-10 lg:w-12 lg:h-12 text-gray-400 mx-auto mb-2 lg:mb-3",
+                      fill: "none",
+                      stroke: "currentColor",
+                      viewBox: "0 0 24 24",
+                      children: /*#__PURE__*/require$$1.jsx("path", {
+                        strokeLinecap: "round",
+                        strokeLinejoin: "round",
+                        strokeWidth: 2,
+                        d: "M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+                      })
+                    }), /*#__PURE__*/require$$1.jsx("p", {
+                      className: "text-xs lg:text-sm text-gray-600",
+                      children: "No items in cart yet"
+                    })]
+                  })]
+                })]
+              })
+            })]
+          }), currentView === 'page' && /*#__PURE__*/require$$1.jsxs("div", {
+            className: "mt-12",
+            children: [/*#__PURE__*/require$$1.jsxs("div", {
+              className: "flex items-center justify-between mb-6",
+              children: [/*#__PURE__*/require$$1.jsx("h2", {
+                className: "text-2xl font-bold text-gray-900",
+                children: "Your Shopping Cart"
+              }), /*#__PURE__*/require$$1.jsx("button", {
+                onClick: function onClick() {
+                  return setCurrentView('section');
+                },
+                className: "px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors",
+                children: "Back to Product"
+              })]
+            }), /*#__PURE__*/require$$1.jsx(AddToCartPage, {
+              data: pageData,
+              loading: loading
+            })]
+          })]
+        })
+      })
+    });
+  }
+
+  // Modal Layout - Add to cart in a modal drawer
+  if (layout === 'modal') {
+    return /*#__PURE__*/require$$1.jsxs("section", {
+      id: id,
+      className: clsx("add-to-cart-layout-modal", className),
+      children: [/*#__PURE__*/require$$1.jsx("div", {
+        className: "text-center py-12",
+        children: modalTrigger ? /*#__PURE__*/require$$1.jsx("div", {
+          onClick: function onClick() {
+            return setIsModalOpen(true);
+          },
+          children: modalTrigger
+        }) : /*#__PURE__*/require$$1.jsxs("button", {
+          onClick: function onClick() {
+            return setIsModalOpen(true);
+          },
+          className: "inline-flex items-center space-x-3 px-8 py-4 bg-primary-600 text-white rounded-2xl font-bold text-lg hover:bg-primary-700 transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl",
+          children: [/*#__PURE__*/require$$1.jsx("svg", {
+            className: "w-6 h-6",
+            fill: "none",
+            stroke: "currentColor",
+            viewBox: "0 0 24 24",
+            children: /*#__PURE__*/require$$1.jsx("path", {
+              strokeLinecap: "round",
+              strokeLinejoin: "round",
+              strokeWidth: 2,
+              d: "M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+            })
+          }), /*#__PURE__*/require$$1.jsx("span", {
+            children: "Open Add to Cart"
+          })]
+        })
+      }), isModalOpen && /*#__PURE__*/require$$1.jsxs(require$$1.Fragment, {
+        children: [/*#__PURE__*/require$$1.jsx("div", {
+          className: "fixed inset-0 z-50 bg-black bg-opacity-50 backdrop-blur-sm",
+          onClick: function onClick() {
+            return setIsModalOpen(false);
+          }
+        }), /*#__PURE__*/require$$1.jsxs("div", {
+          className: "fixed top-0 right-0 z-50 h-full w-full sm:max-w-sm md:max-w-md bg-white shadow-xl transform transition-transform duration-300 ease-in-out ".concat(isModalOpen ? 'translate-x-0' : 'translate-x-full'),
+          onClick: function onClick(e) {
+            return e.stopPropagation();
+          },
+          children: [/*#__PURE__*/require$$1.jsxs("div", {
+            className: "flex items-center justify-between p-4 sm:p-6 border-b border-gray-200",
+            children: [/*#__PURE__*/require$$1.jsx("h2", {
+              className: "text-lg sm:text-xl font-semibold text-gray-900",
+              children: "Add to Cart"
+            }), /*#__PURE__*/require$$1.jsx("button", {
+              onClick: function onClick(e) {
+                e.stopPropagation();
+                setIsModalOpen(false);
+              },
+              className: "p-2 hover:bg-gray-100 rounded-full transition-colors touch-manipulation",
+              children: /*#__PURE__*/require$$1.jsx("svg", {
+                className: "w-5 h-5 text-gray-500",
+                fill: "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                children: /*#__PURE__*/require$$1.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 2,
+                  d: "M6 18L18 6M6 6l12 12"
+                })
+              })
+            })]
+          }), /*#__PURE__*/require$$1.jsxs("div", {
+            className: "flex-1 overflow-y-auto",
+            children: [/*#__PURE__*/require$$1.jsx("div", {
+              className: "p-4 sm:p-6 border-b border-gray-200",
+              children: /*#__PURE__*/require$$1.jsxs("div", {
+                className: "flex items-center space-x-3",
+                children: [/*#__PURE__*/require$$1.jsx("div", {
+                  className: "w-16 h-16 sm:w-20 sm:h-20 bg-gray-200 rounded-lg flex items-center justify-center overflow-hidden flex-shrink-0",
+                  children: mergedProductData.image ? /*#__PURE__*/require$$1.jsx("img", {
+                    src: mergedProductData.image,
+                    alt: mergedProductData.name,
+                    className: "w-full h-full object-cover"
+                  }) : /*#__PURE__*/require$$1.jsx("svg", {
+                    className: "w-8 h-8 sm:w-10 sm:h-10 text-gray-400",
+                    fill: "none",
+                    stroke: "currentColor",
+                    viewBox: "0 0 24 24",
+                    children: /*#__PURE__*/require$$1.jsx("path", {
+                      strokeLinecap: "round",
+                      strokeLinejoin: "round",
+                      strokeWidth: 2,
+                      d: "M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    })
+                  })
+                }), /*#__PURE__*/require$$1.jsxs("div", {
+                  className: "flex-1 min-w-0",
+                  children: [/*#__PURE__*/require$$1.jsx("h3", {
+                    className: "font-medium text-gray-900 text-sm sm:text-base truncate",
+                    children: mergedProductData.name
+                  }), /*#__PURE__*/require$$1.jsxs("div", {
+                    className: "flex items-center space-x-2 mt-1",
+                    children: [/*#__PURE__*/require$$1.jsxs("p", {
+                      className: "text-gray-900 text-sm sm:text-base font-medium",
+                      children: ["$", mergedProductData.price]
+                    }), mergedProductData.originalPrice && mergedProductData.originalPrice > mergedProductData.price && /*#__PURE__*/require$$1.jsxs("p", {
+                      className: "text-gray-500 text-xs sm:text-sm line-through",
+                      children: ["$", mergedProductData.originalPrice]
+                    })]
+                  })]
+                }), /*#__PURE__*/require$$1.jsx("button", {
+                  className: "p-2 text-gray-400 hover:text-gray-600 rounded-full hover:bg-gray-100 transition-colors touch-manipulation",
+                  children: /*#__PURE__*/require$$1.jsx("svg", {
+                    className: "w-4 h-4",
+                    fill: "none",
+                    stroke: "currentColor",
+                    viewBox: "0 0 24 24",
+                    children: /*#__PURE__*/require$$1.jsx("path", {
+                      strokeLinecap: "round",
+                      strokeLinejoin: "round",
+                      strokeWidth: 2,
+                      d: "M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                    })
+                  })
+                })]
+              })
+            }), /*#__PURE__*/require$$1.jsx("div", {
+              className: "p-4 sm:p-6 border-b border-gray-200",
+              children: /*#__PURE__*/require$$1.jsxs("div", {
+                className: "flex items-center justify-between",
+                children: [/*#__PURE__*/require$$1.jsx("span", {
+                  className: "text-sm sm:text-base font-medium text-gray-900",
+                  children: "Quantity"
+                }), /*#__PURE__*/require$$1.jsxs("div", {
+                  className: "flex items-center space-x-3",
+                  children: [/*#__PURE__*/require$$1.jsx("button", {
+                    onClick: function onClick() {
+                      return handleQuantityChange(-1);
+                    },
+                    className: "w-10 h-10 sm:w-8 sm:h-8 rounded-lg border border-gray-300 flex items-center justify-center hover:bg-gray-50 touch-manipulation transition-colors",
+                    children: /*#__PURE__*/require$$1.jsx("span", {
+                      className: "text-lg font-medium text-gray-600",
+                      children: "-"
+                    })
+                  }), /*#__PURE__*/require$$1.jsx("span", {
+                    className: "w-12 sm:w-8 text-center text-base sm:text-sm font-medium min-w-[2rem]",
+                    children: quantity
+                  }), /*#__PURE__*/require$$1.jsx("button", {
+                    onClick: function onClick() {
+                      return handleQuantityChange(1);
+                    },
+                    className: "w-10 h-10 sm:w-8 sm:h-8 rounded-lg border border-gray-300 flex items-center justify-center hover:bg-gray-50 touch-manipulation transition-colors",
+                    children: /*#__PURE__*/require$$1.jsx("span", {
+                      className: "text-lg font-medium text-gray-600",
+                      children: "+"
+                    })
+                  })]
+                })]
+              })
+            }), /*#__PURE__*/require$$1.jsx("div", {
+              className: "p-4 sm:p-6 border-b border-gray-200",
+              children: /*#__PURE__*/require$$1.jsxs("div", {
+                className: "space-y-3",
+                children: [/*#__PURE__*/require$$1.jsxs("div", {
+                  className: "flex justify-between text-sm sm:text-base",
+                  children: [/*#__PURE__*/require$$1.jsx("span", {
+                    className: "text-gray-600",
+                    children: "Subtotal"
+                  }), /*#__PURE__*/require$$1.jsxs("span", {
+                    className: "font-medium",
+                    children: ["$", subtotal.toFixed(2)]
+                  })]
+                }), /*#__PURE__*/require$$1.jsxs("div", {
+                  className: "flex justify-between text-sm sm:text-base",
+                  children: [/*#__PURE__*/require$$1.jsx("span", {
+                    className: "text-gray-600",
+                    children: "Shipping"
+                  }), /*#__PURE__*/require$$1.jsx("span", {
+                    className: "font-medium text-green-600",
+                    children: shipping === 0 ? 'Free' : "$".concat(shipping.toFixed(2))
+                  })]
+                }), /*#__PURE__*/require$$1.jsxs("div", {
+                  className: "flex justify-between text-sm sm:text-base font-semibold pt-3 border-t border-gray-200",
+                  children: [/*#__PURE__*/require$$1.jsx("span", {
+                    children: "Total"
+                  }), /*#__PURE__*/require$$1.jsxs("span", {
+                    className: "text-lg",
+                    children: ["$", total.toFixed(2)]
+                  })]
+                })]
+              })
+            }), /*#__PURE__*/require$$1.jsxs("div", {
+              className: "p-4 sm:p-6 space-y-3",
+              children: [/*#__PURE__*/require$$1.jsx("button", {
+                className: "w-full py-4 px-4 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors touch-manipulation",
+                children: "Add to Cart"
+              }), /*#__PURE__*/require$$1.jsx("button", {
+                className: "w-full py-4 px-4 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 transition-colors touch-manipulation",
+                children: "Checkout"
+              }), /*#__PURE__*/require$$1.jsx("button", {
+                onClick: function onClick() {
+                  return setIsModalOpen(false);
+                },
+                className: "w-full py-4 px-4 bg-gray-100 text-gray-700 rounded-lg font-semibold hover:bg-gray-200 transition-colors touch-manipulation",
+                children: "Continue Shopping"
+              })]
+            })]
+          })]
+        })]
+      })]
+    });
+  }
+  return null;
+};
+
 /**
  * Load hero section data from a JSON file or object
  * @param {string|Object} data - JSON data or path to JSON file
@@ -31483,6 +35748,9 @@ var loadHeroDataSync = function loadHeroDataSync(data) {
   return data;
 };
 
+exports.AddToCartLayout = AddToCartLayout;
+exports.AddToCartPage = AddToCartPage;
+exports.AddToCartSection = AddToCartSection;
 exports.BlogAuthor = BlogAuthor;
 exports.BlogCard = BlogCard;
 exports.BlogComments = BlogComments;
