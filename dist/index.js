@@ -33124,6 +33124,240 @@ var CheckoutHeader = function CheckoutHeader(_ref) {
   });
 };
 
+var CheckoutProgressIndicator = function CheckoutProgressIndicator(_ref) {
+  var _ref$data = _ref.data,
+    data = _ref$data === void 0 ? [] : _ref$data,
+    _ref$currentStep = _ref.currentStep,
+    currentStep = _ref$currentStep === void 0 ? 0 : _ref$currentStep,
+    _ref$variant = _ref.variant,
+    variant = _ref$variant === void 0 ? 'standard' : _ref$variant,
+    className = _ref.className,
+    _ref$loading = _ref.loading,
+    loading = _ref$loading === void 0 ? false : _ref$loading;
+  var _useState = require$$0.useState(false),
+    _useState2 = _slicedToArray(_useState, 2),
+    timedOut = _useState2[0],
+    setTimedOut = _useState2[1];
+
+  // Auto-show content after 2 seconds if loading is true
+  require$$0.useEffect(function () {
+    if (loading) {
+      setTimedOut(false);
+      var timer = setTimeout(function () {
+        setTimedOut(true);
+      }, 2000);
+      return function () {
+        return clearTimeout(timer);
+      };
+    }
+  }, [loading]);
+  var shouldShowSkeleton = loading && !timedOut;
+
+  // Default steps if no data provided
+  var defaultSteps = [{
+    id: 'contact',
+    title: 'Contact',
+    description: 'Email address'
+  }, {
+    id: 'shipping',
+    title: 'Shipping',
+    description: 'Delivery info'
+  }, {
+    id: 'payment',
+    title: 'Payment',
+    description: 'Payment method'
+  }, {
+    id: 'review',
+    title: 'Review',
+    description: 'Order review'
+  }];
+  var steps = data.length > 0 ? data : defaultSteps;
+  var CheckIcon = function CheckIcon() {
+    return /*#__PURE__*/require$$1.jsx("svg", {
+      className: "w-4 h-4",
+      fill: "currentColor",
+      viewBox: "0 0 20 20",
+      children: /*#__PURE__*/require$$1.jsx("path", {
+        fillRule: "evenodd",
+        d: "M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z",
+        clipRule: "evenodd"
+      })
+    });
+  };
+  var getStepIcon = function getStepIcon(stepIndex) {
+    if (stepIndex < currentStep) {
+      return /*#__PURE__*/require$$1.jsx(CheckIcon, {});
+    }
+    return /*#__PURE__*/require$$1.jsx("span", {
+      className: "text-sm font-semibold",
+      children: stepIndex + 1
+    });
+  };
+
+  // Show skeleton loading state
+  if (shouldShowSkeleton) {
+    return /*#__PURE__*/require$$1.jsx("div", {
+      className: clsx("checkout-progress-indicator", className),
+      children: /*#__PURE__*/require$$1.jsx("div", {
+        className: "flex items-center justify-between max-w-4xl mx-auto",
+        children: Array.from({
+          length: 4
+        }).map(function (_, index) {
+          return /*#__PURE__*/require$$1.jsxs("div", {
+            className: "flex items-center",
+            children: [/*#__PURE__*/require$$1.jsx("div", {
+              className: "checkout-skeleton w-8 h-8 rounded-full"
+            }), /*#__PURE__*/require$$1.jsxs("div", {
+              className: "ml-3",
+              children: [/*#__PURE__*/require$$1.jsx("div", {
+                className: "checkout-skeleton h-4 w-16 rounded mb-1"
+              }), /*#__PURE__*/require$$1.jsx("div", {
+                className: "checkout-skeleton h-3 w-20 rounded"
+              })]
+            }), index < 3 && /*#__PURE__*/require$$1.jsx("div", {
+              className: "checkout-skeleton w-12 h-px mx-4"
+            })]
+          }, index);
+        })
+      })
+    });
+  }
+  var variants = {
+    standard: /*#__PURE__*/require$$1.jsx("div", {
+      className: "flex items-center justify-between max-w-4xl mx-auto",
+      children: steps.map(function (step, index) {
+        return /*#__PURE__*/require$$1.jsxs("div", {
+          className: "flex items-center",
+          children: [/*#__PURE__*/require$$1.jsx("div", {
+            className: clsx("w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium transition-all duration-200", index < currentStep ? "bg-green-600 text-white" : index === currentStep ? "bg-primary-600 text-white" : "bg-gray-200 text-gray-600"),
+            children: getStepIcon(index)
+          }), /*#__PURE__*/require$$1.jsxs("div", {
+            className: "ml-3",
+            children: [/*#__PURE__*/require$$1.jsx("div", {
+              className: clsx("text-sm font-medium", index <= currentStep ? "text-primary-600" : "text-gray-600"),
+              children: step.title
+            }), step.description && /*#__PURE__*/require$$1.jsx("div", {
+              className: "text-xs text-gray-500 mt-0.5",
+              children: step.description
+            })]
+          }), index < steps.length - 1 && /*#__PURE__*/require$$1.jsx("div", {
+            className: clsx("w-12 h-px mx-4 transition-colors duration-200", index < currentStep ? "bg-primary-600" : "bg-gray-200")
+          })]
+        }, step.id);
+      })
+    }),
+    modern: /*#__PURE__*/require$$1.jsx("div", {
+      className: "flex items-center justify-between max-w-5xl mx-auto",
+      children: steps.map(function (step, index) {
+        return /*#__PURE__*/require$$1.jsxs("div", {
+          className: "flex flex-col items-center flex-1",
+          children: [/*#__PURE__*/require$$1.jsxs("div", {
+            className: "flex items-center w-full",
+            children: [/*#__PURE__*/require$$1.jsx("div", {
+              className: clsx("w-10 h-10 rounded-full flex items-center justify-center text-sm font-semibold transition-all duration-300 shadow-sm", index < currentStep ? "bg-green-600 text-white shadow-green-200" : index === currentStep ? "bg-primary-600 text-white shadow-primary-200" : "bg-gray-100 text-gray-600"),
+              children: getStepIcon(index)
+            }), index < steps.length - 1 && /*#__PURE__*/require$$1.jsx("div", {
+              className: "flex-1 h-px mx-4 bg-gray-200",
+              children: /*#__PURE__*/require$$1.jsx("div", {
+                className: clsx("h-full transition-all duration-500 ease-out", index < currentStep ? "bg-primary-600 w-full" : "w-0")
+              })
+            })]
+          }), /*#__PURE__*/require$$1.jsxs("div", {
+            className: "mt-3 text-center",
+            children: [/*#__PURE__*/require$$1.jsx("div", {
+              className: clsx("text-sm font-semibold transition-colors duration-200", index <= currentStep ? "text-primary-600" : "text-gray-600"),
+              children: step.title
+            }), step.description && /*#__PURE__*/require$$1.jsx("div", {
+              className: "text-xs text-gray-500 mt-1",
+              children: step.description
+            })]
+          })]
+        }, step.id);
+      })
+    }),
+    minimal: /*#__PURE__*/require$$1.jsx("div", {
+      className: "flex items-center justify-center space-x-8",
+      children: steps.map(function (step, index) {
+        return /*#__PURE__*/require$$1.jsxs("div", {
+          className: "flex items-center space-x-3",
+          children: [/*#__PURE__*/require$$1.jsx("div", {
+            className: clsx("w-6 h-6 rounded-full flex items-center justify-center text-xs font-medium transition-all duration-200", index < currentStep ? "bg-green-600 text-white" : index === currentStep ? "bg-primary-600 text-white" : "bg-gray-300 text-gray-600"),
+            children: index < currentStep ? /*#__PURE__*/require$$1.jsx(CheckIcon, {}) : index + 1
+          }), /*#__PURE__*/require$$1.jsx("span", {
+            className: clsx("text-sm font-medium transition-colors duration-200", index <= currentStep ? "text-primary-600" : "text-gray-600"),
+            children: step.title
+          }), index < steps.length - 1 && /*#__PURE__*/require$$1.jsx("div", {
+            className: "w-8 h-px bg-gray-200"
+          })]
+        }, step.id);
+      })
+    }),
+    card: /*#__PURE__*/require$$1.jsx("div", {
+      className: "grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto",
+      children: steps.map(function (step, index) {
+        return /*#__PURE__*/require$$1.jsx("div", {
+          className: clsx("p-4 rounded-lg border-2 transition-all duration-300", index < currentStep ? "border-green-200 bg-green-50" : index === currentStep ? "border-primary-300 bg-primary-50 shadow-md" : "border-gray-200 bg-white"),
+          children: /*#__PURE__*/require$$1.jsxs("div", {
+            className: "flex items-center space-x-3",
+            children: [/*#__PURE__*/require$$1.jsx("div", {
+              className: clsx("w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold transition-all duration-200", index < currentStep ? "bg-green-600 text-white" : index === currentStep ? "bg-primary-600 text-white" : "bg-gray-200 text-gray-600"),
+              children: getStepIcon(index)
+            }), /*#__PURE__*/require$$1.jsxs("div", {
+              children: [/*#__PURE__*/require$$1.jsx("div", {
+                className: clsx("text-sm font-semibold", index <= currentStep ? "text-primary-600" : "text-gray-600"),
+                children: step.title
+              }), step.description && /*#__PURE__*/require$$1.jsx("div", {
+                className: "text-xs text-gray-500 mt-0.5",
+                children: step.description
+              })]
+            })]
+          })
+        }, step.id);
+      })
+    }),
+    premium: /*#__PURE__*/require$$1.jsxs("div", {
+      className: "relative",
+      children: [/*#__PURE__*/require$$1.jsx("div", {
+        className: "absolute inset-0 bg-gradient-to-r from-primary-50 via-white to-primary-50 rounded-2xl"
+      }), /*#__PURE__*/require$$1.jsx("div", {
+        className: "relative bg-white/80 backdrop-blur-sm border border-primary-100 rounded-2xl p-8 shadow-xl",
+        children: /*#__PURE__*/require$$1.jsx("div", {
+          className: "flex items-center justify-between max-w-5xl mx-auto",
+          children: steps.map(function (step, index) {
+            return /*#__PURE__*/require$$1.jsxs("div", {
+              className: "flex flex-col items-center flex-1",
+              children: [/*#__PURE__*/require$$1.jsxs("div", {
+                className: "relative",
+                children: [/*#__PURE__*/require$$1.jsx("div", {
+                  className: clsx("w-12 h-12 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 shadow-lg", index < currentStep ? "bg-gradient-to-br from-green-500 to-green-600 text-white shadow-green-300" : index === currentStep ? "bg-gradient-to-br from-primary-600 to-primary-700 text-white shadow-primary-300" : "bg-gradient-to-br from-gray-100 to-gray-200 text-gray-600"),
+                  children: getStepIcon(index)
+                }), index === currentStep && /*#__PURE__*/require$$1.jsx("div", {
+                  className: "absolute -inset-1 bg-primary-400 rounded-full animate-pulse opacity-20"
+                })]
+              }), /*#__PURE__*/require$$1.jsxs("div", {
+                className: "mt-4 text-center",
+                children: [/*#__PURE__*/require$$1.jsx("div", {
+                  className: clsx("text-sm font-bold tracking-wide transition-colors duration-200", index <= currentStep ? "text-primary-700" : "text-gray-600"),
+                  children: step.title
+                }), step.description && /*#__PURE__*/require$$1.jsx("div", {
+                  className: "text-xs text-gray-500 mt-1 font-medium",
+                  children: step.description
+                })]
+              }), index < steps.length - 1 && /*#__PURE__*/require$$1.jsx("div", {
+                className: "flex-1 w-px bg-gradient-to-b from-primary-200 to-transparent mx-auto mt-4 h-8"
+              })]
+            }, step.id);
+          })
+        })
+      })]
+    })
+  };
+  return /*#__PURE__*/require$$1.jsx("div", {
+    className: clsx("checkout-progress-indicator", className),
+    children: variants[variant] || variants.standard
+  });
+};
+
 var CheckoutEmailSection = function CheckoutEmailSection(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
@@ -33900,6 +34134,1121 @@ var CheckoutTrialSection = function CheckoutTrialSection(_ref) {
         children: termsLinkText
       }), "."]
     })]
+  });
+};
+
+var ContactSkeleton = function ContactSkeleton(_ref) {
+  var _ref$data = _ref.data,
+    data = _ref$data === void 0 ? {} : _ref$data,
+    className = _ref.className;
+  var _data$variant = data.variant,
+    variant = _data$variant === void 0 ? 'modern' : _data$variant;
+
+  // Container classes
+  var containerClasses = {
+    modern: 'contact-modern py-20 bg-white',
+    minimal: 'contact-minimal py-20 bg-neutral-50',
+    classic: 'contact-classic py-24 bg-white',
+    split: 'contact-split min-h-screen bg-white',
+    card: 'contact-card py-20 bg-neutral-50'
+  };
+  var renderSkeleton = function renderSkeleton() {
+    switch (variant) {
+      case 'modern':
+        return /*#__PURE__*/require$$1.jsxs("div", {
+          className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
+          children: [/*#__PURE__*/require$$1.jsxs("div", {
+            className: "text-center mb-16",
+            children: [/*#__PURE__*/require$$1.jsx("div", {
+              className: "contact-skeleton h-10 w-64 rounded-lg mx-auto mb-4"
+            }), /*#__PURE__*/require$$1.jsx("div", {
+              className: "contact-skeleton h-5 w-96 rounded mx-auto"
+            })]
+          }), /*#__PURE__*/require$$1.jsx("div", {
+            className: "grid grid-cols-1 md:grid-cols-3 gap-8",
+            children: [1, 2, 3].map(function (i) {
+              return /*#__PURE__*/require$$1.jsxs("div", {
+                className: "bg-neutral-50 p-8 rounded-2xl",
+                children: [/*#__PURE__*/require$$1.jsx("div", {
+                  className: "contact-skeleton h-12 w-12 rounded-xl mb-6"
+                }), /*#__PURE__*/require$$1.jsx("div", {
+                  className: "contact-skeleton h-6 w-32 rounded mb-2"
+                }), /*#__PURE__*/require$$1.jsx("div", {
+                  className: "contact-skeleton h-4 w-48 rounded"
+                })]
+              }, i);
+            })
+          })]
+        });
+      case 'minimal':
+        return /*#__PURE__*/require$$1.jsxs("div", {
+          className: "max-w-4xl mx-auto px-4",
+          children: [/*#__PURE__*/require$$1.jsx("div", {
+            className: "contact-skeleton h-10 w-48 rounded mb-12"
+          }), /*#__PURE__*/require$$1.jsxs("div", {
+            className: "space-y-6",
+            children: [/*#__PURE__*/require$$1.jsxs("div", {
+              className: "grid grid-cols-1 md:grid-cols-2 gap-6",
+              children: [/*#__PURE__*/require$$1.jsx("div", {
+                className: "contact-skeleton h-14 w-full rounded-xl"
+              }), /*#__PURE__*/require$$1.jsx("div", {
+                className: "contact-skeleton h-14 w-full rounded-xl"
+              })]
+            }), /*#__PURE__*/require$$1.jsx("div", {
+              className: "contact-skeleton h-14 w-full rounded-xl"
+            }), /*#__PURE__*/require$$1.jsx("div", {
+              className: "contact-skeleton h-32 w-full rounded-xl"
+            }), /*#__PURE__*/require$$1.jsx("div", {
+              className: "contact-skeleton h-14 w-40 rounded-xl"
+            })]
+          })]
+        });
+      case 'classic':
+        return /*#__PURE__*/require$$1.jsxs("div", {
+          className: "max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-16",
+          children: [/*#__PURE__*/require$$1.jsxs("div", {
+            children: [/*#__PURE__*/require$$1.jsx("div", {
+              className: "contact-skeleton h-12 w-80 rounded mb-6"
+            }), /*#__PURE__*/require$$1.jsx("div", {
+              className: "contact-skeleton h-5 w-full rounded mb-2"
+            }), /*#__PURE__*/require$$1.jsx("div", {
+              className: "contact-skeleton h-5 w-full rounded mb-10"
+            }), /*#__PURE__*/require$$1.jsx("div", {
+              className: "space-y-6",
+              children: [1, 2, 3].map(function (i) {
+                return /*#__PURE__*/require$$1.jsxs("div", {
+                  className: "flex items-center space-x-4",
+                  children: [/*#__PURE__*/require$$1.jsx("div", {
+                    className: "contact-skeleton h-6 w-6 rounded-full"
+                  }), /*#__PURE__*/require$$1.jsx("div", {
+                    className: "contact-skeleton h-5 w-48 rounded"
+                  })]
+                }, i);
+              })
+            })]
+          }), /*#__PURE__*/require$$1.jsx("div", {
+            className: "bg-white border border-neutral-200 p-8 rounded-lg shadow-sm",
+            children: /*#__PURE__*/require$$1.jsxs("div", {
+              className: "space-y-4",
+              children: [/*#__PURE__*/require$$1.jsx("div", {
+                className: "contact-skeleton h-12 w-full rounded"
+              }), /*#__PURE__*/require$$1.jsx("div", {
+                className: "contact-skeleton h-12 w-full rounded"
+              }), /*#__PURE__*/require$$1.jsx("div", {
+                className: "contact-skeleton h-12 w-full rounded"
+              }), /*#__PURE__*/require$$1.jsx("div", {
+                className: "contact-skeleton h-32 w-full rounded"
+              }), /*#__PURE__*/require$$1.jsx("div", {
+                className: "contact-skeleton h-12 w-full rounded"
+              })]
+            })
+          })]
+        });
+      case 'split':
+        return /*#__PURE__*/require$$1.jsxs("div", {
+          className: "flex flex-col lg:flex-row min-h-screen",
+          children: [/*#__PURE__*/require$$1.jsx("div", {
+            className: "lg:w-1/2 bg-neutral-900 p-12 flex flex-col justify-center",
+            children: /*#__PURE__*/require$$1.jsxs("div", {
+              className: "max-w-md mx-auto w-full",
+              children: [/*#__PURE__*/require$$1.jsx("div", {
+                className: "contact-skeleton bg-neutral-800 h-10 w-64 rounded mb-6"
+              }), /*#__PURE__*/require$$1.jsx("div", {
+                className: "contact-skeleton bg-neutral-800 h-4 w-full rounded mb-2"
+              }), /*#__PURE__*/require$$1.jsx("div", {
+                className: "contact-skeleton bg-neutral-800 h-4 w-2/3 rounded mb-12"
+              }), /*#__PURE__*/require$$1.jsx("div", {
+                className: "space-y-8",
+                children: [1, 2].map(function (i) {
+                  return /*#__PURE__*/require$$1.jsxs("div", {
+                    children: [/*#__PURE__*/require$$1.jsx("div", {
+                      className: "contact-skeleton bg-neutral-800 h-5 w-32 rounded mb-2"
+                    }), /*#__PURE__*/require$$1.jsx("div", {
+                      className: "contact-skeleton bg-neutral-800 h-4 w-48 rounded"
+                    })]
+                  }, i);
+                })
+              })]
+            })
+          }), /*#__PURE__*/require$$1.jsx("div", {
+            className: "lg:w-1/2 p-12 flex items-center justify-center",
+            children: /*#__PURE__*/require$$1.jsxs("div", {
+              className: "max-w-md w-full space-y-6",
+              children: [/*#__PURE__*/require$$1.jsx("div", {
+                className: "contact-skeleton h-14 w-full rounded-lg"
+              }), /*#__PURE__*/require$$1.jsx("div", {
+                className: "contact-skeleton h-14 w-full rounded-lg"
+              }), /*#__PURE__*/require$$1.jsx("div", {
+                className: "contact-skeleton h-32 w-full rounded-lg"
+              }), /*#__PURE__*/require$$1.jsx("div", {
+                className: "contact-skeleton h-14 w-full rounded-lg"
+              })]
+            })
+          })]
+        });
+      case 'card':
+        return /*#__PURE__*/require$$1.jsx("div", {
+          className: "max-w-5xl mx-auto px-4",
+          children: /*#__PURE__*/require$$1.jsxs("div", {
+            className: "bg-white rounded-3xl shadow-xl overflow-hidden grid grid-cols-1 md:grid-cols-2",
+            children: [/*#__PURE__*/require$$1.jsxs("div", {
+              className: "p-12 bg-black",
+              children: [/*#__PURE__*/require$$1.jsx("div", {
+                className: "contact-skeleton bg-neutral-800 h-8 w-40 rounded mb-8"
+              }), /*#__PURE__*/require$$1.jsx("div", {
+                className: "space-y-10",
+                children: [1, 2, 3].map(function (i) {
+                  return /*#__PURE__*/require$$1.jsxs("div", {
+                    className: "flex items-center space-x-4",
+                    children: [/*#__PURE__*/require$$1.jsx("div", {
+                      className: "contact-skeleton bg-neutral-800 h-10 w-10 rounded-full"
+                    }), /*#__PURE__*/require$$1.jsx("div", {
+                      className: "contact-skeleton bg-neutral-800 h-5 w-32 rounded"
+                    })]
+                  }, i);
+                })
+              })]
+            }), /*#__PURE__*/require$$1.jsx("div", {
+              className: "p-12",
+              children: /*#__PURE__*/require$$1.jsxs("div", {
+                className: "space-y-6",
+                children: [/*#__PURE__*/require$$1.jsx("div", {
+                  className: "contact-skeleton h-12 w-full rounded-xl"
+                }), /*#__PURE__*/require$$1.jsx("div", {
+                  className: "contact-skeleton h-12 w-full rounded-xl"
+                }), /*#__PURE__*/require$$1.jsx("div", {
+                  className: "contact-skeleton h-32 w-full rounded-xl"
+                }), /*#__PURE__*/require$$1.jsx("div", {
+                  className: "contact-skeleton h-14 w-full rounded-xl"
+                })]
+              })
+            })]
+          })
+        });
+      default:
+        return null;
+    }
+  };
+  return /*#__PURE__*/require$$1.jsx("div", {
+    className: clsx(containerClasses[variant] || containerClasses.modern, className),
+    children: renderSkeleton()
+  });
+};
+
+var Contact = function Contact(_ref) {
+  var _ref$data = _ref.data,
+    data = _ref$data === void 0 ? {} : _ref$data,
+    className = _ref.className,
+    _ref$loading = _ref.loading,
+    loading = _ref$loading === void 0 ? false : _ref$loading;
+  var _useState = require$$0.useState(false),
+    _useState2 = _slicedToArray(_useState, 2),
+    timedOut = _useState2[0],
+    setTimedOut = _useState2[1];
+  var _useState3 = require$$0.useState({
+      name: '',
+      email: '',
+      subject: '',
+      message: ''
+    }),
+    _useState4 = _slicedToArray(_useState3, 2),
+    formData = _useState4[0],
+    setFormData = _useState4[1];
+  var variant = data.variant || 'modern';
+
+  // Reset timeout when data changes to ensure dynamic content works
+  require$$0.useEffect(function () {
+    if (loading) {
+      setTimedOut(false);
+      var timer = setTimeout(function () {
+        setTimedOut(true);
+      }, 2000);
+      return function () {
+        return clearTimeout(timer);
+      };
+    } else {
+      setTimedOut(false);
+    }
+  }, [loading, data]); // Added data to dependencies to reset on data changes
+
+  // Auto-show content after 2 seconds if loading is true
+  require$$0.useEffect(function () {
+    if (loading) {
+      setTimedOut(false);
+      var timer = setTimeout(function () {
+        setTimedOut(true);
+      }, 2000);
+      return function () {
+        return clearTimeout(timer);
+      };
+    }
+  }, [loading]);
+  var shouldShowSkeleton = loading && !timedOut;
+  var handleInputChange = function handleInputChange(e) {
+    var _e$target = e.target,
+      name = _e$target.name,
+      value = _e$target.value;
+    setFormData(function (prev) {
+      return _objectSpread2(_objectSpread2({}, prev), {}, _defineProperty({}, name, value));
+    });
+  };
+  var handleSubmit = function handleSubmit(e) {
+    e.preventDefault();
+    console.log('Form submitted:', formData);
+    // Add logic here
+  };
+
+  // Show skeleton loading state
+  if (shouldShowSkeleton) {
+    return /*#__PURE__*/require$$1.jsx(ContactSkeleton, {
+      data: {
+        variant: variant
+      },
+      className: className
+    });
+  }
+  var renderVariant = function renderVariant() {
+    var _data$form, _data$form2, _data$form3, _data$form4, _data$form5, _data$form6, _data$form7, _data$form8, _data$form9, _data$form0, _data$form1, _data$form10, _data$form11, _data$form12, _data$form13, _data$form14, _data$form15, _data$form16;
+    switch (variant) {
+      case 'modern':
+        return /*#__PURE__*/require$$1.jsxs("div", {
+          className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
+          children: [(data.title || data.subtitle || data.description) && /*#__PURE__*/require$$1.jsxs("div", {
+            className: "text-center mb-16",
+            children: [data.title && /*#__PURE__*/require$$1.jsx("h2", {
+              className: "text-4xl font-black text-black mb-4 uppercase tracking-tighter",
+              children: data.title
+            }), (data.subtitle || data.description) && /*#__PURE__*/require$$1.jsx("p", {
+              className: "text-gray-500 max-w-2xl mx-auto text-lg",
+              children: data.subtitle || data.description
+            })]
+          }), data.info && data.info.length > 0 && /*#__PURE__*/require$$1.jsx("div", {
+            className: "grid grid-cols-1 md:grid-cols-3 gap-8 mb-16",
+            children: data.info.map(function (item, idx) {
+              return /*#__PURE__*/require$$1.jsxs("div", {
+                className: "bg-neutral-50 p-8 rounded-3xl border border-transparent hover:border-primary-600 transition-all group",
+                children: [item.icon && /*#__PURE__*/require$$1.jsx("div", {
+                  className: "text-3xl mb-6 group-hover:scale-110 transition-transform inline-block",
+                  children: item.icon
+                }), item.title && /*#__PURE__*/require$$1.jsx("h3", {
+                  className: "text-xl font-bold text-black mb-2",
+                  children: item.title
+                }), item.value && /*#__PURE__*/require$$1.jsx("p", {
+                  className: "text-gray-600 group-hover:text-primary-600 transition-colors",
+                  children: item.value
+                })]
+              }, idx);
+            })
+          })]
+        });
+      case 'minimal':
+        return /*#__PURE__*/require$$1.jsxs("div", {
+          className: "max-w-4xl mx-auto px-4 py-20",
+          children: [data.title && /*#__PURE__*/require$$1.jsx("h2", {
+            className: "text-5xl font-black text-black mb-12 tracking-tight",
+            children: data.title
+          }), data.form && /*#__PURE__*/require$$1.jsxs("form", {
+            onSubmit: handleSubmit,
+            className: "space-y-6",
+            children: [(data.form.fields || [{
+              name: 'name',
+              type: 'text',
+              placeholder: (_data$form = data.form) === null || _data$form === void 0 || (_data$form = _data$form.placeholders) === null || _data$form === void 0 ? void 0 : _data$form.name,
+              required: true,
+              colSpan: 'col-span-6'
+            }, {
+              name: 'email',
+              type: 'email',
+              placeholder: (_data$form2 = data.form) === null || _data$form2 === void 0 || (_data$form2 = _data$form2.placeholders) === null || _data$form2 === void 0 ? void 0 : _data$form2.email,
+              required: true,
+              colSpan: 'col-span-6'
+            }, {
+              name: 'subject',
+              type: 'text',
+              placeholder: (_data$form3 = data.form) === null || _data$form3 === void 0 || (_data$form3 = _data$form3.placeholders) === null || _data$form3 === void 0 ? void 0 : _data$form3.subject,
+              colSpan: 'col-span-12'
+            }, {
+              name: 'message',
+              type: 'textarea',
+              placeholder: (_data$form4 = data.form) === null || _data$form4 === void 0 || (_data$form4 = _data$form4.placeholders) === null || _data$form4 === void 0 ? void 0 : _data$form4.message,
+              required: true,
+              colSpan: 'col-span-12',
+              rows: 4
+            }]).map(function (field, idx) {
+              return /*#__PURE__*/require$$1.jsx("div", {
+                className: field.colSpan ? "col-span-".concat(field.colSpan.split('-')[2]) : '',
+                children: field.type === 'textarea' ? /*#__PURE__*/require$$1.jsx("textarea", {
+                  name: field.name,
+                  placeholder: field.placeholder,
+                  rows: field.rows || 3,
+                  required: field.required,
+                  className: "w-full bg-white border-2 border-neutral-200 rounded-2xl px-6 py-4 focus:border-black outline-none transition-colors resize-none",
+                  onChange: handleInputChange
+                }) : /*#__PURE__*/require$$1.jsx("input", {
+                  type: field.type || 'text',
+                  name: field.name,
+                  placeholder: field.placeholder,
+                  required: field.required,
+                  className: "w-full bg-white border-2 border-neutral-200 rounded-2xl px-6 py-4 focus:border-black outline-none transition-colors",
+                  onChange: handleInputChange
+                })
+              }, field.name);
+            }), ((_data$form5 = data.form) === null || _data$form5 === void 0 ? void 0 : _data$form5.buttonText) && /*#__PURE__*/require$$1.jsx("button", {
+              type: "submit",
+              className: "bg-black text-white px-10 py-4 rounded-2xl font-bold hover:bg-gray-800 transition-colors",
+              children: data.form.buttonText
+            })]
+          })]
+        });
+      case 'classic':
+        return /*#__PURE__*/require$$1.jsxs("div", {
+          className: "max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-20 py-24",
+          children: [/*#__PURE__*/require$$1.jsxs("div", {
+            children: [data.title && /*#__PURE__*/require$$1.jsx("h2", {
+              className: "text-4xl font-bold text-black mb-6",
+              children: data.title
+            }), (data.subtitle || data.description) && /*#__PURE__*/require$$1.jsx("p", {
+              className: "text-gray-600 text-lg mb-12",
+              children: data.subtitle || data.description
+            }), data.info && data.info.length > 0 && /*#__PURE__*/require$$1.jsx("div", {
+              className: "space-y-8",
+              children: data.info.map(function (item, idx) {
+                return /*#__PURE__*/require$$1.jsxs("div", {
+                  className: "flex flex-col",
+                  children: [item.label && /*#__PURE__*/require$$1.jsx("span", {
+                    className: "text-xs uppercase tracking-widest text-gray-400 font-bold mb-1",
+                    children: item.label
+                  }), item.value && /*#__PURE__*/require$$1.jsx("span", {
+                    className: "text-xl text-black font-medium",
+                    children: item.value
+                  })]
+                }, idx);
+              })
+            })]
+          }), data.form && /*#__PURE__*/require$$1.jsx("div", {
+            className: "bg-white border border-neutral-100 p-10 rounded-2xl shadow-2xl shadow-neutral-200/50",
+            children: /*#__PURE__*/require$$1.jsxs("form", {
+              onSubmit: handleSubmit,
+              className: "space-y-6",
+              children: [(data.form.fields || [{
+                name: 'name',
+                type: 'text',
+                label: ((_data$form6 = data.form) === null || _data$form6 === void 0 || (_data$form6 = _data$form6.labels) === null || _data$form6 === void 0 ? void 0 : _data$form6.name) || 'Name'
+              }, {
+                name: 'email',
+                type: 'email',
+                label: ((_data$form7 = data.form) === null || _data$form7 === void 0 || (_data$form7 = _data$form7.labels) === null || _data$form7 === void 0 ? void 0 : _data$form7.email) || 'Email'
+              }, {
+                name: 'message',
+                type: 'textarea',
+                label: ((_data$form8 = data.form) === null || _data$form8 === void 0 || (_data$form8 = _data$form8.labels) === null || _data$form8 === void 0 ? void 0 : _data$form8.message) || 'Message',
+                rows: 3
+              }]).map(function (field, idx) {
+                return /*#__PURE__*/require$$1.jsxs("div", {
+                  className: "space-y-2",
+                  children: [/*#__PURE__*/require$$1.jsx("label", {
+                    className: "text-sm font-bold text-black",
+                    children: field.label
+                  }), field.type === 'textarea' ? /*#__PURE__*/require$$1.jsx("textarea", {
+                    name: field.name,
+                    rows: field.rows || 3,
+                    className: "w-full border-b-2 border-neutral-100 focus:border-black py-2 outline-none transition-colors resize-none",
+                    onChange: handleInputChange
+                  }) : /*#__PURE__*/require$$1.jsx("input", {
+                    type: field.type || 'text',
+                    name: field.name,
+                    className: "w-full border-b-2 border-neutral-100 focus:border-black py-2 outline-none transition-colors",
+                    onChange: handleInputChange
+                  })]
+                }, field.name);
+              }), ((_data$form9 = data.form) === null || _data$form9 === void 0 ? void 0 : _data$form9.buttonText) && /*#__PURE__*/require$$1.jsx("button", {
+                type: "submit",
+                className: "w-full bg-black text-white py-4 rounded-lg font-bold tracking-wide hover:shadow-lg transition-all",
+                children: data.form.buttonText
+              })]
+            })
+          })]
+        });
+      case 'split':
+        return /*#__PURE__*/require$$1.jsxs("div", {
+          className: "flex flex-col lg:flex-row min-h-screen",
+          children: [/*#__PURE__*/require$$1.jsx("div", {
+            className: "lg:w-1/2 bg-black text-white p-12 md:p-24 flex flex-col justify-center",
+            children: /*#__PURE__*/require$$1.jsxs("div", {
+              className: "max-w-md mx-auto w-full",
+              children: [data.title && /*#__PURE__*/require$$1.jsx("h2", {
+                className: "text-5xl font-black mb-8 leading-tight",
+                children: data.title
+              }), (data.subtitle || data.description) && /*#__PURE__*/require$$1.jsx("p", {
+                className: "text-gray-400 text-xl mb-12",
+                children: data.subtitle || data.description
+              }), data.info && data.info.length > 0 && /*#__PURE__*/require$$1.jsx("div", {
+                className: "space-y-12",
+                children: data.info.map(function (item, idx) {
+                  return /*#__PURE__*/require$$1.jsxs("div", {
+                    children: [item.label && /*#__PURE__*/require$$1.jsx("h3", {
+                      className: "text-gray-500 font-bold uppercase tracking-widest text-xs mb-4",
+                      children: item.label
+                    }), item.value && (item.isLink ? /*#__PURE__*/require$$1.jsx("p", {
+                      className: "text-lg underline underline-offset-8",
+                      children: item.value
+                    }) : /*#__PURE__*/require$$1.jsx("p", {
+                      className: "text-lg whitespace-pre-line",
+                      children: item.value
+                    }))]
+                  }, idx);
+                })
+              })]
+            })
+          }), /*#__PURE__*/require$$1.jsx("div", {
+            className: "lg:w-1/2 p-12 md:p-24 flex items-center justify-center bg-white",
+            children: data.form && /*#__PURE__*/require$$1.jsxs("form", {
+              onSubmit: handleSubmit,
+              className: "max-w-md w-full space-y-8",
+              children: [(data.form.fields || [{
+                name: 'name',
+                type: 'text',
+                placeholder: (_data$form0 = data.form) === null || _data$form0 === void 0 || (_data$form0 = _data$form0.placeholders) === null || _data$form0 === void 0 ? void 0 : _data$form0.name
+              }, {
+                name: 'email',
+                type: 'email',
+                placeholder: (_data$form1 = data.form) === null || _data$form1 === void 0 || (_data$form1 = _data$form1.placeholders) === null || _data$form1 === void 0 ? void 0 : _data$form1.email
+              }, {
+                name: 'message',
+                type: 'textarea',
+                placeholder: (_data$form10 = data.form) === null || _data$form10 === void 0 || (_data$form10 = _data$form10.placeholders) === null || _data$form10 === void 0 ? void 0 : _data$form10.message,
+                rows: 4
+              }]).map(function (field, idx) {
+                return field.type === 'textarea' ? /*#__PURE__*/require$$1.jsx("textarea", {
+                  name: field.name,
+                  placeholder: field.placeholder,
+                  rows: field.rows || 4,
+                  className: "w-full border-b-2 border-neutral-200 focus:border-black py-4 text-lg outline-none transition-all resize-none",
+                  onChange: handleInputChange
+                }, field.name) : /*#__PURE__*/require$$1.jsx("input", {
+                  type: field.type || 'text',
+                  name: field.name,
+                  placeholder: field.placeholder,
+                  className: "w-full border-b-2 border-neutral-200 focus:border-black py-4 text-lg outline-none transition-all",
+                  onChange: handleInputChange
+                }, field.name);
+              }), ((_data$form11 = data.form) === null || _data$form11 === void 0 ? void 0 : _data$form11.buttonText) && /*#__PURE__*/require$$1.jsxs("button", {
+                type: "submit",
+                className: "group flex items-center space-x-4 text-xl font-bold text-black hover:translate-x-2 transition-transform",
+                children: [/*#__PURE__*/require$$1.jsx("span", {
+                  children: data.form.buttonText
+                }), /*#__PURE__*/require$$1.jsx("span", {
+                  className: "text-2xl",
+                  children: "\u2192"
+                })]
+              })]
+            })
+          })]
+        });
+      case 'card':
+        return /*#__PURE__*/require$$1.jsx("div", {
+          className: "max-w-6xl mx-auto px-4 py-20",
+          children: /*#__PURE__*/require$$1.jsxs("div", {
+            className: "bg-white rounded-[40px] shadow-2xl shadow-neutral-200 overflow-hidden grid grid-cols-1 lg:grid-cols-5 min-h-[600px]",
+            children: [/*#__PURE__*/require$$1.jsxs("div", {
+              className: "lg:col-span-2 bg-black p-12 flex flex-col justify-between text-white",
+              children: [(data.title || data.subtitle || data.description) && /*#__PURE__*/require$$1.jsxs("div", {
+                children: [data.title && /*#__PURE__*/require$$1.jsx("h2", {
+                  className: "text-3xl font-bold mb-4",
+                  children: data.title
+                }), (data.subtitle || data.description) && /*#__PURE__*/require$$1.jsx("p", {
+                  className: "text-gray-400",
+                  children: data.subtitle || data.description
+                })]
+              }), data.info && data.info.length > 0 && /*#__PURE__*/require$$1.jsx("div", {
+                className: "space-y-8",
+                children: data.info.map(function (item, idx) {
+                  return /*#__PURE__*/require$$1.jsxs("div", {
+                    className: "flex items-center space-x-6 group cursor-pointer",
+                    children: [item.icon && /*#__PURE__*/require$$1.jsx("div", {
+                      className: "w-12 h-12 rounded-full border border-neutral-800 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all",
+                      children: item.icon
+                    }), item.value && /*#__PURE__*/require$$1.jsx("span", {
+                      className: "text-lg",
+                      children: item.value
+                    })]
+                  }, idx);
+                })
+              }), data.socials && data.socials.length > 0 && /*#__PURE__*/require$$1.jsx("div", {
+                className: "flex space-x-4",
+                children: data.socials.map(function (social, idx) {
+                  return /*#__PURE__*/require$$1.jsx("a", {
+                    href: social.link,
+                    className: "w-10 h-10 rounded-lg bg-neutral-900 flex items-center justify-center hover:bg-neutral-800 cursor-pointer transition-colors",
+                    children: social.name
+                  }, idx);
+                })
+              })]
+            }), data.form && /*#__PURE__*/require$$1.jsx("div", {
+              className: "lg:col-span-3 p-12 bg-white",
+              children: /*#__PURE__*/require$$1.jsxs("form", {
+                onSubmit: handleSubmit,
+                className: "space-y-8",
+                children: [(data.form.fields || [{
+                  name: 'firstName',
+                  type: 'text',
+                  label: ((_data$form12 = data.form) === null || _data$form12 === void 0 || (_data$form12 = _data$form12.labels) === null || _data$form12 === void 0 ? void 0 : _data$form12.firstName) || 'First Name',
+                  colSpan: 'col-span-6'
+                }, {
+                  name: 'lastName',
+                  type: 'text',
+                  label: ((_data$form13 = data.form) === null || _data$form13 === void 0 || (_data$form13 = _data$form13.labels) === null || _data$form13 === void 0 ? void 0 : _data$form13.lastName) || 'Last Name',
+                  colSpan: 'col-span-6'
+                }, {
+                  name: 'email',
+                  type: 'email',
+                  label: ((_data$form14 = data.form) === null || _data$form14 === void 0 || (_data$form14 = _data$form14.labels) === null || _data$form14 === void 0 ? void 0 : _data$form14.email) || 'Email',
+                  colSpan: 'col-span-12'
+                }, {
+                  name: 'message',
+                  type: 'textarea',
+                  label: ((_data$form15 = data.form) === null || _data$form15 === void 0 || (_data$form15 = _data$form15.labels) === null || _data$form15 === void 0 ? void 0 : _data$form15.message) || 'Message',
+                  colSpan: 'col-span-12',
+                  rows: 4
+                }]).map(function (field, idx) {
+                  return /*#__PURE__*/require$$1.jsxs("div", {
+                    className: "space-y-2 ".concat(field.colSpan ? field.colSpan : ''),
+                    children: [/*#__PURE__*/require$$1.jsx("label", {
+                      className: "text-xs font-black uppercase text-gray-400",
+                      children: field.label
+                    }), field.type === 'textarea' ? /*#__PURE__*/require$$1.jsx("textarea", {
+                      name: field.name,
+                      rows: field.rows || 4,
+                      className: "w-full bg-neutral-50 border-none rounded-xl px-6 py-4 focus:ring-2 focus:ring-black outline-none transition-all resize-none",
+                      onChange: handleInputChange
+                    }) : /*#__PURE__*/require$$1.jsx("input", {
+                      type: field.type || 'text',
+                      name: field.name,
+                      className: "w-full bg-neutral-50 border-none rounded-xl px-6 py-4 focus:ring-2 focus:ring-black outline-none transition-all",
+                      onChange: handleInputChange
+                    })]
+                  }, field.name);
+                }), ((_data$form16 = data.form) === null || _data$form16 === void 0 ? void 0 : _data$form16.buttonText) && /*#__PURE__*/require$$1.jsx("button", {
+                  type: "submit",
+                  className: "bg-black text-white px-12 py-5 rounded-2xl font-black shadow-xl shadow-neutral-200 hover:scale-[1.02] active:scale-95 transition-all",
+                  children: data.form.buttonText
+                })]
+              })
+            })]
+          })
+        });
+      default:
+        return null;
+    }
+  };
+  return /*#__PURE__*/require$$1.jsx("section", {
+    className: clsx("contact-section overflow-hidden", variant === 'modern' && 'bg-white', variant === 'minimal' && 'bg-neutral-50', variant === 'classic' && 'bg-white', variant === 'split' && 'bg-white', variant === 'card' && 'bg-neutral-50', className),
+    children: renderVariant()
+  });
+};
+
+var ContactModern = function ContactModern(_ref) {
+  var _ref$data = _ref.data,
+    data = _ref$data === void 0 ? {} : _ref$data,
+    className = _ref.className,
+    _ref$loading = _ref.loading,
+    loading = _ref$loading === void 0 ? false : _ref$loading;
+  var _useState = require$$0.useState(false),
+    _useState2 = _slicedToArray(_useState, 2),
+    timedOut = _useState2[0],
+    setTimedOut = _useState2[1];
+  var _useState3 = require$$0.useState({
+      name: '',
+      email: '',
+      subject: '',
+      message: ''
+    }),
+    _useState4 = _slicedToArray(_useState3, 2),
+    formData = _useState4[0],
+    setFormData = _useState4[1];
+  var variant = data.variant || 'infoLeft';
+
+  // Reset timeout when data changes to ensure dynamic content works
+  require$$0.useEffect(function () {
+    if (loading) {
+      setTimedOut(false);
+      var timer = setTimeout(function () {
+        setTimedOut(true);
+      }, 2000);
+      return function () {
+        return clearTimeout(timer);
+      };
+    } else {
+      setTimedOut(false);
+    }
+  }, [loading, data]); // Added data to dependencies to reset on data changes
+
+  var shouldShowSkeleton = loading && !timedOut;
+  var handleInputChange = function handleInputChange(e) {
+    var _e$target = e.target,
+      name = _e$target.name,
+      value = _e$target.value;
+    setFormData(function (prev) {
+      return _objectSpread2(_objectSpread2({}, prev), {}, _defineProperty({}, name, value));
+    });
+  };
+  var handleSubmit = function handleSubmit(e) {
+    e.preventDefault();
+    console.log('Form submitted:', formData);
+    // Add logic here
+  };
+
+  // Show skeleton loading state
+  if (shouldShowSkeleton) {
+    return /*#__PURE__*/require$$1.jsx(ContactSkeleton, {
+      data: {
+        variant: 'classic'
+      },
+      className: className
+    });
+  }
+  var renderVariant = function renderVariant() {
+    var _data$form, _data$form2, _data$form3, _data$form4, _data$form5;
+    switch (variant) {
+      case 'infoLeft':
+        return /*#__PURE__*/require$$1.jsx("div", {
+          className: "max-w-7xl mx-auto px-4 py-16",
+          children: /*#__PURE__*/require$$1.jsxs("div", {
+            className: "grid grid-cols-1 lg:grid-cols-2 gap-16",
+            children: [/*#__PURE__*/require$$1.jsxs("div", {
+              className: "space-y-8",
+              children: [data.title && /*#__PURE__*/require$$1.jsx("h2", {
+                className: "text-4xl font-bold text-black mb-6",
+                children: data.title
+              }), (data.subtitle || data.description) && /*#__PURE__*/require$$1.jsx("p", {
+                className: "text-gray-600 text-lg mb-8",
+                children: data.subtitle || data.description
+              }), data.info && data.info.length > 0 && /*#__PURE__*/require$$1.jsx("div", {
+                className: "space-y-6",
+                children: data.info.map(function (item, idx) {
+                  return /*#__PURE__*/require$$1.jsxs("div", {
+                    className: "flex items-start space-x-4",
+                    children: [/*#__PURE__*/require$$1.jsx("div", {
+                      className: "w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center flex-shrink-0",
+                      children: item.icon
+                    }), /*#__PURE__*/require$$1.jsxs("div", {
+                      children: [item.title && /*#__PURE__*/require$$1.jsx("h3", {
+                        className: "font-semibold text-gray-900 mb-1",
+                        children: item.title
+                      }), /*#__PURE__*/require$$1.jsx("p", {
+                        className: "text-gray-600",
+                        children: item.value
+                      })]
+                    })]
+                  }, idx);
+                })
+              })]
+            }), data.form && /*#__PURE__*/require$$1.jsx("div", {
+              className: "bg-white border border-gray-200 rounded-xl p-8 shadow-sm",
+              children: /*#__PURE__*/require$$1.jsxs("form", {
+                onSubmit: handleSubmit,
+                className: "space-y-6",
+                children: [(data.form.fields || [{
+                  name: 'email',
+                  type: 'email',
+                  label: 'Email',
+                  required: true
+                }, {
+                  name: 'name',
+                  type: 'text',
+                  label: 'Name'
+                }, {
+                  name: 'message',
+                  type: 'textarea',
+                  label: 'Your message',
+                  required: true,
+                  rows: 4
+                }]).map(function (field, idx) {
+                  return /*#__PURE__*/require$$1.jsxs("div", {
+                    className: "space-y-2",
+                    children: [/*#__PURE__*/require$$1.jsxs("label", {
+                      className: "block text-sm font-medium text-gray-700",
+                      children: [field.label, " ", field.required && /*#__PURE__*/require$$1.jsx("span", {
+                        className: "text-red-500",
+                        children: "*"
+                      })]
+                    }), field.type === 'textarea' ? /*#__PURE__*/require$$1.jsx("textarea", {
+                      name: field.name,
+                      rows: field.rows || 3,
+                      required: field.required,
+                      className: "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all",
+                      onChange: handleInputChange
+                    }) : /*#__PURE__*/require$$1.jsx("input", {
+                      type: field.type || 'text',
+                      name: field.name,
+                      required: field.required,
+                      className: "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all",
+                      onChange: handleInputChange
+                    })]
+                  }, field.name);
+                }), ((_data$form = data.form) === null || _data$form === void 0 ? void 0 : _data$form.buttonText) && /*#__PURE__*/require$$1.jsx("button", {
+                  type: "submit",
+                  className: "w-full bg-primary-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-primary-700 transition-colors",
+                  children: data.form.buttonText
+                })]
+              })
+            })]
+          })
+        });
+      case 'infoRight':
+        return /*#__PURE__*/require$$1.jsx("div", {
+          className: "max-w-7xl mx-auto px-4 py-16",
+          children: /*#__PURE__*/require$$1.jsxs("div", {
+            className: "grid grid-cols-1 lg:grid-cols-2 gap-16",
+            children: [data.form && /*#__PURE__*/require$$1.jsx("div", {
+              className: "bg-white border border-gray-200 rounded-xl p-8 shadow-sm",
+              children: /*#__PURE__*/require$$1.jsxs("form", {
+                onSubmit: handleSubmit,
+                className: "space-y-6",
+                children: [(data.form.fields || [{
+                  name: 'name',
+                  type: 'text',
+                  label: 'Your name'
+                }, {
+                  name: 'email',
+                  type: 'email',
+                  label: 'Your email',
+                  required: true
+                }, {
+                  name: 'subject',
+                  type: 'text',
+                  label: 'Subject',
+                  required: true
+                }, {
+                  name: 'message',
+                  type: 'textarea',
+                  label: 'Your message',
+                  rows: 4
+                }]).map(function (field, idx) {
+                  return /*#__PURE__*/require$$1.jsxs("div", {
+                    className: "space-y-2",
+                    children: [/*#__PURE__*/require$$1.jsxs("label", {
+                      className: "block text-sm font-medium text-gray-700",
+                      children: [field.label, " ", field.required && /*#__PURE__*/require$$1.jsx("span", {
+                        className: "text-red-500",
+                        children: "*"
+                      })]
+                    }), field.type === 'textarea' ? /*#__PURE__*/require$$1.jsx("textarea", {
+                      name: field.name,
+                      rows: field.rows || 3,
+                      required: field.required,
+                      className: "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all",
+                      onChange: handleInputChange
+                    }) : /*#__PURE__*/require$$1.jsx("input", {
+                      type: field.type || 'text',
+                      name: field.name,
+                      required: field.required,
+                      className: "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all",
+                      onChange: handleInputChange
+                    })]
+                  }, field.name);
+                }), ((_data$form2 = data.form) === null || _data$form2 === void 0 ? void 0 : _data$form2.buttonText) && /*#__PURE__*/require$$1.jsx("button", {
+                  type: "submit",
+                  className: "w-full bg-primary-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-primary-700 transition-colors",
+                  children: data.form.buttonText
+                })]
+              })
+            }), /*#__PURE__*/require$$1.jsxs("div", {
+              className: "space-y-8",
+              children: [data.title && /*#__PURE__*/require$$1.jsx("h2", {
+                className: "text-4xl font-bold text-black mb-6",
+                children: data.title
+              }), (data.subtitle || data.description) && /*#__PURE__*/require$$1.jsx("p", {
+                className: "text-gray-600 text-lg mb-8",
+                children: data.subtitle || data.description
+              }), data.info && data.info.length > 0 && /*#__PURE__*/require$$1.jsx("div", {
+                className: "space-y-6",
+                children: data.info.map(function (item, idx) {
+                  return /*#__PURE__*/require$$1.jsxs("div", {
+                    className: "flex items-start space-x-4",
+                    children: [/*#__PURE__*/require$$1.jsx("div", {
+                      className: "w-12 h-12 bg-green-50 rounded-lg flex items-center justify-center flex-shrink-0",
+                      children: item.icon
+                    }), /*#__PURE__*/require$$1.jsxs("div", {
+                      children: [item.title && /*#__PURE__*/require$$1.jsx("h3", {
+                        className: "font-semibold text-gray-900 mb-1",
+                        children: item.title
+                      }), /*#__PURE__*/require$$1.jsx("p", {
+                        className: "text-gray-600",
+                        children: item.value
+                      })]
+                    })]
+                  }, idx);
+                })
+              })]
+            })]
+          })
+        });
+      case 'stacked':
+        return /*#__PURE__*/require$$1.jsxs("div", {
+          className: "max-w-4xl mx-auto px-4 py-16",
+          children: [data.info && data.info.length > 0 && /*#__PURE__*/require$$1.jsx("div", {
+            className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16",
+            children: data.info.map(function (item, idx) {
+              return /*#__PURE__*/require$$1.jsxs("div", {
+                className: "text-center",
+                children: [/*#__PURE__*/require$$1.jsx("div", {
+                  className: "w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-4",
+                  children: item.icon
+                }), item.title && /*#__PURE__*/require$$1.jsx("h3", {
+                  className: "font-semibold text-gray-900 mb-2",
+                  children: item.title
+                }), /*#__PURE__*/require$$1.jsx("p", {
+                  className: "text-gray-600 text-sm",
+                  children: item.value
+                })]
+              }, idx);
+            })
+          }), data.form && /*#__PURE__*/require$$1.jsxs("div", {
+            className: "bg-white border border-gray-200 rounded-xl p-8 shadow-sm max-w-2xl mx-auto",
+            children: [data.title && /*#__PURE__*/require$$1.jsxs("div", {
+              className: "text-center mb-8",
+              children: [/*#__PURE__*/require$$1.jsx("h2", {
+                className: "text-3xl font-bold text-black mb-2",
+                children: data.title
+              }), (data.subtitle || data.description) && /*#__PURE__*/require$$1.jsx("p", {
+                className: "text-gray-600",
+                children: data.subtitle || data.description
+              })]
+            }), /*#__PURE__*/require$$1.jsxs("form", {
+              onSubmit: handleSubmit,
+              className: "space-y-6",
+              children: [(data.form.fields || [{
+                name: 'name',
+                type: 'text',
+                label: 'Name'
+              }, {
+                name: 'email',
+                type: 'email',
+                label: 'Email'
+              }, {
+                name: 'subject',
+                type: 'text',
+                label: 'Subject'
+              }, {
+                name: 'message',
+                type: 'textarea',
+                label: 'Message',
+                rows: 4
+              }]).map(function (field, idx) {
+                return /*#__PURE__*/require$$1.jsxs("div", {
+                  className: "space-y-2",
+                  children: [/*#__PURE__*/require$$1.jsx("label", {
+                    className: "block text-sm font-medium text-gray-700",
+                    children: field.label
+                  }), field.type === 'textarea' ? /*#__PURE__*/require$$1.jsx("textarea", {
+                    name: field.name,
+                    rows: field.rows || 3,
+                    className: "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all",
+                    onChange: handleInputChange
+                  }) : /*#__PURE__*/require$$1.jsx("input", {
+                    type: field.type || 'text',
+                    name: field.name,
+                    className: "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all",
+                    onChange: handleInputChange
+                  })]
+                }, field.name);
+              }), ((_data$form3 = data.form) === null || _data$form3 === void 0 ? void 0 : _data$form3.buttonText) && /*#__PURE__*/require$$1.jsx("button", {
+                type: "submit",
+                className: "w-full bg-primary-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-primary-700 transition-colors",
+                children: data.form.buttonText
+              })]
+            })]
+          })]
+        });
+      case 'centered':
+        return /*#__PURE__*/require$$1.jsxs("div", {
+          className: "max-w-6xl mx-auto px-4 py-16",
+          children: [/*#__PURE__*/require$$1.jsxs("div", {
+            className: "text-center mb-16",
+            children: [data.title && /*#__PURE__*/require$$1.jsx("h2", {
+              className: "text-4xl font-bold text-black mb-4",
+              children: data.title
+            }), (data.subtitle || data.description) && /*#__PURE__*/require$$1.jsx("p", {
+              className: "text-gray-600 text-lg max-w-2xl mx-auto",
+              children: data.subtitle || data.description
+            })]
+          }), /*#__PURE__*/require$$1.jsxs("div", {
+            className: "grid grid-cols-1 lg:grid-cols-3 gap-12",
+            children: [data.info && data.info.length > 0 && /*#__PURE__*/require$$1.jsx("div", {
+              className: "space-y-6",
+              children: data.info.map(function (item, idx) {
+                return /*#__PURE__*/require$$1.jsxs("div", {
+                  className: "text-center",
+                  children: [/*#__PURE__*/require$$1.jsx("div", {
+                    className: "w-14 h-14 bg-purple-50 rounded-full flex items-center justify-center mx-auto mb-4",
+                    children: item.icon
+                  }), item.title && /*#__PURE__*/require$$1.jsx("h3", {
+                    className: "font-semibold text-gray-900 mb-2",
+                    children: item.title
+                  }), /*#__PURE__*/require$$1.jsx("p", {
+                    className: "text-gray-600",
+                    children: item.value
+                  })]
+                }, idx);
+              })
+            }), data.form && /*#__PURE__*/require$$1.jsx("div", {
+              className: "lg:col-span-2 bg-white border border-gray-200 rounded-xl p-8 shadow-sm",
+              children: /*#__PURE__*/require$$1.jsxs("form", {
+                onSubmit: handleSubmit,
+                className: "space-y-6",
+                children: [/*#__PURE__*/require$$1.jsx("div", {
+                  className: "grid grid-cols-1 md:grid-cols-2 gap-6",
+                  children: (data.form.fields || [{
+                    name: 'name',
+                    type: 'text',
+                    label: 'Name'
+                  }, {
+                    name: 'email',
+                    type: 'email',
+                    label: 'Email'
+                  }]).slice(0, 2).map(function (field, idx) {
+                    return /*#__PURE__*/require$$1.jsxs("div", {
+                      className: "space-y-2",
+                      children: [/*#__PURE__*/require$$1.jsx("label", {
+                        className: "block text-sm font-medium text-gray-700",
+                        children: field.label
+                      }), /*#__PURE__*/require$$1.jsx("input", {
+                        type: field.type || 'text',
+                        name: field.name,
+                        className: "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all",
+                        onChange: handleInputChange
+                      })]
+                    }, field.name);
+                  })
+                }), (data.form.fields || [{
+                  name: 'subject',
+                  type: 'text',
+                  label: 'Subject'
+                }, {
+                  name: 'message',
+                  type: 'textarea',
+                  label: 'Message',
+                  rows: 4
+                }]).slice(2).map(function (field, idx) {
+                  return /*#__PURE__*/require$$1.jsxs("div", {
+                    className: "space-y-2",
+                    children: [/*#__PURE__*/require$$1.jsx("label", {
+                      className: "block text-sm font-medium text-gray-700",
+                      children: field.label
+                    }), field.type === 'textarea' ? /*#__PURE__*/require$$1.jsx("textarea", {
+                      name: field.name,
+                      rows: field.rows || 3,
+                      className: "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all",
+                      onChange: handleInputChange
+                    }) : /*#__PURE__*/require$$1.jsx("input", {
+                      type: field.type || 'text',
+                      name: field.name,
+                      className: "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all",
+                      onChange: handleInputChange
+                    })]
+                  }, field.name);
+                }), ((_data$form4 = data.form) === null || _data$form4 === void 0 ? void 0 : _data$form4.buttonText) && /*#__PURE__*/require$$1.jsx("button", {
+                  type: "submit",
+                  className: "w-full bg-primary-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-primary-700 transition-colors",
+                  children: data.form.buttonText
+                })]
+              })
+            })]
+          })]
+        });
+      case 'card':
+        return /*#__PURE__*/require$$1.jsx("div", {
+          className: "max-w-4xl mx-auto px-4 py-16",
+          children: /*#__PURE__*/require$$1.jsx("div", {
+            className: "bg-white border border-gray-200 rounded-2xl shadow-xl overflow-hidden",
+            children: /*#__PURE__*/require$$1.jsxs("div", {
+              className: "grid grid-cols-1 lg:grid-cols-2",
+              children: [/*#__PURE__*/require$$1.jsxs("div", {
+                className: "bg-gray-50 p-8 lg:p-12",
+                children: [data.title && /*#__PURE__*/require$$1.jsx("h2", {
+                  className: "text-3xl font-bold text-black mb-6",
+                  children: data.title
+                }), (data.subtitle || data.description) && /*#__PURE__*/require$$1.jsx("p", {
+                  className: "text-gray-600 mb-8",
+                  children: data.subtitle || data.description
+                }), data.info && data.info.length > 0 && /*#__PURE__*/require$$1.jsx("div", {
+                  className: "space-y-6",
+                  children: data.info.map(function (item, idx) {
+                    return /*#__PURE__*/require$$1.jsxs("div", {
+                      className: "flex items-center space-x-4",
+                      children: [/*#__PURE__*/require$$1.jsx("div", {
+                        className: "w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0",
+                        children: item.icon
+                      }), /*#__PURE__*/require$$1.jsxs("div", {
+                        children: [item.title && /*#__PURE__*/require$$1.jsx("p", {
+                          className: "font-medium text-gray-900",
+                          children: item.title
+                        }), /*#__PURE__*/require$$1.jsx("p", {
+                          className: "text-gray-600 text-sm",
+                          children: item.value
+                        })]
+                      })]
+                    }, idx);
+                  })
+                })]
+              }), data.form && /*#__PURE__*/require$$1.jsx("div", {
+                className: "p-8 lg:p-12",
+                children: /*#__PURE__*/require$$1.jsxs("form", {
+                  onSubmit: handleSubmit,
+                  className: "space-y-6",
+                  children: [(data.form.fields || [{
+                    name: 'name',
+                    type: 'text',
+                    label: 'Name'
+                  }, {
+                    name: 'email',
+                    type: 'email',
+                    label: 'Email'
+                  }, {
+                    name: 'subject',
+                    type: 'text',
+                    label: 'Subject'
+                  }, {
+                    name: 'message',
+                    type: 'textarea',
+                    label: 'Message',
+                    rows: 4
+                  }]).map(function (field, idx) {
+                    return /*#__PURE__*/require$$1.jsxs("div", {
+                      className: "space-y-2",
+                      children: [/*#__PURE__*/require$$1.jsx("label", {
+                        className: "block text-sm font-medium text-gray-700",
+                        children: field.label
+                      }), field.type === 'textarea' ? /*#__PURE__*/require$$1.jsx("textarea", {
+                        name: field.name,
+                        rows: field.rows || 3,
+                        className: "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all",
+                        onChange: handleInputChange
+                      }) : /*#__PURE__*/require$$1.jsx("input", {
+                        type: field.type || 'text',
+                        name: field.name,
+                        className: "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all",
+                        onChange: handleInputChange
+                      })]
+                    }, field.name);
+                  }), ((_data$form5 = data.form) === null || _data$form5 === void 0 ? void 0 : _data$form5.buttonText) && /*#__PURE__*/require$$1.jsx("button", {
+                    type: "submit",
+                    className: "w-full bg-primary-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-primary-700 transition-colors",
+                    children: data.form.buttonText
+                  })]
+                })
+              })]
+            })
+          })
+        });
+      default:
+        return null;
+    }
+  };
+  return /*#__PURE__*/require$$1.jsx("section", {
+    className: clsx("contact-modern-section", className),
+    children: renderVariant()
   });
 };
 
@@ -36233,10 +37582,14 @@ exports.CheckoutOrderSummary = CheckoutOrderSummary;
 exports.CheckoutPaymentSection = CheckoutPaymentSection;
 exports.CheckoutPeloton = CheckoutPeloton;
 exports.CheckoutPremium = CheckoutPremium;
+exports.CheckoutProgressIndicator = CheckoutProgressIndicator;
 exports.CheckoutProtectionSection = CheckoutProtectionSection;
 exports.CheckoutShippingSection = CheckoutShippingSection;
 exports.CheckoutSkeleton = CheckoutSkeleton;
 exports.CheckoutTrialSection = CheckoutTrialSection;
+exports.Contact = Contact;
+exports.ContactModern = ContactModern;
+exports.ContactSkeleton = ContactSkeleton;
 exports.FaqHub = FaqHub;
 exports.FaqModern = FaqModern;
 exports.FaqVisual = FaqVisual;
