@@ -35250,6 +35250,1502 @@ var ContactModern = function ContactModern(_ref) {
   });
 };
 
+var PageNotFoundSkeleton = function PageNotFoundSkeleton(_ref) {
+  var _ref$data = _ref.data,
+    data = _ref$data === void 0 ? {} : _ref$data,
+    className = _ref.className;
+  var _data$variant = data.variant,
+    variant = _data$variant === void 0 ? 'modern' : _data$variant;
+
+  // Container classes
+  var containerClasses = {
+    modern: 'page-not-found-modern min-h-screen bg-white',
+    minimal: 'page-not-found-minimal min-h-screen bg-neutral-50',
+    classic: 'page-not-found-classic min-h-screen bg-white',
+    split: 'page-not-found-split min-h-screen bg-white',
+    card: 'page-not-found-card min-h-screen bg-neutral-50',
+    image: 'page-not-found-image min-h-screen bg-white',
+    secret: 'page-not-found-secret min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900',
+    background: 'page-not-found-background min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black',
+    500: 'page-not-found-500 min-h-screen bg-gradient-to-br from-red-50 to-orange-50',
+    503: 'page-not-found-503 min-h-screen bg-gradient-to-br from-yellow-50 to-orange-50'
+  };
+  var renderSkeleton = function renderSkeleton() {
+    switch (variant) {
+      case 'modern':
+        return /*#__PURE__*/jsx("div", {
+          className: "min-h-screen bg-white flex items-center justify-center px-4 py-20",
+          children: /*#__PURE__*/jsxs("div", {
+            className: "max-w-2xl mx-auto text-center w-full",
+            children: [/*#__PURE__*/jsx("div", {
+              className: "mb-12",
+              children: /*#__PURE__*/jsx("div", {
+                className: "page-not-found-skeleton w-48 h-48 sm:w-64 sm:h-64 rounded-full mx-auto"
+              })
+            }), /*#__PURE__*/jsxs("div", {
+              className: "mb-8 px-4",
+              children: [/*#__PURE__*/jsx("div", {
+                className: "page-not-found-skeleton h-16 sm:h-20 w-32 sm:w-48 mx-auto mb-4"
+              }), /*#__PURE__*/jsx("div", {
+                className: "page-not-found-skeleton h-6 sm:h-8 w-48 sm:w-64 mx-auto mb-4"
+              }), /*#__PURE__*/jsx("div", {
+                className: "page-not-found-skeleton h-4 w-full max-w-[384px] mx-auto"
+              })]
+            }), /*#__PURE__*/jsxs("div", {
+              className: "flex flex-col sm:flex-row gap-4 justify-center px-4",
+              children: [/*#__PURE__*/jsx("div", {
+                className: "page-not-found-skeleton h-14 w-full sm:w-32 rounded-2xl"
+              }), /*#__PURE__*/jsx("div", {
+                className: "page-not-found-skeleton h-14 w-full sm:w-32 rounded-2xl"
+              })]
+            }), /*#__PURE__*/jsxs("div", {
+              className: "mt-12 pt-8 px-4",
+              children: [/*#__PURE__*/jsx("div", {
+                className: "page-not-found-skeleton h-4 w-32 mx-auto mb-4"
+              }), /*#__PURE__*/jsxs("div", {
+                className: "flex flex-wrap justify-center gap-4",
+                children: [/*#__PURE__*/jsx("div", {
+                  className: "page-not-found-skeleton h-4 w-16 sm:w-20"
+                }), /*#__PURE__*/jsx("div", {
+                  className: "page-not-found-skeleton h-4 w-20 sm:w-24"
+                }), /*#__PURE__*/jsx("div", {
+                  className: "page-not-found-skeleton h-4 w-12 sm:w-16"
+                })]
+              })]
+            })]
+          })
+        });
+      case 'minimal':
+        return /*#__PURE__*/jsx("div", {
+          className: "min-h-screen bg-neutral-50 flex items-center justify-center px-4",
+          children: /*#__PURE__*/jsxs("div", {
+            className: "max-w-lg mx-auto text-center w-full",
+            children: [/*#__PURE__*/jsxs("div", {
+              className: "mb-8 px-4",
+              children: [/*#__PURE__*/jsx("div", {
+                className: "page-not-found-skeleton h-16 sm:h-24 w-16 sm:w-24 rounded-full mx-auto mb-6"
+              }), /*#__PURE__*/jsx("div", {
+                className: "page-not-found-skeleton h-12 sm:h-16 w-12 sm:w-16 rounded-full mx-auto mb-6"
+              }), /*#__PURE__*/jsx("div", {
+                className: "page-not-found-skeleton h-16 sm:h-24 w-16 sm:w-24 rounded-full mx-auto"
+              })]
+            }), /*#__PURE__*/jsxs("div", {
+              className: "mb-12 px-4",
+              children: [/*#__PURE__*/jsx("div", {
+                className: "page-not-found-skeleton h-6 sm:h-8 w-32 sm:w-48 mx-auto mb-4"
+              }), /*#__PURE__*/jsx("div", {
+                className: "page-not-found-skeleton h-4 w-full sm:w-64 mx-auto"
+              })]
+            }), /*#__PURE__*/jsxs("div", {
+              className: "space-y-4 px-4",
+              children: [/*#__PURE__*/jsx("div", {
+                className: "page-not-found-skeleton h-14 w-full rounded-2xl"
+              }), /*#__PURE__*/jsx("div", {
+                className: "page-not-found-skeleton h-14 w-full rounded-2xl"
+              })]
+            })]
+          })
+        });
+      case 'classic':
+        return /*#__PURE__*/jsx("div", {
+          className: "min-h-screen bg-white",
+          children: /*#__PURE__*/jsxs("div", {
+            className: "max-w-7xl mx-auto px-4 py-20 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center",
+            children: [/*#__PURE__*/jsxs("div", {
+              className: "order-2 lg:order-1 px-4",
+              children: [/*#__PURE__*/jsxs("div", {
+                className: "mb-8",
+                children: [/*#__PURE__*/jsx("div", {
+                  className: "page-not-found-skeleton h-12 sm:h-16 w-24 sm:w-32 mb-6"
+                }), /*#__PURE__*/jsx("div", {
+                  className: "page-not-found-skeleton h-6 sm:h-8 w-40 sm:w-48 mb-4"
+                }), /*#__PURE__*/jsx("div", {
+                  className: "page-not-found-skeleton h-4 w-full mb-2"
+                }), /*#__PURE__*/jsx("div", {
+                  className: "page-not-found-skeleton h-4 w-3/4 mb-8"
+                })]
+              }), /*#__PURE__*/jsxs("div", {
+                className: "flex flex-col sm:flex-row gap-4 mb-8",
+                children: [/*#__PURE__*/jsx("div", {
+                  className: "page-not-found-skeleton h-12 w-full sm:w-40 rounded-lg"
+                }), /*#__PURE__*/jsx("div", {
+                  className: "page-not-found-skeleton h-12 w-full sm:w-32 rounded-lg"
+                })]
+              }), /*#__PURE__*/jsxs("div", {
+                children: [/*#__PURE__*/jsx("div", {
+                  className: "page-not-found-skeleton h-6 w-48 mb-4"
+                }), /*#__PURE__*/jsxs("div", {
+                  className: "space-y-2",
+                  children: [/*#__PURE__*/jsx("div", {
+                    className: "page-not-found-skeleton h-4 w-32"
+                  }), /*#__PURE__*/jsx("div", {
+                    className: "page-not-found-skeleton h-4 w-40"
+                  }), /*#__PURE__*/jsx("div", {
+                    className: "page-not-found-skeleton h-4 w-36"
+                  })]
+                })]
+              })]
+            }), /*#__PURE__*/jsx("div", {
+              className: "order-1 lg:order-2 px-4",
+              children: /*#__PURE__*/jsx("div", {
+                className: "page-not-found-skeleton w-full h-64 sm:h-96 rounded-3xl"
+              })
+            })]
+          })
+        });
+      case 'split':
+        return /*#__PURE__*/jsxs("div", {
+          className: "min-h-screen flex flex-col lg:flex-row",
+          children: [/*#__PURE__*/jsx("div", {
+            className: "lg:w-1/2 bg-neutral-900 p-8 sm:p-12 flex flex-col justify-center",
+            children: /*#__PURE__*/jsxs("div", {
+              className: "max-w-md mx-auto w-full px-4",
+              children: [/*#__PURE__*/jsxs("div", {
+                className: "mb-8",
+                children: [/*#__PURE__*/jsx("div", {
+                  className: "page-not-found-skeleton bg-neutral-800 h-16 sm:h-20 w-24 sm:w-32 rounded mb-8"
+                }), /*#__PURE__*/jsx("div", {
+                  className: "page-not-found-skeleton bg-neutral-800 h-6 sm:h-8 w-40 sm:w-48 rounded mb-6"
+                }), /*#__PURE__*/jsx("div", {
+                  className: "page-not-found-skeleton bg-neutral-800 h-4 w-full rounded mb-2"
+                }), /*#__PURE__*/jsx("div", {
+                  className: "page-not-found-skeleton bg-neutral-800 h-4 w-3/4 rounded mb-12"
+                })]
+              }), /*#__PURE__*/jsxs("div", {
+                className: "space-y-4",
+                children: [/*#__PURE__*/jsx("div", {
+                  className: "page-not-found-skeleton bg-neutral-800 h-14 w-full rounded-2xl"
+                }), /*#__PURE__*/jsx("div", {
+                  className: "page-not-found-skeleton bg-neutral-800 h-14 w-full rounded-2xl"
+                })]
+              })]
+            })
+          }), /*#__PURE__*/jsx("div", {
+            className: "lg:w-1/2 p-8 sm:p-12 flex items-center justify-center",
+            children: /*#__PURE__*/jsxs("div", {
+              className: "max-w-md w-full text-center px-4",
+              children: [/*#__PURE__*/jsxs("div", {
+                className: "mb-12",
+                children: [/*#__PURE__*/jsx("div", {
+                  className: "page-not-found-skeleton w-32 h-32 sm:w-48 sm:h-48 rounded-full mx-auto mb-8"
+                }), /*#__PURE__*/jsx("div", {
+                  className: "page-not-found-skeleton h-6 w-full sm:w-48 mx-auto mb-4"
+                }), /*#__PURE__*/jsx("div", {
+                  className: "page-not-found-skeleton h-4 w-full max-w-xs mx-auto mb-8"
+                })]
+              }), /*#__PURE__*/jsx("div", {
+                className: "page-not-found-skeleton h-14 w-full rounded-2xl mb-8"
+              }), /*#__PURE__*/jsxs("div", {
+                className: "pt-8",
+                children: [/*#__PURE__*/jsx("div", {
+                  className: "page-not-found-skeleton h-4 w-32 mx-auto mb-4"
+                }), /*#__PURE__*/jsxs("div", {
+                  className: "space-y-2",
+                  children: [/*#__PURE__*/jsx("div", {
+                    className: "page-not-found-skeleton h-4 w-24 mx-auto"
+                  }), /*#__PURE__*/jsx("div", {
+                    className: "page-not-found-skeleton h-4 w-28 mx-auto"
+                  }), /*#__PURE__*/jsx("div", {
+                    className: "page-not-found-skeleton h-4 w-20 mx-auto"
+                  })]
+                })]
+              })]
+            })
+          })]
+        });
+      case 'card':
+        return /*#__PURE__*/jsx("div", {
+          className: "min-h-screen bg-neutral-50 py-12 sm:py-20 px-4",
+          children: /*#__PURE__*/jsx("div", {
+            className: "max-w-4xl mx-auto",
+            children: /*#__PURE__*/jsxs("div", {
+              className: "bg-white rounded-3xl shadow-xl overflow-hidden grid grid-cols-1 lg:grid-cols-2 min-h-[500px] sm:min-h-[600px]",
+              children: [/*#__PURE__*/jsxs("div", {
+                className: "p-8 sm:p-12 flex flex-col justify-center",
+                children: [/*#__PURE__*/jsxs("div", {
+                  className: "mb-8",
+                  children: [/*#__PURE__*/jsx("div", {
+                    className: "page-not-found-skeleton h-12 sm:h-16 w-24 sm:w-32 mb-6"
+                  }), /*#__PURE__*/jsx("div", {
+                    className: "page-not-found-skeleton h-6 sm:h-8 w-48 sm:w-56 mb-4"
+                  }), /*#__PURE__*/jsx("div", {
+                    className: "page-not-found-skeleton h-4 w-full"
+                  })]
+                }), /*#__PURE__*/jsxs("div", {
+                  className: "space-y-4 mb-8",
+                  children: [/*#__PURE__*/jsx("div", {
+                    className: "page-not-found-skeleton h-14 w-full rounded-2xl"
+                  }), /*#__PURE__*/jsx("div", {
+                    className: "page-not-found-skeleton h-14 w-full rounded-2xl"
+                  })]
+                }), /*#__PURE__*/jsxs("div", {
+                  className: "pt-8",
+                  children: [/*#__PURE__*/jsx("div", {
+                    className: "page-not-found-skeleton h-4 w-20 mb-2"
+                  }), /*#__PURE__*/jsx("div", {
+                    className: "page-not-found-skeleton h-4 w-32"
+                  })]
+                })]
+              }), /*#__PURE__*/jsx("div", {
+                className: "bg-neutral-50 p-8 sm:p-12 flex items-center justify-center",
+                children: /*#__PURE__*/jsx("div", {
+                  className: "page-not-found-skeleton w-48 h-48 sm:w-64 sm:h-64 rounded-full mx-auto"
+                })
+              })]
+            })
+          })
+        });
+      case 'image':
+        return /*#__PURE__*/jsx("div", {
+          className: "min-h-screen bg-white flex items-center justify-center px-4 py-20",
+          children: /*#__PURE__*/jsxs("div", {
+            className: "max-w-2xl mx-auto text-center w-full",
+            children: [/*#__PURE__*/jsx("div", {
+              className: "mb-12",
+              children: /*#__PURE__*/jsx("div", {
+                className: "page-not-found-skeleton w-48 h-48 sm:w-64 sm:h-64 rounded-full mx-auto"
+              })
+            }), /*#__PURE__*/jsxs("div", {
+              className: "mb-8 px-4",
+              children: [/*#__PURE__*/jsx("div", {
+                className: "page-not-found-skeleton h-6 sm:h-8 w-full sm:w-80 mx-auto mb-4"
+              }), /*#__PURE__*/jsx("div", {
+                className: "page-not-found-skeleton h-4 w-full max-w-lg mx-auto mb-2"
+              }), /*#__PURE__*/jsx("div", {
+                className: "page-not-found-skeleton h-4 w-3/4 max-w-lg mx-auto mb-8"
+              })]
+            }), /*#__PURE__*/jsx("div", {
+              className: "px-4",
+              children: /*#__PURE__*/jsx("div", {
+                className: "page-not-found-skeleton h-14 w-full sm:w-48 rounded-2xl mx-auto"
+              })
+            })]
+          })
+        });
+      case 'secret':
+        return /*#__PURE__*/jsx("div", {
+          className: "min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 flex items-center justify-center px-4 py-20",
+          children: /*#__PURE__*/jsxs("div", {
+            className: "max-w-2xl mx-auto text-center w-full",
+            children: [/*#__PURE__*/jsx("div", {
+              className: "mb-8 px-4",
+              children: /*#__PURE__*/jsx("div", {
+                className: "page-not-found-skeleton h-16 sm:h-24 w-32 sm:w-48 rounded mx-auto"
+              })
+            }), /*#__PURE__*/jsxs("div", {
+              className: "mb-12 px-4",
+              children: [/*#__PURE__*/jsx("div", {
+                className: "page-not-found-skeleton h-6 sm:h-8 w-full sm:w-80 mx-auto mb-4"
+              }), /*#__PURE__*/jsx("div", {
+                className: "page-not-found-skeleton h-4 w-full max-w-lg mx-auto"
+              })]
+            }), /*#__PURE__*/jsx("div", {
+              className: "px-4",
+              children: /*#__PURE__*/jsx("div", {
+                className: "page-not-found-skeleton h-14 w-full sm:w-56 rounded-2xl mx-auto"
+              })
+            })]
+          })
+        });
+      case 'background':
+        return /*#__PURE__*/jsx("div", {
+          className: "min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black flex items-center justify-center px-4 py-20",
+          children: /*#__PURE__*/jsxs("div", {
+            className: "max-w-2xl mx-auto text-center w-full",
+            children: [/*#__PURE__*/jsxs("div", {
+              className: "mb-12 px-4",
+              children: [/*#__PURE__*/jsx("div", {
+                className: "page-not-found-skeleton h-10 sm:h-12 w-full sm:w-80 mx-auto mb-6"
+              }), /*#__PURE__*/jsx("div", {
+                className: "page-not-found-skeleton h-4 w-full max-w-lg mx-auto mb-2"
+              }), /*#__PURE__*/jsx("div", {
+                className: "page-not-found-skeleton h-4 w-3/4 max-w-lg mx-auto"
+              })]
+            }), /*#__PURE__*/jsx("div", {
+              className: "px-4",
+              children: /*#__PURE__*/jsx("div", {
+                className: "page-not-found-skeleton h-14 w-full sm:w-56 rounded-2xl mx-auto"
+              })
+            })]
+          })
+        });
+      case '500':
+        return /*#__PURE__*/jsx("div", {
+          className: "min-h-screen bg-gradient-to-br from-red-50 to-orange-50 flex items-center justify-center px-4 py-20",
+          children: /*#__PURE__*/jsxs("div", {
+            className: "max-w-2xl mx-auto text-center w-full",
+            children: [/*#__PURE__*/jsx("div", {
+              className: "mb-8 px-4",
+              children: /*#__PURE__*/jsx("div", {
+                className: "page-not-found-skeleton h-16 sm:h-24 w-32 sm:w-48 rounded mx-auto"
+              })
+            }), /*#__PURE__*/jsxs("div", {
+              className: "mb-12 px-4",
+              children: [/*#__PURE__*/jsx("div", {
+                className: "page-not-found-skeleton h-6 sm:h-8 w-full sm:w-80 mx-auto mb-4"
+              }), /*#__PURE__*/jsx("div", {
+                className: "page-not-found-skeleton h-4 w-full max-w-lg mx-auto"
+              })]
+            }), /*#__PURE__*/jsxs("div", {
+              className: "flex flex-col sm:flex-row gap-4 justify-center px-4",
+              children: [/*#__PURE__*/jsx("div", {
+                className: "page-not-found-skeleton h-14 w-full sm:w-40 rounded-2xl"
+              }), /*#__PURE__*/jsx("div", {
+                className: "page-not-found-skeleton h-14 w-full sm:w-32 rounded-2xl"
+              })]
+            })]
+          })
+        });
+      case '503':
+        return /*#__PURE__*/jsx("div", {
+          className: "min-h-screen bg-gradient-to-br from-yellow-50 to-orange-50 flex items-center justify-center px-4 py-20",
+          children: /*#__PURE__*/jsxs("div", {
+            className: "max-w-2xl mx-auto text-center w-full",
+            children: [/*#__PURE__*/jsx("div", {
+              className: "mb-8 px-4",
+              children: /*#__PURE__*/jsx("div", {
+                className: "page-not-found-skeleton h-16 sm:h-24 w-32 sm:w-48 rounded mx-auto"
+              })
+            }), /*#__PURE__*/jsxs("div", {
+              className: "mb-12 px-4",
+              children: [/*#__PURE__*/jsx("div", {
+                className: "page-not-found-skeleton h-6 sm:h-8 w-full sm:w-80 mx-auto mb-4"
+              }), /*#__PURE__*/jsx("div", {
+                className: "page-not-found-skeleton h-4 w-full max-w-lg mx-auto"
+              })]
+            }), /*#__PURE__*/jsxs("div", {
+              className: "flex flex-col sm:flex-row gap-4 justify-center px-4",
+              children: [/*#__PURE__*/jsx("div", {
+                className: "page-not-found-skeleton h-14 w-full sm:w-40 rounded-2xl"
+              }), /*#__PURE__*/jsx("div", {
+                className: "page-not-found-skeleton h-14 w-full sm:w-32 rounded-2xl"
+              })]
+            })]
+          })
+        });
+      default:
+        return null;
+    }
+  };
+  return /*#__PURE__*/jsx("div", {
+    className: clsx(containerClasses[variant] || containerClasses.modern, className),
+    children: renderSkeleton()
+  });
+};
+
+var PageNotFound = function PageNotFound(_ref) {
+  var _ref$data = _ref.data,
+    data = _ref$data === void 0 ? {} : _ref$data,
+    className = _ref.className,
+    _ref$loading = _ref.loading,
+    loading = _ref$loading === void 0 ? false : _ref$loading;
+  var _useState = useState(false),
+    _useState2 = _slicedToArray(_useState, 2),
+    timedOut = _useState2[0],
+    setTimedOut = _useState2[1];
+  var variant = data.variant || 'modern';
+
+  // Reset timeout when data changes to ensure dynamic content works
+  useEffect(function () {
+    if (loading) {
+      setTimedOut(false);
+      var timer = setTimeout(function () {
+        setTimedOut(true);
+      }, 2000);
+      return function () {
+        return clearTimeout(timer);
+      };
+    } else {
+      setTimedOut(false);
+    }
+  }, [loading, data]);
+
+  // Auto-show content after 2 seconds if loading is true
+  useEffect(function () {
+    if (loading) {
+      setTimedOut(false);
+      var timer = setTimeout(function () {
+        setTimedOut(true);
+      }, 2000);
+      return function () {
+        return clearTimeout(timer);
+      };
+    }
+  }, [loading]);
+  var shouldShowSkeleton = loading && !timedOut;
+  var handleGoHome = function handleGoHome() {
+    window.location.href = '/';
+  };
+  var handleGoBack = function handleGoBack() {
+    window.history.back();
+  };
+
+  // Show skeleton loading state
+  if (shouldShowSkeleton) {
+    return /*#__PURE__*/jsx(PageNotFoundSkeleton, {
+      data: {
+        variant: variant
+      },
+      className: className
+    });
+  }
+  var renderVariant = function renderVariant() {
+    switch (variant) {
+      case 'modern':
+        return /*#__PURE__*/jsx("div", {
+          className: "min-h-screen bg-white flex items-center justify-center px-4 py-20",
+          children: /*#__PURE__*/jsxs("div", {
+            className: "max-w-2xl mx-auto text-center",
+            children: [/*#__PURE__*/jsx("div", {
+              className: "mb-12 relative",
+              children: /*#__PURE__*/jsxs("div", {
+                className: "w-64 h-64 mx-auto relative",
+                children: [/*#__PURE__*/jsx("div", {
+                  className: "absolute inset-0 bg-gradient-to-br from-primary-500 to-primary-700 rounded-full opacity-10"
+                }), /*#__PURE__*/jsx("div", {
+                  className: "relative z-10 flex items-center justify-center w-full h-full",
+                  children: data.imageUrl ? /*#__PURE__*/jsx("img", {
+                    src: data.imageUrl,
+                    alt: data.title,
+                    className: "w-48 h-48 object-contain"
+                  }) : /*#__PURE__*/jsx("svg", {
+                    className: "w-32 h-32 text-primary-600",
+                    fill: "none",
+                    stroke: "currentColor",
+                    viewBox: "0 0 24 24",
+                    children: /*#__PURE__*/jsx("path", {
+                      strokeLinecap: "round",
+                      strokeLinejoin: "round",
+                      strokeWidth: 1,
+                      d: "M9.172 16.172a4 4 0 015.656 0M9 12h6m-6-4h6m2 5.291A7.962 7.962 0 0112 15c-2.34 0-4.467-.881-6.082-2.329M12 9v3m0 3h.01"
+                    })
+                  })
+                })]
+              })
+            }), /*#__PURE__*/jsxs("div", {
+              className: "mb-8",
+              children: [/*#__PURE__*/jsx("h1", {
+                className: "text-8xl font-black text-black mb-4 tracking-tighter",
+                children: "404"
+              }), /*#__PURE__*/jsx("h2", {
+                className: "text-3xl font-bold text-black mb-4",
+                children: data.title
+              }), /*#__PURE__*/jsx("p", {
+                className: "text-lg text-gray-600 max-w-md mx-auto",
+                children: data.description
+              })]
+            }), /*#__PURE__*/jsxs("div", {
+              className: "flex flex-col sm:flex-row gap-4 justify-center",
+              children: [/*#__PURE__*/jsx("button", {
+                onClick: handleGoHome,
+                className: "bg-black text-white px-8 py-4 rounded-2xl font-bold hover:bg-gray-800 transition-all hover:scale-105 active:scale-95",
+                children: data.homeButtonText
+              }), /*#__PURE__*/jsx("button", {
+                onClick: handleGoBack,
+                className: "bg-white text-black border-2 border-gray-200 px-8 py-4 rounded-2xl font-bold hover:border-primary-600 hover:text-primary-600 transition-all hover:scale-105 active:scale-95",
+                children: data.backButtonText
+              })]
+            }), data.links && data.links.length > 0 && /*#__PURE__*/jsxs("div", {
+              className: "mt-12 pt-8 border-t border-gray-200",
+              children: [/*#__PURE__*/jsx("p", {
+                className: "text-sm text-gray-500 mb-4",
+                children: "Popular pages:"
+              }), /*#__PURE__*/jsx("div", {
+                className: "flex flex-wrap justify-center gap-4",
+                children: data.links.map(function (link, idx) {
+                  return /*#__PURE__*/jsx("a", {
+                    href: link.url,
+                    className: "text-primary-600 hover:text-primary-800 font-medium transition-colors",
+                    children: link.label
+                  }, idx);
+                })
+              })]
+            })]
+          })
+        });
+      case 'minimal':
+        return /*#__PURE__*/jsx("div", {
+          className: "min-h-screen bg-neutral-50 flex items-center justify-center px-4",
+          children: /*#__PURE__*/jsxs("div", {
+            className: "max-w-lg mx-auto text-center",
+            children: [/*#__PURE__*/jsx("div", {
+              className: "mb-8",
+              children: data.imageUrl ? /*#__PURE__*/jsx("img", {
+                src: data.imageUrl,
+                alt: data.title,
+                className: "w-48 h-48 mx-auto object-contain mb-8"
+              }) : /*#__PURE__*/jsxs(Fragment, {
+                children: [/*#__PURE__*/jsx("h1", {
+                  className: "text-9xl font-black text-black mb-6 tracking-tighter",
+                  children: "4"
+                }), /*#__PURE__*/jsx("div", {
+                  className: "flex justify-center",
+                  children: /*#__PURE__*/jsx("div", {
+                    className: "w-16 h-16 bg-primary-600 rounded-full flex items-center justify-center mb-6",
+                    children: /*#__PURE__*/jsx("span", {
+                      className: "text-2xl font-bold text-white",
+                      children: "0"
+                    })
+                  })
+                }), /*#__PURE__*/jsx("h1", {
+                  className: "text-9xl font-black text-black tracking-tighter",
+                  children: "4"
+                })]
+              })
+            }), /*#__PURE__*/jsxs("div", {
+              className: "mb-12",
+              children: [/*#__PURE__*/jsx("h2", {
+                className: "text-2xl font-bold text-black mb-4",
+                children: data.title
+              }), /*#__PURE__*/jsx("p", {
+                className: "text-gray-600",
+                children: data.description
+              })]
+            }), /*#__PURE__*/jsxs("div", {
+              className: "space-y-4",
+              children: [/*#__PURE__*/jsx("button", {
+                onClick: handleGoHome,
+                className: "w-full bg-black text-white px-8 py-4 rounded-2xl font-bold hover:bg-gray-800 transition-all",
+                children: data.homeButtonText
+              }), /*#__PURE__*/jsx("button", {
+                onClick: handleGoBack,
+                className: "w-full bg-white text-black border-2 border-gray-300 px-8 py-4 rounded-2xl font-bold hover:border-primary-600 hover:text-primary-600 transition-all",
+                children: data.backButtonText
+              })]
+            })]
+          })
+        });
+      case 'classic':
+        return /*#__PURE__*/jsx("div", {
+          className: "min-h-screen bg-white",
+          children: /*#__PURE__*/jsxs("div", {
+            className: "max-w-7xl mx-auto px-4 py-20 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center",
+            children: [/*#__PURE__*/jsxs("div", {
+              className: "order-2 lg:order-1",
+              children: [/*#__PURE__*/jsxs("div", {
+                className: "mb-8",
+                children: [/*#__PURE__*/jsx("h1", {
+                  className: "text-6xl font-black text-black mb-6 tracking-tighter",
+                  children: "404"
+                }), /*#__PURE__*/jsx("h2", {
+                  className: "text-3xl font-bold text-black mb-4",
+                  children: data.title
+                }), /*#__PURE__*/jsx("p", {
+                  className: "text-lg text-gray-600 mb-8",
+                  children: data.description
+                })]
+              }), /*#__PURE__*/jsxs("div", {
+                className: "space-y-4 mb-8",
+                children: [/*#__PURE__*/jsx("button", {
+                  onClick: handleGoHome,
+                  className: "bg-black text-white px-8 py-4 rounded-lg font-bold hover:bg-gray-800 transition-all mr-4",
+                  children: data.homeButtonText
+                }), /*#__PURE__*/jsx("button", {
+                  onClick: handleGoBack,
+                  className: "bg-white text-black border border-gray-300 px-8 py-4 rounded-lg font-bold hover:border-primary-600 hover:text-primary-600 transition-all",
+                  children: data.backButtonText
+                })]
+              }), data.suggestions && /*#__PURE__*/jsxs("div", {
+                children: [/*#__PURE__*/jsx("h3", {
+                  className: "text-lg font-bold text-black mb-4",
+                  children: "You might want to check:"
+                }), /*#__PURE__*/jsx("ul", {
+                  className: "space-y-2",
+                  children: data.suggestions.map(function (suggestion, idx) {
+                    return /*#__PURE__*/jsx("li", {
+                      children: /*#__PURE__*/jsx("a", {
+                        href: suggestion.url,
+                        className: "text-primary-600 hover:text-primary-800 transition-colors",
+                        children: suggestion.label
+                      })
+                    }, idx);
+                  })
+                })]
+              })]
+            }), /*#__PURE__*/jsx("div", {
+              className: "order-1 lg:order-2",
+              children: /*#__PURE__*/jsx("div", {
+                className: "relative",
+                children: /*#__PURE__*/jsx("div", {
+                  className: "w-full h-96 bg-gradient-to-br from-primary-100 to-primary-200 rounded-3xl flex items-center justify-center overflow-hidden",
+                  children: data.imageUrl ? /*#__PURE__*/jsx("img", {
+                    src: data.imageUrl,
+                    alt: data.title,
+                    className: "w-full h-full object-cover"
+                  }) : /*#__PURE__*/jsxs("div", {
+                    className: "text-center",
+                    children: [/*#__PURE__*/jsx("svg", {
+                      className: "w-24 h-24 text-primary-600 mx-auto mb-4",
+                      fill: "none",
+                      stroke: "currentColor",
+                      viewBox: "0 0 24 24",
+                      children: /*#__PURE__*/jsx("path", {
+                        strokeLinecap: "round",
+                        strokeLinejoin: "round",
+                        strokeWidth: 1,
+                        d: "M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"
+                      })
+                    }), /*#__PURE__*/jsx("h3", {
+                      className: "text-xl font-bold text-primary-800",
+                      children: "Oops!"
+                    })]
+                  })
+                })
+              })
+            })]
+          })
+        });
+      case 'split':
+        return /*#__PURE__*/jsxs("div", {
+          className: "min-h-screen flex flex-col lg:flex-row",
+          children: [/*#__PURE__*/jsx("div", {
+            className: "lg:w-1/2 bg-black text-white p-12 md:p-24 flex flex-col justify-center",
+            children: /*#__PURE__*/jsxs("div", {
+              className: "max-w-md mx-auto w-full",
+              children: [/*#__PURE__*/jsxs("div", {
+                className: "mb-8",
+                children: [/*#__PURE__*/jsx("h1", {
+                  className: "text-8xl font-black mb-8 tracking-tighter",
+                  children: "404"
+                }), /*#__PURE__*/jsx("h2", {
+                  className: "text-3xl font-bold mb-6",
+                  children: data.title
+                }), /*#__PURE__*/jsx("p", {
+                  className: "text-gray-400 text-lg mb-12",
+                  children: data.description
+                })]
+              }), /*#__PURE__*/jsxs("div", {
+                className: "space-y-4",
+                children: [/*#__PURE__*/jsx("button", {
+                  onClick: handleGoHome,
+                  className: "w-full bg-white text-black px-8 py-4 rounded-2xl font-bold hover:bg-gray-100 transition-all",
+                  children: data.homeButtonText
+                }), /*#__PURE__*/jsx("button", {
+                  onClick: handleGoBack,
+                  className: "w-full bg-transparent text-white border-2 border-white px-8 py-4 rounded-2xl font-bold hover:bg-white hover:text-black transition-all",
+                  children: data.backButtonText
+                })]
+              })]
+            })
+          }), /*#__PURE__*/jsx("div", {
+            className: "lg:w-1/2 bg-white p-12 md:p-24 flex items-center justify-center",
+            children: /*#__PURE__*/jsxs("div", {
+              className: "max-w-md w-full text-center",
+              children: [/*#__PURE__*/jsxs("div", {
+                className: "mb-12",
+                children: [/*#__PURE__*/jsxs("div", {
+                  className: "w-48 h-48 mx-auto mb-8 relative",
+                  children: [/*#__PURE__*/jsx("div", {
+                    className: "absolute inset-0 bg-gradient-to-br from-primary-500 to-primary-700 rounded-full opacity-10"
+                  }), /*#__PURE__*/jsx("div", {
+                    className: "relative z-10 flex items-center justify-center w-full h-full",
+                    children: data.imageUrl ? /*#__PURE__*/jsx("img", {
+                      src: data.imageUrl,
+                      alt: data.title,
+                      className: "w-40 h-40 object-contain"
+                    }) : /*#__PURE__*/jsx("svg", {
+                      className: "w-24 h-24 text-primary-600",
+                      fill: "none",
+                      stroke: "currentColor",
+                      viewBox: "0 0 24 24",
+                      children: /*#__PURE__*/jsx("path", {
+                        strokeLinecap: "round",
+                        strokeLinejoin: "round",
+                        strokeWidth: 1,
+                        d: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                      })
+                    })
+                  })]
+                }), /*#__PURE__*/jsx("h3", {
+                  className: "text-2xl font-bold text-black mb-4",
+                  children: "Search for something else"
+                }), /*#__PURE__*/jsx("p", {
+                  className: "text-gray-600 mb-8",
+                  children: "Use our search to find what you're looking for."
+                })]
+              }), data.search && /*#__PURE__*/jsxs("div", {
+                className: "relative",
+                children: [/*#__PURE__*/jsx("input", {
+                  type: "text",
+                  placeholder: data.search.placeholder,
+                  className: "w-full bg-gray-50 border-2 border-transparent focus:border-primary-600 px-6 py-4 rounded-2xl outline-none transition-all pr-12"
+                }), /*#__PURE__*/jsx("button", {
+                  className: "absolute right-4 top-1/2 transform -translate-y-1/2 text-primary-600 hover:text-primary-800 transition-colors",
+                  children: /*#__PURE__*/jsx("svg", {
+                    className: "w-5 h-5",
+                    fill: "none",
+                    stroke: "currentColor",
+                    viewBox: "0 0 24 24",
+                    children: /*#__PURE__*/jsx("path", {
+                      strokeLinecap: "round",
+                      strokeLinejoin: "round",
+                      strokeWidth: 2,
+                      d: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                    })
+                  })
+                })]
+              }), data.popularPages && /*#__PURE__*/jsxs("div", {
+                className: "mt-8 pt-8 border-t border-gray-200",
+                children: [/*#__PURE__*/jsx("h4", {
+                  className: "text-sm font-bold text-gray-500 mb-4 uppercase tracking-widest",
+                  children: "Popular Pages"
+                }), /*#__PURE__*/jsx("div", {
+                  className: "space-y-2",
+                  children: data.popularPages.map(function (page, idx) {
+                    return /*#__PURE__*/jsx("a", {
+                      href: page.url,
+                      className: "block text-primary-600 hover:text-primary-800 font-medium transition-colors",
+                      children: page.label
+                    }, idx);
+                  })
+                })]
+              })]
+            })
+          })]
+        });
+      case 'card':
+        return /*#__PURE__*/jsx("div", {
+          className: "min-h-screen bg-neutral-50 py-20 px-4",
+          children: /*#__PURE__*/jsx("div", {
+            className: "max-w-4xl mx-auto",
+            children: /*#__PURE__*/jsxs("div", {
+              className: "bg-white rounded-[40px] shadow-2xl shadow-neutral-200/50 overflow-hidden grid grid-cols-1 lg:grid-cols-2 min-h-[600px]",
+              children: [/*#__PURE__*/jsxs("div", {
+                className: "p-12 md:p-16 flex flex-col justify-center",
+                children: [/*#__PURE__*/jsxs("div", {
+                  className: "mb-8",
+                  children: [/*#__PURE__*/jsx("h1", {
+                    className: "text-7xl font-black text-black mb-6 tracking-tighter",
+                    children: "404"
+                  }), /*#__PURE__*/jsx("h2", {
+                    className: "text-3xl font-bold text-black mb-4",
+                    children: data.title
+                  }), /*#__PURE__*/jsx("p", {
+                    className: "text-gray-600 text-lg",
+                    children: data.description
+                  })]
+                }), /*#__PURE__*/jsxs("div", {
+                  className: "space-y-4 mb-8",
+                  children: [/*#__PURE__*/jsx("button", {
+                    onClick: handleGoHome,
+                    className: "w-full bg-black text-white px-8 py-4 rounded-2xl font-bold shadow-xl shadow-neutral-200 hover:scale-[1.02] active:scale-95 transition-all",
+                    children: data.homeButtonText
+                  }), /*#__PURE__*/jsx("button", {
+                    onClick: handleGoBack,
+                    className: "w-full bg-white text-black border-2 border-gray-200 px-8 py-4 rounded-2xl font-bold hover:border-primary-600 hover:text-primary-600 transition-all",
+                    children: data.backButtonText
+                  })]
+                }), data.contact && /*#__PURE__*/jsxs("div", {
+                  className: "pt-8 border-t border-gray-200",
+                  children: [/*#__PURE__*/jsx("p", {
+                    className: "text-sm text-gray-500 mb-2",
+                    children: "Need help?"
+                  }), /*#__PURE__*/jsx("a", {
+                    href: data.contact.url,
+                    className: "text-primary-600 hover:text-primary-800 font-medium transition-colors",
+                    children: data.contact.label
+                  })]
+                })]
+              }), /*#__PURE__*/jsxs("div", {
+                className: "bg-gradient-to-br from-primary-50 to-primary-100 p-12 md:p-16 flex items-center justify-center relative overflow-hidden",
+                children: [/*#__PURE__*/jsxs("div", {
+                  className: "relative z-10",
+                  children: [/*#__PURE__*/jsxs("div", {
+                    className: "w-64 h-64 mx-auto mb-8 relative",
+                    children: [/*#__PURE__*/jsx("div", {
+                      className: "absolute inset-0 bg-white rounded-full opacity-20"
+                    }), /*#__PURE__*/jsx("div", {
+                      className: "relative z-10 flex items-center justify-center w-full h-full",
+                      children: data.imageUrl ? /*#__PURE__*/jsx("img", {
+                        src: data.imageUrl,
+                        alt: data.title,
+                        className: "w-48 h-48 object-contain"
+                      }) : /*#__PURE__*/jsx("svg", {
+                        className: "w-32 h-32 text-primary-600",
+                        fill: "none",
+                        stroke: "currentColor",
+                        viewBox: "0 0 24 24",
+                        children: /*#__PURE__*/jsx("path", {
+                          strokeLinecap: "round",
+                          strokeLinejoin: "round",
+                          strokeWidth: 1,
+                          d: "M9.172 16.172a4 4 0 015.656 0M9 12h6m-6-4h6m2 5.291A7.962 7.962 0 0112 15c-2.34 0-4.467-.881-6.082-2.329M12 9v3m0 3h.01"
+                        })
+                      })
+                    })]
+                  }), !data.imageUrl && /*#__PURE__*/jsx("h3", {
+                    className: "text-xl font-bold text-primary-800 text-center",
+                    children: "Lost & Found"
+                  })]
+                }), /*#__PURE__*/jsx("div", {
+                  className: "absolute top-8 right-8 w-20 h-20 bg-white rounded-full opacity-10"
+                }), /*#__PURE__*/jsx("div", {
+                  className: "absolute bottom-8 left-8 w-12 h-12 bg-white rounded-full opacity-10"
+                })]
+              })]
+            })
+          })
+        });
+      case 'image':
+        return /*#__PURE__*/jsx("div", {
+          className: "min-h-screen bg-[#1A1B1E] flex items-center justify-center px-4 py-20",
+          children: /*#__PURE__*/jsxs("div", {
+            className: "max-w-6xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-24",
+            children: [/*#__PURE__*/jsxs("div", {
+              className: "flex-1 text-center lg:text-left order-2 lg:order-1",
+              children: [/*#__PURE__*/jsx("h1", {
+                className: "text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight",
+                children: data.title
+              }), /*#__PURE__*/jsx("p", {
+                className: "text-lg text-gray-400 max-w-lg mb-10 leading-relaxed",
+                children: data.description
+              }), /*#__PURE__*/jsx("button", {
+                onClick: handleGoHome,
+                className: "inline-flex items-center justify-center px-8 py-3.5 border border-primary-600 text-primary-600 rounded-lg font-bold hover:bg-primary-600 hover:text-white transition-all duration-300",
+                children: data.homeButtonText
+              })]
+            }), /*#__PURE__*/jsxs("div", {
+              className: "flex-1 order-1 lg:order-2 relative group",
+              children: [/*#__PURE__*/jsx("div", {
+                className: "relative z-10 scale-110 lg:scale-125 select-none pointer-events-none",
+                children: data.imageUrl ? /*#__PURE__*/jsx("img", {
+                  src: data.imageUrl,
+                  alt: data.title,
+                  className: "w-full h-auto max-w-[500px] mx-auto object-contain"
+                }) : /*#__PURE__*/jsxs("svg", {
+                  viewBox: "0 0 500 400",
+                  className: "w-full h-auto max-w-[500px] mx-auto overflow-visible",
+                  fill: "none",
+                  xmlns: "http://www.w3.org/2000/svg",
+                  children: [/*#__PURE__*/jsx("circle", {
+                    cx: "250",
+                    cy: "200",
+                    r: "120",
+                    fill: "#E91E63",
+                    fillOpacity: "0.05"
+                  }), /*#__PURE__*/jsx("circle", {
+                    cx: "250",
+                    cy: "200",
+                    r: "160",
+                    stroke: "#E91E63",
+                    strokeOpacity: "0.03",
+                    strokeWidth: "2",
+                    strokeDasharray: "10 10"
+                  }), /*#__PURE__*/jsxs("g", {
+                    transform: "translate(180, 80)",
+                    children: [/*#__PURE__*/jsx("path", {
+                      d: "M70 120 C40 120 20 90 20 60 C20 20 50 0 70 0 C90 0 120 20 120 60 C120 90 100 120 70 120",
+                      fill: "#1A1B1E",
+                      stroke: "#2C2E33",
+                      strokeWidth: "2"
+                    }), /*#__PURE__*/jsx("path", {
+                      d: "M40 50 C40 30 50 20 70 20 C90 20 100 30 100 50 C100 80 90 100 70 100 C50 100 40 80 40 50",
+                      fill: "#FFCCBC"
+                    }), /*#__PURE__*/jsx("path", {
+                      d: "M55 45 Q60 40 65 45",
+                      stroke: "#1A1B1E",
+                      strokeWidth: "2",
+                      fill: "none"
+                    }), /*#__PURE__*/jsx("path", {
+                      d: "M75 45 Q80 50 85 45",
+                      stroke: "#1A1B1E",
+                      strokeWidth: "2",
+                      fill: "none"
+                    }), /*#__PURE__*/jsx("path", {
+                      d: "M60 75 Q70 70 80 75",
+                      stroke: "#1A1B1E",
+                      strokeWidth: "2",
+                      fill: "none"
+                    }), /*#__PURE__*/jsx("path", {
+                      d: "M100 50 L115 35 L105 25",
+                      stroke: "#FFCCBC",
+                      strokeWidth: "4",
+                      strokeLinecap: "round"
+                    })]
+                  }), /*#__PURE__*/jsx("path", {
+                    d: "M350 70 Q370 70 370 90 Q370 110 350 110 Q330 110 330 90 Q330 70 350 70",
+                    fill: "white"
+                  }), /*#__PURE__*/jsx("path", {
+                    d: "M335 105 L325 115",
+                    stroke: "white",
+                    strokeWidth: "3",
+                    strokeLinecap: "round"
+                  }), /*#__PURE__*/jsx("text", {
+                    x: "345",
+                    y: "100",
+                    fill: "#1A1B1E",
+                    fontSize: "24",
+                    fontWeight: "bold",
+                    children: "?"
+                  }), /*#__PURE__*/jsx("text", {
+                    x: "50",
+                    y: "320",
+                    fill: "#E91E63",
+                    fontSize: "180",
+                    fontWeight: "900",
+                    style: {
+                      letterSpacing: '-10px',
+                      filter: 'drop-shadow(10px 10px 0px rgba(0,0,0,0.1))'
+                    },
+                    children: "4"
+                  }), /*#__PURE__*/jsx("text", {
+                    x: "180",
+                    y: "320",
+                    fill: "#E91E63",
+                    fontSize: "180",
+                    fontWeight: "900",
+                    style: {
+                      letterSpacing: '-10px',
+                      filter: 'drop-shadow(10px 10px 0px rgba(0,0,0,0.1))'
+                    },
+                    children: "0"
+                  }), /*#__PURE__*/jsx("text", {
+                    x: "310",
+                    y: "320",
+                    fill: "#E91E63",
+                    fontSize: "180",
+                    fontWeight: "900",
+                    style: {
+                      letterSpacing: '-10px',
+                      filter: 'drop-shadow(10px 10px 0px rgba(0,0,0,0.1))'
+                    },
+                    children: "4"
+                  }), /*#__PURE__*/jsx("circle", {
+                    cx: "420",
+                    cy: "250",
+                    r: "10",
+                    fill: "#E91E63",
+                    fillOpacity: "0.4"
+                  }), /*#__PURE__*/jsx("circle", {
+                    cx: "80",
+                    cy: "150",
+                    r: "8",
+                    fill: "#E91E63",
+                    fillOpacity: "0.4"
+                  }), /*#__PURE__*/jsx("path", {
+                    d: "M400 350 Q420 330 440 350",
+                    stroke: "#E91E63",
+                    strokeWidth: "4",
+                    strokeLinecap: "round",
+                    strokeOpacity: "0.2"
+                  }), /*#__PURE__*/jsx("path", {
+                    d: "M60 80 Q80 60 100 80",
+                    stroke: "#E91E63",
+                    strokeWidth: "4",
+                    strokeLinecap: "round",
+                    strokeOpacity: "0.2"
+                  })]
+                })
+              }), /*#__PURE__*/jsx("div", {
+                className: "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-primary-600/10 blur-[100px] rounded-full -z-10 group-hover:bg-primary-600/15 transition-colors"
+              })]
+            })]
+          })
+        });
+      case 'secret':
+        return /*#__PURE__*/jsx("div", {
+          className: "min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 flex items-center justify-center px-4 py-20",
+          children: /*#__PURE__*/jsxs("div", {
+            className: "max-w-2xl mx-auto text-center text-white",
+            children: [/*#__PURE__*/jsx("div", {
+              className: "mb-8",
+              children: data.imageUrl ? /*#__PURE__*/jsx("img", {
+                src: data.imageUrl,
+                alt: data.title,
+                className: "w-64 h-48 mx-auto object-contain mb-8"
+              }) : /*#__PURE__*/jsx("h1", {
+                className: "text-9xl font-black mb-6 tracking-tighter",
+                children: "404"
+              })
+            }), /*#__PURE__*/jsxs("div", {
+              className: "mb-12",
+              children: [/*#__PURE__*/jsx("h2", {
+                className: "text-3xl font-bold mb-4",
+                children: data.title
+              }), /*#__PURE__*/jsx("p", {
+                className: "text-lg text-gray-300 max-w-lg mx-auto",
+                children: data.description
+              })]
+            }), /*#__PURE__*/jsx("button", {
+              onClick: handleGoHome,
+              className: "bg-white text-gray-900 px-8 py-4 rounded-2xl font-bold hover:bg-gray-100 transition-all hover:scale-105 active:scale-95",
+              children: data.homeButtonText
+            })]
+          })
+        });
+      case 'background':
+        return /*#__PURE__*/jsxs("div", {
+          className: "min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black flex items-center justify-center px-4 py-20 relative overflow-hidden",
+          children: [data.bgImageUrl ? /*#__PURE__*/jsxs(Fragment, {
+            children: [/*#__PURE__*/jsx("div", {
+              className: "absolute inset-0",
+              children: /*#__PURE__*/jsx("img", {
+                src: data.bgImageUrl,
+                alt: "",
+                className: "w-full h-full object-cover"
+              })
+            }), /*#__PURE__*/jsx("div", {
+              className: "absolute inset-0 bg-black/60 backdrop-blur-[2px]"
+            })]
+          }) : /*#__PURE__*/jsxs("div", {
+            className: "absolute inset-0 opacity-10",
+            children: [/*#__PURE__*/jsx("div", {
+              className: "absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.1),transparent_50%)]"
+            }), /*#__PURE__*/jsx("div", {
+              className: "absolute inset-0 bg-[linear-gradient(45deg,transparent_49%,rgba(255,255,255,0.05)_50%,transparent_51%)] bg-[length:20px_20px]"
+            })]
+          }), /*#__PURE__*/jsxs("div", {
+            className: "max-w-2xl mx-auto text-center text-white relative z-10",
+            children: [/*#__PURE__*/jsxs("div", {
+              className: "mb-12",
+              children: [/*#__PURE__*/jsx("h1", {
+                className: "text-5xl font-bold mb-6",
+                children: data.title
+              }), /*#__PURE__*/jsx("p", {
+                className: "text-lg text-gray-300 max-w-lg mx-auto",
+                children: data.description
+              })]
+            }), /*#__PURE__*/jsx("button", {
+              onClick: handleGoHome,
+              className: "bg-white text-gray-900 px-8 py-4 rounded-2xl font-bold hover:bg-gray-100 transition-all hover:scale-105 active:scale-95",
+              children: data.homeButtonText
+            })]
+          })]
+        });
+      case '500':
+        return /*#__PURE__*/jsx("div", {
+          className: "min-h-screen bg-gradient-to-br from-red-50 to-orange-50 flex items-center justify-center px-4 py-20",
+          children: /*#__PURE__*/jsxs("div", {
+            className: "max-w-2xl mx-auto text-center",
+            children: [/*#__PURE__*/jsx("div", {
+              className: "mb-8",
+              children: data.imageUrl ? /*#__PURE__*/jsx("img", {
+                src: data.imageUrl,
+                alt: data.title,
+                className: "w-64 h-48 mx-auto object-contain mb-8"
+              }) : /*#__PURE__*/jsx("h1", {
+                className: "text-9xl font-black text-red-600 mb-6 tracking-tighter",
+                children: "500"
+              })
+            }), /*#__PURE__*/jsxs("div", {
+              className: "mb-12",
+              children: [/*#__PURE__*/jsx("h2", {
+                className: "text-3xl font-bold text-black mb-4",
+                children: data.title
+              }), /*#__PURE__*/jsx("p", {
+                className: "text-lg text-gray-600 max-w-lg mx-auto",
+                children: data.description
+              })]
+            }), /*#__PURE__*/jsxs("div", {
+              className: "flex flex-col sm:flex-row gap-4 justify-center",
+              children: [/*#__PURE__*/jsx("button", {
+                onClick: function onClick() {
+                  return window.location.reload();
+                },
+                className: "bg-red-600 text-white px-8 py-4 rounded-2xl font-bold hover:bg-red-700 transition-all hover:scale-105 active:scale-95",
+                children: data.refreshButtonText
+              }), /*#__PURE__*/jsx("button", {
+                onClick: handleGoHome,
+                className: "bg-white text-red-600 border-2 border-red-600 px-8 py-4 rounded-2xl font-bold hover:bg-red-50 transition-all hover:scale-105 active:scale-95",
+                children: data.homeButtonText
+              })]
+            })]
+          })
+        });
+      case '503':
+        return /*#__PURE__*/jsx("div", {
+          className: "min-h-screen bg-gradient-to-br from-yellow-50 to-orange-50 flex items-center justify-center px-4 py-20",
+          children: /*#__PURE__*/jsxs("div", {
+            className: "max-w-2xl mx-auto text-center",
+            children: [/*#__PURE__*/jsx("div", {
+              className: "mb-8",
+              children: data.imageUrl ? /*#__PURE__*/jsx("img", {
+                src: data.imageUrl,
+                alt: data.title,
+                className: "w-64 h-48 mx-auto object-contain mb-8"
+              }) : /*#__PURE__*/jsx("h1", {
+                className: "text-9xl font-black text-yellow-600 mb-6 tracking-tighter",
+                children: "503"
+              })
+            }), /*#__PURE__*/jsxs("div", {
+              className: "mb-12",
+              children: [/*#__PURE__*/jsx("h2", {
+                className: "text-3xl font-bold text-black mb-4",
+                children: data.title
+              }), /*#__PURE__*/jsx("p", {
+                className: "text-lg text-gray-600 max-w-lg mx-auto",
+                children: data.description
+              })]
+            }), /*#__PURE__*/jsxs("div", {
+              className: "flex flex-col sm:flex-row gap-4 justify-center",
+              children: [/*#__PURE__*/jsx("button", {
+                onClick: function onClick() {
+                  return window.location.reload();
+                },
+                className: "bg-yellow-600 text-white px-8 py-4 rounded-2xl font-bold hover:bg-yellow-700 transition-all hover:scale-105 active:scale-95",
+                children: data.refreshButtonText
+              }), /*#__PURE__*/jsx("button", {
+                onClick: handleGoHome,
+                className: "bg-white text-yellow-600 border-2 border-yellow-600 px-8 py-4 rounded-2xl font-bold hover:bg-yellow-50 transition-all hover:scale-105 active:scale-95",
+                children: data.homeButtonText
+              })]
+            })]
+          })
+        });
+      default:
+        return null;
+    }
+  };
+  return /*#__PURE__*/jsx("section", {
+    className: clsx("page-not-found-section overflow-hidden", variant === 'modern' && 'bg-white', variant === 'minimal' && 'bg-neutral-50', variant === 'classic' && 'bg-white', variant === 'split' && 'bg-white', variant === 'card' && 'bg-neutral-50', variant === 'image' && 'bg-white', variant === 'secret' && 'bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900', variant === 'background' && 'bg-gradient-to-br from-gray-900 via-gray-800 to-black', variant === '500' && 'bg-gradient-to-br from-red-50 to-orange-50', variant === '503' && 'bg-gradient-to-br from-yellow-50 to-orange-50', className),
+    children: renderVariant()
+  });
+};
+
+var DropZone = function DropZone(_ref) {
+  var data = _ref.data,
+    onFilesDrop = _ref.onFilesDrop,
+    className = _ref.className,
+    id = _ref.id,
+    _ref$loader = _ref.loader,
+    loader = _ref$loader === void 0 ? false : _ref$loader;
+  // Safety check for data
+  if (!data || _typeof(data) !== 'object') {
+    data = {};
+  }
+  var _useState = useState(loader),
+    _useState2 = _slicedToArray(_useState, 2),
+    showLoader = _useState2[0],
+    setShowLoader = _useState2[1];
+  var _useState3 = useState(false),
+    _useState4 = _slicedToArray(_useState3, 2),
+    isDragActive = _useState4[0],
+    setIsDragActive = _useState4[1];
+  var _useState5 = useState([]),
+    _useState6 = _slicedToArray(_useState5, 2),
+    files = _useState6[0],
+    setFiles = _useState6[1];
+  var fileInputRef = useRef(null);
+
+  // Auto-hide loader after 2 seconds when loader prop is true
+  useEffect(function () {
+    if (loader) {
+      var timer = setTimeout(function () {
+        setShowLoader(false);
+      }, 2000);
+      return function () {
+        return clearTimeout(timer);
+      };
+    } else {
+      setShowLoader(false);
+    }
+  }, [loader]);
+  var _data = data,
+    _data$title = _data.title,
+    title = _data$title === void 0 ? 'Upload Files' : _data$title,
+    _data$description = _data.description,
+    description = _data$description === void 0 ? 'Drag and drop your files here, or click to browse' : _data$description,
+    _data$layout = _data.layout,
+    layout = _data$layout === void 0 ? 'standard' : _data$layout,
+    _data$theme = _data.theme,
+    theme = _data$theme === void 0 ? 'light' : _data$theme,
+    _data$accept = _data.accept,
+    accept = _data$accept === void 0 ? '*' : _data$accept,
+    _data$multiple = _data.multiple,
+    multiple = _data$multiple === void 0 ? false : _data$multiple,
+    dataClassName = _data.className;
+  var isDark = theme === 'dark';
+  var handleDragEnter = function handleDragEnter(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragActive(true);
+  };
+  var handleDragLeave = function handleDragLeave(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragActive(false);
+  };
+  var handleDragOver = function handleDragOver(e) {
+    e.preventDefault();
+    e.stopPropagation();
+  };
+  var handleDrop = function handleDrop(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragActive(false);
+    var droppedFiles = _toConsumableArray(e.dataTransfer.files);
+    if (droppedFiles.length > 0) {
+      var newFiles = multiple ? [].concat(_toConsumableArray(files), _toConsumableArray(droppedFiles)) : [droppedFiles[0]];
+      setFiles(newFiles);
+      if (onFilesDrop) onFilesDrop(newFiles);
+    }
+  };
+  var handleFileInputChange = function handleFileInputChange(e) {
+    var selectedFiles = _toConsumableArray(e.target.files);
+    if (selectedFiles.length > 0) {
+      var newFiles = multiple ? [].concat(_toConsumableArray(files), _toConsumableArray(selectedFiles)) : [selectedFiles[0]];
+      setFiles(newFiles);
+      if (onFilesDrop) onFilesDrop(newFiles);
+    }
+  };
+  var openFileDialog = function openFileDialog() {
+    var _fileInputRef$current;
+    (_fileInputRef$current = fileInputRef.current) === null || _fileInputRef$current === void 0 || _fileInputRef$current.click();
+  };
+  var removeFile = function removeFile(index) {
+    var newFiles = files.filter(function (_, i) {
+      return i !== index;
+    });
+    setFiles(newFiles);
+    if (onFilesDrop) onFilesDrop(newFiles);
+  };
+
+  // --- SKELETON LOADER ---
+  if (showLoader) {
+    var skeletonClass = isDark ? 'bg-gray-800' : 'bg-gray-100';
+    var pulseClass = 'animate-pulse';
+    return /*#__PURE__*/jsxs("div", {
+      id: id,
+      className: clsx('w-full rounded-2xl border-2 border-dashed p-12 flex flex-col items-center justify-center', isDark ? 'bg-gray-900 border-gray-800' : 'bg-white border-gray-200', className, dataClassName),
+      children: [/*#__PURE__*/jsx("div", {
+        className: clsx('w-16 h-16 rounded-full mb-6', skeletonClass, pulseClass)
+      }), /*#__PURE__*/jsx("div", {
+        className: clsx('h-6 w-48 rounded mb-4', skeletonClass, pulseClass)
+      }), /*#__PURE__*/jsx("div", {
+        className: clsx('h-4 w-64 rounded', skeletonClass, pulseClass)
+      })]
+    });
+  }
+
+  // --- RENDERING VARIANTS ---
+
+  var renderFilesList = function renderFilesList() {
+    if (files.length === 0) return null;
+    return /*#__PURE__*/jsx("div", {
+      className: "mt-6 w-full space-y-2",
+      children: files.map(function (file, index) {
+        return /*#__PURE__*/jsxs("div", {
+          className: clsx('flex items-center justify-between p-3 rounded-lg border text-sm', isDark ? 'bg-gray-800 border-gray-700 text-gray-200' : 'bg-gray-50 border-gray-200 text-gray-700'),
+          children: [/*#__PURE__*/jsxs("div", {
+            className: "flex items-center gap-3 truncate",
+            children: [/*#__PURE__*/jsx("svg", {
+              className: "w-5 h-5 flex-shrink-0 text-primary-500",
+              fill: "none",
+              stroke: "currentColor",
+              viewBox: "0 0 24 24",
+              children: /*#__PURE__*/jsx("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"
+              })
+            }), /*#__PURE__*/jsx("span", {
+              className: "truncate",
+              children: file.name
+            }), /*#__PURE__*/jsxs("span", {
+              className: clsx('text-xs', isDark ? 'text-gray-500' : 'text-gray-400'),
+              children: ["(", (file.size / 1024).toFixed(1), " KB)"]
+            })]
+          }), /*#__PURE__*/jsx("button", {
+            onClick: function onClick(e) {
+              e.stopPropagation();
+              removeFile(index);
+            },
+            className: "text-gray-400 hover:text-red-500 transition-colors",
+            children: /*#__PURE__*/jsx("svg", {
+              className: "w-4 h-4",
+              fill: "none",
+              stroke: "currentColor",
+              viewBox: "0 0 24 24",
+              children: /*#__PURE__*/jsx("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+                d: "M6 18L18 6M6 6l12 12"
+              })
+            })
+          })]
+        }, "".concat(file.name, "-").concat(index));
+      })
+    });
+  };
+
+  // 1. STANDARD VARIANT
+  var renderStandard = function renderStandard() {
+    return /*#__PURE__*/jsxs("div", {
+      id: id,
+      className: clsx('relative group cursor-pointer transition-all duration-300', 'w-full rounded-2xl border-2 border-dashed p-10 sm:p-16', isDragActive ? 'border-primary-500 bg-primary-50/30' : isDark ? 'bg-gray-900 border-gray-800 hover:border-gray-700' : 'bg-white border-gray-200 hover:border-primary-300 hover:shadow-lg', className, dataClassName),
+      onDragEnter: handleDragEnter,
+      onDragOver: handleDragOver,
+      onDragLeave: handleDragLeave,
+      onDrop: handleDrop,
+      onClick: openFileDialog,
+      children: [/*#__PURE__*/jsx("input", {
+        type: "file",
+        ref: fileInputRef,
+        onChange: handleFileInputChange,
+        accept: accept,
+        multiple: multiple,
+        className: "hidden"
+      }), /*#__PURE__*/jsxs("div", {
+        className: "flex flex-col items-center text-center",
+        children: [/*#__PURE__*/jsx("div", {
+          className: clsx('w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110', isDark ? 'bg-gray-800 text-primary-400' : 'bg-primary-50 text-primary-600'),
+          children: /*#__PURE__*/jsx("svg", {
+            className: "w-8 h-8",
+            fill: "none",
+            stroke: "currentColor",
+            viewBox: "0 0 24 24",
+            children: /*#__PURE__*/jsx("path", {
+              strokeLinecap: "round",
+              strokeLinejoin: "round",
+              strokeWidth: 2,
+              d: "M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+            })
+          })
+        }), /*#__PURE__*/jsx("h3", {
+          className: clsx('text-xl font-bold mb-2', isDark ? 'text-white' : 'text-gray-900'),
+          children: title
+        }), /*#__PURE__*/jsx("p", {
+          className: clsx('text-sm max-w-xs', isDark ? 'text-gray-400' : 'text-gray-500'),
+          children: description
+        }), /*#__PURE__*/jsx("div", {
+          className: "mt-8",
+          children: /*#__PURE__*/jsx("span", {
+            className: clsx('inline-flex items-center px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300', isDark ? 'bg-primary-600 text-white hover:bg-primary-500' : 'bg-gray-900 text-white hover:bg-gray-800'),
+            children: "Browse Files"
+          })
+        })]
+      }), renderFilesList()]
+    });
+  };
+
+  // 2. MODERN VARIANT (Glassmorphism + Gradients)
+  var renderModern = function renderModern() {
+    return /*#__PURE__*/jsxs("div", {
+      id: id,
+      className: clsx('relative group cursor-pointer transition-all duration-500 overflow-hidden', 'w-full rounded-3xl p-1', isDragActive ? 'scale-[1.02]' : 'hover:scale-[1.01]', className, dataClassName),
+      onDragEnter: handleDragEnter,
+      onDragOver: handleDragOver,
+      onDragLeave: handleDragLeave,
+      onDrop: handleDrop,
+      onClick: openFileDialog,
+      children: [/*#__PURE__*/jsx("div", {
+        className: clsx('absolute inset-0 bg-gradient-to-br from-primary-400 via-gray-900 to-black opacity-10 group-hover:opacity-20 transition-opacity duration-500', isDragActive && 'opacity-30')
+      }), /*#__PURE__*/jsx("div", {
+        className: clsx('absolute inset-0 rounded-3xl bg-gradient-to-r from-primary-500 to-gray-500 opacity-20 group-hover:opacity-50 transition-opacity duration-500', isDragActive && 'opacity-100')
+      }), /*#__PURE__*/jsxs("div", {
+        className: clsx('relative h-full w-full rounded-[22px] p-8 sm:p-12 backdrop-blur-xl flex flex-col items-center text-center', isDark ? 'bg-black/80' : 'bg-white/90'),
+        children: [/*#__PURE__*/jsx("input", {
+          type: "file",
+          ref: fileInputRef,
+          onChange: handleFileInputChange,
+          accept: accept,
+          multiple: multiple,
+          className: "hidden"
+        }), /*#__PURE__*/jsxs("div", {
+          className: "relative mb-6",
+          children: [/*#__PURE__*/jsx("div", {
+            className: "absolute inset-0 bg-primary-500 rounded-full blur-2xl opacity-20 animate-pulse"
+          }), /*#__PURE__*/jsx("div", {
+            className: clsx('relative w-20 h-20 rounded-full flex items-center justify-center border-2 border-primary-500/30', isDark ? 'bg-gray-900' : 'bg-primary-50'),
+            children: /*#__PURE__*/jsx("svg", {
+              className: "w-10 h-10 text-primary-500",
+              fill: "none",
+              stroke: "currentColor",
+              viewBox: "0 0 24 24",
+              children: /*#__PURE__*/jsx("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 1.5,
+                d: "M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"
+              })
+            })
+          })]
+        }), /*#__PURE__*/jsx("h3", {
+          className: clsx('text-2xl font-black tracking-tight mb-2 uppercase', isDark ? 'text-white' : 'text-gray-900'),
+          children: title
+        }), /*#__PURE__*/jsx("p", {
+          className: clsx('text-sm font-medium mb-8 max-w-sm leading-relaxed', isDark ? 'text-gray-400' : 'text-gray-500'),
+          children: description
+        }), /*#__PURE__*/jsxs("div", {
+          className: "flex items-center gap-4",
+          children: [/*#__PURE__*/jsx("div", {
+            className: clsx('h-px w-8', isDark ? 'bg-gray-800' : 'bg-gray-200')
+          }), /*#__PURE__*/jsx("span", {
+            className: clsx('text-xs font-bold uppercase tracking-widest', isDark ? 'text-gray-500' : 'text-gray-400'),
+            children: "Or drop here"
+          }), /*#__PURE__*/jsx("div", {
+            className: clsx('h-px w-8', isDark ? 'bg-gray-800' : 'bg-gray-200')
+          })]
+        }), renderFilesList()]
+      })]
+    });
+  };
+
+  // 3. COMPACT VARIANT
+  var renderCompact = function renderCompact() {
+    return /*#__PURE__*/jsxs("div", {
+      id: id,
+      className: clsx('group cursor-pointer transition-all duration-300', 'w-full flex items-center gap-6 p-6 rounded-2xl border-2 border-dashed', isDragActive ? 'border-primary-500 bg-primary-50/30' : isDark ? 'bg-gray-900 border-gray-800 hover:border-gray-700' : 'bg-white border-gray-200 hover:border-primary-300', className, dataClassName),
+      onDragEnter: handleDragEnter,
+      onDragOver: handleDragOver,
+      onDragLeave: handleDragLeave,
+      onDrop: handleDrop,
+      onClick: openFileDialog,
+      children: [/*#__PURE__*/jsx("input", {
+        type: "file",
+        ref: fileInputRef,
+        onChange: handleFileInputChange,
+        accept: accept,
+        multiple: multiple,
+        className: "hidden"
+      }), /*#__PURE__*/jsx("div", {
+        className: clsx('w-12 h-12 rounded-xl flex-shrink-0 flex items-center justify-center transition-transform group-hover:scale-110', isDark ? 'bg-gray-800 text-primary-400' : 'bg-primary-50 text-primary-600'),
+        children: /*#__PURE__*/jsx("svg", {
+          className: "w-6 h-6",
+          fill: "none",
+          stroke: "currentColor",
+          viewBox: "0 0 24 24",
+          children: /*#__PURE__*/jsx("path", {
+            strokeLinecap: "round",
+            strokeLinejoin: "round",
+            strokeWidth: 2,
+            d: "M12 4v16m8-8H4"
+          })
+        })
+      }), /*#__PURE__*/jsxs("div", {
+        className: "flex-grow text-left",
+        children: [/*#__PURE__*/jsx("h3", {
+          className: clsx('text-base font-bold', isDark ? 'text-white' : 'text-gray-900'),
+          children: title
+        }), /*#__PURE__*/jsx("p", {
+          className: clsx('text-xs mt-1', isDark ? 'text-gray-400' : 'text-gray-500'),
+          children: description
+        })]
+      }), /*#__PURE__*/jsx("div", {
+        className: "flex-shrink-0",
+        children: /*#__PURE__*/jsx("div", {
+          className: clsx('px-3 py-1.5 rounded-lg text-xs font-bold uppercase transition-all', isDark ? 'bg-gray-800 text-gray-300' : 'bg-gray-100 text-gray-600'),
+          children: "Select"
+        })
+      }), files.length > 0 && /*#__PURE__*/jsx("div", {
+        className: "absolute top-0 right-0 -mt-2 -mr-2 bg-primary-600 text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center shadow-lg",
+        children: files.length
+      })]
+    });
+  };
+  switch (layout) {
+    case 'modern':
+      return renderModern();
+    case 'compact':
+      return renderCompact();
+    case 'standard':
+    default:
+      return renderStandard();
+  }
+};
+
 var CartStandard = function CartStandard(_ref) {
   var data = _ref.data,
     _ref$variant = _ref.variant,
@@ -37507,6 +39003,319 @@ var CartSidebar = function CartSidebar(_ref) {
   });
 };
 
+var TableOfContents = function TableOfContents(_ref) {
+  var data = _ref.data,
+    className = _ref.className,
+    id = _ref.id,
+    _ref$loader = _ref.loader,
+    loader = _ref$loader === void 0 ? false : _ref$loader;
+  var _useState = useState(''),
+    _useState2 = _slicedToArray(_useState, 2),
+    activeId = _useState2[0],
+    setActiveId = _useState2[1];
+  var _useState3 = useState(loader),
+    _useState4 = _slicedToArray(_useState3, 2),
+    showLoader = _useState4[0],
+    setShowLoader = _useState4[1];
+  useEffect(function () {
+    if (loader) {
+      var timer = setTimeout(function () {
+        return setShowLoader(false);
+      }, 2000);
+      return function () {
+        return clearTimeout(timer);
+      };
+    }
+  }, [loader]);
+  useEffect(function () {
+    var _data$items;
+    if ((data === null || data === void 0 || (_data$items = data.items) === null || _data$items === void 0 ? void 0 : _data$items.length) > 0 && !activeId) {
+      setActiveId(data.items[0].id);
+    }
+  }, [data === null || data === void 0 ? void 0 : data.items, activeId]);
+  useEffect(function () {
+    var _data$items2;
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          setActiveId(entry.target.id);
+        }
+      });
+    }, {
+      rootMargin: '-10% 0% -80% 0%'
+    });
+    data === null || data === void 0 || (_data$items2 = data.items) === null || _data$items2 === void 0 || _data$items2.forEach(function (item) {
+      var element = document.getElementById(item.id);
+      if (element) observer.observe(element);
+    });
+    return function () {
+      return observer.disconnect();
+    };
+  }, [data === null || data === void 0 ? void 0 : data.items]);
+  if (!data) return null;
+  var _data$title = data.title,
+    title = _data$title === void 0 ? 'Table of Contents' : _data$title,
+    titleIcon = data.titleIcon,
+    _data$items3 = data.items,
+    items = _data$items3 === void 0 ? [] : _data$items3,
+    _data$variant = data.variant,
+    variant = _data$variant === void 0 ? 'classic' : _data$variant,
+    _data$theme = data.theme,
+    theme = _data$theme === void 0 ? 'light' : _data$theme,
+    dataClassName = data.className;
+  var isDark = theme === 'dark';
+  var DefaultTitleIcon = /*#__PURE__*/jsxs("svg", {
+    className: clsx('w-4 h-4', isDark ? 'text-gray-400' : 'text-gray-500'),
+    fill: "none",
+    stroke: "currentColor",
+    viewBox: "0 0 24 24",
+    strokeWidth: 2,
+    "aria-hidden": "true",
+    focusable: "false",
+    children: [/*#__PURE__*/jsx("path", {
+      strokeLinecap: "round",
+      strokeLinejoin: "round",
+      d: "M4 6h16M4 12h10M4 18h14"
+    }), /*#__PURE__*/jsx("path", {
+      strokeLinecap: "round",
+      strokeLinejoin: "round",
+      d: "M18 12h2M18 18h2",
+      className: "opacity-60"
+    })]
+  });
+  if (showLoader) {
+    return /*#__PURE__*/jsxs("div", {
+      className: clsx('toc-container p-6', isDark ? 'bg-gray-900' : 'bg-white', className, dataClassName),
+      children: [/*#__PURE__*/jsx("div", {
+        className: "toc-skeleton h-8 w-48 mb-6"
+      }), /*#__PURE__*/jsx("div", {
+        className: "space-y-4",
+        children: [1, 2, 3, 4, 5].map(function (i) {
+          return /*#__PURE__*/jsxs("div", {
+            className: "flex items-center gap-3",
+            children: [/*#__PURE__*/jsx("div", {
+              className: "toc-skeleton h-4 w-4 rounded-full"
+            }), /*#__PURE__*/jsx("div", {
+              className: clsx("toc-skeleton h-4", i % 2 === 0 ? "w-32" : "w-40")
+            })]
+          }, i);
+        })
+      })]
+    });
+  }
+  var renderItems = function renderItems() {
+    return items.map(function (item) {
+      return /*#__PURE__*/jsxs("a", {
+        href: "#".concat(item.id),
+        className: clsx('toc-link', "toc-level-".concat(item.level || 2), variant === 'minimal' && 'group', activeId === item.id && 'active',
+        // For timeline, keep the dot aligned on the main line for all levels (indent only the text via CSS)
+        variant === 'timeline' ? 'ml-0' : item.level === 2 ? 'ml-0' : 'ml-4', variant !== 'minimal' && (isDark ? 'text-gray-400 hover:text-white' : 'text-gray-600 hover:text-black')),
+        onClick: function onClick(e) {
+          var _document$getElementB;
+          e.preventDefault();
+          setActiveId(item.id);
+          (_document$getElementB = document.getElementById(item.id)) === null || _document$getElementB === void 0 || _document$getElementB.scrollIntoView({
+            behavior: 'smooth'
+          });
+        },
+        children: [variant === 'minimal' && /*#__PURE__*/jsx("span", {
+          className: "bullet"
+        }), /*#__PURE__*/jsx("span", {
+          className: "toc-text",
+          children: item.label
+        })]
+      }, item.id);
+    });
+  };
+  return /*#__PURE__*/jsxs("nav", {
+    id: id,
+    className: clsx('toc-container', "toc-variant-".concat(variant), isDark ? 'dark bg-gray-950 text-white' : 'bg-white text-gray-900', className, dataClassName),
+    children: [/*#__PURE__*/jsxs("div", {
+      className: clsx('flex items-center gap-2 mb-4', variant === 'timeline' ? 'px-1' : ''),
+      children: [/*#__PURE__*/jsx("span", {
+        className: "flex-shrink-0",
+        children: titleIcon !== null && titleIcon !== void 0 ? titleIcon : DefaultTitleIcon
+      }), /*#__PURE__*/jsx("h3", {
+        className: clsx('leading-none',
+        // keep the title compact across variants
+        variant === 'timeline' ? 'text-[15px] font-medium' : 'text-base font-semibold', isDark ? 'text-gray-200' : 'text-gray-800'),
+        children: title
+      })]
+    }), /*#__PURE__*/jsx("div", {
+      className: "flex flex-col gap-1",
+      children: renderItems()
+    })]
+  });
+};
+
+var UniversalCard = function UniversalCard(_ref) {
+  var data = _ref.data,
+    className = _ref.className,
+    _ref$loader = _ref.loader,
+    loader = _ref$loader === void 0 ? false : _ref$loader;
+  var _useState = useState(loader),
+    _useState2 = _slicedToArray(_useState, 2),
+    showLoader = _useState2[0],
+    setShowLoader = _useState2[1];
+  useEffect(function () {
+    if (loader) {
+      var timer = setTimeout(function () {
+        return setShowLoader(false);
+      }, 2000);
+      return function () {
+        return clearTimeout(timer);
+      };
+    }
+    setShowLoader(false);
+  }, [loader]);
+  if (showLoader) {
+    return /*#__PURE__*/jsxs("div", {
+      className: clsx('universal-card p-0 h-full', className),
+      children: [/*#__PURE__*/jsx("div", {
+        className: "skeleton-box w-full aspect-video rounded-b-none"
+      }), /*#__PURE__*/jsxs("div", {
+        className: "p-6 space-y-3",
+        children: [/*#__PURE__*/jsx("div", {
+          className: "skeleton-box w-20 h-4"
+        }), /*#__PURE__*/jsx("div", {
+          className: "skeleton-box w-3/4 h-7"
+        }), /*#__PURE__*/jsx("div", {
+          className: "skeleton-box w-full h-4"
+        }), /*#__PURE__*/jsx("div", {
+          className: "skeleton-box w-full h-4"
+        })]
+      })]
+    });
+  }
+  var title = data.title,
+    description = data.description,
+    image = data.image,
+    category = data.category;
+    data.theme;
+    var _data$mode = data.mode,
+    mode = _data$mode === void 0 ? 'default' : _data$mode;
+  var isOverlay = mode === 'overlay';
+  return /*#__PURE__*/jsxs("div", {
+    className: clsx('universal-card h-full group', isOverlay && 'universal-card-overlay', className),
+    children: [image && /*#__PURE__*/jsx("div", {
+      className: clsx('universal-card-image-container', !isOverlay && 'aspect-video'),
+      children: /*#__PURE__*/jsx("img", {
+        src: image,
+        alt: title,
+        className: "universal-card-image w-full h-full object-cover"
+      })
+    }), /*#__PURE__*/jsxs("div", {
+      className: "universal-card-content",
+      children: [category && /*#__PURE__*/jsx("span", {
+        className: "universal-card-category",
+        children: category
+      }), /*#__PURE__*/jsx("h3", {
+        className: "universal-card-title group-hover:text-primary-600 transition-colors",
+        children: title
+      }), description && /*#__PURE__*/jsx("p", {
+        className: "universal-card-description",
+        children: description
+      }), /*#__PURE__*/jsx("div", {
+        className: "universal-card-footer",
+        children: /*#__PURE__*/jsxs("button", {
+          className: "universal-card-button",
+          children: ["View Project", /*#__PURE__*/jsx("svg", {
+            className: "w-4 h-4 transform group-hover:translate-x-1 transition-transform",
+            fill: "none",
+            viewBox: "0 0 24 24",
+            stroke: "currentColor",
+            children: /*#__PURE__*/jsx("path", {
+              strokeLinecap: "round",
+              strokeLinejoin: "round",
+              strokeWidth: 2,
+              d: "M17 8l4 4m0 0l-4 4m4-4H3"
+            })
+          })]
+        })
+      })]
+    })]
+  });
+};
+
+var UniversalGrid = function UniversalGrid(_ref) {
+  var data = _ref.data,
+    className = _ref.className,
+    id = _ref.id,
+    _ref$loader = _ref.loader,
+    loader = _ref$loader === void 0 ? false : _ref$loader;
+  if (!data || !data.items) {
+    return null;
+  }
+  var _useState = useState(loader),
+    _useState2 = _slicedToArray(_useState, 2),
+    showLoader = _useState2[0],
+    setShowLoader = _useState2[1];
+  useEffect(function () {
+    if (loader) {
+      var timer = setTimeout(function () {
+        return setShowLoader(false);
+      }, 2000);
+      return function () {
+        return clearTimeout(timer);
+      };
+    }
+    setShowLoader(false);
+  }, [loader]);
+  var _data$items = data.items,
+    items = _data$items === void 0 ? [] : _data$items,
+    title = data.title,
+    subtitle = data.subtitle,
+    _data$variant = data.variant,
+    variant = _data$variant === void 0 ? 'leading-item' : _data$variant,
+    _data$theme = data.theme,
+    theme = _data$theme === void 0 ? 'light' : _data$theme,
+    dataClassName = data.className;
+  var sectionClasses = clsx('universal-grid-section', "universal-grid-theme-".concat(theme), className, dataClassName);
+  clsx("grid-".concat(variant), 'container mx-auto px-4');
+  return /*#__PURE__*/jsx("section", {
+    className: sectionClasses,
+    id: id,
+    children: /*#__PURE__*/jsxs("div", {
+      className: "container mx-auto px-4",
+      children: [(title || subtitle) && /*#__PURE__*/jsxs("div", {
+        className: "universal-grid-header",
+        children: [subtitle && /*#__PURE__*/jsx("span", {
+          className: "universal-grid-subtitle",
+          children: subtitle
+        }), title && /*#__PURE__*/jsx("h2", {
+          className: "universal-grid-title",
+          children: title
+        })]
+      }), /*#__PURE__*/jsx("div", {
+        className: "grid-".concat(variant),
+        children: showLoader ? Array.from({
+          length: 6
+        }).map(function (_, index) {
+          return /*#__PURE__*/jsx("div", {
+            className: clsx(variant === 'leading-item' && index === 0 && 'large-card'),
+            children: /*#__PURE__*/jsx(UniversalCard, {
+              loader: true,
+              data: {
+                variant: variant
+              }
+            })
+          }, "skeleton-".concat(index));
+        }) : items.map(function (item, index) {
+          return /*#__PURE__*/jsx("div", {
+            className: clsx(variant === 'leading-item' && index === 0 && 'large-card'),
+            children: /*#__PURE__*/jsx(UniversalCard, {
+              data: _objectSpread2(_objectSpread2({}, item), {}, {
+                variant: variant,
+                theme: theme
+              })
+            })
+          }, item.id || index);
+        })
+      })]
+    })
+  });
+};
+
 /**
  * Load hero section data from a JSON file or object
  * @param {string|Object} data - JSON data or path to JSON file
@@ -37555,5 +39364,5 @@ var loadHeroDataSync = function loadHeroDataSync(data) {
   return data;
 };
 
-export { BlogAuthor, BlogCard, BlogComments, BlogGrid, BlogNavigation, BlogShare, BlogSingle, CartMinimal, CartModern, CartPremium, CartSidebar, CartStandard, CategoryGrid, CategoryMasonry, CategoryShowcase, CheckoutCard, CheckoutEmailSection, CheckoutFlow, CheckoutHeader, CheckoutMinimal, CheckoutModern, CheckoutOrderSummary, CheckoutPaymentSection, CheckoutPeloton, CheckoutPremium, CheckoutProgressIndicator, CheckoutProtectionSection, CheckoutShippingSection, CheckoutSkeleton, CheckoutTrialSection, Contact, ContactModern, ContactSkeleton, FaqHub, FaqModern, FaqVisual, FeatureDeck, FeatureModern, FeaturePrime, FooterLayout, HeaderLayout, HeaderPremium, HeaderStandard, HeroGlass, HeroGradient, HeroPrime, PriceBoard, PriceModern, PricePremium, ProductActions, ProductBadge, ProductBreadcrumb, ProductBreadcrumbs, ProductCompare, ProductDescription, ProductFeatures, ProductFilter, ProductGallery, ProductHero, ProductInfo, ProductLayout, ProductModern, ProductPagination, ProductQuantity, ProductQuickView, ProductRating, ProductRelated, ProductReviews, ProductSearch, ProductShare, ProductShop, ProductSidebar, ProductSingleClassic, ProductSingleDescription, ProductSingleMinimal, ProductSingleModern, ProductSkeleton, ProductSort, ProductSpecifications, ProductStandard, ProductToggle, ProductWishlist, SlideFlow, TestimonialCarousel, TestimonialTimeline, TrustBlock, loadHeroData, loadHeroDataSync };
+export { BlogAuthor, BlogCard, BlogComments, BlogGrid, BlogNavigation, BlogShare, BlogSingle, CartMinimal, CartModern, CartPremium, CartSidebar, CartStandard, CategoryGrid, CategoryMasonry, CategoryShowcase, CheckoutCard, CheckoutEmailSection, CheckoutFlow, CheckoutHeader, CheckoutMinimal, CheckoutModern, CheckoutOrderSummary, CheckoutPaymentSection, CheckoutPeloton, CheckoutPremium, CheckoutProgressIndicator, CheckoutProtectionSection, CheckoutShippingSection, CheckoutSkeleton, CheckoutTrialSection, Contact, ContactModern, ContactSkeleton, DropZone, FaqHub, FaqModern, FaqVisual, FeatureDeck, FeatureModern, FeaturePrime, FooterLayout, HeaderLayout, HeaderPremium, HeaderStandard, HeroGlass, HeroGradient, HeroPrime, PageNotFound, PageNotFoundSkeleton, PriceBoard, PriceModern, PricePremium, ProductActions, ProductBadge, ProductBreadcrumb, ProductBreadcrumbs, ProductCompare, ProductDescription, ProductFeatures, ProductFilter, ProductGallery, ProductHero, ProductInfo, ProductLayout, ProductModern, ProductPagination, ProductQuantity, ProductQuickView, ProductRating, ProductRelated, ProductReviews, ProductSearch, ProductShare, ProductShop, ProductSidebar, ProductSingleClassic, ProductSingleDescription, ProductSingleMinimal, ProductSingleModern, ProductSkeleton, ProductSort, ProductSpecifications, ProductStandard, ProductToggle, ProductWishlist, SlideFlow, TableOfContents, TestimonialCarousel, TestimonialTimeline, TrustBlock, UniversalCard, UniversalGrid, loadHeroData, loadHeroDataSync };
 //# sourceMappingURL=index.esm.js.map
