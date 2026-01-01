@@ -246,7 +246,7 @@ function _unsupportedIterableToArray(r, a) {
 
 function r(e){var t,f,n="";if("string"==typeof e||"number"==typeof e)n+=e;else if("object"==typeof e)if(Array.isArray(e)){var o=e.length;for(t=0;t<o;t++)e[t]&&(f=r(e[t]))&&(n&&(n+=" "),n+=f);}else for(f in e)e[f]&&(n&&(n+=" "),n+=f);return n}function clsx(){for(var e,t,f=0,n="",o=arguments.length;f<o;f++)(e=arguments[f])&&(t=r(e))&&(n&&(n+=" "),n+=t);return n}
 
-var HeroPrime = function HeroPrime(_ref) {
+var BannerElite = function BannerElite(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id,
@@ -254,7 +254,7 @@ var HeroPrime = function HeroPrime(_ref) {
     loader = _ref$loader === void 0 ? false : _ref$loader;
   // Safety check for data
   if (!data || _typeof(data) !== 'object') {
-    console.error('HeroPrime: data prop is required and must be an object');
+    console.error('BannerElite: data prop is required and must be an object');
     return null;
   }
   var _useState = useState(loader),
@@ -501,14 +501,14 @@ var HeroPrime = function HeroPrime(_ref) {
   return null;
 };
 
-var HeroGradient = function HeroGradient(_ref) {
+var BannerBlend = function BannerBlend(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id,
     _ref$loader = _ref.loader,
     loader = _ref$loader === void 0 ? false : _ref$loader;
   if (!data || _typeof(data) !== 'object') {
-    console.error('HeroGradient: data prop is required and must be an object');
+    console.error('BannerBlend: data prop is required and must be an object');
     return null;
   }
   var _useState = useState(loader),
@@ -764,14 +764,14 @@ var HeroGradient = function HeroGradient(_ref) {
   });
 };
 
-var HeroGlass = function HeroGlass(_ref) {
+var BannerFrost = function BannerFrost(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id,
     _ref$loader = _ref.loader,
     loader = _ref$loader === void 0 ? false : _ref$loader;
   if (!data || _typeof(data) !== 'object') {
-    console.error('HeroGlass: data prop is required and must be an object');
+    console.error('BannerFrost: data prop is required and must be an object');
     return null;
   }
   var _useState = useState(loader),
@@ -1080,7 +1080,7 @@ var HeroGlass = function HeroGlass(_ref) {
   });
 };
 
-var FaqHub = function FaqHub(_ref) {
+var HelpCenter = function HelpCenter(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id,
@@ -1337,7 +1337,7 @@ var FaqHub = function FaqHub(_ref) {
   });
 };
 
-var FaqModern = function FaqModern(_ref) {
+var HelpPulse = function HelpPulse(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id,
@@ -1695,7 +1695,7 @@ var FaqModern = function FaqModern(_ref) {
   });
 };
 
-var FaqVisual = function FaqVisual(_ref) {
+var HelpShowcase = function HelpShowcase(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id,
@@ -2153,7 +2153,7 @@ var FaqVisual = function FaqVisual(_ref) {
   });
 };
 
-var FeatureDeck = function FeatureDeck(_ref) {
+var HighlightsStack = function HighlightsStack(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id,
@@ -2784,7 +2784,7 @@ var FeatureDeck = function FeatureDeck(_ref) {
   });
 };
 
-var FeatureModern = function FeatureModern(_ref) {
+var HighlightsStream = function HighlightsStream(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id,
@@ -3210,7 +3210,7 @@ var FeatureModern = function FeatureModern(_ref) {
   return renderMinimalLayout();
 };
 
-var FeaturePrime = function FeaturePrime(_ref) {
+var HighlightsElite = function HighlightsElite(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id,
@@ -3621,7 +3621,7 @@ var FeaturePrime = function FeaturePrime(_ref) {
   return renderSplitStackedLayout();
 };
 
-var PriceBoard = function PriceBoard(_ref) {
+var PlansBoard = function PlansBoard(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id,
@@ -4217,7 +4217,7 @@ var PriceBoard = function PriceBoard(_ref) {
   });
 };
 
-var PriceModern = function PriceModern(_ref) {
+var PlansStream = function PlansStream(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id,
@@ -4522,7 +4522,7 @@ var PriceModern = function PriceModern(_ref) {
   });
 };
 
-var PricePremium = function PricePremium(_ref) {
+var PlansElite = function PlansElite(_ref) {
   var _plans$;
   var data = _ref.data,
     className = _ref.className,
@@ -4904,7 +4904,7 @@ var PricePremium = function PricePremium(_ref) {
   });
 };
 
-var TrustBlock = function TrustBlock(_ref) {
+var AssuranceStrip = function AssuranceStrip(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id,
@@ -5279,7 +5279,7 @@ var TrustBlock = function TrustBlock(_ref) {
   });
 };
 
-var TestimonialCarousel = function TestimonialCarousel(_ref) {
+var ReviewsCarousel = function ReviewsCarousel(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id,
@@ -5625,7 +5625,7 @@ var TestimonialCarousel = function TestimonialCarousel(_ref) {
   });
 };
 
-var TestimonialTimeline = function TestimonialTimeline(_ref) {
+var ReviewsTimeline = function ReviewsTimeline(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id,
@@ -5924,7 +5924,7 @@ var TestimonialTimeline = function TestimonialTimeline(_ref) {
   });
 };
 
-var SlideFlow = function SlideFlow(_ref) {
+var MotionRail = function MotionRail(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id,
@@ -6407,7 +6407,7 @@ var SlideFlow = function SlideFlow(_ref) {
   });
 };
 
-var HeaderLayout = function HeaderLayout(_ref) {
+var TopNavFrame = function TopNavFrame(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id;
@@ -8080,7 +8080,7 @@ var HeaderLayout = function HeaderLayout(_ref) {
   });
 };
 
-var HeaderStandard = function HeaderStandard(_ref) {
+var TopNavClassic = function TopNavClassic(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id;
@@ -9778,7 +9778,7 @@ var HeaderStandard = function HeaderStandard(_ref) {
   return null;
 };
 
-var HeaderPremium = function HeaderPremium(_ref) {
+var TopNavElite = function TopNavElite(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id;
@@ -11392,7 +11392,7 @@ var HeaderPremium = function HeaderPremium(_ref) {
   return null;
 };
 
-var FooterLayout = function FooterLayout(_ref) {
+var PageFooterFrame = function PageFooterFrame(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id;
@@ -12818,7 +12818,7 @@ var FooterLayout = function FooterLayout(_ref) {
   return null;
 };
 
-var BlogCard = function BlogCard(_ref) {
+var ArticleTile = function ArticleTile(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id,
@@ -12826,7 +12826,7 @@ var BlogCard = function BlogCard(_ref) {
     loader = _ref$loader === void 0 ? false : _ref$loader;
   // Safety check for data
   if (!data || _typeof(data) !== 'object') {
-    console.error('BlogCard: data prop is required and must be an object');
+    console.error('ArticleTile: data prop is required and must be an object');
     return null;
   }
   var title = data.title,
@@ -13453,7 +13453,7 @@ var BlogCard = function BlogCard(_ref) {
   });
 };
 
-var BlogGrid = function BlogGrid(_ref) {
+var ArticleMasonry = function ArticleMasonry(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id,
@@ -13539,7 +13539,7 @@ var BlogGrid = function BlogGrid(_ref) {
           className: gridClasses,
           children: [/*#__PURE__*/jsx("div", {
             className: "blog-grid-featured-large",
-            children: /*#__PURE__*/jsx(BlogCard, {
+            children: /*#__PURE__*/jsx(ArticleTile, {
               data: {
                 title: '',
                 variant: 'featured-gradient',
@@ -13552,7 +13552,7 @@ var BlogGrid = function BlogGrid(_ref) {
             children: Array.from({
               length: 4
             }).map(function (_, index) {
-              return /*#__PURE__*/jsx(BlogCard, {
+              return /*#__PURE__*/jsx(ArticleTile, {
                 data: {
                   title: '',
                   variant: 'featured-gradient',
@@ -13589,7 +13589,7 @@ var BlogGrid = function BlogGrid(_ref) {
         className: gridClasses,
         children: [featuredPost && /*#__PURE__*/jsx("div", {
           className: "blog-grid-featured-large",
-          children: /*#__PURE__*/jsx(BlogCard, {
+          children: /*#__PURE__*/jsx(ArticleTile, {
             data: _objectSpread2(_objectSpread2({}, featuredPost), {}, {
               variant: 'featured-gradient',
               theme: featuredPost.theme || theme
@@ -13598,7 +13598,7 @@ var BlogGrid = function BlogGrid(_ref) {
         }), /*#__PURE__*/jsx("div", {
           className: "blog-grid-featured-small",
           children: smallPosts.map(function (post, index) {
-            return /*#__PURE__*/jsx(BlogCard, {
+            return /*#__PURE__*/jsx(ArticleTile, {
               data: _objectSpread2(_objectSpread2({}, post), {}, {
                 variant: 'featured-gradient',
                 theme: post.theme || theme
@@ -13647,7 +13647,7 @@ var BlogGrid = function BlogGrid(_ref) {
       Array.from({
         length: columns || 3
       }).map(function (_, index) {
-        return /*#__PURE__*/jsx(BlogCard, {
+        return /*#__PURE__*/jsx(ArticleTile, {
           data: {
             title: '',
             variant: variant,
@@ -13658,7 +13658,7 @@ var BlogGrid = function BlogGrid(_ref) {
       }) :
       // Show actual posts
       posts.map(function (post, index) {
-        return /*#__PURE__*/jsx(BlogCard, {
+        return /*#__PURE__*/jsx(ArticleTile, {
           data: _objectSpread2(_objectSpread2({}, post), {}, {
             variant: post.variant || variant,
             theme: post.theme || theme
@@ -13669,7 +13669,7 @@ var BlogGrid = function BlogGrid(_ref) {
   });
 };
 
-var BlogSingle = function BlogSingle(_ref) {
+var ArticleDetail = function ArticleDetail(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id,
@@ -14505,7 +14505,7 @@ var BlogSingle = function BlogSingle(_ref) {
   return null;
 };
 
-var BlogAuthor = function BlogAuthor(_ref) {
+var AuthorBadge = function AuthorBadge(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id,
@@ -14912,7 +14912,7 @@ var BlogAuthor = function BlogAuthor(_ref) {
   return null;
 };
 
-var BlogComments = function BlogComments(_ref) {
+var CommentThread = function CommentThread(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id,
@@ -15150,7 +15150,7 @@ var BlogComments = function BlogComments(_ref) {
   return null;
 };
 
-var BlogNavigation = function BlogNavigation(_ref) {
+var ArticleNav = function ArticleNav(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id,
@@ -15381,7 +15381,7 @@ var BlogNavigation = function BlogNavigation(_ref) {
   return null;
 };
 
-var BlogShare = function BlogShare(_ref) {
+var ShareBar = function ShareBar(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id,
@@ -15605,7 +15605,7 @@ var BlogShare = function BlogShare(_ref) {
   return null;
 };
 
-var ProductLayout = function ProductLayout(_ref) {
+var ItemPageFrame = function ItemPageFrame(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id,
@@ -15613,7 +15613,7 @@ var ProductLayout = function ProductLayout(_ref) {
     loader = _ref$loader === void 0 ? false : _ref$loader;
   // Safety check for data
   if (!data || _typeof(data) !== 'object') {
-    console.error('ProductLayout: data prop is required and must be an object');
+    console.error('ItemPageFrame: data prop is required and must be an object');
     return null;
   }
   var _useState = useState(loader),
@@ -16724,7 +16724,7 @@ var SplitColorProductCard = function SplitColorProductCard(_ref5) {
 };
 
 /**
- * ProductStandard Component - Product cards with split-color circular image variant
+ * ItemPageClassic Component - Product cards with split-color circular image variant
  * @param {Object} props - Component props
  * @param {Object} props.data - Product section configuration data
  * @param {string} [props.data.title] - Main heading text
@@ -16739,14 +16739,14 @@ var SplitColorProductCard = function SplitColorProductCard(_ref5) {
  * @param {string} [props.id] - ID attribute for the section element
  * @param {boolean} [props.loader=false] - Show loading state
  */
-var ProductStandard = function ProductStandard(_ref6) {
+var ItemPageClassic = function ItemPageClassic(_ref6) {
   var data = _ref6.data,
     className = _ref6.className,
     id = _ref6.id;
     _ref6.loader;
   // Safety check for data
   if (!data || _typeof(data) !== 'object') {
-    console.error('ProductStandard: data prop is required and must be an object');
+    console.error('ItemPageClassic: data prop is required and must be an object');
     return null;
   }
   var title = data.title,
@@ -17206,13 +17206,13 @@ var GradientProductCard = function GradientProductCard(_ref3) {
     })]
   });
 };
-var ProductModern = function ProductModern(_ref4) {
+var ItemPageNeo = function ItemPageNeo(_ref4) {
   var data = _ref4.data,
     className = _ref4.className,
     id = _ref4.id;
     _ref4.loader;
   if (!data || _typeof(data) !== 'object') {
-    console.error('ProductModern: data prop is required and must be an object');
+    console.error('ItemPageNeo: data prop is required and must be an object');
     return null;
   }
   var title = data.title,
@@ -17295,7 +17295,7 @@ var ProductModern = function ProductModern(_ref4) {
   });
 };
 
-var ProductSingleClassic = function ProductSingleClassic(_ref) {
+var ItemShowcaseHeritage = function ItemShowcaseHeritage(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id;
@@ -18003,7 +18003,7 @@ var ProductSingleClassic = function ProductSingleClassic(_ref) {
   return null;
 };
 
-var ProductSingleModern = function ProductSingleModern(_ref) {
+var ItemShowcaseNeo = function ItemShowcaseNeo(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id;
@@ -19056,7 +19056,7 @@ var ProductSingleModern = function ProductSingleModern(_ref) {
   return null;
 };
 
-var ProductSingleMinimal = function ProductSingleMinimal(_ref) {
+var ItemShowcaseBare = function ItemShowcaseBare(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id;
@@ -19791,7 +19791,7 @@ var ProductSingleMinimal = function ProductSingleMinimal(_ref) {
   return null;
 };
 
-var ProductHero = function ProductHero(_ref) {
+var ItemBanner = function ItemBanner(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id;
@@ -20173,7 +20173,7 @@ var ProductHero = function ProductHero(_ref) {
   return null;
 };
 
-var ProductGallery = function ProductGallery(_ref) {
+var MediaGallery = function MediaGallery(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id;
@@ -20573,7 +20573,7 @@ var ProductGallery = function ProductGallery(_ref) {
   return null;
 };
 
-var ProductInfo = function ProductInfo(_ref) {
+var ItemInfoPanel = function ItemInfoPanel(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id;
@@ -20916,7 +20916,7 @@ var ProductInfo = function ProductInfo(_ref) {
   return null;
 };
 
-var ProductActions = function ProductActions(_ref) {
+var PurchaseActions = function PurchaseActions(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id;
@@ -21348,7 +21348,7 @@ var ProductActions = function ProductActions(_ref) {
   return null;
 };
 
-var ProductDescription = function ProductDescription(_ref) {
+var StoryPanel = function StoryPanel(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     onButtonClick = _ref.onButtonClick,
@@ -21538,7 +21538,7 @@ var ProductDescription = function ProductDescription(_ref) {
   });
 };
 
-var ProductSingleDescription = function ProductSingleDescription(_ref) {
+var ItemStoryPanel = function ItemStoryPanel(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id;
@@ -21870,7 +21870,7 @@ var ProductSingleDescription = function ProductSingleDescription(_ref) {
   return null;
 };
 
-var ProductFeatures = function ProductFeatures(_ref) {
+var ValueHighlights = function ValueHighlights(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id;
@@ -22053,7 +22053,7 @@ var ProductFeatures = function ProductFeatures(_ref) {
   return null;
 };
 
-var ProductSpecifications = function ProductSpecifications(_ref) {
+var TechSpecsPanel = function TechSpecsPanel(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id;
@@ -22204,7 +22204,7 @@ var ProductSpecifications = function ProductSpecifications(_ref) {
   return null;
 };
 
-var ProductReviews = function ProductReviews(_ref) {
+var RatingWall = function RatingWall(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id;
@@ -22541,7 +22541,7 @@ var ProductReviews = function ProductReviews(_ref) {
   return null;
 };
 
-var ProductRelated = function ProductRelated(_ref) {
+var RelatedRail = function RelatedRail(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id,
@@ -22617,21 +22617,21 @@ var ProductRelated = function ProductRelated(_ref) {
 
   // Render the appropriate component
   if (selectedComponent === 'layout') {
-    return /*#__PURE__*/jsx(ProductLayout, {
+    return /*#__PURE__*/jsx(ItemPageFrame, {
       id: id,
       data: commonData,
       className: clsx("product-related-".concat(variant), className)
     });
   }
   if (selectedComponent === 'standard') {
-    return /*#__PURE__*/jsx(ProductStandard, {
+    return /*#__PURE__*/jsx(ItemPageClassic, {
       id: id,
       data: commonData,
       className: clsx("product-related-".concat(variant), className)
     });
   }
   if (selectedComponent === 'modern') {
-    return /*#__PURE__*/jsx(ProductModern, {
+    return /*#__PURE__*/jsx(ItemPageNeo, {
       id: id,
       data: commonData,
       className: clsx("product-related-".concat(variant), className)
@@ -26260,7 +26260,7 @@ var link = linkExports;
 
 var Link = /*@__PURE__*/getDefaultExportFromCjs(link);
 
-var ProductBreadcrumbs = function ProductBreadcrumbs(_ref) {
+var PathCrumbs = function PathCrumbs(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id;
@@ -26388,7 +26388,7 @@ var ProductBreadcrumbs = function ProductBreadcrumbs(_ref) {
   return null;
 };
 
-var ProductSidebar = function ProductSidebar(_ref) {
+var FilterRail = function FilterRail(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     onCategoryChange = _ref.onCategoryChange,
@@ -27312,7 +27312,7 @@ var ProductSidebar = function ProductSidebar(_ref) {
   });
 };
 
-var ProductSearch = function ProductSearch(_ref) {
+var SearchBar = function SearchBar(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     onSearch = _ref.onSearch,
@@ -27571,7 +27571,7 @@ var ProductSearch = function ProductSearch(_ref) {
   });
 };
 
-var ProductToggle = function ProductToggle(_ref) {
+var ViewToggle = function ViewToggle(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     onViewChange = _ref.onViewChange,
@@ -27748,7 +27748,7 @@ var ProductToggle = function ProductToggle(_ref) {
   });
 };
 
-var ProductPagination = function ProductPagination(_ref) {
+var PageStepper = function PageStepper(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     onPageChange = _ref.onPageChange,
@@ -28034,19 +28034,19 @@ var ProductPagination = function ProductPagination(_ref) {
   });
 };
 
-var ProductShop = function ProductShop(_ref) {
+var CatalogView = function CatalogView(_ref) {
   var _sidebar$categories;
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id;
   if (!data || _typeof(data) !== 'object') {
-    console.error('ProductShop: data prop is required and must be an object');
+    console.error('CatalogView: data prop is required and must be an object');
     return null;
   }
   var _data$layout = data.layout,
     layout = _data$layout === void 0 ? 'sidebar' : _data$layout,
     _data$productComponen = data.productComponent,
-    productComponent = _data$productComponen === void 0 ? 'ProductLayout' : _data$productComponen,
+    productComponent = _data$productComponen === void 0 ? 'ItemPageFrame' : _data$productComponen,
     _data$products = data.products,
     productsConfig = _data$products === void 0 ? {} : _data$products,
     _data$sidebar = data.sidebar,
@@ -28191,17 +28191,17 @@ var ProductShop = function ProductShop(_ref) {
       products: paginatedProducts
     });
     switch (productComponent) {
-      case 'ProductModern':
-        return /*#__PURE__*/jsx(ProductModern, {
+      case 'ItemPageNeo':
+        return /*#__PURE__*/jsx(ItemPageNeo, {
           data: productData
         });
-      case 'ProductStandard':
-        return /*#__PURE__*/jsx(ProductStandard, {
+      case 'ItemPageClassic':
+        return /*#__PURE__*/jsx(ItemPageClassic, {
           data: productData
         });
-      case 'ProductLayout':
+      case 'ItemPageFrame':
       default:
-        return /*#__PURE__*/jsx(ProductLayout, {
+        return /*#__PURE__*/jsx(ItemPageFrame, {
           data: productData
         });
     }
@@ -28215,7 +28215,7 @@ var ProductShop = function ProductShop(_ref) {
         className: "flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6 sm:mb-8",
         children: [/*#__PURE__*/jsx("div", {
           className: "w-full sm:w-auto sm:flex-1 max-w-md",
-          children: /*#__PURE__*/jsx(ProductSearch, {
+          children: /*#__PURE__*/jsx(SearchBar, {
             data: search,
             onSearch: function onSearch(query) {
               setSearchQuery(query);
@@ -28223,7 +28223,7 @@ var ProductShop = function ProductShop(_ref) {
           })
         }), /*#__PURE__*/jsxs("div", {
           className: "flex items-center gap-4",
-          children: [/*#__PURE__*/jsx(ProductToggle, {
+          children: [/*#__PURE__*/jsx(ViewToggle, {
             data: toggle,
             onViewChange: setCurrentView
           }), layout === 'sidebar' && /*#__PURE__*/jsx("button", {
@@ -28280,7 +28280,7 @@ var ProductShop = function ProductShop(_ref) {
                   })
                 })
               })]
-            }), /*#__PURE__*/jsx(ProductSidebar, {
+            }), /*#__PURE__*/jsx(FilterRail, {
               data: _objectSpread2(_objectSpread2({}, sidebar), {}, {
                 priceRange: _objectSpread2(_objectSpread2({}, sidebar.priceRange || {}), priceRange)
               }),
@@ -28305,7 +28305,7 @@ var ProductShop = function ProductShop(_ref) {
             children: renderProductComponent()
           }), filteredProducts.length > 0 && /*#__PURE__*/jsx("div", {
             className: "mt-8 sm:mt-12",
-            children: /*#__PURE__*/jsx(ProductPagination, {
+            children: /*#__PURE__*/jsx(PageStepper, {
               data: _objectSpread2(_objectSpread2({}, pagination), {}, {
                 currentPage: currentPage,
                 totalPages: totalPages,
@@ -28341,7 +28341,7 @@ var ProductShop = function ProductShop(_ref) {
   });
 };
 
-var ProductSkeleton = function ProductSkeleton(_ref) {
+var ItemLoadingShell = function ItemLoadingShell(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     className = _ref.className;
@@ -28510,7 +28510,7 @@ var ProductSkeleton = function ProductSkeleton(_ref) {
   });
 };
 
-var ProductFilter = function ProductFilter(_ref) {
+var FilterBar = function FilterBar(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     onFilterChange = _ref.onFilterChange,
@@ -28702,7 +28702,7 @@ var ProductFilter = function ProductFilter(_ref) {
   });
 };
 
-var ProductSort = function ProductSort(_ref) {
+var SortBar = function SortBar(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     onSortChange = _ref.onSortChange,
@@ -28887,7 +28887,7 @@ var ProductSort = function ProductSort(_ref) {
   });
 };
 
-var ProductQuickView = function ProductQuickView(_ref) {
+var QuickPeekModal = function QuickPeekModal(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     onClose = _ref.onClose,
@@ -29068,7 +29068,7 @@ var ProductQuickView = function ProductQuickView(_ref) {
   });
 };
 
-var ProductCompare = function ProductCompare(_ref) {
+var CompareTable = function CompareTable(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     onCompareChange = _ref.onCompareChange,
@@ -29213,7 +29213,7 @@ var ProductCompare = function ProductCompare(_ref) {
   });
 };
 
-var ProductWishlist = function ProductWishlist(_ref) {
+var FavoritesList = function FavoritesList(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     onToggle = _ref.onToggle,
@@ -29311,7 +29311,7 @@ var ProductWishlist = function ProductWishlist(_ref) {
   });
 };
 
-var ProductBreadcrumb = function ProductBreadcrumb(_ref) {
+var PathCrumb = function PathCrumb(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     onItemClick = _ref.onItemClick,
@@ -29446,7 +29446,7 @@ var ProductBreadcrumb = function ProductBreadcrumb(_ref) {
   });
 };
 
-var ProductBadge = function ProductBadge(_ref) {
+var PromoBadge = function PromoBadge(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     _ref$loading = _ref.loading,
@@ -29506,7 +29506,7 @@ var ProductBadge = function ProductBadge(_ref) {
   });
 };
 
-var ProductRating = function ProductRating(_ref) {
+var StarRating = function StarRating(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     onRatingChange = _ref.onRatingChange,
@@ -29633,7 +29633,7 @@ var ProductRating = function ProductRating(_ref) {
   });
 };
 
-var ProductQuantity = function ProductQuantity(_ref) {
+var QtyPicker = function QtyPicker(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     onQuantityChange = _ref.onQuantityChange,
@@ -29792,7 +29792,7 @@ var ProductQuantity = function ProductQuantity(_ref) {
   });
 };
 
-var ProductShare = function ProductShare(_ref) {
+var SharePanel = function SharePanel(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     onShare = _ref.onShare,
@@ -29975,7 +29975,7 @@ var ProductShare = function ProductShare(_ref) {
   });
 };
 
-var CategoryGrid = function CategoryGrid(_ref) {
+var CollectionGrid = function CollectionGrid(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id,
@@ -30302,7 +30302,7 @@ var CategoryGrid = function CategoryGrid(_ref) {
   });
 };
 
-var CategoryShowcase = function CategoryShowcase(_ref) {
+var CollectionShowcase = function CollectionShowcase(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id,
@@ -30767,7 +30767,7 @@ var CategoryShowcase = function CategoryShowcase(_ref) {
   });
 };
 
-var CategoryMasonry = function CategoryMasonry(_ref) {
+var CollectionMasonry = function CollectionMasonry(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id,
@@ -31299,7 +31299,7 @@ var CategoryMasonry = function CategoryMasonry(_ref) {
   });
 };
 
-var CheckoutSkeleton = function CheckoutSkeleton(_ref) {
+var PurchaseLoadingShell = function PurchaseLoadingShell(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     className = _ref.className;
@@ -31742,7 +31742,7 @@ var CheckoutSkeleton = function CheckoutSkeleton(_ref) {
   });
 };
 
-var CheckoutPeloton = function CheckoutPeloton(_ref) {
+var PurchaseFlowPulse = function PurchaseFlowPulse(_ref) {
   var _data$email, _data$email2, _data$protection$opti, _data$shipping, _data$shipping2, _data$shipping3, _data$shipping4, _data$shipping5, _data$shipping6, _data$shipping7, _data$shipping8, _data$shipping9, _data$shipping0, _data$shipping1, _data$shipping10, _data$shipping11, _data$payment, _data$payment2, _data$summary, _data$summary2, _data$summary3, _data$summary4, _data$summary5, _data$summary6, _data$summary7, _data$summary8, _data$trial$items;
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
@@ -31778,7 +31778,7 @@ var CheckoutPeloton = function CheckoutPeloton(_ref) {
 
   // Show skeleton loading state
   if (shouldShowSkeleton) {
-    return /*#__PURE__*/jsx(CheckoutSkeleton, {
+    return /*#__PURE__*/jsx(PurchaseLoadingShell, {
       data: {
         variant: 'peloton'
       },
@@ -32200,7 +32200,7 @@ var CheckoutPeloton = function CheckoutPeloton(_ref) {
   });
 };
 
-var CheckoutMinimal = function CheckoutMinimal(_ref) {
+var PurchaseFlowBare = function PurchaseFlowBare(_ref) {
   var _data$email, _data$email2, _data$shipping, _data$shipping2, _data$shipping3, _data$shipping4, _data$shipping5, _data$shipping6, _data$shipping7, _data$payment, _data$payment2, _data$summary, _data$summary2, _data$summary3;
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
@@ -32236,7 +32236,7 @@ var CheckoutMinimal = function CheckoutMinimal(_ref) {
 
   // Show skeleton loading state
   if (shouldShowSkeleton) {
-    return /*#__PURE__*/jsx(CheckoutSkeleton, {
+    return /*#__PURE__*/jsx(PurchaseLoadingShell, {
       data: {
         variant: 'minimal'
       },
@@ -32363,7 +32363,7 @@ var CheckoutMinimal = function CheckoutMinimal(_ref) {
   });
 };
 
-var CheckoutModern = function CheckoutModern(_ref) {
+var PurchaseFlowNeo = function PurchaseFlowNeo(_ref) {
   var _data$shipping, _data$email, _data$shipping2, _data$shipping3, _data$shipping4, _data$payment, _data$payment2, _data$summary, _data$summary2, _data$summary3, _data$summary4, _data$summary5, _data$summary6;
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
@@ -32399,7 +32399,7 @@ var CheckoutModern = function CheckoutModern(_ref) {
 
   // Show skeleton loading state
   if (shouldShowSkeleton) {
-    return /*#__PURE__*/jsx(CheckoutSkeleton, {
+    return /*#__PURE__*/jsx(PurchaseLoadingShell, {
       data: {
         variant: 'modern'
       },
@@ -32545,7 +32545,7 @@ var CheckoutModern = function CheckoutModern(_ref) {
   });
 };
 
-var CheckoutCard = function CheckoutCard(_ref) {
+var PurchaseCardPanel = function PurchaseCardPanel(_ref) {
   var _data$email, _data$email2, _data$shipping, _data$shipping2, _data$shipping3, _data$shipping4, _data$shipping5, _data$shipping6, _data$shipping7, _data$payment, _data$payment2, _data$summary, _data$summary2, _data$summary3;
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
@@ -32581,7 +32581,7 @@ var CheckoutCard = function CheckoutCard(_ref) {
 
   // Show skeleton loading state
   if (shouldShowSkeleton) {
-    return /*#__PURE__*/jsx(CheckoutSkeleton, {
+    return /*#__PURE__*/jsx(PurchaseLoadingShell, {
       data: {
         variant: 'card'
       },
@@ -32737,7 +32737,7 @@ var CheckoutCard = function CheckoutCard(_ref) {
   });
 };
 
-var CheckoutFlow = function CheckoutFlow(_ref) {
+var PurchaseStepper = function PurchaseStepper(_ref) {
   var _data$email, _data$email2, _data$shipping, _data$shipping2, _data$shipping3, _data$shipping4, _data$shipping5, _data$payment, _data$summary, _data$summary2;
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
@@ -32774,7 +32774,7 @@ var CheckoutFlow = function CheckoutFlow(_ref) {
 
   // Show skeleton loading state
   if (shouldShowSkeleton) {
-    return /*#__PURE__*/jsx(CheckoutSkeleton, {
+    return /*#__PURE__*/jsx(PurchaseLoadingShell, {
       data: {
         variant: 'flow'
       },
@@ -32899,7 +32899,7 @@ var CheckoutFlow = function CheckoutFlow(_ref) {
   });
 };
 
-var CheckoutPremium = function CheckoutPremium(_ref) {
+var PurchaseFlowElite = function PurchaseFlowElite(_ref) {
   var _data$header, _data$header2, _data$email, _data$email2, _data$shipping, _data$shipping2, _data$shipping3, _data$shipping4, _data$summary, _data$summary2, _data$summary3, _data$summary4, _data$summary5, _data$footer;
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
@@ -32935,7 +32935,7 @@ var CheckoutPremium = function CheckoutPremium(_ref) {
 
   // Show skeleton loading state
   if (shouldShowSkeleton) {
-    return /*#__PURE__*/jsx(CheckoutSkeleton, {
+    return /*#__PURE__*/jsx(PurchaseLoadingShell, {
       data: {
         variant: 'premium'
       },
@@ -33055,7 +33055,7 @@ var CheckoutPremium = function CheckoutPremium(_ref) {
   });
 };
 
-var CheckoutHeader = function CheckoutHeader(_ref) {
+var PurchaseHeaderBar = function PurchaseHeaderBar(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     _ref$variant = _ref.variant,
@@ -33122,7 +33122,7 @@ var CheckoutHeader = function CheckoutHeader(_ref) {
   });
 };
 
-var CheckoutProgressIndicator = function CheckoutProgressIndicator(_ref) {
+var ProgressDots = function ProgressDots(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? [] : _ref$data,
     _ref$currentStep = _ref.currentStep,
@@ -33356,7 +33356,7 @@ var CheckoutProgressIndicator = function CheckoutProgressIndicator(_ref) {
   });
 };
 
-var CheckoutEmailSection = function CheckoutEmailSection(_ref) {
+var ContactStepEmail = function ContactStepEmail(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     value = _ref.value,
@@ -33445,7 +33445,7 @@ var CheckoutEmailSection = function CheckoutEmailSection(_ref) {
   });
 };
 
-var CheckoutShippingSection = function CheckoutShippingSection(_ref) {
+var DeliveryStepAddress = function DeliveryStepAddress(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     _ref$values = _ref.values,
@@ -33616,7 +33616,7 @@ var CheckoutShippingSection = function CheckoutShippingSection(_ref) {
   });
 };
 
-var CheckoutPaymentSection = function CheckoutPaymentSection(_ref) {
+var PaymentStepMethod = function PaymentStepMethod(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     selectedId = _ref.selectedId,
@@ -33725,7 +33725,7 @@ var CheckoutPaymentSection = function CheckoutPaymentSection(_ref) {
   });
 };
 
-var CheckoutOrderSummary = function CheckoutOrderSummary(_ref) {
+var OrderRecapPanel = function OrderRecapPanel(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     _ref$variant = _ref.variant,
@@ -33944,7 +33944,7 @@ var CheckoutOrderSummary = function CheckoutOrderSummary(_ref) {
   });
 };
 
-var CheckoutProtectionSection = function CheckoutProtectionSection(_ref) {
+var WarrantyStepCover = function WarrantyStepCover(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     _ref$variant = _ref.variant,
@@ -34054,7 +34054,7 @@ var CheckoutProtectionSection = function CheckoutProtectionSection(_ref) {
   });
 };
 
-var CheckoutTrialSection = function CheckoutTrialSection(_ref) {
+var TrialStepOffer = function TrialStepOffer(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     _ref$variant = _ref.variant,
@@ -34135,7 +34135,7 @@ var CheckoutTrialSection = function CheckoutTrialSection(_ref) {
   });
 };
 
-var ContactSkeleton = function ContactSkeleton(_ref) {
+var ReachUsLoadingShell = function ReachUsLoadingShell(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     className = _ref.className;
@@ -34333,7 +34333,7 @@ var ContactSkeleton = function ContactSkeleton(_ref) {
   });
 };
 
-var Contact = function Contact(_ref) {
+var ReachUsPanel = function ReachUsPanel(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     className = _ref.className,
@@ -34398,7 +34398,7 @@ var Contact = function Contact(_ref) {
 
   // Show skeleton loading state
   if (shouldShowSkeleton) {
-    return /*#__PURE__*/jsx(ContactSkeleton, {
+    return /*#__PURE__*/jsx(ReachUsLoadingShell, {
       data: {
         variant: variant
       },
@@ -34927,7 +34927,7 @@ var Contact = function Contact(_ref) {
   });
 };
 
-var ContactModern = function ContactModern(_ref) {
+var ReachUsNeo = function ReachUsNeo(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     className = _ref.className,
@@ -34980,7 +34980,7 @@ var ContactModern = function ContactModern(_ref) {
 
   // Show skeleton loading state
   if (shouldShowSkeleton) {
-    return /*#__PURE__*/jsx(ContactSkeleton, {
+    return /*#__PURE__*/jsx(ReachUsLoadingShell, {
       data: {
         variant: 'classic'
       },
@@ -36091,7 +36091,7 @@ var variantComponents = {
   image: ImageAbout,
   story: StoryTimelineAbout
 };
-var About = function About(_ref1) {
+var OriginPanel = function OriginPanel(_ref1) {
   var _ref1$data = _ref1.data,
     data = _ref1$data === void 0 ? {} : _ref1$data,
     variant = _ref1.variant,
@@ -36144,7 +36144,7 @@ var About = function About(_ref1) {
   });
 };
 
-var AboutSkeleton = function AboutSkeleton(_ref) {
+var OriginLoadingShell = function OriginLoadingShell(_ref) {
   var _ref$variant = _ref.variant,
     variant = _ref$variant === void 0 ? 'split' : _ref$variant;
   var baseCard = 'rounded-2xl bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700';
@@ -36228,7 +36228,7 @@ var AboutSkeleton = function AboutSkeleton(_ref) {
   });
 };
 
-var PageNotFoundSkeleton = function PageNotFoundSkeleton(_ref) {
+var LostPageLoadingShell = function LostPageLoadingShell(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     className = _ref.className;
@@ -36611,7 +36611,7 @@ var PageNotFoundSkeleton = function PageNotFoundSkeleton(_ref) {
   });
 };
 
-var PageNotFound = function PageNotFound(_ref) {
+var LostPage = function LostPage(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     className = _ref.className,
@@ -36660,7 +36660,7 @@ var PageNotFound = function PageNotFound(_ref) {
 
   // Show skeleton loading state
   if (shouldShowSkeleton) {
-    return /*#__PURE__*/jsx(PageNotFoundSkeleton, {
+    return /*#__PURE__*/jsx(LostPageLoadingShell, {
       data: {
         variant: variant
       },
@@ -37380,7 +37380,7 @@ var PageNotFound = function PageNotFound(_ref) {
   });
 };
 
-var DropZone = function DropZone(_ref) {
+var UploadDropArea = function UploadDropArea(_ref) {
   var data = _ref.data,
     onFilesDrop = _ref.onFilesDrop,
     className = _ref.className,
@@ -37724,7 +37724,7 @@ var DropZone = function DropZone(_ref) {
   }
 };
 
-var CartStandard = function CartStandard(_ref) {
+var BasketClassic = function BasketClassic(_ref) {
   var data = _ref.data,
     _ref$variant = _ref.variant,
     variant = _ref$variant === void 0 ? 'default' : _ref$variant,
@@ -38144,7 +38144,7 @@ var CartStandard = function CartStandard(_ref) {
   });
 };
 
-var CartModern = function CartModern(_ref) {
+var BasketNeo = function BasketNeo(_ref) {
   var data = _ref.data,
     _ref$variant = _ref.variant,
     variant = _ref$variant === void 0 ? 'default' : _ref$variant,
@@ -38680,7 +38680,7 @@ var CartModern = function CartModern(_ref) {
   });
 };
 
-var CartMinimal = function CartMinimal(_ref) {
+var BasketBare = function BasketBare(_ref) {
   var data = _ref.data,
     _ref$variant = _ref.variant,
     variant = _ref$variant === void 0 ? 'default' : _ref$variant,
@@ -39055,7 +39055,7 @@ var CartMinimal = function CartMinimal(_ref) {
   });
 };
 
-var CartPremium = function CartPremium(_ref) {
+var BasketElite = function BasketElite(_ref) {
   var data = _ref.data,
     _ref$variant = _ref.variant,
     variant = _ref$variant === void 0 ? 'default' : _ref$variant,
@@ -39561,7 +39561,7 @@ var CartPremium = function CartPremium(_ref) {
   });
 };
 
-var CartSidebar = function CartSidebar(_ref) {
+var BasketSideDrawer = function BasketSideDrawer(_ref) {
   var data = _ref.data,
     _ref$variant = _ref.variant,
     variant = _ref$variant === void 0 ? 'default' : _ref$variant,
@@ -39981,7 +39981,7 @@ var CartSidebar = function CartSidebar(_ref) {
   });
 };
 
-var TableOfContents = function TableOfContents(_ref) {
+var ContentsNavigator = function ContentsNavigator(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id,
@@ -40126,7 +40126,7 @@ var TableOfContents = function TableOfContents(_ref) {
   });
 };
 
-var UniversalCard = function UniversalCard(_ref) {
+var MosaicCard = function MosaicCard(_ref) {
   var data = _ref.data,
     className = _ref.className,
     _ref$loader = _ref.loader,
@@ -40215,7 +40215,7 @@ var UniversalCard = function UniversalCard(_ref) {
   });
 };
 
-var UniversalGrid = function UniversalGrid(_ref) {
+var MosaicGrid = function MosaicGrid(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id,
@@ -40271,7 +40271,7 @@ var UniversalGrid = function UniversalGrid(_ref) {
         }).map(function (_, index) {
           return /*#__PURE__*/jsx("div", {
             className: clsx(variant === 'leading-item' && index === 0 && 'large-card'),
-            children: /*#__PURE__*/jsx(UniversalCard, {
+            children: /*#__PURE__*/jsx(MosaicCard, {
               loader: true,
               data: {
                 variant: variant
@@ -40281,7 +40281,7 @@ var UniversalGrid = function UniversalGrid(_ref) {
         }) : items.map(function (item, index) {
           return /*#__PURE__*/jsx("div", {
             className: clsx(variant === 'leading-item' && index === 0 && 'large-card'),
-            children: /*#__PURE__*/jsx(UniversalCard, {
+            children: /*#__PURE__*/jsx(MosaicCard, {
               data: _objectSpread2(_objectSpread2({}, item), {}, {
                 variant: variant,
                 theme: theme
@@ -40294,7 +40294,7 @@ var UniversalGrid = function UniversalGrid(_ref) {
   });
 };
 
-var PortfolioSkeleton = function PortfolioSkeleton(_ref) {
+var WorkLoadingShell = function WorkLoadingShell(_ref) {
   var _ref$variant = _ref.variant,
     variant = _ref$variant === void 0 ? 'grid' : _ref$variant,
     _ref$count = _ref.count,
@@ -40381,7 +40381,7 @@ var PortfolioSkeleton = function PortfolioSkeleton(_ref) {
   });
 };
 
-var Portfolio = function Portfolio(_ref) {
+var WorkGallery = function WorkGallery(_ref) {
   var data = _ref.data,
     className = _ref.className,
     _ref$loader = _ref.loader,
@@ -40410,7 +40410,7 @@ var Portfolio = function Portfolio(_ref) {
     variant = _data$variant === void 0 ? 'grid' : _data$variant,
     dataClassName = data.className;
   if (showLoader) {
-    return /*#__PURE__*/jsx(PortfolioSkeleton, {
+    return /*#__PURE__*/jsx(WorkLoadingShell, {
       variant: variant,
       count: items.length
     });
@@ -40784,7 +40784,7 @@ var Portfolio = function Portfolio(_ref) {
   });
 };
 
-var TeamSkeleton = function TeamSkeleton(_ref) {
+var CrewLoadingShell = function CrewLoadingShell(_ref) {
   var _ref$count = _ref.count,
     count = _ref$count === void 0 ? 6 : _ref$count,
     _ref$columns = _ref.columns,
@@ -41093,7 +41093,7 @@ var SocialIcon = function SocialIcon(_ref1) {
     className: className
   });
 };
-var Team = function Team(_ref10) {
+var CrewPanel = function CrewPanel(_ref10) {
   var _ref10$data = _ref10.data,
     data = _ref10$data === void 0 ? {} : _ref10$data,
     className = _ref10.className,
@@ -41157,7 +41157,7 @@ var Team = function Team(_ref10) {
     return null;
   }
   if (showLoader) {
-    return /*#__PURE__*/jsx(TeamSkeleton, {
+    return /*#__PURE__*/jsx(CrewLoadingShell, {
       count: Math.min(8, members.length || 6),
       columns: 3,
       theme: theme,
@@ -41193,7 +41193,7 @@ var Team = function Team(_ref10) {
             })
           }), /*#__PURE__*/jsx("div", {
             className: "lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-5",
-            children: members.slice(1, 7).map(function (member, idx) {
+            children: members.map(function (member, idx) {
               return /*#__PURE__*/jsx(PortraitCard, {
                 member: member,
                 theme: "dark",
@@ -41239,7 +41239,7 @@ var Team = function Team(_ref10) {
               theme: "dark"
             }), highlights.length > 0 && /*#__PURE__*/jsx("div", {
               className: "flex flex-wrap gap-2.5",
-              children: highlights.slice(0, 6).map(function (item, idx) {
+              children: highlights.map(function (item, idx) {
                 return /*#__PURE__*/jsxs("div", {
                   className: "inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-semibold tracking-wide text-gray-200",
                   children: [/*#__PURE__*/jsx("span", {
@@ -41284,7 +41284,7 @@ var Team = function Team(_ref10) {
                 })
               }), members.filter(function (_, index) {
                 return index !== featuredIndex;
-              }).slice(0, 6).map(function (member, idx) {
+              }).map(function (member, idx) {
                 return /*#__PURE__*/jsx(PortraitCard, {
                   member: member,
                   theme: "dark",
@@ -41315,7 +41315,7 @@ var Team = function Team(_ref10) {
           theme: "light"
         }), /*#__PURE__*/jsx("div", {
           className: "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6",
-          children: members.slice(0, 9).map(function (member, idx) {
+          children: members.map(function (member, idx) {
             return /*#__PURE__*/jsx(PortraitCard, {
               member: member,
               theme: "light",
@@ -41342,7 +41342,7 @@ var Team = function Team(_ref10) {
           theme: "dark"
         }), /*#__PURE__*/jsx("div", {
           className: "grid grid-cols-1 md:grid-cols-2 gap-6",
-          children: members.slice(0, 8).map(function (member, idx) {
+          children: members.map(function (member, idx) {
             return /*#__PURE__*/jsx(PortraitCard, {
               member: member,
               theme: "dark",
@@ -41372,7 +41372,7 @@ var Team = function Team(_ref10) {
           })
         }), /*#__PURE__*/jsx("div", {
           className: "lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-6",
-          children: members.slice(0, 6).map(function (member, idx) {
+          children: members.map(function (member, idx) {
             return /*#__PURE__*/jsx(PortraitCard, {
               member: member,
               theme: "light",
@@ -41399,7 +41399,7 @@ var Team = function Team(_ref10) {
           theme: "dark"
         }), /*#__PURE__*/jsx("div", {
           className: "grid grid-cols-1 md:grid-cols-4 auto-rows-[260px] gap-4 sm:gap-6",
-          children: members.slice(0, 8).map(function (member, idx) {
+          children: members.map(function (member, idx) {
             return /*#__PURE__*/jsx("div", {
               className: clsx('relative rounded-3xl overflow-hidden', idx === 0 && 'md:col-span-2 md:row-span-2', idx === 3 && 'md:col-span-2', idx === 5 && 'md:row-span-2'),
               children: /*#__PURE__*/jsx(PortraitCard, {
@@ -41430,7 +41430,7 @@ var Team = function Team(_ref10) {
           theme: "light"
         }), /*#__PURE__*/jsx("div", {
           className: "space-y-4",
-          children: members.slice(0, 7).map(function (member, idx) {
+          children: members.map(function (member, idx) {
             return /*#__PURE__*/jsx(InlineCard, {
               member: member,
               theme: "light",
@@ -41455,7 +41455,7 @@ var Team = function Team(_ref10) {
           theme: "dark"
         }), /*#__PURE__*/jsx("div", {
           className: "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6",
-          children: members.slice(0, 9).map(function (member, idx) {
+          children: members.map(function (member, idx) {
             return /*#__PURE__*/jsx(PortraitCard, {
               member: member,
               theme: "dark",
@@ -41483,7 +41483,7 @@ var Team = function Team(_ref10) {
           theme: "light"
         }), /*#__PURE__*/jsx("div", {
           className: "space-y-4",
-          children: members.slice(0, 8).map(function (member, idx) {
+          children: members.map(function (member, idx) {
             return /*#__PURE__*/jsx(InlineCard, {
               member: member,
               theme: "light",
@@ -41509,7 +41509,7 @@ var Team = function Team(_ref10) {
           theme: "dark"
         }), /*#__PURE__*/jsx("div", {
           className: "grid grid-cols-1 sm:grid-cols-2 gap-4",
-          children: members.slice(0, 10).map(function (member, idx) {
+          children: members.map(function (member, idx) {
             return /*#__PURE__*/jsx(PortraitCard, {
               member: member,
               theme: "dark",
@@ -41536,7 +41536,7 @@ var Team = function Team(_ref10) {
           theme: "light"
         }), /*#__PURE__*/jsx("div", {
           className: "relative before:absolute before:inset-y-0 before:left-6 sm:before:left-1/2 before:w-px before:bg-gradient-to-b before:from-gray-200 before:via-primary-100 before:to-gray-200",
-          children: members.slice(0, 6).map(function (member, idx) {
+          children: members.map(function (member, idx) {
             return /*#__PURE__*/jsxs("div", {
               className: clsx('relative pl-14 sm:pl-0 sm:pr-12 py-6 sm:py-10 flex flex-col sm:flex-row gap-4', idx % 2 === 1 ? 'sm:flex-row-reverse sm:text-right' : 'sm:text-left'),
               children: [/*#__PURE__*/jsx("div", {
@@ -41735,7 +41735,7 @@ var Team = function Team(_ref10) {
  * @param {string|Object} data - JSON data or path to JSON file
  * @returns {Promise<Object>} HeroSectionData object
  */
-var loadHeroData = /*#__PURE__*/function () {
+var loadBannerLayoutData = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee(data) {
     var response;
     return _regenerator().w(function (_context) {
@@ -41764,7 +41764,7 @@ var loadHeroData = /*#__PURE__*/function () {
       }
     }, _callee);
   }));
-  return function loadHeroData(_x) {
+  return function loadBannerLayoutData(_x) {
     return _ref.apply(this, arguments);
   };
 }();
@@ -41774,9 +41774,9 @@ var loadHeroData = /*#__PURE__*/function () {
  * @param {Object} data - JSON data object
  * @returns {Object} HeroSectionData object
  */
-var loadHeroDataSync = function loadHeroDataSync(data) {
+var loadBannerLayoutDataSync = function loadBannerLayoutDataSync(data) {
   return data;
 };
 
-export { About, AboutSkeleton, BlogAuthor, BlogCard, BlogComments, BlogGrid, BlogNavigation, BlogShare, BlogSingle, CartMinimal, CartModern, CartPremium, CartSidebar, CartStandard, CategoryGrid, CategoryMasonry, CategoryShowcase, CheckoutCard, CheckoutEmailSection, CheckoutFlow, CheckoutHeader, CheckoutMinimal, CheckoutModern, CheckoutOrderSummary, CheckoutPaymentSection, CheckoutPeloton, CheckoutPremium, CheckoutProgressIndicator, CheckoutProtectionSection, CheckoutShippingSection, CheckoutSkeleton, CheckoutTrialSection, Contact, ContactModern, ContactSkeleton, DropZone, FaqHub, FaqModern, FaqVisual, FeatureDeck, FeatureModern, FeaturePrime, FooterLayout, HeaderLayout, HeaderPremium, HeaderStandard, HeroGlass, HeroGradient, HeroPrime, PageNotFound, PageNotFoundSkeleton, Portfolio, PortfolioSkeleton, PriceBoard, PriceModern, PricePremium, ProductActions, ProductBadge, ProductBreadcrumb, ProductBreadcrumbs, ProductCompare, ProductDescription, ProductFeatures, ProductFilter, ProductGallery, ProductHero, ProductInfo, ProductLayout, ProductModern, ProductPagination, ProductQuantity, ProductQuickView, ProductRating, ProductRelated, ProductReviews, ProductSearch, ProductShare, ProductShop, ProductSidebar, ProductSingleClassic, ProductSingleDescription, ProductSingleMinimal, ProductSingleModern, ProductSkeleton, ProductSort, ProductSpecifications, ProductStandard, ProductToggle, ProductWishlist, SlideFlow, TableOfContents, Team, TeamSkeleton, TestimonialCarousel, TestimonialTimeline, TrustBlock, UniversalCard, UniversalGrid, loadHeroData, loadHeroDataSync };
+export { ArticleDetail, ArticleMasonry, ArticleNav, ArticleTile, AssuranceStrip, AuthorBadge, BannerBlend, BannerElite, BannerFrost, BasketBare, BasketClassic, BasketElite, BasketNeo, BasketSideDrawer, CatalogView, CollectionGrid, CollectionMasonry, CollectionShowcase, CommentThread, CompareTable, ContactStepEmail, ContentsNavigator, CrewLoadingShell, CrewPanel, DeliveryStepAddress, FavoritesList, FilterBar, FilterRail, HelpCenter, HelpPulse, HelpShowcase, HighlightsElite, HighlightsStack, HighlightsStream, ItemBanner, ItemInfoPanel, ItemLoadingShell, ItemPageClassic, ItemPageFrame, ItemPageNeo, ItemShowcaseBare, ItemShowcaseHeritage, ItemShowcaseNeo, ItemStoryPanel, LostPage, LostPageLoadingShell, MediaGallery, MosaicCard, MosaicGrid, MotionRail, OrderRecapPanel, OriginLoadingShell, OriginPanel, PageFooterFrame, PageStepper, PathCrumb, PathCrumbs, PaymentStepMethod, PlansBoard, PlansElite, PlansStream, ProgressDots, PromoBadge, PurchaseActions, PurchaseCardPanel, PurchaseFlowBare, PurchaseFlowElite, PurchaseFlowNeo, PurchaseFlowPulse, PurchaseHeaderBar, PurchaseLoadingShell, PurchaseStepper, QtyPicker, QuickPeekModal, RatingWall, ReachUsLoadingShell, ReachUsNeo, ReachUsPanel, RelatedRail, ReviewsCarousel, ReviewsTimeline, SearchBar, ShareBar, SharePanel, SortBar, StarRating, StoryPanel, TechSpecsPanel, TopNavClassic, TopNavElite, TopNavFrame, TrialStepOffer, UploadDropArea, ValueHighlights, ViewToggle, WarrantyStepCover, WorkGallery, WorkLoadingShell, loadBannerLayoutData, loadBannerLayoutDataSync };
 //# sourceMappingURL=index.esm.js.map
