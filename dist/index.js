@@ -766,20 +766,108 @@ var BannerBlend = function BannerBlend(_ref) {
   });
 };
 
-var BannerFrost = function BannerFrost(_ref) {
-  var data = _ref.data,
-    className = _ref.className,
-    id = _ref.id,
-    _ref$loader = _ref.loader,
-    loader = _ref$loader === void 0 ? false : _ref$loader;
+var getDynamicIcon$1 = /*#__PURE__*/function () {
+  var _ref = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee(library, iconName) {
+    var modulePath, iconModule, IconComponent, _t;
+    return _regenerator().w(function (_context) {
+      while (1) switch (_context.p = _context.n) {
+        case 0:
+          _context.p = 0;
+          // Use dynamic import with template literals to avoid static analysis
+          modulePath = "".concat(library);
+          _context.n = 1;
+          return import(modulePath);
+        case 1:
+          iconModule = _context.v;
+          IconComponent = iconModule[iconName];
+          if (IconComponent) {
+            _context.n = 2;
+            break;
+          }
+          console.warn("Icon ".concat(iconName, " not found in ").concat(library));
+          return _context.a(2, null);
+        case 2:
+          return _context.a(2, IconComponent);
+        case 3:
+          _context.p = 3;
+          _t = _context.v;
+          console.warn("Failed to load icon ".concat(iconName, " from ").concat(library, ":"), _t);
+          return _context.a(2, null);
+      }
+    }, _callee, null, [[0, 3]]);
+  }));
+  return function getDynamicIcon(_x, _x2) {
+    return _ref.apply(this, arguments);
+  };
+}();
+
+// Component to handle icon rendering with loading state
+var IconRenderer = function IconRenderer(_ref2) {
+  var icon = _ref2.icon,
+    className = _ref2.className;
+  var _useState = require$$0.useState(null),
+    _useState2 = _slicedToArray(_useState, 2),
+    IconComponent = _useState2[0],
+    setIconComponent = _useState2[1];
+  var _useState3 = require$$0.useState(false),
+    _useState4 = _slicedToArray(_useState3, 2),
+    loading = _useState4[0],
+    setLoading = _useState4[1];
+  require$$0.useEffect(function () {
+    if (_typeof(icon) === 'object' && icon.library && icon.name) {
+      setLoading(true);
+      getDynamicIcon$1(icon.library, icon.name).then(function (Icon) {
+        setIconComponent(Icon);
+        setLoading(false);
+      });
+    }
+  }, [icon]);
+  if (loading) {
+    return /*#__PURE__*/require$$1.jsx("div", {
+      className: clsx('w-6 h-6 bg-gray-300 animate-pulse rounded', className)
+    });
+  }
+  if (IconComponent) {
+    return /*#__PURE__*/require$$1.jsx(IconComponent, {
+      className: className
+    });
+  }
+  return null;
+};
+
+/**
+ * BannerFrost Component - Minimalist Glassmorphism Hero
+ * @param {Object} props - Component props
+ * @param {Object} props.data - Hero section configuration data
+ * @param {string} props.data.title - Main heading text
+ * @param {string} [props.data.subtitle] - Subtitle text displayed above title
+ * @param {string} [props.data.description] - Description text displayed below title
+ * @param {Array} [props.data.buttons=[]] - Array of call-to-action buttons
+ * @param {string} [props.data.backgroundImage] - URL or path to background image
+ * @param {string} [props.data.backgroundVideo] - URL or path to background video
+ * @param {string} [props.data.theme='light'] - Theme variant: 'light' | 'dark'
+ * @param {boolean} [props.data.showStats=false] - Show statistics section
+ * @param {Array} [props.data.stats=[]] - Array of statistics
+ * @param {string} [props.data.featureAlignment='left'] - Feature alignment: 'left' | 'center' | 'right'
+ * @param {string} [props.data.className] - Additional CSS classes for the section
+ * @param {string} [props.className] - Additional CSS classes
+ * @param {string} [props.id] - ID attribute for the section element
+ * @param {boolean} [props.loader=false] - Show loading state
+ */
+var BannerFrost = function BannerFrost(_ref3) {
+  var data = _ref3.data,
+    className = _ref3.className,
+    id = _ref3.id,
+    _ref3$loader = _ref3.loader,
+    loader = _ref3$loader === void 0 ? false : _ref3$loader;
   if (!data || _typeof(data) !== 'object') {
     console.error('BannerFrost: data prop is required and must be an object');
     return null;
   }
-  var _useState = require$$0.useState(loader),
-    _useState2 = _slicedToArray(_useState, 2),
-    showLoader = _useState2[0],
-    setShowLoader = _useState2[1];
+  var _useState5 = require$$0.useState(loader),
+    _useState6 = _slicedToArray(_useState5, 2),
+    showLoader = _useState6[0],
+    setShowLoader = _useState6[1];
 
   // Auto-hide loader after 2 seconds when loader prop is true
   require$$0.useEffect(function () {
@@ -1032,6 +1120,9 @@ var BannerFrost = function BannerFrost(_ref) {
                       children: typeof feature.icon === 'string' ? /*#__PURE__*/require$$1.jsx("span", {
                         className: "text-2xl",
                         children: feature.icon
+                      }) : _typeof(feature.icon) === 'object' && feature.icon.library && feature.icon.name ? /*#__PURE__*/require$$1.jsx(IconRenderer, {
+                        icon: feature.icon,
+                        className: feature.icon.className || 'w-6 h-6'
                       }) : /*#__PURE__*/require$$1.jsx("div", {
                         className: "w-6 h-6",
                         children: feature.icon
@@ -1675,7 +1766,7 @@ var HelpPulse = function HelpPulse(_ref) {
               id: "faq-modern-answer-".concat(index),
               className: clsx('overflow-hidden transition-all duration-300 ease-in-out', isOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'),
               children: /*#__PURE__*/require$$1.jsx("div", {
-                className: clsx("px-6 pb-6 pt-2", variant === 'minimal' && isOpen ? 'border-t border-white/20' : 'border-t border-gray-100'),
+                className: clsx("px-6 pb-6 pt-4", variant === 'minimal' && isOpen ? 'border-t border-white/20' : 'border-t border-gray-100'),
                 children: /*#__PURE__*/require$$1.jsxs("div", {
                   className: "flex gap-4",
                   children: [/*#__PURE__*/require$$1.jsx("div", {
@@ -2021,7 +2112,7 @@ var HelpShowcase = function HelpShowcase(_ref) {
                   id: "faq-visual-answer-".concat(index),
                   className: clsx('overflow-hidden transition-all duration-300 ease-in-out', isOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'),
                   children: /*#__PURE__*/require$$1.jsxs("div", {
-                    className: clsx("px-5 pb-4 pt-0 relative", variant === 'gradient' && isOpen ? 'border-t border-primary-200/30' : variant === 'dark' && isOpen ? 'border-t border-gray-700/50' : 'border-t border-gray-100'),
+                    className: clsx("px-5 py-4 relative", variant === 'gradient' && isOpen ? 'border-t border-primary-200/30' : variant === 'dark' && isOpen ? 'border-t border-gray-700/50' : 'border-t border-gray-100'),
                     children: [variant === 'gradient' && isOpen && /*#__PURE__*/require$$1.jsx("div", {
                       className: "absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary-400/50 to-transparent"
                     }), variant === 'dark' && isOpen && /*#__PURE__*/require$$1.jsx("div", {
@@ -2129,7 +2220,7 @@ var HelpShowcase = function HelpShowcase(_ref) {
                     id: "faq-visual-answer-".concat(index),
                     className: clsx('overflow-hidden transition-all duration-300 ease-in-out', isOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'),
                     children: /*#__PURE__*/require$$1.jsxs("div", {
-                      className: clsx("px-5 pb-4 pt-0 relative", variant === 'gradient' && isOpen ? 'border-t border-primary-200/30' : variant === 'dark' && isOpen ? 'border-t border-gray-700/50' : 'border-t border-gray-100'),
+                      className: clsx("px-5 py-4 relative", variant === 'gradient' && isOpen ? 'border-t border-primary-200/30' : variant === 'dark' && isOpen ? 'border-t border-gray-700/50' : 'border-t border-gray-100'),
                       children: [variant === 'gradient' && isOpen && /*#__PURE__*/require$$1.jsx("div", {
                         className: "absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary-400/50 to-transparent"
                       }), variant === 'dark' && isOpen && /*#__PURE__*/require$$1.jsx("div", {
@@ -2407,27 +2498,16 @@ var HighlightsStack = function HighlightsStack(_ref) {
     };
     var wrapperClass = iconWrapperClasses[itemIconAlignment] || 'flex items-start';
 
-    // If icon is a string (emoji or image URL)
-    if (typeof item.icon === 'string') {
-      // Check if it's an image URL
-      if (item.icon.startsWith('http') || item.icon.startsWith('/') || item.icon.includes('.')) {
-        return /*#__PURE__*/require$$1.jsx("div", {
-          className: clsx(wrapperClass, 'mb-4'),
-          children: /*#__PURE__*/require$$1.jsx("img", {
-            src: item.icon,
-            alt: item.title || 'Feature icon',
-            className: clsx('w-12 h-12 sm:w-16 sm:h-16 object-contain transition-all duration-300', hoverEffect && hoveredIndex === index && 'transform scale-110')
-          })
-        });
-      }
-
+    // Icon rendering utility function
+    var renderIconContent = function renderIconContent(iconElement) {
+      var iconClassName = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
       // Mantine Icons variant - Simple icon container, always centered
       if (variant === 'mantine-icons') {
         return /*#__PURE__*/require$$1.jsx("div", {
           className: "flex justify-center mb-6",
           children: /*#__PURE__*/require$$1.jsx("div", {
-            className: clsx('w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center text-2xl sm:text-3xl transition-all duration-300', currentIconStyle === 'monotone' ? 'text-gray-600' : 'text-primary-700', hoverEffect && hoveredIndex === index && 'transform scale-110'),
-            children: item.icon
+            className: clsx('w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center text-2xl sm:text-3xl transition-all duration-300', currentIconStyle === 'monotone' ? 'text-gray-600' : 'text-primary-700', hoverEffect && hoveredIndex === index && 'transform scale-110', iconClassName),
+            children: iconElement
           })
         });
       }
@@ -2437,8 +2517,8 @@ var HighlightsStack = function HighlightsStack(_ref) {
         return /*#__PURE__*/require$$1.jsx("div", {
           className: "flex justify-center mb-6",
           children: /*#__PURE__*/require$$1.jsx("div", {
-            className: clsx('w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center text-2xl sm:text-3xl text-gray-600 transition-all duration-300', hoverEffect && hoveredIndex === index && 'transform scale-110'),
-            children: item.icon
+            className: clsx('w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center text-2xl sm:text-3xl text-gray-600 transition-all duration-300', hoverEffect && hoveredIndex === index && 'transform scale-110', iconClassName),
+            children: iconElement
           })
         });
       }
@@ -2447,11 +2527,7 @@ var HighlightsStack = function HighlightsStack(_ref) {
       if (variant === 'mantine-image-icons') {
         return /*#__PURE__*/require$$1.jsx("div", {
           className: "flex justify-center mb-6",
-          children: /*#__PURE__*/require$$1.jsx("img", {
-            src: item.icon,
-            alt: item.title || 'Feature icon',
-            className: clsx('w-16 h-16 sm:w-20 sm:h-20 object-contain transition-all duration-300', hoverEffect && hoveredIndex === index && 'transform scale-110')
-          })
+          children: iconElement
         });
       }
 
@@ -2461,40 +2537,77 @@ var HighlightsStack = function HighlightsStack(_ref) {
           className: "mb-6",
           children: /*#__PURE__*/require$$1.jsx("div", {
             className: clsx('w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-primary-700 flex items-center justify-center text-white text-xl sm:text-2xl transition-all duration-300', hoverEffect && hoveredIndex === index && 'transform scale-105 bg-primary-700'),
-            children: item.icon
+            children: iconElement
           })
         });
       }
 
-      // Otherwise treat as emoji or text
       // Special handling for filled variant
       if (variant === 'filled') {
         return /*#__PURE__*/require$$1.jsx("div", {
           className: clsx(wrapperClass, 'mb-4'),
           children: /*#__PURE__*/require$$1.jsx("div", {
-            className: clsx(getIconClasses(index), 'w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center text-3xl sm:text-4xl rounded-lg transition-all duration-300', hoveredIndex === index ? 'bg-primary-400' : 'bg-gray-200', hoverEffect && hoveredIndex === index && 'transform scale-110'),
-            children: item.icon
+            className: clsx(getIconClasses(index), 'w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center text-3xl sm:text-4xl rounded-lg transition-all duration-300', hoveredIndex === index ? 'bg-primary-400' : 'bg-gray-200', hoverEffect && hoveredIndex === index && 'transform scale-110', iconClassName),
+            children: iconElement
           })
         });
       }
       return /*#__PURE__*/require$$1.jsx("div", {
         className: clsx(wrapperClass, 'mb-4'),
         children: /*#__PURE__*/require$$1.jsx("div", {
-          className: clsx(getIconClasses(index), 'w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center text-3xl sm:text-4xl rounded-lg', variant === 'mantine-title' ? 'bg-primary-50 text-primary-700' : 'bg-primary-50', hoverEffect && hoveredIndex === index && 'transform scale-110 bg-primary-100'),
-          children: item.icon
+          className: clsx(getIconClasses(index), 'w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center text-3xl sm:text-4xl rounded-lg', variant === 'mantine-title' ? 'bg-primary-50 text-primary-700' : 'bg-primary-50', hoverEffect && hoveredIndex === index && 'transform scale-110 bg-primary-100', iconClassName),
+          children: iconElement
         })
       });
+    };
+
+    // Handle different icon formats
+
+    // 1. If icon is a React component (direct component)
+    if (_typeof(item.icon) === 'object' && item.icon.type) {
+      return renderIconContent(item.icon);
     }
 
-    // If icon is a React component
-    if (_typeof(item.icon) === 'object' && item.icon.type) {
-      return /*#__PURE__*/require$$1.jsx("div", {
-        className: clsx(wrapperClass, 'mb-4'),
-        children: /*#__PURE__*/require$$1.jsx("div", {
-          className: getIconClasses(index),
-          children: item.icon
-        })
-      });
+    // 2. If icon is an object with library and name (e.g., { library: 'react-icons/fa', name: 'FaBolt', className: 'w-6 h-6' })
+    if (_typeof(item.icon) === 'object' && item.icon.library && item.icon.name) {
+      try {
+        // Dynamically import the icon component
+        // This is a simplified version - in a real app, you'd want to pre-load common icons
+        var iconName = item.icon.name;
+        var library = item.icon.library;
+        var iconClassName = item.icon.className || 'w-6 h-6';
+
+        // For demo purposes, we'll handle common react-icons
+        // In production, you'd want a more robust icon loading system
+        if (library.startsWith('react-icons/')) {
+          // This is a placeholder - actual dynamic imports would be more complex
+          // You'd typically have a pre-loaded icon map or lazy loading system
+          var IconComponent = getDynamicIcon(library, iconName);
+          if (IconComponent) {
+            return renderIconContent(/*#__PURE__*/require$$1.jsx(IconComponent, {
+              className: iconClassName
+            }));
+          }
+        }
+      } catch (error) {
+        console.warn('Failed to load icon:', item.icon, error);
+      }
+    }
+
+    // 3. If icon is a string
+    if (typeof item.icon === 'string') {
+      // Check if it's an image URL
+      if (item.icon.startsWith('http') || item.icon.startsWith('/') || item.icon.includes('.')) {
+        var imgElement = /*#__PURE__*/require$$1.jsx("img", {
+          src: item.icon,
+          alt: item.title || 'Feature icon',
+          className: clsx('w-12 h-12 sm:w-16 sm:h-16 object-contain transition-all duration-300', hoverEffect && hoveredIndex === index && 'transform scale-110')
+        });
+        return renderIconContent(imgElement);
+      }
+
+      // Treat as emoji or text
+      return renderIconContent(item.icon);
     }
     return null;
   };
@@ -2937,14 +3050,15 @@ var HighlightsStream = function HighlightsStream(_ref) {
     var variant = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 'default';
     if (!showIcons || !item.icon) return null;
 
-    // If icon is a React component
-    if (_typeof(item.icon) === 'object' && item.icon.type) {
+    // Icon rendering utility function
+    var renderIconContent = function renderIconContent(iconElement) {
+      var iconClassName = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
       if (variant === 'minimal') {
         return /*#__PURE__*/require$$1.jsx("div", {
           className: clsx('flex items-center justify-center w-14 h-14 rounded-xl mb-5', 'transition-all duration-300', isDark ? 'bg-gray-800 border border-gray-700' : clsx(colors.bg, colors.border, 'border'), hoveredIndex === index && 'scale-110 -rotate-3'),
           children: /*#__PURE__*/require$$1.jsx("div", {
-            className: clsx('w-7 h-7', isDark ? 'text-gray-300' : colors.primary),
-            children: item.icon
+            className: clsx('w-7 h-7', isDark ? 'text-gray-300' : colors.primary, iconClassName),
+            children: iconElement
           })
         });
       } else {
@@ -2956,45 +3070,82 @@ var HighlightsStream = function HighlightsStream(_ref) {
           }), /*#__PURE__*/require$$1.jsx("div", {
             className: clsx('relative flex items-center justify-center w-20 h-20 rounded-2xl', isDark ? 'bg-gray-800 border border-gray-700' : clsx(colors.bg, colors.border, 'border-2'), 'transition-all duration-500', hoveredIndex === index && 'shadow-2xl'),
             children: /*#__PURE__*/require$$1.jsx("div", {
-              className: clsx('w-10 h-10', isDark ? 'text-gray-300' : colors.primary),
-              children: item.icon
+              className: clsx('w-10 h-10', isDark ? 'text-gray-300' : colors.primary, iconClassName),
+              children: iconElement
             })
           })]
         });
       }
+    };
+
+    // Handle different icon formats
+
+    // 1. If icon is a React component (direct component)
+    if (_typeof(item.icon) === 'object' && item.icon.type) {
+      return renderIconContent(item.icon);
     }
 
-    // If icon is a string (emoji or image URL)
+    // 2. If icon is an object with library and name (e.g., { library: 'react-icons/fa', name: 'FaBolt', className: 'w-6 h-6' })
+    if (_typeof(item.icon) === 'object' && item.icon.library && item.icon.name) {
+      try {
+        // Dynamically import the icon component
+        var iconName = item.icon.name;
+        var library = item.icon.library;
+        var iconClassName = item.icon.className || 'w-6 h-6';
+
+        // For demo purposes, we'll handle common react-icons
+        var IconComponent = getDynamicIcon(library, iconName);
+        if (IconComponent) {
+          return renderIconContent(/*#__PURE__*/require$$1.jsx(IconComponent, {
+            className: iconClassName
+          }));
+        }
+      } catch (error) {
+        console.warn('Failed to load icon:', item.icon, error);
+      }
+    }
+
+    // 3. If icon is a string (emoji or image URL)
     if (typeof item.icon === 'string') {
       // Check if it's an image URL
       if (item.icon.startsWith('http') || item.icon.startsWith('/') || item.icon.includes('.')) {
+        var imgElement = /*#__PURE__*/require$$1.jsx("img", {
+          src: item.icon,
+          alt: item.title || 'Feature icon',
+          className: "w-full h-full object-cover"
+        });
         return /*#__PURE__*/require$$1.jsx("div", {
           className: clsx('flex items-center justify-center w-14 h-14 rounded-xl mb-5 overflow-hidden', 'transition-all duration-300', isDark ? 'bg-gray-800 border border-gray-700' : clsx(colors.bg, colors.border, 'border'), hoveredIndex === index && 'scale-110'),
-          children: /*#__PURE__*/require$$1.jsx("img", {
-            src: item.icon,
-            alt: item.title || 'Feature icon',
-            className: "w-full h-full object-cover"
-          })
+          children: imgElement
         });
       }
 
       // Emoji
-      if (variant === 'minimal') {
-        return /*#__PURE__*/require$$1.jsx("div", {
-          className: clsx('flex items-center justify-center w-14 h-14 rounded-xl mb-5 text-2xl', 'transition-all duration-300', isDark ? 'bg-gray-800 border border-gray-700' : clsx(colors.bg, colors.border, 'border'), hoveredIndex === index && 'scale-110 -rotate-3'),
-          children: item.icon
-        });
-      } else {
-        return /*#__PURE__*/require$$1.jsxs("div", {
-          className: clsx('relative flex items-center justify-center mb-6', 'transition-all duration-500', hoveredIndex === index && 'scale-110'),
-          children: [/*#__PURE__*/require$$1.jsx("div", {
-            className: clsx('absolute inset-0 rounded-2xl blur-xl opacity-30', "bg-gradient-to-br ".concat(colors.gradient), 'transition-all duration-500', hoveredIndex === index && 'opacity-50 scale-150')
-          }), /*#__PURE__*/require$$1.jsx("div", {
-            className: clsx('relative flex items-center justify-center w-20 h-20 rounded-2xl text-3xl', isDark ? 'bg-gray-800 border border-gray-700' : clsx(colors.bg, colors.border, 'border-2')),
-            children: item.icon
-          })]
-        });
+      return renderIconContent(item.icon);
+    }
+    return null;
+  };
+
+  // Helper function to dynamically load icons (simplified version)
+  var getDynamicIcon = function getDynamicIcon(library, iconName) {
+    // This is a simplified implementation
+    // In a real app, you'd have pre-loaded icon maps or lazy loading
+    try {
+      // For react-icons, you might have pre-imported common icons
+      // or use a dynamic import system
+      switch (library) {
+        case 'react-icons/fa':
+          // You'd have a pre-loaded map of Fa icons
+          break;
+        case 'react-icons/hi':
+          // You'd have a pre-loaded map of Hi icons
+          break;
+        default:
+          return null;
       }
+    } catch (error) {
+      console.warn('Icon not found:', library, iconName);
+      return null;
     }
     return null;
   };
@@ -3385,70 +3536,110 @@ var HighlightsElite = function HighlightsElite(_ref) {
     var variant = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'stacked';
     if (!item.icon) return null;
 
-    // Stacked layout icons - colored squares with outlined icons
-    if (variant === 'stacked') {
-      var colors = getIconColors(index);
-
-      // If icon is a React component
-      if (_typeof(item.icon) === 'object' && item.icon.type) {
+    // Icon rendering utility function
+    var renderIconContent = function renderIconContent(iconElement) {
+      var iconClassName = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+      // Stacked layout icons - colored squares with outlined icons
+      if (variant === 'stacked') {
+        var colors = getIconColors(index);
         return /*#__PURE__*/require$$1.jsx("div", {
           className: clsx('w-14 h-14 rounded-lg border-2 flex items-center justify-center mb-4', isDark ? 'bg-gray-800 border-gray-700' : clsx(colors.bg, colors.border)),
           children: /*#__PURE__*/require$$1.jsx("div", {
-            className: clsx('w-7 h-7', isDark ? 'text-gray-300' : colors.icon),
-            children: item.icon
+            className: clsx('w-7 h-7', isDark ? 'text-gray-300' : colors.icon, iconClassName),
+            children: iconElement
           })
         });
       }
 
-      // If icon is a string (emoji or image)
-      if (typeof item.icon === 'string') {
-        if (item.icon.startsWith('http') || item.icon.startsWith('/') || item.icon.includes('.')) {
-          return /*#__PURE__*/require$$1.jsx("div", {
-            className: clsx('w-14 h-14 rounded-lg border-2 flex items-center justify-center mb-4 overflow-hidden', isDark ? 'bg-gray-800 border-gray-700' : clsx(colors.bg, colors.border)),
-            children: /*#__PURE__*/require$$1.jsx("img", {
-              src: item.icon,
-              alt: item.title || 'Feature icon',
-              className: "w-full h-full object-cover"
-            })
-          });
-        }
-        return /*#__PURE__*/require$$1.jsx("div", {
-          className: clsx('w-14 h-14 rounded-lg border-2 flex items-center justify-center mb-4 text-2xl', isDark ? 'bg-gray-800 border-gray-700' : clsx(colors.bg, colors.border)),
-          children: item.icon
-        });
-      }
-    }
-
-    // Grid layout icons - outlined icons for dark theme
-    if (variant === 'grid') {
-      // If icon is a React component
-      if (_typeof(item.icon) === 'object' && item.icon.type) {
+      // Grid layout icons - outlined icons for dark theme
+      if (variant === 'grid') {
         return /*#__PURE__*/require$$1.jsx("div", {
           className: "w-12 h-12 flex items-center justify-center mb-4 mx-auto",
           children: /*#__PURE__*/require$$1.jsx("div", {
-            className: clsx('w-12 h-12', isDark ? 'text-blue-400' : 'text-blue-600'),
-            children: item.icon
+            className: clsx('w-12 h-12', isDark ? 'text-blue-400' : 'text-blue-600', iconClassName),
+            children: iconElement
           })
         });
       }
+      return iconElement;
+    };
 
-      // If icon is a string
-      if (typeof item.icon === 'string') {
-        if (item.icon.startsWith('http') || item.icon.startsWith('/') || item.icon.includes('.')) {
+    // Handle different icon formats
+
+    // 1. If icon is a React component (direct component)
+    if (_typeof(item.icon) === 'object' && item.icon.type) {
+      return renderIconContent(item.icon);
+    }
+
+    // 2. If icon is an object with library and name (e.g., { library: 'react-icons/fa', name: 'FaBolt', className: 'w-6 h-6' })
+    if (_typeof(item.icon) === 'object' && item.icon.library && item.icon.name) {
+      try {
+        // Dynamically import the icon component
+        var iconName = item.icon.name;
+        var library = item.icon.library;
+        var iconClassName = item.icon.className || 'w-6 h-6';
+
+        // For demo purposes, we'll handle common react-icons
+        var IconComponent = getDynamicIcon(library, iconName);
+        if (IconComponent) {
+          return renderIconContent(/*#__PURE__*/require$$1.jsx(IconComponent, {
+            className: iconClassName
+          }));
+        }
+      } catch (error) {
+        console.warn('Failed to load icon:', item.icon, error);
+      }
+    }
+
+    // 3. If icon is a string
+    if (typeof item.icon === 'string') {
+      // Check if it's an image URL
+      if (item.icon.startsWith('http') || item.icon.startsWith('/') || item.icon.includes('.')) {
+        var imgElement = /*#__PURE__*/require$$1.jsx("img", {
+          src: item.icon,
+          alt: item.title || 'Feature icon',
+          className: variant === 'stacked' ? "w-full h-full object-cover" : "w-12 h-12 object-contain"
+        });
+        if (variant === 'stacked') {
+          var colors = getIconColors(index);
+          return /*#__PURE__*/require$$1.jsx("div", {
+            className: clsx('w-14 h-14 rounded-lg border-2 flex items-center justify-center mb-4 overflow-hidden', isDark ? 'bg-gray-800 border-gray-700' : clsx(colors.bg, colors.border)),
+            children: imgElement
+          });
+        } else {
           return /*#__PURE__*/require$$1.jsx("div", {
             className: "w-12 h-12 flex items-center justify-center mb-4 mx-auto",
-            children: /*#__PURE__*/require$$1.jsx("img", {
-              src: item.icon,
-              alt: item.title || 'Feature icon',
-              className: "w-12 h-12 object-contain"
-            })
+            children: imgElement
           });
         }
-        return /*#__PURE__*/require$$1.jsx("div", {
-          className: clsx('w-12 h-12 flex items-center justify-center mb-4 mx-auto text-3xl', isDark ? 'text-blue-400' : 'text-blue-600'),
-          children: item.icon
-        });
       }
+
+      // Treat as emoji or text
+      return renderIconContent(item.icon);
+    }
+    return null;
+  };
+
+  // Helper function to dynamically load icons (simplified version)
+  var getDynamicIcon = function getDynamicIcon(library, iconName) {
+    // This is a simplified implementation
+    // In a real app, you'd have pre-loaded icon maps or lazy loading
+    try {
+      // For react-icons, you might have pre-imported common icons
+      // or use a dynamic import system
+      switch (library) {
+        case 'react-icons/fa':
+          // You'd have a pre-loaded map of Fa icons
+          break;
+        case 'react-icons/hi':
+          // You'd have a pre-loaded map of Hi icons
+          break;
+        default:
+          return null;
+      }
+    } catch (error) {
+      console.warn('Icon not found:', library, iconName);
+      return null;
     }
     return null;
   };
@@ -6409,7 +6600,7 @@ var MotionRail = function MotionRail(_ref) {
   });
 };
 
-var TopNavFrame = function TopNavFrame(_ref) {
+var HeaderFrame = function HeaderFrame(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id;
@@ -8082,7 +8273,7 @@ var TopNavFrame = function TopNavFrame(_ref) {
   });
 };
 
-var TopNavClassic = function TopNavClassic(_ref) {
+var HeaderClassic = function HeaderClassic(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id;
@@ -9780,7 +9971,7 @@ var TopNavClassic = function TopNavClassic(_ref) {
   return null;
 };
 
-var TopNavElite = function TopNavElite(_ref) {
+var HeaderElite = function HeaderElite(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id;
@@ -11394,7 +11585,7 @@ var TopNavElite = function TopNavElite(_ref) {
   return null;
 };
 
-var PageFooterFrame = function PageFooterFrame(_ref) {
+var FooterLayout = function FooterLayout(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id;
@@ -33367,7 +33558,8 @@ var ContactStepEmail = function ContactStepEmail(_ref) {
     variant = _ref$variant === void 0 ? 'standard' : _ref$variant,
     className = _ref.className,
     _ref$loading = _ref.loading,
-    loading = _ref$loading === void 0 ? false : _ref$loading;
+    loading = _ref$loading === void 0 ? false : _ref$loading,
+    id = _ref.id;
   var _useState = require$$0.useState(false),
     _useState2 = _slicedToArray(_useState, 2),
     timedOut = _useState2[0],
@@ -33435,6 +33627,7 @@ var ContactStepEmail = function ContactStepEmail(_ref) {
     }), /*#__PURE__*/require$$1.jsx("div", {
       className: "relative",
       children: /*#__PURE__*/require$$1.jsx("input", {
+        id: id,
         type: "email",
         placeholder: placeholder || 'Email Address*',
         className: active.input,
@@ -35474,7 +35667,7 @@ var ValueCard = function ValueCard(_ref3) {
   var title = _ref3.title,
     description = _ref3.description;
   return /*#__PURE__*/require$$1.jsxs("div", {
-    className: "rounded-xl border border-gray-800 bg-gray-900/60 p-5 hover:border-primary-500/60 transition-all duration-200 shadow-sm",
+    className: "bg-gray-900/60 p-5 hover:border-primary-500/60 transition-all duration-200 shadow-sm",
     children: [/*#__PURE__*/require$$1.jsxs("div", {
       className: "flex items-center gap-3 mb-3",
       children: [/*#__PURE__*/require$$1.jsx("span", {
@@ -35496,7 +35689,7 @@ var SplitAbout = function SplitAbout(_ref4) {
   var _data$cta, _data$cta2, _data$cta3, _data$cta4, _data$stats, _data$highlights;
   var data = _ref4.data;
   return /*#__PURE__*/require$$1.jsxs("section", {
-    className: "relative overflow-hidden bg-gradient-to-br from-black via-gray-900 to-gray-950 text-white rounded-3xl border border-gray-800",
+    className: "relative overflow-hidden bg-gradient-to-br from-black via-gray-900 to-gray-950 text-white",
     children: [/*#__PURE__*/require$$1.jsx("div", {
       className: "absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.14),transparent_35%),radial-gradient(circle_at_80%_0%,rgba(79,70,229,0.12),transparent_30%)]"
     }), /*#__PURE__*/require$$1.jsxs("div", {
@@ -35545,7 +35738,7 @@ var SplitAbout = function SplitAbout(_ref4) {
           className: "grid grid-cols-1 sm:grid-cols-2 gap-4",
           children: (_data$highlights = data.highlights) === null || _data$highlights === void 0 ? void 0 : _data$highlights.map(function (item, idx) {
             return /*#__PURE__*/require$$1.jsxs("div", {
-              className: "rounded-xl border border-gray-800 bg-gray-950/70 p-4 hover:border-primary-600/50 transition-all duration-200",
+              className: "bg-gray-950/70 p-4 hover:border-primary-600/50 transition-all duration-200",
               children: [/*#__PURE__*/require$$1.jsx("h4", {
                 className: "text-white font-semibold mb-2",
                 children: item.title
@@ -35575,7 +35768,7 @@ var SpotlightAbout = function SpotlightAbout(_ref5) {
   var _data$stats2, _data$values, _data$team, _data$cta5, _data$cta6;
   var data = _ref5.data;
   return /*#__PURE__*/require$$1.jsxs("section", {
-    className: "relative overflow-hidden rounded-3xl bg-gradient-to-br from-gray-950 via-black to-gray-900 border border-gray-800 text-white",
+    className: "relative overflow-hidden",
     children: [/*#__PURE__*/require$$1.jsx("div", {
       className: "absolute inset-0 bg-[radial-gradient(circle_at_70%_20%,rgba(59,130,246,0.18),transparent_40%)]"
     }), /*#__PURE__*/require$$1.jsxs("div", {
@@ -35679,7 +35872,7 @@ var TimelineAbout = function TimelineAbout(_ref6) {
   var _data$stats3, _data$timeline;
   var data = _ref6.data;
   return /*#__PURE__*/require$$1.jsxs("section", {
-    className: "rounded-3xl border border-gray-200 bg-white text-gray-900 shadow-lg overflow-hidden",
+    className: "overflow-hidden",
     children: [/*#__PURE__*/require$$1.jsx("div", {
       className: "px-6 sm:px-10 pt-10 pb-6 bg-gradient-to-r from-gray-900 via-black to-gray-900 text-white",
       children: /*#__PURE__*/require$$1.jsx(SectionHeader$1, {
@@ -35748,7 +35941,7 @@ var StackedAbout = function StackedAbout(_ref7) {
   var _data$stats4, _data$highlights2, _data$cta7, _data$cta8, _data$cta9, _data$cta0, _data$values2;
   var data = _ref7.data;
   return /*#__PURE__*/require$$1.jsx("section", {
-    className: "rounded-3xl border border-gray-200 bg-gradient-to-b from-white via-gray-50 to-white shadow-lg overflow-hidden",
+    className: "overflow-hidden",
     children: /*#__PURE__*/require$$1.jsxs("div", {
       className: "p-6 sm:p-10 lg:p-12 space-y-8",
       children: [/*#__PURE__*/require$$1.jsxs("div", {
@@ -35850,7 +36043,7 @@ var MinimalAbout = function MinimalAbout(_ref8) {
   var _data$stats5, _data$highlights3;
   var data = _ref8.data;
   return /*#__PURE__*/require$$1.jsx("section", {
-    className: "rounded-3xl border border-gray-800 bg-black text-white overflow-hidden",
+    className: "bg-black text-white overflow-hidden",
     children: /*#__PURE__*/require$$1.jsxs("div", {
       className: "relative p-6 sm:p-10 lg:p-14",
       children: [/*#__PURE__*/require$$1.jsx("div", {
@@ -35905,7 +36098,7 @@ var ImageAbout = function ImageAbout(_ref9) {
   var _data$cta1, _data$cta10, _data$cta11, _data$cta12, _data$stats6, _data$highlights4;
   var data = _ref9.data;
   return /*#__PURE__*/require$$1.jsx("section", {
-    className: "rounded-3xl border border-gray-800 bg-gradient-to-br from-black via-gray-950 to-gray-900 text-white overflow-hidden",
+    className: "bg-gradient-to-br from-black via-gray-950 to-gray-900 text-white overflow-hidden",
     children: /*#__PURE__*/require$$1.jsxs("div", {
       className: "relative grid grid-cols-1 lg:grid-cols-2 gap-0",
       children: [/*#__PURE__*/require$$1.jsxs("div", {
@@ -35946,7 +36139,7 @@ var ImageAbout = function ImageAbout(_ref9) {
           className: "grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2",
           children: (_data$highlights4 = data.highlights) === null || _data$highlights4 === void 0 ? void 0 : _data$highlights4.slice(0, 4).map(function (item, idx) {
             return /*#__PURE__*/require$$1.jsxs("div", {
-              className: "rounded-xl border border-gray-800 bg-gray-950/70 p-4 hover:border-primary-600/50 transition-all duration-200",
+              className: "bg-gray-950/70 p-4 hover:border-primary-600/50 transition-all duration-200",
               children: [/*#__PURE__*/require$$1.jsx("h4", {
                 className: "text-white font-semibold mb-2",
                 children: item.title
@@ -36002,7 +36195,7 @@ var StoryTimelineAbout = function StoryTimelineAbout(_ref0) {
   var _data$timeline2, _data$highlights5;
   var data = _ref0.data;
   return /*#__PURE__*/require$$1.jsx("section", {
-    className: "rounded-3xl border border-gray-200 bg-gradient-to-b from-gray-50 via-white to-gray-50 text-gray-900 shadow-lg overflow-hidden",
+    className: "bg-gradient-to-b from-gray-50 via-white to-gray-50 text-gray-900 shadow-lg overflow-hidden",
     children: /*#__PURE__*/require$$1.jsxs("div", {
       className: "grid grid-cols-1 lg:grid-cols-2 gap-0",
       children: [/*#__PURE__*/require$$1.jsxs("div", {
@@ -36113,36 +36306,42 @@ var OriginPanel = function OriginPanel(_ref1) {
   var variantKey = mergedData.variant || variant || 'split';
   var Component = variantComponents[variantKey] || SplitAbout;
   if (loader) {
-    return /*#__PURE__*/require$$1.jsxs("div", {
-      className: "rounded-3xl border border-gray-800 bg-gradient-to-br from-black via-gray-900 to-gray-950 p-6 sm:p-10 animate-pulse",
-      children: [/*#__PURE__*/require$$1.jsxs("div", {
-        className: "space-y-4",
-        children: [/*#__PURE__*/require$$1.jsx("div", {
-          className: "h-10 w-32 rounded-full bg-white/10"
+    return /*#__PURE__*/require$$1.jsx("div", {
+      className: "container",
+      children: /*#__PURE__*/require$$1.jsxs("div", {
+        className: "bg-gradient-to-br from-black via-gray-900 to-gray-950 p-6 sm:p-10 animate-pulse",
+        children: [/*#__PURE__*/require$$1.jsxs("div", {
+          className: "space-y-4",
+          children: [/*#__PURE__*/require$$1.jsx("div", {
+            className: "h-10 w-32 rounded-full bg-white/10"
+          }), /*#__PURE__*/require$$1.jsx("div", {
+            className: "h-10 sm:h-12 w-5/6 bg-white/10 rounded-xl"
+          }), /*#__PURE__*/require$$1.jsx("div", {
+            className: "h-4 w-4/6 bg-white/10 rounded"
+          })]
         }), /*#__PURE__*/require$$1.jsx("div", {
-          className: "h-10 sm:h-12 w-5/6 bg-white/10 rounded-xl"
+          className: "mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4",
+          children: [1, 2, 3].map(function (i) {
+            return /*#__PURE__*/require$$1.jsx("div", {
+              className: "h-24 rounded-2xl bg-white/5 border border-white/10"
+            }, i);
+          })
         }), /*#__PURE__*/require$$1.jsx("div", {
-          className: "h-4 w-4/6 bg-white/10 rounded"
+          className: "mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4",
+          children: [1, 2, 3, 4].map(function (i) {
+            return /*#__PURE__*/require$$1.jsx("div", {
+              className: "h-28 rounded-xl bg-white/5 border border-white/10"
+            }, i);
+          })
         })]
-      }), /*#__PURE__*/require$$1.jsx("div", {
-        className: "mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4",
-        children: [1, 2, 3].map(function (i) {
-          return /*#__PURE__*/require$$1.jsx("div", {
-            className: "h-24 rounded-2xl bg-white/5 border border-white/10"
-          }, i);
-        })
-      }), /*#__PURE__*/require$$1.jsx("div", {
-        className: "mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4",
-        children: [1, 2, 3, 4].map(function (i) {
-          return /*#__PURE__*/require$$1.jsx("div", {
-            className: "h-28 rounded-xl bg-white/5 border border-white/10"
-          }, i);
-        })
-      })]
+      })
     });
   }
-  return /*#__PURE__*/require$$1.jsx(Component, {
-    data: mergedData
+  return /*#__PURE__*/require$$1.jsx("div", {
+    className: "container",
+    children: /*#__PURE__*/require$$1.jsx(Component, {
+      data: mergedData
+    })
   });
 };
 
@@ -38350,18 +38549,21 @@ var BasketNeo = function BasketNeo(_ref) {
 
   // Show skeleton loader
   if (loader) {
-    return /*#__PURE__*/require$$1.jsx("section", {
-      id: id,
-      className: clsx('w-full py-8 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-8', isCompact ? 'bg-white' : 'bg-gray-50', className),
-      children: /*#__PURE__*/require$$1.jsxs("div", {
-        className: clsx("mx-auto", isCompact ? "max-w-4xl" : "max-w-6xl"),
-        children: [/*#__PURE__*/require$$1.jsx(SkeletonHeader, {}), /*#__PURE__*/require$$1.jsxs("div", {
-          className: clsx("grid grid-cols-1 gap-8", isCompact ? "xl:grid-cols-1" : "xl:grid-cols-5"),
-          children: [/*#__PURE__*/require$$1.jsxs("div", {
-            className: clsx(isCompact ? "" : "xl:col-span-3", "space-y-6"),
-            children: [/*#__PURE__*/require$$1.jsx(SkeletonCartItem, {}), /*#__PURE__*/require$$1.jsx(SkeletonCartItem, {}), /*#__PURE__*/require$$1.jsx(SkeletonCartItem, {})]
-          }), /*#__PURE__*/require$$1.jsx(SkeletonOrderSummary, {})]
-        })]
+    return /*#__PURE__*/require$$1.jsx("div", {
+      className: "container",
+      children: /*#__PURE__*/require$$1.jsx("section", {
+        id: id,
+        className: clsx('w-full py-8 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-8', isCompact ? 'bg-white' : 'bg-gray-50', className),
+        children: /*#__PURE__*/require$$1.jsxs("div", {
+          className: clsx("mx-auto", isCompact ? "max-w-4xl" : "max-w-6xl"),
+          children: [/*#__PURE__*/require$$1.jsx(SkeletonHeader, {}), /*#__PURE__*/require$$1.jsxs("div", {
+            className: clsx("grid grid-cols-1 gap-8", isCompact ? "xl:grid-cols-1" : "xl:grid-cols-5"),
+            children: [/*#__PURE__*/require$$1.jsxs("div", {
+              className: clsx(isCompact ? "" : "xl:col-span-3", "space-y-6"),
+              children: [/*#__PURE__*/require$$1.jsx(SkeletonCartItem, {}), /*#__PURE__*/require$$1.jsx(SkeletonCartItem, {}), /*#__PURE__*/require$$1.jsx(SkeletonCartItem, {})]
+            }), /*#__PURE__*/require$$1.jsx(SkeletonOrderSummary, {})]
+          })]
+        })
       })
     });
   }
@@ -38386,298 +38588,304 @@ var BasketNeo = function BasketNeo(_ref) {
     });
   };
   if (cartItems.length === 0) {
-    return /*#__PURE__*/require$$1.jsx("section", {
-      id: id,
-      className: clsx('w-full py-8 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 bg-gray-50', className),
-      children: /*#__PURE__*/require$$1.jsxs("div", {
-        className: "max-w-2xl mx-auto text-center",
-        children: [/*#__PURE__*/require$$1.jsx("div", {
-          className: "mb-8",
-          children: /*#__PURE__*/require$$1.jsx("div", {
-            className: "inline-flex items-center justify-center w-20 h-20 bg-white rounded-full shadow-sm",
-            children: /*#__PURE__*/require$$1.jsx("svg", {
-              className: "w-10 h-10 text-gray-400",
+    return /*#__PURE__*/require$$1.jsx("div", {
+      className: "container",
+      children: /*#__PURE__*/require$$1.jsx("section", {
+        id: id,
+        className: clsx('w-full py-8 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 bg-gray-50', className),
+        children: /*#__PURE__*/require$$1.jsxs("div", {
+          className: "max-w-2xl mx-auto text-center",
+          children: [/*#__PURE__*/require$$1.jsx("div", {
+            className: "mb-8",
+            children: /*#__PURE__*/require$$1.jsx("div", {
+              className: "inline-flex items-center justify-center w-20 h-20 bg-white rounded-full shadow-sm",
+              children: /*#__PURE__*/require$$1.jsx("svg", {
+                className: "w-10 h-10 text-gray-400",
+                fill: "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                children: /*#__PURE__*/require$$1.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: 1.5,
+                  d: "M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+                })
+              })
+            })
+          }), /*#__PURE__*/require$$1.jsx("h2", {
+            className: "text-3xl font-bold text-gray-900 mb-4",
+            children: "Your cart is empty"
+          }), /*#__PURE__*/require$$1.jsx("p", {
+            className: "text-gray-600 mb-8",
+            children: "Start shopping to fill your cart with amazing products."
+          }), /*#__PURE__*/require$$1.jsxs("button", {
+            className: "inline-flex items-center px-8 py-4 bg-primary-600 text-white font-semibold rounded-xl hover:bg-primary-700 transition-all duration-200 shadow-sm hover:shadow-md",
+            children: [/*#__PURE__*/require$$1.jsx("svg", {
+              className: "w-5 h-5 mr-2",
               fill: "none",
               stroke: "currentColor",
               viewBox: "0 0 24 24",
               children: /*#__PURE__*/require$$1.jsx("path", {
                 strokeLinecap: "round",
                 strokeLinejoin: "round",
-                strokeWidth: 1.5,
-                d: "M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+                strokeWidth: 2,
+                d: "M7 16l-4-4m0 0l4-4m-4 4h18"
               })
-            })
-          })
-        }), /*#__PURE__*/require$$1.jsx("h2", {
-          className: "text-3xl font-bold text-gray-900 mb-4",
-          children: "Your cart is empty"
-        }), /*#__PURE__*/require$$1.jsx("p", {
-          className: "text-gray-600 mb-8",
-          children: "Start shopping to fill your cart with amazing products."
-        }), /*#__PURE__*/require$$1.jsxs("button", {
-          className: "inline-flex items-center px-8 py-4 bg-primary-600 text-white font-semibold rounded-xl hover:bg-primary-700 transition-all duration-200 shadow-sm hover:shadow-md",
-          children: [/*#__PURE__*/require$$1.jsx("svg", {
-            className: "w-5 h-5 mr-2",
-            fill: "none",
-            stroke: "currentColor",
-            viewBox: "0 0 24 24",
-            children: /*#__PURE__*/require$$1.jsx("path", {
-              strokeLinecap: "round",
-              strokeLinejoin: "round",
-              strokeWidth: 2,
-              d: "M7 16l-4-4m0 0l4-4m-4 4h18"
-            })
-          }), "Continue Shopping"]
-        })]
+            }), "Continue Shopping"]
+          })]
+        })
       })
     });
   }
-  return /*#__PURE__*/require$$1.jsx("section", {
-    id: id,
-    className: clsx('w-full py-8 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-8', isCompact ? 'bg-white' : 'bg-gray-50', className),
-    children: /*#__PURE__*/require$$1.jsxs("div", {
-      className: clsx("mx-auto", isCompact ? "max-w-4xl" : "max-w-6xl"),
-      children: [/*#__PURE__*/require$$1.jsxs("div", {
-        className: clsx("mb-12", isCompact ? "text-left border-b border-gray-100 pb-8" : "text-center"),
-        children: [/*#__PURE__*/require$$1.jsx("h1", {
-          className: clsx("font-black text-gray-900 mb-4", isCompact ? "text-3xl" : "text-4xl md:text-5xl"),
-          children: title
-        }), /*#__PURE__*/require$$1.jsxs("p", {
-          className: clsx("text-gray-500 font-medium", isCompact ? "text-base" : "text-xl"),
-          children: [cartItems.length, " item", cartItems.length !== 1 ? 's' : '', " in your cart"]
-        })]
-      }), /*#__PURE__*/require$$1.jsxs("div", {
-        className: clsx("grid grid-cols-1 gap-8", isCompact ? "xl:grid-cols-1" : "xl:grid-cols-5"),
-        children: [/*#__PURE__*/require$$1.jsx("div", {
-          className: clsx(isCompact ? "" : "xl:col-span-3", "space-y-6"),
-          children: cartItems.map(function (item) {
-            return /*#__PURE__*/require$$1.jsx("div", {
-              className: clsx("transition-all duration-300", isCompact ? "bg-white p-4 border-b border-gray-100 last:border-b-0" : "bg-white rounded-2xl p-6 shadow-sm hover:shadow-lg border border-gray-100"),
-              children: /*#__PURE__*/require$$1.jsxs("div", {
-                className: "flex flex-col sm:flex-row gap-6",
-                children: [/*#__PURE__*/require$$1.jsx("div", {
-                  className: "flex-shrink-0",
-                  children: /*#__PURE__*/require$$1.jsxs("div", {
-                    className: "relative",
-                    children: [/*#__PURE__*/require$$1.jsx("img", {
-                      src: item.image || '/api/placeholder/140/140',
-                      alt: item.name,
-                      className: clsx("object-cover", isCompact ? "w-24 h-24 rounded-lg" : "w-32 h-32 rounded-xl")
-                    }), item.badge && /*#__PURE__*/require$$1.jsx("span", {
-                      className: "absolute -top-2 -right-2 bg-primary-600 text-white text-xs font-semibold px-2 py-1 rounded-full",
-                      children: item.badge
-                    })]
-                  })
-                }), /*#__PURE__*/require$$1.jsxs("div", {
-                  className: "flex-1 min-w-0",
-                  children: [/*#__PURE__*/require$$1.jsxs("div", {
-                    className: "flex justify-between items-start mb-4",
-                    children: [/*#__PURE__*/require$$1.jsxs("div", {
-                      className: "flex-1",
-                      children: [/*#__PURE__*/require$$1.jsx("h3", {
-                        className: clsx("font-bold text-gray-900 mb-2", isCompact ? "text-lg" : "text-xl"),
-                        children: item.name
-                      }), !isCompact && item.description && /*#__PURE__*/require$$1.jsx("p", {
-                        className: "text-gray-600 mb-2 text-sm",
-                        children: item.description
-                      }), item.variant && /*#__PURE__*/require$$1.jsxs("p", {
-                        className: "text-sm text-gray-500 font-medium",
-                        children: ["Variant: ", item.variant]
+  return /*#__PURE__*/require$$1.jsx("div", {
+    className: "container",
+    children: /*#__PURE__*/require$$1.jsx("section", {
+      id: id,
+      className: clsx('w-full py-8 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-8', isCompact ? 'bg-white' : 'bg-gray-50', className),
+      children: /*#__PURE__*/require$$1.jsxs("div", {
+        className: clsx("mx-auto", isCompact ? "max-w-4xl" : "max-w-6xl"),
+        children: [/*#__PURE__*/require$$1.jsxs("div", {
+          className: clsx("mb-12", isCompact ? "text-left border-b border-gray-100 pb-8" : "text-center"),
+          children: [/*#__PURE__*/require$$1.jsx("h1", {
+            className: clsx("font-black text-gray-900 mb-4", isCompact ? "text-3xl" : "text-4xl md:text-5xl"),
+            children: title
+          }), /*#__PURE__*/require$$1.jsxs("p", {
+            className: clsx("text-gray-500 font-medium", isCompact ? "text-base" : "text-xl"),
+            children: [cartItems.length, " item", cartItems.length !== 1 ? 's' : '', " in your cart"]
+          })]
+        }), /*#__PURE__*/require$$1.jsxs("div", {
+          className: clsx("grid grid-cols-1 gap-8", isCompact ? "xl:grid-cols-1" : "xl:grid-cols-5"),
+          children: [/*#__PURE__*/require$$1.jsx("div", {
+            className: clsx(isCompact ? "" : "xl:col-span-3", "space-y-6"),
+            children: cartItems.map(function (item) {
+              return /*#__PURE__*/require$$1.jsx("div", {
+                className: clsx("transition-all duration-300", isCompact ? "bg-white p-4 border-b border-gray-100 last:border-b-0" : "bg-white rounded-2xl p-6 shadow-sm hover:shadow-lg border border-gray-100"),
+                children: /*#__PURE__*/require$$1.jsxs("div", {
+                  className: "flex flex-col sm:flex-row gap-6",
+                  children: [/*#__PURE__*/require$$1.jsx("div", {
+                    className: "flex-shrink-0",
+                    children: /*#__PURE__*/require$$1.jsxs("div", {
+                      className: "relative",
+                      children: [/*#__PURE__*/require$$1.jsx("img", {
+                        src: item.image || '/api/placeholder/140/140',
+                        alt: item.name,
+                        className: clsx("object-cover", isCompact ? "w-24 h-24 rounded-lg" : "w-32 h-32 rounded-xl")
+                      }), item.badge && /*#__PURE__*/require$$1.jsx("span", {
+                        className: "absolute -top-2 -right-2 bg-primary-600 text-white text-xs font-semibold px-2 py-1 rounded-full",
+                        children: item.badge
                       })]
-                    }), /*#__PURE__*/require$$1.jsx("button", {
-                      onClick: function onClick() {
-                        return removeItem(item.id);
-                      },
-                      className: "p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors",
-                      "aria-label": "Remove item",
-                      children: /*#__PURE__*/require$$1.jsx("svg", {
-                        className: "w-5 h-5",
-                        fill: "none",
-                        stroke: "currentColor",
-                        viewBox: "0 0 24 24",
-                        children: /*#__PURE__*/require$$1.jsx("path", {
-                          strokeLinecap: "round",
-                          strokeLinejoin: "round",
-                          strokeWidth: 2,
-                          d: "M6 18L18 6M6 6l12 12"
+                    })
+                  }), /*#__PURE__*/require$$1.jsxs("div", {
+                    className: "flex-1 min-w-0",
+                    children: [/*#__PURE__*/require$$1.jsxs("div", {
+                      className: "flex justify-between items-start mb-4",
+                      children: [/*#__PURE__*/require$$1.jsxs("div", {
+                        className: "flex-1",
+                        children: [/*#__PURE__*/require$$1.jsx("h3", {
+                          className: clsx("font-bold text-gray-900 mb-2", isCompact ? "text-lg" : "text-xl"),
+                          children: item.name
+                        }), !isCompact && item.description && /*#__PURE__*/require$$1.jsx("p", {
+                          className: "text-gray-600 mb-2 text-sm",
+                          children: item.description
+                        }), item.variant && /*#__PURE__*/require$$1.jsxs("p", {
+                          className: "text-sm text-gray-500 font-medium",
+                          children: ["Variant: ", item.variant]
+                        })]
+                      }), /*#__PURE__*/require$$1.jsx("button", {
+                        onClick: function onClick() {
+                          return removeItem(item.id);
+                        },
+                        className: "p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors",
+                        "aria-label": "Remove item",
+                        children: /*#__PURE__*/require$$1.jsx("svg", {
+                          className: "w-5 h-5",
+                          fill: "none",
+                          stroke: "currentColor",
+                          viewBox: "0 0 24 24",
+                          children: /*#__PURE__*/require$$1.jsx("path", {
+                            strokeLinecap: "round",
+                            strokeLinejoin: "round",
+                            strokeWidth: 2,
+                            d: "M6 18L18 6M6 6l12 12"
+                          })
                         })
+                      })]
+                    }), /*#__PURE__*/require$$1.jsxs("div", {
+                      className: "flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4",
+                      children: [/*#__PURE__*/require$$1.jsxs("div", {
+                        className: "flex items-center gap-6",
+                        children: [/*#__PURE__*/require$$1.jsxs("span", {
+                          className: clsx("font-black text-gray-900", isCompact ? "text-xl" : "text-2xl"),
+                          children: ["$", item.price.toFixed(2)]
+                        }), /*#__PURE__*/require$$1.jsxs("div", {
+                          className: "flex items-center gap-2 bg-gray-50 rounded-full p-1 border border-gray-100",
+                          children: [/*#__PURE__*/require$$1.jsx("button", {
+                            onClick: function onClick() {
+                              return updateQuantity(item.id, item.quantity - 1);
+                            },
+                            className: "w-8 h-8 flex items-center justify-center text-gray-500 hover:text-black hover:bg-white rounded-full transition-all",
+                            "aria-label": "Decrease quantity",
+                            children: /*#__PURE__*/require$$1.jsx("svg", {
+                              className: "w-4 h-4",
+                              fill: "none",
+                              stroke: "currentColor",
+                              viewBox: "0 0 24 24",
+                              children: /*#__PURE__*/require$$1.jsx("path", {
+                                strokeLinecap: "round",
+                                strokeLinejoin: "round",
+                                strokeWidth: 2.5,
+                                d: "M20 12H4"
+                              })
+                            })
+                          }), /*#__PURE__*/require$$1.jsx("span", {
+                            className: "w-8 text-center font-bold",
+                            children: item.quantity
+                          }), /*#__PURE__*/require$$1.jsx("button", {
+                            onClick: function onClick() {
+                              return updateQuantity(item.id, item.quantity + 1);
+                            },
+                            className: "w-8 h-8 flex items-center justify-center text-gray-500 hover:text-black hover:bg-white rounded-full transition-all",
+                            "aria-label": "Increase quantity",
+                            children: /*#__PURE__*/require$$1.jsx("svg", {
+                              className: "w-4 h-4",
+                              fill: "none",
+                              stroke: "currentColor",
+                              viewBox: "0 0 24 24",
+                              children: /*#__PURE__*/require$$1.jsx("path", {
+                                strokeLinecap: "round",
+                                strokeLinejoin: "round",
+                                strokeWidth: 2.5,
+                                d: "M12 6v6m0 0v6m0-6h6m-6 0H6"
+                              })
+                            })
+                          })]
+                        })]
+                      }), /*#__PURE__*/require$$1.jsx("div", {
+                        className: "text-right",
+                        children: /*#__PURE__*/require$$1.jsxs("span", {
+                          className: clsx("font-black text-primary-600", isCompact ? "text-xl" : "text-2xl"),
+                          children: ["$", (item.price * item.quantity).toFixed(2)]
+                        })
+                      })]
+                    })]
+                  })]
+                })
+              }, item.id);
+            })
+          }), /*#__PURE__*/require$$1.jsx("div", {
+            className: clsx(isCompact ? "mt-12" : "xl:col-span-2"),
+            children: /*#__PURE__*/require$$1.jsxs("div", {
+              className: clsx("sticky top-4 transition-all duration-300", isCompact ? "bg-gray-50 rounded-3xl p-8 border border-gray-200" : "bg-white rounded-2xl p-8 shadow-sm border border-gray-100"),
+              children: [/*#__PURE__*/require$$1.jsx("h2", {
+                className: "text-2xl font-black text-gray-900 mb-8 uppercase tracking-widest",
+                children: "Summary"
+              }), /*#__PURE__*/require$$1.jsxs("div", {
+                className: "space-y-6",
+                children: [showSubtotal && /*#__PURE__*/require$$1.jsxs("div", {
+                  className: "flex justify-between items-center",
+                  children: [/*#__PURE__*/require$$1.jsx("span", {
+                    className: "text-gray-600 font-medium",
+                    children: "Subtotal"
+                  }), /*#__PURE__*/require$$1.jsxs("span", {
+                    className: "font-semibold text-lg",
+                    children: ["$", subtotal.toFixed(2)]
+                  })]
+                }), showTax && /*#__PURE__*/require$$1.jsxs("div", {
+                  className: "flex justify-between items-center",
+                  children: [/*#__PURE__*/require$$1.jsx("span", {
+                    className: "text-gray-600 font-medium",
+                    children: "Tax"
+                  }), /*#__PURE__*/require$$1.jsxs("span", {
+                    className: "font-semibold text-lg",
+                    children: ["$", tax.toFixed(2)]
+                  })]
+                }), showShipping && /*#__PURE__*/require$$1.jsxs("div", {
+                  className: "flex justify-between items-center",
+                  children: [/*#__PURE__*/require$$1.jsx("span", {
+                    className: "text-gray-600 font-medium",
+                    children: "Shipping"
+                  }), /*#__PURE__*/require$$1.jsx("span", {
+                    className: "font-semibold text-lg",
+                    children: shipping === 0 ? /*#__PURE__*/require$$1.jsx("span", {
+                      className: "text-green-600",
+                      children: "Free"
+                    }) : "$".concat(shipping.toFixed(2))
+                  })]
+                }), !isCompact && subtotal < 100 && showShipping && /*#__PURE__*/require$$1.jsxs("div", {
+                  className: "bg-primary-50 border border-primary-200 rounded-lg p-4",
+                  children: [/*#__PURE__*/require$$1.jsxs("p", {
+                    className: "text-sm text-primary-700 font-medium",
+                    children: ["Add $", (100 - subtotal).toFixed(2), " more for free shipping"]
+                  }), /*#__PURE__*/require$$1.jsx("div", {
+                    className: "w-full bg-primary-200 rounded-full h-2 mt-2",
+                    children: /*#__PURE__*/require$$1.jsx("div", {
+                      className: "bg-primary-600 h-2 rounded-full transition-all duration-300",
+                      style: {
+                        width: "".concat(Math.min(subtotal / 100 * 100, 100), "%")
+                      }
+                    })
+                  })]
+                }), /*#__PURE__*/require$$1.jsx("hr", {
+                  className: "border-gray-200"
+                }), showTotal && /*#__PURE__*/require$$1.jsxs("div", {
+                  className: "flex justify-between items-center",
+                  children: [/*#__PURE__*/require$$1.jsx("span", {
+                    className: "text-xl font-bold text-gray-900 uppercase tracking-widest",
+                    children: "Total"
+                  }), /*#__PURE__*/require$$1.jsxs("span", {
+                    className: "text-3xl font-black text-primary-600",
+                    children: ["$", total.toFixed(2)]
+                  })]
+                })]
+              }), showCheckoutButton && /*#__PURE__*/require$$1.jsx("button", {
+                className: "w-full mt-8 px-8 py-4 bg-black text-white font-bold text-lg rounded-full hover:bg-gray-800 transition-all duration-300 shadow-xl hover:shadow-2xl uppercase tracking-widest",
+                children: "Checkout"
+              }), showContinueShopping && /*#__PURE__*/require$$1.jsx("button", {
+                className: "w-full mt-4 px-8 py-4 border-2 border-gray-300 text-gray-700 font-bold text-lg rounded-full hover:bg-gray-50 transition-colors uppercase tracking-widest",
+                children: "Continue Shopping"
+              }), !isCompact && /*#__PURE__*/require$$1.jsx("div", {
+                className: "mt-8 pt-6 border-t border-gray-200",
+                children: /*#__PURE__*/require$$1.jsxs("div", {
+                  className: "flex items-center justify-center gap-6 text-sm text-gray-500",
+                  children: [/*#__PURE__*/require$$1.jsxs("div", {
+                    className: "flex items-center gap-2",
+                    children: [/*#__PURE__*/require$$1.jsx("svg", {
+                      className: "w-4 h-4",
+                      fill: "none",
+                      stroke: "currentColor",
+                      viewBox: "0 0 24 24",
+                      children: /*#__PURE__*/require$$1.jsx("path", {
+                        strokeLinecap: "round",
+                        strokeLinejoin: "round",
+                        strokeWidth: 2,
+                        d: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
                       })
+                    }), /*#__PURE__*/require$$1.jsx("span", {
+                      children: "Secure Checkout"
                     })]
                   }), /*#__PURE__*/require$$1.jsxs("div", {
-                    className: "flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4",
-                    children: [/*#__PURE__*/require$$1.jsxs("div", {
-                      className: "flex items-center gap-6",
-                      children: [/*#__PURE__*/require$$1.jsxs("span", {
-                        className: clsx("font-black text-gray-900", isCompact ? "text-xl" : "text-2xl"),
-                        children: ["$", item.price.toFixed(2)]
-                      }), /*#__PURE__*/require$$1.jsxs("div", {
-                        className: "flex items-center gap-2 bg-gray-50 rounded-full p-1 border border-gray-100",
-                        children: [/*#__PURE__*/require$$1.jsx("button", {
-                          onClick: function onClick() {
-                            return updateQuantity(item.id, item.quantity - 1);
-                          },
-                          className: "w-8 h-8 flex items-center justify-center text-gray-500 hover:text-black hover:bg-white rounded-full transition-all",
-                          "aria-label": "Decrease quantity",
-                          children: /*#__PURE__*/require$$1.jsx("svg", {
-                            className: "w-4 h-4",
-                            fill: "none",
-                            stroke: "currentColor",
-                            viewBox: "0 0 24 24",
-                            children: /*#__PURE__*/require$$1.jsx("path", {
-                              strokeLinecap: "round",
-                              strokeLinejoin: "round",
-                              strokeWidth: 2.5,
-                              d: "M20 12H4"
-                            })
-                          })
-                        }), /*#__PURE__*/require$$1.jsx("span", {
-                          className: "w-8 text-center font-bold",
-                          children: item.quantity
-                        }), /*#__PURE__*/require$$1.jsx("button", {
-                          onClick: function onClick() {
-                            return updateQuantity(item.id, item.quantity + 1);
-                          },
-                          className: "w-8 h-8 flex items-center justify-center text-gray-500 hover:text-black hover:bg-white rounded-full transition-all",
-                          "aria-label": "Increase quantity",
-                          children: /*#__PURE__*/require$$1.jsx("svg", {
-                            className: "w-4 h-4",
-                            fill: "none",
-                            stroke: "currentColor",
-                            viewBox: "0 0 24 24",
-                            children: /*#__PURE__*/require$$1.jsx("path", {
-                              strokeLinecap: "round",
-                              strokeLinejoin: "round",
-                              strokeWidth: 2.5,
-                              d: "M12 6v6m0 0v6m0-6h6m-6 0H6"
-                            })
-                          })
-                        })]
-                      })]
-                    }), /*#__PURE__*/require$$1.jsx("div", {
-                      className: "text-right",
-                      children: /*#__PURE__*/require$$1.jsxs("span", {
-                        className: clsx("font-black text-primary-600", isCompact ? "text-xl" : "text-2xl"),
-                        children: ["$", (item.price * item.quantity).toFixed(2)]
+                    className: "flex items-center gap-2",
+                    children: [/*#__PURE__*/require$$1.jsx("svg", {
+                      className: "w-4 h-4",
+                      fill: "none",
+                      stroke: "currentColor",
+                      viewBox: "0 0 24 24",
+                      children: /*#__PURE__*/require$$1.jsx("path", {
+                        strokeLinecap: "round",
+                        strokeLinejoin: "round",
+                        strokeWidth: 2,
+                        d: "M20.618 5.984A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
                       })
+                    }), /*#__PURE__*/require$$1.jsx("span", {
+                      children: "SSL Protected"
                     })]
                   })]
-                })]
-              })
-            }, item.id);
-          })
-        }), /*#__PURE__*/require$$1.jsx("div", {
-          className: clsx(isCompact ? "mt-12" : "xl:col-span-2"),
-          children: /*#__PURE__*/require$$1.jsxs("div", {
-            className: clsx("sticky top-4 transition-all duration-300", isCompact ? "bg-gray-50 rounded-3xl p-8 border border-gray-200" : "bg-white rounded-2xl p-8 shadow-sm border border-gray-100"),
-            children: [/*#__PURE__*/require$$1.jsx("h2", {
-              className: "text-2xl font-black text-gray-900 mb-8 uppercase tracking-widest",
-              children: "Summary"
-            }), /*#__PURE__*/require$$1.jsxs("div", {
-              className: "space-y-6",
-              children: [showSubtotal && /*#__PURE__*/require$$1.jsxs("div", {
-                className: "flex justify-between items-center",
-                children: [/*#__PURE__*/require$$1.jsx("span", {
-                  className: "text-gray-600 font-medium",
-                  children: "Subtotal"
-                }), /*#__PURE__*/require$$1.jsxs("span", {
-                  className: "font-semibold text-lg",
-                  children: ["$", subtotal.toFixed(2)]
-                })]
-              }), showTax && /*#__PURE__*/require$$1.jsxs("div", {
-                className: "flex justify-between items-center",
-                children: [/*#__PURE__*/require$$1.jsx("span", {
-                  className: "text-gray-600 font-medium",
-                  children: "Tax"
-                }), /*#__PURE__*/require$$1.jsxs("span", {
-                  className: "font-semibold text-lg",
-                  children: ["$", tax.toFixed(2)]
-                })]
-              }), showShipping && /*#__PURE__*/require$$1.jsxs("div", {
-                className: "flex justify-between items-center",
-                children: [/*#__PURE__*/require$$1.jsx("span", {
-                  className: "text-gray-600 font-medium",
-                  children: "Shipping"
-                }), /*#__PURE__*/require$$1.jsx("span", {
-                  className: "font-semibold text-lg",
-                  children: shipping === 0 ? /*#__PURE__*/require$$1.jsx("span", {
-                    className: "text-green-600",
-                    children: "Free"
-                  }) : "$".concat(shipping.toFixed(2))
-                })]
-              }), !isCompact && subtotal < 100 && showShipping && /*#__PURE__*/require$$1.jsxs("div", {
-                className: "bg-primary-50 border border-primary-200 rounded-lg p-4",
-                children: [/*#__PURE__*/require$$1.jsxs("p", {
-                  className: "text-sm text-primary-700 font-medium",
-                  children: ["Add $", (100 - subtotal).toFixed(2), " more for free shipping"]
-                }), /*#__PURE__*/require$$1.jsx("div", {
-                  className: "w-full bg-primary-200 rounded-full h-2 mt-2",
-                  children: /*#__PURE__*/require$$1.jsx("div", {
-                    className: "bg-primary-600 h-2 rounded-full transition-all duration-300",
-                    style: {
-                      width: "".concat(Math.min(subtotal / 100 * 100, 100), "%")
-                    }
-                  })
-                })]
-              }), /*#__PURE__*/require$$1.jsx("hr", {
-                className: "border-gray-200"
-              }), showTotal && /*#__PURE__*/require$$1.jsxs("div", {
-                className: "flex justify-between items-center",
-                children: [/*#__PURE__*/require$$1.jsx("span", {
-                  className: "text-xl font-bold text-gray-900 uppercase tracking-widest",
-                  children: "Total"
-                }), /*#__PURE__*/require$$1.jsxs("span", {
-                  className: "text-3xl font-black text-primary-600",
-                  children: ["$", total.toFixed(2)]
-                })]
+                })
               })]
-            }), showCheckoutButton && /*#__PURE__*/require$$1.jsx("button", {
-              className: "w-full mt-8 px-8 py-4 bg-black text-white font-bold text-lg rounded-full hover:bg-gray-800 transition-all duration-300 shadow-xl hover:shadow-2xl uppercase tracking-widest",
-              children: "Checkout"
-            }), showContinueShopping && /*#__PURE__*/require$$1.jsx("button", {
-              className: "w-full mt-4 px-8 py-4 border-2 border-gray-300 text-gray-700 font-bold text-lg rounded-full hover:bg-gray-50 transition-colors uppercase tracking-widest",
-              children: "Continue Shopping"
-            }), !isCompact && /*#__PURE__*/require$$1.jsx("div", {
-              className: "mt-8 pt-6 border-t border-gray-200",
-              children: /*#__PURE__*/require$$1.jsxs("div", {
-                className: "flex items-center justify-center gap-6 text-sm text-gray-500",
-                children: [/*#__PURE__*/require$$1.jsxs("div", {
-                  className: "flex items-center gap-2",
-                  children: [/*#__PURE__*/require$$1.jsx("svg", {
-                    className: "w-4 h-4",
-                    fill: "none",
-                    stroke: "currentColor",
-                    viewBox: "0 0 24 24",
-                    children: /*#__PURE__*/require$$1.jsx("path", {
-                      strokeLinecap: "round",
-                      strokeLinejoin: "round",
-                      strokeWidth: 2,
-                      d: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                    })
-                  }), /*#__PURE__*/require$$1.jsx("span", {
-                    children: "Secure Checkout"
-                  })]
-                }), /*#__PURE__*/require$$1.jsxs("div", {
-                  className: "flex items-center gap-2",
-                  children: [/*#__PURE__*/require$$1.jsx("svg", {
-                    className: "w-4 h-4",
-                    fill: "none",
-                    stroke: "currentColor",
-                    viewBox: "0 0 24 24",
-                    children: /*#__PURE__*/require$$1.jsx("path", {
-                      strokeLinecap: "round",
-                      strokeLinejoin: "round",
-                      strokeWidth: 2,
-                      d: "M20.618 5.984A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-                    })
-                  }), /*#__PURE__*/require$$1.jsx("span", {
-                    children: "SSL Protected"
-                  })]
-                })]
-              })
-            })]
-          })
+            })
+          })]
         })]
-      })]
+      })
     })
   });
 };
@@ -39254,18 +39462,21 @@ var BasketElite = function BasketElite(_ref) {
 
   // Show skeleton loader
   if (loader) {
-    return /*#__PURE__*/require$$1.jsx("section", {
-      id: id,
-      className: clsx('w-full py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-8', isLuxury ? 'bg-white' : 'bg-black', className),
-      children: /*#__PURE__*/require$$1.jsxs("div", {
-        className: "max-w-7xl mx-auto",
-        children: [/*#__PURE__*/require$$1.jsx(SkeletonHeader, {}), /*#__PURE__*/require$$1.jsxs("div", {
-          className: "grid grid-cols-1 xl:grid-cols-5 gap-8 sm:gap-12",
-          children: [/*#__PURE__*/require$$1.jsxs("div", {
-            className: "xl:col-span-3 space-y-6 sm:space-y-8",
-            children: [/*#__PURE__*/require$$1.jsx(SkeletonCartItem, {}), /*#__PURE__*/require$$1.jsx(SkeletonCartItem, {}), /*#__PURE__*/require$$1.jsx(SkeletonCartItem, {})]
-          }), /*#__PURE__*/require$$1.jsx(SkeletonOrderSummary, {})]
-        })]
+    return /*#__PURE__*/require$$1.jsx("div", {
+      className: "container",
+      children: /*#__PURE__*/require$$1.jsx("section", {
+        id: id,
+        className: clsx('w-full py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-8', isLuxury ? 'bg-white' : 'bg-black', className),
+        children: /*#__PURE__*/require$$1.jsxs("div", {
+          className: "max-w-7xl mx-auto",
+          children: [/*#__PURE__*/require$$1.jsx(SkeletonHeader, {}), /*#__PURE__*/require$$1.jsxs("div", {
+            className: "grid grid-cols-1 xl:grid-cols-5 gap-8 sm:gap-12",
+            children: [/*#__PURE__*/require$$1.jsxs("div", {
+              className: "xl:col-span-3 space-y-6 sm:space-y-8",
+              children: [/*#__PURE__*/require$$1.jsx(SkeletonCartItem, {}), /*#__PURE__*/require$$1.jsx(SkeletonCartItem, {}), /*#__PURE__*/require$$1.jsx(SkeletonCartItem, {})]
+            }), /*#__PURE__*/require$$1.jsx(SkeletonOrderSummary, {})]
+          })]
+        })
       })
     });
   }
@@ -41808,6 +42019,10 @@ exports.DeliveryStepAddress = DeliveryStepAddress;
 exports.FavoritesList = FavoritesList;
 exports.FilterBar = FilterBar;
 exports.FilterRail = FilterRail;
+exports.FooterLayout = FooterLayout;
+exports.HeaderClassic = HeaderClassic;
+exports.HeaderElite = HeaderElite;
+exports.HeaderFrame = HeaderFrame;
 exports.HelpCenter = HelpCenter;
 exports.HelpPulse = HelpPulse;
 exports.HelpShowcase = HelpShowcase;
@@ -41833,7 +42048,6 @@ exports.MotionRail = MotionRail;
 exports.OrderRecapPanel = OrderRecapPanel;
 exports.OriginLoadingShell = OriginLoadingShell;
 exports.OriginPanel = OriginPanel;
-exports.PageFooterFrame = PageFooterFrame;
 exports.PageStepper = PageStepper;
 exports.PathCrumb = PathCrumb;
 exports.PathCrumbs = PathCrumbs;
@@ -41868,9 +42082,6 @@ exports.SortBar = SortBar;
 exports.StarRating = StarRating;
 exports.StoryPanel = StoryPanel;
 exports.TechSpecsPanel = TechSpecsPanel;
-exports.TopNavClassic = TopNavClassic;
-exports.TopNavElite = TopNavElite;
-exports.TopNavFrame = TopNavFrame;
 exports.TrialStepOffer = TrialStepOffer;
 exports.UploadDropArea = UploadDropArea;
 exports.ValueHighlights = ValueHighlights;
