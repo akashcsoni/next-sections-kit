@@ -10361,16 +10361,6 @@ var HeaderElite = function HeaderElite(_ref) {
       ref: headerRef,
       className: clsx('relative w-full z-50 bg-black border-b-2 border-cyan-500/50', sticky && 'sticky top-0', isScrolled && 'shadow-[0_0_30px_rgba(6,182,212,0.5)]', className),
       children: [/*#__PURE__*/require$$1.jsx("div", {
-        className: "absolute inset-0 opacity-20",
-        children: /*#__PURE__*/require$$1.jsx("div", {
-          className: "absolute inset-0",
-          style: {
-            backgroundImage: "\n              linear-gradient(cyan 1px, transparent 1px),\n              linear-gradient(90deg, cyan 1px, transparent 1px)\n            ",
-            backgroundSize: '50px 50px',
-            animation: 'gridMove 20s linear infinite'
-          }
-        })
-      }), /*#__PURE__*/require$$1.jsx("div", {
         className: "absolute inset-0 bg-gradient-to-r from-cyan-500/0 via-cyan-500/10 to-cyan-500/0 blur-3xl"
       }), /*#__PURE__*/require$$1.jsxs("nav", {
         className: "relative container mx-auto px-4 sm:px-6 lg:px-8",
@@ -26581,6 +26571,559 @@ var PathCrumbs = function PathCrumbs(_ref) {
   return null;
 };
 
+var BradCrump = function BradCrump(_ref) {
+  var _ref$data = _ref.data,
+    data = _ref$data === void 0 ? {} : _ref$data,
+    onItemClick = _ref.onItemClick,
+    _ref$loader = _ref.loader,
+    loader = _ref$loader === void 0 ? false : _ref$loader,
+    className = _ref.className,
+    id = _ref.id;
+  var layoutProp = data.layout,
+    variantProp = data.variant,
+    _data$items = data.items,
+    items = _data$items === void 0 ? [{
+      label: 'Home',
+      href: '/'
+    }, {
+      label: 'Products',
+      href: '/products'
+    }, {
+      label: 'Current Page',
+      href: '#',
+      active: true
+    }] : _data$items,
+    _data$separator = data.separator,
+    separator = _data$separator === void 0 ? '/' : _data$separator,
+    _data$collapseOnMobil = data.collapseOnMobile,
+    collapseOnMobile = _data$collapseOnMobil === void 0 ? true : _data$collapseOnMobil,
+    title = data.title,
+    subtitle = data.subtitle,
+    description = data.description,
+    badge = data.badge,
+    heroImage = data.heroImage,
+    heroImageAlt = data.heroImageAlt,
+    _data$size = data.size,
+    size = _data$size === void 0 ? 'md' : _data$size;
+  var layout = layoutProp || (heroImage ? 'image' : 'inline');
+  var variant = variantProp || (layout === 'image' ? 'image-1' : 'default');
+  var _useState = require$$0.useState(loader),
+    _useState2 = _slicedToArray(_useState, 2),
+    showLoader = _useState2[0],
+    setShowLoader = _useState2[1];
+  require$$0.useEffect(function () {
+    if (loader) {
+      setShowLoader(true);
+      var timer = setTimeout(function () {
+        return setShowLoader(false);
+      }, 2000);
+      return function () {
+        return clearTimeout(timer);
+      };
+    }
+    setShowLoader(false);
+  }, [loader]);
+  var isInlineDark = variant === 'dark' || variant === 'dark-gray' || variant === 'icon-dark';
+  var displayItems = require$$0.useMemo(function () {
+    if (!collapseOnMobile) return items;
+    if (!Array.isArray(items)) return [];
+    if (items.length <= 3) return items;
+    // We render a responsive ellipsis element; keep the data simple here.
+    return items;
+  }, [items, collapseOnMobile]);
+  var inlineContainerClasses = {
+    "default": 'flex items-center flex-wrap gap-1 sm:gap-2 text-xs sm:text-sm',
+    modern: 'flex items-center flex-wrap gap-2 sm:gap-3 text-sm',
+    minimal: 'flex items-center flex-wrap gap-1 text-xs',
+    compact: 'flex items-center flex-wrap gap-0.5 sm:gap-1 text-xs',
+    icon: 'flex items-center flex-wrap gap-1 sm:gap-2 text-xs sm:text-sm',
+    dark: 'flex items-center flex-wrap gap-1 sm:gap-2 text-xs sm:text-sm',
+    'dark-gray': 'flex items-center flex-wrap gap-1 sm:gap-2 text-xs sm:text-sm',
+    'icon-dark': 'flex items-center flex-wrap gap-1 sm:gap-2 text-xs sm:text-sm',
+    glass: 'flex items-center flex-wrap gap-1 sm:gap-2 text-xs sm:text-sm px-3 py-2 rounded-full border border-white/50 bg-white/60 backdrop-blur-md shadow-sm',
+    outlined: 'flex items-center flex-wrap gap-1 sm:gap-2 text-xs sm:text-sm'
+  };
+  var inlineItemClasses = {
+    "default": clsx('text-gray-600 hover:text-gray-900 transition-colors', 'active:text-gray-900 font-medium'),
+    modern: clsx('text-gray-600 hover:text-primary-600 transition-colors font-medium', 'active:text-gray-900'),
+    minimal: clsx('text-gray-500 hover:text-gray-700 transition-colors', 'active:text-gray-900'),
+    compact: clsx('text-gray-500 hover:text-gray-700 transition-colors', 'active:text-gray-900'),
+    icon: clsx('text-gray-600 hover:text-primary-600 transition-colors', 'active:text-gray-900'),
+    dark: clsx('text-gray-400 hover:text-gray-200 transition-colors', 'active:text-white font-medium'),
+    'dark-gray': clsx('text-gray-500 hover:text-gray-300 transition-colors', 'active:text-gray-100'),
+    'icon-dark': clsx('text-gray-400 hover:text-gray-200 transition-colors', 'active:text-white font-medium'),
+    glass: clsx('text-gray-700 hover:text-gray-950 transition-colors', 'active:text-gray-950 font-semibold'),
+    outlined: clsx('text-gray-700 hover:text-gray-950 transition-colors', 'active:text-white')
+  };
+  var heightClasses = {
+    sm: 'min-h-[180px] sm:min-h-[220px] lg:min-h-[260px]',
+    md: 'min-h-[220px] sm:min-h-[280px] lg:min-h-[340px]',
+    lg: 'min-h-[280px] sm:min-h-[360px] lg:min-h-[440px]'
+  };
+  var ChevronIcon = function ChevronIcon() {
+    var _ref2 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+      _ref2$tone = _ref2.tone,
+      tone = _ref2$tone === void 0 ? 'light' : _ref2$tone;
+    return /*#__PURE__*/require$$1.jsx("svg", {
+      className: clsx('w-4 h-4', tone === 'dark' ? 'text-white/65' : tone === 'glass' ? 'text-slate-600/70' : 'text-gray-400'),
+      fill: "none",
+      stroke: "currentColor",
+      viewBox: "0 0 24 24",
+      "aria-hidden": "true",
+      children: /*#__PURE__*/require$$1.jsx("path", {
+        strokeLinecap: "round",
+        strokeLinejoin: "round",
+        strokeWidth: 2,
+        d: "M9 5l7 7-7 7"
+      })
+    });
+  };
+  var HomeIcon = function HomeIcon() {
+    var _ref3 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+      _ref3$tone = _ref3.tone,
+      tone = _ref3$tone === void 0 ? 'light' : _ref3$tone;
+    return /*#__PURE__*/require$$1.jsx("svg", {
+      className: clsx('w-4 h-4', tone === 'dark' ? 'text-white/75' : tone === 'glass' ? 'text-slate-700/80' : 'text-gray-400'),
+      fill: "none",
+      stroke: "currentColor",
+      viewBox: "0 0 24 24",
+      "aria-hidden": "true",
+      children: /*#__PURE__*/require$$1.jsx("path", {
+        strokeLinecap: "round",
+        strokeLinejoin: "round",
+        strokeWidth: 2,
+        d: "M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+      })
+    });
+  };
+  var SeparatorText = function SeparatorText() {
+    var _ref4 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+      _ref4$tone = _ref4.tone,
+      tone = _ref4$tone === void 0 ? 'light' : _ref4$tone;
+    return /*#__PURE__*/require$$1.jsx("span", {
+      className: clsx('px-1', tone === 'dark' ? 'text-white/55' : tone === 'glass' ? 'text-slate-500/70' : 'text-gray-300'),
+      "aria-hidden": "true",
+      children: separator
+    });
+  };
+  var renderCrumbs = function renderCrumbs() {
+    var _ref5 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+      _ref5$tone = _ref5.tone,
+      tone = _ref5$tone === void 0 ? 'light' : _ref5$tone,
+      _ref5$pill = _ref5.pill,
+      pill = _ref5$pill === void 0 ? false : _ref5$pill,
+      _ref5$showHomeIcon = _ref5.showHomeIcon,
+      showHomeIcon = _ref5$showHomeIcon === void 0 ? false : _ref5$showHomeIcon;
+    var linkCls = tone === 'dark' ? 'text-white/80 hover:text-white transition-colors' : tone === 'glass' ? 'text-slate-700/90 hover:text-slate-900 transition-colors' : 'text-gray-600 hover:text-gray-900 transition-colors';
+    var activeCls = tone === 'dark' ? 'text-white font-semibold' : tone === 'glass' ? 'text-slate-900 font-semibold' : 'text-gray-900 font-semibold';
+    var wrapCls = pill ? clsx('inline-flex items-center gap-1 sm:gap-2 rounded-full px-3 py-1.5', tone === 'dark' ? 'bg-white/10 border border-white/15 backdrop-blur-md' : 'bg-white/70 border border-white/60 shadow-sm backdrop-blur-md') : 'flex items-center flex-wrap gap-1 sm:gap-2';
+    return /*#__PURE__*/require$$1.jsx("nav", {
+      "aria-label": "Breadcrumb",
+      children: /*#__PURE__*/require$$1.jsx("ol", {
+        className: wrapCls,
+        children: displayItems.map(function (item, index) {
+          var _item$label;
+          var isLast = index === displayItems.length - 1;
+          var isActive = Boolean(item === null || item === void 0 ? void 0 : item.active) || isLast;
+          var label = (_item$label = item === null || item === void 0 ? void 0 : item.label) !== null && _item$label !== void 0 ? _item$label : '';
+
+          // Mobile collapse: first / … / last (only visually on mobile)
+          var shouldShowEllipsis = collapseOnMobile && Array.isArray(displayItems) && displayItems.length > 3 && index === 1;
+          var shouldHideMiddleOnMobile = collapseOnMobile && Array.isArray(displayItems) && displayItems.length > 3 && index > 0 && index < displayItems.length - 1;
+          if (shouldShowEllipsis) {
+            return /*#__PURE__*/require$$1.jsx("li", {
+              className: "flex items-center",
+              children: /*#__PURE__*/require$$1.jsxs("span", {
+                className: clsx('inline-flex sm:hidden items-center', tone === 'dark' ? 'text-white/70' : 'text-gray-500'),
+                children: [/*#__PURE__*/require$$1.jsx(ChevronIcon, {
+                  tone: tone
+                }), /*#__PURE__*/require$$1.jsx("span", {
+                  className: "px-1",
+                  children: "\u2026"
+                }), /*#__PURE__*/require$$1.jsx(ChevronIcon, {
+                  tone: tone
+                })]
+              })
+            }, "ellipsis");
+          }
+          var content = item !== null && item !== void 0 && item.href && !isActive ? /*#__PURE__*/require$$1.jsx("a", {
+            href: item.href,
+            onClick: function onClick(e) {
+              if (onItemClick) {
+                e.preventDefault();
+                onItemClick(item, index);
+              }
+            },
+            className: linkCls,
+            children: label
+          }) : /*#__PURE__*/require$$1.jsx("span", {
+            className: activeCls,
+            "aria-current": isActive ? 'page' : undefined,
+            children: label
+          });
+          return /*#__PURE__*/require$$1.jsxs("li", {
+            className: clsx('flex items-center gap-1 sm:gap-2', shouldHideMiddleOnMobile && 'hidden sm:flex'),
+            children: [index === 0 && showHomeIcon && /*#__PURE__*/require$$1.jsx("span", {
+              className: "inline-flex items-center",
+              children: /*#__PURE__*/require$$1.jsx(HomeIcon, {
+                tone: tone
+              })
+            }), content, !isLast && !collapseOnMobile && /*#__PURE__*/require$$1.jsx("span", {
+              className: "inline-flex items-center",
+              children: /*#__PURE__*/require$$1.jsx(ChevronIcon, {
+                tone: tone
+              })
+            }), !isLast && collapseOnMobile && /*#__PURE__*/require$$1.jsx("span", {
+              className: "hidden sm:inline-flex items-center",
+              children: /*#__PURE__*/require$$1.jsx(ChevronIcon, {
+                tone: tone
+              })
+            })]
+          }, "".concat(label, "-").concat(index));
+        })
+      })
+    });
+  };
+  var InlineSkeleton = function InlineSkeleton() {
+    var skeletonBg = isInlineDark ? 'bg-gray-700' : 'bg-gray-200';
+    var skeletonDot = isInlineDark ? 'bg-gray-600' : 'bg-gray-300';
+    return /*#__PURE__*/require$$1.jsx("div", {
+      id: id,
+      className: clsx(inlineContainerClasses[variant] || inlineContainerClasses["default"], className),
+      "aria-busy": "true",
+      "aria-live": "polite",
+      children: /*#__PURE__*/require$$1.jsxs("div", {
+        className: "flex items-center gap-2 sm:gap-3",
+        children: [/*#__PURE__*/require$$1.jsx("div", {
+          className: clsx('h-4 w-4 rounded-full product-skeleton', skeletonDot)
+        }), /*#__PURE__*/require$$1.jsx("div", {
+          className: clsx('h-4 w-16 sm:w-20 rounded-md product-skeleton', skeletonBg)
+        }), /*#__PURE__*/require$$1.jsx("div", {
+          className: clsx('h-4 w-4 rounded-full product-skeleton', skeletonDot)
+        }), /*#__PURE__*/require$$1.jsx("div", {
+          className: clsx('h-4 w-20 sm:w-24 rounded-md product-skeleton', skeletonBg)
+        }), /*#__PURE__*/require$$1.jsx("div", {
+          className: clsx('h-4 w-4 rounded-full product-skeleton', skeletonDot)
+        }), /*#__PURE__*/require$$1.jsx("div", {
+          className: clsx('h-4 w-24 sm:w-32 rounded-md product-skeleton', skeletonBg)
+        })]
+      })
+    });
+  };
+  var ImageSkeleton = function ImageSkeleton() {
+    return /*#__PURE__*/require$$1.jsxs("section", {
+      id: id,
+      className: clsx('relative w-full overflow-hidden border border-gray-200 bg-white', heightClasses[size] || heightClasses.md, className),
+      "aria-busy": "true",
+      "aria-live": "polite",
+      children: [/*#__PURE__*/require$$1.jsx("div", {
+        className: "absolute inset-0 bg-gray-200 product-skeleton"
+      }), /*#__PURE__*/require$$1.jsx("div", {
+        className: "absolute inset-0 bg-gradient-to-t from-black/40 via-black/15 to-black/5"
+      }), /*#__PURE__*/require$$1.jsx("div", {
+        className: "absolute inset-0 bg-gradient-to-br from-white/0 via-white/0 to-white/10"
+      }), /*#__PURE__*/require$$1.jsx("div", {
+        className: "relative z-10 h-full w-full flex items-end",
+        children: /*#__PURE__*/require$$1.jsx("div", {
+          className: "w-full px-5 sm:px-8 lg:px-12 pb-6 sm:pb-10",
+          children: /*#__PURE__*/require$$1.jsxs("div", {
+            className: "flex flex-col gap-3 max-w-3xl",
+            children: [/*#__PURE__*/require$$1.jsxs("div", {
+              className: "flex items-center gap-2",
+              children: [/*#__PURE__*/require$$1.jsx("div", {
+                className: "h-2.5 w-2.5 rounded-full product-skeleton bg-white/25"
+              }), /*#__PURE__*/require$$1.jsx("div", {
+                className: "h-6 w-24 rounded-full product-skeleton bg-white/25"
+              })]
+            }), /*#__PURE__*/require$$1.jsxs("div", {
+              className: "inline-flex w-full max-w-[520px] items-center gap-2 rounded-full border border-white/10 bg-black/10 px-3 py-2 backdrop-blur-sm",
+              children: [/*#__PURE__*/require$$1.jsx("div", {
+                className: "h-4 w-4 rounded-full product-skeleton bg-white/20"
+              }), /*#__PURE__*/require$$1.jsx("div", {
+                className: "h-3.5 w-16 rounded product-skeleton bg-white/20"
+              }), /*#__PURE__*/require$$1.jsx("div", {
+                className: "h-3.5 w-3.5 rounded-full product-skeleton bg-white/20"
+              }), /*#__PURE__*/require$$1.jsx("div", {
+                className: "h-3.5 w-20 rounded product-skeleton bg-white/20"
+              }), /*#__PURE__*/require$$1.jsx("div", {
+                className: "h-3.5 w-3.5 rounded-full product-skeleton bg-white/20"
+              }), /*#__PURE__*/require$$1.jsx("div", {
+                className: "h-3.5 w-24 rounded product-skeleton bg-white/20"
+              })]
+            }), /*#__PURE__*/require$$1.jsx("div", {
+              className: "h-10 w-72 sm:w-[520px] rounded-lg product-skeleton bg-white/25"
+            }), /*#__PURE__*/require$$1.jsx("div", {
+              className: "h-5 w-64 sm:w-[420px] rounded-md product-skeleton bg-white/20"
+            }), /*#__PURE__*/require$$1.jsxs("div", {
+              className: "mt-1 space-y-2",
+              children: [/*#__PURE__*/require$$1.jsx("div", {
+                className: "h-4 w-80 sm:w-[560px] rounded product-skeleton bg-white/15"
+              }), /*#__PURE__*/require$$1.jsx("div", {
+                className: "h-4 w-64 sm:w-[420px] rounded product-skeleton bg-white/15"
+              })]
+            })]
+          })
+        })
+      })]
+    });
+  };
+  if (layout === 'image') {
+    var styles = {
+      'image-1': {
+        tone: 'dark',
+        overlay: 'bg-gradient-to-t from-black/75 via-black/35 to-black/10',
+        align: 'items-end text-left',
+        crumbPill: true,
+        deco: ['pointer-events-none absolute -top-20 -right-20 h-56 w-56 rounded-full bg-primary-500/25 blur-3xl motion-safe:animate-pulse', 'pointer-events-none absolute -bottom-24 -left-16 h-64 w-64 rounded-full bg-emerald-400/20 blur-3xl motion-safe:animate-pulse [animation-delay:600ms]', 'pointer-events-none absolute inset-0 opacity-[0.12] bg-[radial-gradient(circle_at_20%_20%,white_0,transparent_35%),radial-gradient(circle_at_80%_30%,white_0,transparent_40%)]'],
+        title: 'text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white drop-shadow-[0_18px_48px_rgba(0,0,0,0.55)]',
+        subtitle: 'text-white/90 text-base sm:text-lg',
+        desc: 'text-white/80 text-sm sm:text-base max-w-2xl'
+      },
+      'image-2': {
+        tone: 'dark',
+        overlay: 'bg-gradient-to-r from-black/80 via-black/35 to-transparent',
+        align: 'items-center text-left',
+        crumbPill: true,
+        deco: ['pointer-events-none absolute inset-0 opacity-[0.18] bg-[linear-gradient(to_right,rgba(255,255,255,0.18)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.18)_1px,transparent_1px)] bg-[size:28px_28px]', 'pointer-events-none absolute -top-24 left-1/4 h-64 w-64 rounded-full bg-purple-400/20 blur-3xl'],
+        title: 'text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white',
+        subtitle: 'text-white/85 text-base sm:text-lg',
+        desc: 'text-white/80 text-sm sm:text-base max-w-xl'
+      },
+      'image-3': {
+        tone: 'glass',
+        overlay: 'bg-gradient-to-t from-black/35 via-black/10 to-transparent',
+        align: 'items-end text-left',
+        panel: 'bg-white/75 backdrop-blur-xl border border-white/60 shadow-xl rounded-2xl p-5 sm:p-7',
+        crumbPill: false,
+        deco: ['pointer-events-none absolute -bottom-24 -right-20 h-64 w-64 rounded-full bg-white/30 blur-3xl', 'pointer-events-none absolute inset-0 opacity-[0.10] bg-[radial-gradient(circle_at_10%_90%,rgba(255,255,255,0.35)_0,transparent_35%)]'],
+        title: 'text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900',
+        subtitle: 'text-slate-700 text-sm sm:text-base',
+        desc: 'text-slate-600 text-sm sm:text-base max-w-2xl'
+      },
+      'image-4': {
+        tone: 'dark',
+        overlay: 'bg-gradient-to-b from-black/60 via-black/45 to-black/60',
+        align: 'items-center text-center',
+        crumbPill: true,
+        badge: 'bg-white/10 border border-white/15 text-white',
+        deco: ['pointer-events-none absolute inset-0 opacity-[0.18] bg-[radial-gradient(circle_at_50%_20%,rgba(255,255,255,0.28)_0,transparent_55%)]'],
+        title: 'text-5xl sm:text-6xl lg:text-7xl font-extralight tracking-tight text-white',
+        subtitle: 'text-white/85 text-base sm:text-lg',
+        desc: 'text-white/80 text-sm sm:text-base max-w-2xl mx-auto'
+      },
+      'image-5': {
+        tone: 'glass',
+        overlay: 'bg-gradient-to-tr from-white/70 via-white/25 to-transparent',
+        align: 'items-end text-left',
+        panel: 'bg-white/70 backdrop-blur-md border border-white/80 shadow-sm rounded-2xl px-5 py-4 sm:px-7 sm:py-6',
+        crumbPill: false,
+        deco: ['pointer-events-none absolute inset-0 opacity-[0.10] bg-[linear-gradient(to_right,rgba(15,23,42,0.10)_1px,transparent_1px),linear-gradient(to_bottom,rgba(15,23,42,0.10)_1px,transparent_1px)] bg-[size:34px_34px]'],
+        title: 'text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900',
+        subtitle: 'text-slate-700 text-sm sm:text-base',
+        desc: 'text-slate-600 text-sm sm:text-base max-w-2xl'
+      },
+      'image-6': {
+        tone: 'dark',
+        overlay: 'bg-gradient-to-br from-black/75 via-black/35 to-black/5',
+        align: 'items-end text-left',
+        frame: 'border border-white/20 rounded-2xl p-5 sm:p-7 shadow-[0_18px_60px_-34px_rgba(0,0,0,0.8)]',
+        crumbPill: false,
+        deco: ['pointer-events-none absolute inset-0 opacity-[0.10] bg-[radial-gradient(circle_at_15%_25%,rgba(255,255,255,0.22)_0,transparent_38%),radial-gradient(circle_at_80%_70%,rgba(255,255,255,0.18)_0,transparent_42%)]'],
+        title: 'text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white',
+        subtitle: 'text-white/85 text-sm sm:text-base',
+        desc: 'text-white/80 text-sm sm:text-base max-w-2xl'
+      },
+      'image-7': {
+        tone: 'dark',
+        overlay: 'bg-gradient-to-t from-black/75 via-black/35 to-transparent',
+        align: 'items-end text-left',
+        accent: 'before:absolute pl-10 before:left-0 before:top-0 before:h-full before:w-1.5 before:bg-primary-500 before:rounded-full',
+        crumbPill: true,
+        deco: ['pointer-events-none absolute -top-28 -right-24 h-72 w-72 rounded-full bg-primary-500/18 blur-3xl', 'pointer-events-none absolute inset-0 opacity-[0.12] bg-[linear-gradient(to_bottom,rgba(255,255,255,0.12)_1px,transparent_1px)] bg-[size:1px_18px]'],
+        title: 'text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white',
+        subtitle: 'text-white/85 text-sm sm:text-base',
+        desc: 'text-white/80 text-sm sm:text-base max-w-2xl'
+      },
+      'image-8': {
+        tone: 'glass',
+        overlay: 'bg-gradient-to-b from-black/10 via-black/10 to-black/30',
+        align: 'items-center text-left',
+        panel: 'bg-white/70 backdrop-blur-xl border border-white/70 shadow-xl rounded-full px-6 py-4 sm:px-8 sm:py-5',
+        crumbPill: false,
+        deco: ['pointer-events-none absolute inset-0 opacity-[0.10] bg-[radial-gradient(circle_at_0%_50%,rgba(255,255,255,0.45)_0,transparent_40%)]'],
+        title: 'text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900',
+        subtitle: 'text-slate-700 text-sm sm:text-base',
+        desc: 'text-slate-600 text-sm sm:text-base max-w-xl'
+      },
+      'image-9': {
+        tone: 'dark',
+        overlay: 'bg-gradient-to-l from-black/80 via-black/35 to-transparent',
+        align: 'items-center text-right',
+        crumbPill: true,
+        deco: ['pointer-events-none absolute -bottom-24 -right-24 h-72 w-72 rounded-full bg-rose-400/20 blur-3xl'],
+        title: 'text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white',
+        subtitle: 'text-white/85 text-sm sm:text-base',
+        desc: 'text-white/80 text-sm sm:text-base max-w-xl ml-auto'
+      },
+      'image-10': {
+        tone: 'dark',
+        overlay: 'bg-black/45',
+        align: 'items-end text-left',
+        crumbPill: false,
+        minimal: true,
+        deco: ['pointer-events-none absolute inset-0 opacity-[0.20] bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.22)_0,transparent_55%)]'],
+        title: 'text-5xl sm:text-6xl lg:text-7xl font-extralight tracking-tight text-white',
+        subtitle: 'text-white/80 text-sm sm:text-base',
+        desc: 'text-white/75 text-sm sm:text-base max-w-2xl'
+      }
+    }[variant] || {
+      tone: 'dark',
+      overlay: 'bg-black/50',
+      align: 'items-end text-left',
+      crumbPill: true,
+      title: 'text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white',
+      subtitle: 'text-white/85 text-base sm:text-lg',
+      desc: 'text-white/80 text-sm sm:text-base max-w-2xl'
+    };
+    if (showLoader) return /*#__PURE__*/require$$1.jsx(ImageSkeleton, {});
+    return /*#__PURE__*/require$$1.jsxs("section", {
+      id: id,
+      className: clsx('relative w-full overflow-hidden',
+      // allow rounded hero in cards, but stay full-width safe too
+      '', heightClasses[size] || heightClasses.md, className),
+      children: [heroImage &&
+      /*#__PURE__*/
+      // eslint-disable-next-line @next/next/no-img-element
+      require$$1.jsx("img", {
+        src: heroImage,
+        alt: heroImageAlt || title || 'Breadcrumb header',
+        className: "absolute inset-0 h-full w-full object-cover",
+        loading: "lazy"
+      }), Array.isArray(styles.deco) && styles.deco.map(function (decoClass, idx) {
+        return /*#__PURE__*/require$$1.jsx("div", {
+          className: decoClass,
+          "aria-hidden": "true"
+        }, idx);
+      }), /*#__PURE__*/require$$1.jsx("div", {
+        className: clsx('absolute inset-0', styles.overlay)
+      }), /*#__PURE__*/require$$1.jsx("div", {
+        className: "pointer-events-none absolute inset-0 shadow-[inset_0_-80px_120px_rgba(0,0,0,0.55)]",
+        "aria-hidden": "true"
+      }), /*#__PURE__*/require$$1.jsx("div", {
+        className: clsx('relative z-10 h-full w-full flex', styles.align),
+        children: /*#__PURE__*/require$$1.jsx("div", {
+          className: "w-full max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 py-8 sm:py-10 lg:py-14",
+          children: /*#__PURE__*/require$$1.jsxs("div", {
+            className: clsx('relative', styles.panel, styles.frame, styles.accent),
+            children: [badge && /*#__PURE__*/require$$1.jsx("div", {
+              className: "mb-3 sm:mb-4",
+              children: /*#__PURE__*/require$$1.jsxs("span", {
+                className: clsx('inline-flex items-center gap-2 rounded-full px-3 py-1 text-[11px] sm:text-xs font-semibold tracking-wide uppercase', styles.badge || (styles.tone === 'dark' ? 'bg-white/10 border border-white/15 text-white' : 'bg-white/70 border border-white/70 text-slate-700')),
+                children: [/*#__PURE__*/require$$1.jsx("span", {
+                  className: clsx('h-1.5 w-1.5 rounded-full', styles.tone === 'dark' ? 'bg-emerald-400' : 'bg-emerald-500')
+                }), badge]
+              })
+            }), /*#__PURE__*/require$$1.jsx("div", {
+              className: clsx(styles.minimal ? 'mb-5' : 'mb-4 sm:mb-6'),
+              children: renderCrumbs({
+                tone: styles.tone,
+                pill: styles.crumbPill,
+                showHomeIcon: true
+              })
+            }), title && /*#__PURE__*/require$$1.jsx("h1", {
+              className: styles.title,
+              children: title
+            }), subtitle && /*#__PURE__*/require$$1.jsx("p", {
+              className: clsx('mt-2', styles.subtitle),
+              children: subtitle
+            }), description && /*#__PURE__*/require$$1.jsx("p", {
+              className: clsx('mt-4', styles.desc),
+              children: description
+            })]
+          })
+        })
+      })]
+    });
+  }
+  if (showLoader) return /*#__PURE__*/require$$1.jsx(InlineSkeleton, {});
+  return /*#__PURE__*/require$$1.jsx("nav", {
+    id: id,
+    className: clsx(inlineContainerClasses[variant] || inlineContainerClasses["default"], className),
+    "aria-label": "Breadcrumb",
+    children: /*#__PURE__*/require$$1.jsx("ol", {
+      className: "flex items-center flex-wrap gap-1 sm:gap-2",
+      children: displayItems.map(function (item, index) {
+        var _item$label2;
+        var isLast = index === displayItems.length - 1;
+        var isActive = Boolean(item === null || item === void 0 ? void 0 : item.active) || isLast;
+        var label = (_item$label2 = item === null || item === void 0 ? void 0 : item.label) !== null && _item$label2 !== void 0 ? _item$label2 : '';
+
+        // Mobile collapse: first / … / last (only visually on mobile)
+        var shouldShowEllipsis = collapseOnMobile && Array.isArray(displayItems) && displayItems.length > 3 && index === 1;
+        var shouldHideMiddleOnMobile = collapseOnMobile && Array.isArray(displayItems) && displayItems.length > 3 && index > 0 && index < displayItems.length - 1;
+        if (shouldShowEllipsis) {
+          return /*#__PURE__*/require$$1.jsx("li", {
+            className: "flex items-center",
+            children: /*#__PURE__*/require$$1.jsxs("span", {
+              className: clsx('inline-flex sm:hidden items-center', isInlineDark ? 'text-gray-500' : 'text-gray-400'),
+              children: [variant === 'minimal' ? /*#__PURE__*/require$$1.jsx(SeparatorText, {
+                tone: isInlineDark ? 'dark' : 'light'
+              }) : /*#__PURE__*/require$$1.jsx(ChevronIcon, {
+                tone: isInlineDark ? 'dark' : 'light'
+              }), /*#__PURE__*/require$$1.jsx("span", {
+                className: "px-1",
+                children: "\u2026"
+              }), variant === 'minimal' ? /*#__PURE__*/require$$1.jsx(SeparatorText, {
+                tone: isInlineDark ? 'dark' : 'light'
+              }) : /*#__PURE__*/require$$1.jsx(ChevronIcon, {
+                tone: isInlineDark ? 'dark' : 'light'
+              })]
+            })
+          }, "ellipsis");
+        }
+        var content = item !== null && item !== void 0 && item.href && !isActive ? /*#__PURE__*/require$$1.jsx("a", {
+          href: item.href,
+          onClick: function onClick(e) {
+            if (onItemClick) {
+              e.preventDefault();
+              onItemClick(item, index);
+            }
+          },
+          className: clsx(inlineItemClasses[variant] || inlineItemClasses["default"]),
+          children: label
+        }) : /*#__PURE__*/require$$1.jsx("span", {
+          className: clsx(inlineItemClasses[variant] || inlineItemClasses["default"], isActive && !isInlineDark && 'font-semibold', isActive && isInlineDark && 'font-semibold', variant === 'outlined' && isActive && 'bg-gray-900 text-white px-2 py-1 rounded-full', variant === 'outlined' && !isActive && 'px-2 py-1 rounded-full border border-gray-200 hover:border-gray-300'),
+          "aria-current": isActive ? 'page' : undefined,
+          children: label
+        });
+        return /*#__PURE__*/require$$1.jsxs("li", {
+          className: clsx('flex items-center', shouldHideMiddleOnMobile && 'hidden sm:flex'),
+          children: [index === 0 && (variant === 'icon' || variant === 'icon-dark') && /*#__PURE__*/require$$1.jsx("span", {
+            className: "mr-1 inline-flex items-center",
+            children: /*#__PURE__*/require$$1.jsx(HomeIcon, {
+              tone: isInlineDark ? 'dark' : 'light'
+            })
+          }), content, !isLast && !collapseOnMobile && /*#__PURE__*/require$$1.jsx("span", {
+            className: "inline-flex items-center",
+            children: variant === 'minimal' || variant === 'glass' ? /*#__PURE__*/require$$1.jsx(SeparatorText, {
+              tone: isInlineDark ? 'dark' : 'light'
+            }) : /*#__PURE__*/require$$1.jsx(ChevronIcon, {
+              tone: isInlineDark ? 'dark' : 'light'
+            })
+          }), !isLast && collapseOnMobile && /*#__PURE__*/require$$1.jsx("span", {
+            className: "hidden sm:inline-flex items-center",
+            children: variant === 'minimal' || variant === 'glass' ? /*#__PURE__*/require$$1.jsx(SeparatorText, {
+              tone: isInlineDark ? 'dark' : 'light'
+            }) : /*#__PURE__*/require$$1.jsx(ChevronIcon, {
+              tone: isInlineDark ? 'dark' : 'light'
+            })
+          })]
+        }, "".concat(label, "-").concat(index));
+      })
+    })
+  });
+};
+
 var FilterRail = function FilterRail(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
@@ -34533,7 +35076,8 @@ var ReachUsPanel = function ReachUsPanel(_ref) {
     data = _ref$data === void 0 ? {} : _ref$data,
     className = _ref.className,
     _ref$loading = _ref.loading,
-    loading = _ref$loading === void 0 ? false : _ref$loading;
+    loading = _ref$loading === void 0 ? false : _ref$loading,
+    id = _ref.id;
   var _useState = require$$0.useState(false),
     _useState2 = _slicedToArray(_useState, 2),
     timedOut = _useState2[0],
@@ -35117,6 +35661,7 @@ var ReachUsPanel = function ReachUsPanel(_ref) {
     }
   };
   return /*#__PURE__*/require$$1.jsx("section", {
+    id: id || (data === null || data === void 0 ? void 0 : data.id),
     className: clsx("contact-section overflow-hidden", variant === 'modern' && 'bg-white', variant === 'minimal' && 'bg-neutral-50', variant === 'classic' && 'bg-white', variant === 'split' && 'bg-white', variant === 'card' && 'bg-neutral-50', variant === 'map' && 'bg-white', variant === 'mapFull' && 'bg-white', className),
     children: renderVariant()
   });
@@ -35127,7 +35672,8 @@ var ReachUsNeo = function ReachUsNeo(_ref) {
     data = _ref$data === void 0 ? {} : _ref$data,
     className = _ref.className,
     _ref$loading = _ref.loading,
-    loading = _ref$loading === void 0 ? false : _ref$loading;
+    loading = _ref$loading === void 0 ? false : _ref$loading,
+    id = _ref.id;
   var _useState = require$$0.useState(false),
     _useState2 = _slicedToArray(_useState, 2),
     timedOut = _useState2[0],
@@ -35622,6 +36168,7 @@ var ReachUsNeo = function ReachUsNeo(_ref) {
     }
   };
   return /*#__PURE__*/require$$1.jsx("section", {
+    id: id || (data === null || data === void 0 ? void 0 : data.id),
     className: clsx("contact-modern-section", className),
     children: renderVariant()
   });
@@ -40613,7 +41160,8 @@ var WorkGallery = function WorkGallery(_ref) {
   var data = _ref.data,
     className = _ref.className,
     _ref$loader = _ref.loader,
-    loader = _ref$loader === void 0 ? false : _ref$loader;
+    loader = _ref$loader === void 0 ? false : _ref$loader,
+    id = _ref.id;
   var _useState = require$$0.useState(loader),
     _useState2 = _slicedToArray(_useState, 2),
     showLoader = _useState2[0],
@@ -41004,6 +41552,7 @@ var WorkGallery = function WorkGallery(_ref) {
     bento: /*#__PURE__*/require$$1.jsx(BentoGrid, {})
   };
   return /*#__PURE__*/require$$1.jsx("section", {
+    id: id || (data === null || data === void 0 ? void 0 : data.id),
     className: clsx("py-20 bg-white", className, dataClassName),
     children: /*#__PURE__*/require$$1.jsxs("div", {
       className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
@@ -41551,6 +42100,7 @@ exports.BasketClassic = BasketClassic;
 exports.BasketElite = BasketElite;
 exports.BasketNeo = BasketNeo;
 exports.BasketSideDrawer = BasketSideDrawer;
+exports.BradCrump = BradCrump;
 exports.CatalogView = CatalogView;
 exports.CollectionGrid = CollectionGrid;
 exports.CollectionMasonry = CollectionMasonry;
