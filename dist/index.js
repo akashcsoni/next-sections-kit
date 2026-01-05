@@ -673,7 +673,7 @@ var BannerBlend = function BannerBlend(_ref) {
           style: {
             top: index === 2 ? '80%' : "".concat(20 + index * 25, "%"),
             right: index % 2 === 0 ? '5%' : '2%',
-            zIndex: 50,
+            zIndex: 20,
             animationDelay: "".concat(index * 0.5, "s"),
             animationDuration: "".concat(3 + index, "s"),
             maxWidth: '200px',
@@ -35187,7 +35187,7 @@ var ReachUsNeo = function ReachUsNeo(_ref) {
     switch (variant) {
       case 'infoLeft':
         return /*#__PURE__*/require$$1.jsx("div", {
-          className: "max-w-7xl mx-auto px-4 py-16",
+          className: "max-w-7xl mx-auto px-4 py-24 lg:py-32",
           children: /*#__PURE__*/require$$1.jsxs("div", {
             className: "grid grid-cols-1 lg:grid-cols-2 gap-16",
             children: [/*#__PURE__*/require$$1.jsxs("div", {
@@ -35272,7 +35272,7 @@ var ReachUsNeo = function ReachUsNeo(_ref) {
         });
       case 'infoRight':
         return /*#__PURE__*/require$$1.jsx("div", {
-          className: "max-w-7xl mx-auto px-4 py-16",
+          className: "max-w-7xl mx-auto px-4 py-24 lg:py-32",
           children: /*#__PURE__*/require$$1.jsxs("div", {
             className: "grid grid-cols-1 lg:grid-cols-2 gap-16",
             children: [data.form && /*#__PURE__*/require$$1.jsx("div", {
@@ -35361,7 +35361,7 @@ var ReachUsNeo = function ReachUsNeo(_ref) {
         });
       case 'stacked':
         return /*#__PURE__*/require$$1.jsxs("div", {
-          className: "max-w-4xl mx-auto px-4 py-16",
+          className: "max-w-4xl mx-auto px-4 py-24 lg:py-32",
           children: [data.info && data.info.length > 0 && /*#__PURE__*/require$$1.jsx("div", {
             className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16",
             children: data.info.map(function (item, idx) {
@@ -35438,7 +35438,7 @@ var ReachUsNeo = function ReachUsNeo(_ref) {
         });
       case 'centered':
         return /*#__PURE__*/require$$1.jsxs("div", {
-          className: "max-w-6xl mx-auto px-4 py-16",
+          className: "max-w-6xl mx-auto px-4 py-24 lg:py-32",
           children: [/*#__PURE__*/require$$1.jsxs("div", {
             className: "text-center mb-16",
             children: [data.title && /*#__PURE__*/require$$1.jsx("h2", {
@@ -35534,7 +35534,7 @@ var ReachUsNeo = function ReachUsNeo(_ref) {
         });
       case 'card':
         return /*#__PURE__*/require$$1.jsx("div", {
-          className: "max-w-4xl mx-auto px-4 py-16",
+          className: "max-w-4xl mx-auto px-4 py-24 lg:py-32",
           children: /*#__PURE__*/require$$1.jsx("div", {
             className: "bg-white border border-gray-200 rounded-2xl shadow-xl overflow-hidden",
             children: /*#__PURE__*/require$$1.jsxs("div", {
@@ -35627,7 +35627,7 @@ var ReachUsNeo = function ReachUsNeo(_ref) {
   });
 };
 
-var SectionHeader$1 = function SectionHeader(_ref) {
+var SectionHeader = function SectionHeader(_ref) {
   var badge = _ref.badge,
     title = _ref.title,
     subtitle = _ref.subtitle,
@@ -35688,78 +35688,81 @@ var ValueCard = function ValueCard(_ref3) {
 var SplitAbout = function SplitAbout(_ref4) {
   var _data$cta, _data$cta2, _data$cta3, _data$cta4, _data$stats, _data$highlights;
   var data = _ref4.data;
-  return /*#__PURE__*/require$$1.jsxs("section", {
+  return /*#__PURE__*/require$$1.jsx("section", {
     className: "relative overflow-hidden bg-gradient-to-br from-black via-gray-900 to-gray-950 text-white",
-    children: [/*#__PURE__*/require$$1.jsx("div", {
-      className: "absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.14),transparent_35%),radial-gradient(circle_at_80%_0%,rgba(79,70,229,0.12),transparent_30%)]"
-    }), /*#__PURE__*/require$$1.jsxs("div", {
-      className: "relative grid grid-cols-1 lg:grid-cols-2 gap-10 p-6 sm:p-10 lg:p-14",
-      children: [/*#__PURE__*/require$$1.jsxs("div", {
-        className: "space-y-6",
-        children: [/*#__PURE__*/require$$1.jsx(SectionHeader$1, {
-          badge: data.badge,
-          title: data.title,
-          subtitle: data.subtitle
-        }), /*#__PURE__*/require$$1.jsx("p", {
-          className: "text-lg text-gray-300 leading-relaxed",
-          children: data.description
-        }), /*#__PURE__*/require$$1.jsxs("div", {
-          className: "flex flex-wrap gap-3",
-          children: [/*#__PURE__*/require$$1.jsx("a", {
-            href: (_data$cta = data.cta) === null || _data$cta === void 0 || (_data$cta = _data$cta.primary) === null || _data$cta === void 0 ? void 0 : _data$cta.href,
-            className: "px-5 py-3 rounded-xl bg-primary-600 text-white font-semibold shadow-lg shadow-primary-900/30 hover:bg-primary-500 transition",
-            children: (_data$cta2 = data.cta) === null || _data$cta2 === void 0 || (_data$cta2 = _data$cta2.primary) === null || _data$cta2 === void 0 ? void 0 : _data$cta2.label
-          }), /*#__PURE__*/require$$1.jsx("a", {
-            href: (_data$cta3 = data.cta) === null || _data$cta3 === void 0 || (_data$cta3 = _data$cta3.secondary) === null || _data$cta3 === void 0 ? void 0 : _data$cta3.href,
-            className: "px-5 py-3 rounded-xl border border-white/15 text-white/90 font-semibold hover:border-primary-500/60 hover:text-white transition",
-            children: (_data$cta4 = data.cta) === null || _data$cta4 === void 0 || (_data$cta4 = _data$cta4.secondary) === null || _data$cta4 === void 0 ? void 0 : _data$cta4.label
-          })]
-        }), /*#__PURE__*/require$$1.jsx("div", {
-          className: "grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 pt-4",
-          children: (_data$stats = data.stats) === null || _data$stats === void 0 ? void 0 : _data$stats.map(function (stat, idx) {
-            return /*#__PURE__*/require$$1.jsx(StatPill, {
-              label: stat.label,
-              value: stat.value
-            }, idx);
-          })
-        })]
+    children: /*#__PURE__*/require$$1.jsxs("div", {
+      className: "container mx-auto",
+      children: [/*#__PURE__*/require$$1.jsx("div", {
+        className: "absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.14),transparent_35%),radial-gradient(circle_at_80%_0%,rgba(79,70,229,0.12),transparent_30%)]"
       }), /*#__PURE__*/require$$1.jsxs("div", {
-        className: "bg-gray-900/60 border border-gray-800 rounded-2xl p-6 sm:p-8 space-y-6 shadow-xl",
+        className: "relative grid grid-cols-1 lg:grid-cols-2 gap-10 p-6 sm:p-10 lg:p-14",
         children: [/*#__PURE__*/require$$1.jsxs("div", {
-          className: "flex items-center justify-between",
-          children: [/*#__PURE__*/require$$1.jsx("h3", {
-            className: "text-xl font-semibold text-white",
-            children: "Why teams choose us"
-          }), /*#__PURE__*/require$$1.jsx("span", {
-            className: "px-3 py-1 rounded-full bg-primary-600/20 text-primary-200 text-xs font-semibold border border-primary-500/40",
-            children: "Latest"
-          })]
-        }), /*#__PURE__*/require$$1.jsx("div", {
-          className: "grid grid-cols-1 sm:grid-cols-2 gap-4",
-          children: (_data$highlights = data.highlights) === null || _data$highlights === void 0 ? void 0 : _data$highlights.map(function (item, idx) {
-            return /*#__PURE__*/require$$1.jsxs("div", {
-              className: "bg-gray-950/70 p-4 hover:border-primary-600/50 transition-all duration-200",
-              children: [/*#__PURE__*/require$$1.jsx("h4", {
-                className: "text-white font-semibold mb-2",
-                children: item.title
-              }), /*#__PURE__*/require$$1.jsx("p", {
-                className: "text-gray-400 text-sm leading-relaxed",
-                children: item.description
-              })]
-            }, idx);
-          })
-        }), /*#__PURE__*/require$$1.jsxs("div", {
-          className: "rounded-xl bg-gradient-to-r from-gray-800 to-gray-900 border border-gray-700/60 p-5 space-y-3",
-          children: [/*#__PURE__*/require$$1.jsx("h4", {
-            className: "text-white font-semibold",
-            children: "Mission"
+          className: "space-y-6",
+          children: [/*#__PURE__*/require$$1.jsx(SectionHeader, {
+            badge: data.badge,
+            title: data.title,
+            subtitle: data.subtitle
           }), /*#__PURE__*/require$$1.jsx("p", {
-            className: "text-gray-300 leading-relaxed",
-            children: data.mission
+            className: "text-lg text-gray-300 leading-relaxed",
+            children: data.description
+          }), /*#__PURE__*/require$$1.jsxs("div", {
+            className: "flex flex-wrap gap-3",
+            children: [/*#__PURE__*/require$$1.jsx("a", {
+              href: (_data$cta = data.cta) === null || _data$cta === void 0 || (_data$cta = _data$cta.primary) === null || _data$cta === void 0 ? void 0 : _data$cta.href,
+              className: "px-5 py-3 rounded-xl bg-primary-600 text-white font-semibold shadow-lg shadow-primary-900/30 hover:bg-primary-500 transition",
+              children: (_data$cta2 = data.cta) === null || _data$cta2 === void 0 || (_data$cta2 = _data$cta2.primary) === null || _data$cta2 === void 0 ? void 0 : _data$cta2.label
+            }), /*#__PURE__*/require$$1.jsx("a", {
+              href: (_data$cta3 = data.cta) === null || _data$cta3 === void 0 || (_data$cta3 = _data$cta3.secondary) === null || _data$cta3 === void 0 ? void 0 : _data$cta3.href,
+              className: "px-5 py-3 rounded-xl border border-white/15 text-white/90 font-semibold hover:border-primary-500/60 hover:text-white transition",
+              children: (_data$cta4 = data.cta) === null || _data$cta4 === void 0 || (_data$cta4 = _data$cta4.secondary) === null || _data$cta4 === void 0 ? void 0 : _data$cta4.label
+            })]
+          }), /*#__PURE__*/require$$1.jsx("div", {
+            className: "grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 pt-4",
+            children: (_data$stats = data.stats) === null || _data$stats === void 0 ? void 0 : _data$stats.map(function (stat, idx) {
+              return /*#__PURE__*/require$$1.jsx(StatPill, {
+                label: stat.label,
+                value: stat.value
+              }, idx);
+            })
+          })]
+        }), /*#__PURE__*/require$$1.jsxs("div", {
+          className: "bg-gray-900/60 border border-gray-800 rounded-2xl p-6 sm:p-8 space-y-6 shadow-xl",
+          children: [/*#__PURE__*/require$$1.jsxs("div", {
+            className: "flex items-center justify-between",
+            children: [/*#__PURE__*/require$$1.jsx("h3", {
+              className: "text-xl font-semibold text-white",
+              children: "Why teams choose us"
+            }), /*#__PURE__*/require$$1.jsx("span", {
+              className: "px-3 py-1 rounded-full bg-primary-600/20 text-primary-200 text-xs font-semibold border border-primary-500/40",
+              children: "Latest"
+            })]
+          }), /*#__PURE__*/require$$1.jsx("div", {
+            className: "grid grid-cols-1 sm:grid-cols-2 gap-4",
+            children: (_data$highlights = data.highlights) === null || _data$highlights === void 0 ? void 0 : _data$highlights.map(function (item, idx) {
+              return /*#__PURE__*/require$$1.jsxs("div", {
+                className: "bg-gray-950/70 p-4 hover:border-primary-600/50 transition-all duration-200",
+                children: [/*#__PURE__*/require$$1.jsx("h4", {
+                  className: "text-white font-semibold mb-2",
+                  children: item.title
+                }), /*#__PURE__*/require$$1.jsx("p", {
+                  className: "text-gray-400 text-sm leading-relaxed",
+                  children: item.description
+                })]
+              }, idx);
+            })
+          }), /*#__PURE__*/require$$1.jsxs("div", {
+            className: "rounded-xl bg-gradient-to-r from-gray-800 to-gray-900 border border-gray-700/60 p-5 space-y-3",
+            children: [/*#__PURE__*/require$$1.jsx("h4", {
+              className: "text-white font-semibold",
+              children: "Mission"
+            }), /*#__PURE__*/require$$1.jsx("p", {
+              className: "text-gray-300 leading-relaxed",
+              children: data.mission
+            })]
           })]
         })]
       })]
-    })]
+    })
   });
 };
 
@@ -35767,103 +35770,106 @@ var SplitAbout = function SplitAbout(_ref4) {
 var SpotlightAbout = function SpotlightAbout(_ref5) {
   var _data$stats2, _data$values, _data$team, _data$cta5, _data$cta6;
   var data = _ref5.data;
-  return /*#__PURE__*/require$$1.jsxs("section", {
+  return /*#__PURE__*/require$$1.jsx("section", {
     className: "relative overflow-hidden",
-    children: [/*#__PURE__*/require$$1.jsx("div", {
-      className: "absolute inset-0 bg-[radial-gradient(circle_at_70%_20%,rgba(59,130,246,0.18),transparent_40%)]"
-    }), /*#__PURE__*/require$$1.jsxs("div", {
-      className: "relative p-6 sm:p-10 lg:p-14 space-y-10",
-      children: [/*#__PURE__*/require$$1.jsxs("div", {
-        className: "flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6",
-        children: [/*#__PURE__*/require$$1.jsx(SectionHeader$1, {
-          badge: data.badge,
-          title: "A studio built for momentum",
-          subtitle: data.subtitle
-        }), /*#__PURE__*/require$$1.jsx("div", {
-          className: "flex flex-wrap gap-3",
-          children: (_data$stats2 = data.stats) === null || _data$stats2 === void 0 ? void 0 : _data$stats2.slice(0, 3).map(function (stat, idx) {
-            return /*#__PURE__*/require$$1.jsxs("div", {
-              className: "px-4 py-3 rounded-2xl border border-white/10 bg-white/5 min-w-[140px] shadow-sm",
-              children: [/*#__PURE__*/require$$1.jsx("div", {
-                className: "text-2xl font-bold text-primary-200",
-                children: stat.value
-              }), /*#__PURE__*/require$$1.jsx("div", {
-                className: "text-xs text-gray-300 uppercase tracking-wide",
-                children: stat.label
-              })]
-            }, idx);
-          })
-        })]
+    children: /*#__PURE__*/require$$1.jsxs("div", {
+      className: "container mx-auto",
+      children: [/*#__PURE__*/require$$1.jsx("div", {
+        className: "absolute inset-0 bg-[radial-gradient(circle_at_70%_20%,rgba(59,130,246,0.18),transparent_40%)]"
       }), /*#__PURE__*/require$$1.jsxs("div", {
-        className: "grid grid-cols-1 lg:grid-cols-3 gap-6",
+        className: "relative p-6 sm:p-10 lg:p-14 space-y-10",
         children: [/*#__PURE__*/require$$1.jsxs("div", {
-          className: "lg:col-span-2 rounded-2xl border border-white/10 bg-white/5 p-6 sm:p-8 space-y-6 shadow-xl",
-          children: [/*#__PURE__*/require$$1.jsxs("div", {
-            className: "flex items-center gap-3",
-            children: [/*#__PURE__*/require$$1.jsx("span", {
-              className: "h-10 w-10 rounded-full bg-primary-500/25 flex items-center justify-center text-primary-200 font-semibold",
-              children: "UX"
-            }), /*#__PURE__*/require$$1.jsxs("div", {
-              children: [/*#__PURE__*/require$$1.jsx("p", {
-                className: "text-sm text-gray-300 uppercase tracking-[0.08em]",
-                children: "Narrative"
-              }), /*#__PURE__*/require$$1.jsx("h3", {
-                className: "text-xl sm:text-2xl font-bold text-white",
-                children: "Design that ships faster"
-              })]
-            })]
-          }), /*#__PURE__*/require$$1.jsx("p", {
-            className: "text-gray-300 leading-relaxed",
-            children: data.description
+          className: "flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6",
+          children: [/*#__PURE__*/require$$1.jsx(SectionHeader, {
+            badge: data.badge,
+            title: "A studio built for momentum",
+            subtitle: data.subtitle
           }), /*#__PURE__*/require$$1.jsx("div", {
-            className: "grid grid-cols-1 sm:grid-cols-3 gap-4",
-            children: (_data$values = data.values) === null || _data$values === void 0 ? void 0 : _data$values.map(function (value, idx) {
-              return /*#__PURE__*/require$$1.jsx(ValueCard, {
-                title: value.title,
-                description: value.description
+            className: "flex flex-wrap gap-3",
+            children: (_data$stats2 = data.stats) === null || _data$stats2 === void 0 ? void 0 : _data$stats2.slice(0, 3).map(function (stat, idx) {
+              return /*#__PURE__*/require$$1.jsxs("div", {
+                className: "px-4 py-3 rounded-2xl border border-white/10 bg-white/5 min-w-[140px] shadow-sm",
+                children: [/*#__PURE__*/require$$1.jsx("div", {
+                  className: "text-2xl font-bold text-primary-200",
+                  children: stat.value
+                }), /*#__PURE__*/require$$1.jsx("div", {
+                  className: "text-xs text-gray-300 uppercase tracking-wide",
+                  children: stat.label
+                })]
               }, idx);
             })
           })]
         }), /*#__PURE__*/require$$1.jsxs("div", {
-          className: "rounded-2xl border border-primary-500/30 bg-gradient-to-b from-primary-900/50 via-gray-900 to-black p-6 sm:p-8 space-y-5 shadow-lg",
+          className: "grid grid-cols-1 lg:grid-cols-3 gap-6",
           children: [/*#__PURE__*/require$$1.jsxs("div", {
-            className: "flex items-center gap-2 text-primary-100 text-sm font-semibold uppercase tracking-[0.12em]",
-            children: [/*#__PURE__*/require$$1.jsx("span", {
-              className: "h-2 w-2 rounded-full bg-primary-300"
-            }), "Leadership"]
-          }), /*#__PURE__*/require$$1.jsx("div", {
-            className: "space-y-4",
-            children: (_data$team = data.team) === null || _data$team === void 0 ? void 0 : _data$team.map(function (member, idx) {
-              return /*#__PURE__*/require$$1.jsx("div", {
-                className: "rounded-xl border border-white/10 bg-white/5 p-4",
-                children: /*#__PURE__*/require$$1.jsxs("div", {
-                  className: "flex items-center justify-between",
-                  children: [/*#__PURE__*/require$$1.jsxs("div", {
-                    children: [/*#__PURE__*/require$$1.jsx("div", {
-                      className: "text-white font-semibold",
-                      children: member.name
-                    }), /*#__PURE__*/require$$1.jsx("div", {
-                      className: "text-gray-300 text-sm",
-                      children: member.role
+            className: "lg:col-span-2 rounded-2xl border border-white/10 bg-white/5 p-6 sm:p-8 space-y-6 shadow-xl",
+            children: [/*#__PURE__*/require$$1.jsxs("div", {
+              className: "flex items-center gap-3",
+              children: [/*#__PURE__*/require$$1.jsx("span", {
+                className: "h-10 w-10 rounded-full bg-primary-500/25 flex items-center justify-center text-primary-200 font-semibold",
+                children: "UX"
+              }), /*#__PURE__*/require$$1.jsxs("div", {
+                children: [/*#__PURE__*/require$$1.jsx("p", {
+                  className: "text-sm text-gray-300 uppercase tracking-[0.08em]",
+                  children: "Narrative"
+                }), /*#__PURE__*/require$$1.jsx("h3", {
+                  className: "text-xl sm:text-2xl font-bold text-white",
+                  children: "Design that ships faster"
+                })]
+              })]
+            }), /*#__PURE__*/require$$1.jsx("p", {
+              className: "text-gray-300 leading-relaxed",
+              children: data.description
+            }), /*#__PURE__*/require$$1.jsx("div", {
+              className: "grid grid-cols-1 sm:grid-cols-3 gap-4",
+              children: (_data$values = data.values) === null || _data$values === void 0 ? void 0 : _data$values.map(function (value, idx) {
+                return /*#__PURE__*/require$$1.jsx(ValueCard, {
+                  title: value.title,
+                  description: value.description
+                }, idx);
+              })
+            })]
+          }), /*#__PURE__*/require$$1.jsxs("div", {
+            className: "rounded-2xl border border-primary-500/30 bg-gradient-to-b from-primary-900/50 via-gray-900 to-black p-6 sm:p-8 space-y-5 shadow-lg",
+            children: [/*#__PURE__*/require$$1.jsxs("div", {
+              className: "flex items-center gap-2 text-primary-100 text-sm font-semibold uppercase tracking-[0.12em]",
+              children: [/*#__PURE__*/require$$1.jsx("span", {
+                className: "h-2 w-2 rounded-full bg-primary-300"
+              }), "Leadership"]
+            }), /*#__PURE__*/require$$1.jsx("div", {
+              className: "space-y-4",
+              children: (_data$team = data.team) === null || _data$team === void 0 ? void 0 : _data$team.map(function (member, idx) {
+                return /*#__PURE__*/require$$1.jsx("div", {
+                  className: "rounded-xl border border-white/10 bg-white/5 p-4",
+                  children: /*#__PURE__*/require$$1.jsxs("div", {
+                    className: "flex items-center justify-between",
+                    children: [/*#__PURE__*/require$$1.jsxs("div", {
+                      children: [/*#__PURE__*/require$$1.jsx("div", {
+                        className: "text-white font-semibold",
+                        children: member.name
+                      }), /*#__PURE__*/require$$1.jsx("div", {
+                        className: "text-gray-300 text-sm",
+                        children: member.role
+                      })]
+                    }), /*#__PURE__*/require$$1.jsx("span", {
+                      className: "px-3 py-1 text-xs rounded-full bg-primary-600/30 text-primary-100 border border-primary-500/40",
+                      children: member.focus
                     })]
-                  }), /*#__PURE__*/require$$1.jsx("span", {
-                    className: "px-3 py-1 text-xs rounded-full bg-primary-600/30 text-primary-100 border border-primary-500/40",
-                    children: member.focus
-                  })]
-                })
-              }, idx);
-            })
-          }), /*#__PURE__*/require$$1.jsx("div", {
-            className: "pt-2",
-            children: /*#__PURE__*/require$$1.jsx("a", {
-              href: (_data$cta5 = data.cta) === null || _data$cta5 === void 0 || (_data$cta5 = _data$cta5.primary) === null || _data$cta5 === void 0 ? void 0 : _data$cta5.href,
-              className: "inline-flex items-center justify-center w-full rounded-xl bg-white text-gray-900 font-semibold py-3 hover:bg-gray-100 transition",
-              children: (_data$cta6 = data.cta) === null || _data$cta6 === void 0 || (_data$cta6 = _data$cta6.primary) === null || _data$cta6 === void 0 ? void 0 : _data$cta6.label
-            })
+                  })
+                }, idx);
+              })
+            }), /*#__PURE__*/require$$1.jsx("div", {
+              className: "pt-2",
+              children: /*#__PURE__*/require$$1.jsx("a", {
+                href: (_data$cta5 = data.cta) === null || _data$cta5 === void 0 || (_data$cta5 = _data$cta5.primary) === null || _data$cta5 === void 0 ? void 0 : _data$cta5.href,
+                className: "inline-flex items-center justify-center w-full rounded-xl bg-white text-gray-900 font-semibold py-3 hover:bg-gray-100 transition",
+                children: (_data$cta6 = data.cta) === null || _data$cta6 === void 0 || (_data$cta6 = _data$cta6.primary) === null || _data$cta6 === void 0 ? void 0 : _data$cta6.label
+              })
+            })]
           })]
         })]
       })]
-    })]
+    })
   });
 };
 
@@ -35871,68 +35877,71 @@ var SpotlightAbout = function SpotlightAbout(_ref5) {
 var TimelineAbout = function TimelineAbout(_ref6) {
   var _data$stats3, _data$timeline;
   var data = _ref6.data;
-  return /*#__PURE__*/require$$1.jsxs("section", {
+  return /*#__PURE__*/require$$1.jsx("section", {
     className: "overflow-hidden",
-    children: [/*#__PURE__*/require$$1.jsx("div", {
-      className: "px-6 sm:px-10 pt-10 pb-6 bg-gradient-to-r from-gray-900 via-black to-gray-900 text-white",
-      children: /*#__PURE__*/require$$1.jsx(SectionHeader$1, {
-        badge: "Our story",
-        title: "Momentum over the years",
-        subtitle: data.subtitle
-      })
-    }), /*#__PURE__*/require$$1.jsxs("div", {
-      className: "p-6 sm:p-10 space-y-8",
+    children: /*#__PURE__*/require$$1.jsxs("div", {
+      className: "container mx-auto",
       children: [/*#__PURE__*/require$$1.jsx("div", {
-        className: "grid grid-cols-1 md:grid-cols-3 gap-4",
-        children: (_data$stats3 = data.stats) === null || _data$stats3 === void 0 ? void 0 : _data$stats3.map(function (stat, idx) {
-          return /*#__PURE__*/require$$1.jsxs("div", {
-            className: "rounded-xl border border-gray-200 bg-gray-50 px-5 py-4 flex items-center gap-4",
-            children: [/*#__PURE__*/require$$1.jsx("div", {
-              className: "h-12 w-12 rounded-full bg-primary-50 text-primary-700 flex items-center justify-center font-bold",
-              children: idx + 1
-            }), /*#__PURE__*/require$$1.jsxs("div", {
-              children: [/*#__PURE__*/require$$1.jsx("div", {
-                className: "text-xl font-semibold text-gray-900",
-                children: stat.value
-              }), /*#__PURE__*/require$$1.jsx("div", {
-                className: "text-sm text-gray-600",
-                children: stat.label
-              })]
-            })]
-          }, idx);
+        className: "px-6 sm:px-10 pt-10 pb-6 bg-gradient-to-r from-gray-900 via-black to-gray-900 text-white",
+        children: /*#__PURE__*/require$$1.jsx(SectionHeader, {
+          badge: "Our story",
+          title: "Momentum over the years",
+          subtitle: data.subtitle
         })
       }), /*#__PURE__*/require$$1.jsxs("div", {
-        className: "relative",
+        className: "p-6 sm:p-10 space-y-8",
         children: [/*#__PURE__*/require$$1.jsx("div", {
-          className: "absolute left-5 sm:left-8 top-0 bottom-0 w-px bg-gradient-to-b from-primary-200 via-gray-200 to-primary-200"
-        }), /*#__PURE__*/require$$1.jsx("div", {
-          className: "space-y-6",
-          children: (_data$timeline = data.timeline) === null || _data$timeline === void 0 ? void 0 : _data$timeline.map(function (item, idx) {
+          className: "grid grid-cols-1 md:grid-cols-3 gap-4",
+          children: (_data$stats3 = data.stats) === null || _data$stats3 === void 0 ? void 0 : _data$stats3.map(function (stat, idx) {
             return /*#__PURE__*/require$$1.jsxs("div", {
-              className: "relative pl-12 sm:pl-16",
+              className: "rounded-xl border border-gray-200 bg-gray-50 px-5 py-4 flex items-center gap-4",
               children: [/*#__PURE__*/require$$1.jsx("div", {
-                className: "absolute left-3 sm:left-6 top-3 h-3 w-3 rounded-full bg-primary-500 shadow-[0_0_0_6px_rgba(59,130,246,0.15)]"
+                className: "h-12 w-12 rounded-full bg-primary-50 text-primary-700 flex items-center justify-center font-bold",
+                children: idx + 1
               }), /*#__PURE__*/require$$1.jsxs("div", {
-                className: "rounded-2xl border border-gray-200 bg-white p-5 shadow-sm hover:shadow-md transition",
-                children: [/*#__PURE__*/require$$1.jsxs("div", {
-                  className: "flex items-center justify-between",
-                  children: [/*#__PURE__*/require$$1.jsx("span", {
-                    className: "text-sm font-semibold text-primary-700 uppercase tracking-[0.12em]",
-                    children: item.year
-                  }), /*#__PURE__*/require$$1.jsx("span", {
-                    className: "px-3 py-1 rounded-full bg-gray-100 text-gray-700 text-xs font-semibold",
-                    children: item.title
-                  })]
-                }), /*#__PURE__*/require$$1.jsx("p", {
-                  className: "text-gray-600 mt-3 leading-relaxed",
-                  children: item.description
+                children: [/*#__PURE__*/require$$1.jsx("div", {
+                  className: "text-xl font-semibold text-gray-900",
+                  children: stat.value
+                }), /*#__PURE__*/require$$1.jsx("div", {
+                  className: "text-sm text-gray-600",
+                  children: stat.label
                 })]
               })]
             }, idx);
           })
-        })]
+        }), /*#__PURE__*/require$$1.jsxs("div", {
+          className: "relative",
+          children: [/*#__PURE__*/require$$1.jsx("div", {
+            className: "absolute left-5 sm:left-8 top-0 bottom-0 w-px bg-gradient-to-b from-primary-200 via-gray-200 to-primary-200"
+          }), /*#__PURE__*/require$$1.jsx("div", {
+            className: "space-y-6",
+            children: (_data$timeline = data.timeline) === null || _data$timeline === void 0 ? void 0 : _data$timeline.map(function (item, idx) {
+              return /*#__PURE__*/require$$1.jsxs("div", {
+                className: "relative pl-12 sm:pl-16",
+                children: [/*#__PURE__*/require$$1.jsx("div", {
+                  className: "absolute left-3 sm:left-6 top-3 h-3 w-3 rounded-full bg-primary-500 shadow-[0_0_0_6px_rgba(59,130,246,0.15)]"
+                }), /*#__PURE__*/require$$1.jsxs("div", {
+                  className: "rounded-2xl border border-gray-200 bg-white p-5 shadow-sm hover:shadow-md transition",
+                  children: [/*#__PURE__*/require$$1.jsxs("div", {
+                    className: "flex items-center justify-between",
+                    children: [/*#__PURE__*/require$$1.jsx("span", {
+                      className: "text-sm font-semibold text-primary-700 uppercase tracking-[0.12em]",
+                      children: item.year
+                    }), /*#__PURE__*/require$$1.jsx("span", {
+                      className: "px-3 py-1 rounded-full bg-gray-100 text-gray-700 text-xs font-semibold",
+                      children: item.title
+                    })]
+                  }), /*#__PURE__*/require$$1.jsx("p", {
+                    className: "text-gray-600 mt-3 leading-relaxed",
+                    children: item.description
+                  })]
+                })]
+              }, idx);
+            })
+          })]
+        }), "    "]
       })]
-    })]
+    })
   });
 };
 
@@ -35943,97 +35952,100 @@ var StackedAbout = function StackedAbout(_ref7) {
   return /*#__PURE__*/require$$1.jsx("section", {
     className: "overflow-hidden",
     children: /*#__PURE__*/require$$1.jsxs("div", {
-      className: "p-6 sm:p-10 lg:p-12 space-y-8",
+      className: "container mx-auto",
       children: [/*#__PURE__*/require$$1.jsxs("div", {
-        className: "flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6",
+        className: "p-6 sm:p-10 lg:p-12 space-y-8",
         children: [/*#__PURE__*/require$$1.jsxs("div", {
-          className: "max-w-2xl",
-          children: [/*#__PURE__*/require$$1.jsx("div", {
-            className: "text-sm font-semibold text-primary-600 uppercase tracking-[0.12em] mb-2",
-            children: data.badge
-          }), /*#__PURE__*/require$$1.jsx("h2", {
-            className: "text-3xl sm:text-4xl font-bold text-gray-900 leading-tight",
-            children: data.title
-          }), /*#__PURE__*/require$$1.jsx("p", {
-            className: "text-gray-600 mt-3 leading-relaxed",
-            children: data.mission
+          className: "flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6",
+          children: [/*#__PURE__*/require$$1.jsxs("div", {
+            className: "max-w-2xl",
+            children: [/*#__PURE__*/require$$1.jsx("div", {
+              className: "text-sm font-semibold text-primary-600 uppercase tracking-[0.12em] mb-2",
+              children: data.badge
+            }), /*#__PURE__*/require$$1.jsx("h2", {
+              className: "text-3xl sm:text-4xl font-bold text-gray-900 leading-tight",
+              children: data.title
+            }), /*#__PURE__*/require$$1.jsx("p", {
+              className: "text-gray-600 mt-3 leading-relaxed",
+              children: data.mission
+            })]
+          }), /*#__PURE__*/require$$1.jsx("div", {
+            className: "flex gap-3 flex-wrap",
+            children: (_data$stats4 = data.stats) === null || _data$stats4 === void 0 ? void 0 : _data$stats4.slice(0, 2).map(function (stat, idx) {
+              return /*#__PURE__*/require$$1.jsxs("div", {
+                className: "rounded-xl border border-primary-100 bg-primary-50 px-5 py-4",
+                children: [/*#__PURE__*/require$$1.jsx("div", {
+                  className: "text-2xl font-extrabold text-primary-700",
+                  children: stat.value
+                }), /*#__PURE__*/require$$1.jsx("div", {
+                  className: "text-xs text-primary-900/70 font-semibold uppercase tracking-[0.08em]",
+                  children: stat.label
+                })]
+              }, idx);
+            })
           })]
         }), /*#__PURE__*/require$$1.jsx("div", {
-          className: "flex gap-3 flex-wrap",
-          children: (_data$stats4 = data.stats) === null || _data$stats4 === void 0 ? void 0 : _data$stats4.slice(0, 2).map(function (stat, idx) {
+          className: "grid grid-cols-1 md:grid-cols-3 gap-6",
+          children: (_data$highlights2 = data.highlights) === null || _data$highlights2 === void 0 ? void 0 : _data$highlights2.map(function (item, idx) {
             return /*#__PURE__*/require$$1.jsxs("div", {
-              className: "rounded-xl border border-primary-100 bg-primary-50 px-5 py-4",
-              children: [/*#__PURE__*/require$$1.jsx("div", {
-                className: "text-2xl font-extrabold text-primary-700",
-                children: stat.value
-              }), /*#__PURE__*/require$$1.jsx("div", {
-                className: "text-xs text-primary-900/70 font-semibold uppercase tracking-[0.08em]",
-                children: stat.label
+              className: "rounded-2xl border border-gray-200 bg-white p-5 shadow-sm hover:shadow-md transition",
+              children: [/*#__PURE__*/require$$1.jsxs("div", {
+                className: "flex items-center justify-between mb-3",
+                children: [/*#__PURE__*/require$$1.jsx("span", {
+                  className: "h-10 w-10 rounded-full bg-gray-900 text-white flex items-center justify-center font-semibold",
+                  children: idx + 1
+                }), /*#__PURE__*/require$$1.jsx("span", {
+                  className: "text-xs font-semibold text-primary-700 uppercase tracking-[0.1em]",
+                  children: "Highlight"
+                })]
+              }), /*#__PURE__*/require$$1.jsx("h3", {
+                className: "text-lg font-semibold text-gray-900 mb-2",
+                children: item.title
+              }), /*#__PURE__*/require$$1.jsx("p", {
+                className: "text-gray-600 leading-relaxed",
+                children: item.description
               })]
             }, idx);
           })
-        })]
-      }), /*#__PURE__*/require$$1.jsx("div", {
-        className: "grid grid-cols-1 md:grid-cols-3 gap-6",
-        children: (_data$highlights2 = data.highlights) === null || _data$highlights2 === void 0 ? void 0 : _data$highlights2.map(function (item, idx) {
-          return /*#__PURE__*/require$$1.jsxs("div", {
-            className: "rounded-2xl border border-gray-200 bg-white p-5 shadow-sm hover:shadow-md transition",
-            children: [/*#__PURE__*/require$$1.jsxs("div", {
-              className: "flex items-center justify-between mb-3",
-              children: [/*#__PURE__*/require$$1.jsx("span", {
-                className: "h-10 w-10 rounded-full bg-gray-900 text-white flex items-center justify-center font-semibold",
-                children: idx + 1
-              }), /*#__PURE__*/require$$1.jsx("span", {
-                className: "text-xs font-semibold text-primary-700 uppercase tracking-[0.1em]",
-                children: "Highlight"
-              })]
-            }), /*#__PURE__*/require$$1.jsx("h3", {
-              className: "text-lg font-semibold text-gray-900 mb-2",
-              children: item.title
+        }), /*#__PURE__*/require$$1.jsxs("div", {
+          className: "rounded-2xl border border-gray-200 bg-white p-6 lg:p-8 grid grid-cols-1 lg:grid-cols-2 gap-6",
+          children: [/*#__PURE__*/require$$1.jsxs("div", {
+            className: "space-y-4",
+            children: [/*#__PURE__*/require$$1.jsx("h3", {
+              className: "text-xl font-bold text-gray-900",
+              children: "How we work"
             }), /*#__PURE__*/require$$1.jsx("p", {
               className: "text-gray-600 leading-relaxed",
-              children: item.description
-            })]
-          }, idx);
-        })
-      }), /*#__PURE__*/require$$1.jsxs("div", {
-        className: "rounded-2xl border border-gray-200 bg-white p-6 lg:p-8 grid grid-cols-1 lg:grid-cols-2 gap-6",
-        children: [/*#__PURE__*/require$$1.jsxs("div", {
-          className: "space-y-4",
-          children: [/*#__PURE__*/require$$1.jsx("h3", {
-            className: "text-xl font-bold text-gray-900",
-            children: "How we work"
-          }), /*#__PURE__*/require$$1.jsx("p", {
-            className: "text-gray-600 leading-relaxed",
-            children: "We align on outcomes, design in public, and ship iterative releases. Every sprint ships a tangible, measurable improvement."
-          }), /*#__PURE__*/require$$1.jsxs("div", {
-            className: "flex gap-3",
-            children: [/*#__PURE__*/require$$1.jsx("a", {
-              href: (_data$cta7 = data.cta) === null || _data$cta7 === void 0 || (_data$cta7 = _data$cta7.primary) === null || _data$cta7 === void 0 ? void 0 : _data$cta7.href,
-              className: "px-5 py-3 rounded-xl bg-gray-900 text-white font-semibold hover:bg-black transition",
-              children: (_data$cta8 = data.cta) === null || _data$cta8 === void 0 || (_data$cta8 = _data$cta8.primary) === null || _data$cta8 === void 0 ? void 0 : _data$cta8.label
-            }), /*#__PURE__*/require$$1.jsx("a", {
-              href: (_data$cta9 = data.cta) === null || _data$cta9 === void 0 || (_data$cta9 = _data$cta9.secondary) === null || _data$cta9 === void 0 ? void 0 : _data$cta9.href,
-              className: "px-5 py-3 rounded-xl border border-gray-200 text-gray-900 font-semibold hover:border-gray-300 transition",
-              children: (_data$cta0 = data.cta) === null || _data$cta0 === void 0 || (_data$cta0 = _data$cta0.secondary) === null || _data$cta0 === void 0 ? void 0 : _data$cta0.label
-            })]
-          })]
-        }), /*#__PURE__*/require$$1.jsx("div", {
-          className: "grid grid-cols-1 sm:grid-cols-2 gap-4",
-          children: (_data$values2 = data.values) === null || _data$values2 === void 0 ? void 0 : _data$values2.slice(0, 4).map(function (value, idx) {
-            return /*#__PURE__*/require$$1.jsxs("div", {
-              className: "rounded-xl border border-gray-200 bg-gray-50 p-4 hover:border-primary-200 transition",
-              children: [/*#__PURE__*/require$$1.jsx("div", {
-                className: "text-sm font-semibold text-primary-700 uppercase tracking-[0.08em] mb-1",
-                children: value.title
-              }), /*#__PURE__*/require$$1.jsx("p", {
-                className: "text-gray-600 text-sm leading-relaxed",
-                children: value.description
+              children: "We align on outcomes, design in public, and ship iterative releases. Every sprint ships a tangible, measurable improvement."
+            }), /*#__PURE__*/require$$1.jsxs("div", {
+              className: "flex gap-3",
+              children: [/*#__PURE__*/require$$1.jsx("a", {
+                href: (_data$cta7 = data.cta) === null || _data$cta7 === void 0 || (_data$cta7 = _data$cta7.primary) === null || _data$cta7 === void 0 ? void 0 : _data$cta7.href,
+                className: "px-5 py-3 rounded-xl bg-gray-900 text-white font-semibold hover:bg-black transition",
+                children: (_data$cta8 = data.cta) === null || _data$cta8 === void 0 || (_data$cta8 = _data$cta8.primary) === null || _data$cta8 === void 0 ? void 0 : _data$cta8.label
+              }), /*#__PURE__*/require$$1.jsx("a", {
+                href: (_data$cta9 = data.cta) === null || _data$cta9 === void 0 || (_data$cta9 = _data$cta9.secondary) === null || _data$cta9 === void 0 ? void 0 : _data$cta9.href,
+                className: "px-5 py-3 rounded-xl border border-gray-200 text-gray-900 font-semibold hover:border-gray-300 transition",
+                children: (_data$cta0 = data.cta) === null || _data$cta0 === void 0 || (_data$cta0 = _data$cta0.secondary) === null || _data$cta0 === void 0 ? void 0 : _data$cta0.label
               })]
-            }, idx);
-          })
+            })]
+          }), /*#__PURE__*/require$$1.jsx("div", {
+            className: "grid grid-cols-1 sm:grid-cols-2 gap-4",
+            children: (_data$values2 = data.values) === null || _data$values2 === void 0 ? void 0 : _data$values2.slice(0, 4).map(function (value, idx) {
+              return /*#__PURE__*/require$$1.jsxs("div", {
+                className: "rounded-xl border border-gray-200 bg-gray-50 p-4 hover:border-primary-200 transition",
+                children: [/*#__PURE__*/require$$1.jsx("div", {
+                  className: "text-sm font-semibold text-primary-700 uppercase tracking-[0.08em] mb-1",
+                  children: value.title
+                }), /*#__PURE__*/require$$1.jsx("p", {
+                  className: "text-gray-600 text-sm leading-relaxed",
+                  children: value.description
+                })]
+              }, idx);
+            })
+          })]
         })]
-      })]
+      }), "    "]
     })
   });
 };
@@ -36045,50 +36057,53 @@ var MinimalAbout = function MinimalAbout(_ref8) {
   return /*#__PURE__*/require$$1.jsx("section", {
     className: "bg-black text-white overflow-hidden",
     children: /*#__PURE__*/require$$1.jsxs("div", {
-      className: "relative p-6 sm:p-10 lg:p-14",
-      children: [/*#__PURE__*/require$$1.jsx("div", {
-        className: "absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(59,130,246,0.15),transparent_35%),radial-gradient(circle_at_80%_0%,rgba(255,255,255,0.06),transparent_28%)]"
-      }), /*#__PURE__*/require$$1.jsxs("div", {
-        className: "relative max-w-4xl mx-auto text-center space-y-6",
+      className: "container mx-auto",
+      children: [/*#__PURE__*/require$$1.jsxs("div", {
+        className: "relative p-6 sm:p-10 lg:p-14",
         children: [/*#__PURE__*/require$$1.jsx("div", {
-          className: "inline-flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-full text-sm font-semibold uppercase tracking-[0.12em] text-primary-100",
-          children: data.badge
-        }), /*#__PURE__*/require$$1.jsx("h2", {
-          className: "text-4xl sm:text-5xl font-extrabold leading-tight",
-          children: data.title
-        }), /*#__PURE__*/require$$1.jsx("p", {
-          className: "text-lg text-gray-300 leading-relaxed max-w-3xl mx-auto",
-          children: data.description
-        }), /*#__PURE__*/require$$1.jsx("div", {
-          className: "flex flex-wrap justify-center gap-3 pt-2",
-          children: (_data$stats5 = data.stats) === null || _data$stats5 === void 0 ? void 0 : _data$stats5.map(function (stat, idx) {
-            return /*#__PURE__*/require$$1.jsxs("div", {
-              className: "px-5 py-3 rounded-xl border border-white/10 bg-white/5 min-w-[140px]",
-              children: [/*#__PURE__*/require$$1.jsx("div", {
-                className: "text-2xl font-bold text-white",
-                children: stat.value
-              }), /*#__PURE__*/require$$1.jsx("div", {
-                className: "text-sm text-gray-300",
-                children: stat.label
-              })]
-            }, idx);
-          })
-        }), /*#__PURE__*/require$$1.jsx("div", {
-          className: "grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6",
-          children: (_data$highlights3 = data.highlights) === null || _data$highlights3 === void 0 ? void 0 : _data$highlights3.map(function (item, idx) {
-            return /*#__PURE__*/require$$1.jsxs("div", {
-              className: "rounded-xl border border-white/10 bg-white/5 p-4 text-left hover:border-primary-400/60 transition",
-              children: [/*#__PURE__*/require$$1.jsx("h4", {
-                className: "text-lg font-semibold text-white mb-2",
-                children: item.title
-              }), /*#__PURE__*/require$$1.jsx("p", {
-                className: "text-gray-300 text-sm leading-relaxed",
-                children: item.description
-              })]
-            }, idx);
-          })
+          className: "absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(59,130,246,0.15),transparent_35%),radial-gradient(circle_at_80%_0%,rgba(255,255,255,0.06),transparent_28%)]"
+        }), /*#__PURE__*/require$$1.jsxs("div", {
+          className: "relative max-w-4xl mx-auto text-center space-y-6",
+          children: [/*#__PURE__*/require$$1.jsx("div", {
+            className: "inline-flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-full text-sm font-semibold uppercase tracking-[0.12em] text-primary-100",
+            children: data.badge
+          }), /*#__PURE__*/require$$1.jsx("h2", {
+            className: "text-4xl sm:text-5xl font-extrabold leading-tight",
+            children: data.title
+          }), /*#__PURE__*/require$$1.jsx("p", {
+            className: "text-lg text-gray-300 leading-relaxed max-w-3xl mx-auto",
+            children: data.description
+          }), /*#__PURE__*/require$$1.jsx("div", {
+            className: "flex flex-wrap justify-center gap-3 pt-2",
+            children: (_data$stats5 = data.stats) === null || _data$stats5 === void 0 ? void 0 : _data$stats5.map(function (stat, idx) {
+              return /*#__PURE__*/require$$1.jsxs("div", {
+                className: "px-5 py-3 rounded-xl border border-white/10 bg-white/5 min-w-[140px]",
+                children: [/*#__PURE__*/require$$1.jsx("div", {
+                  className: "text-2xl font-bold text-white",
+                  children: stat.value
+                }), /*#__PURE__*/require$$1.jsx("div", {
+                  className: "text-sm text-gray-300",
+                  children: stat.label
+                })]
+              }, idx);
+            })
+          }), /*#__PURE__*/require$$1.jsx("div", {
+            className: "grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6",
+            children: (_data$highlights3 = data.highlights) === null || _data$highlights3 === void 0 ? void 0 : _data$highlights3.map(function (item, idx) {
+              return /*#__PURE__*/require$$1.jsxs("div", {
+                className: "rounded-xl border border-white/10 bg-white/5 p-4 text-left hover:border-primary-400/60 transition",
+                children: [/*#__PURE__*/require$$1.jsx("h4", {
+                  className: "text-lg font-semibold text-white mb-2",
+                  children: item.title
+                }), /*#__PURE__*/require$$1.jsx("p", {
+                  className: "text-gray-300 text-sm leading-relaxed",
+                  children: item.description
+                })]
+              }, idx);
+            })
+          })]
         })]
-      })]
+      }), "    "]
     })
   });
 };
@@ -36100,92 +36115,95 @@ var ImageAbout = function ImageAbout(_ref9) {
   return /*#__PURE__*/require$$1.jsx("section", {
     className: "bg-gradient-to-br from-black via-gray-950 to-gray-900 text-white overflow-hidden",
     children: /*#__PURE__*/require$$1.jsxs("div", {
-      className: "relative grid grid-cols-1 lg:grid-cols-2 gap-0",
+      className: "container mx-auto",
       children: [/*#__PURE__*/require$$1.jsxs("div", {
-        className: "p-6 sm:p-10 lg:p-14 space-y-6",
-        children: [/*#__PURE__*/require$$1.jsx(SectionHeader$1, {
-          badge: data.badge,
-          title: data.title,
-          subtitle: data.subtitle
-        }), /*#__PURE__*/require$$1.jsx("p", {
-          className: "text-gray-300 leading-relaxed text-lg",
-          children: data.description
-        }), /*#__PURE__*/require$$1.jsxs("div", {
-          className: "flex flex-wrap gap-3",
-          children: [/*#__PURE__*/require$$1.jsx("a", {
-            href: (_data$cta1 = data.cta) === null || _data$cta1 === void 0 || (_data$cta1 = _data$cta1.primary) === null || _data$cta1 === void 0 ? void 0 : _data$cta1.href,
-            className: "px-5 py-3 rounded-xl bg-primary-600 text-white font-semibold shadow-lg shadow-primary-900/30 hover:bg-primary-500 transition",
-            children: (_data$cta10 = data.cta) === null || _data$cta10 === void 0 || (_data$cta10 = _data$cta10.primary) === null || _data$cta10 === void 0 ? void 0 : _data$cta10.label
-          }), /*#__PURE__*/require$$1.jsx("a", {
-            href: (_data$cta11 = data.cta) === null || _data$cta11 === void 0 || (_data$cta11 = _data$cta11.secondary) === null || _data$cta11 === void 0 ? void 0 : _data$cta11.href,
-            className: "px-5 py-3 rounded-xl border border-white/15 text-white/90 font-semibold hover:border-primary-500/60 hover:text-white transition",
-            children: (_data$cta12 = data.cta) === null || _data$cta12 === void 0 || (_data$cta12 = _data$cta12.secondary) === null || _data$cta12 === void 0 ? void 0 : _data$cta12.label
-          })]
-        }), /*#__PURE__*/require$$1.jsx("div", {
-          className: "grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4",
-          children: (_data$stats6 = data.stats) === null || _data$stats6 === void 0 ? void 0 : _data$stats6.map(function (stat, idx) {
-            return /*#__PURE__*/require$$1.jsxs("div", {
-              className: "rounded-2xl border border-white/10 bg-white/5 px-4 py-3 sm:px-5 sm:py-4",
-              children: [/*#__PURE__*/require$$1.jsx("div", {
-                className: "text-2xl font-bold text-white",
-                children: stat.value
-              }), /*#__PURE__*/require$$1.jsx("div", {
-                className: "text-sm text-gray-300",
-                children: stat.label
-              })]
-            }, idx);
-          })
-        }), /*#__PURE__*/require$$1.jsx("div", {
-          className: "grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2",
-          children: (_data$highlights4 = data.highlights) === null || _data$highlights4 === void 0 ? void 0 : _data$highlights4.slice(0, 4).map(function (item, idx) {
-            return /*#__PURE__*/require$$1.jsxs("div", {
-              className: "bg-gray-950/70 p-4 hover:border-primary-600/50 transition-all duration-200",
-              children: [/*#__PURE__*/require$$1.jsx("h4", {
-                className: "text-white font-semibold mb-2",
-                children: item.title
-              }), /*#__PURE__*/require$$1.jsx("p", {
-                className: "text-gray-400 text-sm leading-relaxed",
-                children: item.description
-              })]
-            }, idx);
-          })
-        })]
-      }), /*#__PURE__*/require$$1.jsxs("div", {
-        className: "relative min-h-[320px] lg:min-h-full",
+        className: "relative grid grid-cols-1 lg:grid-cols-2 gap-0",
         children: [/*#__PURE__*/require$$1.jsxs("div", {
-          className: "absolute inset-0",
-          children: [/*#__PURE__*/require$$1.jsx("img", {
-            src: data.heroImage,
-            alt: data.heroImageAlt,
-            className: "w-full h-full object-cover"
-          }), /*#__PURE__*/require$$1.jsx("div", {
-            className: "absolute inset-0 bg-gradient-to-l from-black/70 via-black/30 to-transparent"
-          })]
-        }), /*#__PURE__*/require$$1.jsx("div", {
-          className: "relative h-full flex items-end p-6 sm:p-8 lg:p-12",
-          children: /*#__PURE__*/require$$1.jsxs("div", {
-            className: "backdrop-blur-md bg-black/40 border border-white/10 rounded-2xl p-5 sm:p-6 w-full max-w-lg",
-            children: [/*#__PURE__*/require$$1.jsxs("div", {
-              className: "flex items-center gap-3 mb-3",
-              children: [/*#__PURE__*/require$$1.jsx("span", {
-                className: "h-10 w-10 rounded-full bg-primary-500/30 text-primary-100 flex items-center justify-center font-semibold",
-                children: "\u2726"
-              }), /*#__PURE__*/require$$1.jsxs("div", {
-                children: [/*#__PURE__*/require$$1.jsx("p", {
-                  className: "text-xs uppercase tracking-[0.12em] text-gray-300",
-                  children: "Story"
-                }), /*#__PURE__*/require$$1.jsx("h3", {
-                  className: "text-xl font-semibold text-white",
-                  children: "Design that feels alive"
-                })]
-              })]
-            }), /*#__PURE__*/require$$1.jsx("p", {
-              className: "text-gray-200 leading-relaxed",
-              children: "We choreograph brand, product, and engineering to deliver experiences that stay performant and feel premium across every screen."
+          className: "p-6 sm:p-10 lg:p-14 space-y-6",
+          children: [/*#__PURE__*/require$$1.jsx(SectionHeader, {
+            badge: data.badge,
+            title: data.title,
+            subtitle: data.subtitle
+          }), /*#__PURE__*/require$$1.jsx("p", {
+            className: "text-gray-300 leading-relaxed text-lg",
+            children: data.description
+          }), /*#__PURE__*/require$$1.jsxs("div", {
+            className: "flex flex-wrap gap-3",
+            children: [/*#__PURE__*/require$$1.jsx("a", {
+              href: (_data$cta1 = data.cta) === null || _data$cta1 === void 0 || (_data$cta1 = _data$cta1.primary) === null || _data$cta1 === void 0 ? void 0 : _data$cta1.href,
+              className: "px-5 py-3 rounded-xl bg-primary-600 text-white font-semibold shadow-lg shadow-primary-900/30 hover:bg-primary-500 transition",
+              children: (_data$cta10 = data.cta) === null || _data$cta10 === void 0 || (_data$cta10 = _data$cta10.primary) === null || _data$cta10 === void 0 ? void 0 : _data$cta10.label
+            }), /*#__PURE__*/require$$1.jsx("a", {
+              href: (_data$cta11 = data.cta) === null || _data$cta11 === void 0 || (_data$cta11 = _data$cta11.secondary) === null || _data$cta11 === void 0 ? void 0 : _data$cta11.href,
+              className: "px-5 py-3 rounded-xl border border-white/15 text-white/90 font-semibold hover:border-primary-500/60 hover:text-white transition",
+              children: (_data$cta12 = data.cta) === null || _data$cta12 === void 0 || (_data$cta12 = _data$cta12.secondary) === null || _data$cta12 === void 0 ? void 0 : _data$cta12.label
             })]
-          })
+          }), /*#__PURE__*/require$$1.jsx("div", {
+            className: "grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4",
+            children: (_data$stats6 = data.stats) === null || _data$stats6 === void 0 ? void 0 : _data$stats6.map(function (stat, idx) {
+              return /*#__PURE__*/require$$1.jsxs("div", {
+                className: "rounded-2xl border border-white/10 bg-white/5 px-4 py-3 sm:px-5 sm:py-4",
+                children: [/*#__PURE__*/require$$1.jsx("div", {
+                  className: "text-2xl font-bold text-white",
+                  children: stat.value
+                }), /*#__PURE__*/require$$1.jsx("div", {
+                  className: "text-sm text-gray-300",
+                  children: stat.label
+                })]
+              }, idx);
+            })
+          }), /*#__PURE__*/require$$1.jsx("div", {
+            className: "grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2",
+            children: (_data$highlights4 = data.highlights) === null || _data$highlights4 === void 0 ? void 0 : _data$highlights4.slice(0, 4).map(function (item, idx) {
+              return /*#__PURE__*/require$$1.jsxs("div", {
+                className: "bg-gray-950/70 p-4 hover:border-primary-600/50 transition-all duration-200",
+                children: [/*#__PURE__*/require$$1.jsx("h4", {
+                  className: "text-white font-semibold mb-2",
+                  children: item.title
+                }), /*#__PURE__*/require$$1.jsx("p", {
+                  className: "text-gray-400 text-sm leading-relaxed",
+                  children: item.description
+                })]
+              }, idx);
+            })
+          })]
+        }), /*#__PURE__*/require$$1.jsxs("div", {
+          className: "relative min-h-[320px] lg:min-h-full",
+          children: [/*#__PURE__*/require$$1.jsxs("div", {
+            className: "absolute inset-0",
+            children: [/*#__PURE__*/require$$1.jsx("img", {
+              src: data.heroImage,
+              alt: data.heroImageAlt,
+              className: "w-full h-full object-cover"
+            }), /*#__PURE__*/require$$1.jsx("div", {
+              className: "absolute inset-0 bg-gradient-to-l from-black/70 via-black/30 to-transparent"
+            })]
+          }), /*#__PURE__*/require$$1.jsx("div", {
+            className: "relative h-full flex items-end p-6 sm:p-8 lg:p-12",
+            children: /*#__PURE__*/require$$1.jsxs("div", {
+              className: "backdrop-blur-md bg-black/40 border border-white/10 rounded-2xl p-5 sm:p-6 w-full max-w-lg",
+              children: [/*#__PURE__*/require$$1.jsxs("div", {
+                className: "flex items-center gap-3 mb-3",
+                children: [/*#__PURE__*/require$$1.jsx("span", {
+                  className: "h-10 w-10 rounded-full bg-primary-500/30 text-primary-100 flex items-center justify-center font-semibold",
+                  children: "\u2726"
+                }), /*#__PURE__*/require$$1.jsxs("div", {
+                  children: [/*#__PURE__*/require$$1.jsx("p", {
+                    className: "text-xs uppercase tracking-[0.12em] text-gray-300",
+                    children: "Story"
+                  }), /*#__PURE__*/require$$1.jsx("h3", {
+                    className: "text-xl font-semibold text-white",
+                    children: "Design that feels alive"
+                  })]
+                })]
+              }), /*#__PURE__*/require$$1.jsx("p", {
+                className: "text-gray-200 leading-relaxed",
+                children: "We choreograph brand, product, and engineering to deliver experiences that stay performant and feel premium across every screen."
+              })]
+            })
+          })]
         })]
-      })]
+      }), "    "]
     })
   });
 };
@@ -36195,85 +36213,88 @@ var StoryTimelineAbout = function StoryTimelineAbout(_ref0) {
   var _data$timeline2, _data$highlights5;
   var data = _ref0.data;
   return /*#__PURE__*/require$$1.jsx("section", {
-    className: "bg-gradient-to-b from-gray-50 via-white to-gray-50 text-gray-900 shadow-lg overflow-hidden",
-    children: /*#__PURE__*/require$$1.jsxs("div", {
-      className: "grid grid-cols-1 lg:grid-cols-2 gap-0",
-      children: [/*#__PURE__*/require$$1.jsxs("div", {
-        className: "p-6 sm:p-10 lg:p-14 space-y-6",
+    className: "bg-gradient-to-b from-gray-50 via-white to-gray-50 text-gray-900 overflow-hidden",
+    children: /*#__PURE__*/require$$1.jsx("div", {
+      className: "container mx-auto",
+      children: /*#__PURE__*/require$$1.jsxs("div", {
+        className: "grid grid-cols-1 lg:grid-cols-2 gap-0",
         children: [/*#__PURE__*/require$$1.jsxs("div", {
-          className: "space-y-3",
-          children: [/*#__PURE__*/require$$1.jsx("div", {
-            className: "text-sm font-semibold text-primary-700 uppercase tracking-[0.14em]",
-            children: data.badge
-          }), /*#__PURE__*/require$$1.jsx("h2", {
-            className: "text-3xl sm:text-4xl font-extrabold leading-snug text-gray-900",
-            children: data.title
-          }), /*#__PURE__*/require$$1.jsx("p", {
-            className: "text-gray-600 leading-relaxed",
-            children: data.storyIntro || data.description
-          })]
-        }), /*#__PURE__*/require$$1.jsx("div", {
-          className: "mt-6 space-y-6",
-          children: (_data$timeline2 = data.timeline) === null || _data$timeline2 === void 0 ? void 0 : _data$timeline2.map(function (item, idx) {
-            return /*#__PURE__*/require$$1.jsxs("div", {
-              className: "relative pl-12",
-              children: [/*#__PURE__*/require$$1.jsx("div", {
-                className: "absolute left-0 top-1.5 bottom-0 w-px bg-primary-200",
-                "aria-hidden": true
-              }), /*#__PURE__*/require$$1.jsx("div", {
-                className: "absolute left-[-7px] top-1.5 h-3.5 w-3.5 rounded-full bg-primary-500 shadow-[0_0_0_6px_rgba(59,130,246,0.12)]",
-                "aria-hidden": true
-              }), /*#__PURE__*/require$$1.jsxs("div", {
-                className: "flex flex-col gap-1",
-                children: [/*#__PURE__*/require$$1.jsx("span", {
-                  className: "text-base font-bold text-gray-900",
-                  children: item.year
-                }), item.title && /*#__PURE__*/require$$1.jsx("span", {
-                  className: "text-sm font-semibold text-primary-700",
-                  children: item.title
-                }), /*#__PURE__*/require$$1.jsx("p", {
-                  className: "text-gray-600 leading-relaxed",
-                  children: item.description
-                })]
-              })]
-            }, idx);
-          })
-        })]
-      }), /*#__PURE__*/require$$1.jsxs("div", {
-        className: "relative bg-gray-900",
-        children: [/*#__PURE__*/require$$1.jsxs("div", {
-          className: "absolute inset-0",
-          children: [/*#__PURE__*/require$$1.jsx("img", {
-            src: data.heroImage,
-            alt: data.heroImageAlt,
-            className: "w-full h-full object-cover"
+          className: "p-6 sm:p-10 lg:p-14 space-y-6",
+          children: [/*#__PURE__*/require$$1.jsxs("div", {
+            className: "space-y-3",
+            children: [/*#__PURE__*/require$$1.jsx("div", {
+              className: "text-sm font-semibold text-primary-700 uppercase tracking-[0.14em]",
+              children: data.badge
+            }), /*#__PURE__*/require$$1.jsx("h2", {
+              className: "text-3xl sm:text-4xl font-extrabold leading-snug text-gray-900",
+              children: data.title
+            }), /*#__PURE__*/require$$1.jsx("p", {
+              className: "text-gray-600 leading-relaxed",
+              children: data.storyIntro || data.description
+            })]
           }), /*#__PURE__*/require$$1.jsx("div", {
-            className: "absolute inset-0 bg-gradient-to-b from-black/20 via-black/10 to-black/30"
-          })]
-        }), /*#__PURE__*/require$$1.jsx("div", {
-          className: "relative h-full flex flex-col justify-end gap-4 p-6 sm:p-8 lg:p-10",
-          children: /*#__PURE__*/require$$1.jsx("div", {
-            className: "grid grid-cols-1 sm:grid-cols-2 gap-4",
-            children: (_data$highlights5 = data.highlights) === null || _data$highlights5 === void 0 ? void 0 : _data$highlights5.slice(0, 2).map(function (item, idx) {
+            className: "mt-6 space-y-6",
+            children: (_data$timeline2 = data.timeline) === null || _data$timeline2 === void 0 ? void 0 : _data$timeline2.map(function (item, idx) {
               return /*#__PURE__*/require$$1.jsxs("div", {
-                className: "rounded-2xl bg-white shadow-md border border-gray-200 p-4 sm:p-5",
-                children: [/*#__PURE__*/require$$1.jsxs("div", {
-                  className: "flex items-center gap-2 mb-2",
+                className: "relative pl-12",
+                children: [/*#__PURE__*/require$$1.jsx("div", {
+                  className: "absolute left-0 top-1.5 bottom-0 w-px bg-primary-200",
+                  "aria-hidden": true
+                }), /*#__PURE__*/require$$1.jsx("div", {
+                  className: "absolute left-[-7px] top-1.5 h-3.5 w-3.5 rounded-full bg-primary-500 shadow-[0_0_0_6px_rgba(59,130,246,0.12)]",
+                  "aria-hidden": true
+                }), /*#__PURE__*/require$$1.jsxs("div", {
+                  className: "flex flex-col gap-1",
                   children: [/*#__PURE__*/require$$1.jsx("span", {
-                    className: "h-2 w-2 rounded-full bg-primary-500"
-                  }), /*#__PURE__*/require$$1.jsx("span", {
-                    className: "text-sm font-semibold text-gray-900",
+                    className: "text-base font-bold text-gray-900",
+                    children: item.year
+                  }), item.title && /*#__PURE__*/require$$1.jsx("span", {
+                    className: "text-sm font-semibold text-primary-700",
                     children: item.title
+                  }), /*#__PURE__*/require$$1.jsx("p", {
+                    className: "text-gray-600 leading-relaxed",
+                    children: item.description
                   })]
-                }), /*#__PURE__*/require$$1.jsx("p", {
-                  className: "text-sm text-gray-600 leading-relaxed",
-                  children: item.description
                 })]
               }, idx);
             })
-          })
+          })]
+        }), /*#__PURE__*/require$$1.jsxs("div", {
+          className: "relative bg-gray-900",
+          children: [/*#__PURE__*/require$$1.jsxs("div", {
+            className: "absolute inset-0",
+            children: [/*#__PURE__*/require$$1.jsx("img", {
+              src: data.heroImage,
+              alt: data.heroImageAlt,
+              className: "w-full h-full object-cover"
+            }), /*#__PURE__*/require$$1.jsx("div", {
+              className: "absolute inset-0 bg-gradient-to-b from-black/20 via-black/10 to-black/30"
+            })]
+          }), /*#__PURE__*/require$$1.jsx("div", {
+            className: "relative h-full flex flex-col justify-end gap-4 p-6 sm:p-8 lg:p-10",
+            children: /*#__PURE__*/require$$1.jsx("div", {
+              className: "grid grid-cols-1 sm:grid-cols-2 gap-4",
+              children: (_data$highlights5 = data.highlights) === null || _data$highlights5 === void 0 ? void 0 : _data$highlights5.slice(0, 2).map(function (item, idx) {
+                return /*#__PURE__*/require$$1.jsxs("div", {
+                  className: "rounded-2xl bg-white shadow-md border border-gray-200 p-4 sm:p-5",
+                  children: [/*#__PURE__*/require$$1.jsxs("div", {
+                    className: "flex items-center gap-2 mb-2",
+                    children: [/*#__PURE__*/require$$1.jsx("span", {
+                      className: "h-2 w-2 rounded-full bg-primary-500"
+                    }), /*#__PURE__*/require$$1.jsx("span", {
+                      className: "text-sm font-semibold text-gray-900",
+                      children: item.title
+                    })]
+                  }), /*#__PURE__*/require$$1.jsx("p", {
+                    className: "text-sm text-gray-600 leading-relaxed",
+                    children: item.description
+                  })]
+                }, idx);
+              })
+            })
+          })]
         })]
-      })]
+      })
     })
   });
 };
@@ -36306,42 +36327,36 @@ var OriginPanel = function OriginPanel(_ref1) {
   var variantKey = mergedData.variant || variant || 'split';
   var Component = variantComponents[variantKey] || SplitAbout;
   if (loader) {
-    return /*#__PURE__*/require$$1.jsx("div", {
-      className: "container",
-      children: /*#__PURE__*/require$$1.jsxs("div", {
-        className: "bg-gradient-to-br from-black via-gray-900 to-gray-950 p-6 sm:p-10 animate-pulse",
-        children: [/*#__PURE__*/require$$1.jsxs("div", {
-          className: "space-y-4",
-          children: [/*#__PURE__*/require$$1.jsx("div", {
-            className: "h-10 w-32 rounded-full bg-white/10"
-          }), /*#__PURE__*/require$$1.jsx("div", {
-            className: "h-10 sm:h-12 w-5/6 bg-white/10 rounded-xl"
-          }), /*#__PURE__*/require$$1.jsx("div", {
-            className: "h-4 w-4/6 bg-white/10 rounded"
-          })]
+    return /*#__PURE__*/require$$1.jsxs("div", {
+      className: "bg-gradient-to-br from-black via-gray-900 to-gray-950 p-6 sm:p-10 animate-pulse",
+      children: [/*#__PURE__*/require$$1.jsxs("div", {
+        className: "space-y-4",
+        children: [/*#__PURE__*/require$$1.jsx("div", {
+          className: "h-10 w-32 rounded-full bg-white/10"
         }), /*#__PURE__*/require$$1.jsx("div", {
-          className: "mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4",
-          children: [1, 2, 3].map(function (i) {
-            return /*#__PURE__*/require$$1.jsx("div", {
-              className: "h-24 rounded-2xl bg-white/5 border border-white/10"
-            }, i);
-          })
+          className: "h-10 sm:h-12 w-5/6 bg-white/10 rounded-xl"
         }), /*#__PURE__*/require$$1.jsx("div", {
-          className: "mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4",
-          children: [1, 2, 3, 4].map(function (i) {
-            return /*#__PURE__*/require$$1.jsx("div", {
-              className: "h-28 rounded-xl bg-white/5 border border-white/10"
-            }, i);
-          })
+          className: "h-4 w-4/6 bg-white/10 rounded"
         })]
-      })
+      }), /*#__PURE__*/require$$1.jsx("div", {
+        className: "mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4",
+        children: [1, 2, 3].map(function (i) {
+          return /*#__PURE__*/require$$1.jsx("div", {
+            className: "h-24 rounded-2xl bg-white/5 border border-white/10"
+          }, i);
+        })
+      }), /*#__PURE__*/require$$1.jsx("div", {
+        className: "mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4",
+        children: [1, 2, 3, 4].map(function (i) {
+          return /*#__PURE__*/require$$1.jsx("div", {
+            className: "h-28 rounded-xl bg-white/5 border border-white/10"
+          }, i);
+        })
+      })]
     });
   }
-  return /*#__PURE__*/require$$1.jsx("div", {
-    className: "container",
-    children: /*#__PURE__*/require$$1.jsx(Component, {
-      data: mergedData
-    })
+  return /*#__PURE__*/require$$1.jsx(Component, {
+    data: mergedData
   });
 };
 
@@ -40997,950 +41012,481 @@ var WorkGallery = function WorkGallery(_ref) {
   });
 };
 
-var CrewLoadingShell = function CrewLoadingShell(_ref) {
-  var _ref$count = _ref.count,
-    count = _ref$count === void 0 ? 6 : _ref$count,
-    _ref$columns = _ref.columns,
-    columns = _ref$columns === void 0 ? 3 : _ref$columns,
-    _ref$theme = _ref.theme,
-    theme = _ref$theme === void 0 ? 'dark' : _ref$theme,
-    className = _ref.className;
-  var isDark = theme === 'dark';
-  var gridColumnsClasses = {
-    1: 'grid-cols-1',
-    2: 'grid-cols-1 sm:grid-cols-2',
-    3: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3',
-    4: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4'
+var Icon = function Icon(_ref) {
+  var name = _ref.name;
+  // Minimal inline icons (no extra deps)
+  var common = {
+    width: 18,
+    height: 18,
+    viewBox: '0 0 24 24',
+    fill: 'currentColor',
+    'aria-hidden': 'true',
+    focusable: 'false'
   };
-  return /*#__PURE__*/require$$1.jsx("section", {
-    className: clsx('w-full py-16 sm:py-20 px-4 sm:px-6 lg:px-8', isDark ? 'bg-gray-950' : 'bg-white', className),
-    children: /*#__PURE__*/require$$1.jsxs("div", {
-      className: "max-w-7xl mx-auto space-y-10",
-      children: [/*#__PURE__*/require$$1.jsxs("div", {
-        className: "space-y-3",
-        children: [/*#__PURE__*/require$$1.jsx("div", {
-          className: clsx('h-4 w-24 rounded-full animate-pulse', isDark ? 'bg-gray-800' : 'bg-gray-300')
-        }), /*#__PURE__*/require$$1.jsx("div", {
-          className: clsx('h-10 w-3/4 sm:w-2/3 max-w-2xl rounded-lg animate-pulse', isDark ? 'bg-gray-800' : 'bg-gray-300')
-        }), /*#__PURE__*/require$$1.jsx("div", {
-          className: clsx('h-4 w-full sm:w-3/4 max-w-3xl rounded animate-pulse', isDark ? 'bg-gray-900' : 'bg-gray-200')
-        })]
+  if (name === 'linkedin') {
+    return /*#__PURE__*/require$$1.jsx("svg", _objectSpread2(_objectSpread2({}, common), {}, {
+      children: /*#__PURE__*/require$$1.jsx("path", {
+        d: "M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.476-.9 1.637-1.852 3.368-1.852 3.6 0 4.268 2.369 4.268 5.455v6.288zM5.337 7.433a2.067 2.067 0 1 1 0-4.134 2.067 2.067 0 0 1 0 4.134zM6.815 20.452H3.86V9h2.955v11.452z"
+      })
+    }));
+  }
+  if (name === 'twitter') {
+    return /*#__PURE__*/require$$1.jsx("svg", _objectSpread2(_objectSpread2({}, common), {}, {
+      children: /*#__PURE__*/require$$1.jsx("path", {
+        d: "M22 5.92c-.75.33-1.56.55-2.41.65a4.2 4.2 0 0 0 1.84-2.32 8.3 8.3 0 0 1-2.66 1.02 4.14 4.14 0 0 0-7.06 3.77A11.75 11.75 0 0 1 3.15 4.9a4.13 4.13 0 0 0 1.28 5.53c-.65-.02-1.26-.2-1.8-.5v.05c0 2 1.45 3.67 3.37 4.05-.35.1-.73.15-1.12.15-.27 0-.54-.03-.8-.08.54 1.72 2.1 2.97 3.95 3a8.3 8.3 0 0 1-5.14 1.77c-.33 0-.66-.02-.98-.06A11.7 11.7 0 0 0 8.29 21c7.55 0 11.68-6.33 11.68-11.82 0-.18 0-.36-.01-.54A8.5 8.5 0 0 0 22 5.92z"
+      })
+    }));
+  }
+  if (name === 'instagram') {
+    return /*#__PURE__*/require$$1.jsx("svg", _objectSpread2(_objectSpread2({}, common), {}, {
+      children: /*#__PURE__*/require$$1.jsx("path", {
+        d: "M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-5 3.5A5.5 5.5 0 1 1 6.5 13 5.51 5.51 0 0 1 12 7.5zm0 2A3.5 3.5 0 1 0 15.5 13 3.5 3.5 0 0 0 12 9.5zM18 6.5a1 1 0 1 1-1 1 1 1 0 0 1 1-1z"
+      })
+    }));
+  }
+  if (name === 'github') {
+    return /*#__PURE__*/require$$1.jsx("svg", _objectSpread2(_objectSpread2({}, common), {}, {
+      children: /*#__PURE__*/require$$1.jsx("path", {
+        d: "M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.77.61-3.35-1.17-3.35-1.17-.45-1.16-1.1-1.46-1.1-1.46-.9-.63.07-.62.07-.62 1 .07 1.53 1.03 1.53 1.03.89 1.54 2.34 1.09 2.9.83.09-.66.35-1.09.64-1.34-2.21-.25-4.54-1.12-4.54-4.98 0-1.1.39-2 1.03-2.71-.1-.26-.45-1.29.1-2.68 0 0 .84-.27 2.75 1.03A9.4 9.4 0 0 1 12 6.8c.85 0 1.71.12 2.51.35 1.9-1.3 2.74-1.03 2.74-1.03.55 1.39.2 2.42.1 2.68.64.71 1.03 1.61 1.03 2.71 0 3.87-2.34 4.72-4.57 4.97.36.31.69.92.69 1.86v2.75c0 .27.18.58.69.48A10 10 0 0 0 12 2z"
+      })
+    }));
+  }
+  if (name === 'mail') {
+    return /*#__PURE__*/require$$1.jsx("svg", _objectSpread2(_objectSpread2({}, common), {}, {
+      children: /*#__PURE__*/require$$1.jsx("path", {
+        d: "M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5L4 8V6l8 5 8-5v2z"
+      })
+    }));
+  }
+  return null;
+};
+var normalizeVariant = function normalizeVariant(v) {
+  if (v == null) return 1;
+  if (typeof v === 'number') return v;
+  var s = String(v).toLowerCase().trim();
+  if (s.startsWith('variant')) return Number(s.replace('variant', '')) || 1;
+  return Number(s) || 1;
+};
+var normalizeTheme = function normalizeTheme(t) {
+  if (t == null) return 'light';
+  var s = String(t).toLowerCase().trim();
+  return s === 'dark' ? 'dark' : 'light';
+};
+var truncateText = function truncateText(value, maxLength) {
+  var ellipsis = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '...';
+  var text = String(value !== null && value !== void 0 ? value : '');
+  var max = Number(maxLength);
+  if (!Number.isFinite(max) || max <= 0) return text;
+  if (text.length <= max) return text;
+  var cut = Math.max(0, max - ellipsis.length);
+  return "".concat(text.slice(0, cut).trimEnd()).concat(ellipsis);
+};
+
+/**
+ * TeamSection Component (6 variants)
+ *
+ * Requirements: same base design system; only layout behavior changes per variant.
+ *
+ * @param {Object} props
+ * @param {Object} props.data
+ * @param {string} [props.data.subtitle]
+ * @param {string} [props.data.title]
+ * @param {string} [props.data.description]
+ * @param {Array}  [props.data.members]
+ * @param {number|string} [props.data.variant=1] Variant 1..6
+ * @param {string} [props.data.featuredName] For Variant 6 featured card highlight
+ * @param {"light"|"dark"} [props.data.theme="light"] Theme (light | dark)
+ * @param {number} [props.data.memberDescriptionMaxLength=120] Max length for member bio/description text (0/undefined disables)
+ * @param {string} [props.data.memberDescriptionEllipsis="..."] Ellipsis string appended when truncated
+ * @param {string} [props.data.className]
+ * @param {string} [props.className]
+ * @param {string} [props.id]
+ * @param {"light"|"dark"} [props.theme] Theme override (preferred over data.theme)
+ */
+var TeamSection = function TeamSection(_ref2) {
+  var data = _ref2.data,
+    className = _ref2.className,
+    id = _ref2.id,
+    themeProp = _ref2.theme;
+  if (!data || _typeof(data) !== 'object') {
+    console.error('TeamSection: data prop is required and must be an object');
+    return null;
+  }
+  var subtitle = data.subtitle,
+    _data$title = data.title,
+    title = _data$title === void 0 ? 'Team' : _data$title,
+    description = data.description,
+    _data$members = data.members,
+    members = _data$members === void 0 ? [] : _data$members,
+    _data$variant = data.variant,
+    variantRaw = _data$variant === void 0 ? 1 : _data$variant,
+    featuredName = data.featuredName,
+    themeFromData = data.theme,
+    _data$memberDescripti = data.memberDescriptionMaxLength,
+    memberDescriptionMaxLength = _data$memberDescripti === void 0 ? 120 : _data$memberDescripti,
+    _data$memberDescripti2 = data.memberDescriptionEllipsis,
+    memberDescriptionEllipsis = _data$memberDescripti2 === void 0 ? '...' : _data$memberDescripti2,
+    dataClassName = data.className;
+  var variant = normalizeVariant(variantRaw);
+  var theme = normalizeTheme(themeProp !== null && themeProp !== void 0 ? themeProp : themeFromData);
+  var sectionClass = clsx('ls-team', "ls-team--v".concat(variant), "ls-team--theme-".concat(theme), className, dataClassName);
+  var header = /*#__PURE__*/require$$1.jsxs("div", {
+    className: "ls-team__header",
+    children: [subtitle && /*#__PURE__*/require$$1.jsx("div", {
+      className: "ls-team__subtitle",
+      children: subtitle
+    }), title && /*#__PURE__*/require$$1.jsx("h2", {
+      className: "ls-team__title",
+      children: title
+    }), description && /*#__PURE__*/require$$1.jsx("p", {
+      className: "ls-team__desc",
+      children: description
+    })]
+  });
+  var renderSocials = function renderSocials(socials) {
+    var ariaLabel = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'Social links';
+    if (!socials || _typeof(socials) !== 'object') return null;
+    var entries = Object.entries(socials).filter(function (_ref3) {
+      var _ref4 = _slicedToArray(_ref3, 2),
+        href = _ref4[1];
+      return Boolean(href);
+    });
+    if (entries.length === 0) return null;
+    return /*#__PURE__*/require$$1.jsx("div", {
+      className: "ls-team__socials",
+      "aria-label": ariaLabel,
+      children: entries.map(function (_ref5) {
+        var _ref6 = _slicedToArray(_ref5, 2),
+          key = _ref6[0],
+          href = _ref6[1];
+        return /*#__PURE__*/require$$1.jsx("a", {
+          href: href,
+          className: "ls-team__socialBtn",
+          "aria-label": key,
+          target: href.startsWith('#') ? undefined : '_blank',
+          rel: href.startsWith('#') ? undefined : 'noreferrer',
+          children: /*#__PURE__*/require$$1.jsx(Icon, {
+            name: key
+          })
+        }, key);
+      })
+    });
+  };
+  var getMemberBioText = function getMemberBioText(m) {
+    var raw = (m === null || m === void 0 ? void 0 : m.bio) || (m === null || m === void 0 ? void 0 : m.description) || '';
+    return truncateText(raw, memberDescriptionMaxLength, memberDescriptionEllipsis);
+  };
+  var renderCard = function renderCard(m) {
+    var opts = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    opts.imageStyle;
+      var _opts$showBio = opts.showBio,
+      showBio = _opts$showBio === void 0 ? true : _opts$showBio,
+      _opts$showSocials = opts.showSocials,
+      showSocials = _opts$showSocials === void 0 ? true : _opts$showSocials,
+      _opts$featured = opts.featured,
+      featured = _opts$featured === void 0 ? false : _opts$featured,
+      _opts$grayImage = opts.grayImage,
+      grayImage = _opts$grayImage === void 0 ? false : _opts$grayImage;
+    return /*#__PURE__*/require$$1.jsxs("article", {
+      className: clsx('ls-team__card', featured && 'is-featured'),
+      children: [/*#__PURE__*/require$$1.jsx("div", {
+        className: "ls-team__imgWrap",
+        children: m.avatar ? /*#__PURE__*/require$$1.jsx("img", {
+          className: "ls-team__img",
+          src: m.avatar,
+          alt: m.name || 'Team member',
+          style: grayImage ? {
+            filter: 'grayscale(1)'
+          } : undefined,
+          loading: "lazy"
+        }) : /*#__PURE__*/require$$1.jsx("div", {
+          className: "ls-team__img",
+          "aria-hidden": "true"
+        })
+      }), /*#__PURE__*/require$$1.jsxs("div", {
+        className: "ls-team__body",
+        children: [m.name && /*#__PURE__*/require$$1.jsx("h3", {
+          className: "ls-team__name",
+          children: m.name
+        }), m.role && /*#__PURE__*/require$$1.jsx("p", {
+          className: "ls-team__role",
+          children: m.role
+        }), showBio && (m.bio || m.description) && /*#__PURE__*/require$$1.jsx("p", {
+          className: "ls-team__bio",
+          children: getMemberBioText(m)
+        }), showSocials && renderSocials(m.socials)]
+      })]
+    });
+  };
+
+  // Variant 4: carousel layout (snap scrolling + buttons + dots)
+  var Carousel = function Carousel() {
+    var trackRef = require$$0.useRef(null);
+    var _useState = require$$0.useState(0),
+      _useState2 = _slicedToArray(_useState, 2),
+      active = _useState2[0],
+      setActive = _useState2[1];
+
+    // Slides: use 4-up groups on desktop-ish feel, but keep snap per card.
+    var slides = members;
+    var maxIndex = Math.max(0, slides.length - 1);
+    var scrollToIndex = function scrollToIndex(idx) {
+      var _el$children;
+      var el = trackRef.current;
+      if (!el) return;
+      var child = (_el$children = el.children) === null || _el$children === void 0 ? void 0 : _el$children[idx];
+      if (!child) return;
+      child.scrollIntoView({
+        behavior: 'smooth',
+        inline: 'start',
+        block: 'nearest'
+      });
+      setActive(idx);
+    };
+    require$$0.useEffect(function () {
+      var el = trackRef.current;
+      if (!el) return;
+      var onScroll = function onScroll() {
+        var children = Array.from(el.children);
+        var left = el.scrollLeft;
+        var bestIdx = 0;
+        var bestDist = Infinity;
+        children.forEach(function (c, idx) {
+          var dist = Math.abs(c.offsetLeft - left);
+          if (dist < bestDist) {
+            bestDist = dist;
+            bestIdx = idx;
+          }
+        });
+        setActive(bestIdx);
+      };
+      el.addEventListener('scroll', onScroll, {
+        passive: true
+      });
+      return function () {
+        return el.removeEventListener('scroll', onScroll);
+      };
+    }, []);
+    var dotCount = Math.min(6, slides.length);
+    var dotIndexes = require$$0.useMemo(function () {
+      if (slides.length <= dotCount) return slides.map(function (_, i) {
+        return i;
+      });
+      // pick evenly spaced dots
+      var step = (slides.length - 1) / (dotCount - 1);
+      return Array.from({
+        length: dotCount
+      }, function (_, i) {
+        return Math.round(i * step);
+      });
+    }, [slides.length, dotCount]);
+    return /*#__PURE__*/require$$1.jsxs("div", {
+      className: "ls-team__carousel",
+      children: [/*#__PURE__*/require$$1.jsx("button", {
+        type: "button",
+        className: "ls-team__navBtn ls-team__navBtn--prev",
+        "aria-label": "Previous",
+        onClick: function onClick() {
+          return scrollToIndex(Math.max(0, active - 1));
+        },
+        disabled: active <= 0,
+        children: /*#__PURE__*/require$$1.jsx("svg", {
+          width: "18",
+          height: "18",
+          viewBox: "0 0 24 24",
+          fill: "none",
+          "aria-hidden": "true",
+          children: /*#__PURE__*/require$$1.jsx("path", {
+            d: "M15 19l-7-7 7-7",
+            stroke: "currentColor",
+            strokeWidth: "2.5",
+            strokeLinecap: "round",
+            strokeLinejoin: "round"
+          })
+        })
       }), /*#__PURE__*/require$$1.jsx("div", {
-        className: clsx('grid gap-5 sm:gap-6', gridColumnsClasses[columns]),
-        children: Array.from({
-          length: count
-        }).map(function (_, index) {
-          return /*#__PURE__*/require$$1.jsxs("div", {
-            className: clsx('rounded-2xl border p-5 sm:p-6', isDark ? 'bg-gray-900 border-gray-800' : 'bg-white border-gray-200 shadow-sm'),
-            children: [/*#__PURE__*/require$$1.jsxs("div", {
-              className: "flex items-center gap-4 mb-4",
-              children: [/*#__PURE__*/require$$1.jsx("div", {
-                className: clsx('w-14 h-14 rounded-full animate-pulse', isDark ? 'bg-gray-800' : 'bg-gray-200')
-              }), /*#__PURE__*/require$$1.jsxs("div", {
-                className: "flex-1 space-y-2",
-                children: [/*#__PURE__*/require$$1.jsx("div", {
-                  className: clsx('h-4 w-2/3 rounded animate-pulse', isDark ? 'bg-gray-800' : 'bg-gray-200')
-                }), /*#__PURE__*/require$$1.jsx("div", {
-                  className: clsx('h-3 w-1/2 rounded animate-pulse', isDark ? 'bg-gray-900' : 'bg-gray-100')
-                })]
-              })]
-            }), /*#__PURE__*/require$$1.jsxs("div", {
-              className: "space-y-2 mb-4",
-              children: [/*#__PURE__*/require$$1.jsx("div", {
-                className: clsx('h-3 w-full rounded animate-pulse', isDark ? 'bg-gray-900' : 'bg-gray-100')
-              }), /*#__PURE__*/require$$1.jsx("div", {
-                className: clsx('h-3 w-5/6 rounded animate-pulse', isDark ? 'bg-gray-900' : 'bg-gray-100')
-              })]
-            }), /*#__PURE__*/require$$1.jsx("div", {
-              className: "flex gap-2",
-              children: [0, 1, 2].map(function (pill) {
-                return /*#__PURE__*/require$$1.jsx("div", {
-                  className: clsx('h-7 w-16 rounded-full animate-pulse', isDark ? 'bg-gray-800' : 'bg-gray-200')
-                }, pill);
-              })
-            })]
-          }, index);
+        className: "ls-team__track",
+        ref: trackRef,
+        children: slides.map(function (m, idx) {
+          return /*#__PURE__*/require$$1.jsx("div", {
+            className: "ls-team__slide",
+            children: renderCard(m, {
+              showSocials: false,
+              showBio: true
+            })
+          }, "".concat(m.name || idx, "-").concat(idx));
+        })
+      }), /*#__PURE__*/require$$1.jsx("button", {
+        type: "button",
+        className: "ls-team__navBtn ls-team__navBtn--next",
+        "aria-label": "Next",
+        onClick: function onClick() {
+          return scrollToIndex(Math.min(maxIndex, active + 1));
+        },
+        disabled: active >= maxIndex,
+        children: /*#__PURE__*/require$$1.jsx("svg", {
+          width: "18",
+          height: "18",
+          viewBox: "0 0 24 24",
+          fill: "none",
+          "aria-hidden": "true",
+          children: /*#__PURE__*/require$$1.jsx("path", {
+            d: "M9 5l7 7-7 7",
+            stroke: "currentColor",
+            strokeWidth: "2.5",
+            strokeLinecap: "round",
+            strokeLinejoin: "round"
+          })
+        })
+      }), /*#__PURE__*/require$$1.jsx("div", {
+        className: "ls-team__dots",
+        "aria-label": "Carousel pagination",
+        children: dotIndexes.map(function (idx) {
+          return /*#__PURE__*/require$$1.jsx("button", {
+            type: "button",
+            className: clsx('ls-team__dot', idx === active && 'is-active'),
+            "aria-label": "Go to slide ".concat(idx + 1),
+            onClick: function onClick() {
+              return scrollToIndex(idx);
+            }
+          }, idx);
         })
       })]
+    });
+  };
+  var content = function (_members$) {
+    // Keep the header visual consistent; variants adjust layout below.
+    if (variant === 4) {
+      return /*#__PURE__*/require$$1.jsxs(require$$1.Fragment, {
+        children: [header, /*#__PURE__*/require$$1.jsx(Carousel, {})]
+      });
+    }
+    if (variant === 1) {
+      return /*#__PURE__*/require$$1.jsxs(require$$1.Fragment, {
+        children: [header, /*#__PURE__*/require$$1.jsx("div", {
+          className: "ls-team__grid",
+          children: members.map(function (m, idx) {
+            return /*#__PURE__*/require$$1.jsx("div", {
+              children: renderCard(m, {
+                imageStyle: 'circle',
+                showSocials: false,
+                showBio: true
+              })
+            }, "".concat(m.name || idx, "-").concat(idx));
+          })
+        })]
+      });
+    }
+    if (variant === 2) {
+      return /*#__PURE__*/require$$1.jsxs(require$$1.Fragment, {
+        children: [header, /*#__PURE__*/require$$1.jsx("div", {
+          className: "ls-team__grid",
+          children: members.map(function (m, idx) {
+            return /*#__PURE__*/require$$1.jsx("div", {
+              children: renderCard(m, {
+                showSocials: true,
+                showBio: true,
+                grayImage: true
+              })
+            }, "".concat(m.name || idx, "-").concat(idx));
+          })
+        })]
+      });
+    }
+    if (variant === 3) {
+      return /*#__PURE__*/require$$1.jsxs(require$$1.Fragment, {
+        children: [header, /*#__PURE__*/require$$1.jsx("div", {
+          className: "ls-team__grid",
+          children: members.map(function (m, idx) {
+            return /*#__PURE__*/require$$1.jsx("div", {
+              children: renderCard(m, {
+                showSocials: false,
+                showBio: false
+              })
+            }, "".concat(m.name || idx, "-").concat(idx));
+          })
+        })]
+      });
+    }
+    if (variant === 5) {
+      return /*#__PURE__*/require$$1.jsxs(require$$1.Fragment, {
+        children: [header, /*#__PURE__*/require$$1.jsx("div", {
+          className: "ls-team__grid",
+          children: members.map(function (m, idx) {
+            return /*#__PURE__*/require$$1.jsx("div", {
+              children: renderCard(m, {
+                showSocials: true,
+                showBio: true
+              })
+            }, "".concat(m.name || idx, "-").concat(idx));
+          })
+        })]
+      });
+    }
+
+    // Variant 6
+    var featured = featuredName || (members === null || members === void 0 || (_members$ = members[1]) === null || _members$ === void 0 ? void 0 : _members$.name);
+    return /*#__PURE__*/require$$1.jsxs(require$$1.Fragment, {
+      children: [header, /*#__PURE__*/require$$1.jsx("div", {
+        className: "ls-team__grid",
+        children: members.map(function (m, idx) {
+          return /*#__PURE__*/require$$1.jsx("div", {
+            children: /*#__PURE__*/require$$1.jsxs("article", {
+              className: clsx('ls-team__card', m.name === featured && 'is-featured'),
+              children: [/*#__PURE__*/require$$1.jsx("div", {
+                className: "ls-team__imgWrap",
+                children: m.avatar ? /*#__PURE__*/require$$1.jsx("img", {
+                  className: "ls-team__img",
+                  src: m.avatar,
+                  alt: m.name || 'Team member',
+                  loading: "lazy"
+                }) : /*#__PURE__*/require$$1.jsx("div", {
+                  className: "ls-team__img",
+                  "aria-hidden": "true"
+                })
+              }), /*#__PURE__*/require$$1.jsxs("div", {
+                className: "ls-team__body",
+                children: [m.name && /*#__PURE__*/require$$1.jsx("h3", {
+                  className: "ls-team__name",
+                  children: m.name
+                }), m.role && /*#__PURE__*/require$$1.jsx("p", {
+                  className: "ls-team__role",
+                  children: m.role
+                }), (m.meta || m.description || m.bio) && /*#__PURE__*/require$$1.jsx("div", {
+                  className: "ls-team__meta",
+                  children: m.meta ? /*#__PURE__*/require$$1.jsx(require$$1.Fragment, {
+                    children: Array.isArray(m.meta) ? m.meta.map(function (line, i) {
+                      return /*#__PURE__*/require$$1.jsx("div", {
+                        children: line
+                      }, i);
+                    }) : /*#__PURE__*/require$$1.jsx("div", {
+                      children: m.meta
+                    })
+                  }) : /*#__PURE__*/require$$1.jsx("div", {
+                    children: getMemberBioText(m)
+                  })
+                }), /*#__PURE__*/require$$1.jsx("div", {
+                  className: "ls-team__divider"
+                }), renderSocials(m.socials, 'Contact links')]
+              })]
+            })
+          }, "".concat(m.name || idx, "-").concat(idx));
+        })
+      })]
+    });
+  }();
+  return /*#__PURE__*/require$$1.jsx("section", {
+    id: id,
+    className: sectionClass,
+    children: /*#__PURE__*/require$$1.jsx("div", {
+      className: "ls-team__container",
+      children: content
     })
   });
 };
 
-var gradients = ['from-black via-primary-800 to-gray-900', 'from-gray-900 via-black to-primary-700/70', 'from-gray-950 via-primary-900 to-black', 'from-black via-gray-900 to-primary-800/80'];
-var SectionHeader = function SectionHeader(_ref) {
-  var title = _ref.title,
-    subtitle = _ref.subtitle,
-    description = _ref.description,
-    _ref$align = _ref.align,
-    align = _ref$align === void 0 ? 'center' : _ref$align,
-    _ref$theme = _ref.theme,
-    theme = _ref$theme === void 0 ? 'dark' : _ref$theme;
-  if (!title && !subtitle && !description) return null;
-  var isDark = theme === 'dark';
-  var alignment = align === 'left' ? 'items-start text-left' : align === 'right' ? 'items-end text-right' : 'items-center text-center';
-  return /*#__PURE__*/require$$1.jsxs("div", {
-    className: clsx('space-y-3 sm:space-y-4', alignment),
-    children: [subtitle && /*#__PURE__*/require$$1.jsxs("div", {
-      className: clsx('inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold uppercase tracking-[0.14em]', isDark ? 'bg-white/5 text-gray-200 border border-white/10' : 'bg-gray-100 text-gray-700 border border-gray-200'),
-      children: [/*#__PURE__*/require$$1.jsx("span", {
-        className: "h-2 w-2 rounded-full bg-primary-500"
-      }), subtitle]
-    }), title && /*#__PURE__*/require$$1.jsx("h2", {
-      className: clsx('text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight', isDark ? 'text-white' : 'text-gray-900'),
-      children: title
-    }), description && /*#__PURE__*/require$$1.jsx("p", {
-      className: clsx('text-base sm:text-lg max-w-3xl mx-auto', isDark ? 'text-gray-300' : 'text-gray-600'),
-      children: description
-    })]
-  });
-};
-var PortraitCard = function PortraitCard(_ref2) {
-  var member = _ref2.member,
-    _ref2$theme = _ref2.theme,
-    theme = _ref2$theme === void 0 ? 'dark' : _ref2$theme,
-    _ref2$aspect = _ref2.aspect,
-    aspect = _ref2$aspect === void 0 ? 'aspect-[4/5]' : _ref2$aspect,
-    _ref2$align = _ref2.align,
-    align = _ref2$align === void 0 ? 'left' : _ref2$align,
-    _ref2$overlay = _ref2.overlay,
-    overlay = _ref2$overlay === void 0 ? false : _ref2$overlay,
-    _ref2$bordered = _ref2.bordered,
-    bordered = _ref2$bordered === void 0 ? true : _ref2$bordered,
-    _ref2$glass = _ref2.glass,
-    glass = _ref2$glass === void 0 ? false : _ref2$glass;
-    _ref2.padded;
-    var _ref2$interactive = _ref2.interactive,
-    interactive = _ref2$interactive === void 0 ? false : _ref2$interactive;
-  if (!member) return null;
-  var isDark = theme === 'dark';
-  var name = member.name,
-    role = member.role,
-    bio = member.bio,
-    avatar = member.avatar;
-  var textAlign = align === 'center' ? 'text-center items-center' : align === 'right' ? 'text-right items-end' : 'text-left items-start';
-  return /*#__PURE__*/require$$1.jsxs("div", {
-    className: clsx('relative flex flex-col overflow-hidden h-full rounded-2xl', bordered && (isDark ? 'border border-gray-800 bg-gray-900/70' : 'border border-gray-200 bg-white shadow-sm'), glass && 'bg-white/5 border-white/10 backdrop-blur-xl', interactive && 'transition-transform duration-300 will-change-transform hover:-translate-y-1 hover:shadow-[0_18px_50px_-20px_rgba(0,0,0,0.55)]'),
-    children: [/*#__PURE__*/require$$1.jsx("div", {
-      className: clsx('w-full', aspect),
-      children: /*#__PURE__*/require$$1.jsxs("div", {
-        className: "relative w-full h-full overflow-hidden",
-        children: [avatar ? /*#__PURE__*/require$$1.jsx("img", {
-          src: avatar,
-          alt: name,
-          className: clsx('absolute inset-0 w-full h-full object-cover', interactive && 'transition-transform duration-500 ease-out hover:scale-[1.04]')
-        }) : /*#__PURE__*/require$$1.jsx("div", {
-          className: clsx('absolute inset-0 flex items-center justify-center text-4xl font-bold', isDark ? 'bg-gray-800 text-white/70' : 'bg-gray-100 text-gray-700'),
-          children: (name === null || name === void 0 ? void 0 : name.charAt(0)) || '?'
-        }), overlay && /*#__PURE__*/require$$1.jsx("div", {
-          className: "absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"
-        })]
-      })
-    }), /*#__PURE__*/require$$1.jsxs("div", {
-      className: clsx('flex flex-col gap-2 p-5 sm:p-6', overlay && 'absolute bottom-0 left-0 right-0 text-white', overlay && 'bg-gradient-to-t from-black/80 via-black/60 to-transparent'),
-      children: [name && /*#__PURE__*/require$$1.jsx("h3", {
-        className: clsx('text-xl sm:text-2xl font-semibold', overlay ? 'text-white' : isDark ? 'text-white' : 'text-gray-900', textAlign),
-        children: name
-      }), role && /*#__PURE__*/require$$1.jsx("p", {
-        className: clsx('text-sm font-medium', overlay ? 'text-white/80' : isDark ? 'text-gray-300' : 'text-gray-600', textAlign),
-        children: role
-      }), bio && /*#__PURE__*/require$$1.jsx("p", {
-        className: clsx('text-sm leading-relaxed', overlay ? 'text-white/80' : isDark ? 'text-gray-300' : 'text-gray-600', textAlign),
-        children: bio
-      })]
-    })]
-  });
-};
-var InlineCard = function InlineCard(_ref3) {
-  var member = _ref3.member,
-    _ref3$theme = _ref3.theme,
-    theme = _ref3$theme === void 0 ? 'light' : _ref3$theme,
-    _ref3$flip = _ref3.flip,
-    flip = _ref3$flip === void 0 ? false : _ref3$flip,
-    _ref3$tone = _ref3.tone,
-    tone = _ref3$tone === void 0 ? 'solid' : _ref3$tone;
-  if (!member) return null;
-  var isDark = theme === 'dark';
-  var name = member.name,
-    role = member.role,
-    bio = member.bio;
-    member.avatar;
-  return /*#__PURE__*/require$$1.jsxs("div", {
-    className: clsx('flex flex-col sm:flex-row gap-4 sm:gap-6 rounded-2xl p-5 sm:p-6', tone === 'solid' ? isDark ? 'bg-gray-900/70 border border-gray-800' : 'bg-white border border-gray-200 shadow-sm' : isDark ? 'bg-gray-900/50 border border-gray-800' : 'bg-gray-50 border border-gray-200'),
-    children: [/*#__PURE__*/require$$1.jsx("div", {
-      className: clsx('w-full sm:w-48', flip && 'sm:order-2'),
-      children: /*#__PURE__*/require$$1.jsx(PortraitCard, {
-        member: member,
-        theme: theme,
-        aspect: "aspect-[4/5]",
-        align: "left",
-        bordered: false,
-        glass: tone === 'glass'
-      })
-    }), /*#__PURE__*/require$$1.jsxs("div", {
-      className: clsx('flex-1 flex flex-col justify-center gap-2', flip && 'sm:order-1 sm:text-right'),
-      children: [name && /*#__PURE__*/require$$1.jsx("h3", {
-        className: clsx('text-xl font-semibold', isDark ? 'text-white' : 'text-gray-900'),
-        children: name
-      }), role && /*#__PURE__*/require$$1.jsx("p", {
-        className: clsx('text-sm font-medium', isDark ? 'text-gray-300' : 'text-gray-600'),
-        children: role
-      }), bio && /*#__PURE__*/require$$1.jsx("p", {
-        className: clsx('text-sm leading-relaxed', isDark ? 'text-gray-300' : 'text-gray-600'),
-        children: bio
-      })]
-    })]
-  });
-};
-var getGradientByIndex = function getGradientByIndex() {
-  var index = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-  return gradients[index % gradients.length];
-};
-var IconArrowLeft = function IconArrowLeft(_ref4) {
-  var className = _ref4.className;
-  return /*#__PURE__*/require$$1.jsx("svg", {
-    viewBox: "0 0 24 24",
-    fill: "none",
-    className: className,
-    "aria-hidden": "true",
-    children: /*#__PURE__*/require$$1.jsx("path", {
-      d: "M15 18l-6-6 6-6",
-      stroke: "currentColor",
-      strokeWidth: "2.2",
-      strokeLinecap: "round",
-      strokeLinejoin: "round"
-    })
-  });
-};
-var IconArrowRight = function IconArrowRight(_ref5) {
-  var className = _ref5.className;
-  return /*#__PURE__*/require$$1.jsx("svg", {
-    viewBox: "0 0 24 24",
-    fill: "none",
-    className: className,
-    "aria-hidden": "true",
-    children: /*#__PURE__*/require$$1.jsx("path", {
-      d: "M9 6l6 6-6 6",
-      stroke: "currentColor",
-      strokeWidth: "2.2",
-      strokeLinecap: "round",
-      strokeLinejoin: "round"
-    })
-  });
-};
-var IconX = function IconX(_ref6) {
-  var className = _ref6.className;
-  return /*#__PURE__*/require$$1.jsx("svg", {
-    viewBox: "0 0 24 24",
-    fill: "none",
-    className: className,
-    "aria-hidden": "true",
-    children: /*#__PURE__*/require$$1.jsx("path", {
-      d: "M14.6 10.2L21 3h-1.6l-5.5 6.2L9.6 3H3l6.7 9.6L3 21h1.6l5.8-6.6L15 21h6.6l-7-10.8z",
-      fill: "currentColor"
-    })
-  });
-};
-var IconLinkedIn = function IconLinkedIn(_ref7) {
-  var className = _ref7.className;
-  return /*#__PURE__*/require$$1.jsx("svg", {
-    viewBox: "0 0 24 24",
-    fill: "none",
-    className: className,
-    "aria-hidden": "true",
-    children: /*#__PURE__*/require$$1.jsx("path", {
-      d: "M6.94 6.5a2.06 2.06 0 11.01-4.12 2.06 2.06 0 01-.01 4.12zM4.9 21V8.2h4.1V21H4.9zM12.3 8.2h3.9v1.7h.06c.54-1.02 1.86-2.1 3.83-2.1 4.1 0 4.86 2.7 4.86 6.2V21h-4.1v-5.7c0-1.36-.03-3.1-1.9-3.1-1.9 0-2.2 1.48-2.2 3V21h-4.1V8.2z",
-      fill: "currentColor"
-    })
-  });
-};
-var IconFacebook = function IconFacebook(_ref8) {
-  var className = _ref8.className;
-  return /*#__PURE__*/require$$1.jsx("svg", {
-    viewBox: "0 0 24 24",
-    fill: "none",
-    className: className,
-    "aria-hidden": "true",
-    children: /*#__PURE__*/require$$1.jsx("path", {
-      d: "M13.5 21v-7h2.35l.35-2.73H13.5V9.54c0-.79.22-1.33 1.36-1.33h1.45V5.77c-.25-.03-1.1-.1-2.1-.1-2.08 0-3.5 1.27-3.5 3.6v2h-2.35V14h2.35v7h2.79z",
-      fill: "currentColor"
-    })
-  });
-};
-var IconGitHub = function IconGitHub(_ref9) {
-  var className = _ref9.className;
-  return /*#__PURE__*/require$$1.jsx("svg", {
-    viewBox: "0 0 24 24",
-    fill: "none",
-    className: className,
-    "aria-hidden": "true",
-    children: /*#__PURE__*/require$$1.jsx("path", {
-      fillRule: "evenodd",
-      clipRule: "evenodd",
-      d: "M12 2C6.48 2 2 6.6 2 12.28c0 4.53 2.87 8.38 6.84 9.74.5.1.68-.22.68-.48 0-.24-.01-.87-.01-1.7-2.78.62-3.36-1.38-3.36-1.38-.45-1.18-1.1-1.5-1.1-1.5-.9-.63.07-.62.07-.62 1 .07 1.52 1.06 1.52 1.06.9 1.58 2.36 1.12 2.94.86.09-.66.35-1.12.64-1.37-2.22-.26-4.56-1.14-4.56-5.09 0-1.12.38-2.04 1-2.76-.1-.26-.43-1.3.1-2.72 0 0 .83-.27 2.72 1.05A9.18 9.18 0 0112 6.9c.82 0 1.65.11 2.42.32 1.89-1.32 2.72-1.05 2.72-1.05.53 1.42.2 2.46.1 2.72.62.72 1 1.64 1 2.76 0 3.96-2.34 4.83-4.57 5.08.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.59.69.48A10.19 10.19 0 0022 12.28C22 6.6 17.52 2 12 2z",
-      fill: "currentColor"
-    })
-  });
-};
-var IconDribbble = function IconDribbble(_ref0) {
-  var className = _ref0.className;
-  return /*#__PURE__*/require$$1.jsx("svg", {
-    viewBox: "0 0 24 24",
-    fill: "none",
-    className: className,
-    "aria-hidden": "true",
-    children: /*#__PURE__*/require$$1.jsx("path", {
-      fillRule: "evenodd",
-      clipRule: "evenodd",
-      d: "M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm7.86 9.64c-1.1-.35-2.31-.56-3.6-.56-.55 0-1.12.04-1.7.12-.17-.4-.35-.79-.54-1.18 1.92-.79 3.42-2.04 4.4-3.53a7.95 7.95 0 012.12 5.15c0 .34-.03.68-.08 1zM17.2 5.52c-.86 1.38-2.2 2.56-3.95 3.3a36.9 36.9 0 00-2.5-4.2c.4-.07.82-.1 1.25-.1 2.01 0 3.83.75 5.2 2zM9 5.03a34.8 34.8 0 012.55 4.14c-2.08.62-4.52.68-7.2.18A8.03 8.03 0 019 5.03zM4.2 12c0-.36.03-.72.08-1.06 3.1.62 5.9.5 8.28-.28.18.36.35.72.5 1.06-.16.04-.31.08-.47.12-2.62.7-4.86 2.33-6.54 4.7A7.95 7.95 0 014.2 12zm7.8 7.8c-1.67 0-3.2-.52-4.47-1.4 1.46-2.07 3.4-3.46 5.75-4.1.1-.03.2-.06.3-.08.62 1.72 1.1 3.56 1.4 5.52-.97.4-1.99.06-2.98.06zm4.88-1.64c-.28-1.74-.7-3.4-1.25-4.98.48-.06.95-.1 1.4-.1 1.16 0 2.25.18 3.24.5a7.95 7.95 0 01-3.39 4.58z",
-      fill: "currentColor"
-    })
-  });
-};
-var SocialIcon = function SocialIcon(_ref1) {
-  var network = _ref1.network,
-    className = _ref1.className;
-  var key = String(network || '').toLowerCase();
-  var Icon = key === 'twitter' || key === 'x' ? IconX : key === 'linkedin' ? IconLinkedIn : key === 'facebook' ? IconFacebook : key === 'github' ? IconGitHub : key === 'dribbble' ? IconDribbble : null;
-  if (!Icon) return null;
-  return /*#__PURE__*/require$$1.jsx(Icon, {
-    className: className
-  });
-};
-var CrewPanel = function CrewPanel(_ref10) {
-  var _ref10$data = _ref10.data,
-    data = _ref10$data === void 0 ? {} : _ref10$data,
-    className = _ref10.className,
-    id = _ref10.id,
-    variant = _ref10.variant,
-    _ref10$loader = _ref10.loader,
-    loader = _ref10$loader === void 0 ? false : _ref10$loader;
-  var _useState = require$$0.useState(loader),
-    _useState2 = _slicedToArray(_useState, 2),
-    showLoader = _useState2[0],
-    setShowLoader = _useState2[1];
-  require$$0.useEffect(function () {
-    if (loader) {
-      var timer = setTimeout(function () {
-        return setShowLoader(false);
-      }, 2000);
-      return function () {
-        return clearTimeout(timer);
-      };
-    }
-    setShowLoader(false);
-  }, [loader]);
-  var mergedData = require$$0.useMemo(function () {
-    var _data$highlight, _data$highlight2;
-    return {
-      title: data.title || '',
-      subtitle: data.subtitle || '',
-      description: data.description || '',
-      members: data.members || [],
-      theme: data.theme || 'dark',
-      layout: data.variant || variant || 'spotlight-hero',
-      className: data.className,
-      align: data.align || 'center',
-      panelTitle: data.panelTitle || 'Meet Our Experts',
-      panelDescription: data.panelDescription || '',
-      highlights: Array.isArray(data.highlights) ? data.highlights : Array.isArray(data === null || data === void 0 || (_data$highlight = data.highlight) === null || _data$highlight === void 0 ? void 0 : _data$highlight.pillars) ? data.highlight.pillars.map(function (p) {
-        return p === null || p === void 0 ? void 0 : p.title;
-      }).filter(Boolean) : [],
-      stats: Array.isArray(data.stats) ? data.stats : Array.isArray(data === null || data === void 0 || (_data$highlight2 = data.highlight) === null || _data$highlight2 === void 0 ? void 0 : _data$highlight2.metrics) ? data.highlight.metrics.map(function (m) {
-        return {
-          label: m === null || m === void 0 ? void 0 : m.label,
-          value: m === null || m === void 0 ? void 0 : m.value
-        };
-      }).filter(function (m) {
-        return m.label || m.value;
-      }) : [],
-      featuredIndex: Number.isFinite(data.featuredIndex) ? data.featuredIndex : 0
-    };
-  }, [data, variant]);
-  var title = mergedData.title,
-    subtitle = mergedData.subtitle,
-    description = mergedData.description,
-    members = mergedData.members,
-    _mergedData$theme = mergedData.theme,
-    theme = _mergedData$theme === void 0 ? 'dark' : _mergedData$theme,
-    layout = mergedData.layout,
-    align = mergedData.align,
-    dataClassName = mergedData.className;
-  if (!members || members.length === 0) {
-    console.warn('Team: members array is empty');
-    return null;
-  }
-  if (showLoader) {
-    return /*#__PURE__*/require$$1.jsx(CrewLoadingShell, {
-      count: Math.min(8, members.length || 6),
-      columns: 3,
-      theme: theme,
-      className: className
-    });
-  }
-  var SpotlightHero = function SpotlightHero() {
-    return /*#__PURE__*/require$$1.jsxs("section", {
-      id: id,
-      className: clsx('relative overflow-hidden rounded-3xl border', 'px-4 sm:px-6 lg:px-10 py-16 sm:py-20', 'bg-gradient-to-br', getGradientByIndex(0), 'border-gray-800', className, dataClassName),
-      children: [/*#__PURE__*/require$$1.jsx("div", {
-        className: "absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.08),transparent_35%),radial-gradient(circle_at_80%_0%,rgba(255,255,255,0.06),transparent_28%)]"
-      }), /*#__PURE__*/require$$1.jsxs("div", {
-        className: "max-w-7xl mx-auto relative z-10 space-y-12",
-        children: [/*#__PURE__*/require$$1.jsx(SectionHeader, {
-          title: title,
-          subtitle: subtitle,
-          description: description,
-          align: "center",
-          theme: "dark"
-        }), /*#__PURE__*/require$$1.jsxs("div", {
-          className: "grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 items-start",
-          children: [/*#__PURE__*/require$$1.jsx("div", {
-            className: "lg:col-span-1",
-            children: /*#__PURE__*/require$$1.jsx(PortraitCard, {
-              member: members[0],
-              theme: "dark",
-              aspect: "aspect-[3/4]",
-              align: "left",
-              bordered: true,
-              overlay: true,
-              glass: true
-            })
-          }), /*#__PURE__*/require$$1.jsx("div", {
-            className: "lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-5",
-            children: members.map(function (member, idx) {
-              return /*#__PURE__*/require$$1.jsx(PortraitCard, {
-                member: member,
-                theme: "dark",
-                aspect: "aspect-[4/5]",
-                align: "left",
-                bordered: true,
-                glass: true
-              }, member.name + idx);
-            })
-          })]
-        })]
-      })]
-    });
-  };
-  var SpotlightHeroPremium = function SpotlightHeroPremium() {
-    var highlights = mergedData.highlights || [];
-    var stats = mergedData.stats || [];
-    var featuredIndex = Math.max(0, Math.min(members.length - 1, mergedData.featuredIndex || 0));
-    var featuredMember = members[featuredIndex] || members[0];
-    return /*#__PURE__*/require$$1.jsxs("section", {
-      id: id,
-      className: clsx('relative overflow-hidden rounded-[2.5rem] border', 'px-4 sm:px-6 lg:px-10 py-16 sm:py-20', 'bg-gradient-to-b from-gray-950 via-black to-gray-950', 'border-white/10', className, dataClassName),
-      children: [/*#__PURE__*/require$$1.jsxs("div", {
-        className: "pointer-events-none absolute inset-0",
-        children: [/*#__PURE__*/require$$1.jsx("div", {
-          className: "absolute -top-28 left-1/2 h-[520px] w-[820px] -translate-x-1/2 rounded-full bg-primary-500/20 blur-3xl"
-        }), /*#__PURE__*/require$$1.jsx("div", {
-          className: "absolute -bottom-40 -left-40 h-[520px] w-[520px] rounded-full bg-white/10 blur-3xl"
-        }), /*#__PURE__*/require$$1.jsx("div", {
-          className: "absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(59,130,246,0.18),transparent_58%),radial-gradient(circle_at_0%_28%,rgba(255,255,255,0.08),transparent_42%),radial-gradient(circle_at_100%_35%,rgba(255,255,255,0.06),transparent_44%)]"
-        })]
-      }), /*#__PURE__*/require$$1.jsx("div", {
-        className: "max-w-7xl mx-auto relative z-10",
-        children: /*#__PURE__*/require$$1.jsxs("div", {
-          className: "grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start",
-          children: [/*#__PURE__*/require$$1.jsxs("div", {
-            className: "lg:col-span-5 space-y-8",
-            children: [/*#__PURE__*/require$$1.jsx(SectionHeader, {
-              title: title,
-              subtitle: subtitle,
-              description: description,
-              align: "left",
-              theme: "dark"
-            }), highlights.length > 0 && /*#__PURE__*/require$$1.jsx("div", {
-              className: "flex flex-wrap gap-2.5",
-              children: highlights.map(function (item, idx) {
-                return /*#__PURE__*/require$$1.jsxs("div", {
-                  className: "inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-semibold tracking-wide text-gray-200",
-                  children: [/*#__PURE__*/require$$1.jsx("span", {
-                    className: "h-1.5 w-1.5 rounded-full bg-primary-400"
-                  }), item]
-                }, "".concat(item, "-").concat(idx));
-              })
-            }), stats.filter(function (s) {
-              return s && (s.value || s.label);
-            }).length > 0 && /*#__PURE__*/require$$1.jsx("div", {
-              className: "grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4",
-              children: stats.filter(function (s) {
-                return s && (s.value || s.label);
-              }).slice(0, 3).map(function (stat, idx) {
-                return /*#__PURE__*/require$$1.jsxs("div", {
-                  className: "rounded-2xl border border-white/10 bg-white/5 p-4",
-                  children: [(stat === null || stat === void 0 ? void 0 : stat.value) && /*#__PURE__*/require$$1.jsx("div", {
-                    className: "text-2xl sm:text-3xl font-extrabold text-white",
-                    children: stat.value
-                  }), (stat === null || stat === void 0 ? void 0 : stat.label) && /*#__PURE__*/require$$1.jsx("div", {
-                    className: "text-xs font-medium text-gray-300",
-                    children: stat.label
-                  })]
-                }, "".concat((stat === null || stat === void 0 ? void 0 : stat.label) || 'stat', "-").concat(idx));
-              })
-            })]
-          }), /*#__PURE__*/require$$1.jsx("div", {
-            className: "lg:col-span-7",
-            children: /*#__PURE__*/require$$1.jsxs("div", {
-              className: "grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6",
-              children: [/*#__PURE__*/require$$1.jsx("div", {
-                className: "sm:col-span-2",
-                children: /*#__PURE__*/require$$1.jsx(PortraitCard, {
-                  member: featuredMember,
-                  theme: "dark",
-                  aspect: "aspect-[16/9]",
-                  align: "left",
-                  overlay: true,
-                  bordered: true,
-                  glass: true,
-                  interactive: true
-                })
-              }), members.filter(function (_, index) {
-                return index !== featuredIndex;
-              }).map(function (member, idx) {
-                return /*#__PURE__*/require$$1.jsx(PortraitCard, {
-                  member: member,
-                  theme: "dark",
-                  aspect: "aspect-[4/5]",
-                  align: "left",
-                  bordered: true,
-                  glass: true,
-                  interactive: true
-                }, member.name + idx);
-              })]
-            })
-          })]
-        })
-      })]
-    });
-  };
-  var ClassicGrid = function ClassicGrid() {
-    return /*#__PURE__*/require$$1.jsx("section", {
-      id: id,
-      className: clsx('py-16 sm:py-20 bg-white', className, dataClassName),
-      children: /*#__PURE__*/require$$1.jsxs("div", {
-        className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10",
-        children: [/*#__PURE__*/require$$1.jsx(SectionHeader, {
-          title: title,
-          subtitle: subtitle,
-          description: description,
-          align: align,
-          theme: "light"
-        }), /*#__PURE__*/require$$1.jsx("div", {
-          className: "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6",
-          children: members.map(function (member, idx) {
-            return /*#__PURE__*/require$$1.jsx(PortraitCard, {
-              member: member,
-              theme: "light",
-              aspect: "aspect-[4/5]",
-              align: "left",
-              bordered: true
-            }, member.name + idx);
-          })
-        })]
-      })
-    });
-  };
-  var MinimalMonochrome = function MinimalMonochrome() {
-    return /*#__PURE__*/require$$1.jsx("section", {
-      id: id,
-      className: clsx('py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-gray-950', className, dataClassName),
-      children: /*#__PURE__*/require$$1.jsxs("div", {
-        className: "max-w-6xl mx-auto space-y-10",
-        children: [/*#__PURE__*/require$$1.jsx(SectionHeader, {
-          title: title,
-          subtitle: subtitle,
-          description: description,
-          align: "left",
-          theme: "dark"
-        }), /*#__PURE__*/require$$1.jsx("div", {
-          className: "grid grid-cols-1 md:grid-cols-2 gap-6",
-          children: members.map(function (member, idx) {
-            return /*#__PURE__*/require$$1.jsx(PortraitCard, {
-              member: member,
-              theme: "dark",
-              aspect: "aspect-[3/4]",
-              align: "left",
-              bordered: true
-            }, member.name + idx);
-          })
-        })]
-      })
-    });
-  };
-  var SplitShowcase = function SplitShowcase() {
-    return /*#__PURE__*/require$$1.jsx("section", {
-      id: id,
-      className: clsx('py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-white', className, dataClassName),
-      children: /*#__PURE__*/require$$1.jsxs("div", {
-        className: "max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-start",
-        children: [/*#__PURE__*/require$$1.jsx("div", {
-          className: "lg:col-span-4 space-y-6",
-          children: /*#__PURE__*/require$$1.jsx(SectionHeader, {
-            title: title,
-            subtitle: subtitle,
-            description: description,
-            align: "left",
-            theme: "light"
-          })
-        }), /*#__PURE__*/require$$1.jsx("div", {
-          className: "lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-6",
-          children: members.map(function (member, idx) {
-            return /*#__PURE__*/require$$1.jsx(PortraitCard, {
-              member: member,
-              theme: "light",
-              aspect: "aspect-[4/5]",
-              align: "left",
-              bordered: true
-            }, member.name + idx);
-          })
-        })]
-      })
-    });
-  };
-  var BentoBoard = function BentoBoard() {
-    return /*#__PURE__*/require$$1.jsx("section", {
-      id: id,
-      className: clsx('py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-gray-950', className, dataClassName),
-      children: /*#__PURE__*/require$$1.jsxs("div", {
-        className: "max-w-7xl mx-auto space-y-10",
-        children: [/*#__PURE__*/require$$1.jsx(SectionHeader, {
-          title: title,
-          subtitle: subtitle,
-          description: description,
-          align: "center",
-          theme: "dark"
-        }), /*#__PURE__*/require$$1.jsx("div", {
-          className: "grid grid-cols-1 md:grid-cols-4 auto-rows-[260px] gap-4 sm:gap-6",
-          children: members.map(function (member, idx) {
-            return /*#__PURE__*/require$$1.jsx("div", {
-              className: clsx('relative rounded-3xl overflow-hidden', idx === 0 && 'md:col-span-2 md:row-span-2', idx === 3 && 'md:col-span-2', idx === 5 && 'md:row-span-2'),
-              children: /*#__PURE__*/require$$1.jsx(PortraitCard, {
-                member: member,
-                theme: "dark",
-                aspect: "aspect-[4/5]",
-                overlay: true,
-                glass: true,
-                bordered: true
-              })
-            }, member.name + idx);
-          })
-        })]
-      })
-    });
-  };
-  var StackedCards = function StackedCards() {
-    return /*#__PURE__*/require$$1.jsx("section", {
-      id: id,
-      className: clsx('py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-white', className, dataClassName),
-      children: /*#__PURE__*/require$$1.jsxs("div", {
-        className: "max-w-6xl mx-auto space-y-8",
-        children: [/*#__PURE__*/require$$1.jsx(SectionHeader, {
-          title: title,
-          subtitle: subtitle,
-          description: description,
-          align: "left",
-          theme: "light"
-        }), /*#__PURE__*/require$$1.jsx("div", {
-          className: "space-y-4",
-          children: members.map(function (member, idx) {
-            return /*#__PURE__*/require$$1.jsx(InlineCard, {
-              member: member,
-              theme: "light",
-              tone: "solid"
-            }, member.name + idx);
-          })
-        })]
-      })
-    });
-  };
-  var GlassGrid = function GlassGrid() {
-    return /*#__PURE__*/require$$1.jsx("section", {
-      id: id,
-      className: clsx('py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-950 via-black to-gray-900', className, dataClassName),
-      children: /*#__PURE__*/require$$1.jsxs("div", {
-        className: "max-w-7xl mx-auto space-y-10",
-        children: [/*#__PURE__*/require$$1.jsx(SectionHeader, {
-          title: title,
-          subtitle: subtitle,
-          description: description,
-          align: "center",
-          theme: "dark"
-        }), /*#__PURE__*/require$$1.jsx("div", {
-          className: "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6",
-          children: members.map(function (member, idx) {
-            return /*#__PURE__*/require$$1.jsx(PortraitCard, {
-              member: member,
-              theme: "dark",
-              aspect: "aspect-[4/5]",
-              align: "left",
-              bordered: true,
-              glass: true
-            }, member.name + idx);
-          })
-        })]
-      })
-    });
-  };
-  var StripedRows = function StripedRows() {
-    return /*#__PURE__*/require$$1.jsx("section", {
-      id: id,
-      className: clsx('py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-white', className, dataClassName),
-      children: /*#__PURE__*/require$$1.jsxs("div", {
-        className: "max-w-6xl mx-auto space-y-8",
-        children: [/*#__PURE__*/require$$1.jsx(SectionHeader, {
-          title: title,
-          subtitle: subtitle,
-          description: description,
-          align: "left",
-          theme: "light"
-        }), /*#__PURE__*/require$$1.jsx("div", {
-          className: "space-y-4",
-          children: members.map(function (member, idx) {
-            return /*#__PURE__*/require$$1.jsx(InlineCard, {
-              member: member,
-              theme: "light",
-              tone: idx % 2 === 0 ? 'soft' : 'solid',
-              flip: idx % 2 === 1
-            }, member.name + idx);
-          })
-        })]
-      })
-    });
-  };
-  var CompactRoster = function CompactRoster() {
-    return /*#__PURE__*/require$$1.jsx("section", {
-      id: id,
-      className: clsx('py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-gray-950', className, dataClassName),
-      children: /*#__PURE__*/require$$1.jsxs("div", {
-        className: "max-w-6xl mx-auto space-y-8",
-        children: [/*#__PURE__*/require$$1.jsx(SectionHeader, {
-          title: title,
-          subtitle: subtitle,
-          description: description,
-          align: "center",
-          theme: "dark"
-        }), /*#__PURE__*/require$$1.jsx("div", {
-          className: "grid grid-cols-1 sm:grid-cols-2 gap-4",
-          children: members.map(function (member, idx) {
-            return /*#__PURE__*/require$$1.jsx(PortraitCard, {
-              member: member,
-              theme: "dark",
-              aspect: "aspect-[4/5]",
-              align: "left",
-              bordered: true
-            }, member.name + idx);
-          })
-        })]
-      })
-    });
-  };
-  var TimelineLeaders = function TimelineLeaders() {
-    return /*#__PURE__*/require$$1.jsx("section", {
-      id: id,
-      className: clsx('py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-white', className, dataClassName),
-      children: /*#__PURE__*/require$$1.jsxs("div", {
-        className: "max-w-5xl mx-auto space-y-10",
-        children: [/*#__PURE__*/require$$1.jsx(SectionHeader, {
-          title: title,
-          subtitle: subtitle,
-          description: description,
-          align: "center",
-          theme: "light"
-        }), /*#__PURE__*/require$$1.jsx("div", {
-          className: "relative before:absolute before:inset-y-0 before:left-6 sm:before:left-1/2 before:w-px before:bg-gradient-to-b before:from-gray-200 before:via-primary-100 before:to-gray-200",
-          children: members.map(function (member, idx) {
-            return /*#__PURE__*/require$$1.jsxs("div", {
-              className: clsx('relative pl-14 sm:pl-0 sm:pr-12 py-6 sm:py-10 flex flex-col sm:flex-row gap-4', idx % 2 === 1 ? 'sm:flex-row-reverse sm:text-right' : 'sm:text-left'),
-              children: [/*#__PURE__*/require$$1.jsx("div", {
-                className: clsx('absolute left-4 sm:left-1/2 w-3 h-3 rounded-full bg-primary-500 shadow-[0_0_0_6px_rgba(59,130,246,0.12)]', idx % 2 === 1 ? 'sm:-translate-x-1/2 sm:translate-x-full' : 'sm:-translate-x-1/2')
-              }), /*#__PURE__*/require$$1.jsx("div", {
-                className: "flex-1 rounded-2xl border border-gray-200 bg-gray-50 p-5 shadow-sm",
-                children: /*#__PURE__*/require$$1.jsx(PortraitCard, {
-                  member: member,
-                  theme: "light",
-                  aspect: "aspect-[4/5]",
-                  align: "left",
-                  bordered: false
-                })
-              })]
-            }, member.name + idx);
-          })
-        })]
-      })
-    });
-  };
-  var ExpertCarousel = function ExpertCarousel() {
-    var isDark = theme === 'dark';
-    var _useState3 = require$$0.useState(0),
-      _useState4 = _slicedToArray(_useState3, 2),
-      activeIndex = _useState4[0],
-      setActiveIndex = _useState4[1];
-    var panelTitle = mergedData.panelTitle || 'Meet Our Experts';
-    var panelDescription = mergedData.panelDescription || description || '';
-    var safeLen = members.length || 1;
-    var nextIndex = (activeIndex + 1) % safeLen;
-    var cardMembers = safeLen === 1 ? [members[0]] : [members[activeIndex], members[nextIndex]];
-    var onPrev = function onPrev() {
-      return setActiveIndex(function (idx) {
-        return (idx - 1 + safeLen) % safeLen;
-      });
-    };
-    var onNext = function onNext() {
-      return setActiveIndex(function (idx) {
-        return (idx + 1) % safeLen;
-      });
-    };
-    var ArrowButton = function ArrowButton(_ref11) {
-      var onClick = _ref11.onClick,
-        label = _ref11.label,
-        children = _ref11.children;
-      return /*#__PURE__*/require$$1.jsx("button", {
-        type: "button",
-        onClick: onClick,
-        "aria-label": label,
-        className: clsx('h-12 w-12 rounded-full border-2 grid place-items-center transition-colors', isDark ? 'border-primary-400 text-primary-300 hover:bg-primary-500 hover:text-white' : 'border-primary-500 text-primary-600 hover:bg-primary-500 hover:text-white'),
-        children: children
-      });
-    };
-    var ExpertCard = function ExpertCard(_ref12) {
-      var _member$name;
-      var member = _ref12.member;
-      var socials = member !== null && member !== void 0 && member.socials && _typeof(member.socials) === 'object' ? member.socials : {};
-      var socialEntries = Object.entries(socials).filter(function (_ref13) {
-        var _ref14 = _slicedToArray(_ref13, 2),
-          href = _ref14[1];
-        return typeof href === 'string' && href.length > 0;
-      });
-      return /*#__PURE__*/require$$1.jsxs("div", {
-        className: clsx('overflow-hidden rounded-2xl border transition-shadow', isDark ? 'border-white/10 bg-white/5' : 'border-gray-200 bg-white shadow-sm'),
-        children: [/*#__PURE__*/require$$1.jsx("div", {
-          className: "relative w-full aspect-[16/10] overflow-hidden bg-gray-100",
-          children: member !== null && member !== void 0 && member.avatar ? /*#__PURE__*/require$$1.jsx("img", {
-            src: member.avatar,
-            alt: (member === null || member === void 0 ? void 0 : member.name) || 'Team member',
-            className: "absolute inset-0 w-full h-full object-cover"
-          }) : /*#__PURE__*/require$$1.jsx("div", {
-            className: clsx('absolute inset-0 grid place-items-center text-4xl font-bold', isDark ? 'bg-gray-800 text-white/70' : 'bg-gray-100 text-gray-700'),
-            children: (member === null || member === void 0 || (_member$name = member.name) === null || _member$name === void 0 ? void 0 : _member$name.charAt(0)) || '?'
-          })
-        }), /*#__PURE__*/require$$1.jsxs("div", {
-          className: clsx('p-5 sm:p-6', isDark ? 'text-white' : 'text-gray-900'),
-          children: [/*#__PURE__*/require$$1.jsxs("div", {
-            className: "space-y-1",
-            children: [/*#__PURE__*/require$$1.jsx("h3", {
-              className: "text-xl sm:text-2xl font-bold",
-              children: member === null || member === void 0 ? void 0 : member.name
-            }), (member === null || member === void 0 ? void 0 : member.role) && /*#__PURE__*/require$$1.jsx("p", {
-              className: clsx('text-sm font-semibold', isDark ? 'text-primary-300' : 'text-primary-600'),
-              children: member.role
-            })]
-          }), socialEntries.length > 0 && /*#__PURE__*/require$$1.jsx("div", {
-            className: "mt-4 flex items-center gap-3",
-            children: socialEntries.slice(0, 4).map(function (_ref15) {
-              var _ref16 = _slicedToArray(_ref15, 2),
-                network = _ref16[0],
-                href = _ref16[1];
-              return /*#__PURE__*/require$$1.jsx("a", {
-                href: href,
-                target: "_blank",
-                rel: "noreferrer",
-                "aria-label": network,
-                className: clsx('h-9 w-9 rounded-lg grid place-items-center border transition-colors', isDark ? 'bg-white/5 border-white/10 text-primary-200 hover:bg-primary-500 hover:text-white hover:border-primary-500' : 'bg-primary-50 border-primary-100 text-primary-600 hover:bg-primary-500 hover:text-white hover:border-primary-500'),
-                children: /*#__PURE__*/require$$1.jsx(SocialIcon, {
-                  network: network,
-                  className: "h-4.5 w-4.5"
-                })
-              }, network);
-            })
-          }), (member === null || member === void 0 ? void 0 : member.bio) && /*#__PURE__*/require$$1.jsx("p", {
-            className: clsx('mt-4 text-sm leading-relaxed', isDark ? 'text-gray-200' : 'text-gray-600'),
-            children: member.bio
-          })]
-        })]
-      });
-    };
-    return /*#__PURE__*/require$$1.jsx("section", {
-      id: id,
-      className: clsx('py-16 sm:py-20 px-4 sm:px-6 lg:px-8', isDark ? 'bg-gray-950' : 'bg-white', className, dataClassName),
-      children: /*#__PURE__*/require$$1.jsxs("div", {
-        className: "max-w-7xl mx-auto space-y-12",
-        children: [/*#__PURE__*/require$$1.jsxs("div", {
-          className: "text-center space-y-3",
-          children: [title && /*#__PURE__*/require$$1.jsxs("div", {
-            className: "inline-flex flex-col items-center gap-3",
-            children: [/*#__PURE__*/require$$1.jsx("h2", {
-              className: clsx('text-3xl sm:text-4xl font-extrabold', isDark ? 'text-white' : 'text-gray-900'),
-              children: title
-            }), /*#__PURE__*/require$$1.jsx("div", {
-              className: clsx('h-1 w-12', isDark ? 'bg-primary-400' : 'bg-primary-500')
-            })]
-          }), description && /*#__PURE__*/require$$1.jsx("p", {
-            className: clsx('max-w-3xl mx-auto text-base', isDark ? 'text-gray-300' : 'text-gray-600'),
-            children: description
-          })]
-        }), /*#__PURE__*/require$$1.jsxs("div", {
-          className: "grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center",
-          children: [/*#__PURE__*/require$$1.jsxs("div", {
-            className: "lg:col-span-4 space-y-5",
-            children: [/*#__PURE__*/require$$1.jsxs("div", {
-              className: "space-y-3",
-              children: [/*#__PURE__*/require$$1.jsx("h3", {
-                className: clsx('text-3xl sm:text-4xl font-extrabold', isDark ? 'text-white' : 'text-gray-900'),
-                children: panelTitle
-              }), /*#__PURE__*/require$$1.jsx("div", {
-                className: clsx('h-1 w-14', isDark ? 'bg-primary-400' : 'bg-primary-500')
-              }), panelDescription && /*#__PURE__*/require$$1.jsx("p", {
-                className: clsx('text-base leading-relaxed', isDark ? 'text-gray-300' : 'text-gray-600'),
-                children: panelDescription
-              })]
-            }), /*#__PURE__*/require$$1.jsxs("div", {
-              className: "flex items-center gap-4 pt-2",
-              children: [/*#__PURE__*/require$$1.jsx(ArrowButton, {
-                onClick: onPrev,
-                label: "Previous team member",
-                children: /*#__PURE__*/require$$1.jsx(IconArrowLeft, {
-                  className: "h-5 w-5"
-                })
-              }), /*#__PURE__*/require$$1.jsx(ArrowButton, {
-                onClick: onNext,
-                label: "Next team member",
-                children: /*#__PURE__*/require$$1.jsx(IconArrowRight, {
-                  className: "h-5 w-5"
-                })
-              })]
-            })]
-          }), /*#__PURE__*/require$$1.jsx("div", {
-            className: "lg:col-span-8",
-            children: /*#__PURE__*/require$$1.jsx("div", {
-              className: "grid grid-cols-1 sm:grid-cols-2 gap-6",
-              children: cardMembers.map(function (member, idx) {
-                return /*#__PURE__*/require$$1.jsx(ExpertCard, {
-                  member: member
-                }, "".concat((member === null || member === void 0 ? void 0 : member.name) || 'member', "-").concat(idx));
-              })
-            })
-          })]
-        })]
-      })
-    });
-  };
-  var variantComponents = {
-    spotlight: SpotlightHero,
-    'spotlight-hero': SpotlightHeroPremium,
-    grid: ClassicGrid,
-    minimal: MinimalMonochrome,
-    split: SplitShowcase,
-    bento: BentoBoard,
-    stacked: StackedCards,
-    glass: GlassGrid,
-    striped: StripedRows,
-    compact: CompactRoster,
-    timeline: TimelineLeaders,
-    'expert-carousel': ExpertCarousel
-  };
-  var Component = variantComponents[layout] || SpotlightHero;
-  return /*#__PURE__*/require$$1.jsx(Component, {});
+var CrewPanel = function CrewPanel(props) {
+  return /*#__PURE__*/require$$1.jsx(TeamSection, _objectSpread2({}, props));
 };
 
 /**
@@ -42013,7 +41559,6 @@ exports.CommentThread = CommentThread;
 exports.CompareTable = CompareTable;
 exports.ContactStepEmail = ContactStepEmail;
 exports.ContentsNavigator = ContentsNavigator;
-exports.CrewLoadingShell = CrewLoadingShell;
 exports.CrewPanel = CrewPanel;
 exports.DeliveryStepAddress = DeliveryStepAddress;
 exports.FavoritesList = FavoritesList;
@@ -42081,6 +41626,7 @@ exports.SharePanel = SharePanel;
 exports.SortBar = SortBar;
 exports.StarRating = StarRating;
 exports.StoryPanel = StoryPanel;
+exports.TeamSection = TeamSection;
 exports.TechSpecsPanel = TechSpecsPanel;
 exports.TrialStepOffer = TrialStepOffer;
 exports.UploadDropArea = UploadDropArea;
