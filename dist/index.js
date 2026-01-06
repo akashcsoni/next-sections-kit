@@ -1,6 +1,6 @@
 'use strict';
 
-var require$$0 = require('react');
+var React = require('react');
 var require$$1 = require('react/jsx-runtime');
 
 function _arrayLikeToArray(r, a) {
@@ -248,7 +248,7 @@ function _unsupportedIterableToArray(r, a) {
 
 function r(e){var t,f,n="";if("string"==typeof e||"number"==typeof e)n+=e;else if("object"==typeof e)if(Array.isArray(e)){var o=e.length;for(t=0;t<o;t++)e[t]&&(f=r(e[t]))&&(n&&(n+=" "),n+=f);}else for(f in e)e[f]&&(n&&(n+=" "),n+=f);return n}function clsx(){for(var e,t,f=0,n="",o=arguments.length;f<o;f++)(e=arguments[f])&&(t=r(e))&&(n&&(n+=" "),n+=t);return n}
 
-var BannerElite = function BannerElite(_ref) {
+var BannerElite$1 = function BannerElite(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id,
@@ -259,13 +259,13 @@ var BannerElite = function BannerElite(_ref) {
     console.error('BannerElite: data prop is required and must be an object');
     return null;
   }
-  var _useState = require$$0.useState(loader),
+  var _useState = React.useState(loader),
     _useState2 = _slicedToArray(_useState, 2),
     showLoader = _useState2[0],
     setShowLoader = _useState2[1];
 
   // Auto-hide loader after 2 seconds when loader prop is true
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loader) {
       var timer = setTimeout(function () {
         setShowLoader(false);
@@ -503,7 +503,15 @@ var BannerElite = function BannerElite(_ref) {
   return null;
 };
 
-var BannerBlend = function BannerBlend(_ref) {
+var BannerElite = function BannerElite(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(BannerElite$1, props));
+};
+
+var BannerBlend$1 = function BannerBlend(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id,
@@ -513,13 +521,13 @@ var BannerBlend = function BannerBlend(_ref) {
     console.error('BannerBlend: data prop is required and must be an object');
     return null;
   }
-  var _useState = require$$0.useState(loader),
+  var _useState = React.useState(loader),
     _useState2 = _slicedToArray(_useState, 2),
     showLoader = _useState2[0],
     setShowLoader = _useState2[1];
 
   // Auto-hide loader after 2 seconds when loader prop is true
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loader) {
       var timer = setTimeout(function () {
         setShowLoader(false);
@@ -766,6 +774,14 @@ var BannerBlend = function BannerBlend(_ref) {
   });
 };
 
+var BannerBlend = function BannerBlend(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(BannerBlend$1, props));
+};
+
 var getDynamicIcon$1 = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee(library, iconName) {
     var modulePath, iconModule, IconComponent, _t;
@@ -805,15 +821,15 @@ var getDynamicIcon$1 = /*#__PURE__*/function () {
 var IconRenderer = function IconRenderer(_ref2) {
   var icon = _ref2.icon,
     className = _ref2.className;
-  var _useState = require$$0.useState(null),
+  var _useState = React.useState(null),
     _useState2 = _slicedToArray(_useState, 2),
     IconComponent = _useState2[0],
     setIconComponent = _useState2[1];
-  var _useState3 = require$$0.useState(false),
+  var _useState3 = React.useState(false),
     _useState4 = _slicedToArray(_useState3, 2),
     loading = _useState4[0],
     setLoading = _useState4[1];
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (_typeof(icon) === 'object' && icon.library && icon.name) {
       setLoading(true);
       getDynamicIcon$1(icon.library, icon.name).then(function (Icon) {
@@ -854,7 +870,7 @@ var IconRenderer = function IconRenderer(_ref2) {
  * @param {string} [props.id] - ID attribute for the section element
  * @param {boolean} [props.loader=false] - Show loading state
  */
-var BannerFrost = function BannerFrost(_ref3) {
+var BannerFrost$1 = function BannerFrost(_ref3) {
   var data = _ref3.data,
     className = _ref3.className,
     id = _ref3.id,
@@ -864,13 +880,13 @@ var BannerFrost = function BannerFrost(_ref3) {
     console.error('BannerFrost: data prop is required and must be an object');
     return null;
   }
-  var _useState5 = require$$0.useState(loader),
+  var _useState5 = React.useState(loader),
     _useState6 = _slicedToArray(_useState5, 2),
     showLoader = _useState6[0],
     setShowLoader = _useState6[1];
 
   // Auto-hide loader after 2 seconds when loader prop is true
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loader) {
       var timer = setTimeout(function () {
         setShowLoader(false);
@@ -1173,7 +1189,15 @@ var BannerFrost = function BannerFrost(_ref3) {
   });
 };
 
-var HelpCenter = function HelpCenter(_ref) {
+var BannerFrost = function BannerFrost(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(BannerFrost$1, props));
+};
+
+var HelpCenter$1 = function HelpCenter(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id,
@@ -1184,13 +1208,13 @@ var HelpCenter = function HelpCenter(_ref) {
     console.error('FaqHub: data prop is required and must be an object');
     return null;
   }
-  var _useState = require$$0.useState(loader),
+  var _useState = React.useState(loader),
     _useState2 = _slicedToArray(_useState, 2),
     showLoader = _useState2[0],
     setShowLoader = _useState2[1];
 
   // Auto-hide loader after 2 seconds when loader prop is true
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loader) {
       var timer = setTimeout(function () {
         setShowLoader(false);
@@ -1274,7 +1298,7 @@ var HelpCenter = function HelpCenter(_ref) {
     dataClassName = data.className;
 
   // Initialize with first item open by default
-  var _useState3 = require$$0.useState(new Set(items.length > 0 ? [0] : [])),
+  var _useState3 = React.useState(new Set(items.length > 0 ? [0] : [])),
     _useState4 = _slicedToArray(_useState3, 2),
     openItems = _useState4[0],
     setOpenItems = _useState4[1];
@@ -1430,7 +1454,15 @@ var HelpCenter = function HelpCenter(_ref) {
   });
 };
 
-var HelpPulse = function HelpPulse(_ref) {
+var HelpCenter = function HelpCenter(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(HelpCenter$1, props));
+};
+
+var HelpPulse$1 = function HelpPulse(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id,
@@ -1441,13 +1473,13 @@ var HelpPulse = function HelpPulse(_ref) {
     console.error('FaqModern: data prop is required and must be an object');
     return null;
   }
-  var _useState = require$$0.useState(loader),
+  var _useState = React.useState(loader),
     _useState2 = _slicedToArray(_useState, 2),
     showLoader = _useState2[0],
     setShowLoader = _useState2[1];
 
   // Auto-hide loader after 2 seconds when loader prop is true
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loader) {
       var timer = setTimeout(function () {
         setShowLoader(false);
@@ -1538,7 +1570,7 @@ var HelpPulse = function HelpPulse(_ref) {
     dataClassName = data.className;
 
   // Initialize with first item open by default
-  var _useState3 = require$$0.useState(new Set(items.length > 0 ? [0] : [])),
+  var _useState3 = React.useState(new Set(items.length > 0 ? [0] : [])),
     _useState4 = _slicedToArray(_useState3, 2),
     openItems = _useState4[0],
     setOpenItems = _useState4[1];
@@ -1647,9 +1679,9 @@ var HelpPulse = function HelpPulse(_ref) {
           }
 
           // Refs for hover effect coordination
-          var badgeRef = require$$0.useRef(null);
-          var textRef = require$$0.useRef(null);
-          var iconRef = require$$0.useRef(null);
+          var badgeRef = React.useRef(null);
+          var textRef = React.useRef(null);
+          var iconRef = React.useRef(null);
           var handleMouseEnter = function handleMouseEnter() {
             if (isOpen || hasBackgroundImage || variant === 'minimal') return;
             var hover = hoverColor || primaryColor;
@@ -1788,7 +1820,15 @@ var HelpPulse = function HelpPulse(_ref) {
   });
 };
 
-var HelpShowcase = function HelpShowcase(_ref) {
+var HelpPulse = function HelpPulse(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(HelpPulse$1, props));
+};
+
+var HelpShowcase$1 = function HelpShowcase(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id,
@@ -1799,13 +1839,13 @@ var HelpShowcase = function HelpShowcase(_ref) {
     console.error('FaqVisual: data prop is required and must be an object');
     return null;
   }
-  var _useState = require$$0.useState(loader),
+  var _useState = React.useState(loader),
     _useState2 = _slicedToArray(_useState, 2),
     showLoader = _useState2[0],
     setShowLoader = _useState2[1];
 
   // Auto-hide loader after 2 seconds when loader prop is true
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loader) {
       var timer = setTimeout(function () {
         setShowLoader(false);
@@ -1920,7 +1960,7 @@ var HelpShowcase = function HelpShowcase(_ref) {
     dataClassName = data.className;
 
   // Initialize with first item open by default
-  var _useState3 = require$$0.useState(new Set(items.length > 0 ? [0] : [])),
+  var _useState3 = React.useState(new Set(items.length > 0 ? [0] : [])),
     _useState4 = _slicedToArray(_useState3, 2),
     openItems = _useState4[0],
     setOpenItems = _useState4[1];
@@ -2246,7 +2286,15 @@ var HelpShowcase = function HelpShowcase(_ref) {
   });
 };
 
-var HighlightsStack = function HighlightsStack(_ref) {
+var HelpShowcase = function HelpShowcase(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(HelpShowcase$1, props));
+};
+
+var HighlightsStack$1 = function HighlightsStack(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id,
@@ -2257,13 +2305,13 @@ var HighlightsStack = function HighlightsStack(_ref) {
     console.error('FeatureDeck: data prop is required and must be an object');
     return null;
   }
-  var _useState = require$$0.useState(loader),
+  var _useState = React.useState(loader),
     _useState2 = _slicedToArray(_useState, 2),
     showLoader = _useState2[0],
     setShowLoader = _useState2[1];
 
   // Auto-hide loader after 2 seconds when loader prop is true
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loader) {
       var timer = setTimeout(function () {
         setShowLoader(false);
@@ -2309,7 +2357,7 @@ var HighlightsStack = function HighlightsStack(_ref) {
     return 'left';
   };
   var currentIconAlignment = getIconAlignment();
-  var _useState3 = require$$0.useState(null),
+  var _useState3 = React.useState(null),
     _useState4 = _slicedToArray(_useState3, 2),
     hoveredIndex = _useState4[0],
     setHoveredIndex = _useState4[1];
@@ -2899,7 +2947,15 @@ var HighlightsStack = function HighlightsStack(_ref) {
   });
 };
 
-var HighlightsStream = function HighlightsStream(_ref) {
+var HighlightsStack = function HighlightsStack(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(HighlightsStack$1, props));
+};
+
+var HighlightsStream$1 = function HighlightsStream(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id,
@@ -2910,13 +2966,13 @@ var HighlightsStream = function HighlightsStream(_ref) {
     console.error('FeatureModern: data prop is required and must be an object');
     return null;
   }
-  var _useState = require$$0.useState(loader),
+  var _useState = React.useState(loader),
     _useState2 = _slicedToArray(_useState, 2),
     showLoader = _useState2[0],
     setShowLoader = _useState2[1];
 
   // Auto-hide loader after 2 seconds when loader prop is true
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loader) {
       var timer = setTimeout(function () {
         setShowLoader(false);
@@ -2945,7 +3001,7 @@ var HighlightsStream = function HighlightsStream(_ref) {
     showIcons = _data$showIcons === void 0 ? true : _data$showIcons,
     dataClassName = data.className;
   var isDark = theme === 'dark';
-  var _useState3 = require$$0.useState(null),
+  var _useState3 = React.useState(null),
     _useState4 = _slicedToArray(_useState3, 2),
     hoveredIndex = _useState4[0],
     setHoveredIndex = _useState4[1];
@@ -3363,7 +3419,15 @@ var HighlightsStream = function HighlightsStream(_ref) {
   return renderMinimalLayout();
 };
 
-var HighlightsElite = function HighlightsElite(_ref) {
+var HighlightsStream = function HighlightsStream(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(HighlightsStream$1, props));
+};
+
+var HighlightsElite$1 = function HighlightsElite(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id,
@@ -3374,13 +3438,13 @@ var HighlightsElite = function HighlightsElite(_ref) {
     console.error('FeaturePrime: data prop is required and must be an object');
     return null;
   }
-  var _useState = require$$0.useState(loader),
+  var _useState = React.useState(loader),
     _useState2 = _slicedToArray(_useState, 2),
     showLoader = _useState2[0],
     setShowLoader = _useState2[1];
 
   // Auto-hide loader after 2 seconds when loader prop is true
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loader) {
       var timer = setTimeout(function () {
         setShowLoader(false);
@@ -3407,7 +3471,7 @@ var HighlightsElite = function HighlightsElite(_ref) {
     illustration = data.illustration,
     dataClassName = data.className;
   var isDark = theme === 'dark';
-  var _useState3 = require$$0.useState(null),
+  var _useState3 = React.useState(null),
     _useState4 = _slicedToArray(_useState3, 2),
     hoveredIndex = _useState4[0],
     setHoveredIndex = _useState4[1];
@@ -3814,7 +3878,15 @@ var HighlightsElite = function HighlightsElite(_ref) {
   return renderSplitStackedLayout();
 };
 
-var PlansBoard = function PlansBoard(_ref) {
+var HighlightsElite = function HighlightsElite(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(HighlightsElite$1, props));
+};
+
+var PlansBoard$1 = function PlansBoard(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id,
@@ -3825,13 +3897,13 @@ var PlansBoard = function PlansBoard(_ref) {
     console.error('PriceBoard: data prop is required and must be an object');
     return null;
   }
-  var _useState = require$$0.useState(loader),
+  var _useState = React.useState(loader),
     _useState2 = _slicedToArray(_useState, 2),
     showLoader = _useState2[0],
     setShowLoader = _useState2[1];
 
   // Auto-hide loader after 2 seconds when loader prop is true
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loader) {
       var timer = setTimeout(function () {
         setShowLoader(false);
@@ -3920,7 +3992,7 @@ var PlansBoard = function PlansBoard(_ref) {
       })
     });
   }
-  var _useState3 = require$$0.useState(featuredPlanIndex || null),
+  var _useState3 = React.useState(featuredPlanIndex || null),
     _useState4 = _slicedToArray(_useState3, 2);
     _useState4[0];
     _useState4[1];
@@ -4410,7 +4482,15 @@ var PlansBoard = function PlansBoard(_ref) {
   });
 };
 
-var PlansStream = function PlansStream(_ref) {
+var PlansBoard = function PlansBoard(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(PlansBoard$1, props));
+};
+
+var PlansStream$1 = function PlansStream(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id,
@@ -4421,13 +4501,13 @@ var PlansStream = function PlansStream(_ref) {
     console.error('PriceModern: data prop is required and must be an object');
     return null;
   }
-  var _useState = require$$0.useState(loader),
+  var _useState = React.useState(loader),
     _useState2 = _slicedToArray(_useState, 2),
     showLoader = _useState2[0],
     setShowLoader = _useState2[1];
 
   // Auto-hide loader after 2 seconds when loader prop is true
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loader) {
       var timer = setTimeout(function () {
         setShowLoader(false);
@@ -4715,7 +4795,15 @@ var PlansStream = function PlansStream(_ref) {
   });
 };
 
-var PlansElite = function PlansElite(_ref) {
+var PlansStream = function PlansStream(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(PlansStream$1, props));
+};
+
+var PlansElite$1 = function PlansElite(_ref) {
   var _plans$;
   var data = _ref.data,
     className = _ref.className,
@@ -4744,17 +4832,17 @@ var PlansElite = function PlansElite(_ref) {
     showComparison = _data$showComparison === void 0 ? false : _data$showComparison,
     featuredPlanIndex = data.featuredPlanIndex,
     dataClassName = data.className;
-  var _useState = require$$0.useState('month'),
+  var _useState = React.useState('month'),
     _useState2 = _slicedToArray(_useState, 2),
     billingPeriod = _useState2[0],
     setBillingPeriod = _useState2[1];
-  var _useState3 = require$$0.useState(loader),
+  var _useState3 = React.useState(loader),
     _useState4 = _slicedToArray(_useState3, 2),
     showLoader = _useState4[0],
     setShowLoader = _useState4[1];
 
   // Auto-hide loader after 2 seconds when loader prop is true
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loader) {
       var timer = setTimeout(function () {
         setShowLoader(false);
@@ -5097,7 +5185,15 @@ var PlansElite = function PlansElite(_ref) {
   });
 };
 
-var AssuranceStrip = function AssuranceStrip(_ref) {
+var PlansElite = function PlansElite(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(PlansElite$1, props));
+};
+
+var AssuranceStrip$1 = function AssuranceStrip(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id,
@@ -5108,13 +5204,13 @@ var AssuranceStrip = function AssuranceStrip(_ref) {
     console.error('TrustBlock: data prop is required and must be an object');
     return null;
   }
-  var _useState = require$$0.useState(loader),
+  var _useState = React.useState(loader),
     _useState2 = _slicedToArray(_useState, 2),
     showLoader = _useState2[0],
     setShowLoader = _useState2[1];
 
   // Auto-hide loader after 2 seconds when loader prop is true
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loader) {
       var timer = setTimeout(function () {
         setShowLoader(false);
@@ -5472,7 +5568,15 @@ var AssuranceStrip = function AssuranceStrip(_ref) {
   });
 };
 
-var ReviewsCarousel = function ReviewsCarousel(_ref) {
+var AssuranceStrip = function AssuranceStrip(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(AssuranceStrip$1, props));
+};
+
+var ReviewsCarousel$1 = function ReviewsCarousel(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id,
@@ -5482,13 +5586,13 @@ var ReviewsCarousel = function ReviewsCarousel(_ref) {
     console.error('TestimonialCarousel: data prop is required and must be an object');
     return null;
   }
-  var _useState = require$$0.useState(loader),
+  var _useState = React.useState(loader),
     _useState2 = _slicedToArray(_useState, 2),
     showLoader = _useState2[0],
     setShowLoader = _useState2[1];
 
   // Auto-hide loader after 2 seconds when loader prop is true
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loader) {
       var timer = setTimeout(function () {
         setShowLoader(false);
@@ -5588,11 +5692,11 @@ var ReviewsCarousel = function ReviewsCarousel(_ref) {
       })
     });
   }
-  var _useState3 = require$$0.useState(0),
+  var _useState3 = React.useState(0),
     _useState4 = _slicedToArray(_useState3, 2),
     currentIndex = _useState4[0],
     setCurrentIndex = _useState4[1];
-  var _useState5 = require$$0.useState(false),
+  var _useState5 = React.useState(false),
     _useState6 = _slicedToArray(_useState5, 2),
     isPaused = _useState6[0],
     setIsPaused = _useState6[1];
@@ -5603,7 +5707,7 @@ var ReviewsCarousel = function ReviewsCarousel(_ref) {
   };
 
   // Auto-play functionality
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (!autoPlay || isPaused || testimonials.length <= 1) return;
     var interval = setInterval(function () {
       setCurrentIndex(function (prev) {
@@ -5818,7 +5922,15 @@ var ReviewsCarousel = function ReviewsCarousel(_ref) {
   });
 };
 
-var ReviewsTimeline = function ReviewsTimeline(_ref) {
+var ReviewsCarousel = function ReviewsCarousel(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(ReviewsCarousel$1, props));
+};
+
+var ReviewsTimeline$1 = function ReviewsTimeline(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id,
@@ -5828,13 +5940,13 @@ var ReviewsTimeline = function ReviewsTimeline(_ref) {
     console.error('TestimonialTimeline: data prop is required and must be an object');
     return null;
   }
-  var _useState = require$$0.useState(loader),
+  var _useState = React.useState(loader),
     _useState2 = _slicedToArray(_useState, 2),
     showLoader = _useState2[0],
     setShowLoader = _useState2[1];
 
   // Auto-hide loader after 2 seconds when loader prop is true
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loader) {
       var timer = setTimeout(function () {
         setShowLoader(false);
@@ -6117,7 +6229,15 @@ var ReviewsTimeline = function ReviewsTimeline(_ref) {
   });
 };
 
-var MotionRail = function MotionRail(_ref) {
+var ReviewsTimeline = function ReviewsTimeline(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(ReviewsTimeline$1, props));
+};
+
+var MotionRail$1 = function MotionRail(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id,
@@ -6128,13 +6248,13 @@ var MotionRail = function MotionRail(_ref) {
     console.error('SlideFlow: data prop is required and must be an object');
     return null;
   }
-  var _useState = require$$0.useState(loader),
+  var _useState = React.useState(loader),
     _useState2 = _slicedToArray(_useState, 2),
     showLoader = _useState2[0],
     setShowLoader = _useState2[1];
 
   // Auto-hide loader after 2 seconds when loader prop is true
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loader) {
       var timer = setTimeout(function () {
         setShowLoader(false);
@@ -6151,6 +6271,7 @@ var MotionRail = function MotionRail(_ref) {
     description = data.description,
     _data$slides = data.slides,
     slides = _data$slides === void 0 ? [] : _data$slides,
+    mode = data.mode,
     _data$variant = data.variant,
     variant = _data$variant === void 0 ? 'default' : _data$variant,
     _data$transition = data.transition,
@@ -6173,6 +6294,9 @@ var MotionRail = function MotionRail(_ref) {
     pauseOnHover = _data$pauseOnHover === void 0 ? true : _data$pauseOnHover,
     dataClassName = data.className;
 
+  // Special-case: logo rails should be compact, not show overlay text, and keep images contained.
+  var isLogoRail = mode === 'logos';
+
   // Show loader if loader prop is true
   if (showLoader) {
     return /*#__PURE__*/require$$1.jsx("section", {
@@ -6192,20 +6316,20 @@ var MotionRail = function MotionRail(_ref) {
       })
     });
   }
-  var _useState3 = require$$0.useState(0),
+  var _useState3 = React.useState(0),
     _useState4 = _slicedToArray(_useState3, 2),
     currentIndex = _useState4[0],
     setCurrentIndex = _useState4[1];
-  var _useState5 = require$$0.useState(false),
+  var _useState5 = React.useState(false),
     _useState6 = _slicedToArray(_useState5, 2),
     isPaused = _useState6[0],
     setIsPaused = _useState6[1];
-  var _useState7 = require$$0.useState(false),
+  var _useState7 = React.useState(false),
     _useState8 = _slicedToArray(_useState7, 2),
     isTransitioning = _useState8[0],
     setIsTransitioning = _useState8[1];
-  var carouselRef = require$$0.useRef(null);
-  var autoplayTimerRef = require$$0.useRef(null);
+  var carouselRef = React.useRef(null);
+  var autoplayTimerRef = React.useRef(null);
 
   // Determine if autoplay should be enabled
   var isAutoplay = variant === 'autoplay' || variant.includes('autoplay');
@@ -6253,7 +6377,9 @@ var MotionRail = function MotionRail(_ref) {
   };
 
   // Autoplay effect
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
+    // Logo rails use CSS marquee animation (no JS stepping)
+    if (isLogoRail) return;
     if (isAutoplay && !isPaused && slides.length > 1) {
       autoplayTimerRef.current = setInterval(function () {
         setCurrentIndex(function (prev) {
@@ -6324,10 +6450,15 @@ var MotionRail = function MotionRail(_ref) {
     if (variant === 'vertical') {
       return clsx(baseClasses, 'h-[600px]');
     }
+
+    // Logo rail / multi-card use-case: keep the carousel compact
+    if (isLogoRail || variant === 'multiple') {
+      return clsx(baseClasses, 'h-[180px] sm:h-[220px]');
+    }
     return clsx(baseClasses, 'h-[500px] sm:h-[600px]');
   };
   var getSlideClasses = function getSlideClasses(index) {
-    var baseClasses = 'absolute inset-0 transition-all duration-500 ease-in-out';
+    var baseClasses = isLogoRail || variant === 'multiple' || slidesToShow > 1 ? 'absolute top-0 bottom-0 transition-all duration-500 ease-in-out' : 'absolute inset-0 transition-all duration-500 ease-in-out';
 
     // Fade transition
     if (transition === 'fade' || variant === 'fade') {
@@ -6376,10 +6507,13 @@ var MotionRail = function MotionRail(_ref) {
 
     // Multiple slides visible
     if (variant === 'multiple' || slidesToShow > 1) {
-      var _offset2 = (index - currentIndex) * (100 / slidesToShow);
       var isVisible = index >= currentIndex && index < currentIndex + slidesToShow;
+      var slot = 100 / slidesToShow;
+      var left = (index - currentIndex) * slot;
       return {
-        transform: "translateX(".concat(_offset2, "%)"),
+        left: "".concat(left, "%"),
+        width: "".concat(slot, "%"),
+        transform: 'translateX(0)',
         opacity: isVisible ? 1 : 0,
         zIndex: isVisible ? 10 : 0
       };
@@ -6387,10 +6521,10 @@ var MotionRail = function MotionRail(_ref) {
 
     // Center mode
     if (variant === 'center') {
-      var _offset3 = (index - currentIndex) * 100;
+      var _offset2 = (index - currentIndex) * 100;
       var isActive = index === currentIndex;
       return {
-        transform: "translateX(".concat(_offset3, "%) scale(").concat(isActive ? 1 : 0.95, ")"),
+        transform: "translateX(".concat(_offset2, "%) scale(").concat(isActive ? 1 : 0.95, ")"),
         opacity: isActive ? 1 : 0.5,
         zIndex: isActive ? 10 : 0
       };
@@ -6408,8 +6542,10 @@ var MotionRail = function MotionRail(_ref) {
       children: [/*#__PURE__*/require$$1.jsx("img", {
         src: slide.image,
         alt: slide.title || "Slide ".concat(index + 1),
-        className: "w-full h-full object-cover"
-      }), (slide.title || slide.description || slide.content) && /*#__PURE__*/require$$1.jsxs("div", {
+        className: clsx('w-full h-full',
+        // For logo rails, preserve aspect ratio (no cropping)
+        isLogoRail || variant === 'multiple' ? 'object-contain p-8 sm:p-10' : 'object-cover')
+      }), !isLogoRail && variant !== 'multiple' && (slide.title || slide.description || slide.content) && /*#__PURE__*/require$$1.jsxs("div", {
         className: clsx('absolute inset-0 flex flex-col justify-center px-4 sm:px-6 lg:px-8', variant === 'fullscreen' && 'bg-black bg-opacity-40', alignmentClasses[alignment]),
         children: [slide.title && /*#__PURE__*/require$$1.jsx("h3", {
           className: "text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4",
@@ -6591,7 +6727,36 @@ var MotionRail = function MotionRail(_ref) {
         onMouseLeave: handleMouseLeave,
         children: [/*#__PURE__*/require$$1.jsx("div", {
           className: "relative w-full h-full",
-          children: slides.map(function (slide, index) {
+          children: isLogoRail ? function () {
+            var visible = Math.max(1, Math.min(Number(slidesToShow) || 1, slides.length || 1));
+            var durationSeconds = Math.max(8, Math.round((slides.length || 1) * (Number(autoplayInterval) || 3000) / 1000));
+            var trackSlides = [].concat(_toConsumableArray(slides), _toConsumableArray(slides));
+            return /*#__PURE__*/require$$1.jsx("div", {
+              className: clsx('ls-logo-slider', pauseOnHover && 'is-pausable'),
+              style: {
+                '--ls-logos-visible': visible,
+                '--ls-logos-duration': "".concat(durationSeconds, "s")
+              },
+              children: /*#__PURE__*/require$$1.jsx("div", {
+                className: "ls-logo-track",
+                "aria-label": "Client logos",
+                children: trackSlides.map(function (slide, idx) {
+                  return /*#__PURE__*/require$$1.jsx("div", {
+                    className: "ls-logo-slide",
+                    children: slide !== null && slide !== void 0 && slide.image ? /*#__PURE__*/require$$1.jsx("img", {
+                      src: slide.image,
+                      alt: slide.title || 'Logo',
+                      className: "ls-logo-img",
+                      loading: "lazy"
+                    }) : /*#__PURE__*/require$$1.jsx("span", {
+                      className: "text-sm text-gray-500",
+                      children: (slide === null || slide === void 0 ? void 0 : slide.title) || ''
+                    })
+                  }, "".concat((slide === null || slide === void 0 ? void 0 : slide.title) || 'logo', "-").concat(idx));
+                })
+              })
+            });
+          }() : slides.map(function (slide, index) {
             return renderSlide(slide, index);
           })
         }), renderArrows(), renderDots(), renderThumbnails()]
@@ -6600,7 +6765,15 @@ var MotionRail = function MotionRail(_ref) {
   });
 };
 
-var HeaderFrame = function HeaderFrame(_ref) {
+var MotionRail = function MotionRail(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(MotionRail$1, props));
+};
+
+var HeaderFrame$1 = function HeaderFrame(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id;
@@ -6868,28 +7041,28 @@ var HeaderFrame = function HeaderFrame(_ref) {
       })
     });
   }
-  var _useState = require$$0.useState(false),
+  var _useState = React.useState(false),
     _useState2 = _slicedToArray(_useState, 2),
     isScrolled = _useState2[0],
     setIsScrolled = _useState2[1];
-  var _useState3 = require$$0.useState(false),
+  var _useState3 = React.useState(false),
     _useState4 = _slicedToArray(_useState3, 2),
     isMobileMenuOpen = _useState4[0],
     setIsMobileMenuOpen = _useState4[1];
   // First nav link (index 0) is active by default if navItems exist
-  var _useState5 = require$$0.useState(navItems && navItems.length > 0 ? 0 : null),
+  var _useState5 = React.useState(navItems && navItems.length > 0 ? 0 : null),
     _useState6 = _slicedToArray(_useState5, 2),
     activeNavIndex = _useState6[0],
     setActiveNavIndex = _useState6[1];
-  var _useState7 = require$$0.useState(''),
+  var _useState7 = React.useState(''),
     _useState8 = _slicedToArray(_useState7, 2),
     searchQuery = _useState8[0],
     setSearchQuery = _useState8[1];
-  var _useState9 = require$$0.useState(null),
+  var _useState9 = React.useState(null),
     _useState0 = _slicedToArray(_useState9, 2),
     openDropdown = _useState0[0],
     setOpenDropdown = _useState0[1];
-  var dropdownRef = require$$0.useRef(null);
+  var dropdownRef = React.useRef(null);
 
   // Function to check if a nav item is active
   var isNavItemActive = function isNavItemActive(item, index) {
@@ -6907,7 +7080,7 @@ var HeaderFrame = function HeaderFrame(_ref) {
   };
 
   // Reset active nav index if navItems change and current active index is out of bounds
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (navItems && navItems.length > 0) {
       // If current active index is out of bounds, reset to first item (index 0)
       setActiveNavIndex(function (prevIndex) {
@@ -6921,7 +7094,7 @@ var HeaderFrame = function HeaderFrame(_ref) {
       setActiveNavIndex(null);
     }
   }, [navItems]);
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (!sticky) return;
     var handleScroll = function handleScroll() {
       setIsScrolled(window.scrollY > 10);
@@ -6933,7 +7106,7 @@ var HeaderFrame = function HeaderFrame(_ref) {
   }, [sticky]);
 
   // Close dropdown when clicking outside
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     var handleClickOutside = function handleClickOutside(event) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setOpenDropdown(null);
@@ -6948,7 +7121,7 @@ var HeaderFrame = function HeaderFrame(_ref) {
   }, [openDropdown]);
 
   // Keyboard navigation
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (!isMobileMenuOpen) return;
     var handleKeyDown = function handleKeyDown(e) {
       if (e.key === 'Escape') {
@@ -8273,7 +8446,15 @@ var HeaderFrame = function HeaderFrame(_ref) {
   });
 };
 
-var HeaderClassic = function HeaderClassic(_ref) {
+var HeaderFrame = function HeaderFrame(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(HeaderFrame$1, props));
+};
+
+var HeaderClassic$1 = function HeaderClassic(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id;
@@ -8567,45 +8748,45 @@ var HeaderClassic = function HeaderClassic(_ref) {
       })
     });
   }
-  var _useState = require$$0.useState(false),
+  var _useState = React.useState(false),
     _useState2 = _slicedToArray(_useState, 2),
     isScrolled = _useState2[0],
     setIsScrolled = _useState2[1];
-  var _useState3 = require$$0.useState(false),
+  var _useState3 = React.useState(false),
     _useState4 = _slicedToArray(_useState3, 2),
     isMobileMenuOpen = _useState4[0],
     setIsMobileMenuOpen = _useState4[1];
-  var _useState5 = require$$0.useState(navItems && navItems.length > 0 ? 0 : null),
+  var _useState5 = React.useState(navItems && navItems.length > 0 ? 0 : null),
     _useState6 = _slicedToArray(_useState5, 2),
     activeNavIndex = _useState6[0],
     setActiveNavIndex = _useState6[1];
-  var _useState7 = require$$0.useState(''),
+  var _useState7 = React.useState(''),
     _useState8 = _slicedToArray(_useState7, 2),
     searchQuery = _useState8[0],
     setSearchQuery = _useState8[1];
-  var _useState9 = require$$0.useState(null),
+  var _useState9 = React.useState(null),
     _useState0 = _slicedToArray(_useState9, 2),
     openDropdown = _useState0[0],
     setOpenDropdown = _useState0[1];
-  var _useState1 = require$$0.useState(null),
+  var _useState1 = React.useState(null),
     _useState10 = _slicedToArray(_useState1, 2),
     openMegaMenu = _useState10[0],
     setOpenMegaMenu = _useState10[1];
-  var _useState11 = require$$0.useState(null),
+  var _useState11 = React.useState(null),
     _useState12 = _slicedToArray(_useState11, 2),
     openMobileDropdown = _useState12[0],
     setOpenMobileDropdown = _useState12[1];
-  var _useState13 = require$$0.useState(null),
+  var _useState13 = React.useState(null),
     _useState14 = _slicedToArray(_useState13, 2),
     openMobileMegaMenu = _useState14[0],
     setOpenMobileMegaMenu = _useState14[1];
-  var _useState15 = require$$0.useState(false),
+  var _useState15 = React.useState(false),
     _useState16 = _slicedToArray(_useState15, 2),
     isMobile = _useState16[0],
     setIsMobile = _useState16[1];
-  var dropdownRef = require$$0.useRef(null);
-  var megaMenuRef = require$$0.useRef(null);
-  var mobileMenuRef = require$$0.useRef(null);
+  var dropdownRef = React.useRef(null);
+  var megaMenuRef = React.useRef(null);
+  var mobileMenuRef = React.useRef(null);
   var isNavItemActive = function isNavItemActive(item, index) {
     return activeNavIndex === index || item.active;
   };
@@ -8619,7 +8800,7 @@ var HeaderClassic = function HeaderClassic(_ref) {
   };
 
   // Check if device is mobile
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     var checkMobile = function checkMobile() {
       setIsMobile(window.innerWidth < 768); // md breakpoint
     };
@@ -8631,7 +8812,7 @@ var HeaderClassic = function HeaderClassic(_ref) {
   }, []);
 
   // Lock body scroll when mobile menu is open
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (isMobileMenuOpen) {
       document.body.style.overflow = 'hidden';
     } else {
@@ -8641,7 +8822,7 @@ var HeaderClassic = function HeaderClassic(_ref) {
       document.body.style.overflow = '';
     };
   }, [isMobileMenuOpen]);
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (navItems && navItems.length > 0) {
       setActiveNavIndex(function (prevIndex) {
         if (prevIndex === null || prevIndex >= navItems.length) {
@@ -8653,7 +8834,7 @@ var HeaderClassic = function HeaderClassic(_ref) {
       setActiveNavIndex(null);
     }
   }, [navItems]);
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (!sticky) return;
     var handleScroll = function handleScroll() {
       setIsScrolled(window.scrollY > 10);
@@ -8663,7 +8844,7 @@ var HeaderClassic = function HeaderClassic(_ref) {
       return window.removeEventListener('scroll', handleScroll);
     };
   }, [sticky]);
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     var handleClickOutside = function handleClickOutside(event) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setOpenDropdown(null);
@@ -8687,7 +8868,7 @@ var HeaderClassic = function HeaderClassic(_ref) {
   }, [openDropdown, openMegaMenu, isMobileMenuOpen]);
 
   // Handle escape key to close mobile menu
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     var handleEscape = function handleEscape(e) {
       if (e.key === 'Escape' && isMobileMenuOpen) {
         setIsMobileMenuOpen(false);
@@ -9797,7 +9978,7 @@ var HeaderClassic = function HeaderClassic(_ref) {
 
   // Variant 6: Header with Tabs
   if (variant === 'tabs') {
-    var _useState17 = require$$0.useState(tabs.length > 0 ? 0 : null),
+    var _useState17 = React.useState(tabs.length > 0 ? 0 : null),
       _useState18 = _slicedToArray(_useState17, 2),
       activeTab = _useState18[0],
       setActiveTab = _useState18[1];
@@ -9971,7 +10152,15 @@ var HeaderClassic = function HeaderClassic(_ref) {
   return null;
 };
 
-var HeaderElite = function HeaderElite(_ref) {
+var HeaderClassic = function HeaderClassic(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(HeaderClassic$1, props));
+};
+
+var HeaderElite$1 = function HeaderElite(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id;
@@ -9994,35 +10183,35 @@ var HeaderElite = function HeaderElite(_ref) {
     variant = _data$variant === void 0 ? 'split' : _data$variant,
     _data$sticky = data.sticky,
     sticky = _data$sticky === void 0 ? true : _data$sticky;
-  var _useState = require$$0.useState(false),
+  var _useState = React.useState(false),
     _useState2 = _slicedToArray(_useState, 2),
     isScrolled = _useState2[0],
     setIsScrolled = _useState2[1];
-  var _useState3 = require$$0.useState(false),
+  var _useState3 = React.useState(false),
     _useState4 = _slicedToArray(_useState3, 2),
     isMobileMenuOpen = _useState4[0],
     setIsMobileMenuOpen = _useState4[1];
-  var _useState5 = require$$0.useState(null),
+  var _useState5 = React.useState(null),
     _useState6 = _slicedToArray(_useState5, 2),
     activeNavIndex = _useState6[0],
     setActiveNavIndex = _useState6[1];
-  var _useState7 = require$$0.useState(''),
+  var _useState7 = React.useState(''),
     _useState8 = _slicedToArray(_useState7, 2),
     searchQuery = _useState8[0],
     setSearchQuery = _useState8[1];
-  var _useState9 = require$$0.useState(null),
+  var _useState9 = React.useState(null),
     _useState0 = _slicedToArray(_useState9, 2),
     openDropdown = _useState0[0],
     setOpenDropdown = _useState0[1];
-  var _useState1 = require$$0.useState({
+  var _useState1 = React.useState({
       x: 0,
       y: 0
     }),
     _useState10 = _slicedToArray(_useState1, 2),
     mousePosition = _useState10[0],
     setMousePosition = _useState10[1];
-  var dropdownRef = require$$0.useRef(null);
-  var headerRef = require$$0.useRef(null);
+  var dropdownRef = React.useRef(null);
+  var headerRef = React.useRef(null);
   var isNavItemActive = function isNavItemActive(item, index) {
     return activeNavIndex === index || item.active;
   };
@@ -10031,7 +10220,7 @@ var HeaderElite = function HeaderElite(_ref) {
     setIsMobileMenuOpen(false);
     setOpenDropdown(null);
   };
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (navItems && navItems.length > 0 && activeNavIndex === null) {
       var activeIndex = navItems.findIndex(function (item) {
         return item.active;
@@ -10039,7 +10228,7 @@ var HeaderElite = function HeaderElite(_ref) {
       setActiveNavIndex(activeIndex >= 0 ? activeIndex : null);
     }
   }, [navItems, activeNavIndex]);
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (!sticky) return;
     var handleScroll = function handleScroll() {
       setIsScrolled(window.scrollY > 10);
@@ -10049,7 +10238,7 @@ var HeaderElite = function HeaderElite(_ref) {
       return window.removeEventListener('scroll', handleScroll);
     };
   }, [sticky]);
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     var handleClickOutside = function handleClickOutside(event) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setOpenDropdown(null);
@@ -10062,7 +10251,7 @@ var HeaderElite = function HeaderElite(_ref) {
       };
     }
   }, [openDropdown]);
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (variant === 'particle' && headerRef.current) {
       var handleMouseMove = function handleMouseMove(e) {
         var rect = headerRef.current.getBoundingClientRect();
@@ -11575,7 +11764,15 @@ var HeaderElite = function HeaderElite(_ref) {
   return null;
 };
 
-var FooterLayout = function FooterLayout(_ref) {
+var HeaderElite = function HeaderElite(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(HeaderElite$1, props));
+};
+
+var FooterLayout$1 = function FooterLayout(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id;
@@ -13001,7 +13198,15 @@ var FooterLayout = function FooterLayout(_ref) {
   return null;
 };
 
-var ArticleTile = function ArticleTile(_ref) {
+var FooterLayout = function FooterLayout(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(FooterLayout$1, props));
+};
+
+var ArticleTile$1 = function ArticleTile(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id,
@@ -13039,17 +13244,17 @@ var ArticleTile = function ArticleTile(_ref) {
     text: button,
     href: href
   } : button;
-  var _useState = require$$0.useState(false),
+  var _useState = React.useState(false),
     _useState2 = _slicedToArray(_useState, 2),
     isHovered = _useState2[0],
     setIsHovered = _useState2[1];
-  var _useState3 = require$$0.useState(loader),
+  var _useState3 = React.useState(loader),
     _useState4 = _slicedToArray(_useState3, 2),
     showLoader = _useState4[0],
     setShowLoader = _useState4[1];
 
   // Auto-hide loader after 2 seconds when loader prop is true
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loader) {
       var timer = setTimeout(function () {
         setShowLoader(false);
@@ -13636,7 +13841,15 @@ var ArticleTile = function ArticleTile(_ref) {
   });
 };
 
-var ArticleMasonry = function ArticleMasonry(_ref) {
+var ArticleTile = function ArticleTile(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(ArticleTile$1, props));
+};
+
+var ArticleMasonry$1 = function ArticleMasonry(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id,
@@ -13647,13 +13860,13 @@ var ArticleMasonry = function ArticleMasonry(_ref) {
     console.error('BlogGrid: data prop is required and must be an object');
     return null;
   }
-  var _useState = require$$0.useState(loader),
+  var _useState = React.useState(loader),
     _useState2 = _slicedToArray(_useState, 2),
     showLoader = _useState2[0],
     setShowLoader = _useState2[1];
 
   // Auto-hide loader after 2 seconds when loader prop is true
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loader) {
       var timer = setTimeout(function () {
         setShowLoader(false);
@@ -13852,7 +14065,15 @@ var ArticleMasonry = function ArticleMasonry(_ref) {
   });
 };
 
-var ArticleDetail = function ArticleDetail(_ref) {
+var ArticleMasonry = function ArticleMasonry(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(ArticleMasonry$1, props));
+};
+
+var ArticleDetail$1 = function ArticleDetail(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id,
@@ -13863,13 +14084,13 @@ var ArticleDetail = function ArticleDetail(_ref) {
     console.error('BlogSingle: data prop is required and must be an object');
     return null;
   }
-  var _useState = require$$0.useState(loader),
+  var _useState = React.useState(loader),
     _useState2 = _slicedToArray(_useState, 2),
     showLoader = _useState2[0],
     setShowLoader = _useState2[1];
 
   // Auto-hide loader after 2 seconds when loader prop is true
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loader) {
       var timer = setTimeout(function () {
         setShowLoader(false);
@@ -14688,7 +14909,15 @@ var ArticleDetail = function ArticleDetail(_ref) {
   return null;
 };
 
-var AuthorBadge = function AuthorBadge(_ref) {
+var ArticleDetail = function ArticleDetail(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(ArticleDetail$1, props));
+};
+
+var AuthorBadge$1 = function AuthorBadge(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id,
@@ -14698,11 +14927,11 @@ var AuthorBadge = function AuthorBadge(_ref) {
     console.error('BlogAuthor: data prop is required and must be an object');
     return null;
   }
-  var _useState = require$$0.useState(loader),
+  var _useState = React.useState(loader),
     _useState2 = _slicedToArray(_useState, 2),
     showLoader = _useState2[0],
     setShowLoader = _useState2[1];
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loader) {
       var timer = setTimeout(function () {
         setShowLoader(false);
@@ -15095,7 +15324,15 @@ var AuthorBadge = function AuthorBadge(_ref) {
   return null;
 };
 
-var CommentThread = function CommentThread(_ref) {
+var AuthorBadge = function AuthorBadge(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(AuthorBadge$1, props));
+};
+
+var CommentThread$1 = function CommentThread(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id,
@@ -15105,15 +15342,15 @@ var CommentThread = function CommentThread(_ref) {
     console.error('BlogComments: data prop is required and must be an object');
     return null;
   }
-  var _useState = require$$0.useState(loader),
+  var _useState = React.useState(loader),
     _useState2 = _slicedToArray(_useState, 2),
     showLoader = _useState2[0],
     setShowLoader = _useState2[1];
-  var _useState3 = require$$0.useState(data.comments || []),
+  var _useState3 = React.useState(data.comments || []),
     _useState4 = _slicedToArray(_useState3, 2),
     comments = _useState4[0],
     setComments = _useState4[1];
-  var _useState5 = require$$0.useState({
+  var _useState5 = React.useState({
       name: '',
       email: '',
       content: ''
@@ -15121,7 +15358,7 @@ var CommentThread = function CommentThread(_ref) {
     _useState6 = _slicedToArray(_useState5, 2),
     newComment = _useState6[0],
     setNewComment = _useState6[1];
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loader) {
       var timer = setTimeout(function () {
         setShowLoader(false);
@@ -15133,7 +15370,7 @@ var CommentThread = function CommentThread(_ref) {
       setShowLoader(false);
     }
   }, [loader]);
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     setComments(data.comments || []);
   }, [data.comments]);
   var totalComments = data.totalComments,
@@ -15333,7 +15570,15 @@ var CommentThread = function CommentThread(_ref) {
   return null;
 };
 
-var ArticleNav = function ArticleNav(_ref) {
+var CommentThread = function CommentThread(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(CommentThread$1, props));
+};
+
+var ArticleNav$1 = function ArticleNav(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id,
@@ -15343,11 +15588,11 @@ var ArticleNav = function ArticleNav(_ref) {
     console.error('BlogNavigation: data prop is required and must be an object');
     return null;
   }
-  var _useState = require$$0.useState(loader),
+  var _useState = React.useState(loader),
     _useState2 = _slicedToArray(_useState, 2),
     showLoader = _useState2[0],
     setShowLoader = _useState2[1];
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loader) {
       var timer = setTimeout(function () {
         setShowLoader(false);
@@ -15564,7 +15809,15 @@ var ArticleNav = function ArticleNav(_ref) {
   return null;
 };
 
-var ShareBar = function ShareBar(_ref) {
+var ArticleNav = function ArticleNav(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(ArticleNav$1, props));
+};
+
+var ShareBar$1 = function ShareBar(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id,
@@ -15574,15 +15827,15 @@ var ShareBar = function ShareBar(_ref) {
     console.error('BlogShare: data prop is required and must be an object');
     return null;
   }
-  var _useState = require$$0.useState(loader),
+  var _useState = React.useState(loader),
     _useState2 = _slicedToArray(_useState, 2),
     showLoader = _useState2[0],
     setShowLoader = _useState2[1];
-  var _useState3 = require$$0.useState(false),
+  var _useState3 = React.useState(false),
     _useState4 = _slicedToArray(_useState3, 2),
     copied = _useState4[0],
     setCopied = _useState4[1];
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loader) {
       var timer = setTimeout(function () {
         setShowLoader(false);
@@ -15788,7 +16041,15 @@ var ShareBar = function ShareBar(_ref) {
   return null;
 };
 
-var ItemPageFrame = function ItemPageFrame(_ref) {
+var ShareBar = function ShareBar(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(ShareBar$1, props));
+};
+
+var ItemPageFrame$1 = function ItemPageFrame(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id,
@@ -15799,13 +16060,13 @@ var ItemPageFrame = function ItemPageFrame(_ref) {
     console.error('ItemPageFrame: data prop is required and must be an object');
     return null;
   }
-  var _useState = require$$0.useState(loader),
+  var _useState = React.useState(loader),
     _useState2 = _slicedToArray(_useState, 2),
     showLoader = _useState2[0],
     setShowLoader = _useState2[1];
 
   // Auto-hide loader after 2 seconds when loader prop is true
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loader) {
       var timer = setTimeout(function () {
         setShowLoader(false);
@@ -16298,6 +16559,14 @@ var ItemPageFrame = function ItemPageFrame(_ref) {
   });
 };
 
+var ItemPageFrame = function ItemPageFrame(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(ItemPageFrame$1, props));
+};
+
 // Product Card Component for profile/lesson variant (overlapping cards with product image, colored top section, features)
 var ProfileLessonCard = function ProfileLessonCard(_ref) {
   var product = _ref.product,
@@ -16529,7 +16798,7 @@ var ArchTopProductCard = function ArchTopProductCard(_ref3) {
   var buttonOnClick = buttonConfig.onClick;
 
   // Favorite icon state
-  var _useState = require$$0.useState(product.favorite || false),
+  var _useState = React.useState(product.favorite || false),
     _useState2 = _slicedToArray(_useState, 2),
     isFavorite = _useState2[0],
     setIsFavorite = _useState2[1];
@@ -16797,7 +17066,7 @@ var BeautyProductCard = function BeautyProductCard(_ref4) {
 var SplitColorProductCard = function SplitColorProductCard(_ref5) {
   var product = _ref5.product,
     currency = _ref5.currency;
-  var _useState3 = require$$0.useState(0),
+  var _useState3 = React.useState(0),
     _useState4 = _slicedToArray(_useState3, 2),
     currentImageIndex = _useState4[0],
     setCurrentImageIndex = _useState4[1];
@@ -16922,7 +17191,7 @@ var SplitColorProductCard = function SplitColorProductCard(_ref5) {
  * @param {string} [props.id] - ID attribute for the section element
  * @param {boolean} [props.loader=false] - Show loading state
  */
-var ItemPageClassic = function ItemPageClassic(_ref6) {
+var ItemPageClassic$1 = function ItemPageClassic(_ref6) {
   var data = _ref6.data,
     className = _ref6.className,
     id = _ref6.id;
@@ -17019,6 +17288,14 @@ var ItemPageClassic = function ItemPageClassic(_ref6) {
   });
 };
 
+var ItemPageClassic = function ItemPageClassic(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(ItemPageClassic$1, props));
+};
+
 var GlassmorphismProductCard = function GlassmorphismProductCard(_ref) {
   var _product$button;
   var product = _ref.product,
@@ -17028,7 +17305,7 @@ var GlassmorphismProductCard = function GlassmorphismProductCard(_ref) {
   var buttonText = buttonConfig.text || 'ADD TO CART';
   var buttonHref = buttonConfig.href || '#';
   var buttonOnClick = (_product$button = product.button) === null || _product$button === void 0 ? void 0 : _product$button.onClick;
-  var _useState = require$$0.useState(false),
+  var _useState = React.useState(false),
     _useState2 = _slicedToArray(_useState, 2),
     isHovered = _useState2[0],
     setIsHovered = _useState2[1];
@@ -17221,7 +17498,7 @@ var GradientProductCard = function GradientProductCard(_ref3) {
   var gradientStyle = {
     background: "linear-gradient(135deg, ".concat(gradientColors[0], " 0%, ").concat(gradientColors[1], " 100%)")
   };
-  var _useState3 = require$$0.useState(false),
+  var _useState3 = React.useState(false),
     _useState4 = _slicedToArray(_useState3, 2),
     isMenuOpen = _useState4[0],
     setIsMenuOpen = _useState4[1];
@@ -17252,7 +17529,7 @@ var GradientProductCard = function GradientProductCard(_ref3) {
   };
 
   // Close menu when clicking outside
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     var handleClickOutside = function handleClickOutside() {
       setIsMenuOpen(false);
     };
@@ -17389,7 +17666,7 @@ var GradientProductCard = function GradientProductCard(_ref3) {
     })]
   });
 };
-var ItemPageNeo = function ItemPageNeo(_ref4) {
+var ItemPageNeo$1 = function ItemPageNeo(_ref4) {
   var data = _ref4.data,
     className = _ref4.className,
     id = _ref4.id;
@@ -17478,7 +17755,15 @@ var ItemPageNeo = function ItemPageNeo(_ref4) {
   });
 };
 
-var ItemShowcaseHeritage = function ItemShowcaseHeritage(_ref) {
+var ItemPageNeo = function ItemPageNeo(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(ItemPageNeo$1, props));
+};
+
+var ItemShowcaseHeritage$1 = function ItemShowcaseHeritage(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id;
@@ -17487,11 +17772,11 @@ var ItemShowcaseHeritage = function ItemShowcaseHeritage(_ref) {
     console.error('ProductSingleClassic: data prop is required and must be an object');
     return null;
   }
-  var _useState = require$$0.useState(0),
+  var _useState = React.useState(0),
     _useState2 = _slicedToArray(_useState, 2),
     selectedImage = _useState2[0],
     setSelectedImage = _useState2[1];
-  var _useState3 = require$$0.useState('description'),
+  var _useState3 = React.useState('description'),
     _useState4 = _slicedToArray(_useState3, 2),
     activeTab = _useState4[0],
     setActiveTab = _useState4[1];
@@ -18186,7 +18471,15 @@ var ItemShowcaseHeritage = function ItemShowcaseHeritage(_ref) {
   return null;
 };
 
-var ItemShowcaseNeo = function ItemShowcaseNeo(_ref) {
+var ItemShowcaseHeritage = function ItemShowcaseHeritage(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(ItemShowcaseHeritage$1, props));
+};
+
+var ItemShowcaseNeo$1 = function ItemShowcaseNeo(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id;
@@ -18195,15 +18488,15 @@ var ItemShowcaseNeo = function ItemShowcaseNeo(_ref) {
     console.error('ProductSingleModern: data prop is required and must be an object');
     return null;
   }
-  var _useState = require$$0.useState(0),
+  var _useState = React.useState(0),
     _useState2 = _slicedToArray(_useState, 2),
     selectedImage = _useState2[0],
     setSelectedImage = _useState2[1];
-  var _useState3 = require$$0.useState(false),
+  var _useState3 = React.useState(false),
     _useState4 = _slicedToArray(_useState3, 2),
     isHovered = _useState4[0],
     setIsHovered = _useState4[1];
-  var _useState5 = require$$0.useState(1),
+  var _useState5 = React.useState(1),
     _useState6 = _slicedToArray(_useState5, 2),
     quantity = _useState6[0],
     setQuantity = _useState6[1];
@@ -19239,7 +19532,15 @@ var ItemShowcaseNeo = function ItemShowcaseNeo(_ref) {
   return null;
 };
 
-var ItemShowcaseBare = function ItemShowcaseBare(_ref) {
+var ItemShowcaseNeo = function ItemShowcaseNeo(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(ItemShowcaseNeo$1, props));
+};
+
+var ItemShowcaseBare$1 = function ItemShowcaseBare(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id;
@@ -19248,15 +19549,15 @@ var ItemShowcaseBare = function ItemShowcaseBare(_ref) {
     console.error('ProductSingleMinimal: data prop is required and must be an object');
     return null;
   }
-  var _useState = require$$0.useState(0),
+  var _useState = React.useState(0),
     _useState2 = _slicedToArray(_useState, 2),
     selectedImage = _useState2[0],
     setSelectedImage = _useState2[1];
-  var _useState3 = require$$0.useState('description'),
+  var _useState3 = React.useState('description'),
     _useState4 = _slicedToArray(_useState3, 2);
     _useState4[0];
     _useState4[1];
-  var _useState5 = require$$0.useState(false),
+  var _useState5 = React.useState(false),
     _useState6 = _slicedToArray(_useState5, 2);
     _useState6[0];
     _useState6[1];
@@ -19974,7 +20275,15 @@ var ItemShowcaseBare = function ItemShowcaseBare(_ref) {
   return null;
 };
 
-var ItemBanner = function ItemBanner(_ref) {
+var ItemShowcaseBare = function ItemShowcaseBare(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(ItemShowcaseBare$1, props));
+};
+
+var ItemBanner$1 = function ItemBanner(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id;
@@ -19983,7 +20292,7 @@ var ItemBanner = function ItemBanner(_ref) {
     console.error('ProductHero: data prop is required and must be an object');
     return null;
   }
-  var _useState = require$$0.useState(0),
+  var _useState = React.useState(0),
     _useState2 = _slicedToArray(_useState, 2),
     selectedImage = _useState2[0],
     setSelectedImage = _useState2[1];
@@ -20356,7 +20665,15 @@ var ItemBanner = function ItemBanner(_ref) {
   return null;
 };
 
-var MediaGallery = function MediaGallery(_ref) {
+var ItemBanner = function ItemBanner(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(ItemBanner$1, props));
+};
+
+var MediaGallery$1 = function MediaGallery(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id;
@@ -20365,11 +20682,11 @@ var MediaGallery = function MediaGallery(_ref) {
     console.error('ProductGallery: data prop is required and must be an object');
     return null;
   }
-  var _useState = require$$0.useState(0),
+  var _useState = React.useState(0),
     _useState2 = _slicedToArray(_useState, 2),
     selectedImage = _useState2[0],
     setSelectedImage = _useState2[1];
-  var _useState3 = require$$0.useState(false),
+  var _useState3 = React.useState(false),
     _useState4 = _slicedToArray(_useState3, 2),
     isFullscreen = _useState4[0],
     setIsFullscreen = _useState4[1];
@@ -20756,7 +21073,15 @@ var MediaGallery = function MediaGallery(_ref) {
   return null;
 };
 
-var ItemInfoPanel = function ItemInfoPanel(_ref) {
+var MediaGallery = function MediaGallery(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(MediaGallery$1, props));
+};
+
+var ItemInfoPanel$1 = function ItemInfoPanel(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id;
@@ -21099,7 +21424,15 @@ var ItemInfoPanel = function ItemInfoPanel(_ref) {
   return null;
 };
 
-var PurchaseActions = function PurchaseActions(_ref) {
+var ItemInfoPanel = function ItemInfoPanel(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(ItemInfoPanel$1, props));
+};
+
+var PurchaseActions$1 = function PurchaseActions(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id;
@@ -21108,11 +21441,11 @@ var PurchaseActions = function PurchaseActions(_ref) {
     console.error('ProductActions: data prop is required and must be an object');
     return null;
   }
-  var _useState = require$$0.useState(1),
+  var _useState = React.useState(1),
     _useState2 = _slicedToArray(_useState, 2),
     quantity = _useState2[0],
     setQuantity = _useState2[1];
-  var _useState3 = require$$0.useState(false),
+  var _useState3 = React.useState(false),
     _useState4 = _slicedToArray(_useState3, 2),
     isWishlisted = _useState4[0],
     setIsWishlisted = _useState4[1];
@@ -21531,7 +21864,15 @@ var PurchaseActions = function PurchaseActions(_ref) {
   return null;
 };
 
-var StoryPanel = function StoryPanel(_ref) {
+var PurchaseActions = function PurchaseActions(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(PurchaseActions$1, props));
+};
+
+var StoryPanel$1 = function StoryPanel(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     onButtonClick = _ref.onButtonClick,
@@ -21549,11 +21890,11 @@ var StoryPanel = function StoryPanel(_ref) {
     buttonText = _data$buttonText === void 0 ? 'Learn More' : _data$buttonText,
     _data$buttonVariant = data.buttonVariant,
     buttonVariant = _data$buttonVariant === void 0 ? 'primary' : _data$buttonVariant;
-  var _useState = require$$0.useState(!loading),
+  var _useState = React.useState(!loading),
     _useState2 = _slicedToArray(_useState, 2),
     showContent = _useState2[0],
     setShowContent = _useState2[1];
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loading) {
       setShowContent(false);
       var timer = setTimeout(function () {
@@ -21721,7 +22062,15 @@ var StoryPanel = function StoryPanel(_ref) {
   });
 };
 
-var ItemStoryPanel = function ItemStoryPanel(_ref) {
+var StoryPanel = function StoryPanel(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(StoryPanel$1, props));
+};
+
+var ItemStoryPanel$1 = function ItemStoryPanel(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id;
@@ -22053,7 +22402,15 @@ var ItemStoryPanel = function ItemStoryPanel(_ref) {
   return null;
 };
 
-var ValueHighlights = function ValueHighlights(_ref) {
+var ItemStoryPanel = function ItemStoryPanel(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(ItemStoryPanel$1, props));
+};
+
+var ValueHighlights$1 = function ValueHighlights(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id;
@@ -22236,7 +22593,15 @@ var ValueHighlights = function ValueHighlights(_ref) {
   return null;
 };
 
-var TechSpecsPanel = function TechSpecsPanel(_ref) {
+var ValueHighlights = function ValueHighlights(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(ValueHighlights$1, props));
+};
+
+var TechSpecsPanel$1 = function TechSpecsPanel(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id;
@@ -22387,7 +22752,15 @@ var TechSpecsPanel = function TechSpecsPanel(_ref) {
   return null;
 };
 
-var RatingWall = function RatingWall(_ref) {
+var TechSpecsPanel = function TechSpecsPanel(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(TechSpecsPanel$1, props));
+};
+
+var RatingWall$1 = function RatingWall(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id;
@@ -22396,11 +22769,11 @@ var RatingWall = function RatingWall(_ref) {
     console.error('ProductReviews: data prop is required and must be an object');
     return null;
   }
-  var _useState = require$$0.useState(false),
+  var _useState = React.useState(false),
     _useState2 = _slicedToArray(_useState, 2),
     showAllReviews = _useState2[0],
     setShowAllReviews = _useState2[1];
-  var _useState3 = require$$0.useState('newest'),
+  var _useState3 = React.useState('newest'),
     _useState4 = _slicedToArray(_useState3, 2),
     sortBy = _useState4[0],
     setSortBy = _useState4[1];
@@ -22724,7 +23097,15 @@ var RatingWall = function RatingWall(_ref) {
   return null;
 };
 
-var RelatedRail = function RelatedRail(_ref) {
+var RatingWall = function RatingWall(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(RatingWall$1, props));
+};
+
+var RelatedRail$1 = function RelatedRail(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id,
@@ -22821,6 +23202,14 @@ var RelatedRail = function RelatedRail(_ref) {
     });
   }
   return null;
+};
+
+var RelatedRail = function RelatedRail(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(RelatedRail$1, props));
 };
 
 function getDefaultExportFromCjs (x) {
@@ -25440,7 +25829,7 @@ function requireRouterContext_sharedRuntime () {
 		    }
 		});
 		const _interop_require_default = require_interop_require_default();
-		const _react = /*#__PURE__*/ _interop_require_default._(require$$0);
+		const _react = /*#__PURE__*/ _interop_require_default._(React);
 		const RouterContext = _react.default.createContext(null);
 		if (process.env.NODE_ENV !== 'production') {
 		    RouterContext.displayName = 'RouterContext';
@@ -25519,7 +25908,7 @@ function requireUseIntersection () {
 		        return useIntersection;
 		    }
 		});
-		const _react = require$$0;
+		const _react = React;
 		const _requestidlecallback = requireRequestIdleCallback();
 		const hasIntersectionObserver = typeof IntersectionObserver === 'function';
 		const observers = new Map();
@@ -25904,7 +26293,7 @@ function requireUseMergedRef () {
 		        return useMergedRef;
 		    }
 		});
-		const _react = require$$0;
+		const _react = React;
 		function useMergedRef(refA, refB) {
 		    const cleanupA = (0, _react.useRef)(null);
 		    const cleanupB = (0, _react.useRef)(null);
@@ -26021,7 +26410,7 @@ function requireErrorOnce () {
 	});
 	const _interop_require_wildcard = _interop_require_wildcard$1;
 	const _jsxruntime = require$$1;
-	const _react = /*#__PURE__*/ _interop_require_wildcard._(require$$0);
+	const _react = /*#__PURE__*/ _interop_require_wildcard._(React);
 	const _resolvehref = requireResolveHref();
 	const _islocalurl = requireIsLocalUrl();
 	const _formaturl = requireFormatUrl();
@@ -26443,7 +26832,7 @@ var link = linkExports;
 
 var Link = /*@__PURE__*/getDefaultExportFromCjs(link);
 
-var PathCrumbs = function PathCrumbs(_ref) {
+var PathCrumbs$1 = function PathCrumbs(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id;
@@ -26571,7 +26960,15 @@ var PathCrumbs = function PathCrumbs(_ref) {
   return null;
 };
 
-var BradCrump = function BradCrump(_ref) {
+var PathCrumbs = function PathCrumbs(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(PathCrumbs$1, props));
+};
+
+var BradCrump$1 = function BradCrump(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     onItemClick = _ref.onItemClick,
@@ -26607,11 +27004,11 @@ var BradCrump = function BradCrump(_ref) {
     size = _data$size === void 0 ? 'md' : _data$size;
   var layout = layoutProp || (heroImage ? 'image' : 'inline');
   var variant = variantProp || (layout === 'image' ? 'image-1' : 'default');
-  var _useState = require$$0.useState(loader),
+  var _useState = React.useState(loader),
     _useState2 = _slicedToArray(_useState, 2),
     showLoader = _useState2[0],
     setShowLoader = _useState2[1];
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loader) {
       setShowLoader(true);
       var timer = setTimeout(function () {
@@ -26624,7 +27021,7 @@ var BradCrump = function BradCrump(_ref) {
     setShowLoader(false);
   }, [loader]);
   var isInlineDark = variant === 'dark' || variant === 'dark-gray' || variant === 'icon-dark';
-  var displayItems = require$$0.useMemo(function () {
+  var displayItems = React.useMemo(function () {
     if (!collapseOnMobile) return items;
     if (!Array.isArray(items)) return [];
     if (items.length <= 3) return items;
@@ -27124,7 +27521,15 @@ var BradCrump = function BradCrump(_ref) {
   });
 };
 
-var FilterRail = function FilterRail(_ref) {
+var BradCrump = function BradCrump(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(BradCrump$1, props));
+};
+
+var FilterRail$1 = function FilterRail(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     onCategoryChange = _ref.onCategoryChange,
@@ -27157,7 +27562,7 @@ var FilterRail = function FilterRail(_ref) {
     showTags = _data$showTags === void 0 ? true : _data$showTags,
     _data$showPriceRange = data.showPriceRange,
     showPriceRange = _data$showPriceRange === void 0 ? true : _data$showPriceRange;
-  var _useState = require$$0.useState(categories.filter(function (cat) {
+  var _useState = React.useState(categories.filter(function (cat) {
       return cat.active;
     }).map(function (cat) {
       return cat.label;
@@ -27165,11 +27570,11 @@ var FilterRail = function FilterRail(_ref) {
     _useState2 = _slicedToArray(_useState, 2),
     selectedCategories = _useState2[0],
     setSelectedCategories = _useState2[1];
-  var _useState3 = require$$0.useState({}),
+  var _useState3 = React.useState({}),
     _useState4 = _slicedToArray(_useState3, 2),
     selectedFilters = _useState4[0],
     setSelectedFilters = _useState4[1];
-  var _useState5 = require$$0.useState(tags.filter(function (tag) {
+  var _useState5 = React.useState(tags.filter(function (tag) {
       return tag.active;
     }).map(function (tag) {
       return tag.label;
@@ -27177,25 +27582,25 @@ var FilterRail = function FilterRail(_ref) {
     _useState6 = _slicedToArray(_useState5, 2),
     selectedTags = _useState6[0],
     setSelectedTags = _useState6[1];
-  var _useState7 = require$$0.useState(''),
+  var _useState7 = React.useState(''),
     _useState8 = _slicedToArray(_useState7, 2),
     tagSearchQuery = _useState8[0],
     setTagSearchQuery = _useState8[1];
-  var _useState9 = require$$0.useState(true),
+  var _useState9 = React.useState(true),
     _useState0 = _slicedToArray(_useState9, 2),
     isTagsExpanded = _useState0[0],
     setIsTagsExpanded = _useState0[1];
-  var _useState1 = require$$0.useState(priceRange),
+  var _useState1 = React.useState(priceRange),
     _useState10 = _slicedToArray(_useState1, 2),
     localPriceRange = _useState10[0],
     setLocalPriceRange = _useState10[1];
-  var _useState11 = require$$0.useState(!loading),
+  var _useState11 = React.useState(!loading),
     _useState12 = _slicedToArray(_useState11, 2),
     showContent = _useState12[0],
     setShowContent = _useState12[1];
 
   // Show skeleton for 2 seconds when loading is true
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loading) {
       setShowContent(false);
       var timer = setTimeout(function () {
@@ -28048,7 +28453,15 @@ var FilterRail = function FilterRail(_ref) {
   });
 };
 
-var SearchBar = function SearchBar(_ref) {
+var FilterRail = function FilterRail(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(FilterRail$1, props));
+};
+
+var SearchBar$1 = function SearchBar(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     onSearch = _ref.onSearch,
@@ -28066,21 +28479,21 @@ var SearchBar = function SearchBar(_ref) {
     showIcon = _data$showIcon === void 0 ? true : _data$showIcon,
     _data$showClearButton = data.showClearButton,
     showClearButton = _data$showClearButton === void 0 ? true : _data$showClearButton;
-  var _useState = require$$0.useState(initialValue),
+  var _useState = React.useState(initialValue),
     _useState2 = _slicedToArray(_useState, 2),
     searchValue = _useState2[0],
     setSearchValue = _useState2[1];
-  var _useState3 = require$$0.useState(variant !== 'icon' || !!initialValue),
+  var _useState3 = React.useState(variant !== 'icon' || !!initialValue),
     _useState4 = _slicedToArray(_useState3, 2),
     isExpanded = _useState4[0],
     setIsExpanded = _useState4[1];
-  var _useState5 = require$$0.useState(!loading),
+  var _useState5 = React.useState(!loading),
     _useState6 = _slicedToArray(_useState5, 2),
     showContent = _useState6[0],
     setShowContent = _useState6[1];
 
   // Show skeleton for 2 seconds when loading is true
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loading) {
       setShowContent(false);
       var timer = setTimeout(function () {
@@ -28307,7 +28720,15 @@ var SearchBar = function SearchBar(_ref) {
   });
 };
 
-var ViewToggle = function ViewToggle(_ref) {
+var SearchBar = function SearchBar(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(SearchBar$1, props));
+};
+
+var ViewToggle$1 = function ViewToggle(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     onViewChange = _ref.onViewChange,
@@ -28320,17 +28741,17 @@ var ViewToggle = function ViewToggle(_ref) {
     defaultView = _data$defaultView === void 0 ? 'grid' : _data$defaultView,
     _data$showLabel = data.showLabel,
     showLabel = _data$showLabel === void 0 ? true : _data$showLabel;
-  var _useState = require$$0.useState(defaultView),
+  var _useState = React.useState(defaultView),
     _useState2 = _slicedToArray(_useState, 2),
     currentView = _useState2[0],
     setCurrentView = _useState2[1];
-  var _useState3 = require$$0.useState(!loading),
+  var _useState3 = React.useState(!loading),
     _useState4 = _slicedToArray(_useState3, 2),
     showContent = _useState4[0],
     setShowContent = _useState4[1];
 
   // Show skeleton for 2 seconds when loading is true
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loading) {
       setShowContent(false);
       var timer = setTimeout(function () {
@@ -28484,7 +28905,15 @@ var ViewToggle = function ViewToggle(_ref) {
   });
 };
 
-var PageStepper = function PageStepper(_ref) {
+var ViewToggle = function ViewToggle(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(ViewToggle$1, props));
+};
+
+var PageStepper$1 = function PageStepper(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     onPageChange = _ref.onPageChange,
@@ -28506,17 +28935,17 @@ var PageStepper = function PageStepper(_ref) {
     showFirstLast = _data$showFirstLast === void 0 ? true : _data$showFirstLast,
     _data$showPrevNext = data.showPrevNext,
     showPrevNext = _data$showPrevNext === void 0 ? true : _data$showPrevNext;
-  var _useState = require$$0.useState(Math.min(initialPage, totalPages)),
+  var _useState = React.useState(Math.min(initialPage, totalPages)),
     _useState2 = _slicedToArray(_useState, 2),
     currentPage = _useState2[0],
     setCurrentPage = _useState2[1];
-  var _useState3 = require$$0.useState(!loading),
+  var _useState3 = React.useState(!loading),
     _useState4 = _slicedToArray(_useState3, 2),
     showContent = _useState4[0],
     setShowContent = _useState4[1];
 
   // Show skeleton for 2 seconds when loading is true
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loading) {
       setShowContent(false);
       var timer = setTimeout(function () {
@@ -28770,7 +29199,15 @@ var PageStepper = function PageStepper(_ref) {
   });
 };
 
-var CatalogView = function CatalogView(_ref) {
+var PageStepper = function PageStepper(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(PageStepper$1, props));
+};
+
+var CatalogView$1 = function CatalogView(_ref) {
   var _sidebar$categories;
   var data = _ref.data,
     className = _ref.className,
@@ -28796,11 +29233,11 @@ var CatalogView = function CatalogView(_ref) {
 
   // Extract products array from products config
   var allProducts = Array.isArray(productsConfig) ? productsConfig : productsConfig.products || [];
-  var _useState = require$$0.useState(''),
+  var _useState = React.useState(''),
     _useState2 = _slicedToArray(_useState, 2),
     searchQuery = _useState2[0],
     setSearchQuery = _useState2[1];
-  var _useState3 = require$$0.useState(((_sidebar$categories = sidebar.categories) === null || _sidebar$categories === void 0 ? void 0 : _sidebar$categories.filter(function (cat) {
+  var _useState3 = React.useState(((_sidebar$categories = sidebar.categories) === null || _sidebar$categories === void 0 ? void 0 : _sidebar$categories.filter(function (cat) {
       return cat.active;
     }).map(function (cat) {
       return cat.label;
@@ -28808,11 +29245,11 @@ var CatalogView = function CatalogView(_ref) {
     _useState4 = _slicedToArray(_useState3, 2),
     selectedCategories = _useState4[0],
     setSelectedCategories = _useState4[1];
-  var _useState5 = require$$0.useState({}),
+  var _useState5 = React.useState({}),
     _useState6 = _slicedToArray(_useState5, 2),
     selectedFilters = _useState6[0],
     setSelectedFilters = _useState6[1];
-  var _useState7 = require$$0.useState(sidebar.priceRange || pagination.priceRange || {
+  var _useState7 = React.useState(sidebar.priceRange || pagination.priceRange || {
       min: 0,
       max: 1000,
       currentMin: 0,
@@ -28821,26 +29258,26 @@ var CatalogView = function CatalogView(_ref) {
     _useState8 = _slicedToArray(_useState7, 2),
     priceRange = _useState8[0],
     setPriceRange = _useState8[1];
-  var _useState9 = require$$0.useState(toggle.defaultView || 'grid'),
+  var _useState9 = React.useState(toggle.defaultView || 'grid'),
     _useState0 = _slicedToArray(_useState9, 2),
     currentView = _useState0[0],
     setCurrentView = _useState0[1];
-  var _useState1 = require$$0.useState(pagination.currentPage || 1),
+  var _useState1 = React.useState(pagination.currentPage || 1),
     _useState10 = _slicedToArray(_useState1, 2),
     currentPage = _useState10[0],
     setCurrentPage = _useState10[1];
-  var _useState11 = require$$0.useState(false),
+  var _useState11 = React.useState(false),
     _useState12 = _slicedToArray(_useState11, 2),
     sidebarOpen = _useState12[0],
     setSidebarOpen = _useState12[1];
 
   // Reset page when filters change
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     setCurrentPage(1);
   }, [searchQuery, selectedCategories, selectedFilters, priceRange]);
 
   // Filter products based on search, categories, filters, and price range
-  var filteredProducts = require$$0.useMemo(function () {
+  var filteredProducts = React.useMemo(function () {
     // Ensure allProducts is an array
     if (!Array.isArray(allProducts)) {
       return [];
@@ -28915,7 +29352,7 @@ var CatalogView = function CatalogView(_ref) {
   var paginatedProducts = filteredProducts.slice(startIndex, endIndex);
 
   // Update pagination when total pages change
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (currentPage > totalPages && totalPages > 0) {
       setCurrentPage(1);
     }
@@ -29077,7 +29514,15 @@ var CatalogView = function CatalogView(_ref) {
   });
 };
 
-var ItemLoadingShell = function ItemLoadingShell(_ref) {
+var CatalogView = function CatalogView(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(CatalogView$1, props));
+};
+
+var ItemLoadingShell$1 = function ItemLoadingShell(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     className = _ref.className;
@@ -29246,7 +29691,15 @@ var ItemLoadingShell = function ItemLoadingShell(_ref) {
   });
 };
 
-var FilterBar = function FilterBar(_ref) {
+var ItemLoadingShell = function ItemLoadingShell(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(ItemLoadingShell$1, props));
+};
+
+var FilterBar$1 = function FilterBar(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     onFilterChange = _ref.onFilterChange,
@@ -29261,19 +29714,19 @@ var FilterBar = function FilterBar(_ref) {
     placeholder = _data$placeholder === void 0 ? 'Filter products...' : _data$placeholder,
     _data$multiple = data.multiple,
     multiple = _data$multiple === void 0 ? true : _data$multiple;
-  var _useState = require$$0.useState([]),
+  var _useState = React.useState([]),
     _useState2 = _slicedToArray(_useState, 2),
     selectedFilters = _useState2[0],
     setSelectedFilters = _useState2[1];
-  var _useState3 = require$$0.useState(false),
+  var _useState3 = React.useState(false),
     _useState4 = _slicedToArray(_useState3, 2),
     isOpen = _useState4[0],
     setIsOpen = _useState4[1];
-  var _useState5 = require$$0.useState(!loading),
+  var _useState5 = React.useState(!loading),
     _useState6 = _slicedToArray(_useState5, 2),
     showContent = _useState6[0],
     setShowContent = _useState6[1];
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loading) {
       setShowContent(false);
       var timer = setTimeout(function () {
@@ -29438,7 +29891,15 @@ var FilterBar = function FilterBar(_ref) {
   });
 };
 
-var SortBar = function SortBar(_ref) {
+var FilterBar = function FilterBar(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(FilterBar$1, props));
+};
+
+var SortBar$1 = function SortBar(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     onSortChange = _ref.onSortChange,
@@ -29472,19 +29933,19 @@ var SortBar = function SortBar(_ref) {
     }] : _data$options,
     _data$defaultSort = data.defaultSort,
     defaultSort = _data$defaultSort === void 0 ? 'default' : _data$defaultSort;
-  var _useState = require$$0.useState(defaultSort),
+  var _useState = React.useState(defaultSort),
     _useState2 = _slicedToArray(_useState, 2),
     selectedSort = _useState2[0],
     setSelectedSort = _useState2[1];
-  var _useState3 = require$$0.useState(false),
+  var _useState3 = React.useState(false),
     _useState4 = _slicedToArray(_useState3, 2),
     isOpen = _useState4[0],
     setIsOpen = _useState4[1];
-  var _useState5 = require$$0.useState(!loading),
+  var _useState5 = React.useState(!loading),
     _useState6 = _slicedToArray(_useState5, 2),
     showContent = _useState6[0],
     setShowContent = _useState6[1];
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loading) {
       setShowContent(false);
       var timer = setTimeout(function () {
@@ -29623,7 +30084,15 @@ var SortBar = function SortBar(_ref) {
   });
 };
 
-var QuickPeekModal = function QuickPeekModal(_ref) {
+var SortBar = function SortBar(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(SortBar$1, props));
+};
+
+var QuickPeekModal$1 = function QuickPeekModal(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     onClose = _ref.onClose,
@@ -29639,15 +30108,15 @@ var QuickPeekModal = function QuickPeekModal(_ref) {
       image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&q=80',
       description: 'Product description here'
     } : _data$product;
-  var _useState = require$$0.useState(false),
+  var _useState = React.useState(false),
     _useState2 = _slicedToArray(_useState, 2),
     isOpen = _useState2[0],
     setIsOpen = _useState2[1];
-  var _useState3 = require$$0.useState(!loading),
+  var _useState3 = React.useState(!loading),
     _useState4 = _slicedToArray(_useState3, 2),
     showContent = _useState4[0],
     setShowContent = _useState4[1];
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loading) {
       setShowContent(false);
       var timer = setTimeout(function () {
@@ -29660,7 +30129,7 @@ var QuickPeekModal = function QuickPeekModal(_ref) {
       setShowContent(true);
     }
   }, [loading]);
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     var handleEscape = function handleEscape(e) {
       if (e.key === 'Escape' && isOpen) {
         handleClose();
@@ -29804,7 +30273,15 @@ var QuickPeekModal = function QuickPeekModal(_ref) {
   });
 };
 
-var CompareTable = function CompareTable(_ref) {
+var QuickPeekModal = function QuickPeekModal(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(QuickPeekModal$1, props));
+};
+
+var CompareTable$1 = function CompareTable(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     onCompareChange = _ref.onCompareChange,
@@ -29815,19 +30292,19 @@ var CompareTable = function CompareTable(_ref) {
     variant = _data$variant === void 0 ? 'default' : _data$variant;
     data.products;
     data.maxCompare;
-  var _useState = require$$0.useState([]),
+  var _useState = React.useState([]),
     _useState2 = _slicedToArray(_useState, 2),
     compareList = _useState2[0],
     setCompareList = _useState2[1];
-  var _useState3 = require$$0.useState(false),
+  var _useState3 = React.useState(false),
     _useState4 = _slicedToArray(_useState3, 2),
     isOpen = _useState4[0],
     setIsOpen = _useState4[1];
-  var _useState5 = require$$0.useState(!loading),
+  var _useState5 = React.useState(!loading),
     _useState6 = _slicedToArray(_useState5, 2),
     showContent = _useState6[0],
     setShowContent = _useState6[1];
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loading) {
       setShowContent(false);
       var timer = setTimeout(function () {
@@ -29949,7 +30426,15 @@ var CompareTable = function CompareTable(_ref) {
   });
 };
 
-var FavoritesList = function FavoritesList(_ref) {
+var CompareTable = function CompareTable(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(CompareTable$1, props));
+};
+
+var FavoritesList$1 = function FavoritesList(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     onToggle = _ref.onToggle,
@@ -29961,15 +30446,15 @@ var FavoritesList = function FavoritesList(_ref) {
     _data$isFavorite = data.isFavorite,
     initialFavorite = _data$isFavorite === void 0 ? false : _data$isFavorite,
     productId = data.productId;
-  var _useState = require$$0.useState(initialFavorite),
+  var _useState = React.useState(initialFavorite),
     _useState2 = _slicedToArray(_useState, 2),
     isFavorite = _useState2[0],
     setIsFavorite = _useState2[1];
-  var _useState3 = require$$0.useState(!loading),
+  var _useState3 = React.useState(!loading),
     _useState4 = _slicedToArray(_useState3, 2),
     showContent = _useState4[0],
     setShowContent = _useState4[1];
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loading) {
       setShowContent(false);
       var timer = setTimeout(function () {
@@ -30047,7 +30532,15 @@ var FavoritesList = function FavoritesList(_ref) {
   });
 };
 
-var PathCrumb = function PathCrumb(_ref) {
+var FavoritesList = function FavoritesList(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(FavoritesList$1, props));
+};
+
+var PathCrumb$1 = function PathCrumb(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     onItemClick = _ref.onItemClick,
@@ -30068,11 +30561,11 @@ var PathCrumb = function PathCrumb(_ref) {
       href: '#',
       active: true
     }] : _data$items;
-  var _useState = require$$0.useState(!loading),
+  var _useState = React.useState(!loading),
     _useState2 = _slicedToArray(_useState, 2),
     showContent = _useState2[0],
     setShowContent = _useState2[1];
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loading) {
       setShowContent(false);
       var timer = setTimeout(function () {
@@ -30182,7 +30675,15 @@ var PathCrumb = function PathCrumb(_ref) {
   });
 };
 
-var PromoBadge = function PromoBadge(_ref) {
+var PathCrumb = function PathCrumb(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(PathCrumb$1, props));
+};
+
+var PromoBadge$1 = function PromoBadge(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     _ref$loading = _ref.loading,
@@ -30193,11 +30694,11 @@ var PromoBadge = function PromoBadge(_ref) {
     _data$type = data.type,
     type = _data$type === void 0 ? 'new' : _data$type,
     text = data.text;
-  var _useState = require$$0.useState(!loading),
+  var _useState = React.useState(!loading),
     _useState2 = _slicedToArray(_useState, 2),
     showContent = _useState2[0],
     setShowContent = _useState2[1];
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loading) {
       setShowContent(false);
       var timer = setTimeout(function () {
@@ -30242,7 +30743,15 @@ var PromoBadge = function PromoBadge(_ref) {
   });
 };
 
-var StarRating = function StarRating(_ref) {
+var PromoBadge = function PromoBadge(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(PromoBadge$1, props));
+};
+
+var StarRating$1 = function StarRating(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     onRatingChange = _ref.onRatingChange,
@@ -30259,15 +30768,15 @@ var StarRating = function StarRating(_ref) {
     showValue = _data$showValue === void 0 ? false : _data$showValue,
     _data$size = data.size,
     size = _data$size === void 0 ? 5 : _data$size;
-  var _useState = require$$0.useState(0),
+  var _useState = React.useState(0),
     _useState2 = _slicedToArray(_useState, 2),
     hoverRating = _useState2[0],
     setHoverRating = _useState2[1];
-  var _useState3 = require$$0.useState(!loading),
+  var _useState3 = React.useState(!loading),
     _useState4 = _slicedToArray(_useState3, 2),
     showContent = _useState4[0],
     setShowContent = _useState4[1];
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loading) {
       setShowContent(false);
       var timer = setTimeout(function () {
@@ -30369,7 +30878,15 @@ var StarRating = function StarRating(_ref) {
   });
 };
 
-var QtyPicker = function QtyPicker(_ref) {
+var StarRating = function StarRating(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(StarRating$1, props));
+};
+
+var QtyPicker$1 = function QtyPicker(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     onQuantityChange = _ref.onQuantityChange,
@@ -30384,15 +30901,15 @@ var QtyPicker = function QtyPicker(_ref) {
     max = _data$max === void 0 ? 99 : _data$max,
     _data$defaultValue = data.defaultValue,
     defaultValue = _data$defaultValue === void 0 ? 1 : _data$defaultValue;
-  var _useState = require$$0.useState(defaultValue),
+  var _useState = React.useState(defaultValue),
     _useState2 = _slicedToArray(_useState, 2),
     quantity = _useState2[0],
     setQuantity = _useState2[1];
-  var _useState3 = require$$0.useState(!loading),
+  var _useState3 = React.useState(!loading),
     _useState4 = _slicedToArray(_useState3, 2),
     showContent = _useState4[0],
     setShowContent = _useState4[1];
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loading) {
       setShowContent(false);
       var timer = setTimeout(function () {
@@ -30528,7 +31045,15 @@ var QtyPicker = function QtyPicker(_ref) {
   });
 };
 
-var SharePanel = function SharePanel(_ref) {
+var QtyPicker = function QtyPicker(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(QtyPicker$1, props));
+};
+
+var SharePanel$1 = function SharePanel(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     onShare = _ref.onShare,
@@ -30543,15 +31068,15 @@ var SharePanel = function SharePanel(_ref) {
     title = _data$title === void 0 ? 'Check out this product' : _data$title,
     _data$platforms = data.platforms,
     platforms = _data$platforms === void 0 ? ['facebook', 'twitter', 'pinterest', 'copy'] : _data$platforms;
-  var _useState = require$$0.useState(!loading),
+  var _useState = React.useState(!loading),
     _useState2 = _slicedToArray(_useState, 2),
     showContent = _useState2[0],
     setShowContent = _useState2[1];
-  var _useState3 = require$$0.useState(false),
+  var _useState3 = React.useState(false),
     _useState4 = _slicedToArray(_useState3, 2),
     copied = _useState4[0],
     setCopied = _useState4[1];
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loading) {
       setShowContent(false);
       var timer = setTimeout(function () {
@@ -30711,7 +31236,15 @@ var SharePanel = function SharePanel(_ref) {
   });
 };
 
-var CollectionGrid = function CollectionGrid(_ref) {
+var SharePanel = function SharePanel(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(SharePanel$1, props));
+};
+
+var CollectionGrid$1 = function CollectionGrid(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id,
@@ -30721,11 +31254,11 @@ var CollectionGrid = function CollectionGrid(_ref) {
     console.error('CategoryGrid: data prop is required and must be an object');
     return null;
   }
-  var _useState = require$$0.useState(loader),
+  var _useState = React.useState(loader),
     _useState2 = _slicedToArray(_useState, 2),
     showLoader = _useState2[0],
     setShowLoader = _useState2[1];
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loader) {
       var timer = setTimeout(function () {
         return setShowLoader(false);
@@ -31038,7 +31571,15 @@ var CollectionGrid = function CollectionGrid(_ref) {
   });
 };
 
-var CollectionShowcase = function CollectionShowcase(_ref) {
+var CollectionGrid = function CollectionGrid(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(CollectionGrid$1, props));
+};
+
+var CollectionShowcase$1 = function CollectionShowcase(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id,
@@ -31048,11 +31589,11 @@ var CollectionShowcase = function CollectionShowcase(_ref) {
     console.error('CategoryShowcase: data prop is required and must be an object');
     return null;
   }
-  var _useState = require$$0.useState(loader),
+  var _useState = React.useState(loader),
     _useState2 = _slicedToArray(_useState, 2),
     showLoader = _useState2[0],
     setShowLoader = _useState2[1];
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loader) {
       var timer = setTimeout(function () {
         return setShowLoader(false);
@@ -31503,7 +32044,15 @@ var CollectionShowcase = function CollectionShowcase(_ref) {
   });
 };
 
-var CollectionMasonry = function CollectionMasonry(_ref) {
+var CollectionShowcase = function CollectionShowcase(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(CollectionShowcase$1, props));
+};
+
+var CollectionMasonry$1 = function CollectionMasonry(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id,
@@ -31513,11 +32062,11 @@ var CollectionMasonry = function CollectionMasonry(_ref) {
     console.error('CategoryMasonry: data prop is required and must be an object');
     return null;
   }
-  var _useState = require$$0.useState(loader),
+  var _useState = React.useState(loader),
     _useState2 = _slicedToArray(_useState, 2),
     showLoader = _useState2[0],
     setShowLoader = _useState2[1];
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loader) {
       var timer = setTimeout(function () {
         return setShowLoader(false);
@@ -32035,7 +32584,15 @@ var CollectionMasonry = function CollectionMasonry(_ref) {
   });
 };
 
-var PurchaseLoadingShell = function PurchaseLoadingShell(_ref) {
+var CollectionMasonry = function CollectionMasonry(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(CollectionMasonry$1, props));
+};
+
+var PurchaseLoadingShell$1 = function PurchaseLoadingShell(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     className = _ref.className;
@@ -32478,24 +33035,32 @@ var PurchaseLoadingShell = function PurchaseLoadingShell(_ref) {
   });
 };
 
-var PurchaseFlowPulse = function PurchaseFlowPulse(_ref) {
+var PurchaseLoadingShell = function PurchaseLoadingShell(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(PurchaseLoadingShell$1, props));
+};
+
+var PurchaseFlowPulse$1 = function PurchaseFlowPulse(_ref) {
   var _data$email, _data$email2, _data$protection$opti, _data$shipping, _data$shipping2, _data$shipping3, _data$shipping4, _data$shipping5, _data$shipping6, _data$shipping7, _data$shipping8, _data$shipping9, _data$shipping0, _data$shipping1, _data$shipping10, _data$shipping11, _data$payment, _data$payment2, _data$summary, _data$summary2, _data$summary3, _data$summary4, _data$summary5, _data$summary6, _data$summary7, _data$summary8, _data$trial$items;
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     className = _ref.className,
     _ref$loading = _ref.loading,
     loading = _ref$loading === void 0 ? false : _ref$loading;
-  var _useState = require$$0.useState(''),
+  var _useState = React.useState(''),
     _useState2 = _slicedToArray(_useState, 2),
     email = _useState2[0],
     setEmail = _useState2[1];
-  var _useState3 = require$$0.useState(false),
+  var _useState3 = React.useState(false),
     _useState4 = _slicedToArray(_useState3, 2),
     timedOut = _useState4[0],
     setTimedOut = _useState4[1];
 
   // Auto-show content after 2 seconds if loading is true
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loading) {
       setTimedOut(false);
       var timer = setTimeout(function () {
@@ -32936,24 +33501,32 @@ var PurchaseFlowPulse = function PurchaseFlowPulse(_ref) {
   });
 };
 
-var PurchaseFlowBare = function PurchaseFlowBare(_ref) {
+var PurchaseFlowPulse = function PurchaseFlowPulse(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(PurchaseFlowPulse$1, props));
+};
+
+var PurchaseFlowBare$1 = function PurchaseFlowBare(_ref) {
   var _data$email, _data$email2, _data$shipping, _data$shipping2, _data$shipping3, _data$shipping4, _data$shipping5, _data$shipping6, _data$shipping7, _data$payment, _data$payment2, _data$summary, _data$summary2, _data$summary3;
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     className = _ref.className,
     _ref$loading = _ref.loading,
     loading = _ref$loading === void 0 ? false : _ref$loading;
-  var _useState = require$$0.useState(''),
+  var _useState = React.useState(''),
     _useState2 = _slicedToArray(_useState, 2),
     email = _useState2[0],
     setEmail = _useState2[1];
-  var _useState3 = require$$0.useState(false),
+  var _useState3 = React.useState(false),
     _useState4 = _slicedToArray(_useState3, 2),
     timedOut = _useState4[0],
     setTimedOut = _useState4[1];
 
   // Auto-show content after 2 seconds if loading is true
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loading) {
       setTimedOut(false);
       var timer = setTimeout(function () {
@@ -33099,24 +33672,32 @@ var PurchaseFlowBare = function PurchaseFlowBare(_ref) {
   });
 };
 
-var PurchaseFlowNeo = function PurchaseFlowNeo(_ref) {
+var PurchaseFlowBare = function PurchaseFlowBare(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(PurchaseFlowBare$1, props));
+};
+
+var PurchaseFlowNeo$1 = function PurchaseFlowNeo(_ref) {
   var _data$shipping, _data$email, _data$shipping2, _data$shipping3, _data$shipping4, _data$payment, _data$payment2, _data$summary, _data$summary2, _data$summary3, _data$summary4, _data$summary5, _data$summary6;
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     className = _ref.className,
     _ref$loading = _ref.loading,
     loading = _ref$loading === void 0 ? false : _ref$loading;
-  var _useState = require$$0.useState(''),
+  var _useState = React.useState(''),
     _useState2 = _slicedToArray(_useState, 2),
     email = _useState2[0],
     setEmail = _useState2[1];
-  var _useState3 = require$$0.useState(false),
+  var _useState3 = React.useState(false),
     _useState4 = _slicedToArray(_useState3, 2),
     timedOut = _useState4[0],
     setTimedOut = _useState4[1];
 
   // Auto-show content after 2 seconds if loading is true
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loading) {
       setTimedOut(false);
       var timer = setTimeout(function () {
@@ -33281,24 +33862,32 @@ var PurchaseFlowNeo = function PurchaseFlowNeo(_ref) {
   });
 };
 
-var PurchaseCardPanel = function PurchaseCardPanel(_ref) {
+var PurchaseFlowNeo = function PurchaseFlowNeo(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(PurchaseFlowNeo$1, props));
+};
+
+var PurchaseCardPanel$1 = function PurchaseCardPanel(_ref) {
   var _data$email, _data$email2, _data$shipping, _data$shipping2, _data$shipping3, _data$shipping4, _data$shipping5, _data$shipping6, _data$shipping7, _data$payment, _data$payment2, _data$summary, _data$summary2, _data$summary3;
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     className = _ref.className,
     _ref$loading = _ref.loading,
     loading = _ref$loading === void 0 ? false : _ref$loading;
-  var _useState = require$$0.useState(''),
+  var _useState = React.useState(''),
     _useState2 = _slicedToArray(_useState, 2);
     _useState2[0];
     _useState2[1];
-  var _useState3 = require$$0.useState(false),
+  var _useState3 = React.useState(false),
     _useState4 = _slicedToArray(_useState3, 2),
     timedOut = _useState4[0],
     setTimedOut = _useState4[1];
 
   // Auto-show content after 2 seconds if loading is true
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loading) {
       setTimedOut(false);
       var timer = setTimeout(function () {
@@ -33473,24 +34062,32 @@ var PurchaseCardPanel = function PurchaseCardPanel(_ref) {
   });
 };
 
-var PurchaseStepper = function PurchaseStepper(_ref) {
+var PurchaseCardPanel = function PurchaseCardPanel(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(PurchaseCardPanel$1, props));
+};
+
+var PurchaseStepper$1 = function PurchaseStepper(_ref) {
   var _data$email, _data$email2, _data$shipping, _data$shipping2, _data$shipping3, _data$shipping4, _data$shipping5, _data$payment, _data$summary, _data$summary2;
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     className = _ref.className,
     _ref$loading = _ref.loading,
     loading = _ref$loading === void 0 ? false : _ref$loading;
-  var _useState = require$$0.useState(1),
+  var _useState = React.useState(1),
     _useState2 = _slicedToArray(_useState, 2),
     step = _useState2[0],
     setStep = _useState2[1];
-  var _useState3 = require$$0.useState(false),
+  var _useState3 = React.useState(false),
     _useState4 = _slicedToArray(_useState3, 2),
     timedOut = _useState4[0],
     setTimedOut = _useState4[1];
 
   // Auto-show content after 2 seconds if loading is true
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loading) {
       setTimedOut(false);
       var timer = setTimeout(function () {
@@ -33635,24 +34232,32 @@ var PurchaseStepper = function PurchaseStepper(_ref) {
   });
 };
 
-var PurchaseFlowElite = function PurchaseFlowElite(_ref) {
+var PurchaseStepper = function PurchaseStepper(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(PurchaseStepper$1, props));
+};
+
+var PurchaseFlowElite$1 = function PurchaseFlowElite(_ref) {
   var _data$header, _data$header2, _data$email, _data$email2, _data$shipping, _data$shipping2, _data$shipping3, _data$shipping4, _data$summary, _data$summary2, _data$summary3, _data$summary4, _data$summary5, _data$footer;
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     className = _ref.className,
     _ref$loading = _ref.loading,
     loading = _ref$loading === void 0 ? false : _ref$loading;
-  var _useState = require$$0.useState(''),
+  var _useState = React.useState(''),
     _useState2 = _slicedToArray(_useState, 2);
     _useState2[0];
     _useState2[1];
-  var _useState3 = require$$0.useState(false),
+  var _useState3 = React.useState(false),
     _useState4 = _slicedToArray(_useState3, 2),
     timedOut = _useState4[0],
     setTimedOut = _useState4[1];
 
   // Auto-show content after 2 seconds if loading is true
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loading) {
       setTimedOut(false);
       var timer = setTimeout(function () {
@@ -33791,7 +34396,15 @@ var PurchaseFlowElite = function PurchaseFlowElite(_ref) {
   });
 };
 
-var PurchaseHeaderBar = function PurchaseHeaderBar(_ref) {
+var PurchaseFlowElite = function PurchaseFlowElite(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(PurchaseFlowElite$1, props));
+};
+
+var PurchaseHeaderBar$1 = function PurchaseHeaderBar(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     _ref$variant = _ref.variant,
@@ -33799,13 +34412,13 @@ var PurchaseHeaderBar = function PurchaseHeaderBar(_ref) {
     className = _ref.className,
     _ref$loading = _ref.loading,
     loading = _ref$loading === void 0 ? false : _ref$loading;
-  var _useState = require$$0.useState(false),
+  var _useState = React.useState(false),
     _useState2 = _slicedToArray(_useState, 2),
     timedOut = _useState2[0],
     setTimedOut = _useState2[1];
 
   // Auto-show content after 2 seconds if loading is true
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loading) {
       setTimedOut(false);
       var timer = setTimeout(function () {
@@ -33858,7 +34471,15 @@ var PurchaseHeaderBar = function PurchaseHeaderBar(_ref) {
   });
 };
 
-var ProgressDots = function ProgressDots(_ref) {
+var PurchaseHeaderBar = function PurchaseHeaderBar(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(PurchaseHeaderBar$1, props));
+};
+
+var ProgressDots$1 = function ProgressDots(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? [] : _ref$data,
     _ref$currentStep = _ref.currentStep,
@@ -33868,13 +34489,13 @@ var ProgressDots = function ProgressDots(_ref) {
     className = _ref.className,
     _ref$loading = _ref.loading,
     loading = _ref$loading === void 0 ? false : _ref$loading;
-  var _useState = require$$0.useState(false),
+  var _useState = React.useState(false),
     _useState2 = _slicedToArray(_useState, 2),
     timedOut = _useState2[0],
     setTimedOut = _useState2[1];
 
   // Auto-show content after 2 seconds if loading is true
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loading) {
       setTimedOut(false);
       var timer = setTimeout(function () {
@@ -34092,7 +34713,15 @@ var ProgressDots = function ProgressDots(_ref) {
   });
 };
 
-var ContactStepEmail = function ContactStepEmail(_ref) {
+var ProgressDots = function ProgressDots(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(ProgressDots$1, props));
+};
+
+var ContactStepEmail$1 = function ContactStepEmail(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     value = _ref.value,
@@ -34103,13 +34732,13 @@ var ContactStepEmail = function ContactStepEmail(_ref) {
     _ref$loading = _ref.loading,
     loading = _ref$loading === void 0 ? false : _ref$loading,
     id = _ref.id;
-  var _useState = require$$0.useState(false),
+  var _useState = React.useState(false),
     _useState2 = _slicedToArray(_useState, 2),
     timedOut = _useState2[0],
     setTimedOut = _useState2[1];
 
   // Auto-show content after 2 seconds if loading is true
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loading) {
       setTimedOut(false);
       var timer = setTimeout(function () {
@@ -34183,7 +34812,15 @@ var ContactStepEmail = function ContactStepEmail(_ref) {
   });
 };
 
-var DeliveryStepAddress = function DeliveryStepAddress(_ref) {
+var ContactStepEmail = function ContactStepEmail(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(ContactStepEmail$1, props));
+};
+
+var DeliveryStepAddress$1 = function DeliveryStepAddress(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     _ref$values = _ref.values,
@@ -34194,13 +34831,13 @@ var DeliveryStepAddress = function DeliveryStepAddress(_ref) {
     className = _ref.className,
     _ref$loading = _ref.loading,
     loading = _ref$loading === void 0 ? false : _ref$loading;
-  var _useState = require$$0.useState(false),
+  var _useState = React.useState(false),
     _useState2 = _slicedToArray(_useState, 2),
     timedOut = _useState2[0],
     setTimedOut = _useState2[1];
 
   // Auto-show content after 2 seconds if loading is true
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loading) {
       setTimedOut(false);
       var timer = setTimeout(function () {
@@ -34354,7 +34991,15 @@ var DeliveryStepAddress = function DeliveryStepAddress(_ref) {
   });
 };
 
-var PaymentStepMethod = function PaymentStepMethod(_ref) {
+var DeliveryStepAddress = function DeliveryStepAddress(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(DeliveryStepAddress$1, props));
+};
+
+var PaymentStepMethod$1 = function PaymentStepMethod(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     selectedId = _ref.selectedId,
@@ -34364,13 +35009,13 @@ var PaymentStepMethod = function PaymentStepMethod(_ref) {
     className = _ref.className,
     _ref$loading = _ref.loading,
     loading = _ref$loading === void 0 ? false : _ref$loading;
-  var _useState = require$$0.useState(false),
+  var _useState = React.useState(false),
     _useState2 = _slicedToArray(_useState, 2),
     timedOut = _useState2[0],
     setTimedOut = _useState2[1];
 
   // Auto-show content after 2 seconds if loading is true
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loading) {
       setTimedOut(false);
       var timer = setTimeout(function () {
@@ -34463,7 +35108,15 @@ var PaymentStepMethod = function PaymentStepMethod(_ref) {
   });
 };
 
-var OrderRecapPanel = function OrderRecapPanel(_ref) {
+var PaymentStepMethod = function PaymentStepMethod(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(PaymentStepMethod$1, props));
+};
+
+var OrderRecapPanel$1 = function OrderRecapPanel(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     _ref$variant = _ref.variant,
@@ -34471,13 +35124,13 @@ var OrderRecapPanel = function OrderRecapPanel(_ref) {
     className = _ref.className,
     _ref$loading = _ref.loading,
     loading = _ref$loading === void 0 ? false : _ref$loading;
-  var _useState = require$$0.useState(false),
+  var _useState = React.useState(false),
     _useState2 = _slicedToArray(_useState, 2),
     timedOut = _useState2[0],
     setTimedOut = _useState2[1];
 
   // Auto-show content after 2 seconds if loading is true
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loading) {
       setTimedOut(false);
       var timer = setTimeout(function () {
@@ -34682,7 +35335,15 @@ var OrderRecapPanel = function OrderRecapPanel(_ref) {
   });
 };
 
-var WarrantyStepCover = function WarrantyStepCover(_ref) {
+var OrderRecapPanel = function OrderRecapPanel(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(OrderRecapPanel$1, props));
+};
+
+var WarrantyStepCover$1 = function WarrantyStepCover(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     _ref$variant = _ref.variant,
@@ -34690,13 +35351,13 @@ var WarrantyStepCover = function WarrantyStepCover(_ref) {
     className = _ref.className,
     _ref$loading = _ref.loading,
     loading = _ref$loading === void 0 ? false : _ref$loading;
-  var _useState = require$$0.useState(false),
+  var _useState = React.useState(false),
     _useState2 = _slicedToArray(_useState, 2),
     timedOut = _useState2[0],
     setTimedOut = _useState2[1];
 
   // Auto-show content after 2 seconds if loading is true
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loading) {
       setTimedOut(false);
       var timer = setTimeout(function () {
@@ -34792,7 +35453,15 @@ var WarrantyStepCover = function WarrantyStepCover(_ref) {
   });
 };
 
-var TrialStepOffer = function TrialStepOffer(_ref) {
+var WarrantyStepCover = function WarrantyStepCover(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(WarrantyStepCover$1, props));
+};
+
+var TrialStepOffer$1 = function TrialStepOffer(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     _ref$variant = _ref.variant,
@@ -34800,13 +35469,13 @@ var TrialStepOffer = function TrialStepOffer(_ref) {
     className = _ref.className,
     _ref$loading = _ref.loading,
     loading = _ref$loading === void 0 ? false : _ref$loading;
-  var _useState = require$$0.useState(false),
+  var _useState = React.useState(false),
     _useState2 = _slicedToArray(_useState, 2),
     timedOut = _useState2[0],
     setTimedOut = _useState2[1];
 
   // Auto-show content after 2 seconds if loading is true
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loading) {
       setTimedOut(false);
       var timer = setTimeout(function () {
@@ -34873,7 +35542,15 @@ var TrialStepOffer = function TrialStepOffer(_ref) {
   });
 };
 
-var ReachUsLoadingShell = function ReachUsLoadingShell(_ref) {
+var TrialStepOffer = function TrialStepOffer(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(TrialStepOffer$1, props));
+};
+
+var ReachUsLoadingShell$1 = function ReachUsLoadingShell(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     className = _ref.className;
@@ -35071,18 +35748,26 @@ var ReachUsLoadingShell = function ReachUsLoadingShell(_ref) {
   });
 };
 
-var ReachUsPanel = function ReachUsPanel(_ref) {
+var ReachUsLoadingShell = function ReachUsLoadingShell(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(ReachUsLoadingShell$1, props));
+};
+
+var ReachUsPanel$1 = function ReachUsPanel(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     className = _ref.className,
     _ref$loading = _ref.loading,
     loading = _ref$loading === void 0 ? false : _ref$loading,
     id = _ref.id;
-  var _useState = require$$0.useState(false),
+  var _useState = React.useState(false),
     _useState2 = _slicedToArray(_useState, 2),
     timedOut = _useState2[0],
     setTimedOut = _useState2[1];
-  var _useState3 = require$$0.useState({
+  var _useState3 = React.useState({
       name: '',
       email: '',
       subject: '',
@@ -35094,7 +35779,7 @@ var ReachUsPanel = function ReachUsPanel(_ref) {
   var variant = data.variant || 'modern';
 
   // Reset timeout when data changes to ensure dynamic content works
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loading) {
       setTimedOut(false);
       var timer = setTimeout(function () {
@@ -35109,7 +35794,7 @@ var ReachUsPanel = function ReachUsPanel(_ref) {
   }, [loading, data]); // Added data to dependencies to reset on data changes
 
   // Auto-show content after 2 seconds if loading is true
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loading) {
       setTimedOut(false);
       var timer = setTimeout(function () {
@@ -35667,18 +36352,26 @@ var ReachUsPanel = function ReachUsPanel(_ref) {
   });
 };
 
-var ReachUsNeo = function ReachUsNeo(_ref) {
+var ReachUsPanel = function ReachUsPanel(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(ReachUsPanel$1, props));
+};
+
+var ReachUsNeo$1 = function ReachUsNeo(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     className = _ref.className,
     _ref$loading = _ref.loading,
     loading = _ref$loading === void 0 ? false : _ref$loading,
     id = _ref.id;
-  var _useState = require$$0.useState(false),
+  var _useState = React.useState(false),
     _useState2 = _slicedToArray(_useState, 2),
     timedOut = _useState2[0],
     setTimedOut = _useState2[1];
-  var _useState3 = require$$0.useState({
+  var _useState3 = React.useState({
       name: '',
       email: '',
       subject: '',
@@ -35690,7 +36383,7 @@ var ReachUsNeo = function ReachUsNeo(_ref) {
   var variant = data.variant || 'infoLeft';
 
   // Reset timeout when data changes to ensure dynamic content works
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loading) {
       setTimedOut(false);
       var timer = setTimeout(function () {
@@ -36172,6 +36865,14 @@ var ReachUsNeo = function ReachUsNeo(_ref) {
     className: clsx("contact-modern-section", className),
     children: renderVariant()
   });
+};
+
+var ReachUsNeo = function ReachUsNeo(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(ReachUsNeo$1, props));
 };
 
 var SectionHeader = function SectionHeader(_ref) {
@@ -36854,7 +37555,7 @@ var variantComponents = {
   image: ImageAbout,
   story: StoryTimelineAbout
 };
-var OriginPanel = function OriginPanel(_ref1) {
+var OriginPanel$1 = function OriginPanel(_ref1) {
   var _ref1$data = _ref1.data,
     data = _ref1$data === void 0 ? {} : _ref1$data,
     variant = _ref1.variant,
@@ -36907,7 +37608,7 @@ var OriginPanel = function OriginPanel(_ref1) {
   });
 };
 
-var OriginLoadingShell = function OriginLoadingShell(_ref) {
+var OriginLoadingShell$1 = function OriginLoadingShell(_ref) {
   var _ref$variant = _ref.variant,
     variant = _ref$variant === void 0 ? 'split' : _ref$variant;
   var baseCard = 'rounded-2xl bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700';
@@ -36991,7 +37692,22 @@ var OriginLoadingShell = function OriginLoadingShell(_ref) {
   });
 };
 
-var LostPageLoadingShell = function LostPageLoadingShell(_ref) {
+var OriginPanel = function OriginPanel(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(OriginPanel$1, props));
+};
+var OriginLoadingShell = function OriginLoadingShell(props) {
+  var _ref2, _props$theme2, _props$data2;
+  var theme = (_ref2 = (_props$theme2 = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme2 !== void 0 ? _props$theme2 : props === null || props === void 0 || (_props$data2 = props.data) === null || _props$data2 === void 0 ? void 0 : _props$data2.theme) !== null && _ref2 !== void 0 ? _ref2 : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(OriginLoadingShell$1, props));
+};
+
+var LostPageLoadingShell$1 = function LostPageLoadingShell(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     className = _ref.className;
@@ -37374,20 +38090,28 @@ var LostPageLoadingShell = function LostPageLoadingShell(_ref) {
   });
 };
 
-var LostPage = function LostPage(_ref) {
+var LostPageLoadingShell = function LostPageLoadingShell(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(LostPageLoadingShell$1, props));
+};
+
+var LostPage$1 = function LostPage(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
     className = _ref.className,
     _ref$loading = _ref.loading,
     loading = _ref$loading === void 0 ? false : _ref$loading;
-  var _useState = require$$0.useState(false),
+  var _useState = React.useState(false),
     _useState2 = _slicedToArray(_useState, 2),
     timedOut = _useState2[0],
     setTimedOut = _useState2[1];
   var variant = data.variant || 'modern';
 
   // Reset timeout when data changes to ensure dynamic content works
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loading) {
       setTimedOut(false);
       var timer = setTimeout(function () {
@@ -37402,7 +38126,7 @@ var LostPage = function LostPage(_ref) {
   }, [loading, data]);
 
   // Auto-show content after 2 seconds if loading is true
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loading) {
       setTimedOut(false);
       var timer = setTimeout(function () {
@@ -38143,6 +38867,14 @@ var LostPage = function LostPage(_ref) {
   });
 };
 
+var LostPage = function LostPage(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(LostPage$1, props));
+};
+
 var UploadDropArea = function UploadDropArea(_ref) {
   var data = _ref.data,
     onFilesDrop = _ref.onFilesDrop,
@@ -38154,22 +38886,22 @@ var UploadDropArea = function UploadDropArea(_ref) {
   if (!data || _typeof(data) !== 'object') {
     data = {};
   }
-  var _useState = require$$0.useState(loader),
+  var _useState = React.useState(loader),
     _useState2 = _slicedToArray(_useState, 2),
     showLoader = _useState2[0],
     setShowLoader = _useState2[1];
-  var _useState3 = require$$0.useState(false),
+  var _useState3 = React.useState(false),
     _useState4 = _slicedToArray(_useState3, 2),
     isDragActive = _useState4[0],
     setIsDragActive = _useState4[1];
-  var _useState5 = require$$0.useState([]),
+  var _useState5 = React.useState([]),
     _useState6 = _slicedToArray(_useState5, 2),
     files = _useState6[0],
     setFiles = _useState6[1];
-  var fileInputRef = require$$0.useRef(null);
+  var fileInputRef = React.useRef(null);
 
   // Auto-hide loader after 2 seconds when loader prop is true
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loader) {
       var timer = setTimeout(function () {
         setShowLoader(false);
@@ -38487,7 +39219,7 @@ var UploadDropArea = function UploadDropArea(_ref) {
   }
 };
 
-var BasketClassic = function BasketClassic(_ref) {
+var BasketClassic$1 = function BasketClassic(_ref) {
   var data = _ref.data,
     _ref$variant = _ref.variant,
     variant = _ref$variant === void 0 ? 'default' : _ref$variant,
@@ -38495,17 +39227,17 @@ var BasketClassic = function BasketClassic(_ref) {
     initialLoader = _ref$loader === void 0 ? false : _ref$loader,
     className = _ref.className,
     id = _ref.id;
-  var _useState = require$$0.useState((data === null || data === void 0 ? void 0 : data.items) || []),
+  var _useState = React.useState((data === null || data === void 0 ? void 0 : data.items) || []),
     _useState2 = _slicedToArray(_useState, 2),
     cartItems = _useState2[0],
     setCartItems = _useState2[1];
-  var _useState3 = require$$0.useState(initialLoader),
+  var _useState3 = React.useState(initialLoader),
     _useState4 = _slicedToArray(_useState3, 2),
     isLoading = _useState4[0],
     setIsLoading = _useState4[1];
 
   // Auto-switch from skeleton to content after 2 seconds
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (initialLoader) {
       var timer = setTimeout(function () {
         setIsLoading(false);
@@ -38907,7 +39639,15 @@ var BasketClassic = function BasketClassic(_ref) {
   });
 };
 
-var BasketNeo = function BasketNeo(_ref) {
+var BasketClassic = function BasketClassic(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(BasketClassic$1, props));
+};
+
+var BasketNeo$1 = function BasketNeo(_ref) {
   var data = _ref.data,
     _ref$variant = _ref.variant,
     variant = _ref$variant === void 0 ? 'default' : _ref$variant,
@@ -38915,17 +39655,17 @@ var BasketNeo = function BasketNeo(_ref) {
     initialLoader = _ref$loader === void 0 ? false : _ref$loader,
     className = _ref.className,
     id = _ref.id;
-  var _useState = require$$0.useState((data === null || data === void 0 ? void 0 : data.items) || []),
+  var _useState = React.useState((data === null || data === void 0 ? void 0 : data.items) || []),
     _useState2 = _slicedToArray(_useState, 2),
     cartItems = _useState2[0],
     setCartItems = _useState2[1];
-  var _useState3 = require$$0.useState(initialLoader),
+  var _useState3 = React.useState(initialLoader),
     _useState4 = _slicedToArray(_useState3, 2),
     isLoading = _useState4[0],
     setIsLoading = _useState4[1];
 
   // Auto-switch from skeleton to content after 2 seconds
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (initialLoader) {
       var timer = setTimeout(function () {
         setIsLoading(false);
@@ -39452,7 +40192,15 @@ var BasketNeo = function BasketNeo(_ref) {
   });
 };
 
-var BasketBare = function BasketBare(_ref) {
+var BasketNeo = function BasketNeo(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(BasketNeo$1, props));
+};
+
+var BasketBare$1 = function BasketBare(_ref) {
   var data = _ref.data,
     _ref$variant = _ref.variant,
     variant = _ref$variant === void 0 ? 'default' : _ref$variant,
@@ -39460,17 +40208,17 @@ var BasketBare = function BasketBare(_ref) {
     initialLoader = _ref$loader === void 0 ? false : _ref$loader,
     className = _ref.className,
     id = _ref.id;
-  var _useState = require$$0.useState((data === null || data === void 0 ? void 0 : data.items) || []),
+  var _useState = React.useState((data === null || data === void 0 ? void 0 : data.items) || []),
     _useState2 = _slicedToArray(_useState, 2),
     cartItems = _useState2[0],
     setCartItems = _useState2[1];
-  var _useState3 = require$$0.useState(initialLoader),
+  var _useState3 = React.useState(initialLoader),
     _useState4 = _slicedToArray(_useState3, 2),
     isLoading = _useState4[0],
     setIsLoading = _useState4[1];
 
   // Auto-switch from skeleton to content after 2 seconds
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (initialLoader) {
       var timer = setTimeout(function () {
         setIsLoading(false);
@@ -39827,7 +40575,15 @@ var BasketBare = function BasketBare(_ref) {
   });
 };
 
-var BasketElite = function BasketElite(_ref) {
+var BasketBare = function BasketBare(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(BasketBare$1, props));
+};
+
+var BasketElite$1 = function BasketElite(_ref) {
   var data = _ref.data,
     _ref$variant = _ref.variant,
     variant = _ref$variant === void 0 ? 'default' : _ref$variant,
@@ -39835,17 +40591,17 @@ var BasketElite = function BasketElite(_ref) {
     initialLoader = _ref$loader === void 0 ? false : _ref$loader,
     className = _ref.className,
     id = _ref.id;
-  var _useState = require$$0.useState((data === null || data === void 0 ? void 0 : data.items) || []),
+  var _useState = React.useState((data === null || data === void 0 ? void 0 : data.items) || []),
     _useState2 = _slicedToArray(_useState, 2),
     cartItems = _useState2[0],
     setCartItems = _useState2[1];
-  var _useState3 = require$$0.useState(initialLoader),
+  var _useState3 = React.useState(initialLoader),
     _useState4 = _slicedToArray(_useState3, 2),
     isLoading = _useState4[0],
     setIsLoading = _useState4[1];
 
   // Auto-switch from skeleton to content after 2 seconds
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (initialLoader) {
       var timer = setTimeout(function () {
         setIsLoading(false);
@@ -40336,7 +41092,15 @@ var BasketElite = function BasketElite(_ref) {
   });
 };
 
-var BasketSideDrawer = function BasketSideDrawer(_ref) {
+var BasketElite = function BasketElite(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(BasketElite$1, props));
+};
+
+var BasketSideDrawer$1 = function BasketSideDrawer(_ref) {
   var data = _ref.data,
     _ref$variant = _ref.variant,
     variant = _ref$variant === void 0 ? 'default' : _ref$variant,
@@ -40349,17 +41113,17 @@ var BasketSideDrawer = function BasketSideDrawer(_ref) {
     onClose = _ref.onClose,
     className = _ref.className,
     id = _ref.id;
-  var _useState = require$$0.useState((data === null || data === void 0 ? void 0 : data.items) || []),
+  var _useState = React.useState((data === null || data === void 0 ? void 0 : data.items) || []),
     _useState2 = _slicedToArray(_useState, 2),
     cartItems = _useState2[0],
     setCartItems = _useState2[1];
-  var _useState3 = require$$0.useState(initialLoader),
+  var _useState3 = React.useState(initialLoader),
     _useState4 = _slicedToArray(_useState3, 2),
     isLoading = _useState4[0],
     setIsLoading = _useState4[1];
 
   // Auto-switch from skeleton to content after 2 seconds
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (initialLoader) {
       var timer = setTimeout(function () {
         setIsLoading(false);
@@ -40756,21 +41520,29 @@ var BasketSideDrawer = function BasketSideDrawer(_ref) {
   });
 };
 
-var ContentsNavigator = function ContentsNavigator(_ref) {
+var BasketSideDrawer = function BasketSideDrawer(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(BasketSideDrawer$1, props));
+};
+
+var ContentsNavigator$1 = function ContentsNavigator(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id,
     _ref$loader = _ref.loader,
     loader = _ref$loader === void 0 ? false : _ref$loader;
-  var _useState = require$$0.useState(''),
+  var _useState = React.useState(''),
     _useState2 = _slicedToArray(_useState, 2),
     activeId = _useState2[0],
     setActiveId = _useState2[1];
-  var _useState3 = require$$0.useState(loader),
+  var _useState3 = React.useState(loader),
     _useState4 = _slicedToArray(_useState3, 2),
     showLoader = _useState4[0],
     setShowLoader = _useState4[1];
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loader) {
       var timer = setTimeout(function () {
         return setShowLoader(false);
@@ -40780,13 +41552,13 @@ var ContentsNavigator = function ContentsNavigator(_ref) {
       };
     }
   }, [loader]);
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     var _data$items;
     if ((data === null || data === void 0 || (_data$items = data.items) === null || _data$items === void 0 ? void 0 : _data$items.length) > 0 && !activeId) {
       setActiveId(data.items[0].id);
     }
   }, [data === null || data === void 0 ? void 0 : data.items, activeId]);
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     var _data$items2;
     var observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
@@ -40901,16 +41673,24 @@ var ContentsNavigator = function ContentsNavigator(_ref) {
   });
 };
 
+var ContentsNavigator = function ContentsNavigator(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(ContentsNavigator$1, props));
+};
+
 var MosaicCard = function MosaicCard(_ref) {
   var data = _ref.data,
     className = _ref.className,
     _ref$loader = _ref.loader,
     loader = _ref$loader === void 0 ? false : _ref$loader;
-  var _useState = require$$0.useState(loader),
+  var _useState = React.useState(loader),
     _useState2 = _slicedToArray(_useState, 2),
     showLoader = _useState2[0],
     setShowLoader = _useState2[1];
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loader) {
       var timer = setTimeout(function () {
         return setShowLoader(false);
@@ -40999,11 +41779,11 @@ var MosaicGrid = function MosaicGrid(_ref) {
   if (!data || !data.items) {
     return null;
   }
-  var _useState = require$$0.useState(loader),
+  var _useState = React.useState(loader),
     _useState2 = _slicedToArray(_useState, 2),
     showLoader = _useState2[0],
     setShowLoader = _useState2[1];
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loader) {
       var timer = setTimeout(function () {
         return setShowLoader(false);
@@ -41162,11 +41942,11 @@ var WorkGallery = function WorkGallery(_ref) {
     _ref$loader = _ref.loader,
     loader = _ref$loader === void 0 ? false : _ref$loader,
     id = _ref.id;
-  var _useState = require$$0.useState(loader),
+  var _useState = React.useState(loader),
     _useState2 = _slicedToArray(_useState, 2),
     showLoader = _useState2[0],
     setShowLoader = _useState2[1];
-  require$$0.useEffect(function () {
+  React.useEffect(function () {
     if (loader) {
       var timer = setTimeout(function () {
         return setShowLoader(false);
@@ -41652,7 +42432,7 @@ var truncateText = function truncateText(value, maxLength) {
  * @param {string} [props.id]
  * @param {"light"|"dark"} [props.theme] Theme override (preferred over data.theme)
  */
-var TeamSection = function TeamSection(_ref2) {
+var TeamSection$1 = function TeamSection(_ref2) {
   var data = _ref2.data,
     className = _ref2.className,
     id = _ref2.id,
@@ -41770,8 +42550,8 @@ var TeamSection = function TeamSection(_ref2) {
 
   // Variant 4: carousel layout (snap scrolling + buttons + dots)
   var Carousel = function Carousel() {
-    var trackRef = require$$0.useRef(null);
-    var _useState = require$$0.useState(0),
+    var trackRef = React.useRef(null);
+    var _useState = React.useState(0),
       _useState2 = _slicedToArray(_useState, 2),
       active = _useState2[0],
       setActive = _useState2[1];
@@ -41792,7 +42572,7 @@ var TeamSection = function TeamSection(_ref2) {
       });
       setActive(idx);
     };
-    require$$0.useEffect(function () {
+    React.useEffect(function () {
       var el = trackRef.current;
       if (!el) return;
       var onScroll = function onScroll() {
@@ -41817,7 +42597,7 @@ var TeamSection = function TeamSection(_ref2) {
       };
     }, []);
     var dotCount = Math.min(6, slides.length);
-    var dotIndexes = require$$0.useMemo(function () {
+    var dotIndexes = React.useMemo(function () {
       if (slides.length <= dotCount) return slides.map(function (_, i) {
         return i;
       });
@@ -42034,8 +42814,161 @@ var TeamSection = function TeamSection(_ref2) {
   });
 };
 
+var CrewPanel$1 = function CrewPanel(props) {
+  return /*#__PURE__*/require$$1.jsx(TeamSection$1, _objectSpread2({}, props));
+};
+
 var CrewPanel = function CrewPanel(props) {
-  return /*#__PURE__*/require$$1.jsx(TeamSection, _objectSpread2({}, props));
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(CrewPanel$1, props));
+};
+
+var TeamSection = function TeamSection(props) {
+  var _ref, _props$theme, _props$data;
+  var theme = (_ref = (_props$theme = props === null || props === void 0 ? void 0 : props.theme) !== null && _props$theme !== void 0 ? _props$theme : props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.theme) !== null && _ref !== void 0 ? _ref : 'light';
+  return /*#__PURE__*/React.createElement('div', {
+    'data-theme': theme === 'dark' ? 'dark' : 'light'
+  }, /*#__PURE__*/React.createElement(TeamSection$1, props));
+};
+
+var DetailsContent = function DetailsContent(_ref) {
+  var data = _ref.data,
+    titleProp = _ref.title,
+    labelProp = _ref.label,
+    subtitleProp = _ref.subtitle,
+    descriptionProp = _ref.description,
+    descriptionHtmlProp = _ref.descriptionHtml,
+    imageProp = _ref.image,
+    buttonProp = _ref.button,
+    imagePositionProp = _ref.imagePosition,
+    themeProp = _ref.theme,
+    titleAsProp = _ref.titleAs,
+    id = _ref.id,
+    className = _ref.className,
+    textClassName = _ref.textClassName,
+    imageClassName = _ref.imageClassName;
+  var reactId = React.useId();
+  var resolved = _objectSpread2({}, data && _typeof(data) === 'object' ? data : {});
+  if (titleProp !== undefined) resolved.title = titleProp;
+  if (labelProp !== undefined) resolved.label = labelProp;
+  if (subtitleProp !== undefined) resolved.subtitle = subtitleProp;
+  if (descriptionProp !== undefined) resolved.description = descriptionProp;
+  if (descriptionHtmlProp !== undefined) resolved.descriptionHtml = descriptionHtmlProp;
+  if (imageProp !== undefined) resolved.image = imageProp;
+  if (buttonProp !== undefined) resolved.button = buttonProp;
+  if (imagePositionProp !== undefined) resolved.imagePosition = imagePositionProp;
+  if (themeProp !== undefined) resolved.theme = themeProp;
+  if (titleAsProp !== undefined) resolved.titleAs = titleAsProp;
+  var title = resolved.title;
+  var label = resolved.label;
+  var subtitle = resolved.subtitle;
+  var description = resolved.description;
+  var descriptionHtml = resolved.descriptionHtml;
+  var image = resolved.image;
+  var button = resolved.button;
+  var imagePosition = resolved.imagePosition === 'left' || resolved.imagePosition === 'right' ? resolved.imagePosition : 'right';
+  var theme = resolved.theme === 'dark' ? 'dark' : 'light';
+  var isDark = theme === 'dark';
+  var TitleTag = resolved.titleAs || 'h2';
+  var hasTextHeader = Boolean(label || subtitle || title);
+  var hasDescription = Boolean(description || descriptionHtml);
+  var hasButton = Boolean((button === null || button === void 0 ? void 0 : button.text) && (button === null || button === void 0 ? void 0 : button.href));
+  var hasText = hasTextHeader || hasDescription || hasButton;
+  var hasImage = Boolean(image);
+  if (!hasText && !hasImage) return null;
+  var titleId = typeof title === 'string' && title.trim().length > 0 ? "".concat(id || "details-content-".concat(reactId), "-title") : undefined;
+  var imageCfg = typeof image === 'string' ? {
+    src: image,
+    alt: typeof title === 'string' ? title : 'Details image'
+  } : image || null;
+  var renderDescription = function renderDescription() {
+    if (descriptionHtml) {
+      return /*#__PURE__*/require$$1.jsx("div", {
+        className: clsx('text-sm sm:text-base leading-relaxed', isDark ? 'text-slate-300' : 'text-slate-600', isDark ? '[&_a]:text-primary-300' : '[&_a]:text-primary-600', '[&_a]:underline-offset-4 hover:[&_a]:underline', isDark ? '[&_strong]:text-white' : '[&_strong]:text-slate-900', '[&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5 [&_li]:my-1', isDark ? '[&_code]:text-slate-200' : '[&_code]:text-slate-800'),
+        dangerouslySetInnerHTML: {
+          __html: descriptionHtml
+        }
+      });
+    }
+    if (!description) return null;
+    if (Array.isArray(description)) {
+      return /*#__PURE__*/require$$1.jsx("div", {
+        className: clsx('space-y-3 text-sm sm:text-base leading-relaxed', isDark ? 'text-slate-300' : 'text-slate-600'),
+        children: description.filter(Boolean).map(function (line, idx) {
+          return /*#__PURE__*/require$$1.jsx("p", {
+            className: "whitespace-pre-line",
+            children: line
+          }, idx);
+        })
+      });
+    }
+    if (typeof description === 'string') {
+      return /*#__PURE__*/require$$1.jsx("p", {
+        className: clsx('text-sm sm:text-base leading-relaxed whitespace-pre-line', isDark ? 'text-slate-300' : 'text-slate-600'),
+        children: description
+      });
+    }
+    return /*#__PURE__*/require$$1.jsx("div", {
+      className: clsx('text-sm sm:text-base leading-relaxed', isDark ? 'text-slate-300' : 'text-slate-600'),
+      children: description
+    });
+  };
+  return /*#__PURE__*/require$$1.jsx("section", {
+    id: id,
+    "aria-labelledby": titleId,
+    className: clsx('w-full', 'py-10 sm:py-12 lg:py-16', isDark ? 'bg-gradient-to-b from-slate-950 via-slate-950 to-slate-900' : 'bg-gradient-to-b from-white via-white to-slate-50', className),
+    children: /*#__PURE__*/require$$1.jsx("div", {
+      className: clsx('mx-auto w-full max-w-7xl', 'px-4 sm:px-6 lg:px-8'),
+      children: /*#__PURE__*/require$$1.jsxs("div", {
+        className: clsx('grid grid-cols-1', hasImage ? 'lg:grid-cols-2' : 'lg:grid-cols-1', 'gap-8 lg:gap-12', 'items-start lg:items-center'),
+        children: [hasText && /*#__PURE__*/require$$1.jsxs("article", {
+          className: clsx('min-w-0', !hasImage ? 'w-full max-w-none' : 'w-full', imagePosition === 'left' ? 'order-2' : 'order-1', textClassName),
+          children: [hasTextHeader && /*#__PURE__*/require$$1.jsxs("header", {
+            className: "space-y-3",
+            children: [label && /*#__PURE__*/require$$1.jsx("p", {
+              className: clsx('inline-flex w-fit items-center rounded-full px-3 py-1 text-xs sm:text-sm font-semibold ring-1 ring-inset', isDark ? 'bg-primary-500/15 text-primary-300 ring-primary-400/20' : 'bg-primary-50 text-primary-700 ring-primary-100'),
+              children: label
+            }), title && /*#__PURE__*/require$$1.jsx(TitleTag, {
+              id: titleId,
+              className: clsx('text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight', isDark ? 'text-white' : 'text-slate-900'),
+              children: title
+            }), subtitle && /*#__PURE__*/require$$1.jsx("p", {
+              className: clsx('text-base sm:text-lg leading-relaxed', isDark ? 'text-slate-200' : 'text-slate-700'),
+              children: subtitle
+            })]
+          }), (hasDescription || hasButton) && /*#__PURE__*/require$$1.jsxs("div", {
+            className: clsx('mt-5 sm:mt-6', hasButton ? 'space-y-6' : undefined),
+            children: [hasDescription && renderDescription(), hasButton && /*#__PURE__*/require$$1.jsx("a", {
+              href: button.href,
+              target: button.target,
+              rel: button.rel || (button.target === '_blank' ? 'noreferrer noopener' : undefined),
+              className: clsx('inline-flex w-fit items-center justify-center rounded-xl px-5 py-3 text-sm sm:text-base font-semibold text-white shadow-sm transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2', isDark ? 'bg-primary-500 hover:bg-primary-400 focus-visible:ring-primary-300 focus-visible:ring-offset-slate-950' : 'bg-primary-600 hover:bg-primary-700 focus-visible:ring-primary-500 focus-visible:ring-offset-white'),
+              children: button.text
+            })]
+          })]
+        }), hasImage && (imageCfg === null || imageCfg === void 0 ? void 0 : imageCfg.src) && /*#__PURE__*/require$$1.jsxs("figure", {
+          className: clsx('min-w-0', imagePosition === 'left' ? 'order-1' : 'order-2', imageClassName),
+          children: [/*#__PURE__*/require$$1.jsx("img", {
+            src: imageCfg.src,
+            alt: imageCfg.alt || '',
+            width: imageCfg.width,
+            height: imageCfg.height,
+            sizes: imageCfg.sizes || '(min-width: 1024px) 50vw, 100vw',
+            loading: imageCfg.loading || 'lazy',
+            decoding: imageCfg.decoding || 'async',
+            style: imageCfg.style,
+            className: clsx('w-full h-auto', 'rounded-2xl', isDark ? 'bg-slate-900' : 'bg-slate-100', 'shadow-sm ring-1 ring-inset', isDark ? 'ring-slate-800' : 'ring-slate-200', typeof imageCfg.className === 'string' ? imageCfg.className : undefined)
+          }), (imageCfg === null || imageCfg === void 0 ? void 0 : imageCfg.caption) && /*#__PURE__*/require$$1.jsx("figcaption", {
+            className: clsx('mt-3 text-xs sm:text-sm', isDark ? 'text-slate-400' : 'text-slate-500'),
+            children: imageCfg.caption
+          })]
+        })]
+      })
+    })
+  });
 };
 
 /**
@@ -42111,6 +43044,7 @@ exports.ContactStepEmail = ContactStepEmail;
 exports.ContentsNavigator = ContentsNavigator;
 exports.CrewPanel = CrewPanel;
 exports.DeliveryStepAddress = DeliveryStepAddress;
+exports.DetailsContent = DetailsContent;
 exports.FavoritesList = FavoritesList;
 exports.FilterBar = FilterBar;
 exports.FilterRail = FilterRail;

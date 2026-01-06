@@ -17,6 +17,7 @@ out/
 # Project directories
 src/
 docs-app/
+scripts/
 
 # Environment variables
 .env
