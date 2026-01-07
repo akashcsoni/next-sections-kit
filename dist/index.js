@@ -6248,24 +6248,6 @@ var MotionRail$1 = function MotionRail(_ref) {
     console.error('SlideFlow: data prop is required and must be an object');
     return null;
   }
-  var _useState = React.useState(loader),
-    _useState2 = _slicedToArray(_useState, 2),
-    showLoader = _useState2[0],
-    setShowLoader = _useState2[1];
-
-  // Auto-hide loader after 2 seconds when loader prop is true
-  React.useEffect(function () {
-    if (loader) {
-      var timer = setTimeout(function () {
-        setShowLoader(false);
-      }, 2000);
-      return function () {
-        return clearTimeout(timer);
-      };
-    } else {
-      setShowLoader(false);
-    }
-  }, [loader]);
   var title = data.title,
     subtitle = data.subtitle,
     description = data.description,
@@ -6294,28 +6276,11 @@ var MotionRail$1 = function MotionRail(_ref) {
     pauseOnHover = _data$pauseOnHover === void 0 ? true : _data$pauseOnHover,
     dataClassName = data.className;
 
-  // Special-case: logo rails should be compact, not show overlay text, and keep images contained.
-  var isLogoRail = mode === 'logos';
-
-  // Show loader if loader prop is true
-  if (showLoader) {
-    return /*#__PURE__*/require$$1.jsx("section", {
-      id: id,
-      className: clsx('w-full py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8', 'bg-white', className, dataClassName),
-      children: /*#__PURE__*/require$$1.jsx("div", {
-        className: "max-w-7xl mx-auto w-full flex items-center justify-center min-h-[400px]",
-        children: /*#__PURE__*/require$$1.jsxs("div", {
-          className: "flex flex-col items-center gap-4",
-          children: [/*#__PURE__*/require$$1.jsx("div", {
-            className: "w-12 h-12 border-4 border-primary-200 border-t-primary-600 rounded-full animate-spin"
-          }), /*#__PURE__*/require$$1.jsx("p", {
-            className: "text-gray-600 text-sm",
-            children: "Loading..."
-          })]
-        })
-      })
-    });
-  }
+  // All hooks must be called before any early returns
+  var _useState = React.useState(loader),
+    _useState2 = _slicedToArray(_useState, 2),
+    showLoader = _useState2[0],
+    setShowLoader = _useState2[1];
   var _useState3 = React.useState(0),
     _useState4 = _slicedToArray(_useState3, 2),
     currentIndex = _useState4[0],
@@ -6330,6 +6295,144 @@ var MotionRail$1 = function MotionRail(_ref) {
     setIsTransitioning = _useState8[1];
   var carouselRef = React.useRef(null);
   var autoplayTimerRef = React.useRef(null);
+
+  // Auto-hide loader after 2 seconds when loader prop is true
+  React.useEffect(function () {
+    if (loader) {
+      var timer = setTimeout(function () {
+        setShowLoader(false);
+      }, 2000);
+      return function () {
+        return clearTimeout(timer);
+      };
+    } else {
+      setShowLoader(false);
+    }
+  }, [loader]);
+
+  // Special-case: logo rails should be compact, not show overlay text, and keep images contained.
+  var isLogoRail = mode === 'logos';
+  var variantClasses = {
+    "default": 'bg-white',
+    autoplay: 'bg-white',
+    dots: 'bg-white',
+    arrows: 'bg-white',
+    thumbnails: 'bg-white',
+    fade: 'bg-white',
+    slide: 'bg-white',
+    vertical: 'bg-white',
+    multiple: 'bg-white',
+    infinite: 'bg-white',
+    center: 'bg-white',
+    minimal: 'bg-transparent',
+    modern: 'bg-gray-50',
+    classic: 'bg-white',
+    card: 'bg-white',
+    fullscreen: 'bg-black'
+  };
+
+  // Skeleton components
+  var SkeletonHeader = function SkeletonHeader() {
+    return /*#__PURE__*/require$$1.jsxs("div", {
+      className: "space-y-4 mb-10 sm:mb-12",
+      children: [/*#__PURE__*/require$$1.jsx("div", {
+        className: "h-4 w-32 bg-gray-200 rounded animate-pulse mx-auto"
+      }), /*#__PURE__*/require$$1.jsxs("div", {
+        className: "space-y-2",
+        children: [/*#__PURE__*/require$$1.jsx("div", {
+          className: "h-12 w-3/4 bg-gray-200 rounded animate-pulse mx-auto"
+        }), /*#__PURE__*/require$$1.jsx("div", {
+          className: "h-12 w-1/2 bg-gray-200 rounded animate-pulse mx-auto"
+        })]
+      }), /*#__PURE__*/require$$1.jsx("div", {
+        className: "h-4 w-full max-w-2xl bg-gray-200 rounded animate-pulse mx-auto"
+      }), /*#__PURE__*/require$$1.jsx("div", {
+        className: "h-4 w-3/4 max-w-2xl bg-gray-200 rounded animate-pulse mx-auto"
+      })]
+    });
+  };
+  var SkeletonCarousel = function SkeletonCarousel() {
+    var getCarouselHeight = function getCarouselHeight() {
+      if (variant === 'fullscreen') return 'h-screen';
+      if (variant === 'vertical') return 'h-[600px]';
+      if (isLogoRail || variant === 'multiple') return 'h-[180px] sm:h-[220px]';
+      return 'h-[500px] sm:h-[600px]';
+    };
+    return /*#__PURE__*/require$$1.jsxs("div", {
+      className: clsx('relative w-full overflow-hidden rounded-lg', getCarouselHeight(), 'bg-gray-100'),
+      children: [Array.from({
+        length: Math.min(slidesToShow || 1, 3)
+      }).map(function (_, index) {
+        return /*#__PURE__*/require$$1.jsx("div", {
+          className: "absolute inset-0 w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 animate-pulse",
+          style: {
+            left: slidesToShow > 1 ? "".concat(index * 100 / slidesToShow, "%") : '0',
+            width: slidesToShow > 1 ? "".concat(100 / slidesToShow, "%") : '100%'
+          }
+        }, index);
+      }), !(variant !== null && variant !== void 0 && variant.includes('minimal')) && /*#__PURE__*/require$$1.jsxs(require$$1.Fragment, {
+        children: [/*#__PURE__*/require$$1.jsx("div", {
+          className: "absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white bg-opacity-90 rounded-full animate-pulse shadow-lg"
+        }), /*#__PURE__*/require$$1.jsx("div", {
+          className: "absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white bg-opacity-90 rounded-full animate-pulse shadow-lg"
+        }), /*#__PURE__*/require$$1.jsx("div", {
+          className: "absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2",
+          children: Array.from({
+            length: Math.min(slides.length || 3, 5)
+          }).map(function (_, index) {
+            return /*#__PURE__*/require$$1.jsx("div", {
+              className: "w-3 h-3 bg-gray-400 rounded-full animate-pulse"
+            }, index);
+          })
+        })]
+      })]
+    });
+  };
+
+  // Handle mouse enter/leave for pause on hover
+  var handleMouseEnter = function handleMouseEnter() {
+    if (pauseOnHover && isAutoplay) {
+      setIsPaused(true);
+    }
+  };
+  var handleMouseLeave = function handleMouseLeave() {
+    if (pauseOnHover && isAutoplay) {
+      setIsPaused(false);
+    }
+  };
+
+  // Autoplay effect
+  React.useEffect(function () {
+    // Logo rails use CSS marquee animation (no JS stepping)
+    if (isLogoRail) return;
+    if (isAutoplay && !isPaused && slides.length > 1) {
+      autoplayTimerRef.current = setInterval(function () {
+        setCurrentIndex(function (prev) {
+          if (infinite || prev < slides.length - slidesToShow) {
+            return (prev + 1) % slides.length;
+          }
+          return slides.length - slidesToShow;
+        });
+      }, autoplayInterval);
+      return function () {
+        if (autoplayTimerRef.current) {
+          clearInterval(autoplayTimerRef.current);
+        }
+      };
+    }
+  }, [isAutoplay, isPaused, autoplayInterval, slides.length, infinite, slidesToShow]);
+
+  // Show skeleton loader if loader prop is true
+  if (showLoader) {
+    return /*#__PURE__*/require$$1.jsx("section", {
+      id: id,
+      className: clsx('w-full py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8', variantClasses[variant] || variantClasses["default"], className, dataClassName),
+      children: /*#__PURE__*/require$$1.jsxs("div", {
+        className: "max-w-7xl mx-auto w-full",
+        children: [(title || subtitle || description) && /*#__PURE__*/require$$1.jsx(SkeletonHeader, {}), /*#__PURE__*/require$$1.jsx(SkeletonCarousel, {})]
+      })
+    });
+  }
 
   // Determine if autoplay should be enabled
   var isAutoplay = variant === 'autoplay' || variant.includes('autoplay');
@@ -6375,39 +6478,6 @@ var MotionRail$1 = function MotionRail(_ref) {
       return setIsTransitioning(false);
     }, 300);
   };
-
-  // Autoplay effect
-  React.useEffect(function () {
-    // Logo rails use CSS marquee animation (no JS stepping)
-    if (isLogoRail) return;
-    if (isAutoplay && !isPaused && slides.length > 1) {
-      autoplayTimerRef.current = setInterval(function () {
-        setCurrentIndex(function (prev) {
-          if (infinite || prev < slides.length - slidesToShow) {
-            return (prev + 1) % slides.length;
-          }
-          return slides.length - slidesToShow;
-        });
-      }, autoplayInterval);
-      return function () {
-        if (autoplayTimerRef.current) {
-          clearInterval(autoplayTimerRef.current);
-        }
-      };
-    }
-  }, [isAutoplay, isPaused, autoplayInterval, slides.length, infinite, slidesToShow]);
-
-  // Handle mouse enter/leave for pause on hover
-  var handleMouseEnter = function handleMouseEnter() {
-    if (pauseOnHover && isAutoplay) {
-      setIsPaused(true);
-    }
-  };
-  var handleMouseLeave = function handleMouseLeave() {
-    if (pauseOnHover && isAutoplay) {
-      setIsPaused(false);
-    }
-  };
   if (slides.length === 0) {
     console.warn('SlideFlow: slides array is empty');
     return null;
@@ -6423,24 +6493,6 @@ var MotionRail$1 = function MotionRail(_ref) {
     primary: 'bg-primary-600 hover:bg-primary-700 text-white',
     secondary: 'bg-gray-600 hover:bg-gray-700 text-white',
     outline: 'border-2 border-white text-white hover:bg-white hover:text-gray-900'
-  };
-  var variantClasses = {
-    "default": 'bg-white',
-    autoplay: 'bg-white',
-    dots: 'bg-white',
-    arrows: 'bg-white',
-    thumbnails: 'bg-white',
-    fade: 'bg-white',
-    slide: 'bg-white',
-    vertical: 'bg-white',
-    multiple: 'bg-white',
-    infinite: 'bg-white',
-    center: 'bg-white',
-    minimal: 'bg-transparent',
-    modern: 'bg-gray-50',
-    classic: 'bg-white',
-    card: 'bg-white',
-    fullscreen: 'bg-black'
   };
   var getCarouselClasses = function getCarouselClasses() {
     var baseClasses = 'relative w-full overflow-hidden';
@@ -6776,7 +6828,28 @@ var MotionRail = function MotionRail(props) {
 var HeaderFrame$1 = function HeaderFrame(_ref) {
   var data = _ref.data,
     className = _ref.className,
-    id = _ref.id;
+    id = _ref.id,
+    _ref$loading = _ref.loading,
+    loading = _ref$loading === void 0 ? false : _ref$loading;
+  var _useState = React.useState(!loading),
+    _useState2 = _slicedToArray(_useState, 2),
+    showContent = _useState2[0],
+    setShowContent = _useState2[1];
+
+  // Show skeleton for 2 seconds when loading is true
+  React.useEffect(function () {
+    if (loading) {
+      setShowContent(false);
+      var timer = setTimeout(function () {
+        setShowContent(true);
+      }, 2000);
+      return function () {
+        return clearTimeout(timer);
+      };
+    } else {
+      setShowContent(true);
+    }
+  }, [loading]);
   if (!data || _typeof(data) !== 'object') {
     console.error('HeaderLayout: data prop is required and must be an object');
     return null;
@@ -6799,12 +6872,10 @@ var HeaderFrame$1 = function HeaderFrame(_ref) {
     _data$sticky = data.sticky,
     sticky = _data$sticky === void 0 ? true : _data$sticky,
     topBarText = data.topBarText,
-    subtitle = data.subtitle,
-    _data$loader = data.loader,
-    loader = _data$loader === void 0 ? false : _data$loader;
+    subtitle = data.subtitle;
 
-  // Show skeleton loader if loader prop is true (check this FIRST before any other checks)
-  if (loader) {
+  // Show skeleton loader when showContent is false (during loading)
+  if (!showContent) {
     var skeletonVariant = variant || 'dark';
 
     // Dark variant skeleton
@@ -7041,27 +7112,27 @@ var HeaderFrame$1 = function HeaderFrame(_ref) {
       })
     });
   }
-  var _useState = React.useState(false),
-    _useState2 = _slicedToArray(_useState, 2),
-    isScrolled = _useState2[0],
-    setIsScrolled = _useState2[1];
   var _useState3 = React.useState(false),
     _useState4 = _slicedToArray(_useState3, 2),
-    isMobileMenuOpen = _useState4[0],
-    setIsMobileMenuOpen = _useState4[1];
-  // First nav link (index 0) is active by default if navItems exist
-  var _useState5 = React.useState(navItems && navItems.length > 0 ? 0 : null),
+    isScrolled = _useState4[0],
+    setIsScrolled = _useState4[1];
+  var _useState5 = React.useState(false),
     _useState6 = _slicedToArray(_useState5, 2),
-    activeNavIndex = _useState6[0],
-    setActiveNavIndex = _useState6[1];
-  var _useState7 = React.useState(''),
+    isMobileMenuOpen = _useState6[0],
+    setIsMobileMenuOpen = _useState6[1];
+  // First nav link (index 0) is active by default if navItems exist
+  var _useState7 = React.useState(navItems && navItems.length > 0 ? 0 : null),
     _useState8 = _slicedToArray(_useState7, 2),
-    searchQuery = _useState8[0],
-    setSearchQuery = _useState8[1];
-  var _useState9 = React.useState(null),
+    activeNavIndex = _useState8[0],
+    setActiveNavIndex = _useState8[1];
+  var _useState9 = React.useState(''),
     _useState0 = _slicedToArray(_useState9, 2),
-    openDropdown = _useState0[0],
-    setOpenDropdown = _useState0[1];
+    searchQuery = _useState0[0],
+    setSearchQuery = _useState0[1];
+  var _useState1 = React.useState(null),
+    _useState10 = _slicedToArray(_useState1, 2),
+    openDropdown = _useState10[0],
+    setOpenDropdown = _useState10[1];
   var dropdownRef = React.useRef(null);
 
   // Function to check if a nav item is active
@@ -8457,7 +8528,72 @@ var HeaderFrame = function HeaderFrame(props) {
 var HeaderClassic$1 = function HeaderClassic(_ref) {
   var data = _ref.data,
     className = _ref.className,
-    id = _ref.id;
+    id = _ref.id,
+    _ref$loading = _ref.loading,
+    loading = _ref$loading === void 0 ? false : _ref$loading;
+  // All hooks must be called before any conditional returns
+  var _useState = React.useState(!loading),
+    _useState2 = _slicedToArray(_useState, 2),
+    showContent = _useState2[0],
+    setShowContent = _useState2[1];
+  var _useState3 = React.useState(false),
+    _useState4 = _slicedToArray(_useState3, 2),
+    isScrolled = _useState4[0],
+    setIsScrolled = _useState4[1];
+  var _useState5 = React.useState(false),
+    _useState6 = _slicedToArray(_useState5, 2),
+    isMobileMenuOpen = _useState6[0],
+    setIsMobileMenuOpen = _useState6[1];
+  var _useState7 = React.useState(null),
+    _useState8 = _slicedToArray(_useState7, 2),
+    activeNavIndex = _useState8[0],
+    setActiveNavIndex = _useState8[1];
+  var _useState9 = React.useState(''),
+    _useState0 = _slicedToArray(_useState9, 2),
+    searchQuery = _useState0[0],
+    setSearchQuery = _useState0[1];
+  var _useState1 = React.useState(null),
+    _useState10 = _slicedToArray(_useState1, 2),
+    openDropdown = _useState10[0],
+    setOpenDropdown = _useState10[1];
+  var _useState11 = React.useState(null),
+    _useState12 = _slicedToArray(_useState11, 2),
+    openMegaMenu = _useState12[0],
+    setOpenMegaMenu = _useState12[1];
+  var _useState13 = React.useState(null),
+    _useState14 = _slicedToArray(_useState13, 2),
+    openMobileDropdown = _useState14[0],
+    setOpenMobileDropdown = _useState14[1];
+  var _useState15 = React.useState(null),
+    _useState16 = _slicedToArray(_useState15, 2),
+    openMobileMegaMenu = _useState16[0],
+    setOpenMobileMegaMenu = _useState16[1];
+  var _useState17 = React.useState(false),
+    _useState18 = _slicedToArray(_useState17, 2),
+    isMobile = _useState18[0],
+    setIsMobile = _useState18[1];
+  var _useState19 = React.useState(null),
+    _useState20 = _slicedToArray(_useState19, 2),
+    activeTab = _useState20[0],
+    setActiveTab = _useState20[1];
+  var dropdownRef = React.useRef(null);
+  var megaMenuRef = React.useRef(null);
+  var mobileMenuRef = React.useRef(null);
+
+  // Show skeleton for 2 seconds when loading is true
+  React.useEffect(function () {
+    if (loading) {
+      setShowContent(false);
+      var timer = setTimeout(function () {
+        setShowContent(true);
+      }, 2000);
+      return function () {
+        return clearTimeout(timer);
+      };
+    } else {
+      setShowContent(true);
+    }
+  }, [loading]);
   if (!data || _typeof(data) !== 'object') {
     console.error('HeaderStandard: data prop is required and must be an object');
     return null;
@@ -8481,12 +8617,107 @@ var HeaderClassic$1 = function HeaderClassic(_ref) {
     _data$variant = data.variant,
     variant = _data$variant === void 0 ? 'simple' : _data$variant,
     _data$sticky = data.sticky,
-    sticky = _data$sticky === void 0 ? true : _data$sticky,
-    _data$loader = data.loader,
-    loader = _data$loader === void 0 ? false : _data$loader;
+    sticky = _data$sticky === void 0 ? true : _data$sticky;
 
-  // Show skeleton loader if loader prop is true (check this FIRST before any other checks)
-  if (loader) {
+  // Initialize activeNavIndex after data is available
+  React.useEffect(function () {
+    if (navItems && navItems.length > 0) {
+      setActiveNavIndex(function (prevIndex) {
+        if (prevIndex === null || prevIndex >= navItems.length) {
+          return 0;
+        }
+        return prevIndex;
+      });
+    } else {
+      setActiveNavIndex(null);
+    }
+  }, [navItems]);
+
+  // Initialize activeTab for tabs variant
+  React.useEffect(function () {
+    if (variant === 'tabs' && tabs && tabs.length > 0) {
+      setActiveTab(function (prevTab) {
+        if (prevTab === null || prevTab >= tabs.length) {
+          return 0;
+        }
+        return prevTab;
+      });
+    } else if (variant !== 'tabs') {
+      setActiveTab(null);
+    }
+  }, [variant, tabs]);
+
+  // Check if device is mobile
+  React.useEffect(function () {
+    var checkMobile = function checkMobile() {
+      setIsMobile(window.innerWidth < 768); // md breakpoint
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return function () {
+      return window.removeEventListener('resize', checkMobile);
+    };
+  }, []);
+
+  // Lock body scroll when mobile menu is open
+  React.useEffect(function () {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return function () {
+      document.body.style.overflow = '';
+    };
+  }, [isMobileMenuOpen]);
+  React.useEffect(function () {
+    if (!sticky) return;
+    var handleScroll = function handleScroll() {
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return function () {
+      return window.removeEventListener('scroll', handleScroll);
+    };
+  }, [sticky]);
+  React.useEffect(function () {
+    var handleClickOutside = function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setOpenDropdown(null);
+      }
+      if (megaMenuRef.current && !megaMenuRef.current.contains(event.target)) {
+        setOpenMegaMenu(null);
+      }
+      if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target)) {
+        // Only close if clicking the backdrop, not menu items
+        if (isMobileMenuOpen && event.target.classList.contains('mobile-menu-backdrop')) {
+          setIsMobileMenuOpen(false);
+        }
+      }
+    };
+    if (openDropdown !== null || openMegaMenu !== null || isMobileMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+      return function () {
+        return document.removeEventListener('mousedown', handleClickOutside);
+      };
+    }
+  }, [openDropdown, openMegaMenu, isMobileMenuOpen]);
+
+  // Handle escape key to close mobile menu
+  React.useEffect(function () {
+    var handleEscape = function handleEscape(e) {
+      if (e.key === 'Escape' && isMobileMenuOpen) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleEscape);
+    return function () {
+      return window.removeEventListener('keydown', handleEscape);
+    };
+  }, [isMobileMenuOpen]);
+
+  // Show skeleton loader when showContent is false (during loading)
+  if (!showContent) {
     var skeletonVariant = variant || 'simple';
 
     // Multiple Layers variant skeleton
@@ -8748,45 +8979,6 @@ var HeaderClassic$1 = function HeaderClassic(_ref) {
       })
     });
   }
-  var _useState = React.useState(false),
-    _useState2 = _slicedToArray(_useState, 2),
-    isScrolled = _useState2[0],
-    setIsScrolled = _useState2[1];
-  var _useState3 = React.useState(false),
-    _useState4 = _slicedToArray(_useState3, 2),
-    isMobileMenuOpen = _useState4[0],
-    setIsMobileMenuOpen = _useState4[1];
-  var _useState5 = React.useState(navItems && navItems.length > 0 ? 0 : null),
-    _useState6 = _slicedToArray(_useState5, 2),
-    activeNavIndex = _useState6[0],
-    setActiveNavIndex = _useState6[1];
-  var _useState7 = React.useState(''),
-    _useState8 = _slicedToArray(_useState7, 2),
-    searchQuery = _useState8[0],
-    setSearchQuery = _useState8[1];
-  var _useState9 = React.useState(null),
-    _useState0 = _slicedToArray(_useState9, 2),
-    openDropdown = _useState0[0],
-    setOpenDropdown = _useState0[1];
-  var _useState1 = React.useState(null),
-    _useState10 = _slicedToArray(_useState1, 2),
-    openMegaMenu = _useState10[0],
-    setOpenMegaMenu = _useState10[1];
-  var _useState11 = React.useState(null),
-    _useState12 = _slicedToArray(_useState11, 2),
-    openMobileDropdown = _useState12[0],
-    setOpenMobileDropdown = _useState12[1];
-  var _useState13 = React.useState(null),
-    _useState14 = _slicedToArray(_useState13, 2),
-    openMobileMegaMenu = _useState14[0],
-    setOpenMobileMegaMenu = _useState14[1];
-  var _useState15 = React.useState(false),
-    _useState16 = _slicedToArray(_useState15, 2),
-    isMobile = _useState16[0],
-    setIsMobile = _useState16[1];
-  var dropdownRef = React.useRef(null);
-  var megaMenuRef = React.useRef(null);
-  var mobileMenuRef = React.useRef(null);
   var isNavItemActive = function isNavItemActive(item, index) {
     return activeNavIndex === index || item.active;
   };
@@ -8798,87 +8990,6 @@ var HeaderClassic$1 = function HeaderClassic(_ref) {
     setOpenMobileDropdown(null);
     setOpenMobileMegaMenu(null);
   };
-
-  // Check if device is mobile
-  React.useEffect(function () {
-    var checkMobile = function checkMobile() {
-      setIsMobile(window.innerWidth < 768); // md breakpoint
-    };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return function () {
-      return window.removeEventListener('resize', checkMobile);
-    };
-  }, []);
-
-  // Lock body scroll when mobile menu is open
-  React.useEffect(function () {
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    return function () {
-      document.body.style.overflow = '';
-    };
-  }, [isMobileMenuOpen]);
-  React.useEffect(function () {
-    if (navItems && navItems.length > 0) {
-      setActiveNavIndex(function (prevIndex) {
-        if (prevIndex === null || prevIndex >= navItems.length) {
-          return 0;
-        }
-        return prevIndex;
-      });
-    } else {
-      setActiveNavIndex(null);
-    }
-  }, [navItems]);
-  React.useEffect(function () {
-    if (!sticky) return;
-    var handleScroll = function handleScroll() {
-      setIsScrolled(window.scrollY > 10);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return function () {
-      return window.removeEventListener('scroll', handleScroll);
-    };
-  }, [sticky]);
-  React.useEffect(function () {
-    var handleClickOutside = function handleClickOutside(event) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setOpenDropdown(null);
-      }
-      if (megaMenuRef.current && !megaMenuRef.current.contains(event.target)) {
-        setOpenMegaMenu(null);
-      }
-      if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target)) {
-        // Only close if clicking the backdrop, not menu items
-        if (isMobileMenuOpen && event.target.classList.contains('mobile-menu-backdrop')) {
-          setIsMobileMenuOpen(false);
-        }
-      }
-    };
-    if (openDropdown !== null || openMegaMenu !== null || isMobileMenuOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-      return function () {
-        return document.removeEventListener('mousedown', handleClickOutside);
-      };
-    }
-  }, [openDropdown, openMegaMenu, isMobileMenuOpen]);
-
-  // Handle escape key to close mobile menu
-  React.useEffect(function () {
-    var handleEscape = function handleEscape(e) {
-      if (e.key === 'Escape' && isMobileMenuOpen) {
-        setIsMobileMenuOpen(false);
-      }
-    };
-    window.addEventListener('keydown', handleEscape);
-    return function () {
-      return window.removeEventListener('keydown', handleEscape);
-    };
-  }, [isMobileMenuOpen]);
   var handleSearchSubmit = function handleSearchSubmit(e) {
     e.preventDefault();
     if (onSearch && searchQuery.trim()) {
@@ -9978,10 +10089,6 @@ var HeaderClassic$1 = function HeaderClassic(_ref) {
 
   // Variant 6: Header with Tabs
   if (variant === 'tabs') {
-    var _useState17 = React.useState(tabs.length > 0 ? 0 : null),
-      _useState18 = _slicedToArray(_useState17, 2),
-      activeTab = _useState18[0],
-      setActiveTab = _useState18[1];
     return /*#__PURE__*/require$$1.jsxs(require$$1.Fragment, {
       children: [isMobileMenuOpen && /*#__PURE__*/require$$1.jsx("div", {
         className: "mobile-menu-backdrop fixed inset-0 bg-black/50 z-40 md:hidden transition-opacity duration-300",
@@ -10163,7 +10270,28 @@ var HeaderClassic = function HeaderClassic(props) {
 var HeaderElite$1 = function HeaderElite(_ref) {
   var data = _ref.data,
     className = _ref.className,
-    id = _ref.id;
+    id = _ref.id,
+    _ref$loading = _ref.loading,
+    loading = _ref$loading === void 0 ? false : _ref$loading;
+  var _useState = React.useState(!loading),
+    _useState2 = _slicedToArray(_useState, 2),
+    showContent = _useState2[0],
+    setShowContent = _useState2[1];
+
+  // Show skeleton for 2 seconds when loading is true
+  React.useEffect(function () {
+    if (loading) {
+      setShowContent(false);
+      var timer = setTimeout(function () {
+        setShowContent(true);
+      }, 2000);
+      return function () {
+        return clearTimeout(timer);
+      };
+    } else {
+      setShowContent(true);
+    }
+  }, [loading]);
   if (!data || _typeof(data) !== 'object') {
     console.error('HeaderPremium: data prop is required and must be an object');
     return null;
@@ -10183,33 +10311,360 @@ var HeaderElite$1 = function HeaderElite(_ref) {
     variant = _data$variant === void 0 ? 'split' : _data$variant,
     _data$sticky = data.sticky,
     sticky = _data$sticky === void 0 ? true : _data$sticky;
-  var _useState = React.useState(false),
-    _useState2 = _slicedToArray(_useState, 2),
-    isScrolled = _useState2[0],
-    setIsScrolled = _useState2[1];
+
+  // Show skeleton loader when showContent is false (during loading)
+  if (!showContent) {
+    var skeletonVariant = variant || 'split';
+
+    // Split variant skeleton
+    if (skeletonVariant === 'split') {
+      return /*#__PURE__*/require$$1.jsx("header", {
+        id: id,
+        className: clsx('relative w-full z-40 transition-all duration-300', 'bg-gradient-to-r from-purple-600 to-blue-600', className),
+        children: /*#__PURE__*/require$$1.jsx("div", {
+          className: "container mx-auto px-4 sm:px-6 lg:px-8",
+          children: /*#__PURE__*/require$$1.jsxs("div", {
+            className: "flex items-center justify-between h-16",
+            children: [/*#__PURE__*/require$$1.jsx("div", {
+              className: "flex items-center",
+              children: /*#__PURE__*/require$$1.jsx("div", {
+                className: "h-8 w-32 bg-white/20 rounded animate-pulse"
+              })
+            }), /*#__PURE__*/require$$1.jsx("nav", {
+              className: "hidden md:flex items-center space-x-8",
+              children: [0, 1, 2, 3, 4].map(function (index) {
+                return /*#__PURE__*/require$$1.jsx("div", {
+                  className: "h-4 w-16 bg-white/20 rounded animate-pulse"
+                }, index);
+              })
+            }), /*#__PURE__*/require$$1.jsxs("div", {
+              className: "flex items-center space-x-4",
+              children: [/*#__PURE__*/require$$1.jsx("div", {
+                className: "h-10 w-24 bg-white/20 rounded-lg animate-pulse"
+              }), /*#__PURE__*/require$$1.jsx("div", {
+                className: "h-10 w-24 bg-white/30 rounded-lg animate-pulse"
+              }), /*#__PURE__*/require$$1.jsx("div", {
+                className: "md:hidden h-6 w-6 bg-white/20 rounded animate-pulse"
+              })]
+            })]
+          })
+        })
+      });
+    }
+
+    // Neon variant skeleton
+    if (skeletonVariant === 'neon') {
+      return /*#__PURE__*/require$$1.jsx("header", {
+        id: id,
+        className: clsx('relative w-full z-40 transition-all duration-300', 'bg-black', className),
+        children: /*#__PURE__*/require$$1.jsx("div", {
+          className: "container mx-auto px-4 sm:px-6 lg:px-8",
+          children: /*#__PURE__*/require$$1.jsxs("div", {
+            className: "flex items-center justify-between h-16",
+            children: [/*#__PURE__*/require$$1.jsx("div", {
+              className: "flex items-center",
+              children: /*#__PURE__*/require$$1.jsx("div", {
+                className: "h-8 w-32 bg-cyan-400/20 rounded animate-pulse border border-cyan-400/30"
+              })
+            }), /*#__PURE__*/require$$1.jsx("nav", {
+              className: "hidden md:flex items-center space-x-8",
+              children: [0, 1, 2, 3, 4].map(function (index) {
+                return /*#__PURE__*/require$$1.jsx("div", {
+                  className: "h-4 w-16 bg-cyan-400/20 rounded animate-pulse border border-cyan-400/30"
+                }, index);
+              })
+            }), /*#__PURE__*/require$$1.jsxs("div", {
+              className: "flex items-center space-x-4",
+              children: [/*#__PURE__*/require$$1.jsx("div", {
+                className: "h-10 w-24 bg-cyan-400/20 rounded-lg animate-pulse border border-cyan-400/30"
+              }), /*#__PURE__*/require$$1.jsx("div", {
+                className: "h-10 w-24 bg-cyan-400/30 rounded-lg animate-pulse border border-cyan-400/40"
+              }), /*#__PURE__*/require$$1.jsx("div", {
+                className: "md:hidden h-6 w-6 bg-cyan-400/20 rounded animate-pulse border border-cyan-400/30"
+              })]
+            })]
+          })
+        })
+      });
+    }
+
+    // Morph variant skeleton
+    if (skeletonVariant === 'morph') {
+      return /*#__PURE__*/require$$1.jsx("header", {
+        id: id,
+        className: clsx('relative w-full z-40 transition-all duration-300', 'bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500', className),
+        children: /*#__PURE__*/require$$1.jsx("div", {
+          className: "container mx-auto px-4 sm:px-6 lg:px-8",
+          children: /*#__PURE__*/require$$1.jsxs("div", {
+            className: "flex items-center justify-between h-16",
+            children: [/*#__PURE__*/require$$1.jsx("div", {
+              className: "flex items-center",
+              children: /*#__PURE__*/require$$1.jsx("div", {
+                className: "h-8 w-32 bg-white/20 rounded-lg animate-pulse backdrop-blur-sm"
+              })
+            }), /*#__PURE__*/require$$1.jsx("nav", {
+              className: "hidden md:flex items-center space-x-8",
+              children: [0, 1, 2, 3, 4].map(function (index) {
+                return /*#__PURE__*/require$$1.jsx("div", {
+                  className: "h-4 w-16 bg-white/20 rounded-lg animate-pulse backdrop-blur-sm"
+                }, index);
+              })
+            }), /*#__PURE__*/require$$1.jsxs("div", {
+              className: "flex items-center space-x-4",
+              children: [/*#__PURE__*/require$$1.jsx("div", {
+                className: "h-10 w-24 bg-white/20 rounded-lg animate-pulse backdrop-blur-sm"
+              }), /*#__PURE__*/require$$1.jsx("div", {
+                className: "h-10 w-24 bg-white/30 rounded-lg animate-pulse backdrop-blur-sm"
+              }), /*#__PURE__*/require$$1.jsx("div", {
+                className: "md:hidden h-6 w-6 bg-white/20 rounded animate-pulse backdrop-blur-sm"
+              })]
+            })]
+          })
+        })
+      });
+    }
+
+    // Particle variant skeleton
+    if (skeletonVariant === 'particle') {
+      return /*#__PURE__*/require$$1.jsx("header", {
+        id: id,
+        className: clsx('relative w-full z-40 transition-all duration-300', 'bg-slate-900', className),
+        children: /*#__PURE__*/require$$1.jsx("div", {
+          className: "container mx-auto px-4 sm:px-6 lg:px-8",
+          children: /*#__PURE__*/require$$1.jsxs("div", {
+            className: "flex items-center justify-between h-16",
+            children: [/*#__PURE__*/require$$1.jsx("div", {
+              className: "flex items-center",
+              children: /*#__PURE__*/require$$1.jsx("div", {
+                className: "h-8 w-32 bg-blue-400/20 rounded animate-pulse"
+              })
+            }), /*#__PURE__*/require$$1.jsx("nav", {
+              className: "hidden md:flex items-center space-x-8",
+              children: [0, 1, 2, 3, 4].map(function (index) {
+                return /*#__PURE__*/require$$1.jsx("div", {
+                  className: "h-4 w-16 bg-blue-400/20 rounded animate-pulse"
+                }, index);
+              })
+            }), /*#__PURE__*/require$$1.jsxs("div", {
+              className: "flex items-center space-x-4",
+              children: [/*#__PURE__*/require$$1.jsx("div", {
+                className: "h-10 w-24 bg-blue-400/20 rounded-lg animate-pulse"
+              }), /*#__PURE__*/require$$1.jsx("div", {
+                className: "h-10 w-24 bg-blue-400/30 rounded-lg animate-pulse"
+              }), /*#__PURE__*/require$$1.jsx("div", {
+                className: "md:hidden h-6 w-6 bg-blue-400/20 rounded animate-pulse"
+              })]
+            })]
+          })
+        })
+      });
+    }
+
+    // Clean variant skeleton
+    if (skeletonVariant === 'clean') {
+      return /*#__PURE__*/require$$1.jsx("header", {
+        id: id,
+        className: clsx('relative w-full z-40 transition-all duration-300', 'bg-white border-b border-gray-200', className),
+        children: /*#__PURE__*/require$$1.jsx("div", {
+          className: "container mx-auto px-4 sm:px-6 lg:px-8",
+          children: /*#__PURE__*/require$$1.jsxs("div", {
+            className: "flex items-center justify-between h-16",
+            children: [/*#__PURE__*/require$$1.jsx("div", {
+              className: "flex items-center",
+              children: /*#__PURE__*/require$$1.jsx("div", {
+                className: "h-8 w-32 bg-gray-200 rounded animate-pulse"
+              })
+            }), /*#__PURE__*/require$$1.jsx("nav", {
+              className: "hidden md:flex items-center space-x-8",
+              children: [0, 1, 2, 3, 4].map(function (index) {
+                return /*#__PURE__*/require$$1.jsx("div", {
+                  className: "h-4 w-16 bg-gray-200 rounded animate-pulse"
+                }, index);
+              })
+            }), /*#__PURE__*/require$$1.jsxs("div", {
+              className: "flex items-center space-x-4",
+              children: [/*#__PURE__*/require$$1.jsx("div", {
+                className: "h-10 w-24 bg-gray-200 rounded-lg animate-pulse"
+              }), /*#__PURE__*/require$$1.jsx("div", {
+                className: "h-10 w-24 bg-gray-300 rounded-lg animate-pulse"
+              }), /*#__PURE__*/require$$1.jsx("div", {
+                className: "md:hidden h-6 w-6 bg-gray-200 rounded animate-pulse"
+              })]
+            })]
+          })
+        })
+      });
+    }
+
+    // Business variant skeleton
+    if (skeletonVariant === 'business') {
+      return /*#__PURE__*/require$$1.jsx("header", {
+        id: id,
+        className: clsx('relative w-full z-40 transition-all duration-300', 'bg-white border-b-2 border-gray-100', className),
+        children: /*#__PURE__*/require$$1.jsx("div", {
+          className: "container mx-auto px-4 sm:px-6 lg:px-8",
+          children: /*#__PURE__*/require$$1.jsxs("div", {
+            className: "flex items-center justify-between h-16",
+            children: [/*#__PURE__*/require$$1.jsx("div", {
+              className: "flex items-center",
+              children: /*#__PURE__*/require$$1.jsx("div", {
+                className: "h-8 w-32 bg-gray-200 rounded animate-pulse"
+              })
+            }), /*#__PURE__*/require$$1.jsx("nav", {
+              className: "hidden md:flex items-center space-x-8",
+              children: [0, 1, 2, 3, 4].map(function (index) {
+                return /*#__PURE__*/require$$1.jsx("div", {
+                  className: "h-4 w-16 bg-gray-200 rounded animate-pulse"
+                }, index);
+              })
+            }), /*#__PURE__*/require$$1.jsxs("div", {
+              className: "flex items-center space-x-4",
+              children: [/*#__PURE__*/require$$1.jsx("div", {
+                className: "h-10 w-24 bg-blue-200 rounded-lg animate-pulse"
+              }), /*#__PURE__*/require$$1.jsx("div", {
+                className: "h-10 w-24 bg-gray-200 rounded-lg animate-pulse"
+              }), /*#__PURE__*/require$$1.jsx("div", {
+                className: "md:hidden h-6 w-6 bg-gray-200 rounded animate-pulse"
+              })]
+            })]
+          })
+        })
+      });
+    }
+
+    // Gradient variant skeleton
+    if (skeletonVariant === 'gradient') {
+      return /*#__PURE__*/require$$1.jsx("header", {
+        id: id,
+        className: clsx('relative w-full z-40 transition-all duration-300', 'bg-gradient-to-r from-blue-600 to-purple-600', className),
+        children: /*#__PURE__*/require$$1.jsx("div", {
+          className: "container mx-auto px-4 sm:px-6 lg:px-8",
+          children: /*#__PURE__*/require$$1.jsxs("div", {
+            className: "flex items-center justify-between h-16",
+            children: [/*#__PURE__*/require$$1.jsx("div", {
+              className: "flex items-center",
+              children: /*#__PURE__*/require$$1.jsx("div", {
+                className: "h-8 w-32 bg-white/20 rounded animate-pulse"
+              })
+            }), /*#__PURE__*/require$$1.jsx("nav", {
+              className: "hidden md:flex items-center space-x-8",
+              children: [0, 1, 2, 3, 4].map(function (index) {
+                return /*#__PURE__*/require$$1.jsx("div", {
+                  className: "h-4 w-16 bg-white/20 rounded animate-pulse"
+                }, index);
+              })
+            }), /*#__PURE__*/require$$1.jsxs("div", {
+              className: "flex items-center space-x-4",
+              children: [/*#__PURE__*/require$$1.jsx("div", {
+                className: "h-10 w-24 bg-white/20 rounded-lg animate-pulse"
+              }), /*#__PURE__*/require$$1.jsx("div", {
+                className: "h-10 w-24 bg-white/30 rounded-lg animate-pulse"
+              }), /*#__PURE__*/require$$1.jsx("div", {
+                className: "md:hidden h-6 w-6 bg-white/20 rounded animate-pulse"
+              })]
+            })]
+          })
+        })
+      });
+    }
+
+    // Simple variant skeleton
+    if (skeletonVariant === 'simple') {
+      return /*#__PURE__*/require$$1.jsx("header", {
+        id: id,
+        className: clsx('relative w-full z-40 transition-all duration-300', 'bg-white border-b border-gray-200', className),
+        children: /*#__PURE__*/require$$1.jsx("div", {
+          className: "container mx-auto px-4 sm:px-6 lg:px-8",
+          children: /*#__PURE__*/require$$1.jsxs("div", {
+            className: "flex items-center justify-between h-16",
+            children: [/*#__PURE__*/require$$1.jsx("div", {
+              className: "flex items-center",
+              children: /*#__PURE__*/require$$1.jsx("div", {
+                className: "h-8 w-32 bg-gray-200 rounded animate-pulse"
+              })
+            }), /*#__PURE__*/require$$1.jsx("nav", {
+              className: "hidden md:flex items-center space-x-8",
+              children: [0, 1, 2, 3, 4].map(function (index) {
+                return /*#__PURE__*/require$$1.jsx("div", {
+                  className: "h-4 w-16 bg-gray-200 rounded animate-pulse"
+                }, index);
+              })
+            }), /*#__PURE__*/require$$1.jsxs("div", {
+              className: "flex items-center space-x-4",
+              children: [/*#__PURE__*/require$$1.jsx("div", {
+                className: "h-10 w-24 bg-gray-200 rounded-lg animate-pulse"
+              }), /*#__PURE__*/require$$1.jsx("div", {
+                className: "h-10 w-24 bg-gray-300 rounded-lg animate-pulse"
+              }), /*#__PURE__*/require$$1.jsx("div", {
+                className: "md:hidden h-6 w-6 bg-gray-200 rounded animate-pulse"
+              })]
+            })]
+          })
+        })
+      });
+    }
+
+    // Minimal variant skeleton (default fallback)
+    return /*#__PURE__*/require$$1.jsx("header", {
+      id: id,
+      className: clsx('relative w-full z-40 transition-all duration-300', 'bg-gray-50 border-b border-gray-200', className),
+      children: /*#__PURE__*/require$$1.jsx("div", {
+        className: "container mx-auto px-4 sm:px-6 lg:px-8",
+        children: /*#__PURE__*/require$$1.jsxs("div", {
+          className: "flex items-center justify-between h-16",
+          children: [/*#__PURE__*/require$$1.jsx("div", {
+            className: "flex items-center",
+            children: /*#__PURE__*/require$$1.jsx("div", {
+              className: "h-8 w-32 bg-gray-200 rounded animate-pulse"
+            })
+          }), /*#__PURE__*/require$$1.jsx("nav", {
+            className: "hidden md:flex items-center space-x-8",
+            children: [0, 1, 2, 3, 4].map(function (index) {
+              return /*#__PURE__*/require$$1.jsx("div", {
+                className: "h-4 w-16 bg-gray-200 rounded animate-pulse"
+              }, index);
+            })
+          }), /*#__PURE__*/require$$1.jsxs("div", {
+            className: "flex items-center space-x-4",
+            children: [/*#__PURE__*/require$$1.jsx("div", {
+              className: "h-10 w-24 bg-gray-200 rounded-lg animate-pulse"
+            }), /*#__PURE__*/require$$1.jsx("div", {
+              className: "h-10 w-24 bg-gray-300 rounded-lg animate-pulse"
+            }), /*#__PURE__*/require$$1.jsx("div", {
+              className: "md:hidden h-6 w-6 bg-gray-200 rounded animate-pulse"
+            })]
+          })]
+        })
+      })
+    });
+  }
   var _useState3 = React.useState(false),
     _useState4 = _slicedToArray(_useState3, 2),
-    isMobileMenuOpen = _useState4[0],
-    setIsMobileMenuOpen = _useState4[1];
-  var _useState5 = React.useState(null),
+    isScrolled = _useState4[0],
+    setIsScrolled = _useState4[1];
+  var _useState5 = React.useState(false),
     _useState6 = _slicedToArray(_useState5, 2),
-    activeNavIndex = _useState6[0],
-    setActiveNavIndex = _useState6[1];
-  var _useState7 = React.useState(''),
+    isMobileMenuOpen = _useState6[0],
+    setIsMobileMenuOpen = _useState6[1];
+  var _useState7 = React.useState(null),
     _useState8 = _slicedToArray(_useState7, 2),
-    searchQuery = _useState8[0],
-    setSearchQuery = _useState8[1];
-  var _useState9 = React.useState(null),
+    activeNavIndex = _useState8[0],
+    setActiveNavIndex = _useState8[1];
+  var _useState9 = React.useState(''),
     _useState0 = _slicedToArray(_useState9, 2),
-    openDropdown = _useState0[0],
-    setOpenDropdown = _useState0[1];
-  var _useState1 = React.useState({
+    searchQuery = _useState0[0],
+    setSearchQuery = _useState0[1];
+  var _useState1 = React.useState(null),
+    _useState10 = _slicedToArray(_useState1, 2),
+    openDropdown = _useState10[0],
+    setOpenDropdown = _useState10[1];
+  var _useState11 = React.useState({
       x: 0,
       y: 0
     }),
-    _useState10 = _slicedToArray(_useState1, 2),
-    mousePosition = _useState10[0],
-    setMousePosition = _useState10[1];
+    _useState12 = _slicedToArray(_useState11, 2),
+    mousePosition = _useState12[0],
+    setMousePosition = _useState12[1];
   var dropdownRef = React.useRef(null);
   var headerRef = React.useRef(null);
   var isNavItemActive = function isNavItemActive(item, index) {
@@ -11775,7 +12230,28 @@ var HeaderElite = function HeaderElite(props) {
 var FooterLayout$1 = function FooterLayout(_ref) {
   var data = _ref.data,
     className = _ref.className,
-    id = _ref.id;
+    id = _ref.id,
+    _ref$loading = _ref.loading,
+    loading = _ref$loading === void 0 ? false : _ref$loading;
+  var _useState = React.useState(!loading),
+    _useState2 = _slicedToArray(_useState, 2),
+    showContent = _useState2[0],
+    setShowContent = _useState2[1];
+
+  // Show skeleton for 2 seconds when loading is true
+  React.useEffect(function () {
+    if (loading) {
+      setShowContent(false);
+      var timer = setTimeout(function () {
+        setShowContent(true);
+      }, 2000);
+      return function () {
+        return clearTimeout(timer);
+      };
+    } else {
+      setShowContent(true);
+    }
+  }, [loading]);
   if (!data || _typeof(data) !== 'object') {
     console.error('FooterLayout: data prop is required and must be an object');
     return null;
@@ -11795,12 +12271,10 @@ var FooterLayout$1 = function FooterLayout(_ref) {
     _data$bottomLinks = data.bottomLinks,
     bottomLinks = _data$bottomLinks === void 0 ? [] : _data$bottomLinks,
     _data$variant = data.variant,
-    variant = _data$variant === void 0 ? 'classic' : _data$variant,
-    _data$loader = data.loader,
-    loader = _data$loader === void 0 ? false : _data$loader;
+    variant = _data$variant === void 0 ? 'classic' : _data$variant;
 
-  // Show skeleton loader if loader prop is true (check this FIRST before any other checks)
-  if (loader) {
+  // Show skeleton loader when showContent is false (during loading)
+  if (!showContent) {
     var skeletonVariant = variant || 'classic';
 
     // Classic variant skeleton
@@ -13206,7 +13680,7 @@ var FooterLayout = function FooterLayout(props) {
   }, /*#__PURE__*/React.createElement(FooterLayout$1, props));
 };
 
-var ArticleTile$1 = function ArticleTile(_ref) {
+var SingleArticleTile = function SingleArticleTile(_ref) {
   var data = _ref.data,
     className = _ref.className,
     id = _ref.id,
@@ -13214,7 +13688,7 @@ var ArticleTile$1 = function ArticleTile(_ref) {
     loader = _ref$loader === void 0 ? false : _ref$loader;
   // Safety check for data
   if (!data || _typeof(data) !== 'object') {
-    console.error('ArticleTile: data prop is required and must be an object');
+    console.error('SingleArticleTile: data prop is required and must be an object');
     return null;
   }
   var title = data.title,
@@ -13838,6 +14312,72 @@ var ArticleTile$1 = function ArticleTile(_ref) {
     }), description && /*#__PURE__*/require$$1.jsx("p", {
       children: description
     })]
+  });
+};
+/**
+ * ArticleTile Component - Modern blog article card layouts
+ * @param {Object} props - Component props
+ * @param {Object|Object[]} props.data - Blog card configuration data (single object or array of objects)
+ * @param {string} props.data.title - Article title
+ * @param {string} [props.data.description] - Article description/excerpt
+ * @param {string} [props.data.image] - Image URL for the article
+ * @param {string} [props.data.author] - Author name
+ * @param {string} [props.data.authorImage] - Author avatar image URL
+ * @param {string} [props.data.date] - Publication date
+ * @param {string} [props.data.category] - Article category/tag
+ * @param {string} [props.data.readTime] - Estimated read time
+ * @param {number} [props.data.likes] - Number of likes
+ * @param {number} [props.data.views] - Number of views
+ * @param {number} [props.data.comments] - Number of comments
+ * @param {string} [props.data.href] - Link URL for the article
+ * @param {Object|string} [props.data.button] - Button configuration (object with text and href) or button text string
+ * @param {string} [props.data.button.text] - Button text
+ * @param {string} [props.data.button.href] - Button link URL
+ * @param {string} [props.data.variant='default'] - Style variant: 'default' | 'with-image' | 'with-footer' | 'vertical' | 'gradient-border' | 'background-image' | 'minimal' | 'modern' | 'elegant' | 'featured-gradient' | 'button' | 'background-metrics'
+ * @param {string} [props.data.theme='light'] - Theme: 'light' | 'dark'
+ * @param {boolean} [props.data.hoverEffect=true] - Enable hover effects
+ * @param {string} [props.className] - Additional CSS classes
+ * @param {string} [props.id] - ID attribute
+ * @param {boolean} [props.loader=false] - Show loading state
+ */
+var ArticleTile$1 = function ArticleTile(_ref2) {
+  var _ref2$data = _ref2.data,
+    data = _ref2$data === void 0 ? [] : _ref2$data,
+    className = _ref2.className,
+    id = _ref2.id,
+    _ref2$loader = _ref2.loader,
+    loader = _ref2$loader === void 0 ? false : _ref2$loader;
+  // Safety check for data - handle both single object and array
+  if (!data) {
+    console.error('ArticleTile: data prop is required');
+    return null;
+  }
+
+  // If data is an array, render multiple cards
+  if (Array.isArray(data)) {
+    if (data.length === 0) {
+      return null; // Empty array, nothing to render
+    }
+    return /*#__PURE__*/require$$1.jsx("div", {
+      className: clsx('blog-cards-container', className),
+      id: id,
+      children: data.map(function (item, index) {
+        return /*#__PURE__*/require$$1.jsx(SingleArticleTile, {
+          data: item,
+          className: item.className,
+          id: item.id,
+          loader: loader
+        }, item.id || index);
+      })
+    });
+  }
+
+  // Single object handling - delegate to SingleArticleTile
+  return /*#__PURE__*/require$$1.jsx(SingleArticleTile, {
+    data: data,
+    className: className,
+    id: id,
+    loader: loader
   });
 };
 
@@ -42849,8 +43389,26 @@ var DetailsContent = function DetailsContent(_ref) {
     id = _ref.id,
     className = _ref.className,
     textClassName = _ref.textClassName,
-    imageClassName = _ref.imageClassName;
+    imageClassName = _ref.imageClassName,
+    _ref$loader = _ref.loader,
+    loader = _ref$loader === void 0 ? false : _ref$loader;
   var reactId = React.useId();
+  var _useState = React.useState(loader),
+    _useState2 = _slicedToArray(_useState, 2),
+    showLoader = _useState2[0],
+    setShowLoader = _useState2[1];
+  React.useEffect(function () {
+    if (loader) {
+      setShowLoader(true);
+      var timer = setTimeout(function () {
+        return setShowLoader(false);
+      }, 2000);
+      return function () {
+        return clearTimeout(timer);
+      };
+    }
+    setShowLoader(false);
+  }, [loader]);
   var resolved = _objectSpread2({}, data && _typeof(data) === 'object' ? data : {});
   if (titleProp !== undefined) resolved.title = titleProp;
   if (labelProp !== undefined) resolved.label = labelProp;
@@ -42879,6 +43437,68 @@ var DetailsContent = function DetailsContent(_ref) {
   var hasText = hasTextHeader || hasDescription || hasButton;
   var hasImage = Boolean(image);
   if (!hasText && !hasImage) return null;
+
+  // Skeleton components
+  var SkeletonText = function SkeletonText(_ref2) {
+    var isDark = _ref2.isDark;
+    return /*#__PURE__*/require$$1.jsxs("div", {
+      className: "space-y-4",
+      children: [/*#__PURE__*/require$$1.jsx("div", {
+        className: clsx('h-6 w-20 rounded-full animate-pulse', isDark ? 'bg-slate-700' : 'bg-slate-200')
+      }), /*#__PURE__*/require$$1.jsxs("div", {
+        className: "space-y-2",
+        children: [/*#__PURE__*/require$$1.jsx("div", {
+          className: clsx('h-8 w-3/4 rounded animate-pulse', isDark ? 'bg-slate-700' : 'bg-slate-200')
+        }), /*#__PURE__*/require$$1.jsx("div", {
+          className: clsx('h-8 w-1/2 rounded animate-pulse', isDark ? 'bg-slate-700' : 'bg-slate-200')
+        })]
+      }), /*#__PURE__*/require$$1.jsx("div", {
+        className: clsx('h-4 w-full rounded animate-pulse', isDark ? 'bg-slate-700' : 'bg-slate-200')
+      }), /*#__PURE__*/require$$1.jsxs("div", {
+        className: "space-y-2 mt-6",
+        children: [/*#__PURE__*/require$$1.jsx("div", {
+          className: clsx('h-4 w-full rounded animate-pulse', isDark ? 'bg-slate-700' : 'bg-slate-200')
+        }), /*#__PURE__*/require$$1.jsx("div", {
+          className: clsx('h-4 w-full rounded animate-pulse', isDark ? 'bg-slate-700' : 'bg-slate-200')
+        }), /*#__PURE__*/require$$1.jsx("div", {
+          className: clsx('h-4 w-3/4 rounded animate-pulse', isDark ? 'bg-slate-700' : 'bg-slate-200')
+        })]
+      }), /*#__PURE__*/require$$1.jsx("div", {
+        className: clsx('h-12 w-32 rounded-xl animate-pulse mt-6', isDark ? 'bg-slate-700' : 'bg-slate-200')
+      })]
+    });
+  };
+  var SkeletonImage = function SkeletonImage(_ref3) {
+    var isDark = _ref3.isDark;
+    return /*#__PURE__*/require$$1.jsx("div", {
+      className: clsx('w-full h-64 rounded-2xl animate-pulse', isDark ? 'bg-slate-700' : 'bg-slate-200')
+    });
+  };
+
+  // Show skeleton if loading
+  if (showLoader) {
+    return /*#__PURE__*/require$$1.jsx("section", {
+      id: id,
+      className: clsx('w-full', 'py-10 sm:py-12 lg:py-16', isDark ? 'bg-gradient-to-b from-slate-950 via-slate-950 to-slate-900' : 'bg-gradient-to-b from-white via-white to-slate-50', className),
+      children: /*#__PURE__*/require$$1.jsx("div", {
+        className: clsx('mx-auto w-full max-w-7xl', 'px-4 sm:px-6 lg:px-8'),
+        children: /*#__PURE__*/require$$1.jsxs("div", {
+          className: clsx('grid grid-cols-1', hasImage ? 'lg:grid-cols-2' : 'lg:grid-cols-1', 'gap-8 lg:gap-12', 'items-start lg:items-center'),
+          children: [hasText && /*#__PURE__*/require$$1.jsx("div", {
+            className: clsx('min-w-0', !hasImage ? 'w-full max-w-none' : 'w-full', imagePosition === 'left' ? 'order-2' : 'order-1', textClassName),
+            children: /*#__PURE__*/require$$1.jsx(SkeletonText, {
+              isDark: isDark
+            })
+          }), hasImage && /*#__PURE__*/require$$1.jsx("div", {
+            className: clsx('min-w-0', imagePosition === 'left' ? 'order-1' : 'order-2', imageClassName),
+            children: /*#__PURE__*/require$$1.jsx(SkeletonImage, {
+              isDark: isDark
+            })
+          })]
+        })
+      })
+    });
+  }
   var titleId = typeof title === 'string' && title.trim().length > 0 ? "".concat(id || "details-content-".concat(reactId), "-title") : undefined;
   var imageCfg = typeof image === 'string' ? {
     src: image,
