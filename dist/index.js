@@ -1492,6 +1492,25 @@ var HelpPulse$1 = function HelpPulse(_ref) {
     }
   }, [loader]);
 
+  // Initialize openItems state - always call this hook regardless of loader state
+  var _useState3 = React.useState(new Set()),
+    _useState4 = _slicedToArray(_useState3, 2),
+    openItems = _useState4[0],
+    setOpenItems = _useState4[1];
+
+  // Create refs arrays for hover effects - one for each item
+  var badgeRefs = React.useRef([]);
+  var textRefs = React.useRef([]);
+  var iconRefs = React.useRef([]);
+
+  // Initialize first item when loader becomes false and we have data
+  React.useEffect(function () {
+    var _data$items;
+    if (!showLoader && (data === null || data === void 0 || (_data$items = data.items) === null || _data$items === void 0 ? void 0 : _data$items.length) > 0) {
+      setOpenItems(new Set([0]));
+    }
+  }, [showLoader, data === null || data === void 0 ? void 0 : data.items]);
+
   // Show skeleton loader if loader prop is true
   if (showLoader) {
     var _ref2 = data || {},
@@ -1550,8 +1569,8 @@ var HelpPulse$1 = function HelpPulse(_ref) {
   var title = data.title,
     subtitle = data.subtitle,
     description = data.description,
-    _data$items = data.items,
-    items = _data$items === void 0 ? [] : _data$items,
+    _data$items2 = data.items,
+    items = _data$items2 === void 0 ? [] : _data$items2,
     _data$alignment = data.alignment,
     alignment = _data$alignment === void 0 ? 'center' : _data$alignment,
     _data$variant = data.variant,
@@ -1568,12 +1587,6 @@ var HelpPulse$1 = function HelpPulse(_ref) {
     _data$allowMultipleOp = data.allowMultipleOpen,
     allowMultipleOpen = _data$allowMultipleOp === void 0 ? false : _data$allowMultipleOp,
     dataClassName = data.className;
-
-  // Initialize with first item open by default
-  var _useState3 = React.useState(new Set(items.length > 0 ? [0] : [])),
-    _useState4 = _slicedToArray(_useState3, 2),
-    openItems = _useState4[0],
-    setOpenItems = _useState4[1];
   var toggleItem = function toggleItem(index) {
     setOpenItems(function (prev) {
       var newSet = new Set(prev);
@@ -1677,39 +1690,34 @@ var HelpPulse$1 = function HelpPulse(_ref) {
             console.warn("FaqModern: Item at index ".concat(index, " is missing question or answer"));
             return null;
           }
-
-          // Refs for hover effect coordination
-          var badgeRef = React.useRef(null);
-          var textRef = React.useRef(null);
-          var iconRef = React.useRef(null);
           var handleMouseEnter = function handleMouseEnter() {
             if (isOpen || hasBackgroundImage || variant === 'minimal') return;
             var hover = hoverColor || primaryColor;
             if (!hover) return;
-            if (badgeRef.current) {
-              badgeRef.current.style.backgroundColor = hexToRgba(hover, 0.15);
-              badgeRef.current.style.color = hover;
+            if (badgeRefs.current[index]) {
+              badgeRefs.current[index].style.backgroundColor = hexToRgba(hover, 0.15);
+              badgeRefs.current[index].style.color = hover;
             }
-            if (textRef.current) {
-              textRef.current.style.color = hover;
+            if (textRefs.current[index]) {
+              textRefs.current[index].style.color = hover;
             }
-            if (iconRef.current) {
-              iconRef.current.style.backgroundColor = hexToRgba(hover, 0.15);
-              iconRef.current.style.color = hover;
+            if (iconRefs.current[index]) {
+              iconRefs.current[index].style.backgroundColor = hexToRgba(hover, 0.15);
+              iconRefs.current[index].style.color = hover;
             }
           };
           var handleMouseLeave = function handleMouseLeave() {
             if (isOpen || hasBackgroundImage || variant === 'minimal') return;
-            if (badgeRef.current) {
-              badgeRef.current.style.backgroundColor = '';
-              badgeRef.current.style.color = '';
+            if (badgeRefs.current[index]) {
+              badgeRefs.current[index].style.backgroundColor = '';
+              badgeRefs.current[index].style.color = '';
             }
-            if (textRef.current) {
-              textRef.current.style.color = '';
+            if (textRefs.current[index]) {
+              textRefs.current[index].style.color = '';
             }
-            if (iconRef.current) {
-              iconRef.current.style.backgroundColor = '';
-              iconRef.current.style.color = '';
+            if (iconRefs.current[index]) {
+              iconRefs.current[index].style.backgroundColor = '';
+              iconRefs.current[index].style.color = '';
             }
           };
           return /*#__PURE__*/require$$1.jsxs("div", {
@@ -1748,7 +1756,9 @@ var HelpPulse$1 = function HelpPulse(_ref) {
                 children: [/*#__PURE__*/require$$1.jsxs("div", {
                   className: "flex items-start gap-4 flex-1",
                   children: [/*#__PURE__*/require$$1.jsx("div", {
-                    ref: badgeRef,
+                    ref: function ref(el) {
+                      return badgeRefs.current[index] = el;
+                    },
                     className: clsx('flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm transition-all duration-300', isOpen ? variant === 'minimal' ? 'bg-gradient-to-br from-primary-500 to-primary-600 text-white shadow-lg scale-110' : 'bg-primary-500 text-white shadow-lg scale-110' : variant === 'minimal' ? 'bg-white/30 text-gray-700 group-hover:bg-primary-500/30 group-hover:text-primary-600' : 'bg-gray-100 text-gray-600 group-hover:bg-primary-100 group-hover:text-primary-600'),
                     style: isOpen && primaryColor ? {
                       backgroundColor: primaryColor,
@@ -1758,7 +1768,9 @@ var HelpPulse$1 = function HelpPulse(_ref) {
                     } : undefined,
                     children: index + 1
                   }), /*#__PURE__*/require$$1.jsx("span", {
-                    ref: textRef,
+                    ref: function ref(el) {
+                      return textRefs.current[index] = el;
+                    },
                     className: clsx('text-base sm:text-lg font-semibold flex-1 transition-colors', isOpen ? variant === 'minimal' ? 'text-gray-900' : 'text-primary-700' : variant === 'minimal' ? 'text-gray-800 group-hover:text-gray-900' : 'text-gray-900 group-hover:text-primary-600'),
                     style: isOpen && primaryColor && variant !== 'minimal' ? {
                       color: primaryColor
@@ -1770,7 +1782,9 @@ var HelpPulse$1 = function HelpPulse(_ref) {
                 }), /*#__PURE__*/require$$1.jsx("div", {
                   className: "flex-shrink-0 ml-4",
                   children: /*#__PURE__*/require$$1.jsx("div", {
-                    ref: iconRef,
+                    ref: function ref(el) {
+                      return iconRefs.current[index] = el;
+                    },
                     className: clsx('w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-300', isOpen ? variant === 'minimal' ? 'bg-gradient-to-br from-primary-500 to-primary-600 text-white rotate-180 shadow-lg' : 'bg-primary-500 text-white rotate-180 shadow-md' : variant === 'minimal' ? 'bg-white/30 text-gray-600 group-hover:bg-primary-500/30 group-hover:text-primary-600' : 'bg-gray-100 text-gray-600 group-hover:bg-primary-100 group-hover:text-primary-600'),
                     style: isOpen && primaryColor ? {
                       backgroundColor: primaryColor,
@@ -6850,6 +6864,28 @@ var HeaderFrame$1 = function HeaderFrame(_ref) {
       setShowContent(true);
     }
   }, [loading]);
+  var _useState3 = React.useState(false),
+    _useState4 = _slicedToArray(_useState3, 2),
+    isScrolled = _useState4[0],
+    setIsScrolled = _useState4[1];
+  var _useState5 = React.useState(false),
+    _useState6 = _slicedToArray(_useState5, 2),
+    isMobileMenuOpen = _useState6[0],
+    setIsMobileMenuOpen = _useState6[1];
+  // First nav link (index 0) is active by default if navItems exist
+  var _useState7 = React.useState(null),
+    _useState8 = _slicedToArray(_useState7, 2),
+    activeNavIndex = _useState8[0],
+    setActiveNavIndex = _useState8[1];
+  var _useState9 = React.useState(''),
+    _useState0 = _slicedToArray(_useState9, 2),
+    searchQuery = _useState0[0],
+    setSearchQuery = _useState0[1];
+  var _useState1 = React.useState(null),
+    _useState10 = _slicedToArray(_useState1, 2),
+    openDropdown = _useState10[0],
+    setOpenDropdown = _useState10[1];
+  var dropdownRef = React.useRef(null);
   if (!data || _typeof(data) !== 'object') {
     console.error('HeaderLayout: data prop is required and must be an object');
     return null;
@@ -6873,6 +6909,83 @@ var HeaderFrame$1 = function HeaderFrame(_ref) {
     sticky = _data$sticky === void 0 ? true : _data$sticky,
     topBarText = data.topBarText,
     subtitle = data.subtitle;
+
+  // Function to check if a nav item is active
+  var isNavItemActive = function isNavItemActive(item, index) {
+    // First nav link (index 0) is active by default, or the clicked nav index
+    return activeNavIndex === index;
+  };
+
+  // Handle nav item click
+  var handleNavClick = function handleNavClick(index, e) {
+    setActiveNavIndex(index);
+    // Close mobile menu if open
+    setIsMobileMenuOpen(false);
+    // Close dropdown if open
+    setOpenDropdown(null);
+  };
+
+  // Reset active nav index if navItems change and current active index is out of bounds
+  React.useEffect(function () {
+    if (navItems && navItems.length > 0) {
+      // If current active index is out of bounds, reset to first item (index 0)
+      setActiveNavIndex(function (prevIndex) {
+        if (prevIndex === null || prevIndex >= navItems.length) {
+          return 0;
+        }
+        return prevIndex;
+      });
+    } else {
+      // No nav items, set to null
+      setActiveNavIndex(null);
+    }
+  }, [navItems]);
+  React.useEffect(function () {
+    if (!sticky) return;
+    var handleScroll = function handleScroll() {
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return function () {
+      return window.removeEventListener('scroll', handleScroll);
+    };
+  }, [sticky]);
+
+  // Close dropdown when clicking outside
+  React.useEffect(function () {
+    var handleClickOutside = function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setOpenDropdown(null);
+      }
+    };
+    if (openDropdown !== null) {
+      document.addEventListener('mousedown', handleClickOutside);
+      return function () {
+        return document.removeEventListener('mousedown', handleClickOutside);
+      };
+    }
+  }, [openDropdown]);
+
+  // Keyboard navigation
+  React.useEffect(function () {
+    if (!isMobileMenuOpen) return;
+    var handleKeyDown = function handleKeyDown(e) {
+      if (e.key === 'Escape') {
+        setIsMobileMenuOpen(false);
+        setOpenDropdown(null);
+      }
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    return function () {
+      return document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isMobileMenuOpen]);
+  var handleSearchSubmit = function handleSearchSubmit(e) {
+    e.preventDefault();
+    if (onSearch && searchQuery.trim()) {
+      onSearch(searchQuery);
+    }
+  };
 
   // Show skeleton loader when showContent is false (during loading)
   if (!showContent) {
@@ -7112,105 +7225,6 @@ var HeaderFrame$1 = function HeaderFrame(_ref) {
       })
     });
   }
-  var _useState3 = React.useState(false),
-    _useState4 = _slicedToArray(_useState3, 2),
-    isScrolled = _useState4[0],
-    setIsScrolled = _useState4[1];
-  var _useState5 = React.useState(false),
-    _useState6 = _slicedToArray(_useState5, 2),
-    isMobileMenuOpen = _useState6[0],
-    setIsMobileMenuOpen = _useState6[1];
-  // First nav link (index 0) is active by default if navItems exist
-  var _useState7 = React.useState(navItems && navItems.length > 0 ? 0 : null),
-    _useState8 = _slicedToArray(_useState7, 2),
-    activeNavIndex = _useState8[0],
-    setActiveNavIndex = _useState8[1];
-  var _useState9 = React.useState(''),
-    _useState0 = _slicedToArray(_useState9, 2),
-    searchQuery = _useState0[0],
-    setSearchQuery = _useState0[1];
-  var _useState1 = React.useState(null),
-    _useState10 = _slicedToArray(_useState1, 2),
-    openDropdown = _useState10[0],
-    setOpenDropdown = _useState10[1];
-  var dropdownRef = React.useRef(null);
-
-  // Function to check if a nav item is active
-  var isNavItemActive = function isNavItemActive(item, index) {
-    // First nav link (index 0) is active by default, or the clicked nav index
-    return activeNavIndex === index;
-  };
-
-  // Handle nav item click
-  var handleNavClick = function handleNavClick(index, e) {
-    setActiveNavIndex(index);
-    // Close mobile menu if open
-    setIsMobileMenuOpen(false);
-    // Close dropdown if open
-    setOpenDropdown(null);
-  };
-
-  // Reset active nav index if navItems change and current active index is out of bounds
-  React.useEffect(function () {
-    if (navItems && navItems.length > 0) {
-      // If current active index is out of bounds, reset to first item (index 0)
-      setActiveNavIndex(function (prevIndex) {
-        if (prevIndex === null || prevIndex >= navItems.length) {
-          return 0;
-        }
-        return prevIndex;
-      });
-    } else {
-      // No nav items, set to null
-      setActiveNavIndex(null);
-    }
-  }, [navItems]);
-  React.useEffect(function () {
-    if (!sticky) return;
-    var handleScroll = function handleScroll() {
-      setIsScrolled(window.scrollY > 10);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return function () {
-      return window.removeEventListener('scroll', handleScroll);
-    };
-  }, [sticky]);
-
-  // Close dropdown when clicking outside
-  React.useEffect(function () {
-    var handleClickOutside = function handleClickOutside(event) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setOpenDropdown(null);
-      }
-    };
-    if (openDropdown !== null) {
-      document.addEventListener('mousedown', handleClickOutside);
-      return function () {
-        return document.removeEventListener('mousedown', handleClickOutside);
-      };
-    }
-  }, [openDropdown]);
-
-  // Keyboard navigation
-  React.useEffect(function () {
-    if (!isMobileMenuOpen) return;
-    var handleKeyDown = function handleKeyDown(e) {
-      if (e.key === 'Escape') {
-        setIsMobileMenuOpen(false);
-        setOpenDropdown(null);
-      }
-    };
-    document.addEventListener('keydown', handleKeyDown);
-    return function () {
-      return document.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [isMobileMenuOpen]);
-  var handleSearchSubmit = function handleSearchSubmit(e) {
-    e.preventDefault();
-    if (onSearch && searchQuery.trim()) {
-      onSearch(searchQuery);
-    }
-  };
 
   // Social icon component
   var SocialIcon = function SocialIcon(_ref2) {
@@ -17839,7 +17853,9 @@ var ItemPageClassic = function ItemPageClassic(props) {
 var GlassmorphismProductCard = function GlassmorphismProductCard(_ref) {
   var _product$button;
   var product = _ref.product,
-    currency = _ref.currency;
+    currency = _ref.currency,
+    _ref$theme = _ref.theme,
+    theme = _ref$theme === void 0 ? 'light' : _ref$theme;
   var images = Array.isArray(product.images) ? product.images : product.image ? [product.image] : [];
   var buttonConfig = product.button || {};
   var buttonText = buttonConfig.text || 'ADD TO CART';
@@ -17866,16 +17882,16 @@ var GlassmorphismProductCard = function GlassmorphismProductCard(_ref) {
       return setIsHovered(false);
     },
     children: [/*#__PURE__*/require$$1.jsxs("div", {
-      className: "relative h-56 sm:h-64 md:h-72 lg:h-80 overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200",
+      className: clsx("relative h-56 sm:h-64 md:h-72 lg:h-80 overflow-hidden", theme === 'dark' ? "bg-gradient-to-br from-gray-700 to-gray-800" : "bg-gradient-to-br from-gray-100 to-gray-200"),
       children: [images.length > 0 && images[0] ? /*#__PURE__*/require$$1.jsx("img", {
         src: images[0],
         alt: product.title || 'Product',
         className: "w-full h-full object-cover transition-transform duration-700 ".concat(isHovered ? 'scale-110' : 'scale-100'),
         loading: "lazy"
       }) : /*#__PURE__*/require$$1.jsx("div", {
-        className: "w-full h-full flex items-center justify-center bg-gray-200",
+        className: clsx("w-full h-full flex items-center justify-center", theme === 'dark' ? "bg-gray-700" : "bg-gray-200"),
         children: /*#__PURE__*/require$$1.jsx("svg", {
-          className: "w-16 h-16 text-gray-400",
+          className: clsx("w-16 h-16", theme === 'dark' ? "text-gray-500" : "text-gray-400"),
           fill: "none",
           stroke: "currentColor",
           viewBox: "0 0 24 24",
@@ -17887,29 +17903,29 @@ var GlassmorphismProductCard = function GlassmorphismProductCard(_ref) {
           })
         })
       }), /*#__PURE__*/require$$1.jsx("div", {
-        className: "absolute inset-0 bg-white/20 backdrop-blur-md transition-opacity duration-500 ".concat(isHovered ? 'opacity-100' : 'opacity-0'),
+        className: clsx("absolute inset-0 backdrop-blur-md transition-opacity duration-500", theme === 'dark' ? "bg-gray-800/20" : "bg-white/20", isHovered ? 'opacity-100' : 'opacity-0'),
         children: /*#__PURE__*/require$$1.jsx("div", {
           className: "absolute inset-0 flex items-center justify-center",
           children: buttonOnClick ? /*#__PURE__*/require$$1.jsx("button", {
             onClick: buttonOnClick,
-            className: "bg-white/90 backdrop-blur-sm text-gray-900 px-6 py-3 rounded-full font-semibold text-sm shadow-lg hover:bg-white transition-all duration-300 transform hover:scale-105",
+            className: clsx("px-6 py-3 rounded-full font-semibold text-sm shadow-lg transition-all duration-300 transform hover:scale-105 backdrop-blur-sm", theme === 'dark' ? "bg-gray-800/90 text-gray-100 hover:bg-gray-800" : "bg-white/90 text-gray-900 hover:bg-white"),
             children: buttonText
           }) : /*#__PURE__*/require$$1.jsx("a", {
             href: buttonHref,
-            className: "bg-white/90 backdrop-blur-sm text-gray-900 px-6 py-3 rounded-full font-semibold text-sm shadow-lg hover:bg-white transition-all duration-300 transform hover:scale-105",
+            className: clsx("px-6 py-3 rounded-full font-semibold text-sm shadow-lg transition-all duration-300 transform hover:scale-105 backdrop-blur-sm", theme === 'dark' ? "bg-gray-800/90 text-gray-100 hover:bg-gray-800" : "bg-white/90 text-gray-900 hover:bg-white"),
             children: buttonText
           })
         })
       }), product.badge && /*#__PURE__*/require$$1.jsx("div", {
         className: "absolute top-4 left-4 z-10",
         children: /*#__PURE__*/require$$1.jsx("span", {
-          className: "bg-white/90 backdrop-blur-sm text-gray-900 text-xs font-bold px-3 py-1.5 rounded-full shadow-md",
+          className: clsx("backdrop-blur-sm text-xs font-bold px-3 py-1.5 rounded-full shadow-md", theme === 'dark' ? "bg-gray-800/90 text-gray-100" : "bg-white/90 text-gray-900"),
           children: product.badge
         })
       }), /*#__PURE__*/require$$1.jsx("button", {
-        className: "absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-md hover:bg-white transition-colors",
+        className: clsx("absolute top-4 right-4 z-10 w-10 h-10 rounded-full backdrop-blur-sm flex items-center justify-center shadow-md transition-colors", theme === 'dark' ? "bg-gray-800/90 hover:bg-gray-800 text-gray-300" : "bg-white/90 hover:bg-white text-gray-600"),
         children: /*#__PURE__*/require$$1.jsx("svg", {
-          className: "w-5 h-5 text-gray-600",
+          className: "w-5 h-5",
           fill: "none",
           stroke: "currentColor",
           viewBox: "0 0 24 24",
@@ -17922,17 +17938,17 @@ var GlassmorphismProductCard = function GlassmorphismProductCard(_ref) {
         })
       })]
     }), /*#__PURE__*/require$$1.jsxs("div", {
-      className: "relative -mt-8 sm:-mt-10 md:-mt-12 mx-3 sm:mx-4 bg-white/80 backdrop-blur-xl rounded-2xl shadow-xl p-4 sm:p-5 border border-white/50",
+      className: clsx("relative -mt-8 sm:-mt-10 md:-mt-12 mx-3 sm:mx-4 backdrop-blur-xl rounded-2xl shadow-xl p-4 sm:p-5", theme === 'dark' ? "bg-gray-800/80 border border-gray-700/50" : "bg-white/80 border border-white/50"),
       children: [product.title && /*#__PURE__*/require$$1.jsx("h3", {
-        className: "text-gray-900 font-bold text-base sm:text-lg md:text-xl mb-1 sm:mb-2",
+        className: clsx("font-bold text-base sm:text-lg md:text-xl mb-1 sm:mb-2", theme === 'dark' ? "text-gray-100" : "text-gray-900"),
         children: product.title
       }), product.category && /*#__PURE__*/require$$1.jsx("p", {
-        className: "text-gray-500 text-xs sm:text-sm mb-2 sm:mb-3",
+        className: clsx("text-xs sm:text-sm mb-2 sm:mb-3", theme === 'dark' ? "text-gray-400" : "text-gray-500"),
         children: product.category
       }), product.price !== undefined && /*#__PURE__*/require$$1.jsxs("div", {
         className: "flex items-center justify-between",
         children: [/*#__PURE__*/require$$1.jsxs("span", {
-          className: "text-gray-900 font-bold text-lg sm:text-xl md:text-2xl",
+          className: clsx("font-bold text-lg sm:text-xl md:text-2xl", theme === 'dark' ? "text-gray-100" : "text-gray-900"),
           children: [currency, formatPrice(product.price)]
         }), product.rating && /*#__PURE__*/require$$1.jsxs("div", {
           className: "flex items-center gap-1",
@@ -17940,7 +17956,7 @@ var GlassmorphismProductCard = function GlassmorphismProductCard(_ref) {
             className: "text-yellow-400",
             children: "\u2605"
           }), /*#__PURE__*/require$$1.jsx("span", {
-            className: "text-gray-600 text-sm",
+            className: clsx("text-sm", theme === 'dark' ? "text-gray-400" : "text-gray-600"),
             children: product.rating
           })]
         })]
@@ -17953,7 +17969,9 @@ var GlassmorphismProductCard = function GlassmorphismProductCard(_ref) {
 var MinimalProductCard = function MinimalProductCard(_ref2) {
   var _product$button2;
   var product = _ref2.product,
-    currency = _ref2.currency;
+    currency = _ref2.currency,
+    _ref2$theme = _ref2.theme,
+    theme = _ref2$theme === void 0 ? 'light' : _ref2$theme;
   var images = Array.isArray(product.images) ? product.images : product.image ? [product.image] : [];
   var buttonConfig = product.button || {};
   var buttonText = buttonConfig.text || 'SHOP NOW';
@@ -17968,9 +17986,9 @@ var MinimalProductCard = function MinimalProductCard(_ref2) {
     return price;
   };
   return /*#__PURE__*/require$$1.jsxs("div", {
-    className: "relative bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-shadow duration-300 group",
+    className: clsx("relative rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-shadow duration-300 group", theme === 'dark' ? "bg-gray-800" : "bg-white"),
     children: [/*#__PURE__*/require$$1.jsxs("div", {
-      className: "relative bg-gray-50 aspect-square overflow-hidden",
+      className: clsx("relative aspect-square overflow-hidden", theme === 'dark' ? "bg-gray-700" : "bg-gray-50"),
       children: [images.length > 0 && images[0] ? /*#__PURE__*/require$$1.jsx("img", {
         src: images[0],
         alt: product.title || 'Product',
@@ -17979,7 +17997,7 @@ var MinimalProductCard = function MinimalProductCard(_ref2) {
       }) : /*#__PURE__*/require$$1.jsx("div", {
         className: "w-full h-full flex items-center justify-center",
         children: /*#__PURE__*/require$$1.jsx("svg", {
-          className: "w-20 h-20 text-gray-300",
+          className: clsx("w-20 h-20", theme === 'dark' ? "text-gray-500" : "text-gray-300"),
           fill: "none",
           stroke: "currentColor",
           viewBox: "0 0 24 24",
@@ -17993,31 +18011,31 @@ var MinimalProductCard = function MinimalProductCard(_ref2) {
       }), product.badge && /*#__PURE__*/require$$1.jsx("div", {
         className: "absolute top-4 left-4",
         children: /*#__PURE__*/require$$1.jsx("span", {
-          className: "bg-black text-white text-xs font-semibold px-3 py-1.5 rounded",
+          className: clsx("text-xs font-semibold px-3 py-1.5 rounded", theme === 'dark' ? "bg-gray-900 text-gray-100" : "bg-black text-white"),
           children: product.badge
         })
       })]
     }), /*#__PURE__*/require$$1.jsxs("div", {
       className: "p-4 sm:p-5 md:p-6 space-y-2 sm:space-y-3",
       children: [product.title && /*#__PURE__*/require$$1.jsx("h3", {
-        className: "text-gray-900 font-semibold text-lg sm:text-xl md:text-2xl",
+        className: clsx("font-semibold text-lg sm:text-xl md:text-2xl", theme === 'dark' ? "text-gray-100" : "text-gray-900"),
         children: product.title
       }), product.price !== undefined && /*#__PURE__*/require$$1.jsxs("div", {
         className: "flex items-baseline gap-2",
         children: [/*#__PURE__*/require$$1.jsxs("span", {
-          className: "text-gray-900 font-bold text-xl sm:text-2xl md:text-3xl",
+          className: clsx("font-bold text-xl sm:text-2xl md:text-3xl", theme === 'dark' ? "text-gray-100" : "text-gray-900"),
           children: [currency, formatPrice(product.price)]
         }), product.originalPrice && /*#__PURE__*/require$$1.jsxs("span", {
-          className: "text-gray-400 text-xs sm:text-sm line-through",
+          className: clsx("text-xs sm:text-sm line-through", theme === 'dark' ? "text-gray-500" : "text-gray-400"),
           children: [currency, formatPrice(product.originalPrice)]
         })]
       }), buttonOnClick ? /*#__PURE__*/require$$1.jsx("button", {
         onClick: buttonOnClick,
-        className: "w-full bg-gray-900 text-white py-2.5 sm:py-3 rounded-lg font-medium text-xs sm:text-sm md:text-base hover:bg-gray-800 transition-colors",
+        className: clsx("w-full py-2.5 sm:py-3 rounded-lg font-medium text-xs sm:text-sm md:text-base transition-colors", theme === 'dark' ? "bg-gray-700 text-gray-100 hover:bg-gray-600" : "bg-gray-900 text-white hover:bg-gray-800"),
         children: buttonText
       }) : /*#__PURE__*/require$$1.jsx("a", {
         href: buttonHref,
-        className: "block w-full bg-gray-900 text-white py-3 rounded-lg font-medium text-sm hover:bg-gray-800 transition-colors text-center",
+        className: clsx("block w-full py-3 rounded-lg font-medium text-sm transition-colors text-center", theme === 'dark' ? "bg-gray-700 text-gray-100 hover:bg-gray-600" : "bg-gray-900 text-white hover:bg-gray-800"),
         children: buttonText
       })]
     })]
@@ -18028,7 +18046,9 @@ var MinimalProductCard = function MinimalProductCard(_ref2) {
 var GradientProductCard = function GradientProductCard(_ref3) {
   var _product$button3;
   var product = _ref3.product,
-    currency = _ref3.currency;
+    currency = _ref3.currency,
+    _ref3$theme = _ref3.theme,
+    theme = _ref3$theme === void 0 ? 'light' : _ref3$theme;
   var images = Array.isArray(product.images) ? product.images : product.image ? [product.image] : [];
   var buttonConfig = product.button || {};
   var buttonText = buttonConfig.text || 'EXPLORE';
@@ -18097,15 +18117,15 @@ var GradientProductCard = function GradientProductCard(_ref3) {
       children: [/*#__PURE__*/require$$1.jsxs("div", {
         className: "flex items-start justify-between mb-6",
         children: [product.badge && /*#__PURE__*/require$$1.jsx("span", {
-          className: "bg-white/20 backdrop-blur-sm text-white text-xs font-bold px-3 py-1.5 rounded-full border border-white/30",
+          className: clsx("backdrop-blur-sm text-xs font-bold px-3 py-1.5 rounded-full border", theme === 'dark' ? "bg-gray-800/20 text-gray-100 border-gray-600/30" : "bg-white/20 text-white border-white/30"),
           children: product.badge
         }), /*#__PURE__*/require$$1.jsxs("div", {
           className: "relative",
           children: [/*#__PURE__*/require$$1.jsx("button", {
             onClick: handleMenuToggle,
-            className: "w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center hover:bg-white/30 transition-colors z-20",
+            className: clsx("w-10 h-10 rounded-full backdrop-blur-sm flex items-center justify-center transition-colors z-20", theme === 'dark' ? "bg-gray-800/20 hover:bg-gray-700/30 text-gray-300" : "bg-white/20 hover:bg-white/30 text-white"),
             children: /*#__PURE__*/require$$1.jsx("svg", {
-              className: "w-5 h-5 text-white",
+              className: "w-5 h-5",
               fill: "none",
               stroke: "currentColor",
               viewBox: "0 0 24 24",
@@ -18117,13 +18137,13 @@ var GradientProductCard = function GradientProductCard(_ref3) {
               })
             })
           }), isMenuOpen && /*#__PURE__*/require$$1.jsxs("div", {
-            className: "absolute top-12 sm:top-14 right-0 bg-white rounded-lg shadow-xl py-2 min-w-[140px] sm:min-w-[160px] md:min-w-[180px] z-30 border border-gray-100",
+            className: clsx("absolute top-12 sm:top-14 right-0 rounded-lg shadow-xl py-2 min-w-[140px] sm:min-w-[160px] md:min-w-[180px] z-30 border", theme === 'dark' ? "bg-gray-800 border-gray-600" : "bg-white border-gray-100"),
             onClick: function onClick(e) {
               return e.stopPropagation();
             },
             children: [/*#__PURE__*/require$$1.jsxs("button", {
               onClick: handleAddToCart,
-              className: "w-full px-3 sm:px-4 py-2 sm:py-2.5 text-left text-gray-700 hover:bg-gray-50 transition-colors flex items-center gap-2 text-xs sm:text-sm font-medium",
+              className: clsx("w-full px-3 sm:px-4 py-2 sm:py-2.5 text-left transition-colors flex items-center gap-2 text-xs sm:text-sm font-medium", theme === 'dark' ? "text-gray-300 hover:bg-gray-700" : "text-gray-700 hover:bg-gray-50"),
               children: [/*#__PURE__*/require$$1.jsx("svg", {
                 className: "w-3.5 h-3.5 sm:w-4 sm:h-4",
                 fill: "none",
@@ -18138,7 +18158,7 @@ var GradientProductCard = function GradientProductCard(_ref3) {
               }), "Add to cart"]
             }), /*#__PURE__*/require$$1.jsxs("button", {
               onClick: handleWishlist,
-              className: "w-full px-3 sm:px-4 py-2 sm:py-2.5 text-left text-gray-700 hover:bg-gray-50 transition-colors flex items-center gap-2 text-xs sm:text-sm font-medium",
+              className: clsx("w-full px-3 sm:px-4 py-2 sm:py-2.5 text-left transition-colors flex items-center gap-2 text-xs sm:text-sm font-medium", theme === 'dark' ? "text-gray-300 hover:bg-gray-700" : "text-gray-700 hover:bg-gray-50"),
               children: [/*#__PURE__*/require$$1.jsx("svg", {
                 className: "w-3.5 h-3.5 sm:w-4 sm:h-4",
                 fill: "none",
@@ -18164,7 +18184,7 @@ var GradientProductCard = function GradientProductCard(_ref3) {
         }) : /*#__PURE__*/require$$1.jsx("div", {
           className: "w-full h-full flex items-center justify-center",
           children: /*#__PURE__*/require$$1.jsx("svg", {
-            className: "w-20 h-20 text-white/50",
+            className: clsx("w-20 h-20", theme === 'dark' ? "text-gray-400/50" : "text-white/50"),
             fill: "none",
             stroke: "currentColor",
             viewBox: "0 0 24 24",
@@ -18179,27 +18199,27 @@ var GradientProductCard = function GradientProductCard(_ref3) {
       }), /*#__PURE__*/require$$1.jsxs("div", {
         className: "space-y-4",
         children: [product.category && /*#__PURE__*/require$$1.jsx("p", {
-          className: "text-white/80 text-sm uppercase tracking-wider font-medium",
+          className: clsx("text-sm uppercase tracking-wider font-medium", theme === 'dark' ? "text-gray-300/80" : "text-white/80"),
           children: product.category
         }), product.title && /*#__PURE__*/require$$1.jsx("h3", {
-          className: "text-white font-bold text-2xl sm:text-3xl",
+          className: clsx("font-bold text-2xl sm:text-3xl", theme === 'dark' ? "text-gray-100" : "text-white"),
           children: product.title
         }), product.description && /*#__PURE__*/require$$1.jsx("p", {
-          className: "text-white/90 text-sm leading-relaxed line-clamp-2",
+          className: clsx("text-sm leading-relaxed line-clamp-2", theme === 'dark' ? "text-gray-300/90" : "text-white/90"),
           children: product.description
         }), product.price !== undefined && /*#__PURE__*/require$$1.jsx("div", {
           className: "flex items-center justify-between pt-2",
           children: /*#__PURE__*/require$$1.jsxs("span", {
-            className: "text-white font-bold text-xl sm:text-2xl md:text-3xl",
+            className: clsx("font-bold text-xl sm:text-2xl md:text-3xl", theme === 'dark' ? "text-gray-100" : "text-white"),
             children: [currency, formatPrice(product.price)]
           })
         }), buttonOnClick ? /*#__PURE__*/require$$1.jsx("button", {
           onClick: buttonOnClick,
-          className: "w-full bg-white text-gray-900 py-3 rounded-xl font-bold text-sm hover:bg-white/90 transition-colors mt-4",
+          className: clsx("w-full py-3 rounded-xl font-bold text-sm transition-colors mt-4", theme === 'dark' ? "bg-gray-800 text-gray-100 hover:bg-gray-700" : "bg-white text-gray-900 hover:bg-white/90"),
           children: buttonText
         }) : /*#__PURE__*/require$$1.jsx("a", {
           href: buttonHref,
-          className: "block w-full bg-white text-gray-900 py-3 rounded-xl font-bold text-sm hover:bg-white/90 transition-colors mt-4 text-center",
+          className: clsx("block w-full py-3 rounded-xl font-bold text-sm transition-colors mt-4 text-center", theme === 'dark' ? "bg-gray-800 text-gray-100 hover:bg-gray-700" : "bg-white text-gray-900 hover:bg-white/90"),
           children: buttonText
         })]
       })]
@@ -18209,12 +18229,31 @@ var GradientProductCard = function GradientProductCard(_ref3) {
 var ItemPageNeo$1 = function ItemPageNeo(_ref4) {
   var data = _ref4.data,
     className = _ref4.className,
-    id = _ref4.id;
-    _ref4.loader;
+    id = _ref4.id,
+    _ref4$loader = _ref4.loader,
+    loader = _ref4$loader === void 0 ? false : _ref4$loader,
+    _ref4$theme = _ref4.theme,
+    theme = _ref4$theme === void 0 ? 'light' : _ref4$theme;
   if (!data || _typeof(data) !== 'object') {
     console.error('ItemPageNeo: data prop is required and must be an object');
     return null;
   }
+  var _useState5 = React.useState(loader),
+    _useState6 = _slicedToArray(_useState5, 2),
+    showLoader = _useState6[0],
+    setShowLoader = _useState6[1];
+  React.useEffect(function () {
+    if (loader) {
+      setShowLoader(true);
+      var timer = setTimeout(function () {
+        return setShowLoader(false);
+      }, 2000);
+      return function () {
+        return clearTimeout(timer);
+      };
+    }
+    setShowLoader(false);
+  }, [loader]);
   var title = data.title,
     subtitle = data.subtitle,
     description = data.description,
@@ -18228,7 +18267,11 @@ var ItemPageNeo$1 = function ItemPageNeo(_ref4) {
     columns = _data$columns === void 0 ? 3 : _data$columns,
     _data$currency = data.currency,
     currency = _data$currency === void 0 ? '$' : _data$currency,
+    dataTheme = data.theme,
     dataClassName = data.className;
+
+  // Use prop theme if provided, otherwise use data theme, default to 'light'
+  var currentTheme = theme !== 'light' ? theme : dataTheme || 'light';
   var alignmentClasses = {
     left: 'text-left items-start',
     center: 'text-center items-center',
@@ -18240,21 +18283,67 @@ var ItemPageNeo$1 = function ItemPageNeo(_ref4) {
     3: 'grid-cols-1 sm:grid-cols-1 lg:grid-cols-3',
     4: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'
   };
+
+  // Loading Skeleton Component
+  var LoadingSkeleton = function LoadingSkeleton() {
+    return /*#__PURE__*/require$$1.jsx("div", {
+      className: clsx('w-full py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8', currentTheme === 'dark' ? 'bg-gray-900' : 'bg-white', className, dataClassName),
+      children: /*#__PURE__*/require$$1.jsxs("div", {
+        className: "max-w-7xl mx-auto w-full",
+        children: [/*#__PURE__*/require$$1.jsxs("div", {
+          className: clsx('mb-8 sm:mb-10 md:mb-12 lg:mb-16 flex flex-col', alignmentClasses[alignment] || alignmentClasses.center),
+          children: [/*#__PURE__*/require$$1.jsx("div", {
+            className: clsx("h-4 w-32 rounded mb-2 animate-pulse", currentTheme === 'dark' ? "bg-gray-700" : "bg-gray-200")
+          }), /*#__PURE__*/require$$1.jsx("div", {
+            className: clsx("h-8 sm:h-10 md:h-12 lg:h-14 xl:h-16 w-96 max-w-full rounded mb-3 sm:mb-4 animate-pulse", currentTheme === 'dark' ? "bg-gray-700" : "bg-gray-200")
+          }), /*#__PURE__*/require$$1.jsx("div", {
+            className: clsx("h-4 w-80 max-w-full rounded animate-pulse mx-auto", currentTheme === 'dark' ? "bg-gray-700" : "bg-gray-200")
+          })]
+        }), /*#__PURE__*/require$$1.jsx("div", {
+          className: clsx('grid gap-6', gridColumnsClasses[columns] || gridColumnsClasses[3]),
+          children: Array.from({
+            length: Math.min(products.length || 6, 12)
+          }, function (_, index) {
+            return /*#__PURE__*/require$$1.jsxs("div", {
+              className: clsx("rounded-2xl overflow-hidden animate-pulse", currentTheme === 'dark' ? "bg-gray-800" : "bg-gray-100"),
+              children: [/*#__PURE__*/require$$1.jsx("div", {
+                className: clsx("h-56 sm:h-64 md:h-72 lg:h-80", currentTheme === 'dark' ? "bg-gray-700" : "bg-gray-200")
+              }), /*#__PURE__*/require$$1.jsxs("div", {
+                className: "p-4 sm:p-5 md:p-6 space-y-3",
+                children: [/*#__PURE__*/require$$1.jsx("div", {
+                  className: clsx("h-6 w-3/4 rounded animate-pulse", currentTheme === 'dark' ? "bg-gray-700" : "bg-gray-200")
+                }), /*#__PURE__*/require$$1.jsx("div", {
+                  className: clsx("h-8 w-1/2 rounded animate-pulse", currentTheme === 'dark' ? "bg-gray-700" : "bg-gray-200")
+                }), /*#__PURE__*/require$$1.jsx("div", {
+                  className: clsx("h-10 w-full rounded-lg animate-pulse", currentTheme === 'dark' ? "bg-gray-700" : "bg-gray-200")
+                })]
+              })]
+            }, index);
+          })
+        })]
+      })
+    });
+  };
+
+  // Show loading skeleton if loader is active
+  if (showLoader) {
+    return /*#__PURE__*/require$$1.jsx(LoadingSkeleton, {});
+  }
   return /*#__PURE__*/require$$1.jsx("section", {
     id: id,
-    className: clsx('w-full py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8', className, dataClassName),
+    className: clsx('w-full py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8', currentTheme === 'dark' ? 'bg-gray-900' : 'bg-white', className, dataClassName),
     children: /*#__PURE__*/require$$1.jsxs("div", {
       className: "max-w-7xl mx-auto w-full",
       children: [(title || subtitle || description) && /*#__PURE__*/require$$1.jsxs("div", {
         className: clsx('mb-8 sm:mb-10 md:mb-12 lg:mb-16 flex flex-col', alignmentClasses[alignment] || alignmentClasses.center),
         children: [subtitle && /*#__PURE__*/require$$1.jsx("p", {
-          className: "text-sm sm:text-base font-semibold text-primary-600 uppercase tracking-wide mb-2",
+          className: clsx("text-sm sm:text-base font-semibold uppercase tracking-wide mb-2", currentTheme === 'dark' ? "text-primary-400" : "text-primary-600"),
           children: subtitle
         }), title && /*#__PURE__*/require$$1.jsx("h2", {
-          className: "text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-3 sm:mb-4",
+          className: clsx("text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3 sm:mb-4", currentTheme === 'dark' ? "text-gray-100" : "text-gray-900"),
           children: title
         }), description && /*#__PURE__*/require$$1.jsx("p", {
-          className: "text-sm sm:text-base md:text-lg text-gray-600 max-w-2xl mx-auto px-4 sm:px-0",
+          className: clsx("text-sm sm:text-base md:text-lg max-w-2xl mx-auto px-4 sm:px-0", currentTheme === 'dark' ? "text-gray-300" : "text-gray-600"),
           children: description
         })]
       }), products.length > 0 && /*#__PURE__*/require$$1.jsx("div", {
@@ -18263,31 +18352,35 @@ var ItemPageNeo$1 = function ItemPageNeo(_ref4) {
           if (variant === 'glassmorphism') {
             return /*#__PURE__*/require$$1.jsx(GlassmorphismProductCard, {
               product: product,
-              currency: currency
+              currency: currency,
+              theme: currentTheme
             }, index);
           }
           if (variant === 'minimal') {
             return /*#__PURE__*/require$$1.jsx(MinimalProductCard, {
               product: product,
-              currency: currency
+              currency: currency,
+              theme: currentTheme
             }, index);
           }
           if (variant === 'gradient') {
             return /*#__PURE__*/require$$1.jsx(GradientProductCard, {
               product: product,
-              currency: currency
+              currency: currency,
+              theme: currentTheme
             }, index);
           }
           // Default to glassmorphism
           return /*#__PURE__*/require$$1.jsx(GlassmorphismProductCard, {
             product: product,
-            currency: currency
+            currency: currency,
+            theme: currentTheme
           }, index);
         })
       }), products.length === 0 && /*#__PURE__*/require$$1.jsx("div", {
         className: "text-center py-12",
         children: /*#__PURE__*/require$$1.jsx("p", {
-          className: "text-gray-500 text-lg",
+          className: clsx("text-lg", currentTheme === 'dark' ? "text-gray-400" : "text-gray-500"),
           children: "No products available"
         })
       })]
