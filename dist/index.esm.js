@@ -99,6 +99,26 @@ function _objectSpread2(e) {
   }
   return e;
 }
+function _objectWithoutProperties(e, t) {
+  if (null == e) return {};
+  var o,
+    r,
+    i = _objectWithoutPropertiesLoose(e, t);
+  if (Object.getOwnPropertySymbols) {
+    var n = Object.getOwnPropertySymbols(e);
+    for (r = 0; r < n.length; r++) o = n[r], -1 === t.indexOf(o) && {}.propertyIsEnumerable.call(e, o) && (i[o] = e[o]);
+  }
+  return i;
+}
+function _objectWithoutPropertiesLoose(r, e) {
+  if (null == r) return {};
+  var t = {};
+  for (var n in r) if ({}.hasOwnProperty.call(r, n)) {
+    if (-1 !== e.indexOf(n)) continue;
+    t[n] = r[n];
+  }
+  return t;
+}
 function _regenerator() {
   /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE */
   var e,
@@ -780,7 +800,7 @@ var BannerBlend = function BannerBlend(props) {
   }, /*#__PURE__*/React.createElement(BannerBlend$1, props));
 };
 
-var getDynamicIcon$1 = /*#__PURE__*/function () {
+var getDynamicIcon = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee(library, iconName) {
     var modulePath, iconModule, IconComponent, _t;
     return _regenerator().w(function (_context) {
@@ -830,7 +850,7 @@ var IconRenderer = function IconRenderer(_ref2) {
   useEffect(function () {
     if (_typeof(icon) === 'object' && icon.library && icon.name) {
       setLoading(true);
-      getDynamicIcon$1(icon.library, icon.name).then(function (Icon) {
+      getDynamicIcon(icon.library, icon.name).then(function (Icon) {
         setIconComponent(Icon);
         setLoading(false);
       });
@@ -2558,11 +2578,27 @@ var HighlightsStack$1 = function HighlightsStack(_ref) {
     };
     var wrapperClass = iconWrapperClasses[itemIconAlignment] || 'flex items-start';
 
+    // Check if icon is an image
+    var isImage = typeof item.icon === 'string' && (item.icon.startsWith('http') || item.icon.startsWith('/') || item.icon.startsWith('./') || item.icon.startsWith('../') || item.icon.includes('.'));
+
     // Icon rendering utility function
     var renderIconContent = function renderIconContent(iconElement) {
       var iconClassName = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
       // Mantine Icons variant - Simple icon container, always centered
       if (variant === 'mantine-icons') {
+        if (isImage) {
+          return /*#__PURE__*/jsx("div", {
+            className: "flex justify-center mb-6",
+            children: /*#__PURE__*/jsx("div", {
+              className: clsx('w-12 h-12 sm:w-14 sm:h-14 rounded-lg overflow-hidden transition-all duration-300', hoverEffect && hoveredIndex === index && 'transform scale-110'),
+              children: /*#__PURE__*/jsx("img", {
+                src: item.icon,
+                alt: item.title || 'Feature icon',
+                className: "w-full h-full object-cover"
+              })
+            })
+          });
+        }
         return /*#__PURE__*/jsx("div", {
           className: "flex justify-center mb-6",
           children: /*#__PURE__*/jsx("div", {
@@ -2574,6 +2610,19 @@ var HighlightsStack$1 = function HighlightsStack(_ref) {
 
       // Mantine Monotone variant - Gray icons, always centered
       if (variant === 'mantine-monotone') {
+        if (isImage) {
+          return /*#__PURE__*/jsx("div", {
+            className: "flex justify-center mb-6",
+            children: /*#__PURE__*/jsx("div", {
+              className: clsx('w-12 h-12 sm:w-14 sm:h-14 rounded-lg overflow-hidden transition-all duration-300', hoverEffect && hoveredIndex === index && 'transform scale-110'),
+              children: /*#__PURE__*/jsx("img", {
+                src: item.icon,
+                alt: item.title || 'Feature icon',
+                className: "w-full h-full object-cover"
+              })
+            })
+          });
+        }
         return /*#__PURE__*/jsx("div", {
           className: "flex justify-center mb-6",
           children: /*#__PURE__*/jsx("div", {
@@ -2585,6 +2634,19 @@ var HighlightsStack$1 = function HighlightsStack(_ref) {
 
       // Mantine Image Icons variant - Image icons, always centered
       if (variant === 'mantine-image-icons') {
+        if (isImage) {
+          return /*#__PURE__*/jsx("div", {
+            className: "flex justify-center mb-6",
+            children: /*#__PURE__*/jsx("div", {
+              className: clsx('w-12 h-12 sm:w-14 sm:h-14 rounded-lg overflow-hidden transition-all duration-300', hoverEffect && hoveredIndex === index && 'transform scale-110'),
+              children: /*#__PURE__*/jsx("img", {
+                src: item.icon,
+                alt: item.title || 'Feature icon',
+                className: "w-full h-full object-cover"
+              })
+            })
+          });
+        }
         return /*#__PURE__*/jsx("div", {
           className: "flex justify-center mb-6",
           children: iconElement
@@ -2593,6 +2655,19 @@ var HighlightsStack$1 = function HighlightsStack(_ref) {
 
       // Mantine Badge Cards variant - Blue circular icons
       if (variant === 'mantine-badge-cards') {
+        if (isImage) {
+          return /*#__PURE__*/jsx("div", {
+            className: "mb-6",
+            children: /*#__PURE__*/jsx("div", {
+              className: clsx('w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-primary-700 flex items-center justify-center text-white text-xl sm:text-2xl transition-all duration-300 overflow-hidden', hoverEffect && hoveredIndex === index && 'transform scale-105 bg-primary-700'),
+              children: /*#__PURE__*/jsx("img", {
+                src: item.icon,
+                alt: item.title || 'Feature icon',
+                className: "w-full h-full object-cover rounded-full"
+              })
+            })
+          });
+        }
         return /*#__PURE__*/jsx("div", {
           className: "mb-6",
           children: /*#__PURE__*/jsx("div", {
@@ -2604,11 +2679,39 @@ var HighlightsStack$1 = function HighlightsStack(_ref) {
 
       // Special handling for filled variant
       if (variant === 'filled') {
+        if (isImage) {
+          return /*#__PURE__*/jsx("div", {
+            className: clsx(wrapperClass, 'mb-4'),
+            children: /*#__PURE__*/jsx("div", {
+              className: clsx('w-12 h-12 sm:w-16 sm:h-16 rounded-lg transition-all duration-300 overflow-hidden', hoveredIndex === index ? 'bg-primary-400' : 'bg-gray-200', hoverEffect && hoveredIndex === index && 'transform scale-110'),
+              children: /*#__PURE__*/jsx("img", {
+                src: item.icon,
+                alt: item.title || 'Feature icon',
+                className: "w-full h-full object-cover"
+              })
+            })
+          });
+        }
         return /*#__PURE__*/jsx("div", {
           className: clsx(wrapperClass, 'mb-4'),
           children: /*#__PURE__*/jsx("div", {
             className: clsx(getIconClasses(index), 'w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center text-3xl sm:text-4xl rounded-lg transition-all duration-300', hoveredIndex === index ? 'bg-primary-400' : 'bg-gray-200', hoverEffect && hoveredIndex === index && 'transform scale-110', iconClassName),
             children: iconElement
+          })
+        });
+      }
+
+      // Default handling for all other variants
+      if (isImage) {
+        return /*#__PURE__*/jsx("div", {
+          className: clsx(wrapperClass, 'mb-4'),
+          children: /*#__PURE__*/jsx("div", {
+            className: clsx('w-12 h-12 sm:w-16 sm:h-16 rounded-lg transition-all duration-300 overflow-hidden', variant === 'mantine-title' ? 'bg-primary-50' : 'bg-primary-50', hoverEffect && hoveredIndex === index && 'transform scale-110 bg-primary-100'),
+            children: /*#__PURE__*/jsx("img", {
+              src: item.icon,
+              alt: item.title || 'Feature icon',
+              className: "w-full h-full object-cover"
+            })
           })
         });
       }
@@ -2623,47 +2726,23 @@ var HighlightsStack$1 = function HighlightsStack(_ref) {
 
     // Handle different icon formats
 
-    // 1. If icon is a React component (direct component)
+    // 1. If icon is a React component (direct component) - LEGACY SUPPORT
     if (_typeof(item.icon) === 'object' && item.icon.type) {
       return renderIconContent(item.icon);
     }
 
-    // 2. If icon is an object with library and name (e.g., { library: 'react-icons/fa', name: 'FaBolt', className: 'w-6 h-6' })
+    // 2. If icon is an object with library and name - LEGACY SUPPORT (we'll skip this for image-only approach)
     if (_typeof(item.icon) === 'object' && item.icon.library && item.icon.name) {
-      try {
-        // Dynamically import the icon component
-        // This is a simplified version - in a real app, you'd want to pre-load common icons
-        var iconName = item.icon.name;
-        var library = item.icon.library;
-        var iconClassName = item.icon.className || 'w-6 h-6';
-
-        // For demo purposes, we'll handle common react-icons
-        // In production, you'd want a more robust icon loading system
-        if (library.startsWith('react-icons/')) {
-          // This is a placeholder - actual dynamic imports would be more complex
-          // You'd typically have a pre-loaded icon map or lazy loading system
-          var IconComponent = getDynamicIcon(library, iconName);
-          if (IconComponent) {
-            return renderIconContent(/*#__PURE__*/jsx(IconComponent, {
-              className: iconClassName
-            }));
-          }
-        }
-      } catch (error) {
-        console.warn('Failed to load icon:', item.icon, error);
-      }
+      console.warn('Icon libraries are not supported. Please use image URLs or emoji/text for icons.');
+      return null;
     }
 
-    // 3. If icon is a string
+    // 3. If icon is a string - IMAGE, EMOJI, or TEXT
     if (typeof item.icon === 'string') {
-      // Check if it's an image URL
-      if (item.icon.startsWith('http') || item.icon.startsWith('/') || item.icon.includes('.')) {
-        var imgElement = /*#__PURE__*/jsx("img", {
-          src: item.icon,
-          alt: item.title || 'Feature icon',
-          className: clsx('w-12 h-12 sm:w-16 sm:h-16 object-contain transition-all duration-300', hoverEffect && hoveredIndex === index && 'transform scale-110')
-        });
-        return renderIconContent(imgElement);
+      // Check if it's an image URL (handles http, https, relative paths, and file extensions)
+      if (isImage) {
+        // Image handling is done in renderIconContent above
+        return renderIconContent(null);
       }
 
       // Treat as emoji or text
@@ -2812,17 +2891,17 @@ var HighlightsStack$1 = function HighlightsStack(_ref) {
     children: /*#__PURE__*/jsxs("div", {
       className: "max-w-7xl mx-auto w-full",
       children: [(title || subtitle || description) && /*#__PURE__*/jsxs("div", {
-        className: clsx('mb-10 sm:mb-12 flex flex-col', variant === 'mantine-badge-cards' ? 'text-left items-start' : alignmentClasses[alignment]),
+        className: clsx('mb-10 sm:mb-12 flex flex-col', alignmentClasses[alignment]),
         children: [subtitle && /*#__PURE__*/jsx("p", {
-          className: clsx(variant === 'mantine-badge-cards' ? 'inline-block px-3 py-1 bg-primary-600 text-white text-xs font-semibold uppercase tracking-wider rounded-full mb-6' : 'text-sm sm:text-base font-semibold text-primary-600 uppercase tracking-wider mb-3'),
+          className: clsx(variant === 'mantine-badge-cards' ? clsx('inline-block px-3 py-1 bg-primary-600 text-white text-xs font-semibold uppercase tracking-wider rounded-full mb-6', alignment === 'center' && 'mx-auto', alignment === 'right' && 'ml-auto mr-0') : 'text-sm sm:text-base font-semibold text-primary-600 uppercase tracking-wider mb-3'),
           children: subtitle
         }), title && /*#__PURE__*/jsx("h2", {
           className: clsx('font-bold text-gray-900 leading-tight', variant === 'mantine-badge-cards' ? 'text-3xl sm:text-4xl md:text-5xl mb-6' : 'text-3xl sm:text-4xl md:text-5xl mb-4'),
           children: title
         }), description && /*#__PURE__*/jsxs("div", {
-          className: clsx('relative', variant === 'mantine-badge-cards' ? 'w-full flex flex-col items-center' : '', alignment === 'center' && variant !== 'mantine-badge-cards' && 'mx-auto', alignment === 'right' && variant !== 'mantine-badge-cards' && 'ml-auto', alignment === 'left' && variant !== 'mantine-badge-cards' && 'mr-auto'),
+          className: clsx('relative', variant === 'mantine-badge-cards' ? clsx('w-full flex flex-col', alignmentClasses[alignment]) : alignmentClasses[alignment]),
           children: [/*#__PURE__*/jsx("p", {
-            className: clsx('text-base sm:text-lg text-gray-600', variant === 'mantine-badge-cards' ? 'max-w-3xl text-center mb-4' : 'max-w-2xl text-gray-500'),
+            className: clsx('text-base sm:text-lg text-gray-600', variant === 'mantine-badge-cards' ? 'max-w-3xl mb-4' : 'max-w-2xl text-gray-500'),
             children: description
           }), variant === 'mantine-badge-cards' && /*#__PURE__*/jsx("div", {
             className: "w-16 h-0.5 bg-primary-600"
@@ -3118,10 +3197,23 @@ var HighlightsStream$1 = function HighlightsStream(_ref) {
     var variant = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 'default';
     if (!showIcons || !item.icon) return null;
 
+    // Check if icon is an image
+    var isImage = typeof item.icon === 'string' && (item.icon.startsWith('http') || item.icon.startsWith('/') || item.icon.startsWith('./') || item.icon.startsWith('../') || item.icon.includes('.'));
+
     // Icon rendering utility function
     var renderIconContent = function renderIconContent(iconElement) {
       var iconClassName = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
       if (variant === 'minimal') {
+        if (isImage) {
+          return /*#__PURE__*/jsx("div", {
+            className: clsx('flex items-center justify-center w-14 h-14 rounded-xl mb-5 overflow-hidden', 'transition-all duration-300', isDark ? 'bg-gray-800 border border-gray-700' : clsx(colors.bg, colors.border, 'border'), hoveredIndex === index && 'scale-110 -rotate-3'),
+            children: /*#__PURE__*/jsx("img", {
+              src: item.icon,
+              alt: item.title || 'Feature icon',
+              className: "w-full h-full object-cover"
+            })
+          });
+        }
         return /*#__PURE__*/jsx("div", {
           className: clsx('flex items-center justify-center w-14 h-14 rounded-xl mb-5', 'transition-all duration-300', isDark ? 'bg-gray-800 border border-gray-700' : clsx(colors.bg, colors.border, 'border'), hoveredIndex === index && 'scale-110 -rotate-3'),
           children: /*#__PURE__*/jsx("div", {
@@ -3131,6 +3223,21 @@ var HighlightsStream$1 = function HighlightsStream(_ref) {
         });
       } else {
         // Staggered variant
+        if (isImage) {
+          return /*#__PURE__*/jsxs("div", {
+            className: clsx('relative flex items-center justify-center mb-6', 'transition-all duration-500', hoveredIndex === index && 'scale-110'),
+            children: [/*#__PURE__*/jsx("div", {
+              className: clsx('absolute inset-0 rounded-2xl blur-xl opacity-30', "bg-gradient-to-br ".concat(colors.gradient), 'transition-all duration-500', hoveredIndex === index && 'opacity-50 scale-150')
+            }), /*#__PURE__*/jsx("div", {
+              className: clsx('relative flex items-center justify-center w-20 h-20 rounded-2xl overflow-hidden', isDark ? 'bg-gray-800 border border-gray-700' : clsx(colors.bg, colors.border, 'border-2'), 'transition-all duration-500', hoveredIndex === index && 'shadow-2xl'),
+              children: /*#__PURE__*/jsx("img", {
+                src: item.icon,
+                alt: item.title || 'Feature icon',
+                className: "w-full h-full object-cover"
+              })
+            })]
+          });
+        }
         return /*#__PURE__*/jsxs("div", {
           className: clsx('relative flex items-center justify-center mb-6', 'transition-all duration-500', hoveredIndex === index && 'scale-110'),
           children: [/*#__PURE__*/jsx("div", {
@@ -3148,72 +3255,27 @@ var HighlightsStream$1 = function HighlightsStream(_ref) {
 
     // Handle different icon formats
 
-    // 1. If icon is a React component (direct component)
+    // 1. If icon is a React component (direct component) - LEGACY SUPPORT
     if (_typeof(item.icon) === 'object' && item.icon.type) {
       return renderIconContent(item.icon);
     }
 
-    // 2. If icon is an object with library and name (e.g., { library: 'react-icons/fa', name: 'FaBolt', className: 'w-6 h-6' })
+    // 2. If icon is an object with library and name - LEGACY SUPPORT (we'll skip this for image-only approach)
     if (_typeof(item.icon) === 'object' && item.icon.library && item.icon.name) {
-      try {
-        // Dynamically import the icon component
-        var iconName = item.icon.name;
-        var library = item.icon.library;
-        var iconClassName = item.icon.className || 'w-6 h-6';
-
-        // For demo purposes, we'll handle common react-icons
-        var IconComponent = getDynamicIcon(library, iconName);
-        if (IconComponent) {
-          return renderIconContent(/*#__PURE__*/jsx(IconComponent, {
-            className: iconClassName
-          }));
-        }
-      } catch (error) {
-        console.warn('Failed to load icon:', item.icon, error);
-      }
-    }
-
-    // 3. If icon is a string (emoji or image URL)
-    if (typeof item.icon === 'string') {
-      // Check if it's an image URL
-      if (item.icon.startsWith('http') || item.icon.startsWith('/') || item.icon.includes('.')) {
-        var imgElement = /*#__PURE__*/jsx("img", {
-          src: item.icon,
-          alt: item.title || 'Feature icon',
-          className: "w-full h-full object-cover"
-        });
-        return /*#__PURE__*/jsx("div", {
-          className: clsx('flex items-center justify-center w-14 h-14 rounded-xl mb-5 overflow-hidden', 'transition-all duration-300', isDark ? 'bg-gray-800 border border-gray-700' : clsx(colors.bg, colors.border, 'border'), hoveredIndex === index && 'scale-110'),
-          children: imgElement
-        });
-      }
-
-      // Emoji
-      return renderIconContent(item.icon);
-    }
-    return null;
-  };
-
-  // Helper function to dynamically load icons (simplified version)
-  var getDynamicIcon = function getDynamicIcon(library, iconName) {
-    // This is a simplified implementation
-    // In a real app, you'd have pre-loaded icon maps or lazy loading
-    try {
-      // For react-icons, you might have pre-imported common icons
-      // or use a dynamic import system
-      switch (library) {
-        case 'react-icons/fa':
-          // You'd have a pre-loaded map of Fa icons
-          break;
-        case 'react-icons/hi':
-          // You'd have a pre-loaded map of Hi icons
-          break;
-        default:
-          return null;
-      }
-    } catch (error) {
-      console.warn('Icon not found:', library, iconName);
+      console.warn('Icon libraries are not supported. Please use image URLs or emoji/text for icons.');
       return null;
+    }
+
+    // 3. If icon is a string - IMAGE, EMOJI, or TEXT
+    if (typeof item.icon === 'string') {
+      // Check if it's an image URL (handles http, https, relative paths, and file extensions)
+      if (isImage) {
+        // Image handling is done in renderIconContent above
+        return renderIconContent(null);
+      }
+
+      // Emoji or text
+      return renderIconContent(item.icon);
     }
     return null;
   };
@@ -3477,6 +3539,8 @@ var HighlightsElite$1 = function HighlightsElite(_ref) {
     layout = _data$layout === void 0 ? 'split-stacked' : _data$layout,
     _data$theme = data.theme,
     theme = _data$theme === void 0 ? 'light' : _data$theme,
+    _data$alignment = data.alignment,
+    alignment = _data$alignment === void 0 ? 'center' : _data$alignment,
     buttonText = data.buttonText,
     buttonHref = data.buttonHref,
     buttonOnClick = data.buttonOnClick,
@@ -3487,6 +3551,13 @@ var HighlightsElite$1 = function HighlightsElite(_ref) {
     _useState4 = _slicedToArray(_useState3, 2),
     hoveredIndex = _useState4[0],
     setHoveredIndex = _useState4[1];
+
+  // Alignment classes for text content
+  var alignmentClasses = {
+    left: 'text-left items-start',
+    center: 'text-center items-center',
+    right: 'text-right items-end'
+  };
 
   // Show skeleton loader if loader prop is true (check this FIRST before items check)
   if (showLoader) {
@@ -3612,14 +3683,27 @@ var HighlightsElite$1 = function HighlightsElite(_ref) {
     var variant = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'stacked';
     if (!item.icon) return null;
 
+    // Check if icon is an image
+    var isImage = typeof item.icon === 'string' && (item.icon.startsWith('http') || item.icon.startsWith('/') || item.icon.startsWith('./') || item.icon.startsWith('../') || item.icon.includes('.'));
+
     // Icon rendering utility function
     var renderIconContent = function renderIconContent(iconElement) {
       var iconClassName = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
-      // Stacked layout icons - colored squares with outlined icons
+      // Stacked layout icons - colored squares with outlined icons or images
       if (variant === 'stacked') {
         var colors = getIconColors(index);
+        if (isImage) {
+          return /*#__PURE__*/jsx("div", {
+            className: clsx('w-14 h-14 rounded-lg border-2 flex items-center justify-center mb-4 overflow-hidden transition-all duration-300', isDark ? 'bg-gray-800 border-gray-700' : clsx(colors.bg, colors.border), hoveredIndex === index && 'transform scale-110'),
+            children: /*#__PURE__*/jsx("img", {
+              src: item.icon,
+              alt: item.title || 'Feature icon',
+              className: "w-full h-full object-cover"
+            })
+          });
+        }
         return /*#__PURE__*/jsx("div", {
-          className: clsx('w-14 h-14 rounded-lg border-2 flex items-center justify-center mb-4', isDark ? 'bg-gray-800 border-gray-700' : clsx(colors.bg, colors.border)),
+          className: clsx('w-14 h-14 rounded-lg border-2 flex items-center justify-center mb-4 transition-all duration-300', isDark ? 'bg-gray-800 border-gray-700' : clsx(colors.bg, colors.border), hoveredIndex === index && 'transform scale-110'),
           children: /*#__PURE__*/jsx("div", {
             className: clsx('w-7 h-7', isDark ? 'text-gray-300' : colors.icon, iconClassName),
             children: iconElement
@@ -3627,12 +3711,25 @@ var HighlightsElite$1 = function HighlightsElite(_ref) {
         });
       }
 
-      // Grid layout icons - outlined icons for dark theme
+      // Grid layout icons - outlined icons for dark theme or images
       if (variant === 'grid') {
+        if (isImage) {
+          return /*#__PURE__*/jsx("div", {
+            className: "w-12 h-12 flex items-center justify-center mb-4 mx-auto",
+            children: /*#__PURE__*/jsx("div", {
+              className: clsx('w-12 h-12 rounded-lg overflow-hidden transition-all duration-300', hoveredIndex === index && 'transform scale-110'),
+              children: /*#__PURE__*/jsx("img", {
+                src: item.icon,
+                alt: item.title || 'Feature icon',
+                className: "w-full h-full object-cover"
+              })
+            })
+          });
+        }
         return /*#__PURE__*/jsx("div", {
           className: "w-12 h-12 flex items-center justify-center mb-4 mx-auto",
           children: /*#__PURE__*/jsx("div", {
-            className: clsx('w-12 h-12', isDark ? 'text-blue-400' : 'text-blue-600', iconClassName),
+            className: clsx('w-12 h-12 transition-all duration-300', isDark ? 'text-blue-400' : 'text-blue-600', hoveredIndex === index && 'transform scale-110', iconClassName),
             children: iconElement
           })
         });
@@ -3642,80 +3739,27 @@ var HighlightsElite$1 = function HighlightsElite(_ref) {
 
     // Handle different icon formats
 
-    // 1. If icon is a React component (direct component)
+    // 1. If icon is a React component (direct component) - LEGACY SUPPORT
     if (_typeof(item.icon) === 'object' && item.icon.type) {
       return renderIconContent(item.icon);
     }
 
-    // 2. If icon is an object with library and name (e.g., { library: 'react-icons/fa', name: 'FaBolt', className: 'w-6 h-6' })
+    // 2. If icon is an object with library and name - LEGACY SUPPORT (we'll skip this for image-only approach)
     if (_typeof(item.icon) === 'object' && item.icon.library && item.icon.name) {
-      try {
-        // Dynamically import the icon component
-        var iconName = item.icon.name;
-        var library = item.icon.library;
-        var iconClassName = item.icon.className || 'w-6 h-6';
-
-        // For demo purposes, we'll handle common react-icons
-        var IconComponent = getDynamicIcon(library, iconName);
-        if (IconComponent) {
-          return renderIconContent(/*#__PURE__*/jsx(IconComponent, {
-            className: iconClassName
-          }));
-        }
-      } catch (error) {
-        console.warn('Failed to load icon:', item.icon, error);
-      }
+      console.warn('Icon libraries are not supported. Please use image URLs or emoji/text for icons.');
+      return null;
     }
 
-    // 3. If icon is a string
+    // 3. If icon is a string - IMAGE, EMOJI, or TEXT
     if (typeof item.icon === 'string') {
-      // Check if it's an image URL
-      if (item.icon.startsWith('http') || item.icon.startsWith('/') || item.icon.includes('.')) {
-        var imgElement = /*#__PURE__*/jsx("img", {
-          src: item.icon,
-          alt: item.title || 'Feature icon',
-          className: variant === 'stacked' ? "w-full h-full object-cover" : "w-12 h-12 object-contain"
-        });
-        if (variant === 'stacked') {
-          var colors = getIconColors(index);
-          return /*#__PURE__*/jsx("div", {
-            className: clsx('w-14 h-14 rounded-lg border-2 flex items-center justify-center mb-4 overflow-hidden', isDark ? 'bg-gray-800 border-gray-700' : clsx(colors.bg, colors.border)),
-            children: imgElement
-          });
-        } else {
-          return /*#__PURE__*/jsx("div", {
-            className: "w-12 h-12 flex items-center justify-center mb-4 mx-auto",
-            children: imgElement
-          });
-        }
+      // Check if it's an image URL (handles http, https, relative paths, and file extensions)
+      if (isImage) {
+        // Image handling is done in renderIconContent above
+        return renderIconContent(null);
       }
 
       // Treat as emoji or text
       return renderIconContent(item.icon);
-    }
-    return null;
-  };
-
-  // Helper function to dynamically load icons (simplified version)
-  var getDynamicIcon = function getDynamicIcon(library, iconName) {
-    // This is a simplified implementation
-    // In a real app, you'd have pre-loaded icon maps or lazy loading
-    try {
-      // For react-icons, you might have pre-imported common icons
-      // or use a dynamic import system
-      switch (library) {
-        case 'react-icons/fa':
-          // You'd have a pre-loaded map of Fa icons
-          break;
-        case 'react-icons/hi':
-          // You'd have a pre-loaded map of Hi icons
-          break;
-        default:
-          return null;
-      }
-    } catch (error) {
-      console.warn('Icon not found:', library, iconName);
-      return null;
     }
     return null;
   };
@@ -3779,7 +3823,7 @@ var HighlightsElite$1 = function HighlightsElite(_ref) {
         children: /*#__PURE__*/jsxs("div", {
           className: "grid grid-cols-2 lg:grid-cols-2 gap-12 lg:gap-16 items-center",
           children: [/*#__PURE__*/jsxs("div", {
-            className: "space-y-8",
+            className: clsx('space-y-8', alignmentClasses[alignment]),
             children: [title && /*#__PURE__*/jsx("h2", {
               className: clsx('text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight', isDark ? 'text-white' : 'text-gray-900'),
               children: title
@@ -3830,7 +3874,7 @@ var HighlightsElite$1 = function HighlightsElite(_ref) {
         children: /*#__PURE__*/jsxs("div", {
           className: "grid grid-cols-2 lg:grid-cols-2 gap-12 lg:gap-16 items-center",
           children: [/*#__PURE__*/jsxs("div", {
-            className: "space-y-6",
+            className: clsx('space-y-6', alignmentClasses[alignment]),
             children: [isDark && subtitle && /*#__PURE__*/jsx("div", {
               className: "mb-8",
               children: /*#__PURE__*/jsx("p", {
@@ -27599,6 +27643,7 @@ var PathCrumbs = function PathCrumbs(props) {
   }, /*#__PURE__*/React.createElement(PathCrumbs$1, props));
 };
 
+var _excluded = ["children", "className", "as"];
 var BradCrump$1 = function BradCrump(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
@@ -27652,6 +27697,21 @@ var BradCrump$1 = function BradCrump(_ref) {
     setShowLoader(false);
   }, [loader]);
   var isInlineDark = variant === 'dark' || variant === 'dark-gray' || variant === 'icon-dark';
+
+  // Unified Skeleton Container Component
+  var SkeletonContainer = function SkeletonContainer(_ref2) {
+    var children = _ref2.children,
+      containerClass = _ref2.className,
+      _ref2$as = _ref2.as,
+      Component = _ref2$as === void 0 ? 'div' : _ref2$as,
+      props = _objectWithoutProperties(_ref2, _excluded);
+    var Comp = Component;
+    return /*#__PURE__*/jsx(Comp, _objectSpread2(_objectSpread2({
+      className: clsx('product-skeleton-fade', containerClass)
+    }, props), {}, {
+      children: children
+    }));
+  };
   var displayItems = useMemo(function () {
     if (!collapseOnMobile) return items;
     if (!Array.isArray(items)) return [];
@@ -27689,9 +27749,9 @@ var BradCrump$1 = function BradCrump(_ref) {
     lg: 'min-h-[280px] sm:min-h-[360px] lg:min-h-[440px]'
   };
   var ChevronIcon = function ChevronIcon() {
-    var _ref2 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-      _ref2$tone = _ref2.tone,
-      tone = _ref2$tone === void 0 ? 'light' : _ref2$tone;
+    var _ref3 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+      _ref3$tone = _ref3.tone,
+      tone = _ref3$tone === void 0 ? 'light' : _ref3$tone;
     return /*#__PURE__*/jsx("svg", {
       className: clsx('w-4 h-4', tone === 'dark' ? 'text-white/65' : tone === 'glass' ? 'text-slate-600/70' : 'text-gray-400'),
       fill: "none",
@@ -27707,9 +27767,9 @@ var BradCrump$1 = function BradCrump(_ref) {
     });
   };
   var HomeIcon = function HomeIcon() {
-    var _ref3 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-      _ref3$tone = _ref3.tone,
-      tone = _ref3$tone === void 0 ? 'light' : _ref3$tone;
+    var _ref4 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+      _ref4$tone = _ref4.tone,
+      tone = _ref4$tone === void 0 ? 'light' : _ref4$tone;
     return /*#__PURE__*/jsx("svg", {
       className: clsx('w-4 h-4', tone === 'dark' ? 'text-white/75' : tone === 'glass' ? 'text-slate-700/80' : 'text-gray-400'),
       fill: "none",
@@ -27725,9 +27785,9 @@ var BradCrump$1 = function BradCrump(_ref) {
     });
   };
   var SeparatorText = function SeparatorText() {
-    var _ref4 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-      _ref4$tone = _ref4.tone,
-      tone = _ref4$tone === void 0 ? 'light' : _ref4$tone;
+    var _ref5 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+      _ref5$tone = _ref5.tone,
+      tone = _ref5$tone === void 0 ? 'light' : _ref5$tone;
     return /*#__PURE__*/jsx("span", {
       className: clsx('px-1', tone === 'dark' ? 'text-white/55' : tone === 'glass' ? 'text-slate-500/70' : 'text-gray-300'),
       "aria-hidden": "true",
@@ -27735,13 +27795,13 @@ var BradCrump$1 = function BradCrump(_ref) {
     });
   };
   var renderCrumbs = function renderCrumbs() {
-    var _ref5 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-      _ref5$tone = _ref5.tone,
-      tone = _ref5$tone === void 0 ? 'light' : _ref5$tone,
-      _ref5$pill = _ref5.pill,
-      pill = _ref5$pill === void 0 ? false : _ref5$pill,
-      _ref5$showHomeIcon = _ref5.showHomeIcon,
-      showHomeIcon = _ref5$showHomeIcon === void 0 ? false : _ref5$showHomeIcon;
+    var _ref6 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+      _ref6$tone = _ref6.tone,
+      tone = _ref6$tone === void 0 ? 'light' : _ref6$tone,
+      _ref6$pill = _ref6.pill,
+      pill = _ref6$pill === void 0 ? false : _ref6$pill,
+      _ref6$showHomeIcon = _ref6.showHomeIcon,
+      showHomeIcon = _ref6$showHomeIcon === void 0 ? false : _ref6$showHomeIcon;
     var linkCls = tone === 'dark' ? 'text-white/80 hover:text-white transition-colors' : tone === 'glass' ? 'text-slate-700/90 hover:text-slate-900 transition-colors' : 'text-gray-600 hover:text-gray-900 transition-colors';
     var activeCls = tone === 'dark' ? 'text-white font-semibold' : tone === 'glass' ? 'text-slate-900 font-semibold' : 'text-gray-900 font-semibold';
     var wrapCls = pill ? clsx('inline-flex items-center gap-1 sm:gap-2 rounded-full px-3 py-1.5', tone === 'dark' ? 'bg-white/10 border border-white/15 backdrop-blur-md' : 'bg-white/70 border border-white/60 shadow-sm backdrop-blur-md') : 'flex items-center flex-wrap gap-1 sm:gap-2';
@@ -27815,35 +27875,54 @@ var BradCrump$1 = function BradCrump(_ref) {
   var InlineSkeleton = function InlineSkeleton() {
     var skeletonBg = isInlineDark ? 'bg-gray-700' : 'bg-gray-200';
     var skeletonDot = isInlineDark ? 'bg-gray-600' : 'bg-gray-300';
-    return /*#__PURE__*/jsx("div", {
+    var showHomeIcon = variant === 'icon' || variant === 'icon-dark';
+    return /*#__PURE__*/jsxs(SkeletonContainer, {
       id: id,
       className: clsx(inlineContainerClasses[variant] || inlineContainerClasses["default"], className),
       "aria-busy": "true",
       "aria-live": "polite",
-      children: /*#__PURE__*/jsxs("div", {
-        className: "flex items-center gap-2 sm:gap-3",
-        children: [/*#__PURE__*/jsx("div", {
-          className: clsx('h-4 w-4 rounded-full product-skeleton', skeletonDot)
-        }), /*#__PURE__*/jsx("div", {
-          className: clsx('h-4 w-16 sm:w-20 rounded-md product-skeleton', skeletonBg)
-        }), /*#__PURE__*/jsx("div", {
-          className: clsx('h-4 w-4 rounded-full product-skeleton', skeletonDot)
-        }), /*#__PURE__*/jsx("div", {
-          className: clsx('h-4 w-20 sm:w-24 rounded-md product-skeleton', skeletonBg)
-        }), /*#__PURE__*/jsx("div", {
-          className: clsx('h-4 w-4 rounded-full product-skeleton', skeletonDot)
-        }), /*#__PURE__*/jsx("div", {
-          className: clsx('h-4 w-24 sm:w-32 rounded-md product-skeleton', skeletonBg)
+      role: "status",
+      children: [/*#__PURE__*/jsxs("ol", {
+        className: "flex items-center flex-wrap gap-1 sm:gap-2",
+        children: [/*#__PURE__*/jsxs("li", {
+          className: "flex items-center gap-1 sm:gap-2 product-skeleton-item",
+          children: [showHomeIcon && /*#__PURE__*/jsx("div", {
+            className: clsx('h-4 w-4 rounded product-skeleton', skeletonBg),
+            "aria-hidden": "true"
+          }), /*#__PURE__*/jsx("div", {
+            className: clsx('h-4 w-12 sm:w-16 rounded-md product-skeleton', skeletonBg)
+          }), /*#__PURE__*/jsx("div", {
+            className: clsx('h-3 w-3 rounded-full product-skeleton', skeletonDot),
+            "aria-hidden": "true"
+          })]
+        }), /*#__PURE__*/jsxs("li", {
+          className: "flex items-center gap-1 sm:gap-2 product-skeleton-item",
+          children: [/*#__PURE__*/jsx("div", {
+            className: clsx('h-4 w-16 sm:w-20 rounded-md product-skeleton', skeletonBg)
+          }), /*#__PURE__*/jsx("div", {
+            className: clsx('h-3 w-3 rounded-full product-skeleton', skeletonDot),
+            "aria-hidden": "true"
+          })]
+        }), /*#__PURE__*/jsx("li", {
+          className: "flex items-center gap-1 sm:gap-2 product-skeleton-item",
+          children: /*#__PURE__*/jsx("div", {
+            className: clsx('h-4 w-20 sm:w-24 rounded-md product-skeleton', skeletonBg)
+          })
         })]
-      })
+      }), /*#__PURE__*/jsx("span", {
+        className: "sr-only",
+        children: "Loading breadcrumb navigation"
+      })]
     });
   };
   var ImageSkeleton = function ImageSkeleton() {
-    return /*#__PURE__*/jsxs("section", {
+    return /*#__PURE__*/jsxs(SkeletonContainer, {
+      as: "section",
       id: id,
-      className: clsx('relative w-full overflow-hidden border border-gray-200 bg-white', heightClasses[size] || heightClasses.md, className),
+      className: clsx('relative w-full overflow-hidden', heightClasses[size] || heightClasses.md, className),
       "aria-busy": "true",
       "aria-live": "polite",
+      role: "status",
       children: [/*#__PURE__*/jsx("div", {
         className: "absolute inset-0 bg-gray-200 product-skeleton"
       }), /*#__PURE__*/jsx("div", {
@@ -27851,47 +27930,77 @@ var BradCrump$1 = function BradCrump(_ref) {
       }), /*#__PURE__*/jsx("div", {
         className: "absolute inset-0 bg-gradient-to-br from-white/0 via-white/0 to-white/10"
       }), /*#__PURE__*/jsx("div", {
+        className: "absolute -top-20 -right-20 h-56 w-56 rounded-full bg-gray-300/30 blur-3xl product-skeleton",
+        "aria-hidden": "true"
+      }), /*#__PURE__*/jsx("div", {
+        className: "absolute -bottom-24 -left-16 h-64 w-64 rounded-full bg-gray-300/20 blur-3xl product-skeleton",
+        "aria-hidden": "true"
+      }), /*#__PURE__*/jsx("div", {
         className: "relative z-10 h-full w-full flex items-end",
         children: /*#__PURE__*/jsx("div", {
-          className: "w-full px-5 sm:px-8 lg:px-12 pb-6 sm:pb-10",
+          className: "w-full max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 py-8 sm:py-10 lg:py-14",
           children: /*#__PURE__*/jsxs("div", {
-            className: "flex flex-col gap-3 max-w-3xl",
+            className: "relative",
             children: [/*#__PURE__*/jsxs("div", {
-              className: "flex items-center gap-2",
+              className: "mb-3 sm:mb-4 flex items-center gap-2 product-skeleton-item",
               children: [/*#__PURE__*/jsx("div", {
-                className: "h-2.5 w-2.5 rounded-full product-skeleton bg-white/25"
+                className: "h-2.5 w-2.5 rounded-full product-skeleton bg-white/30"
               }), /*#__PURE__*/jsx("div", {
-                className: "h-6 w-24 rounded-full product-skeleton bg-white/25"
+                className: "h-6 w-20 sm:w-24 rounded-full product-skeleton bg-white/30"
               })]
+            }), /*#__PURE__*/jsx("nav", {
+              "aria-label": "Breadcrumb",
+              className: "mb-4 sm:mb-6 product-skeleton-item",
+              children: /*#__PURE__*/jsxs("ol", {
+                className: "inline-flex items-center gap-2 rounded-full border border-white/15 bg-black/15 px-4 py-2.5 backdrop-blur-sm",
+                children: [/*#__PURE__*/jsx("li", {
+                  className: "flex items-center",
+                  children: /*#__PURE__*/jsx("div", {
+                    className: "h-4 w-4 rounded product-skeleton bg-white/25"
+                  })
+                }), /*#__PURE__*/jsxs("li", {
+                  className: "flex items-center gap-2",
+                  children: [/*#__PURE__*/jsx("div", {
+                    className: "h-3.5 w-12 rounded product-skeleton bg-white/25"
+                  }), /*#__PURE__*/jsx("div", {
+                    className: "h-3 w-3 rounded-full product-skeleton bg-white/20"
+                  })]
+                }), /*#__PURE__*/jsxs("li", {
+                  className: "flex items-center gap-2",
+                  children: [/*#__PURE__*/jsx("div", {
+                    className: "h-3.5 w-16 rounded product-skeleton bg-white/25"
+                  }), /*#__PURE__*/jsx("div", {
+                    className: "h-3 w-3 rounded-full product-skeleton bg-white/20"
+                  })]
+                }), /*#__PURE__*/jsx("li", {
+                  className: "flex items-center",
+                  children: /*#__PURE__*/jsx("div", {
+                    className: "h-3.5 w-20 rounded product-skeleton bg-white/30"
+                  })
+                })]
+              })
             }), /*#__PURE__*/jsxs("div", {
-              className: "inline-flex w-full max-w-[520px] items-center gap-2 rounded-full border border-white/10 bg-black/10 px-3 py-2 backdrop-blur-sm",
+              className: "flex flex-col gap-4 max-w-3xl",
               children: [/*#__PURE__*/jsx("div", {
-                className: "h-4 w-4 rounded-full product-skeleton bg-white/20"
+                className: "h-12 sm:h-16 lg:h-20 w-full max-w-[600px] rounded-lg product-skeleton bg-white/30 product-skeleton-item"
               }), /*#__PURE__*/jsx("div", {
-                className: "h-3.5 w-16 rounded product-skeleton bg-white/20"
-              }), /*#__PURE__*/jsx("div", {
-                className: "h-3.5 w-3.5 rounded-full product-skeleton bg-white/20"
-              }), /*#__PURE__*/jsx("div", {
-                className: "h-3.5 w-20 rounded product-skeleton bg-white/20"
-              }), /*#__PURE__*/jsx("div", {
-                className: "h-3.5 w-3.5 rounded-full product-skeleton bg-white/20"
-              }), /*#__PURE__*/jsx("div", {
-                className: "h-3.5 w-24 rounded product-skeleton bg-white/20"
-              })]
-            }), /*#__PURE__*/jsx("div", {
-              className: "h-10 w-72 sm:w-[520px] rounded-lg product-skeleton bg-white/25"
-            }), /*#__PURE__*/jsx("div", {
-              className: "h-5 w-64 sm:w-[420px] rounded-md product-skeleton bg-white/20"
-            }), /*#__PURE__*/jsxs("div", {
-              className: "mt-1 space-y-2",
-              children: [/*#__PURE__*/jsx("div", {
-                className: "h-4 w-80 sm:w-[560px] rounded product-skeleton bg-white/15"
-              }), /*#__PURE__*/jsx("div", {
-                className: "h-4 w-64 sm:w-[420px] rounded product-skeleton bg-white/15"
+                className: "h-6 sm:h-7 w-full max-w-[480px] rounded-md product-skeleton bg-white/25 product-skeleton-item"
+              }), /*#__PURE__*/jsxs("div", {
+                className: "mt-2 space-y-3 product-skeleton-item",
+                children: [/*#__PURE__*/jsx("div", {
+                  className: "h-4 w-full max-w-[640px] rounded product-skeleton bg-white/20"
+                }), /*#__PURE__*/jsx("div", {
+                  className: "h-4 w-full max-w-[520px] rounded product-skeleton bg-white/20"
+                }), /*#__PURE__*/jsx("div", {
+                  className: "h-4 w-full max-w-[440px] rounded product-skeleton bg-white/20"
+                })]
               })]
             })]
           })
         })
+      }), /*#__PURE__*/jsx("span", {
+        className: "sr-only",
+        children: "Loading breadcrumb header content"
       })]
     });
   };
