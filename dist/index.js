@@ -14452,16 +14452,21 @@ var ArticleMasonry$1 = function ArticleMasonry(_ref) {
     className = _ref.className,
     id = _ref.id,
     _ref$loader = _ref.loader,
-    loader = _ref$loader === void 0 ? false : _ref$loader;
+    loader = _ref$loader === void 0 ? false : _ref$loader,
+    onPageChange = _ref.onPageChange;
   // Safety check for data
   if (!data || _typeof(data) !== 'object') {
-    console.error('BlogGrid: data prop is required and must be an object');
+    console.error('ArticleMasonry: data prop is required and must be an object');
     return null;
   }
   var _useState = React.useState(loader),
     _useState2 = _slicedToArray(_useState, 2),
     showLoader = _useState2[0],
     setShowLoader = _useState2[1];
+  var _useState3 = React.useState(1),
+    _useState4 = _slicedToArray(_useState3, 2),
+    internalCurrentPage = _useState4[0],
+    setInternalCurrentPage = _useState4[1];
 
   // Auto-hide loader after 2 seconds when loader prop is true
   React.useEffect(function () {
@@ -14493,7 +14498,48 @@ var ArticleMasonry$1 = function ArticleMasonry(_ref) {
     alignment = _data$alignment === void 0 ? 'left' : _data$alignment,
     _data$gap = data.gap,
     gap = _data$gap === void 0 ? 'medium' : _data$gap,
+    dataCurrentPage = data.currentPage,
+    _data$itemsPerPage = data.itemsPerPage,
+    itemsPerPage = _data$itemsPerPage === void 0 ? 12 : _data$itemsPerPage,
+    _data$showPagination = data.showPagination,
+    showPagination = _data$showPagination === void 0 ? true : _data$showPagination,
     dataClassName = data.className;
+
+  // Use provided currentPage or internal state
+  var currentPage = dataCurrentPage || internalCurrentPage;
+
+  // Pagination logic
+  var totalPosts = posts.length;
+  var totalPages = Math.ceil(totalPosts / itemsPerPage);
+  var startIndex = (currentPage - 1) * itemsPerPage;
+  var endIndex = startIndex + itemsPerPage;
+  var paginatedPosts = posts.slice(startIndex, endIndex);
+
+  // Handle page change
+  var handlePageChange = function handlePageChange(newPage) {
+    if (newPage >= 1 && newPage <= totalPages) {
+      if (onPageChange) {
+        onPageChange(newPage);
+      } else {
+        setInternalCurrentPage(newPage);
+      }
+    }
+  };
+
+  // Generate page numbers for pagination controls
+  var getPageNumbers = function getPageNumbers() {
+    var pages = [];
+    var maxVisiblePages = 5;
+    var startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+    var endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+    if (endPage - startPage + 1 < maxVisiblePages) {
+      startPage = Math.max(1, endPage - maxVisiblePages + 1);
+    }
+    for (var i = startPage; i <= endPage; i++) {
+      pages.push(i);
+    }
+    return pages;
+  };
   var alignmentClasses = {
     left: 'text-left',
     center: 'text-center',
@@ -14561,8 +14607,8 @@ var ArticleMasonry$1 = function ArticleMasonry(_ref) {
     }
 
     // Show actual posts for featured-asymmetric layout
-    var featuredPost = posts[0];
-    var smallPosts = posts.slice(1, 5); // Get next 4 posts for 2x2 grid
+    var featuredPost = paginatedPosts[0];
+    var smallPosts = paginatedPosts.slice(1, 5); // Get next 4 posts for 2x2 grid
 
     return /*#__PURE__*/require$$1.jsxs("section", {
       className: sectionClasses,
@@ -14651,7 +14697,7 @@ var ArticleMasonry$1 = function ArticleMasonry(_ref) {
         }, "skeleton-".concat(index));
       }) :
       // Show actual posts
-      posts.map(function (post, index) {
+      paginatedPosts.map(function (post, index) {
         return /*#__PURE__*/require$$1.jsx(ArticleTile, {
           data: _objectSpread2(_objectSpread2({}, post), {}, {
             variant: post.variant || variant,
@@ -14659,6 +14705,86 @@ var ArticleMasonry$1 = function ArticleMasonry(_ref) {
           })
         }, post.id || index);
       })
+    }), showPagination && totalPages > 1 && !showLoader && /*#__PURE__*/require$$1.jsxs("div", {
+      className: clsx('blog-pagination', theme === 'dark' && 'blog-pagination-dark'),
+      children: [/*#__PURE__*/require$$1.jsxs("div", {
+        className: "blog-pagination-container",
+        children: [/*#__PURE__*/require$$1.jsxs("button", {
+          className: clsx('blog-pagination-btn blog-pagination-prev', currentPage === 1 && 'blog-pagination-btn-disabled'),
+          onClick: function onClick() {
+            return handlePageChange(currentPage - 1);
+          },
+          disabled: currentPage === 1,
+          "aria-label": "Previous page",
+          children: [/*#__PURE__*/require$$1.jsx("svg", {
+            className: "blog-pagination-icon",
+            fill: "none",
+            stroke: "currentColor",
+            viewBox: "0 0 24 24",
+            children: /*#__PURE__*/require$$1.jsx("path", {
+              strokeLinecap: "round",
+              strokeLinejoin: "round",
+              strokeWidth: 2,
+              d: "M15 19l-7-7 7-7"
+            })
+          }), "Previous"]
+        }), /*#__PURE__*/require$$1.jsxs("div", {
+          className: "blog-pagination-numbers",
+          children: [getPageNumbers()[0] > 1 && /*#__PURE__*/require$$1.jsxs(require$$1.Fragment, {
+            children: [/*#__PURE__*/require$$1.jsx("button", {
+              className: "blog-pagination-number",
+              onClick: function onClick() {
+                return handlePageChange(1);
+              },
+              children: "1"
+            }), getPageNumbers()[0] > 2 && /*#__PURE__*/require$$1.jsx("span", {
+              className: "blog-pagination-ellipsis",
+              children: "..."
+            })]
+          }), getPageNumbers().map(function (pageNum) {
+            return /*#__PURE__*/require$$1.jsx("button", {
+              className: clsx('blog-pagination-number', pageNum === currentPage && 'blog-pagination-number-active'),
+              onClick: function onClick() {
+                return handlePageChange(pageNum);
+              },
+              children: pageNum
+            }, pageNum);
+          }), getPageNumbers()[getPageNumbers().length - 1] < totalPages && /*#__PURE__*/require$$1.jsxs(require$$1.Fragment, {
+            children: [getPageNumbers()[getPageNumbers().length - 1] < totalPages - 1 && /*#__PURE__*/require$$1.jsx("span", {
+              className: "blog-pagination-ellipsis",
+              children: "..."
+            }), /*#__PURE__*/require$$1.jsx("button", {
+              className: "blog-pagination-number",
+              onClick: function onClick() {
+                return handlePageChange(totalPages);
+              },
+              children: totalPages
+            })]
+          })]
+        }), /*#__PURE__*/require$$1.jsxs("button", {
+          className: clsx('blog-pagination-btn blog-pagination-next', currentPage === totalPages && 'blog-pagination-btn-disabled'),
+          onClick: function onClick() {
+            return handlePageChange(currentPage + 1);
+          },
+          disabled: currentPage === totalPages,
+          "aria-label": "Next page",
+          children: ["Next", /*#__PURE__*/require$$1.jsx("svg", {
+            className: "blog-pagination-icon",
+            fill: "none",
+            stroke: "currentColor",
+            viewBox: "0 0 24 24",
+            children: /*#__PURE__*/require$$1.jsx("path", {
+              strokeLinecap: "round",
+              strokeLinejoin: "round",
+              strokeWidth: 2,
+              d: "M9 5l7 7-7 7"
+            })
+          })]
+        })]
+      }), /*#__PURE__*/require$$1.jsxs("div", {
+        className: "blog-pagination-info",
+        children: ["Showing ", startIndex + 1, "-", Math.min(endIndex, totalPosts), " of ", totalPosts, " posts"]
+      })]
     })]
   });
 };
@@ -42376,7 +42502,7 @@ var ContentsNavigator$1 = function ContentsNavigator(_ref) {
         href: "#".concat(item.id),
         className: clsx('toc-link', "toc-level-".concat(item.level || 2), variant === 'minimal' && 'group', activeId === item.id && 'active',
         // For timeline, keep the dot aligned on the main line for all levels (indent only the text via CSS)
-        variant === 'timeline' ? 'ml-0' : item.level === 2 ? 'ml-0' : 'ml-4', variant !== 'minimal' && (isDark ? 'text-gray-400 hover:text-white' : 'text-gray-600 hover:text-black')),
+        variant === 'timeline' ? 'ml-0' : item.level === 2 ? 'ml-0' : 'ml-4', variant !== 'minimal' && (isDark ? 'text-gray-400 hover:text-white' : 'text-gray-600 hover:text-black ml-0')),
         onClick: function onClick(e) {
           var _document$getElementB;
           e.preventDefault();
