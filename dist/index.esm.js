@@ -529,6 +529,32 @@ var BannerElite = function BannerElite(props) {
   }, /*#__PURE__*/React.createElement(BannerElite$1, props));
 };
 
+var isImageIcon$3 = function isImageIcon(icon) {
+  if (typeof icon !== 'string') return false;
+  var imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.ico'];
+  var lowerIcon = icon.toLowerCase();
+  return imageExtensions.some(function (ext) {
+    return lowerIcon.endsWith(ext);
+  }) || icon.startsWith('/') || icon.startsWith('http://') || icon.startsWith('https://') || icon.startsWith('./') || icon.startsWith('../');
+};
+
+/**
+ * BannerBlend Component - Modern Gradient Hero with Animated Elements
+ * @param {Object} props - Component props
+ * @param {Object} props.data - Hero section configuration data
+ * @param {string} props.data.title - Main heading text
+ * @param {string} [props.data.subtitle] - Subtitle text displayed above title
+ * @param {string} [props.data.description] - Description text displayed below title
+ * @param {Array} [props.data.buttons=[]] - Array of call-to-action buttons
+ * @param {Array} [props.data.features=[]] - Array of feature highlights
+ * @param {string} [props.data.gradient='default'] - Gradient variant: 'default' | 'purple' | 'blue' | 'orange' | 'green'
+ * @param {boolean} [props.data.showFloatingCards=true] - Show floating feature cards
+ * @param {string} [props.data.featureAlignment='center'] - Feature alignment: 'left' | 'center' | 'right'
+ * @param {string} [props.data.className] - Additional CSS classes for the section
+ * @param {string} [props.className] - Additional CSS classes
+ * @param {string} [props.id] - ID attribute for the section element
+ * @param {boolean} [props.loader=false] - Show loading state
+ */
 var BannerBlend$1 = function BannerBlend(_ref) {
   var data = _ref.data,
     className = _ref.className,
@@ -710,7 +736,11 @@ var BannerBlend$1 = function BannerBlend(_ref) {
             className: "flex items-center gap-2 sm:gap-3",
             children: [feature.icon && /*#__PURE__*/jsx("div", {
               className: "text-xl sm:text-2xl flex-shrink-0",
-              children: typeof feature.icon === 'string' ? /*#__PURE__*/jsx("span", {
+              children: isImageIcon$3(feature.icon) ? /*#__PURE__*/jsx("img", {
+                src: feature.icon,
+                alt: feature.title || 'Icon',
+                className: "w-5 h-5 sm:w-6 sm:h-6 object-contain"
+              }) : typeof feature.icon === 'string' ? /*#__PURE__*/jsx("span", {
                 children: feature.icon
               }) : /*#__PURE__*/jsx("div", {
                 className: "w-5 h-5 sm:w-6 sm:h-6",
@@ -763,7 +793,11 @@ var BannerBlend$1 = function BannerBlend(_ref) {
             className: clsx("bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20 hover:bg-white/15 transition-all duration-300 flex flex-col", featureAlignmentClasses[featureAlignment]),
             children: [feature.icon && /*#__PURE__*/jsx("div", {
               className: clsx("mb-3", featureAlignment === 'center' && "mx-auto", featureAlignment === 'right' && "ml-auto"),
-              children: typeof feature.icon === 'string' ? /*#__PURE__*/jsx("div", {
+              children: isImageIcon$3(feature.icon) ? /*#__PURE__*/jsx("img", {
+                src: feature.icon,
+                alt: feature.title || 'Icon',
+                className: "w-10 h-10 object-contain"
+              }) : typeof feature.icon === 'string' ? /*#__PURE__*/jsx("div", {
                 className: "text-3xl",
                 children: feature.icon
               }) : /*#__PURE__*/jsx("div", {
@@ -800,6 +834,16 @@ var BannerBlend = function BannerBlend(props) {
   }, /*#__PURE__*/React.createElement(BannerBlend$1, props));
 };
 
+var isImageIcon$2 = function isImageIcon(icon) {
+  if (typeof icon !== 'string') return false;
+  var imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.ico'];
+  var lowerIcon = icon.toLowerCase();
+  return imageExtensions.some(function (ext) {
+    return lowerIcon.endsWith(ext);
+  }) || icon.startsWith('/') || icon.startsWith('http://') || icon.startsWith('https://') || icon.startsWith('./') || icon.startsWith('../');
+};
+
+// Icon utility function for react-icons support
 var getDynamicIcon = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee(library, iconName) {
     var modulePath, iconModule, IconComponent, _t;
@@ -1151,7 +1195,11 @@ var BannerFrost$1 = function BannerFrost(_ref3) {
                     className: clsx(alignmentClasses[featureAlignment]),
                     children: [feature.icon && /*#__PURE__*/jsx("div", {
                       className: clsx('flex-shrink-0', textColor, featureAlignment === 'right' && 'ml-4'),
-                      children: typeof feature.icon === 'string' ? /*#__PURE__*/jsx("span", {
+                      children: isImageIcon$2(feature.icon) ? /*#__PURE__*/jsx("img", {
+                        src: feature.icon,
+                        alt: feature.title || 'Icon',
+                        className: "w-6 h-6 object-contain"
+                      }) : typeof feature.icon === 'string' ? /*#__PURE__*/jsx("span", {
                         className: "text-2xl",
                         children: feature.icon
                       }) : _typeof(feature.icon) === 'object' && feature.icon.library && feature.icon.name ? /*#__PURE__*/jsx(IconRenderer, {
@@ -2594,7 +2642,7 @@ var HighlightsStack$1 = function HighlightsStack(_ref) {
               children: /*#__PURE__*/jsx("img", {
                 src: item.icon,
                 alt: item.title || 'Feature icon',
-                className: "w-full h-full object-cover"
+                className: "w-8 h-8 sm:w-9 sm:h-9 object-contain mx-auto my-auto"
               })
             })
           });
@@ -2618,7 +2666,7 @@ var HighlightsStack$1 = function HighlightsStack(_ref) {
               children: /*#__PURE__*/jsx("img", {
                 src: item.icon,
                 alt: item.title || 'Feature icon',
-                className: "w-full h-full object-cover"
+                className: "w-8 h-8 sm:w-9 sm:h-9 object-contain mx-auto my-auto"
               })
             })
           });
@@ -2663,7 +2711,7 @@ var HighlightsStack$1 = function HighlightsStack(_ref) {
               children: /*#__PURE__*/jsx("img", {
                 src: item.icon,
                 alt: item.title || 'Feature icon',
-                className: "w-full h-full object-cover rounded-full"
+                className: "w-8 h-8 sm:w-9 sm:h-9 object-contain rounded-full"
               })
             })
           });
@@ -2687,7 +2735,7 @@ var HighlightsStack$1 = function HighlightsStack(_ref) {
               children: /*#__PURE__*/jsx("img", {
                 src: item.icon,
                 alt: item.title || 'Feature icon',
-                className: "w-full h-full object-cover"
+                className: "w-8 h-8 sm:w-10 sm:h-10 object-contain mx-auto my-auto"
               })
             })
           });
@@ -2710,7 +2758,7 @@ var HighlightsStack$1 = function HighlightsStack(_ref) {
             children: /*#__PURE__*/jsx("img", {
               src: item.icon,
               alt: item.title || 'Feature icon',
-              className: "w-full h-full object-cover"
+              className: "w-8 h-8 sm:w-10 sm:h-10 object-contain mx-auto my-auto"
             })
           })
         });
@@ -2891,17 +2939,17 @@ var HighlightsStack$1 = function HighlightsStack(_ref) {
     children: /*#__PURE__*/jsxs("div", {
       className: "max-w-7xl mx-auto w-full",
       children: [(title || subtitle || description) && /*#__PURE__*/jsxs("div", {
-        className: clsx('mb-10 sm:mb-12 flex flex-col', alignmentClasses[alignment]),
+        className: clsx('mb-10 sm:mb-12 flex flex-col', variant === 'mantine-badge-cards' ? 'text-left items-start' : alignmentClasses[alignment]),
         children: [subtitle && /*#__PURE__*/jsx("p", {
-          className: clsx(variant === 'mantine-badge-cards' ? clsx('inline-block px-3 py-1 bg-primary-600 text-white text-xs font-semibold uppercase tracking-wider rounded-full mb-6', alignment === 'center' && 'mx-auto', alignment === 'right' && 'ml-auto mr-0') : 'text-sm sm:text-base font-semibold text-primary-600 uppercase tracking-wider mb-3'),
+          className: clsx(variant === 'mantine-badge-cards' ? 'inline-block px-3 py-1 bg-primary-600 text-white text-xs font-semibold uppercase tracking-wider rounded-full mb-6' : 'text-sm sm:text-base font-semibold text-primary-600 uppercase tracking-wider mb-3'),
           children: subtitle
         }), title && /*#__PURE__*/jsx("h2", {
           className: clsx('font-bold text-gray-900 leading-tight', variant === 'mantine-badge-cards' ? 'text-3xl sm:text-4xl md:text-5xl mb-6' : 'text-3xl sm:text-4xl md:text-5xl mb-4'),
           children: title
         }), description && /*#__PURE__*/jsxs("div", {
-          className: clsx('relative', variant === 'mantine-badge-cards' ? clsx('w-full flex flex-col', alignmentClasses[alignment]) : alignmentClasses[alignment]),
+          className: clsx('relative', variant === 'mantine-badge-cards' ? 'w-full flex flex-col items-center' : '', alignment === 'center' && variant !== 'mantine-badge-cards' && 'mx-auto', alignment === 'right' && variant !== 'mantine-badge-cards' && 'ml-auto', alignment === 'left' && variant !== 'mantine-badge-cards' && 'mr-auto'),
           children: [/*#__PURE__*/jsx("p", {
-            className: clsx('text-base sm:text-lg text-gray-600', variant === 'mantine-badge-cards' ? 'max-w-3xl mb-4' : 'max-w-2xl text-gray-500'),
+            className: clsx('text-base sm:text-lg text-gray-600', variant === 'mantine-badge-cards' ? 'max-w-3xl text-center mb-4' : 'max-w-2xl text-gray-500'),
             children: description
           }), variant === 'mantine-badge-cards' && /*#__PURE__*/jsx("div", {
             className: "w-16 h-0.5 bg-primary-600"
@@ -3206,11 +3254,11 @@ var HighlightsStream$1 = function HighlightsStream(_ref) {
       if (variant === 'minimal') {
         if (isImage) {
           return /*#__PURE__*/jsx("div", {
-            className: clsx('flex items-center justify-center w-14 h-14 rounded-xl mb-5 overflow-hidden', 'transition-all duration-300', isDark ? 'bg-gray-800 border border-gray-700' : clsx(colors.bg, colors.border, 'border'), hoveredIndex === index && 'scale-110 -rotate-3'),
+            className: clsx('flex items-center justify-center w-14 h-14 rounded-xl mb-5 overflow-hidden mx-auto', 'transition-all duration-300', isDark ? 'bg-gray-800 border border-gray-700' : clsx(colors.bg, colors.border, 'border'), hoveredIndex === index && 'scale-110 -rotate-3'),
             children: /*#__PURE__*/jsx("img", {
               src: item.icon,
               alt: item.title || 'Feature icon',
-              className: "w-full h-full object-cover"
+              className: "w-8 h-8 object-contain"
             })
           });
         }
@@ -3225,7 +3273,7 @@ var HighlightsStream$1 = function HighlightsStream(_ref) {
         // Staggered variant
         if (isImage) {
           return /*#__PURE__*/jsxs("div", {
-            className: clsx('relative flex items-center justify-center mb-6', 'transition-all duration-500', hoveredIndex === index && 'scale-110'),
+            className: clsx('relative flex items-center justify-center mb-6 mx-auto ', 'transition-all duration-500', hoveredIndex === index && 'scale-110'),
             children: [/*#__PURE__*/jsx("div", {
               className: clsx('absolute inset-0 rounded-2xl blur-xl opacity-30', "bg-gradient-to-br ".concat(colors.gradient), 'transition-all duration-500', hoveredIndex === index && 'opacity-50 scale-150')
             }), /*#__PURE__*/jsx("div", {
@@ -3233,7 +3281,7 @@ var HighlightsStream$1 = function HighlightsStream(_ref) {
               children: /*#__PURE__*/jsx("img", {
                 src: item.icon,
                 alt: item.title || 'Feature icon',
-                className: "w-full h-full object-cover"
+                className: "w-10 h-10 object-contain"
               })
             })]
           });
@@ -3539,8 +3587,6 @@ var HighlightsElite$1 = function HighlightsElite(_ref) {
     layout = _data$layout === void 0 ? 'split-stacked' : _data$layout,
     _data$theme = data.theme,
     theme = _data$theme === void 0 ? 'light' : _data$theme,
-    _data$alignment = data.alignment,
-    alignment = _data$alignment === void 0 ? 'center' : _data$alignment,
     buttonText = data.buttonText,
     buttonHref = data.buttonHref,
     buttonOnClick = data.buttonOnClick,
@@ -3551,13 +3597,6 @@ var HighlightsElite$1 = function HighlightsElite(_ref) {
     _useState4 = _slicedToArray(_useState3, 2),
     hoveredIndex = _useState4[0],
     setHoveredIndex = _useState4[1];
-
-  // Alignment classes for text content
-  var alignmentClasses = {
-    left: 'text-left items-start',
-    center: 'text-center items-center',
-    right: 'text-right items-end'
-  };
 
   // Show skeleton loader if loader prop is true (check this FIRST before items check)
   if (showLoader) {
@@ -3698,7 +3737,7 @@ var HighlightsElite$1 = function HighlightsElite(_ref) {
             children: /*#__PURE__*/jsx("img", {
               src: item.icon,
               alt: item.title || 'Feature icon',
-              className: "w-full h-full object-cover"
+              className: "w-8 h-8 object-contain"
             })
           });
         }
@@ -3721,7 +3760,7 @@ var HighlightsElite$1 = function HighlightsElite(_ref) {
               children: /*#__PURE__*/jsx("img", {
                 src: item.icon,
                 alt: item.title || 'Feature icon',
-                className: "w-full h-full object-cover"
+                className: "w-8 h-8 object-contain mx-auto my-auto"
               })
             })
           });
@@ -3823,7 +3862,7 @@ var HighlightsElite$1 = function HighlightsElite(_ref) {
         children: /*#__PURE__*/jsxs("div", {
           className: "grid grid-cols-2 lg:grid-cols-2 gap-12 lg:gap-16 items-center",
           children: [/*#__PURE__*/jsxs("div", {
-            className: clsx('space-y-8', alignmentClasses[alignment]),
+            className: "space-y-8",
             children: [title && /*#__PURE__*/jsx("h2", {
               className: clsx('text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight', isDark ? 'text-white' : 'text-gray-900'),
               children: title
@@ -3874,7 +3913,7 @@ var HighlightsElite$1 = function HighlightsElite(_ref) {
         children: /*#__PURE__*/jsxs("div", {
           className: "grid grid-cols-2 lg:grid-cols-2 gap-12 lg:gap-16 items-center",
           children: [/*#__PURE__*/jsxs("div", {
-            className: clsx('space-y-6', alignmentClasses[alignment]),
+            className: "space-y-6",
             children: [isDark && subtitle && /*#__PURE__*/jsx("div", {
               className: "mb-8",
               children: /*#__PURE__*/jsx("p", {
@@ -14450,21 +14489,16 @@ var ArticleMasonry$1 = function ArticleMasonry(_ref) {
     className = _ref.className,
     id = _ref.id,
     _ref$loader = _ref.loader,
-    loader = _ref$loader === void 0 ? false : _ref$loader,
-    onPageChange = _ref.onPageChange;
+    loader = _ref$loader === void 0 ? false : _ref$loader;
   // Safety check for data
   if (!data || _typeof(data) !== 'object') {
-    console.error('ArticleMasonry: data prop is required and must be an object');
+    console.error('BlogGrid: data prop is required and must be an object');
     return null;
   }
   var _useState = useState(loader),
     _useState2 = _slicedToArray(_useState, 2),
     showLoader = _useState2[0],
     setShowLoader = _useState2[1];
-  var _useState3 = useState(1),
-    _useState4 = _slicedToArray(_useState3, 2),
-    internalCurrentPage = _useState4[0],
-    setInternalCurrentPage = _useState4[1];
 
   // Auto-hide loader after 2 seconds when loader prop is true
   useEffect(function () {
@@ -14496,48 +14530,7 @@ var ArticleMasonry$1 = function ArticleMasonry(_ref) {
     alignment = _data$alignment === void 0 ? 'left' : _data$alignment,
     _data$gap = data.gap,
     gap = _data$gap === void 0 ? 'medium' : _data$gap,
-    dataCurrentPage = data.currentPage,
-    _data$itemsPerPage = data.itemsPerPage,
-    itemsPerPage = _data$itemsPerPage === void 0 ? 12 : _data$itemsPerPage,
-    _data$showPagination = data.showPagination,
-    showPagination = _data$showPagination === void 0 ? true : _data$showPagination,
     dataClassName = data.className;
-
-  // Use provided currentPage or internal state
-  var currentPage = dataCurrentPage || internalCurrentPage;
-
-  // Pagination logic
-  var totalPosts = posts.length;
-  var totalPages = Math.ceil(totalPosts / itemsPerPage);
-  var startIndex = (currentPage - 1) * itemsPerPage;
-  var endIndex = startIndex + itemsPerPage;
-  var paginatedPosts = posts.slice(startIndex, endIndex);
-
-  // Handle page change
-  var handlePageChange = function handlePageChange(newPage) {
-    if (newPage >= 1 && newPage <= totalPages) {
-      if (onPageChange) {
-        onPageChange(newPage);
-      } else {
-        setInternalCurrentPage(newPage);
-      }
-    }
-  };
-
-  // Generate page numbers for pagination controls
-  var getPageNumbers = function getPageNumbers() {
-    var pages = [];
-    var maxVisiblePages = 5;
-    var startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
-    var endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
-    if (endPage - startPage + 1 < maxVisiblePages) {
-      startPage = Math.max(1, endPage - maxVisiblePages + 1);
-    }
-    for (var i = startPage; i <= endPage; i++) {
-      pages.push(i);
-    }
-    return pages;
-  };
   var alignmentClasses = {
     left: 'text-left',
     center: 'text-center',
@@ -14605,8 +14598,8 @@ var ArticleMasonry$1 = function ArticleMasonry(_ref) {
     }
 
     // Show actual posts for featured-asymmetric layout
-    var featuredPost = paginatedPosts[0];
-    var smallPosts = paginatedPosts.slice(1, 5); // Get next 4 posts for 2x2 grid
+    var featuredPost = posts[0];
+    var smallPosts = posts.slice(1, 5); // Get next 4 posts for 2x2 grid
 
     return /*#__PURE__*/jsxs("section", {
       className: sectionClasses,
@@ -14695,7 +14688,7 @@ var ArticleMasonry$1 = function ArticleMasonry(_ref) {
         }, "skeleton-".concat(index));
       }) :
       // Show actual posts
-      paginatedPosts.map(function (post, index) {
+      posts.map(function (post, index) {
         return /*#__PURE__*/jsx(ArticleTile, {
           data: _objectSpread2(_objectSpread2({}, post), {}, {
             variant: post.variant || variant,
@@ -14703,86 +14696,6 @@ var ArticleMasonry$1 = function ArticleMasonry(_ref) {
           })
         }, post.id || index);
       })
-    }), showPagination && totalPages > 1 && !showLoader && /*#__PURE__*/jsxs("div", {
-      className: clsx('blog-pagination', theme === 'dark' && 'blog-pagination-dark'),
-      children: [/*#__PURE__*/jsxs("div", {
-        className: "blog-pagination-container",
-        children: [/*#__PURE__*/jsxs("button", {
-          className: clsx('blog-pagination-btn blog-pagination-prev', currentPage === 1 && 'blog-pagination-btn-disabled'),
-          onClick: function onClick() {
-            return handlePageChange(currentPage - 1);
-          },
-          disabled: currentPage === 1,
-          "aria-label": "Previous page",
-          children: [/*#__PURE__*/jsx("svg", {
-            className: "blog-pagination-icon",
-            fill: "none",
-            stroke: "currentColor",
-            viewBox: "0 0 24 24",
-            children: /*#__PURE__*/jsx("path", {
-              strokeLinecap: "round",
-              strokeLinejoin: "round",
-              strokeWidth: 2,
-              d: "M15 19l-7-7 7-7"
-            })
-          }), "Previous"]
-        }), /*#__PURE__*/jsxs("div", {
-          className: "blog-pagination-numbers",
-          children: [getPageNumbers()[0] > 1 && /*#__PURE__*/jsxs(Fragment, {
-            children: [/*#__PURE__*/jsx("button", {
-              className: "blog-pagination-number",
-              onClick: function onClick() {
-                return handlePageChange(1);
-              },
-              children: "1"
-            }), getPageNumbers()[0] > 2 && /*#__PURE__*/jsx("span", {
-              className: "blog-pagination-ellipsis",
-              children: "..."
-            })]
-          }), getPageNumbers().map(function (pageNum) {
-            return /*#__PURE__*/jsx("button", {
-              className: clsx('blog-pagination-number', pageNum === currentPage && 'blog-pagination-number-active'),
-              onClick: function onClick() {
-                return handlePageChange(pageNum);
-              },
-              children: pageNum
-            }, pageNum);
-          }), getPageNumbers()[getPageNumbers().length - 1] < totalPages && /*#__PURE__*/jsxs(Fragment, {
-            children: [getPageNumbers()[getPageNumbers().length - 1] < totalPages - 1 && /*#__PURE__*/jsx("span", {
-              className: "blog-pagination-ellipsis",
-              children: "..."
-            }), /*#__PURE__*/jsx("button", {
-              className: "blog-pagination-number",
-              onClick: function onClick() {
-                return handlePageChange(totalPages);
-              },
-              children: totalPages
-            })]
-          })]
-        }), /*#__PURE__*/jsxs("button", {
-          className: clsx('blog-pagination-btn blog-pagination-next', currentPage === totalPages && 'blog-pagination-btn-disabled'),
-          onClick: function onClick() {
-            return handlePageChange(currentPage + 1);
-          },
-          disabled: currentPage === totalPages,
-          "aria-label": "Next page",
-          children: ["Next", /*#__PURE__*/jsx("svg", {
-            className: "blog-pagination-icon",
-            fill: "none",
-            stroke: "currentColor",
-            viewBox: "0 0 24 24",
-            children: /*#__PURE__*/jsx("path", {
-              strokeLinecap: "round",
-              strokeLinejoin: "round",
-              strokeWidth: 2,
-              d: "M9 5l7 7-7 7"
-            })
-          })]
-        })]
-      }), /*#__PURE__*/jsxs("div", {
-        className: "blog-pagination-info",
-        children: ["Showing ", startIndex + 1, "-", Math.min(endIndex, totalPosts), " of ", totalPosts, " posts"]
-      })]
     })]
   });
 };
@@ -36622,6 +36535,24 @@ var ReachUsLoadingShell = function ReachUsLoadingShell(props) {
   }, /*#__PURE__*/React.createElement(ReachUsLoadingShell$1, props));
 };
 
+var isImageIcon$1 = function isImageIcon(icon) {
+  if (typeof icon !== 'string') return false;
+  var imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.ico'];
+  var lowerIcon = icon.toLowerCase();
+  return imageExtensions.some(function (ext) {
+    return lowerIcon.endsWith(ext);
+  }) || icon.startsWith('/') || icon.startsWith('http://') || icon.startsWith('https://') || icon.startsWith('./') || icon.startsWith('../');
+};
+
+/**
+ * Contact Component - A versatile contact section with 7 variants
+ * @param {Object} props - Component props
+ * @param {Object} props.data - Contact section data
+ * @param {string} [props.data.variant='modern'] - Style variant: 'modern' | 'minimal' | 'classic' | 'split' | 'card' | 'map' | 'mapFull'
+ * @param {string} [props.id] - Optional section id (falls back to data.id)
+ * @param {boolean} [props.loading=false] - Loading state for skeleton
+ * @param {string} [props.className] - Additional CSS classes
+ */
 var ReachUsPanel$1 = function ReachUsPanel(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
@@ -36717,7 +36648,13 @@ var ReachUsPanel$1 = function ReachUsPanel(_ref) {
                 className: "bg-neutral-50 p-8 rounded-3xl border border-transparent hover:border-primary-600 transition-all group",
                 children: [item.icon && /*#__PURE__*/jsx("div", {
                   className: "text-3xl mb-6 group-hover:scale-110 transition-transform inline-block",
-                  children: item.icon
+                  children: isImageIcon$1(item.icon) ? /*#__PURE__*/jsx("img", {
+                    src: item.icon,
+                    alt: item.title || 'contact icon',
+                    className: "w-10 h-10 object-contain mx-auto"
+                  }) : typeof item.icon === 'string' ? /*#__PURE__*/jsx("span", {
+                    children: item.icon
+                  }) : item.icon
                 }), item.title && /*#__PURE__*/jsx("h3", {
                   className: "text-xl font-bold text-black mb-2",
                   children: item.title
@@ -36954,8 +36891,15 @@ var ReachUsPanel$1 = function ReachUsPanel(_ref) {
                   return /*#__PURE__*/jsxs("div", {
                     className: "flex items-center space-x-6 group cursor-pointer",
                     children: [item.icon && /*#__PURE__*/jsx("div", {
-                      className: "w-12 h-12 rounded-full border border-neutral-800 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all",
-                      children: item.icon
+                      className: "w-12 h-12 rounded-full border border-neutral-800 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all overflow-hidden",
+                      children: isImageIcon$1(item.icon) ? /*#__PURE__*/jsx("img", {
+                        src: item.icon,
+                        alt: item.value || 'contact icon',
+                        className: "w-8 h-8 object-contain"
+                      }) : typeof item.icon === 'string' ? /*#__PURE__*/jsx("span", {
+                        className: "text-2xl",
+                        children: item.icon
+                      }) : item.icon
                     }), item.value && /*#__PURE__*/jsx("span", {
                       className: "text-lg",
                       children: item.value
@@ -37226,6 +37170,24 @@ var ReachUsPanel = function ReachUsPanel(props) {
   }, /*#__PURE__*/React.createElement(ReachUsPanel$1, props));
 };
 
+var isImageIcon = function isImageIcon(icon) {
+  if (typeof icon !== 'string') return false;
+  var imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.ico'];
+  var lowerIcon = icon.toLowerCase();
+  return imageExtensions.some(function (ext) {
+    return lowerIcon.endsWith(ext);
+  }) || icon.startsWith('/') || icon.startsWith('http://') || icon.startsWith('https://') || icon.startsWith('./') || icon.startsWith('../');
+};
+
+/**
+t  Component - Professional contact sections inspired by Modern UI
+ * @param {Object} props - Component props
+ * @param {Object} props.data - Contact section data
+ * @param {string} [props.data.variant='infoLeft'] - Style variant: 'infoLeft' | 'infoRight' | 'stacked' | 'centered' | 'card'
+ * @param {string} [props.id] - Optional section id (falls back to data.id)
+ * @param {boolean} [props.loading=false] - Loading state for skeleton
+ * @param {string} [props.className] - Additional CSS classes
+ */
 var ReachUsNeo$1 = function ReachUsNeo(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? {} : _ref$data,
@@ -37309,8 +37271,15 @@ var ReachUsNeo$1 = function ReachUsNeo(_ref) {
                   return /*#__PURE__*/jsxs("div", {
                     className: "flex items-start space-x-4",
                     children: [/*#__PURE__*/jsx("div", {
-                      className: "w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center flex-shrink-0",
-                      children: item.icon
+                      className: "w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center flex-shrink-0 overflow-hidden",
+                      children: item.icon && (isImageIcon(item.icon) ? /*#__PURE__*/jsx("img", {
+                        src: item.icon,
+                        alt: item.title || 'contact icon',
+                        className: "w-8 h-8 object-contain"
+                      }) : typeof item.icon === 'string' ? /*#__PURE__*/jsx("span", {
+                        className: "text-xl",
+                        children: item.icon
+                      }) : item.icon)
                     }), /*#__PURE__*/jsxs("div", {
                       children: [item.title && /*#__PURE__*/jsx("h3", {
                         className: "font-semibold text-gray-900 mb-1",
@@ -37447,8 +37416,15 @@ var ReachUsNeo$1 = function ReachUsNeo(_ref) {
                   return /*#__PURE__*/jsxs("div", {
                     className: "flex items-start space-x-4",
                     children: [/*#__PURE__*/jsx("div", {
-                      className: "w-12 h-12 bg-green-50 rounded-lg flex items-center justify-center flex-shrink-0",
-                      children: item.icon
+                      className: "w-12 h-12 bg-green-50 rounded-lg flex items-center justify-center flex-shrink-0 overflow-hidden",
+                      children: item.icon && (isImageIcon(item.icon) ? /*#__PURE__*/jsx("img", {
+                        src: item.icon,
+                        alt: item.title || 'contact icon',
+                        className: "w-8 h-8 object-contain"
+                      }) : typeof item.icon === 'string' ? /*#__PURE__*/jsx("span", {
+                        className: "text-xl",
+                        children: item.icon
+                      }) : item.icon)
                     }), /*#__PURE__*/jsxs("div", {
                       children: [item.title && /*#__PURE__*/jsx("h3", {
                         className: "font-semibold text-gray-900 mb-1",
@@ -37473,8 +37449,15 @@ var ReachUsNeo$1 = function ReachUsNeo(_ref) {
               return /*#__PURE__*/jsxs("div", {
                 className: "text-center",
                 children: [/*#__PURE__*/jsx("div", {
-                  className: "w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-4",
-                  children: item.icon
+                  className: "w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-4 overflow-hidden",
+                  children: item.icon && (isImageIcon(item.icon) ? /*#__PURE__*/jsx("img", {
+                    src: item.icon,
+                    alt: item.title || 'contact icon',
+                    className: "w-10 h-10 object-contain"
+                  }) : typeof item.icon === 'string' ? /*#__PURE__*/jsx("span", {
+                    className: "text-2xl",
+                    children: item.icon
+                  }) : item.icon)
                 }), item.title && /*#__PURE__*/jsx("h3", {
                   className: "font-semibold text-gray-900 mb-2",
                   children: item.title
@@ -37561,8 +37544,15 @@ var ReachUsNeo$1 = function ReachUsNeo(_ref) {
                 return /*#__PURE__*/jsxs("div", {
                   className: "text-center",
                   children: [/*#__PURE__*/jsx("div", {
-                    className: "w-14 h-14 bg-purple-50 rounded-full flex items-center justify-center mx-auto mb-4",
-                    children: item.icon
+                    className: "w-14 h-14 bg-purple-50 rounded-full flex items-center justify-center mx-auto mb-4 overflow-hidden",
+                    children: item.icon && (isImageIcon(item.icon) ? /*#__PURE__*/jsx("img", {
+                      src: item.icon,
+                      alt: item.title || 'contact icon',
+                      className: "w-9 h-9 object-contain"
+                    }) : typeof item.icon === 'string' ? /*#__PURE__*/jsx("span", {
+                      className: "text-2xl",
+                      children: item.icon
+                    }) : item.icon)
                   }), item.title && /*#__PURE__*/jsx("h3", {
                     className: "font-semibold text-gray-900 mb-2",
                     children: item.title
@@ -37658,8 +37648,15 @@ var ReachUsNeo$1 = function ReachUsNeo(_ref) {
                     return /*#__PURE__*/jsxs("div", {
                       className: "flex items-center space-x-4",
                       children: [/*#__PURE__*/jsx("div", {
-                        className: "w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0",
-                        children: item.icon
+                        className: "w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0 overflow-hidden",
+                        children: item.icon && (isImageIcon(item.icon) ? /*#__PURE__*/jsx("img", {
+                          src: item.icon,
+                          alt: item.title || 'contact icon',
+                          className: "w-7 h-7 object-contain"
+                        }) : typeof item.icon === 'string' ? /*#__PURE__*/jsx("span", {
+                          className: "text-xl",
+                          children: item.icon
+                        }) : item.icon)
                       }), /*#__PURE__*/jsxs("div", {
                         children: [item.title && /*#__PURE__*/jsx("p", {
                           className: "font-medium text-gray-900",
@@ -42500,7 +42497,7 @@ var ContentsNavigator$1 = function ContentsNavigator(_ref) {
         href: "#".concat(item.id),
         className: clsx('toc-link', "toc-level-".concat(item.level || 2), variant === 'minimal' && 'group', activeId === item.id && 'active',
         // For timeline, keep the dot aligned on the main line for all levels (indent only the text via CSS)
-        variant === 'timeline' ? 'ml-0' : item.level === 2 ? 'ml-0' : 'ml-4', variant !== 'minimal' && (isDark ? 'text-gray-400 hover:text-white' : 'text-gray-600 hover:text-black ml-0')),
+        variant === 'timeline' ? 'ml-0' : item.level === 2 ? 'ml-0' : 'ml-4', variant !== 'minimal' && (isDark ? 'text-gray-400 hover:text-white' : 'text-gray-600 hover:text-black')),
         onClick: function onClick(e) {
           var _document$getElementB;
           e.preventDefault();
