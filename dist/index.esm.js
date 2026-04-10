@@ -9386,7 +9386,7 @@ var HeaderClassic$1 = function HeaderClassic(_ref) {
         id: id,
         className: clsx('relative w-full z-50 bg-white border-b border-gray-200', sticky && 'sticky top-0', isScrolled && 'shadow-sm', className),
         children: /*#__PURE__*/jsxs("nav", {
-          className: "container mx-auto px-4 sm:px-6 lg:px-8",
+          className: "container relative mx-auto px-4 sm:px-6 lg:px-8",
           "aria-label": "Main navigation",
           children: [/*#__PURE__*/jsxs("div", {
             className: "flex items-center justify-between h-14 sm:h-16",
@@ -9404,19 +9404,29 @@ var HeaderClassic$1 = function HeaderClassic(_ref) {
                 if (!item || !item.label) return null;
                 var hasMegaMenu = item.megaMenu && item.megaMenu.length > 0;
                 return /*#__PURE__*/jsxs("div", {
-                  className: "relative",
+                  onMouseEnter: function onMouseEnter() {
+                    if (!isMobile && hasMegaMenu) {
+                      clearTimeout(window.megaMenuTimeout);
+                      setOpenMegaMenu(index);
+                    }
+                  },
+                  onMouseLeave: function onMouseLeave() {
+                    if (!isMobile && hasMegaMenu) {
+                      window.megaMenuTimeout = setTimeout(function () {
+                        setOpenMegaMenu(null);
+                      }, 150);
+                    }
+                  },
+                  className: "--relative",
                   ref: hasMegaMenu && openMegaMenu === index ? megaMenuRef : null,
                   children: [/*#__PURE__*/jsxs("a", {
                     href: item.href || '#',
                     onClick: function onClick(e) {
                       return handleNavClick(index);
-                    },
-                    onMouseEnter: function onMouseEnter() {
-                      return !isMobile && hasMegaMenu && setOpenMegaMenu(index);
-                    },
-                    onMouseLeave: function onMouseLeave() {
-                      return !isMobile && hasMegaMenu && openMegaMenu === index && setOpenMegaMenu(null);
-                    },
+                    }
+                    // onMouseEnter={() => !isMobile && hasMegaMenu && setOpenMegaMenu(index)}
+                    // onMouseLeave={() => !isMobile && hasMegaMenu && openMegaMenu === index && setOpenMegaMenu(null)}
+                    ,
                     className: clsx('text-sm font-medium transition-colors h-full flex items-center ', isNavItemActive(item, index) ? 'text-gray-900' : 'text-gray-600 hover:text-gray-900'),
                     children: [item.label, hasMegaMenu && /*#__PURE__*/jsx("svg", {
                       className: "inline-block w-4 h-4 ml-1",
@@ -9431,30 +9441,33 @@ var HeaderClassic$1 = function HeaderClassic(_ref) {
                       })
                     })]
                   }), hasMegaMenu && openMegaMenu === index && /*#__PURE__*/jsx("div", {
-                    className: "absolute left-1/2 transform -translate-x-1/2 top-full w-screen max-w-5xl bg-white rounded-lg shadow-xl border border-gray-200 p-4 sm:p-6 z-50 animate-slideDown",
+                    className: "absolute left-0 top-full w-full",
                     children: /*#__PURE__*/jsx("div", {
-                      className: "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6",
-                      children: item.megaMenu.map(function (megaItem, idx) {
-                        return /*#__PURE__*/jsxs("div", {
-                          children: [megaItem.title && /*#__PURE__*/jsx("h3", {
-                            className: "text-sm font-semibold text-gray-900 mb-2 sm:mb-3",
-                            children: megaItem.title
-                          }), megaItem.links && megaItem.links.length > 0 && /*#__PURE__*/jsx("ul", {
-                            className: "space-y-1.5 sm:space-y-2",
-                            children: megaItem.links.map(function (link, linkIdx) {
-                              return /*#__PURE__*/jsx("li", {
-                                children: /*#__PURE__*/jsx("a", {
-                                  href: link.href || '#',
-                                  className: "text-sm text-gray-600 hover:text-gray-900 transition-colors block py-1",
-                                  onClick: function onClick() {
-                                    return setOpenMegaMenu(null);
-                                  },
-                                  children: link.label
-                                })
-                              }, linkIdx);
-                            })
-                          })]
-                        }, idx);
+                      className: "w-full max-w-5xl mx-auto bg-white rounded-lg shadow-xl border border-gray-200 p-4 sm:p-6 z-50 animate-slideDown",
+                      children: /*#__PURE__*/jsx("div", {
+                        className: "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 w-full",
+                        children: item.megaMenu.map(function (megaItem, idx) {
+                          return /*#__PURE__*/jsxs("div", {
+                            children: [megaItem.title && /*#__PURE__*/jsx("h3", {
+                              className: "text-sm font-semibold text-gray-900 mb-2 sm:mb-3",
+                              children: megaItem.title
+                            }), megaItem.links && megaItem.links.length > 0 && /*#__PURE__*/jsx("ul", {
+                              className: "space-y-1.5 sm:space-y-2",
+                              children: megaItem.links.map(function (link, linkIdx) {
+                                return /*#__PURE__*/jsx("li", {
+                                  children: /*#__PURE__*/jsx("a", {
+                                    href: link.href || '#',
+                                    className: "text-sm text-gray-600 hover:text-gray-900 transition-colors block py-1",
+                                    onClick: function onClick() {
+                                      return setOpenMegaMenu(null);
+                                    },
+                                    children: link.label
+                                  })
+                                }, linkIdx);
+                              })
+                            })]
+                          }, idx);
+                        })
                       })
                     })
                   })]
@@ -9652,19 +9665,23 @@ var HeaderClassic$1 = function HeaderClassic(_ref) {
                 if (!item || !item.label) return null;
                 var hasDropdown = item.dropdown && item.dropdown.length > 0;
                 return /*#__PURE__*/jsxs("div", {
+                  onMouseEnter: function onMouseEnter() {
+                    if (!isMobile && hasDropdown) {
+                      clearTimeout(window.dropdownTimeout);
+                      setOpenDropdown(index);
+                    }
+                  },
+                  onMouseLeave: function onMouseLeave() {
+                    if (!isMobile && hasDropdown) {
+                      window.dropdownTimeout = setTimeout(function () {
+                        setOpenDropdown(null);
+                      }, 150);
+                    }
+                  },
                   className: "relative",
                   ref: hasDropdown && openDropdown === index ? dropdownRef : null,
                   children: [/*#__PURE__*/jsxs("a", {
                     href: item.href || '#',
-                    onClick: function onClick(e) {
-                      return handleNavClick(index);
-                    },
-                    onMouseEnter: function onMouseEnter() {
-                      return !isMobile && hasDropdown && setOpenDropdown(index);
-                    },
-                    onMouseLeave: function onMouseLeave() {
-                      return !isMobile && hasDropdown && openDropdown === index && setOpenDropdown(null);
-                    },
                     className: clsx('text-sm font-medium transition-colors', isNavItemActive(item, index) ? 'text-gray-900' : 'text-gray-600 hover:text-gray-900'),
                     children: [item.label, hasDropdown && /*#__PURE__*/jsx("svg", {
                       className: "inline-block w-4 h-4 ml-1",
@@ -15649,7 +15666,7 @@ var AuthorBadge$1 = function AuthorBadge(_ref) {
             className: "blog-author-bio",
             children: bio
           }), (socialLinks.length > 0 || email || website) && /*#__PURE__*/jsxs("div", {
-            className: "blog-author-links",
+            className: "blog-author-links justify-start",
             children: [email && /*#__PURE__*/jsx("a", {
               href: "mailto:".concat(email),
               className: "blog-author-link",

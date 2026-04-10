@@ -77,3 +77,6 @@ next-env.d.ts
 *.bak
 *.backup
 
+WALKTHROUGH_AUDIO_SCRIPT.md
+WALKTHROUGH_AUDIO_SCRIPT_SHORT.md
+
